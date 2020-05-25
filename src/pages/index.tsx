@@ -20,15 +20,15 @@ const IndexPage = () => {
     text-lg
     px-4
     items-center
-    md:even:flex-row-reverse
-    md:flex-row
     md:text-base
     md:mb-32
     lg:mb-64
+    lg:text-lg
     `,
 
     content: `
     md:w-64
+    lg:w-5/12
     `,
 
     svg: `
@@ -37,6 +37,8 @@ const IndexPage = () => {
     mb-8
     md:mb-0
     md:w-5/12
+    lg:h-auto
+    lg:w-7/12
     `,
 
     item: `
@@ -56,13 +58,15 @@ const IndexPage = () => {
       transform
       transition
       duration-75
-      hover:text-primary-900
+      hover:text-secondary-900
       hover:no-underline
-      hover:bg-primary-300
+      hover:bg-secondary-300
       hover:align-top
       font-bold
       shadow-md
       mb-4
+      lg:px-6 
+      lg:text-lg
     `,
 
     diagonal: `
@@ -80,10 +84,13 @@ const IndexPage = () => {
   return (
     <Layout>
       <Container className={`${styles.container}`}>
-        <section className={`${styles.section} pt-16 lg:pt-64`}>
+        <section className={`${styles.section}  md:flex-row pt-16 lg:pt-64`}>
           <div className={`${styles.content} ${styles.item}`}>
             <h1>Hi, I'm Sean.</h1>
-            <p>I'm a software developer from Seattle, WA.</p>
+            <p>
+              I'm a software developer, designer, and technology enthusiast from
+              Seattle, WA.
+            </p>
           </div>
           <Code className={`${styles.svg} ${styles.item}`} />
         </section>
@@ -91,7 +98,7 @@ const IndexPage = () => {
 
       <div className={styles.diagonal}>
         <Container className={`${styles.container}`}>
-          <section className={`${styles.section}`}>
+          <section className={`${styles.section} md:flex-row-reverse`}>
             <div className={`${styles.content} ${styles.item}`}>
               <div className="">
                 <h2>I like to build things.</h2>
@@ -107,7 +114,7 @@ const IndexPage = () => {
       </div>
 
       <Container className={`${styles.container}`}>
-        <section className={styles.section}>
+        <section className={`${styles.section} md:flex-row`}>
           <div className={`${styles.content} ${styles.item}`}>
             <div className="">
               <h2>Let's build your product.</h2>

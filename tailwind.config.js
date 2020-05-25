@@ -1,5 +1,7 @@
 const { colors } = require("tailwindcss/defaultTheme")
 
+// primary blue #4299E1
+
 module.exports = {
   purge: [],
   theme: {
@@ -22,6 +24,6 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
   },
-  variants: { flexDirection: ["responsive", "even"] },
+  variants: { flexDirection: ["responsive", "even", "odd"] },
   plugins: [],
 }

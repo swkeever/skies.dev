@@ -1,5 +1,5 @@
 import React from "react"
-import { FaHome, FaBriefcase, FaRegLightbulb } from "react-icons/fa"
+import { FaHome, FaUserAlt, FaRegLightbulb } from "react-icons/fa"
 import { Link } from "gatsby"
 import routes from "../utils/routes"
 
@@ -95,12 +95,12 @@ const Header = ({ siteTitle = "" }) => {
           </li>
           <li className={styles.li}>
             <Link
-              to="/404"
+              to={routes.contact}
               className={styles.link}
               activeClassName={styles.active}
             >
-              <FaBriefcase className={styles.icon} />
-              <span className={styles.span}>Projects</span>
+              <FaUserAlt className={styles.icon} />
+              <span className={styles.span}>Contact</span>
             </Link>
           </li>
         </ul>
