@@ -2,45 +2,127 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/Layout"
-import Image from "../components/Image"
 import Container from "../components/Container"
+import Code from "../../assets/code.svg"
+import Building from "../../assets/building.svg"
+import Product from "../../assets/product.svg"
+import routes from "../utils/routes"
 
 const IndexPage = () => {
   const styles = {
-    section: `
-    py-32
+    container: `
     `,
 
-    blurb: `
-      text-3xl
-      lg:w-1/2
+    section: `
+    flex
+    justify-center
+    flex-col
+    text-lg
+    px-4
+    items-center
+    md:even:flex-row-reverse
+    md:flex-row
+    md:text-base
+    md:mb-32
+    lg:mb-64
+    `,
+
+    content: `
+    md:w-64
+    `,
+
+    svg: `
+    w-11/12
+    h-64
+    mb-8
+    md:mb-0
+    md:w-5/12
+    `,
+
+    item: `
+      mx-8
+    `,
+
+    button: `
+      bg-primary-500 
+      text-primary-100
+      rounded-full
+      px-4 
+      py-2 
+      inline-block
+      mt-4
+      inline-block
+      align-middle
+      transform
+      transition
+      duration-75
+      hover:text-primary-900
+      hover:no-underline
+      hover:bg-primary-300
+      hover:align-top
+      font-bold
+      shadow-md
+      mb-4
+    `,
+
+    diagonal: `
+    bg-primary-100 
+    diagonal-container 
+    pt-16
+    md:pt-32
+    md:pb-4
+    md:-mt-16
+    md:mb-16
+    lg:pt-64
     `,
   }
 
   return (
     <Layout>
-      <section className={`bg-primary-100 ${styles.section}`}>
-        <Container className="flex">
-          <h1>Hi 👋 I'm Sean.</h1>
+      <Container className={`${styles.container}`}>
+        <section className={`${styles.section} pt-16 lg:pt-64`}>
+          <div className={`${styles.content} ${styles.item}`}>
+            <h1>Hi, I'm Sean.</h1>
+            <p>I'm a software developer from Seattle, WA.</p>
+          </div>
+          <Code className={`${styles.svg} ${styles.item}`} />
+        </section>
+      </Container>
+
+      <div className={styles.diagonal}>
+        <Container className={`${styles.container}`}>
+          <section className={`${styles.section}`}>
+            <div className={`${styles.content} ${styles.item}`}>
+              <div className="">
+                <h2>I like to build things.</h2>
+                <p>
+                  From client facing applications to the platforms that serve
+                  them, I love creating and building useful software.
+                </p>
+              </div>
+            </div>
+            <Building className={`${styles.svg} ${styles.item}`} />
+          </section>
         </Container>
-      </section>
-      <section className={`${styles.section}`}>
-        <Container className="flex">
-          <p className={`${styles.blurb}`}>
-            I'm a software engineer from Seattle, WA. 👨‍💻
-          </p>
-        </Container>
-      </section>
-      <section className={`bg-secondary-100 ${styles.section}`}>
-        <Container className="flex">
-          <p className={` ${styles.blurb}`}>
-            I recently graduated from
-            {` `}
-            <a href="https://cs.uw.edu">University of Washington</a> with a B.S.
-            in Computer Engineering. 👨‍🎓
-          </p>
-        </Container>
-      </section>
+      </div>
+
+      <Container className={`${styles.container}`}>
+        <section className={styles.section}>
+          <div className={`${styles.content} ${styles.item}`}>
+            <div className="">
+              <h2>Let's build your product.</h2>
+              <p>
+                My full stack web development experience can help you get your
+                project off the ground.
+              </p>
+              <Link to={routes.contact} className={styles.button}>
+                Learn more
+              </Link>
+            </div>
+          </div>
+          <Product className={`${styles.svg} ${styles.item}`} />
+        </section>
+      </Container>
     </Layout>
   )
 }

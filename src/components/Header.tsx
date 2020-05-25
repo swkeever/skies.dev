@@ -1,6 +1,7 @@
 import React from "react"
 import { FaHome, FaBriefcase, FaRegLightbulb } from "react-icons/fa"
 import { Link } from "gatsby"
+import routes from "../utils/routes"
 
 const Header = ({ siteTitle = "" }) => {
   const styles = {
@@ -69,7 +70,7 @@ const Header = ({ siteTitle = "" }) => {
         <ul className={styles.ul}>
           <li className={styles.li}>
             <Link
-              to="/"
+              to={routes.home}
               className={styles.link}
               activeClassName={styles.active}
             >
@@ -84,7 +85,7 @@ const Header = ({ siteTitle = "" }) => {
           </li>
           <li className={styles.li}>
             <Link
-              to="/blog/hello"
+              to={routes.blogs}
               className={styles.link}
               activeClassName={styles.active}
             >

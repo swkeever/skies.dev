@@ -1,1 +1,0 @@
-export const container = `container mx-auto`

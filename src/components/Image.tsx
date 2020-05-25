@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -12,21 +12,26 @@ import Img from "gatsby-image"
  * - `gatsby-image`: https://gatsby.dev/gatsby-image
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
+type ImageProps = {
+  svgContent?: string
+  fluid?: FluidObject
+  file: object
+  alt: string
+}
 
-const Image = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+const Image = ({ svg, fluid, file, alt }: ImageProps) => {
+  if (file.contentType === "image/svg+xml") {
+    if (svg && svg.content) {
+      // Inlined SVGs
+      return <div dangerouslySetInnerHTML={{ __html: svg.content }} />
     }
-  `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+    // SVGs that can/should not be inlined
+    return <img src={file.url} alt={alt} />
+  }
+
+  // Non SVG images
+  return <Img fluid={fluid} alt={alt} />
 }
 
 export default Image

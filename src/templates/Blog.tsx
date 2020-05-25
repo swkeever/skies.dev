@@ -7,15 +7,33 @@ export default function Template({
 }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
+
+  const styles = {
+    article: `
+    container
+    mx-auto
+    px-4
+    md:px-32
+    lg:px-64
+    lg:py-8
+    xl:leading-loose
+    `,
+  }
+
   return (
     <Layout>
-      <article className="container mx-auto px-64">
+      <article className={styles.article}>
         <h1>{frontmatter.title}</h1>
-        <time className={`
+        <time
+          className={`
           uppercase
           tracking-widest
           text-neutral-600
-        `} dateTime={frontmatter.date}>{frontmatter.date}</time>
+        `}
+          dateTime={frontmatter.date}
+        >
+          {frontmatter.date}
+        </time>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>
     </Layout>

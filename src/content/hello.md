@@ -1,5 +1,5 @@
 ---
-slug: "/blog/hello"
+slug: "/blogs/hello"
 date: "2019-05-04"
 title: "My first blog post"
 ---
@@ -15,7 +15,7 @@ How are you doing today?
 So first you will want to
 
 ```javascript
-const hello = 'hi how are you?';
+const hello = "hi how are you?"
 ```
 
 How is it going today?
@@ -46,5 +46,5 @@ And some numerics
 2. Then do that
 3. Then you're ready
 
-Some **strong** text as well as some *emphasized* text.
+Some **strong** text as well as some _emphasized_ text.
 Here is some `inline code` as well.

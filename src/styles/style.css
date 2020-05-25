@@ -49,10 +49,6 @@ blockquote {
   @apply bg-primary-100 text-primary-900 border-l-4 border-primary-300 card;
 }
 
-img {
-  
-}
-
 .list {
   @apply ml-8 my-4;
 }
@@ -74,6 +70,10 @@ hr {
 }
 
 @tailwind components;
+
+.diagonal-container {
+  clip-path: polygon(0% 0%, 100% 50px, 100% 100%, 0% calc(100% - 50px));
+}
 
 @tailwind utilities;
 
