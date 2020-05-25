@@ -5,7 +5,8 @@ export default function Footer() {
     footer: `
       mb-8
       px-4
-      py-8
+      py-16
+      lg:mb-0
       bg-neutral-900
       text-neutral-500
     `
@@ -13,8 +14,9 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      © All Rights Reserved {new Date().getFullYear()}
-      
-      </footer>
+      <div className="container mx-auto">
+        © All Rights Reserved {new Date().getFullYear()}
+      </div>
+    </footer>
   )
 }

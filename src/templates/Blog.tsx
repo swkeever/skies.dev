@@ -9,7 +9,7 @@ export default function Template({
   const { frontmatter, html } = markdownRemark
   return (
     <Layout>
-      <article>
+      <article className="container mx-auto px-64">
         <h1>{frontmatter.title}</h1>
         <time className={`
           uppercase

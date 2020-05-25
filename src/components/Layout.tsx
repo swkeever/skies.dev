@@ -24,13 +24,9 @@ const Layout = ({ children }) => {
 
   const styles = {
     main: `
-      w-11/12
-      mb-16
-      md:w-9/12
+      mb-0
       min-h-screen
-      lg:w-5/12
-      lg:mt-16
-      m-auto
+      lg:mt-8
     `
   }
 
