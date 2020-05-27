@@ -7,9 +7,9 @@
 
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import '../styles/style.css';
+import "../styles/style.css"
 import Header from "./Header"
-import Footer from "./Footer";
+import Footer from "./Footer"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,15 +27,15 @@ const Layout = ({ children }) => {
       mb-0
       min-h-screen
       lg:mt-8
-    `
+    `,
   }
 
   return (
-    <>
+    <div className="theme-dark bg-bgColor text-textColor">
       <Header siteTitle={data.site.siteMetadata.title} />
-        <main className={styles.main}>{children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }
 

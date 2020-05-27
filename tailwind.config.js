@@ -6,9 +6,14 @@ module.exports = {
   purge: [],
   theme: {
     colors: {
-      primary: colors.blue,
-      secondary: colors.green,
-      neutral: colors.gray,
+      textColor: "var(--color-text)",
+      neutralColor: "var(--color-neutral)",
+      bgColor: "var(--color-bg)",
+      primaryColor: "var(--color-primary)",
+      primaryBgColor: "var(--color-primary-bg)",
+      primaryTextColor: "var(--color-primary-text)",
+      darkColor: "var(--color-dark)",
+      linkColor: "var(--color-link)",
     },
     screens: {
       sm: "640px",

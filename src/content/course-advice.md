@@ -1,6 +1,6 @@
 ---
 slug: "/blogs/course-advice"
-date: "2019-05-04"
+date: "2020-05-25"
 title: "Course Advice for Software Engineers"
 ---
 
@@ -126,7 +126,3 @@ These courses are good to take while you're taking other hard courses concurrent
 - [CSE484 Computer Security](https://courses.cs.washington.edu/courses/cse451/): 3 reasonably sized labs that you can work on in groups of 3. No midterm/final. Easy final project. Possibly the lightest workload of all the CSE classes.
 - [CSE341 Programming Languages](https://courses.cs.washington.edu/courses/cse451/): This course might feel harder if you're newer to CS or don't have much exposure to languages outside of Java. Otherwise, it's often considered one of the easiest CSE courses.
 - [CSE473 Artificial Intelligence](https://courses.cs.washington.edu/courses/cse473/): The bulk of the work is 4 labs where you implement AI's for Pacman. This course is often considered one of the easier courses.
-
-## Contributing
-
-I'm open to improving this document, so feel free to make a pull request if you have anything you want to add or say.

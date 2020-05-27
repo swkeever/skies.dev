@@ -12,11 +12,11 @@ const Header = ({ siteTitle = "" }) => {
     lg:fixed
     lg:top-0
     lg:bottom-auto
-    w-full
+    w-screen
     pt-3
     pb-1
-    bg-primary-500
-    shadow-xl
+    bg-primaryColor
+    shadow-sm
     z-50`,
 
     ul: `
@@ -26,15 +26,15 @@ const Header = ({ siteTitle = "" }) => {
     grid
     grid-cols-3
     divide-x
-    divide-primary-400
+    divide-neutralColor
     uppercase
     `,
 
     li: `
     text-center
     tracking-widest
-    text-primary-300
-    hover:text-primary-100
+    text-neutralColor
+    hover:text-primaryBgColor
     flex-1
     justify-center
     text-center
@@ -53,13 +53,14 @@ const Header = ({ siteTitle = "" }) => {
     `,
 
     active: `
-    text-neutral-100
+    text-bgColor
+    hover:text-bgColor
     `,
 
     link: `
-    text-primary-300
-    text-primary-300
-    hover:text-primary-200
+    text-neutralColor
+    text-neutralColor
+    hover:text-primaryTextColor
     hover:no-underline
     `,
   }

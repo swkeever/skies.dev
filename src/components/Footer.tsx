@@ -1,22 +1,71 @@
-import React from 'react';
+import React from "react"
+import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa"
+import Container from "./Container"
+import links from "../utils/links"
 
 export default function Footer() {
   const styles = {
     footer: `
       mb-8
       px-4
-      py-16
+      pt-4 
+      pb-12
+      z-40
+      text-xs
+      md:pb-8
+      md:text-base
+      lg:pb-1
       lg:mb-0
-      bg-neutral-900
-      text-neutral-500
-    `
+      bg-darkColor
+      text-neutralColor
+    `,
+
+    li: `
+    pr-8
+    text-3xl
+    md:text-3xl
+    lg:text-4xl
+    `,
+
+    ul: `
+    ml-0
+    list-none 
+    flex 
+    justify-between
+    
+    `,
+
+    container: `
+    md:flex
+    md:flex-row-reverse 
+    md:justify-between
+    md:items-baseline
+
+    `,
   }
 
   return (
     <footer className={styles.footer}>
-      <div className="container mx-auto">
-        © All Rights Reserved {new Date().getFullYear()}
-      </div>
+      <Container className={styles.container}>
+        <ul className={styles.ul}>
+          <li className={styles.li}>
+            <a href={links.sourceRepo}>
+              <FaCode />
+            </a>
+          </li>
+          <li className={styles.li}>
+            <a href={links.github}>
+              <FaGithub />
+            </a>
+          </li>
+          <li className={styles.li}>
+            <a href={links.linkedIn}>
+              <FaLinkedin />
+            </a>
+          </li>
+        </ul>
+        <p>© All Rights Reserved {new Date().getFullYear()}</p>
+      </Container>
     </footer>
   )
 }

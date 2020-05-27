@@ -1,5 +1,26 @@
 @tailwind base;
 
+.theme-light {
+  --color-text: #1A202C;
+  --color-neutral: #A0AEC0;
+  --color-bg: #F7FAFC;
+  --color-primary: #4299E1;
+  --color-primary-bg: #EBF8FF;
+  --color-primary-text: #2A4365;
+  --color-dark: #1A202C;
+}
+
+.theme-dark {
+  --color-text: #F7FAFC;
+  --color-neutral: #A0AEC0;
+  --color-bg: #1A202C;
+  --color-primary: #2C5282;
+  --color-primary-bg: #2D3748;
+  --color-primary-text: #EBF8FF;
+  --color-dark: #2D3748;
+  --color-link: #EBF8FF;
+}
+
 h1,
 h2,
 h3,
@@ -34,19 +55,15 @@ p {
 }
 
 pre {
-  @apply bg-neutral-900 text-neutral-100 card;
+  @apply bg-textColor text-bgColor card;
 }
 
 a {
-  @apply text-primary-500;
-}
-
-a:hover {
-  @apply text-primary-700 underline;
+  @apply text-linkColor;
 }
 
 blockquote {
-  @apply bg-primary-100 text-primary-900 border-l-4 border-primary-300 card;
+  @apply bg-primaryBgColor text-primaryTextColor border-l-4 border-primaryBgColor card;
 }
 
 .list {
@@ -66,13 +83,21 @@ li {
 }
 
 hr {
-  @apply border-primary-200 my-4;
+  @apply border-primaryBgColor my-4;
 }
 
 @tailwind components;
 
-.diagonal-container {
+.diagonal-m {
   clip-path: polygon(0% 0%, 100% 50px, 100% 100%, 0% calc(100% - 50px));
+}
+
+.diagonal-b {
+  clip-path: polygon(0% 0%, 100% 50px, 100% 100%, 0% 100%);
+}
+
+.diagonal-t {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - 50px));
 }
 
 @tailwind utilities;

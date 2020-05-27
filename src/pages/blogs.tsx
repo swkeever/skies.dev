@@ -3,6 +3,8 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 import routes from "../utils/routes"
 import Container from "../components/Container"
+import Alert from "../components/Alert"
+import Bulb from "../../assets/bulb.svg"
 
 type BlogList = {
   allMarkdownRemark: {
@@ -20,12 +22,13 @@ type BlogList = {
 export default function BlogsPage() {
   const data: BlogList = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
           node {
             frontmatter {
               title
               slug
+              date
             }
           }
         }
@@ -40,10 +43,13 @@ export default function BlogsPage() {
     md:w-2/3 
     lg:mt-16 
     lg:w-1/2
+    relative
     `,
 
     header: `
     text-4xl
+    w-64
+    md:w-6/12
     `,
 
     ul: `
@@ -57,17 +63,44 @@ export default function BlogsPage() {
     `,
 
     a: `
-    hover:no-underline
-    hover:text-primary-400
+
+    `,
+
+    svg: `
+    w-48 
+    absolute 
+    right-0 
+    h-auto
+    -mt-48
+    md:w-64 
+    md:-mt-56 
+    lg:w-64 
+    lg:-mt-64 
+    `,
+
+    diagonal: `
+    diagonal-t 
+    bg-primaryBgColor
+    pt-px 
+    pb-20
+    lg:pb-24 
     `,
   }
 
   return (
     <Layout>
+      <div className={styles.diagonal}>
+        <Container className={styles.container}>
+          <h1 className={styles.header}>Here's where I write about things.</h1>
+        </Container>
+      </div>
       <Container className={styles.container}>
-        <h1 className={styles.header}>Here's where I write about things.</h1>
+        <Bulb className={styles.svg} />
+      </Container>
+
+      <Container className={styles.container}>
         <ul className={styles.ul}>
-          {data.allMarkdownRemark.edges.reverse().map(e => {
+          {data.allMarkdownRemark.edges.map(e => {
             const { title, slug } = e.node.frontmatter
 
             return (

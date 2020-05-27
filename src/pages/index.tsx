@@ -22,12 +22,11 @@ const IndexPage = () => {
     items-center
     md:text-base
     md:mb-32
-    lg:mb-64
     lg:text-lg
     `,
 
     content: `
-    md:w-64
+    md:w-5/12
     lg:w-5/12
     `,
 
@@ -36,9 +35,9 @@ const IndexPage = () => {
     h-64
     mb-8
     md:mb-0
-    md:w-5/12
+    md:w-7/12
     lg:h-auto
-    lg:w-7/12
+    lg:w-8/12
     `,
 
     item: `
@@ -46,8 +45,8 @@ const IndexPage = () => {
     `,
 
     button: `
-      bg-primary-500 
-      text-primary-100
+      bg-primaryColor
+      text-linkColor
       rounded-full
       px-4 
       py-2 
@@ -58,9 +57,7 @@ const IndexPage = () => {
       transform
       transition
       duration-75
-      hover:text-secondary-900
       hover:no-underline
-      hover:bg-secondary-300
       hover:align-top
       font-bold
       shadow-md
@@ -70,9 +67,10 @@ const IndexPage = () => {
     `,
 
     diagonal: `
-    bg-primary-100 
-    diagonal-container 
+    bg-primaryBgColor 
+    diagonal-m 
     pt-16
+    pb-8
     md:pt-32
     md:pb-4
     md:-mt-16
@@ -84,9 +82,9 @@ const IndexPage = () => {
   return (
     <Layout>
       <Container className={`${styles.container}`}>
-        <section className={`${styles.section}  md:flex-row pt-16 lg:pt-64`}>
+        <section className={`${styles.section}  md:flex-row pt-2 lg:pt-32`}>
           <div className={`${styles.content} ${styles.item}`}>
-            <h1>Hi, I'm Sean.</h1>
+            <h1>Hi, 👋 I'm Sean.</h1>
             <p>
               I'm a software developer, designer, and technology enthusiast from
               Seattle, WA.
@@ -104,7 +102,7 @@ const IndexPage = () => {
                 <h2>I like to build things.</h2>
                 <p>
                   From client facing applications to the platforms that serve
-                  them, I love creating and building useful software.
+                  them, I love designing and implementing software.
                 </p>
               </div>
             </div>
