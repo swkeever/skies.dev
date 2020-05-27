@@ -1,9 +1,21 @@
-import React from "react"
-import { FaHome, FaUserAlt, FaRegLightbulb } from "react-icons/fa"
+import React, { useState, useEffect } from "react"
+import {
+  FaHome,
+  FaUserAlt,
+  FaRegLightbulb,
+  FaMoon,
+  FaSun,
+} from "react-icons/fa"
 import { Link } from "gatsby"
 import routes from "../utils/routes"
 
-const Header = ({ siteTitle = "" }) => {
+type HeaderProps = {
+  siteTitle?: string
+  lightTheme: boolean
+  setLightTheme: Function
+}
+
+const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
   const styles = {
     nav: `
     fixed 
@@ -24,7 +36,7 @@ const Header = ({ siteTitle = "" }) => {
     m-0
     p-1
     grid
-    grid-cols-3
+    grid-cols-4
     divide-x
     divide-neutralColor
     uppercase
@@ -53,15 +65,22 @@ const Header = ({ siteTitle = "" }) => {
     `,
 
     active: `
-    text-bgColor
-    hover:text-bgColor
+    text-lightColor
+    hover:text-lightColor
     `,
 
     link: `
     text-neutralColor
     text-neutralColor
-    hover:text-primaryTextColor
+    hover:text-primaryBgColor
     hover:no-underline
+    `,
+
+    theme: `
+    uppercase
+    tracking-widest
+    text-neutralColor
+    hover:text-primaryBgColor
     `,
   }
 
@@ -103,6 +122,19 @@ const Header = ({ siteTitle = "" }) => {
               <FaUserAlt className={styles.icon} />
               <span className={styles.span}>Contact</span>
             </Link>
+          </li>
+          <li className={styles.li}>
+            <button
+              className={`${styles.link} ${styles.theme}`}
+              onClick={() => setLightTheme(!lightTheme)}
+            >
+              {lightTheme ? (
+                <FaMoon className={`${styles.icon} ${styles.themeIcon}`} />
+              ) : (
+                <FaSun className={`${styles.icon} text-2xl`} />
+              )}
+              <span className={styles.span}>Theme</span>
+            </button>
           </li>
         </ul>
       </nav>

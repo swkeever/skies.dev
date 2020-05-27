@@ -14,6 +14,7 @@ module.exports = {
       primaryTextColor: "var(--color-primary-text)",
       darkColor: "var(--color-dark)",
       linkColor: "var(--color-link)",
+      lightColor: "var(--color-light)",
     },
     screens: {
       sm: "640px",
