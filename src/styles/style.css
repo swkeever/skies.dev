@@ -68,7 +68,7 @@ a {
 }
 
 a:hover {
-  @apply text-linkHoverColor;
+  @apply text-linkHoverColor transition duration-75;
 }
 
 blockquote {

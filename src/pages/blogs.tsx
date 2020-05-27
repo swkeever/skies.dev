@@ -66,10 +66,23 @@ export default function BlogsPage() {
     relative
     `,
 
+    headerContainer: `
+    
+    `,
+
     header: `
-    text-4xl
-    w-64
-    md:w-6/12
+    w-11/12
+    leading-tight
+    md:text-4xl
+    md:w-8/12
+    md:w-9/12
+    lg:w-7/12
+    `,
+
+    description: `
+    w-7/12
+    -mb-4
+    lg:w-6/12
     `,
 
     ul: `
@@ -86,14 +99,15 @@ export default function BlogsPage() {
     `,
 
     svg: `
-    w-48 
+    w-40 
     absolute 
     right-0 
     top-0
+    mr-4
     h-auto
-    -mt-48
-    md:w-64 
-    md:-mt-64 
+    -mt-40
+    md:-mt-40 
+    md:w-48
     lg:w-64 
     lg:-mt-64 
     `,
@@ -108,11 +122,18 @@ export default function BlogsPage() {
     `,
 
     input: `
+    -mt-8
     bg-primaryBgColor
-    px-2 
-    py-1
+    w-8/12
+    rounded-full
+    text-center
+    text-primaryTextColor
+    px-4 
+    py-4
+    md:text-xl
+    lg:text-2xl
     outline-none
-    shadow-sm
+    shadow-md
     focus:border-1
     focus:border-primaryColor
     focus:shadow-focus
@@ -209,8 +230,14 @@ export default function BlogsPage() {
   return (
     <Layout>
       <div className={styles.diagonal}>
-        <Container className={styles.container}>
-          <h1 className={styles.header}>Here's where I write about things.</h1>
+        <Container className={`${styles.container} ${styles.headerContainer}`}>
+          <h1 className={styles.header}>
+            Blogs about life as a software engineer.
+          </h1>
+          <p className={styles.description}>
+            I write about lessons learned in the field, and anything else I feel
+            is important.
+          </p>
         </Container>
       </div>
       <Container className={styles.container}>
@@ -229,7 +256,7 @@ export default function BlogsPage() {
           type="text"
         />
         <label className="block font-bold mt-4 -mb-2" for="tags">
-          Tags
+          I'm interested in
         </label>
         <ul id="tags" className={styles.tags}>
           {tags.map((t, idx) => {

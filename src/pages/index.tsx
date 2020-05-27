@@ -55,13 +55,9 @@ const IndexPage = () => {
       mt-4
       inline-block
       align-middle
-      transform
-      transition
-      duration-75
       hover:no-underline
       hover:align-top
       font-bold
-      shadow-md
       mb-4
       lg:px-6 
       lg:text-lg
