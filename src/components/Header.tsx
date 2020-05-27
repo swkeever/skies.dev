@@ -71,18 +71,30 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
 
     link: `
     text-neutralColor
-    text-neutralColor
-    hover:text-primaryBgColor
+    outline-none
     hover:no-underline
+    focus:outline-none
+    active:outline-none
+    active:border-0
+    focus:border-0
     `,
 
     theme: `
     uppercase
     tracking-widest
-    text-neutralColor
-    hover:text-primaryBgColor
+    hover:text-linkHoverColor
+    `,
+
+    themeIcon: `
+
     `,
   }
+
+  const themeIcon = lightTheme ? (
+    <FaSun className={`${styles.icon} text-2xl`} />
+  ) : (
+    <FaMoon className={`${styles.icon}`} />
+  )
 
   return (
     <header>
@@ -125,14 +137,10 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
           </li>
           <li className={styles.li}>
             <button
-              className={`${styles.link} ${styles.theme}`}
+              className={`${styles.link} ${styles.theme} ${styles.themeIcon}`}
               onClick={() => setLightTheme(!lightTheme)}
             >
-              {lightTheme ? (
-                <FaMoon className={`${styles.icon} ${styles.themeIcon}`} />
-              ) : (
-                <FaSun className={`${styles.icon} text-2xl`} />
-              )}
+              {themeIcon}
               <span className={styles.span}>Theme</span>
             </button>
           </li>

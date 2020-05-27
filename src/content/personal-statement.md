@@ -2,6 +2,7 @@
 slug: "/blogs/personal-statement"
 date: "2020-05-25"
 title: "The Personal Statement that got me into University of Washington CSE"
+tags: Computer Science, College
 ---
 
 When I was twelve years old, I fell in love with teaching myself musical instruments. Using the Internet, I was able to teach myself how to play guitar, piano, and drums; the hobby evolved into learning software that would allow me to take my craft to the next level. I spent hours on end producing hundreds of songs, making music videos, and continuing to educate myself via my computer. I began to see computers as a tool that allowed people to accomplish tasks efficiently. Learning to develop software would allow me to produce applications that people could use to enrich their lives—similar to how software has enriched mine. Throughout my personal and academic journey, I have learned to be adaptable, collaborative, and an effective communicator. Studying Computer Engineering at the University of Washington would allow me to build upon my strengths and develop the skills necessary to create, understand, and deploy meaningful software solutions.

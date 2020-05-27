@@ -1,4 +1,4 @@
-const { colors } = require("tailwindcss/defaultTheme")
+const { colors, rotate, boxShadow } = require("tailwindcss/defaultTheme")
 
 // primary blue #4299E1
 
@@ -14,7 +14,16 @@ module.exports = {
       primaryTextColor: "var(--color-primary-text)",
       darkColor: "var(--color-dark)",
       linkColor: "var(--color-link)",
+      linkHoverColor: "var(--color-link-hover)",
       lightColor: "var(--color-light)",
+    },
+    rotate: {
+      ...rotate,
+      "360": "360deg",
+    },
+    boxShadow: {
+      ...boxShadow,
+      focus: "0 0 5px rgba(66, 153, 225, 0.7)",
     },
     screens: {
       sm: "640px",
@@ -30,6 +39,10 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
   },
-  variants: { flexDirection: ["responsive", "even", "odd"] },
+  variants: {
+    rotate: ["responsive", "hover", "focus", "active"],
+    flexDirection: ["responsive", "even", "odd"],
+    borderWidth: ["responsive", "focus"],
+  },
   plugins: [],
 }

@@ -2,12 +2,14 @@
 
 .theme-light {
   --color-text: #1A202C;
-  --color-neutral: #A0AEC0;
+  --color-neutral: #CBD5E0;
   --color-bg: #F7FAFC;
   --color-primary: #4299E1;
   --color-primary-bg: #EBF8FF;
   --color-primary-text: #2A4365;
   --color-dark: #1A202C;
+  --color-link: #4299E1;
+  --color-link-hover: #3182CE;
   --color-light: #F7FAFC;
 }
 
@@ -19,7 +21,8 @@
   --color-primary-bg: #2D3748;
   --color-primary-text: #EBF8FF;
   --color-dark: #2D3748;
-  --color-link: #EBF8FF;
+  --color-link: #90CDF4;
+  --color-link-hover: #63B3ED;
   --color-light: #F7FAFC;
 }
 
@@ -64,6 +67,10 @@ a {
   @apply text-linkColor;
 }
 
+a:hover {
+  @apply text-linkHoverColor;
+}
+
 blockquote {
   @apply bg-primaryBgColor text-primaryTextColor border-l-4 border-primaryBgColor card;
 }
@@ -101,5 +108,6 @@ hr {
 .diagonal-t {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - 50px));
 }
+
 
 @tailwind utilities;

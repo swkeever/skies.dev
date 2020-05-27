@@ -46,7 +46,8 @@ const IndexPage = () => {
 
     button: `
       bg-primaryColor
-      text-linkColor
+      text-lightColor
+      hover:text-lightColor
       rounded-full
       px-4 
       py-2 

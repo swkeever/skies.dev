@@ -2,6 +2,7 @@
 slug: "/blogs/course-advice"
 date: "2020-05-25"
 title: "Course Advice for Software Engineers"
+tags: Computer Science, College, Software Engineering
 ---
 
 ## Introduction
