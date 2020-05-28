@@ -6,6 +6,7 @@ import Container from "../components/Container"
 import Alert from "../components/Alert"
 import Bulb from "../../assets/bulb.svg"
 import Empty from "../../assets/empty.svg"
+import { FaSistrix, FaCheck } from "react-icons/fa"
 
 type BlogList = {
   allMarkdownRemark: {
@@ -83,12 +84,14 @@ export default function BlogsPage() {
     w-7/12
     -mb-4
     lg:w-6/12
+    lg:text-lg
     `,
 
     ul: `
     list-none
     ml-0
     md:text-lg
+
     `,
 
     li: `
@@ -124,19 +127,30 @@ export default function BlogsPage() {
     input: `
     -mt-8
     bg-primaryBgColor
-    w-8/12
+    w-9/12
     rounded-full
-    text-center
     text-primaryTextColor
-    px-4 
+    pl-10 
+    pr-2
+    relative
     py-4
-    md:text-xl
-    lg:text-2xl
+    md:text-lg
+    md:w-8/12
+    lg:w-6/12
     outline-none
-    shadow-md
+    shadow-sm
     focus:border-1
     focus:border-primaryColor
     focus:shadow-focus
+    `,
+
+    search: `
+    inline
+    text-2xl 
+    absolute
+    text-neutralColor
+    ml-3
+    z-50
     `,
 
     tags: `
@@ -219,6 +233,7 @@ export default function BlogsPage() {
       return (
         <li className={styles.li}>
           <div className="card">
+            <img src="../images/uw.jpg" />
             <Link className={styles.a} to={`${slug}`}>
               {title}
             </Link>
@@ -245,16 +260,20 @@ export default function BlogsPage() {
       </Container>
       <Container className={styles.container}>
         <label for="filter" className="hidden">
-          Filter
+          Search
         </label>
-        <input
-          value={filter}
-          onChange={e => setFilter(e.target.value)}
-          className={styles.input}
-          placeholder="What can I help you find?"
-          name="filter"
-          type="text"
-        />
+        <div>
+          <FaSistrix className={styles.search} />
+          <input
+            value={filter}
+            onChange={e => setFilter(e.target.value)}
+            className={styles.input}
+            placeholder="What can I help you find?"
+            name="filter"
+            type="text"
+          ></input>
+        </div>
+
         <label className="block font-bold mt-4 -mb-2" for="tags">
           I'm interested in
         </label>
@@ -262,6 +281,7 @@ export default function BlogsPage() {
           {tags.map((t, idx) => {
             return (
               <li
+                key={t.name}
                 onClick={() => {
                   const newTags = tags.slice()
                   newTags[idx] = {
