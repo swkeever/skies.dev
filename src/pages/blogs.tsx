@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useCallback, useEffect } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 import routes from "../utils/routes"
@@ -7,6 +7,7 @@ import Alert from "../components/Alert"
 import Bulb from "../../assets/bulb.svg"
 import Empty from "../../assets/empty.svg"
 import { FaSistrix, FaCheck } from "react-icons/fa"
+import debounce from "lodash.debounce"
 
 type BlogList = {
   allMarkdownRemark: {
@@ -67,10 +68,6 @@ export default function BlogsPage() {
     relative
     `,
 
-    headerContainer: `
-    
-    `,
-
     header: `
     w-11/12
     leading-tight
@@ -91,14 +88,10 @@ export default function BlogsPage() {
     list-none
     ml-0
     md:text-lg
-
     `,
 
     li: `
     mb-8
-    `,
-
-    a: `
     `,
 
     svg: `
@@ -213,38 +206,50 @@ export default function BlogsPage() {
     `,
   }
 
-  const blogs = data.allMarkdownRemark.edges
-    .filter(e => {
-      if (filter) {
-        return e.node.frontmatter.title.toLowerCase().includes(filter)
-      }
+  const updateBlogsDebounced = debounce(updateBlogs, 500)
 
-      const nodeTags = e.node.frontmatter.tags.split(", ")
-      if (
-        tags
-          .filter(t => t.selected)
-          .map(t => t.name)
-          .every(t => nodeTags.includes(t))
-      ) {
-        return true
-      }
+  useEffect(() => {
+    updateBlogs()
+  }, [])
 
-      return false
-    })
-    .map(e => {
-      const { title, slug } = e.node.frontmatter
+  const [blogs, setBlogs] = useState([])
 
-      return (
-        <li className={styles.li}>
-          <div className="card">
-            <img src="../images/uw.jpg" />
-            <Link className={styles.a} to={`${slug}`}>
-              {title}
-            </Link>
-          </div>
-        </li>
-      )
-    })
+  function updateBlogs() {
+    setBlogs(
+      data.allMarkdownRemark.edges
+        .filter(e => {
+          if (filter) {
+            return e.node.frontmatter.title.toLowerCase().includes(filter)
+          }
+
+          const nodeTags = e.node.frontmatter.tags.split(", ")
+          if (
+            tags
+              .filter(t => t.selected)
+              .map(t => t.name)
+              .every(t => nodeTags.includes(t))
+          ) {
+            return true
+          }
+
+          return false
+        })
+        .map(e => {
+          const { title, slug } = e.node.frontmatter
+
+          return (
+            <li className={styles.li}>
+              <div className="card">
+                <img src="../images/uw.jpg" />
+                <Link className={styles.a} to={`${slug}`}>
+                  {title}
+                </Link>
+              </div>
+            </li>
+          )
+        })
+    )
+  }
 
   return (
     <Layout className={`min-h-screen`}>
@@ -270,7 +275,10 @@ export default function BlogsPage() {
           <FaSistrix className={styles.search} />
           <input
             value={filter}
-            onChange={e => setFilter(e.target.value)}
+            onChange={e => {
+              setFilter(e.target.value)
+              updateBlogsDebounced()
+            }}
             className={styles.input}
             placeholder="What can I help you find?"
             name="filter"
