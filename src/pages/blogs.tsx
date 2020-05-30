@@ -1,13 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
-import routes from "../utils/routes"
 import Container from "../components/Container"
-import Alert from "../components/Alert"
 import Bulb from "../../assets/bulb.svg"
 import Empty from "../../assets/empty.svg"
-import { FaSistrix, FaCheck } from "react-icons/fa"
-import debounce from "lodash.debounce"
+import { FaSistrix, FaArrowRight } from "react-icons/fa"
+import Button from "../components/Button"
 
 type BlogList = {
   allMarkdownRemark: {
@@ -206,50 +204,114 @@ export default function BlogsPage() {
     `,
   }
 
-  const updateBlogsDebounced = debounce(updateBlogs, 500)
+  const blogs = data.allMarkdownRemark.edges
+    .filter(e => {
+      if (filter) {
+        return e.node.frontmatter.title.toLowerCase().includes(filter)
+      }
 
-  useEffect(() => {
-    updateBlogs()
-  }, [])
+      const nodeTags = e.node.frontmatter.tags.split(", ")
+      if (
+        tags
+          .filter(t => t.selected)
+          .map(t => t.name)
+          .every(t => nodeTags.includes(t))
+      ) {
+        return true
+      }
 
-  const [blogs, setBlogs] = useState([])
+      return false
+    })
+    .map(e => {
+      const { title, slug, date, tags } = e.node.frontmatter
+      const blogTags = tags.split(", ")
+      const dateFormat = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(new Date(date))
 
-  function updateBlogs() {
-    setBlogs(
-      data.allMarkdownRemark.edges
-        .filter(e => {
-          if (filter) {
-            return e.node.frontmatter.title.toLowerCase().includes(filter)
-          }
-
-          const nodeTags = e.node.frontmatter.tags.split(", ")
-          if (
-            tags
-              .filter(t => t.selected)
-              .map(t => t.name)
-              .every(t => nodeTags.includes(t))
-          ) {
-            return true
-          }
-
-          return false
-        })
-        .map(e => {
-          const { title, slug } = e.node.frontmatter
-
-          return (
-            <li className={styles.li}>
-              <div className="card">
-                <img src="../images/uw.jpg" />
-                <Link className={styles.a} to={`${slug}`}>
-                  {title}
-                </Link>
-              </div>
-            </li>
-          )
-        })
-    )
-  }
+      return (
+        <li
+          key={slug}
+          className={`${styles.li}
+          pb-8
+          pt-10
+        `}
+        >
+          <h2
+            className={`
+                text-xl
+                leading-tight
+              `}
+          >
+            <Link
+              to={slug}
+              className={`
+              text-neutral-900
+              hover:text-neutral-900
+            `}
+            >
+              {title}
+            </Link>
+          </h2>
+          <time
+            className={`
+              text-neutral-500
+              mt-2
+              inline-block
+              uppercase
+              tracking-widest
+              text-sm
+          `}
+          >
+            {dateFormat}
+          </time>
+          <ul className={styles.tags}>
+            {blogTags.map(t => {
+              return (
+                <li
+                  className={`
+                      inline-block 
+                      bg-primary-100
+                      text-primary-400 
+                      rounded-full 
+                      text-base
+                      px-2 
+                      mr-2
+                      mb-2 
+                      shadow-xs
+                `}
+                >
+                  {t}
+                </li>
+              )
+            })}
+          </ul>
+          <Link
+            to={slug}
+            className={`
+          text-primary-500
+          pb-1
+          border-b
+          hover:text-primary-600
+          `}
+          >
+            Read more
+            <span
+              className={`
+          inline-block
+          align-text-bottom
+          ml-1
+          text-primary-400
+          `}
+            >
+              <FaArrowRight />
+            </span>
+          </Link>
+        </li>
+      )
+    })
 
   return (
     <Layout className={`min-h-screen`}>
@@ -277,7 +339,6 @@ export default function BlogsPage() {
             value={filter}
             onChange={e => {
               setFilter(e.target.value)
-              updateBlogsDebounced()
             }}
             className={styles.input}
             placeholder="What can I help you find?"
@@ -313,7 +374,14 @@ export default function BlogsPage() {
 
       <Container className={styles.container}>
         {blogs.length ? (
-          <ul className={styles.ul}>{blogs}</ul>
+          <ul
+            className={`${styles.ul}
+          divide-y
+          divide-neutral-300
+          `}
+          >
+            {blogs}
+          </ul>
         ) : (
           <div className={styles.emptyContainer}>
             <h2 className={styles.emptyHeader}>

@@ -32,9 +32,9 @@
   --color-primary-600: hsl(212, 50%, 50%);
   --color-primary-500: hsl(214, 55%, 30%);
   --color-primary-400: hsl(214, 50%, 30%);
-  --color-primary-300: hsl(215, 55%, 24%);
+  --color-primary-300: hsl(215, 55%, 20%);
   --color-primary-200: hsl(216, 60%, 12%);
-  --color-primary-100: hsl(222, 60%, 10%);
+  --color-primary-100: hsl(222, 66%, 10%);
 
   --color-neutral-900: #E2E8F0;
   --color-neutral-800: #CBD5E0;
