@@ -5,13 +5,18 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState } from "react"
+import React, { useState, ReactChildren } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import "../styles/style.css"
 import Header from "./Header"
 import Footer from "./Footer"
 
-const Layout = ({ children }) => {
+type LayoutPropTypes = {
+  children: ReactChildren
+  className?: string
+}
+
+const Layout = ({ children, className = "" }: LayoutPropTypes) => {
   const [lightTheme, setLightTheme] = useState(getLightTheme())
 
   const data = useStaticQuery(graphql`
@@ -48,7 +53,9 @@ const Layout = ({ children }) => {
   const themeClass = lightTheme ? "theme-light" : "theme-dark"
 
   return (
-    <div className={`${themeClass} bg-bgColor text-textColor`}>
+    <div
+      className={`${themeClass} bg-neutral-100 text-neutral-900 ${className}`}
+    >
       <Header
         lightTheme={lightTheme}
         setLightTheme={saveLightTheme}

@@ -7,6 +7,7 @@ import Code from "../../assets/code.svg"
 import Building from "../../assets/building.svg"
 import Product from "../../assets/product.svg"
 import routes from "../utils/routes"
+import Button from "../components/Button"
 
 const IndexPage = () => {
   const styles = {
@@ -44,27 +45,8 @@ const IndexPage = () => {
       mx-8
     `,
 
-    button: `
-      bg-primaryColor
-      text-lightColor
-      hover:text-lightColor
-      rounded-full
-      px-4 
-      py-2 
-      inline-block
-      mt-4
-      inline-block
-      align-middle
-      hover:no-underline
-      hover:align-top
-      font-bold
-      mb-4
-      lg:px-6 
-      lg:text-lg
-    `,
-
     diagonal: `
-    bg-primaryBgColor 
+    bg-primary-100 
     diagonal-m 
     pt-16
     pb-8
@@ -117,9 +99,7 @@ const IndexPage = () => {
                 My full stack web development experience can help you get your
                 project off the ground.
               </p>
-              <Link to={routes.contact} className={styles.button}>
-                Learn more
-              </Link>
+              <Button to={routes.contact}>Learn more</Button>
             </div>
           </div>
           <Product className={`${styles.svg} ${styles.item}`} />

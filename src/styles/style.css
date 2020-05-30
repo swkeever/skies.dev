@@ -1,29 +1,50 @@
 @tailwind base;
 
-.theme-light {
-  --color-text: #1A202C;
-  --color-neutral: #CBD5E0;
-  --color-bg: #F7FAFC;
-  --color-primary: #4299E1;
-  --color-primary-bg: #EBF8FF;
-  --color-primary-text: #2A4365;
+:root {
+  --color-primary-100: #EBF8FF;
+  --color-primary-200: #BEE3F8;
+  --color-primary-300: #90CDF4;
+  --color-primary-400: #63B3ED;
+  --color-primary-500: #4299E1;
+  --color-primary-600: #3182CE;
+  --color-primary-700: #2B6CB0;
+  --color-primary-800: #2C5282;
+  --color-primary-900: #2A4365;
+
+  --color-neutral-100: #F7FAFC;
+  --color-neutral-200: #EDF2F7;
+  --color-neutral-300: #E2E8F0;
+  --color-neutral-400: #CBD5E0;
+  --color-neutral-500: #A0AEC0;
+  --color-neutral-600: #718096;
+  --color-neutral-700: #4A5568;
+  --color-neutral-800: #2D3748;
+  --color-neutral-900: #1A202C;
+
   --color-dark: #1A202C;
-  --color-link: #4299E1;
-  --color-link-hover: #3182CE;
   --color-light: #F7FAFC;
 }
 
 .theme-dark {
-  --color-text: #F7FAFC;
-  --color-neutral: #718096;
-  --color-bg: #1A202C;
-  --color-primary: #2C5282;
-  --color-primary-bg: #2D3748;
-  --color-primary-text: #EBF8FF;
-  --color-dark: #2D3748;
-  --color-link: #90CDF4;
-  --color-link-hover: #63B3ED;
-  --color-light: #F7FAFC;
+  --color-primary-900: hsl(205, 80%, 80%);
+  --color-primary-800: hsl(208, 70%, 70%);
+  --color-primary-700: hsl(210, 60%, 60%);
+  --color-primary-600: hsl(212, 50%, 50%);
+  --color-primary-500: hsl(214, 55%, 30%);
+  --color-primary-400: hsl(214, 50%, 30%);
+  --color-primary-300: hsl(215, 60%, 20%);
+  --color-primary-200: hsl(216, 60%, 10%);
+  --color-primary-100: hsl(222, 60%, 10%);
+
+  --color-neutral-900: #E2E8F0;
+  --color-neutral-800: #CBD5E0;
+  --color-neutral-700: #A0AEC0;
+  --color-neutral-600: #718096;
+  --color-neutral-500: #4A5568;
+  --color-neutral-400: #2D3748;
+  --color-neutral-300: #1A202C;
+  --color-neutral-200: hsl(222, 27%, 12%);
+  --color-neutral-100: hsl(225, 37%, 7%);
 }
 
 h1,
@@ -60,19 +81,19 @@ p {
 }
 
 pre {
-  @apply bg-textColor text-bgColor card;
+  @apply mt-2 shadow-xl;
 }
 
 a {
-  @apply text-linkColor;
+  @apply text-primary-500;
 }
 
 a:hover {
-  @apply text-linkHoverColor transition duration-75;
+  @apply text-primary-600 transition duration-75;
 }
 
 blockquote {
-  @apply bg-primaryBgColor text-primaryTextColor border-l-4 border-primaryBgColor card;
+  @apply bg-primary-100 text-primary-900 border-l-4 border-primary-100 card;
 }
 
 .list {
@@ -92,7 +113,7 @@ li {
 }
 
 hr {
-  @apply border-primaryBgColor my-4;
+  @apply border-primary-100 my-4;
 }
 
 @tailwind components;

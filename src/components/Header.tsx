@@ -27,28 +27,25 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     w-screen
     pt-3
     pb-1
-    bg-primaryColor
-    shadow-sm
+    bg-primary-500
+    shadow
     z-50`,
 
     ul: `
     list-none
     m-0
     p-1
-    grid
-    grid-cols-4
+    flex
+    lg:justify-start
     divide-x
-    divide-neutralColor
+    divide-primary-400
     uppercase
     `,
 
     li: `
     text-center
     tracking-widest
-    text-neutralColor
-    hover:text-primaryBgColor
     flex-1
-    justify-center
     text-center
     `,
 
@@ -65,13 +62,14 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     `,
 
     active: `
-    text-lightColor
-    hover:text-lightColor
+    text-light
+    hover:text-light
     `,
 
     link: `
-    text-neutralColor
+    text-primary-300
     outline-none
+    hover:text-primary-200
     hover:no-underline
     focus:outline-none
     active:outline-none
@@ -82,7 +80,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     theme: `
     uppercase
     tracking-widest
-    hover:text-linkHoverColor
+    hover:text-primary-200
     `,
 
     themeIcon: `

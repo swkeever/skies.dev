@@ -117,7 +117,7 @@ export default function BlogsPage() {
 
     diagonal: `
     diagonal-t 
-    bg-primaryBgColor
+    bg-primary-100
     pt-px 
     pb-20
     md:pb-16 
@@ -126,21 +126,23 @@ export default function BlogsPage() {
 
     input: `
     -mt-8
-    bg-primaryBgColor
+    bg-primary-100
     w-9/12
     rounded-full
-    text-primaryTextColor
+    text-primary-900
     pl-10 
     pr-2
     relative
     py-4
     md:text-lg
+    placeholder-primary-300
     md:w-8/12
-    lg:w-6/12
+    lg:w-7/12
+    transition-shadow
+    ease-in-out
+    focus:duration-1000
     outline-none
-    shadow-sm
-    focus:border-1
-    focus:border-primaryColor
+    shadow-inner
     focus:shadow-focus
     `,
 
@@ -148,7 +150,7 @@ export default function BlogsPage() {
     inline
     text-2xl 
     absolute
-    text-neutralColor
+    text-primary-300
     ml-3
     z-50
     `,
@@ -160,7 +162,7 @@ export default function BlogsPage() {
 
     tag: `
     inline-block 
-    bg-neutralColor 
+    bg-neutral-500 
     rounded-full 
     px-4 
     mr-2
@@ -168,14 +170,16 @@ export default function BlogsPage() {
     transition
     duration-75
     cursor-pointer 
+    shadow
     `,
 
     tagActive: `
     transition
     duration-75 
     inline-block
-    bg-primaryColor
-    text-lightColor
+    bg-primary-500
+    text-primary-100
+    shadow-none
     rounded-full
     px-4 
     mr-2 
@@ -203,7 +207,7 @@ export default function BlogsPage() {
     w-64 
     mx-auto
     font-normal
-    text-primaryTextColor
+    text-primary-900
     mb-4
     lg:text-xl
     `,
@@ -243,7 +247,7 @@ export default function BlogsPage() {
     })
 
   return (
-    <Layout>
+    <Layout className={`min-h-screen`}>
       <div className={styles.diagonal}>
         <Container className={`${styles.container} ${styles.headerContainer}`}>
           <h1 className={styles.header}>

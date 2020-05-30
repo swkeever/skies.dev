@@ -11,17 +11,17 @@ export default function Footer() {
       pt-4 
       pb-12
       z-40
+      text-base
       text-xs
       md:pb-8
-      md:text-base
       lg:pb-1
       lg:mb-0
-      bg-darkColor
-      text-neutralColor
+      bg-dark
+      text-neutral-500
     `,
 
     li: `
-    pr-8
+    pr-10
     text-3xl
     md:text-3xl
     lg:text-4xl
@@ -30,9 +30,7 @@ export default function Footer() {
     ul: `
     ml-0
     list-none 
-    flex 
-    justify-between
-    
+    flex     
     `,
 
     container: `

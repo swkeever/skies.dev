@@ -24,7 +24,7 @@ export default function Template({
     date: `
     uppercase
     tracking-widest
-    text-primaryColor
+    text-primary-400
     text-lg
     text-right
   `,
@@ -38,8 +38,8 @@ export default function Template({
     `,
 
     diagonal: `
-    bg-primaryBgColor
-    text-primaryTextColor
+    bg-primary-100
+    text-primary-900
     diagonal-b
     pt-12
     pb-10 
@@ -47,7 +47,7 @@ export default function Template({
     `,
 
     header: `
-    bg-primaryBgColor
+    bg-primary-100
     diagonal-t
     py-4
     pb-12 
