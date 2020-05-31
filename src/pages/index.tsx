@@ -117,7 +117,6 @@ const IndexPage = () => {
       <div
         className={`
       bg-primary
-      w-screen
       text-light
       pt-16
       -mt-12
@@ -145,8 +144,8 @@ const IndexPage = () => {
                   to={routes.contact}
                   className={`
                   bg-light
-                  text-onLightText
-                  hover:text-onLightText
+                  text-onLight
+                  hover:text-onLight
                   rounded-full
                   px-4 
                   py-2 

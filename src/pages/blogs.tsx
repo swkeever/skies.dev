@@ -80,6 +80,7 @@ export default function BlogsPage() {
     w-11/12
     leading-tight
     md:text-4xl
+    text-onPrimaryBg
     md:w-8/12
     md:w-9/12
     lg:w-7/12
@@ -90,6 +91,7 @@ export default function BlogsPage() {
     -mb-4
     lg:w-6/12
     lg:text-lg
+    text-onPrimaryBgSoft
     `,
 
     ul: `
@@ -127,7 +129,7 @@ export default function BlogsPage() {
 
     input: `
     -mt-8
-    bg-neutralBgFarther
+    bg-neutralBgSoft
     w-9/12
     rounded-md
     text-onPrimary
@@ -161,6 +163,7 @@ export default function BlogsPage() {
     tag: `
     inline-block 
     bg-neutral
+    text-onNeutral
     rounded-full 
     px-4 
     mr-2
@@ -276,7 +279,7 @@ export default function BlogsPage() {
                   className={`
                       inline-block 
                       bg-primaryBg
-                      text-onPrimarySoft
+                      text-onPrimaryBgSoft
                       rounded-full 
                       text-base
                       px-2 
@@ -292,7 +295,7 @@ export default function BlogsPage() {
           </ul>
           <p
             className={`
-          text-neutral
+          text-onNeutralBgSoft
           mb-4
           lg:leading-relaxed
           `}
@@ -305,7 +308,7 @@ export default function BlogsPage() {
           text-onNeturalLink
           pb-1
           border-b
-          hover:text-onNeutralLinkHover
+          hover:text-onNeutralBgLinkHover
           `}
           >
             Read more
@@ -314,7 +317,7 @@ export default function BlogsPage() {
           inline-block
           align-text-bottom
           ml-1
-          text-onNeutralLink
+          text-onNeutralBgLink
           `}
             >
               <FaArrowRight />

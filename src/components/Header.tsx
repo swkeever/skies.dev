@@ -8,29 +8,28 @@ import {
 } from "react-icons/fa"
 import { Link } from "gatsby"
 import routes from "../utils/routes"
+import { useLocation } from "@reach/router"
 
 type HeaderProps = {
   siteTitle?: string
   lightTheme: boolean
   setLightTheme: Function
-  location: string
 }
 
-const Header = ({
-  siteTitle = "",
-  lightTheme,
-  setLightTheme,
-  location,
-}: HeaderProps) => {
+const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
+  const { pathname } = useLocation()
+  console.log(location)
+
   const styles = {
     nav: `
     fixed 
     bottom-0 
     left-0
-    lg:fixed
     lg:top-0
     lg:bottom-auto
     w-screen
+    h-12
+    
     bg-primary
     shadow
     z-40`,
@@ -39,12 +38,9 @@ const Header = ({
     list-none
     m-0
     lg:ml-48
-    p-1
     flex
     lg:justify-start
 
-    divide-x
-    divide-onPrimarySoft
     uppercase
     `,
 
@@ -53,7 +49,9 @@ const Header = ({
     tracking-widest
     flex-1
     lg:flex-none
-    text-center
+    lg:justify-start
+    pt-1
+
     `,
 
     icon: `
@@ -70,17 +68,19 @@ const Header = ({
 
     link: `
     inline-block
-    text-onPrimaryLink
-    hover:text-onPrimaryLinkHover
+    text-onPrimaryBgLink
+    hover:text-onPrimaryBgLinkHover
     outline-none
     hover:no-underline
     lg:px-12
-    pt-2 
-    pb-1
+    text-center
+    py-2 
+
     `,
 
     linkActive: `
-    
+    border-b-4
+    border-onPrimary
     `,
 
     active: `
@@ -90,8 +90,8 @@ const Header = ({
     theme: `
     uppercase
     tracking-widest
-    text-onPrimaryLink
-    hover:text-onPrimaryLinkHover
+    text-onPrimaryBgLink
+    hover:text-onPrimaryBgLinkHover
     `,
 
     themeIcon: `
@@ -109,7 +109,11 @@ const Header = ({
   )
 
   return (
-    <header>
+    <header
+      className={`
+    
+    `}
+    >
       <Link
         to={routes.home}
         className={`
@@ -125,9 +129,10 @@ const Header = ({
       font-bold
       uppercase
       mt-3
+      
       text-lg
-      text-light
-      hover:text-light
+      text-onPrimary
+      hover:text-onPrimary
 
       
       `}
@@ -136,7 +141,11 @@ const Header = ({
       </Link>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
-          <li className={`${styles.li} ${location === ""}`}>
+          <li
+            className={`${styles.li} ${
+              pathname === routes.home && styles.linkActive
+            }`}
+          >
             <Link
               to={routes.home}
               className={styles.link}
@@ -152,7 +161,11 @@ const Header = ({
               <span className={styles.span}>Home</span>
             </Link>
           </li>
-          <li className={styles.li}>
+          <li
+            className={`${styles.li} ${
+              pathname === routes.blogs && styles.linkActive
+            }`}
+          >
             <Link
               to={routes.blogs}
               className={styles.link}
@@ -162,7 +175,11 @@ const Header = ({
               <span className={styles.span}>Blogs</span>
             </Link>
           </li>
-          <li className={styles.li}>
+          <li
+            className={`${styles.li} ${
+              pathname === routes.contact && styles.linkActive
+            }`}
+          >
             <Link
               to={routes.contact}
               className={styles.link}
@@ -184,7 +201,7 @@ const Header = ({
             z-50
             mt-3
             text-2xl
-            text-primaryCloser
+            text-primaryBold
             mr-24
             px-1
           `}
@@ -227,7 +244,7 @@ const Header = ({
             z-50
             mt-3
             text-xl
-            text-primaryCloser
+            text-primaryBold
             
             mr-1
             px-1

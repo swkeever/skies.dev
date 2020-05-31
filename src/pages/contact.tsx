@@ -34,7 +34,7 @@ export default function ContactPage() {
     `,
 
     input: `
-    bg-neutralBgFarther 
+    bg-neutralBgSoft 
     shadow-inner 
     outline-none
     focus:shadow-focus
@@ -59,7 +59,7 @@ export default function ContactPage() {
   return (
     <Layout
       className={`
-      bg-neutralBgFarther
+      bg-neutralBgSoft
       text-onNeutral
     `}
     >

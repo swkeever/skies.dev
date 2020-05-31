@@ -8,38 +8,39 @@ module.exports = {
     colors: {
       // base
       primary: "var(--color-primary)",
+      primaryBold: "var(--color-primaryBold)",
+
       neutral: "var(--color-neutral)",
-      light: "var(--color-light)",
-      dark: "var(--color-dark)",
 
       // backgrounds
       primaryBg: "var(--color-primaryBg)",
+      primaryBgSoft: "var(--color-primaryBgSoft)",
+
       neutralBg: "var(--color-neutralBg)",
+      neutralBgSoft: "var(--color-neutralBgSoft)",
+
       footerBg: "var(--color-footerBg)",
-      primaryBgFarther: "var(--color-primaryBgFarther)",
-      neutralBgFarther: "var(--color-neutralBgFarther)",
-      onPrimarySoft: "var(--color-onPrimarySoft)",
-      primaryCloser: "var(--color-primaryCloser)",
 
       // text
       onPrimary: "var(--color-onPrimary)",
+      onPrimarySoft: "var(--color-onPrimarySoft)",
+
       onNeutral: "var(--color-onNeutral)",
       onNeutralSoft: "var(--color-onNeutralSoft)",
+
       onPrimaryBg: "var(--color-onPrimaryBg)",
       onPrimaryBgSoft: "var(--color-onPrimaryBgSoft)",
+
       onNeutralBg: "var(--color-onNeutralBg)",
       onNeutralBgSoft: "var(--color-onNeutralBgSoft)",
-      onLightText: "var(--color-onLightText)",
 
-      // borders
-      onPrimarySoft: "var(--color-onPrimarySoft)",
-      onNeutralSoft: "var(--color-onNeutralSoft)",
+      light: "var(--color-light)",
+      onLight: "var(--color-onLight)",
 
-      // links
-      onPrimaryLink: "var(--color-onPrimaryLink)",
-      onPrimaryLinkHover: "var(--color-onPrimaryLinkHover)",
-      onNeutralLink: "var(--color-onNeutralLink)",
-      onNeutralLinkHover: "var(--color-onNeutralLinkHover)",
+      onPrimaryBgLink: "var(--color-onPrimaryBgLink)",
+      onPrimaryBgLinkHover: "var(--color-onPrimaryBgLinkHover)",
+      onNeutralBgLink: "var(--color-onNeutralBgLink)",
+      onNeutralBgLinkHover: "var(--color-onNeutralBgLinkHover)",
     },
     rotate: {
       ...rotate,

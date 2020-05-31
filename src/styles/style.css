@@ -23,7 +23,8 @@
 
   --color-dark: #1A202C;
   --color-light: #F7FAFC;
-  --color-onLightText: var(--color-primary-900);
+  --color-onLight: var(--color-primary-900);
+
 }
 
 .theme-light {
@@ -33,29 +34,27 @@
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-100);
-  --color-neutralBgFarther: var(--color-neutral-200);
+  --color-neutralBgSoft: var(--color-neutral-200);
   --color-primaryBg: var(--color-primary-100);
-  --color-primaryBgFarther: var(--color-primary-200);
+  --color-primaryBgSoft: var(--color-primary-200);
   --color-footerBg: var(--color-neutral-900);
-  --color-primaryCloser: var(--color-primary-400);
+  --color-primaryBold: var(--color-primary-400);
 
   /* text */
-  --color-onPrimary: var(--color-primary-900);
+  --color-onPrimary: var(--color-primary-100);
   --color-onPrimarySoft: var(--color-primary-200);
   --color-onPrimaryBg: var(--color-primary-900);
   --color-onPrimaryBgSoft: var(--color-primary-800);
-  --color-onNeutral: var(--color-neutral-900);
+  --color-onNeutral: var(--color-neutral-800);
   --color-onNeutralSoft: var(--color-neutral-500);
   --color-onNeutralBg: var(--color-neutral-900);
   --color-onNeutralBgSoft: var(--color-neutral-700);
 
-
   /* links */
-  --color-onPrimaryLink: var(--color-primary-300);
-  --color-onPrimaryLinkHover: var(--color-primary-200);
-  --color-onNeutralLink: var(--color-primary-500);
-  --color-onNeutralLinkHover: var(--color-primary-600);
-  --color-light: var(--color-neutral-100);
+  --color-onPrimaryBgLink: var(--color-primary-300);
+  --color-onPrimaryBgLinkHover: var(--color-primary-200);
+  --color-onNeutralBgLink: var(--color-primary-500);
+  --color-onNeutralBgLinkHover: var(--color-primary-600);
 
 
   caret-color: var(--color-onNeutral);
@@ -70,10 +69,10 @@
   --color-neutralBg: var(--color-neutral-900);
   --color-primaryBg: var(--color-neutral-800);
   --color-footerBg: var(--color-neutral-800);
-  --color-primaryBgFarther: var(--color-primary-900);
-  --color-neutralBgFarther: var(--color-neutral-800);
+  --color-primaryBgSoft: var(--color-primary-900);
+  --color-neutralBgSoft: var(--color-neutral-800);
   --color-onPrimarySoft: var(--color-primary-800);
-  --color-primaryCloser: var(--color-primary-700);
+  --color-primaryBold: var(--color-primary-700);
 
   /* text */
   --color-onPrimary: var(--color-neutral-100);
@@ -82,14 +81,14 @@
   --color-onNeutralSoft: var(--color-neutral-500);
   --color-onPrimaryBg: var(--color-primary-200);
   --color-onPrimaryBgSoft: var(--color-primary-300);
-  --color-onNeutralBg: var(--color-neutral-800);
-  --color-onNeutralBgSoft: var(--color-neutral-700);
+  --color-onNeutralBg: var(--color-neutral-300);
+  --color-onNeutralBgSoft: var(--color-neutral-400);
 
   /* links */
-  --color-onPrimaryLink: var(--color-primary-300);
-  --color-onPrimaryLinkHover: var(--color-primary-200);
-  --color-onNeutralLink: var(--color-primary-400);
-  --color-onNeutralLinkHover: var(--color-primary-500);
+  --color-onPrimaryBgLink: var(--color-primary-300);
+  --color-onPrimaryBgLinkHover: var(--color-primary-200);
+  --color-onNeutralBgLink: var(--color-primary-400);
+  --color-onNeutralBgLinkHover: var(--color-primary-500);
 
   caret-color: var(--color-onNeutral);
 }
@@ -132,11 +131,11 @@ pre {
 }
 
 a {
-  @apply text-onNeutralLink;
+  @apply text-onNeutralBgLink;
 }
 
 a:hover {
-  @apply text-onNeutralLinkHover;
+  @apply text-onNeutralBgLinkHover;
 }
 
 blockquote {
@@ -225,7 +224,7 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 .slider:before {
   content: "";
 
-  @apply absolute bg-primaryCloser transition duration-500 w-6 h-6 ml-1 mt-1
+  @apply absolute bg-primaryBold transition duration-500 w-6 h-6 ml-1 mt-1
 }
 
 input:checked+.slider {
