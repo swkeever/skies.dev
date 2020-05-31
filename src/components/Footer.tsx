@@ -14,6 +14,7 @@ export default function Footer() {
       z-20
       text-base
       text-xs
+      text-center
       md:pb-8
       lg:pb-1
       lg:mb-0
@@ -22,7 +23,7 @@ export default function Footer() {
     `,
 
     li: `
-    pr-10
+    px-8
     text-3xl
     md:text-3xl
     lg:text-4xl
@@ -30,8 +31,9 @@ export default function Footer() {
 
     ul: `
     ml-0
-    list-none 
+    list-none
     flex     
+    justify-center
     `,
 
     container: `

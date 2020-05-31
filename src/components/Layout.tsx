@@ -58,7 +58,8 @@ const Layout = ({ children, location, className = "" }: LayoutPropTypes) => {
   return (
     <>
       <div
-        className={`${themeClass} ${extraClasses}
+        className={`${themeClass}
+        ${extraClasses}
         flex
         min-h-screen
         flex-col

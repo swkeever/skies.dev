@@ -169,6 +169,7 @@ hr {
   @apply border-primaryBg my-4;
 }
 
+
 @tailwind components;
 
 .diagonal-m {
@@ -182,7 +183,6 @@ hr {
 .diagonal-t {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - 50px));
 }
-
 
 /* 
 below is to prevent autofill from 
@@ -221,19 +221,29 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 }
 
 .switch input {
-  @apply opacity-0 w-0 h-0
+  @apply opacity-0 w-0 h-0;
+}
+
+.theme-toggle {
+  @apply transition ease-in duration-75;
 }
 
 .slider {
   @apply absolute cursor-pointer bg-primarySoft
- top-0 left-0 right-0 bottom-0 transition duration-200 ease-in-out shadow-md;
+ top-0 left-0 right-0 bottom-0 theme-toggle shadow-md;
+}
+
+@screen lg {
+  .slider {
+    @apply shadow-none;
+  }
 }
 
 .slider:before {
   content: "";
 
   @apply absolute bg-primaryBold 
-   transition ease-in-out duration-200 w-6 h-6 ml-1 mt-1;
+    w-6 h-6 ml-1 mt-1 theme-toggle;
 }
 
 input:checked+.slider {
