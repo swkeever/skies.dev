@@ -46,7 +46,7 @@ const IndexPage = () => {
     `,
 
     diagonal: `
-    bg-primary-100 
+    bg-primaryBg
     diagonal-m 
     pt-16
     pb-8

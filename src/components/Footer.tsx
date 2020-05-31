@@ -16,8 +16,8 @@ export default function Footer() {
       md:pb-8
       lg:pb-1
       lg:mb-0
-      bg-dark
-      text-neutral-500
+      bg-footerBg
+      text-neutral
     `,
 
     li: `

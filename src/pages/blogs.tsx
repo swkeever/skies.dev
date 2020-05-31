@@ -14,7 +14,13 @@ type BlogList = {
         frontmatter: {
           title: string
           slug: string
+          date: string
+          tags: string
         }
+        timeToRead: number
+        id: string
+        excerpt: string
+        rawMarkdownBody: string
       }
     }[]
   }
@@ -34,6 +40,10 @@ export default function BlogsPage() {
               date
               tags
             }
+            id
+            timeToRead
+            rawMarkdownBody
+            excerpt
           }
         }
       }
@@ -108,7 +118,7 @@ export default function BlogsPage() {
 
     diagonal: `
     diagonal-t 
-    bg-primary-100
+    bg-primaryBg
     pt-px 
     pb-20
     md:pb-16 
@@ -117,16 +127,18 @@ export default function BlogsPage() {
 
     input: `
     -mt-8
-    bg-primary-100
+    bg-neutralBg
     w-9/12
-    rounded-full
-    text-primary-900
+    rounded-md
+    border
+    border-placeholder
+    text-onPrimaryText
     pl-10 
     pr-2
     relative
     py-4
     md:text-lg
-    placeholder-primary-300
+    placeholder-placeholder
     md:w-8/12
     lg:w-7/12
     outline-none
@@ -134,11 +146,11 @@ export default function BlogsPage() {
     focus:shadow-focus
     `,
 
-    search: `
+    searchIcon: `
     inline
     text-2xl 
     absolute
-    text-primary-300
+    text-placeholder
     ml-3
     z-50
     `,
@@ -150,7 +162,7 @@ export default function BlogsPage() {
 
     tag: `
     inline-block 
-    bg-neutral-500 
+    bg-neutral
     rounded-full 
     px-4 
     mr-2
@@ -165,14 +177,13 @@ export default function BlogsPage() {
     transition
     duration-75 
     inline-block
-    bg-primary-500
-    text-primary-100
-    shadow-none
+    bg-primary
+    shadow-inner
+    text-onPrimaryLinkActive
     rounded-full
     px-4 
     mr-2 
     mb-2
-    shadow-md 
     cursor-pointer 
     `,
 
@@ -195,7 +206,7 @@ export default function BlogsPage() {
     w-64 
     mx-auto
     font-normal
-    text-primary-900
+    text-onPrimaryText
     mb-4
     lg:text-xl
     `,
@@ -204,23 +215,19 @@ export default function BlogsPage() {
   const blogs = data.allMarkdownRemark.edges
     .filter(e => {
       if (filter) {
-        return e.node.frontmatter.title.toLowerCase().includes(filter)
+        return e.node.rawMarkdownBody.includes(filter)
       }
 
       const nodeTags = e.node.frontmatter.tags.split(", ")
-      if (
-        tags
-          .filter(t => t.selected)
-          .map(t => t.name)
-          .every(t => nodeTags.includes(t))
-      ) {
-        return true
-      }
 
-      return false
+      return tags
+        .filter(t => t.selected)
+        .map(t => t.name)
+        .every(t => nodeTags.includes(t))
     })
     .map(e => {
       const { title, slug, date, tags } = e.node.frontmatter
+      const { excerpt } = e.node
       const blogTags = tags.split(", ")
       const dateFormat = new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -245,8 +252,8 @@ export default function BlogsPage() {
             <Link
               to={slug}
               className={`
-              text-neutral-900
-              hover:text-neutral-900
+              text-onNeutralText
+              hover:text-onNeutralText
             `}
             >
               {title}
@@ -254,7 +261,7 @@ export default function BlogsPage() {
           </h2>
           <time
             className={`
-              text-neutral-500
+              text-neutral
               mt-2
               inline-block
               uppercase
@@ -270,8 +277,8 @@ export default function BlogsPage() {
                 <li
                   className={`
                       inline-block 
-                      bg-primary-100
-                      text-primary-400 
+                      bg-primaryBg
+                      text-onPrimarySoftText
                       rounded-full 
                       text-base
                       px-2 
@@ -285,13 +292,22 @@ export default function BlogsPage() {
               )
             })}
           </ul>
+          <p
+            className={`
+          text-neutral
+          mb-4
+          lg:leading-relaxed
+          `}
+          >
+            {excerpt}
+          </p>
           <Link
             to={slug}
             className={`
-          text-primary-500
+          text-onNeturalLink
           pb-1
           border-b
-          hover:text-primary-600
+          hover:text-onNeutralLinkHover
           `}
           >
             Read more
@@ -300,7 +316,7 @@ export default function BlogsPage() {
           inline-block
           align-text-bottom
           ml-1
-          text-primary-400
+          text-onNeutralLink
           `}
             >
               <FaArrowRight />
@@ -311,7 +327,13 @@ export default function BlogsPage() {
     })
 
   return (
-    <Layout className={`min-h-screen`}>
+    <Layout
+      className={`
+    min-h-screen 
+    bg-neutralBg
+    text-onNeutralText
+    `}
+    >
       <div className={styles.diagonal}>
         <Container className={`${styles.container} ${styles.headerContainer}`}>
           <h1 className={styles.header}>
@@ -331,7 +353,7 @@ export default function BlogsPage() {
           Search
         </label>
         <div>
-          <FaSistrix className={styles.search} />
+          <FaSistrix className={styles.searchIcon} />
           <input
             autoFocus
             value={filter}
@@ -375,7 +397,10 @@ export default function BlogsPage() {
           <ul
             className={`${styles.ul}
           divide-y
-          divide-neutral-300
+          divide-onNeutralDivider
+          lg:w-full
+          lg:mx-auto
+          lg:mb-16
           `}
           >
             {blogs}

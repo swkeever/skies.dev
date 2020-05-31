@@ -52,10 +52,10 @@ const Layout = ({ children, className = "" }: LayoutPropTypes) => {
 
   const themeClass = lightTheme ? "theme-light" : "theme-dark"
 
+  const extraClasses = className || `bg-neutralBg text-onNeutralText`
+
   return (
-    <div
-      className={`${themeClass} bg-neutral-100 text-neutral-900 ${className}`}
-    >
+    <div className={`${themeClass} ${extraClasses}`}>
       <Header
         lightTheme={lightTheme}
         setLightTheme={saveLightTheme}

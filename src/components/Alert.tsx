@@ -3,11 +3,11 @@ import React from "react"
 export default function Alert({ children }) {
   const styles = {
     alert: `
-    bg-primary-100
-    text-primary-900
+    bg-primaryBg
+    text-onPrimaryText
     card
     border-l-4
-    border-primary-500
+    border-primary
     `,
   }
 

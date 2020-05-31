@@ -27,7 +27,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     w-screen
     pt-3
     pb-1
-    bg-primary-500
+    bg-primary
     shadow
     z-50`,
 
@@ -38,7 +38,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     flex
     lg:justify-start
     divide-x
-    divide-primary-400
+    divide-onPrimaryDivider
     uppercase
     `,
 
@@ -62,14 +62,14 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     `,
 
     active: `
-    text-light
-    hover:text-light
+    text-onPrimaryLinkActive
+    hover:text-onPrimaryLinkActive
     `,
 
     link: `
-    text-primary-300
+    text-onPrimaryLink
     outline-none
-    hover:text-primary-200
+    hover:text-onPrimaryLinkHover
     hover:no-underline
     focus:outline-none
     active:outline-none
@@ -80,7 +80,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     theme: `
     uppercase
     tracking-widest
-    hover:text-primary-200
+    hover:text-onPrimaryLinkHover
     `,
 
     themeIcon: `

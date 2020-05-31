@@ -25,29 +25,64 @@
   --color-light: #F7FAFC;
 }
 
+.theme-light {
+  /* base */
+  --color-primary: var(--color-primary-500);
+  --color-neutral: var(--color-neutral-500);
+
+  /* backgrounds */
+  --color-neutralBg: var(--color-neutral-100);
+  --color-primaryBg: var(--color-primary-100);
+  --color-footerBg: var(--color-neutral-900);
+
+  /* text */
+  --color-onPrimaryText: var(--color-primary-900);
+  --color-onPrimarySoftText: var(--color-primary-700);
+  --color-onNeutralText: var(--color-neutral-900);
+  --color-placeholder: var(--color-neutral-500);
+
+  /* borders */
+  --color-onPrimaryDivider: var(--color-primary-400);
+  --color-onNeutralDivider: var(--color-neutral-300);
+
+  /* links */
+  --color-onPrimaryLinkActive: var(--color-neutral-100);
+  --color-onNeutralLinkActive: var(--color-dark);
+  --color-onPrimaryLink: var(--color-primary-300);
+  --color-onPrimaryLinkHover: var(--color-primary-200);
+  --color-onNeutralLink: var(--color-primary-500);
+  --color-onNeutralLinkHover: var(--color-primary-600);
+
+  caret-color: var(--color-onNeutralText);
+}
+
 .theme-dark {
-  --color-primary-900: hsl(205, 80%, 80%);
-  --color-primary-800: hsl(208, 70%, 70%);
-  --color-primary-700: hsl(210, 60%, 60%);
-  --color-primary-600: hsl(212, 50%, 50%);
-  --color-primary-500: hsl(214, 55%, 30%);
-  --color-primary-400: hsl(214, 50%, 30%);
-  --color-primary-300: hsl(215, 55%, 20%);
-  --color-primary-200: hsl(216, 60%, 12%);
-  --color-primary-100: hsl(222, 66%, 10%);
+  /* base */
+  --color-primary: var(--color-primary-900);
+  --color-neutral: var(--color-neutral-600);
 
-  --color-neutral-900: #E2E8F0;
-  --color-neutral-800: #CBD5E0;
-  --color-neutral-700: #A0AEC0;
-  --color-neutral-600: #718096;
-  --color-neutral-500: #4A5568;
-  --color-neutral-400: #2D3748;
-  --color-neutral-300: #1A202C;
-  --color-neutral-200: hsl(222, 27%, 12%);
-  --color-neutral-100: hsl(225, 37%, 7%);
+  /* backgrounds */
+  --color-neutralBg: var(--color-neutral-900);
+  --color-primaryBg: var(--color-neutral-800);
+  --color-footerBg: var(--color-neutral-800);
 
-    --color-dark: var(--color-neutral-100);
-    --color-light: var(--color-neutral-900);
+  /* text */
+  --color-onPrimaryText: var(--color-neutral-100);
+  --color-onPrimarySoftText: var(--color-neutral-600);
+  --color-onNeutralText: var(--color-neutral-100);
+  --color-placeholder: var(--color-neutral-700);
+
+  /* borders */
+  --color-onPrimaryDivider: var(--color-primary-800);
+  --color-onNeutralDivider: var(--color-neutral-800);
+
+  /* links */
+  --color-onPrimaryLink: var(--color-primary-300);
+  --color-onPrimaryLinkHover: var(--color-primary-200);
+  --color-onNeutralLink: var(--color-primary-400);
+  --color-onNeutralLinkHover: var(--color-primary-500);
+
+  caret-color: var(--color-onNeutralText);
 }
 
 h1,
@@ -88,15 +123,15 @@ pre {
 }
 
 a {
-  @apply text-primary-500;
+  @apply text-onNeutralLink;
 }
 
 a:hover {
-  @apply text-primary-600 transition duration-75;
+  @apply text-onNeutralLinkHover;
 }
 
 blockquote {
-  @apply bg-primary-100 text-primary-900 border-l-4 border-primary-100 card;
+  @apply bg-primaryBg text-onPrimaryText border-l-4 border-primaryBg card;
 }
 
 .list {
@@ -116,7 +151,7 @@ li {
 }
 
 hr {
-  @apply border-primary-100 my-4;
+  @apply border-primaryBg my-4;
 }
 
 @tailwind components;
@@ -131,6 +166,28 @@ hr {
 
 .diagonal-t {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - 50px));
+}
+
+
+/* 
+below is to prevent autofill from 
+changing the background of form elements
+
+https: //stackoverflow.com/a/37432260/13400099
+*/
+@-webkit-keyframes autofill {
+  0%,
+  100% {
+    @apply text-onPrimaryText;
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-delay: 1s;
+  /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }
 
 

@@ -6,26 +6,32 @@ module.exports = {
   purge: [],
   theme: {
     colors: {
-      "primary-100": "var(--color-primary-100)",
-      "primary-200": "var(--color-primary-200)",
-      "primary-300": "var(--color-primary-300)",
-      "primary-400": "var(--color-primary-400)",
-      "primary-500": "var(--color-primary-500)",
-      "primary-600": "var(--color-primary-600)",
-      "primary-700": "var(--color-primary-700)",
-      "primary-800": "var(--color-primary-800)",
-      "primary-900": "var(--color-primary-900)",
-      "neutral-100": "var(--color-neutral-100)",
-      "neutral-200": "var(--color-neutral-200)",
-      "neutral-300": "var(--color-neutral-300)",
-      "neutral-400": "var(--color-neutral-400)",
-      "neutral-500": "var(--color-neutral-500)",
-      "neutral-600": "var(--color-neutral-600)",
-      "neutral-700": "var(--color-neutral-700)",
-      "neutral-800": "var(--color-neutral-800)",
-      "neutral-900": "var(--color-neutral-900)",
-      light: "var(--color-light)",
-      dark: "var(--color-dark)",
+      // base
+      primary: "var(--color-primary)",
+      neutral: "var(--color-neutral)",
+
+      // backgrounds
+      primaryBg: "var(--color-primaryBg)",
+      neutralBg: "var(--color-neutralBg)",
+      footerBg: "var(--color-footerBg)",
+
+      // text
+      onPrimaryText: "var(--color-onPrimaryText)",
+      onPrimarySoftText: "var(--color-onPrimarySoftText)",
+      onNeutralText: "var(--color-onNeutralText)",
+      placeholder: "var(--color-placeholder)",
+
+      // borders
+      onPrimaryDivider: "var(--color-onPrimaryDivider)",
+      onNeutralDivider: "var(--color-onNeutralDivider)",
+
+      // links
+      onPrimaryLinkActive: "var(--color-onPrimaryLinkActive)",
+      onNeutralLinkActive: "var(--color-onNeutralLinkActive)",
+      onPrimaryLink: "var(--color-onPrimaryLink)",
+      onPrimaryLinkHover: "var(--color-onPrimaryLinkHover)",
+      onNeutralLink: "var(--color-onNeutralLink)",
+      onNeutralLinkHover: "var(--color-onNeutralLinkHover)",
     },
     rotate: {
       ...rotate,

@@ -14,7 +14,7 @@ export default function ContactPage() {
     mt-8 
     px-5 
     pb-5
-    bg-neutral-100
+    bg-neutralBg
     z-50
     -mt-64
     relative
@@ -34,24 +34,24 @@ export default function ContactPage() {
     `,
 
     input: `
-    bg-neutral-100 
+    bg-neutralBg 
     shadow-inner 
     outline-none
     focus:shadow-focus
     rounded
     border
-    border-primary-200
+    border-placeholder
     w-full
     rounded-md
     px-2 
     py-1
-    placeholder-neutral-400
-    text-neutral-900
+    placeholder-placeholder
+    text-onNeutralText
     mb-2
     `,
 
     label: `
-    text-neutral-500
+    text-neutral
     tracking-widest
     uppercase
     text-xs
@@ -61,7 +61,8 @@ export default function ContactPage() {
   return (
     <Layout
       className={`
-    bg-neutral-200
+      bg-primaryBg
+      text-onNeutralText
     `}
     >
       <div
@@ -69,7 +70,7 @@ export default function ContactPage() {
       diagonal-t
       py-56
       relative
-      bg-primary-200
+      bg-neutralBg
       md:py-64
       `}
       ></div>
@@ -84,7 +85,7 @@ export default function ContactPage() {
         <p
           className={`
             mt-1
-            text-neutral-600
+            text-neutral
             mb-2
           `}
         >
@@ -92,7 +93,7 @@ export default function ContactPage() {
         </p>
         <form
           method="post"
-          action="#"
+          action="https://formspree.io/maypervg"
           className={`
             w-auto
           `}
@@ -120,7 +121,7 @@ export default function ContactPage() {
               placeholder="bob.ross@example.com"
               className={styles.input}
               type="email"
-              name="email"
+              name="_replyto"
               id="email"
               required
             />
@@ -152,9 +153,9 @@ export default function ContactPage() {
                 px-4
                 hover:pt-0
                 mr-2
-                text-neutral-700
+                text-onNeutralText
                 hover:border-b
-                hover:border-neutral-700
+                hover:border-neutral
                 focus:outline-none
           `}
               onClick={() => {
@@ -168,11 +169,11 @@ export default function ContactPage() {
             <button
               type="submit"
               className={`
-                bg-primary-500
+                bg-primary
                 rounded-full
                 px-6
                 py-2
-                text-light
+                text-onPrimaryLinkActive
                 font-bold
                 shadow
                 active:shadow-none
@@ -185,7 +186,7 @@ export default function ContactPage() {
                   inline-block
                   ml-1
                   align-text-top
-                  text-light
+                  text-onPrimaryLinkActive
                   opacity-75
               `}
               >
