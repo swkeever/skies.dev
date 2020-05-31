@@ -52,7 +52,7 @@ module.exports = {
   variants: {
     rotate: ["responsive", "hover", "focus", "active"],
     flexDirection: ["responsive", "even", "odd"],
-    borderWidth: ["responsive", "focus"],
+    borderWidth: ["responsive", "focus", "hover"],
     transitionDuration: ["responsive", "hover", "focus"],
     boxShadow: ["responsive", "hover", "focus", "active"],
   },

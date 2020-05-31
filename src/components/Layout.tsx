@@ -32,8 +32,8 @@ const Layout = ({ children, className = "" }: LayoutPropTypes) => {
   const styles = {
     main: `
       mb-0
-      min-h-screen
       lg:mt-8
+      min-h-screen
     `,
   }
 

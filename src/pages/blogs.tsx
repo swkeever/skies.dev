@@ -129,9 +129,6 @@ export default function BlogsPage() {
     placeholder-primary-300
     md:w-8/12
     lg:w-7/12
-    transition-shadow
-    ease-in-out
-    focus:duration-1000
     outline-none
     shadow-inner
     focus:shadow-focus
@@ -336,6 +333,7 @@ export default function BlogsPage() {
         <div>
           <FaSistrix className={styles.search} />
           <input
+            autoFocus
             value={filter}
             onChange={e => {
               setFilter(e.target.value)
