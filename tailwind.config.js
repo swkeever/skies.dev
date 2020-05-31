@@ -27,7 +27,6 @@ module.exports = {
 
       // links
       onPrimaryLinkActive: "var(--color-onPrimaryLinkActive)",
-      onNeutralLinkActive: "var(--color-onNeutralLinkActive)",
       onPrimaryLink: "var(--color-onPrimaryLink)",
       onPrimaryLinkHover: "var(--color-onPrimaryLinkHover)",
       onNeutralLink: "var(--color-onNeutralLink)",

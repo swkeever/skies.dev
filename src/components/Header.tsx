@@ -61,25 +61,17 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     md:inline
     `,
 
-    active: `
-    text-onPrimaryLinkActive
-    hover:text-onPrimaryLinkActive
-    `,
-
     link: `
     text-onPrimaryLink
-    outline-none
     hover:text-onPrimaryLinkHover
+    outline-none
     hover:no-underline
-    focus:outline-none
-    active:outline-none
-    active:border-0
-    focus:border-0
     `,
 
     theme: `
     uppercase
     tracking-widest
+    text-onPrimaryLink
     hover:text-onPrimaryLinkHover
     `,
 
@@ -102,7 +94,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             <Link
               to={routes.home}
               className={styles.link}
-              activeClassName={styles.active}
+              activeStyle={{ color: "var(--color-light)" }}
             >
               <FaHome
                 className={`
@@ -117,7 +109,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             <Link
               to={routes.blogs}
               className={styles.link}
-              activeClassName={styles.active}
+              activeStyle={{ color: "var(--color-light)" }}
             >
               <FaRegLightbulb className={styles.icon} />
               <span className={styles.span}>Blogs</span>
@@ -127,7 +119,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             <Link
               to={routes.contact}
               className={styles.link}
-              activeClassName={styles.active}
+              activeStyle={{ color: "var(--color-light)" }}
             >
               <FaUserAlt className={styles.icon} />
               <span className={styles.span}>Contact</span>
