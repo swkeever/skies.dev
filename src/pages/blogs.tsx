@@ -127,18 +127,16 @@ export default function BlogsPage() {
 
     input: `
     -mt-8
-    bg-neutralBg
+    bg-neutralBgFarther
     w-9/12
     rounded-md
-    border
-    border-placeholder
-    text-onPrimaryText
+    text-onPrimary
     pl-10 
     pr-2
     relative
     py-4
     md:text-lg
-    placeholder-placeholder
+    placeholder-onNeutralSoft
     md:w-8/12
     lg:w-7/12
     outline-none
@@ -150,7 +148,7 @@ export default function BlogsPage() {
     inline
     text-2xl 
     absolute
-    text-placeholder
+    text-onNeutralSoft
     ml-3
     z-50
     `,
@@ -179,7 +177,7 @@ export default function BlogsPage() {
     inline-block
     bg-primary
     shadow-inner
-    text-onPrimaryBold
+    text-light
     rounded-full
     px-4 
     mr-2 
@@ -206,7 +204,7 @@ export default function BlogsPage() {
     w-64 
     mx-auto
     font-normal
-    text-onPrimaryText
+    text-onPrimary
     mb-4
     lg:text-xl
     `,
@@ -252,8 +250,8 @@ export default function BlogsPage() {
             <Link
               to={slug}
               className={`
-              text-onNeutralText
-              hover:text-onNeutralText
+              text-onNeutral
+              hover:text-onNeutral
             `}
             >
               {title}
@@ -278,7 +276,7 @@ export default function BlogsPage() {
                   className={`
                       inline-block 
                       bg-primaryBg
-                      text-onPrimarySoftText
+                      text-onPrimarySoft
                       rounded-full 
                       text-base
                       px-2 
@@ -331,7 +329,7 @@ export default function BlogsPage() {
       className={`
     min-h-screen 
     bg-neutralBg
-    text-onNeutralText
+    text-onNeutral
     `}
     >
       <div className={styles.diagonal}>
@@ -397,7 +395,7 @@ export default function BlogsPage() {
           <ul
             className={`${styles.ul}
           divide-y
-          divide-onNeutralDivider
+          divide-onNeutralSoft
           lg:w-full
           lg:mx-auto
           lg:mb-16

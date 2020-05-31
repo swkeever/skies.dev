@@ -54,7 +54,7 @@ const Layout = ({ children, location, className = "" }: LayoutPropTypes) => {
 
   const themeClass = lightTheme ? "theme-light" : "theme-dark"
 
-  const extraClasses = className || `bg-neutralBg text-onNeutralText`
+  const extraClasses = className || `bg-neutralBg text-onNeutral`
 
   return (
     <>

@@ -9,8 +9,8 @@ type ButtonProps = {
 export default function Button({ children, to }: ButtonProps) {
   const buttonStyles = `
     bg-primary
-    text-onPrimaryText
-    hover:text-onPrimaryText
+    text-onPrimary
+    hover:text-onPrimary
     rounded-full
     px-4 
     py-2 

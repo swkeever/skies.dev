@@ -60,11 +60,25 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <Container className={`${styles.container}`}>
+      <Container
+        className={`${styles.container}
+      md:pt-16
+      `}
+      >
         <section className={`${styles.section}  md:flex-row pt-2 lg:pt-32`}>
           <div className={`${styles.content} ${styles.item}`}>
-            <h1>Hi, 👋 I'm Sean.</h1>
-            <p>
+            <h1
+              className={`
+            text-onNeutralBg
+            `}
+            >
+              Hi, 👋 I'm Sean.
+            </h1>
+            <p
+              className={`
+            text-onNeutralBgSoft
+            `}
+            >
               I'm a software developer, designer, and technology enthusiast from
               Seattle, WA.
             </p>
@@ -78,8 +92,18 @@ const IndexPage = () => {
           <section className={`${styles.section} md:flex-row-reverse`}>
             <div className={`${styles.content} ${styles.item}`}>
               <div className="">
-                <h2>I like to build things.</h2>
-                <p>
+                <h2
+                  className={`
+                text-onPrimaryBg
+                `}
+                >
+                  I like to build things.
+                </h2>
+                <p
+                  className={`
+                text-onPrimaryBgSoft
+                `}
+                >
                   From client facing applications to the platforms that serve
                   them, I love designing and implementing software.
                 </p>
@@ -90,21 +114,64 @@ const IndexPage = () => {
         </Container>
       </div>
 
-      <Container className={`${styles.container}`}>
-        <section className={`${styles.section} md:flex-row`}>
-          <div className={`${styles.content} ${styles.item}`}>
-            <div className="">
-              <h2>Let's build your product.</h2>
-              <p>
-                My full stack web development experience can help you get your
-                project off the ground.
-              </p>
-              <Button to={routes.contact}>Learn more</Button>
+      <div
+        className={`
+      bg-primary
+      w-screen
+      text-light
+      pt-16
+      -mt-12
+      z-0
+      md:-mt-32
+      md:pt-48
+      md:pb-px
+      `}
+      >
+        <Container>
+          <section className={`${styles.section} md:flex-row`}>
+            <div className={`${styles.content} ${styles.item}`}>
+              <div className="">
+                <h2>Let's build your product.</h2>
+                <p
+                  className={`
+              text-onPrimarySoft
+              
+              `}
+                >
+                  My full stack web development experience can help you get your
+                  project off the ground.
+                </p>
+                <Link
+                  to={routes.contact}
+                  className={`
+                  bg-light
+                  text-onLightText
+                  hover:text-onLightText
+                  rounded-full
+                  px-4 
+                  py-2 
+                  inline-block
+                  mt-4
+                  inline-block
+                  align-middle
+                  shadow
+                  active:shadow-none
+                  hover:no-underline
+                  hover:align-top
+                  font-bold
+                  mb-4
+                  lg:px-6 
+                  lg:text-lg
+              `}
+                >
+                  Learn more
+                </Link>
+              </div>
             </div>
-          </div>
-          <Product className={`${styles.svg} ${styles.item}`} />
-        </section>
-      </Container>
+            <Product className={`${styles.svg} ${styles.item}`} />
+          </section>
+        </Container>
+      </div>
     </Layout>
   )
 }

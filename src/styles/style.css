@@ -23,6 +23,7 @@
 
   --color-dark: #1A202C;
   --color-light: #F7FAFC;
+  --color-onLightText: var(--color-primary-900);
 }
 
 .theme-light {
@@ -36,28 +37,28 @@
   --color-primaryBg: var(--color-primary-100);
   --color-primaryBgFarther: var(--color-primary-200);
   --color-footerBg: var(--color-neutral-900);
-  --color-onPrimaryFarther: var(--color-primary-600);
-  --color-onPrimaryCloser: var(--color-primary-400);
+  --color-primaryCloser: var(--color-primary-400);
 
   /* text */
-  --color-onPrimaryText: var(--color-primary-900);
-  --color-onPrimarySoftText: var(--color-primary-700);
-  --color-onNeutralText: var(--color-neutral-900);
-  --color-placeholder: var(--color-neutral-500);
+  --color-onPrimary: var(--color-primary-900);
+  --color-onPrimarySoft: var(--color-primary-200);
+  --color-onPrimaryBg: var(--color-primary-900);
+  --color-onPrimaryBgSoft: var(--color-primary-800);
+  --color-onNeutral: var(--color-neutral-900);
+  --color-onNeutralSoft: var(--color-neutral-500);
+  --color-onNeutralBg: var(--color-neutral-900);
+  --color-onNeutralBgSoft: var(--color-neutral-700);
 
-  /* borders */
-  --color-onPrimaryDivider: var(--color-primary-400);
-  --color-onNeutralDivider: var(--color-neutral-300);
 
   /* links */
   --color-onPrimaryLink: var(--color-primary-300);
   --color-onPrimaryLinkHover: var(--color-primary-200);
   --color-onNeutralLink: var(--color-primary-500);
   --color-onNeutralLinkHover: var(--color-primary-600);
-  --color-onPrimaryBold: var(--color-neutral-100);
+  --color-light: var(--color-neutral-100);
 
 
-  caret-color: var(--color-onNeutralText);
+  caret-color: var(--color-onNeutral);
 }
 
 .theme-dark {
@@ -71,28 +72,26 @@
   --color-footerBg: var(--color-neutral-800);
   --color-primaryBgFarther: var(--color-primary-900);
   --color-neutralBgFarther: var(--color-neutral-800);
-  --color-onPrimaryFarther: var(--color-primary-800);
-  --color-onPrimaryCloser: var(--color-primary-700);
-
+  --color-onPrimarySoft: var(--color-primary-800);
+  --color-primaryCloser: var(--color-primary-700);
 
   /* text */
-  --color-onPrimaryText: var(--color-neutral-100);
-  --color-onPrimarySoftText: var(--color-neutral-600);
-  --color-onNeutralText: var(--color-neutral-100);
-  --color-placeholder: var(--color-neutral-700);
-
-  /* borders */
-  --color-onPrimaryDivider: var(--color-primary-800);
-  --color-onNeutralDivider: var(--color-neutral-800);
+  --color-onPrimary: var(--color-neutral-100);
+  --color-onPrimarySoft: var(--color-neutral-500);
+  --color-onNeutral: var(--color-neutral-100);
+  --color-onNeutralSoft: var(--color-neutral-500);
+  --color-onPrimaryBg: var(--color-primary-200);
+  --color-onPrimaryBgSoft: var(--color-primary-300);
+  --color-onNeutralBg: var(--color-neutral-800);
+  --color-onNeutralBgSoft: var(--color-neutral-700);
 
   /* links */
   --color-onPrimaryLink: var(--color-primary-300);
   --color-onPrimaryLinkHover: var(--color-primary-200);
   --color-onNeutralLink: var(--color-primary-400);
   --color-onNeutralLinkHover: var(--color-primary-500);
-  --color-onPrimaryBold: var(--color-neutral-100);
 
-  caret-color: var(--color-onNeutralText);
+  caret-color: var(--color-onNeutral);
 }
 
 h1,
@@ -141,7 +140,7 @@ a:hover {
 }
 
 blockquote {
-  @apply bg-primaryBg text-onPrimaryText border-l-4 border-primaryBg card;
+  @apply bg-primaryBg text-onPrimary border-l-4 border-primaryBg card;
 }
 
 .list {
@@ -189,7 +188,7 @@ https: //stackoverflow.com/a/37432260/13400099
 
   0%,
   100% {
-    @apply text-onPrimaryText;
+    @apply text-onPrimary;
     background: transparent;
   }
 }
@@ -212,49 +211,21 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
   width: 60px;
   height: 34px; */
 
-  @apply
-  relative 
-  inline-block
-  w-16
-  h-8 
-  border
-  border-primary
-  rounded-full
-  pb-8
-  pr-16;
+  @apply relative inline-block w-16 h-8 border border-primary rounded-full pb-8 pr-16;
 }
 
 .switch input {
-  @apply
-  opacity-0
-  w-0
-  h-0
+  @apply opacity-0 w-0 h-0
 }
 
 .slider {
-  @apply 
-  absolute 
-  cursor-pointer 
-  top-0 
-  left-0 
-  right-0 
-  bottom-0 
-  bg-neutralBg
-  transition
-  duration-500;
+  @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-neutralBg transition duration-500;
 }
 
 .slider:before {
   content: "";
 
-  @apply
-  absolute
-  bg-onPrimaryCloser
-  transition
-  duration-500
-  w-6
-  h-6
-  ml-1 mt-1
+  @apply absolute bg-primaryCloser transition duration-500 w-6 h-6 ml-1 mt-1
 }
 
 input:checked+.slider {
@@ -266,20 +237,16 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-  @apply 
-  transform
-  translate-x-8;
+  @apply transform translate-x-8;
 }
 
 /* Rounded sliders */
 .slider.round {
-  @apply
-  rounded-full;
+  @apply rounded-full;
 }
 
 .slider.round:before {
-  @apply
-  rounded-full;
+  @apply rounded-full;
 }
 
 

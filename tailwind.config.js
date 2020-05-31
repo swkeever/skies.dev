@@ -9,6 +9,8 @@ module.exports = {
       // base
       primary: "var(--color-primary)",
       neutral: "var(--color-neutral)",
+      light: "var(--color-light)",
+      dark: "var(--color-dark)",
 
       // backgrounds
       primaryBg: "var(--color-primaryBg)",
@@ -16,21 +18,24 @@ module.exports = {
       footerBg: "var(--color-footerBg)",
       primaryBgFarther: "var(--color-primaryBgFarther)",
       neutralBgFarther: "var(--color-neutralBgFarther)",
-      onPrimaryFarther: "var(--color-onPrimaryFarther)",
-      onPrimaryCloser: "var(--color-onPrimaryCloser)",
+      onPrimarySoft: "var(--color-onPrimarySoft)",
+      primaryCloser: "var(--color-primaryCloser)",
 
       // text
-      onPrimaryText: "var(--color-onPrimaryText)",
-      onPrimarySoftText: "var(--color-onPrimarySoftText)",
-      onNeutralText: "var(--color-onNeutralText)",
-      placeholder: "var(--color-placeholder)",
+      onPrimary: "var(--color-onPrimary)",
+      onNeutral: "var(--color-onNeutral)",
+      onNeutralSoft: "var(--color-onNeutralSoft)",
+      onPrimaryBg: "var(--color-onPrimaryBg)",
+      onPrimaryBgSoft: "var(--color-onPrimaryBgSoft)",
+      onNeutralBg: "var(--color-onNeutralBg)",
+      onNeutralBgSoft: "var(--color-onNeutralBgSoft)",
+      onLightText: "var(--color-onLightText)",
 
       // borders
-      onPrimaryDivider: "var(--color-onPrimaryDivider)",
-      onNeutralDivider: "var(--color-onNeutralDivider)",
+      onPrimarySoft: "var(--color-onPrimarySoft)",
+      onNeutralSoft: "var(--color-onNeutralSoft)",
 
       // links
-      onPrimaryBold: "var(--color-onPrimaryBold)",
       onPrimaryLink: "var(--color-onPrimaryLink)",
       onPrimaryLinkHover: "var(--color-onPrimaryLinkHover)",
       onNeutralLink: "var(--color-onNeutralLink)",

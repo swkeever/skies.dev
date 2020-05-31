@@ -38,13 +38,13 @@ const Header = ({
     ul: `
     list-none
     m-0
-    lg:ml-56
+    lg:ml-48
     p-1
     flex
     lg:justify-start
 
     divide-x
-    divide-onPrimaryDivider
+    divide-onPrimarySoft
     uppercase
     `,
 
@@ -52,7 +52,7 @@ const Header = ({
     text-center
     tracking-widest
     flex-1
-    xl:flex-none
+    lg:flex-none
     text-center
     `,
 
@@ -110,12 +110,14 @@ const Header = ({
 
   return (
     <header>
-      <div
+      <Link
+        to={routes.home}
         className={`
       z-50
+      hidden
       inline
-      xl:block
-      xl:fixed
+      lg:block
+      lg:fixed
       top-0
       left-0
       ml-4
@@ -124,13 +126,14 @@ const Header = ({
       uppercase
       mt-3
       text-lg
-      text-onPrimaryBold
+      text-light
+      hover:text-light
 
       
       `}
       >
         👨‍💻 Sean Keever
-      </div>
+      </Link>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li className={`${styles.li} ${location === ""}`}>
@@ -181,10 +184,9 @@ const Header = ({
             z-50
             mt-3
             text-2xl
-            text-onPrimaryCloser
+            text-primaryCloser
             mr-24
             px-1
-            
           `}
         >
           <FaSun />
@@ -225,7 +227,7 @@ const Header = ({
             z-50
             mt-3
             text-xl
-            text-onPrimaryCloser
+            text-primaryCloser
             
             mr-1
             px-1

@@ -34,19 +34,17 @@ export default function ContactPage() {
     `,
 
     input: `
-    bg-neutralBg 
+    bg-neutralBgFarther 
     shadow-inner 
     outline-none
     focus:shadow-focus
     rounded
-    border
-    border-placeholder
     w-full
     rounded-md
     px-2 
     py-1
-    placeholder-placeholder
-    text-onNeutralText
+    placeholder-onNeutralSoft
+    text-onNeutral
     mb-2
     `,
 
@@ -62,7 +60,7 @@ export default function ContactPage() {
     <Layout
       className={`
       bg-neutralBgFarther
-      text-onNeutralText
+      text-onNeutral
     `}
     >
       <div
@@ -70,7 +68,7 @@ export default function ContactPage() {
       diagonal-t
       py-56
       relative
-      bg-primaryBgFarther
+      bg-primary
       md:py-64
       `}
       ></div>
@@ -153,7 +151,7 @@ export default function ContactPage() {
                 px-4
                 hover:pt-0
                 mr-2
-                text-onNeutralText
+                text-onNeutral
                 hover:border-b
                 hover:border-neutral
                 focus:outline-none
@@ -173,7 +171,7 @@ export default function ContactPage() {
                 rounded-full
                 px-6
                 py-2
-                text-onPrimaryBold
+                text-light
                 font-bold
                 shadow
                 active:shadow-none
@@ -186,7 +184,7 @@ export default function ContactPage() {
                   inline-block
                   ml-1
                   align-text-top
-                  text-onPrimaryBold
+                  text-light
                   opacity-75
               `}
               >

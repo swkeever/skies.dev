@@ -4,7 +4,7 @@ export default function Alert({ children }) {
   const styles = {
     alert: `
     bg-primaryBg
-    text-onPrimaryText
+    text-onPrimary
     card
     border-l-4
     border-primary
