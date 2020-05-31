@@ -6,11 +6,12 @@ import links from "../utils/links"
 export default function Footer() {
   const styles = {
     footer: `
+      mt-auto
       mb-8
       px-4
       pt-4 
       pb-12
-      z-40
+      z-20
       text-base
       text-xs
       md:pb-8

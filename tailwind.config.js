@@ -8,6 +8,7 @@ module.exports = {
     colors: {
       // base
       primary: "var(--color-primary)",
+      primarySoft: "var(--color-primarySoft)",
       primaryBold: "var(--color-primaryBold)",
 
       neutral: "var(--color-neutral)",

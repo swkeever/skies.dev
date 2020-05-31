@@ -24,11 +24,12 @@ const IndexPage = () => {
     md:text-base
     md:mb-32
     lg:text-lg
+    
     `,
 
     content: `
     md:w-5/12
-    lg:w-5/12
+    lg:w-6/12
     `,
 
     svg: `

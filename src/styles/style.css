@@ -30,6 +30,8 @@
 .theme-light {
   /* base */
   --color-primary: var(--color-primary-500);
+  --color-primarySoft: var(--color-primary-400);
+  --color-primaryBold: var(--color-primary-600);
   --color-neutral: var(--color-neutral-500);
 
   /* backgrounds */
@@ -38,7 +40,6 @@
   --color-primaryBg: var(--color-primary-100);
   --color-primaryBgSoft: var(--color-primary-200);
   --color-footerBg: var(--color-neutral-900);
-  --color-primaryBold: var(--color-primary-400);
 
   /* text */
   --color-onPrimary: var(--color-primary-100);
@@ -63,26 +64,28 @@
 .theme-dark {
   /* base */
   --color-primary: var(--color-primary-900);
+  --color-primarySoft: var(--color-primary-800);
+  --color-primaryBold: var(--color-primary-100);
   --color-neutral: var(--color-neutral-600);
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-900);
   --color-primaryBg: var(--color-neutral-800);
   --color-footerBg: var(--color-neutral-800);
-  --color-primaryBgSoft: var(--color-primary-900);
+  --color-primaryBgSoft: var(--color-primary-800);
   --color-neutralBgSoft: var(--color-neutral-800);
-  --color-onPrimarySoft: var(--color-primary-800);
+  --color-onPrimarySoft: var(--color-primary-100);
   --color-primaryBold: var(--color-primary-700);
 
   /* text */
   --color-onPrimary: var(--color-neutral-100);
-  --color-onPrimarySoft: var(--color-neutral-500);
+  --color-onPrimarySoft: var(--color-neutral-300);
   --color-onNeutral: var(--color-neutral-100);
   --color-onNeutralSoft: var(--color-neutral-500);
-  --color-onPrimaryBg: var(--color-primary-200);
-  --color-onPrimaryBgSoft: var(--color-primary-300);
-  --color-onNeutralBg: var(--color-neutral-300);
-  --color-onNeutralBgSoft: var(--color-neutral-400);
+  --color-onPrimaryBg: var(--color-primary-100);
+  --color-onPrimaryBgSoft: var(--color-primary-200);
+  --color-onNeutralBg: var(--color-neutral-200);
+  --color-onNeutralBgSoft: var(--color-neutral-300);
 
   /* links */
   --color-onPrimaryBgLink: var(--color-primary-300);
@@ -91,6 +94,10 @@
   --color-onNeutralBgLinkHover: var(--color-primary-500);
 
   caret-color: var(--color-onNeutral);
+}
+
+html {
+  @apply overflow-y-scroll;
 }
 
 h1,
@@ -210,7 +217,7 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
   width: 60px;
   height: 34px; */
 
-  @apply relative inline-block w-16 h-8 border border-primary rounded-full pb-8 pr-16;
+  @apply relative inline-block w-16 h-8 pb-8 pr-16 rounded-full;
 }
 
 .switch input {
@@ -218,17 +225,25 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 }
 
 .slider {
-  @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-neutralBg transition duration-500;
+  @apply absolute cursor-pointer bg-primarySoft
+ top-0 left-0 right-0 bottom-0 transition duration-200 ease-in-out shadow-md;
 }
 
 .slider:before {
   content: "";
 
-  @apply absolute bg-primaryBold transition duration-500 w-6 h-6 ml-1 mt-1
+  @apply absolute bg-primaryBold 
+   transition ease-in-out duration-200 w-6 h-6 ml-1 mt-1;
 }
 
 input:checked+.slider {
-  @apply bg-primaryBg;
+  @apply bg-primary;
+}
+
+@screen lg {
+  input:checked+.slider {
+    @apply bg-neutralBgSoft;
+  }
 }
 
 input:focus+.slider {

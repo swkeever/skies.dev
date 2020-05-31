@@ -35,7 +35,6 @@ const Layout = ({ children, location, className = "" }: LayoutPropTypes) => {
     main: `
       mb-0
       lg:mt-8
-      min-h-screen
     `,
   }
 
@@ -58,7 +57,13 @@ const Layout = ({ children, location, className = "" }: LayoutPropTypes) => {
 
   return (
     <>
-      <div className={`${themeClass} ${extraClasses}`}>
+      <div
+        className={`${themeClass} ${extraClasses}
+        flex
+        min-h-screen
+        flex-col
+        `}
+      >
         <Header
           location={location}
           lightTheme={lightTheme}

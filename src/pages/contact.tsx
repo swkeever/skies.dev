@@ -15,7 +15,7 @@ export default function ContactPage() {
     px-5 
     pb-5
     bg-neutralBg
-    z-50
+    z-30
     -mt-64
     relative
     w-10/12
@@ -66,13 +66,17 @@ export default function ContactPage() {
       <div
         className={`
       diagonal-t
-      py-56
+      py-48
       relative
       bg-primary
-      md:py-64
+      md:pt-64
       `}
       ></div>
-      <Container className={`${styles.container}`}>
+      <Container
+        className={`${styles.container}
+      
+      `}
+      >
         <h1
           className={`
           text-lg

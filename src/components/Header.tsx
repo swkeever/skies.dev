@@ -27,7 +27,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     left-0
     lg:top-0
     lg:bottom-auto
-    w-screen
+    w-full
     h-12
     
     bg-primary
@@ -72,6 +72,8 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     hover:text-onPrimaryBgLinkHover
     outline-none
     hover:no-underline
+    px-8
+    md:px-16
     lg:px-12
     text-center
     py-2 
@@ -201,7 +203,8 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             z-50
             mt-3
             text-2xl
-            text-primaryBold
+            text-primarySoft
+            lg:text-primaryBold
             mr-24
             px-1
           `}
@@ -244,8 +247,9 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             z-50
             mt-3
             text-xl
-            text-primaryBold
-            
+            text-primarySoft
+            lg:text-primaryBold
+            lg:mr-1
             mr-1
             px-1
             pt-px
