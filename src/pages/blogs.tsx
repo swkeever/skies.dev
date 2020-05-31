@@ -179,7 +179,7 @@ export default function BlogsPage() {
     inline-block
     bg-primary
     shadow-inner
-    text-onPrimaryLinkActive
+    text-onPrimaryBold
     rounded-full
     px-4 
     mr-2 

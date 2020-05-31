@@ -10,13 +10,15 @@ import { useStaticQuery, graphql } from "gatsby"
 import "../styles/style.css"
 import Header from "./Header"
 import Footer from "./Footer"
+import SEO from "./SEO"
 
 type LayoutPropTypes = {
   children: ReactChildren
   className?: string
+  location: string
 }
 
-const Layout = ({ children, className = "" }: LayoutPropTypes) => {
+const Layout = ({ children, location, className = "" }: LayoutPropTypes) => {
   const [lightTheme, setLightTheme] = useState(getLightTheme())
 
   const data = useStaticQuery(graphql`
@@ -55,15 +57,18 @@ const Layout = ({ children, className = "" }: LayoutPropTypes) => {
   const extraClasses = className || `bg-neutralBg text-onNeutralText`
 
   return (
-    <div className={`${themeClass} ${extraClasses}`}>
-      <Header
-        lightTheme={lightTheme}
-        setLightTheme={saveLightTheme}
-        siteTitle={data.site.siteMetadata.title}
-      />
-      <main className={styles.main}>{children}</main>
-      <Footer />
-    </div>
+    <>
+      <div className={`${themeClass} ${extraClasses}`}>
+        <Header
+          location={location}
+          lightTheme={lightTheme}
+          setLightTheme={saveLightTheme}
+          siteTitle={data.site.siteMetadata.title}
+        />
+        <main className={styles.main}>{children}</main>
+        <Footer />
+      </div>
+    </>
   )
 }
 

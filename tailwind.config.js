@@ -14,6 +14,10 @@ module.exports = {
       primaryBg: "var(--color-primaryBg)",
       neutralBg: "var(--color-neutralBg)",
       footerBg: "var(--color-footerBg)",
+      primaryBgFarther: "var(--color-primaryBgFarther)",
+      neutralBgFarther: "var(--color-neutralBgFarther)",
+      onPrimaryFarther: "var(--color-onPrimaryFarther)",
+      onPrimaryCloser: "var(--color-onPrimaryCloser)",
 
       // text
       onPrimaryText: "var(--color-onPrimaryText)",
@@ -26,7 +30,7 @@ module.exports = {
       onNeutralDivider: "var(--color-onNeutralDivider)",
 
       // links
-      onPrimaryLinkActive: "var(--color-onPrimaryLinkActive)",
+      onPrimaryBold: "var(--color-onPrimaryBold)",
       onPrimaryLink: "var(--color-onPrimaryLink)",
       onPrimaryLinkHover: "var(--color-onPrimaryLinkHover)",
       onNeutralLink: "var(--color-onNeutralLink)",

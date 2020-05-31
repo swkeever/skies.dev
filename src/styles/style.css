@@ -32,8 +32,12 @@
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-100);
+  --color-neutralBgFarther: var(--color-neutral-200);
   --color-primaryBg: var(--color-primary-100);
+  --color-primaryBgFarther: var(--color-primary-200);
   --color-footerBg: var(--color-neutral-900);
+  --color-onPrimaryFarther: var(--color-primary-600);
+  --color-onPrimaryCloser: var(--color-primary-400);
 
   /* text */
   --color-onPrimaryText: var(--color-primary-900);
@@ -50,7 +54,7 @@
   --color-onPrimaryLinkHover: var(--color-primary-200);
   --color-onNeutralLink: var(--color-primary-500);
   --color-onNeutralLinkHover: var(--color-primary-600);
-  --color-onPrimaryLinkActive: var(--color-neutral-100);
+  --color-onPrimaryBold: var(--color-neutral-100);
 
 
   caret-color: var(--color-onNeutralText);
@@ -65,6 +69,11 @@
   --color-neutralBg: var(--color-neutral-900);
   --color-primaryBg: var(--color-neutral-800);
   --color-footerBg: var(--color-neutral-800);
+  --color-primaryBgFarther: var(--color-primary-900);
+  --color-neutralBgFarther: var(--color-neutral-800);
+  --color-onPrimaryFarther: var(--color-primary-800);
+  --color-onPrimaryCloser: var(--color-primary-700);
+
 
   /* text */
   --color-onPrimaryText: var(--color-neutral-100);
@@ -81,7 +90,7 @@
   --color-onPrimaryLinkHover: var(--color-primary-200);
   --color-onNeutralLink: var(--color-primary-400);
   --color-onNeutralLinkHover: var(--color-primary-500);
-  --color-onPrimaryLinkActive: var(--color-neutral-100);
+  --color-onPrimaryBold: var(--color-neutral-100);
 
   caret-color: var(--color-onNeutralText);
 }
@@ -190,6 +199,87 @@ input:-webkit-autofill {
   /* Safari support - any positive time runs instantly */
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
+}
+
+/* 
+here's a nice toggle switch
+
+https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
+*/
+.switch {
+  /* position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px; */
+
+  @apply
+  relative 
+  inline-block
+  w-16
+  h-8 
+  border
+  border-primary
+  rounded-full
+  pb-8
+  pr-16;
+}
+
+.switch input {
+  @apply
+  opacity-0
+  w-0
+  h-0
+}
+
+.slider {
+  @apply 
+  absolute 
+  cursor-pointer 
+  top-0 
+  left-0 
+  right-0 
+  bottom-0 
+  bg-neutralBg
+  transition
+  duration-500;
+}
+
+.slider:before {
+  content: "";
+
+  @apply
+  absolute
+  bg-onPrimaryCloser
+  transition
+  duration-500
+  w-6
+  h-6
+  ml-1 mt-1
+}
+
+input:checked+.slider {
+  @apply bg-primaryBg;
+}
+
+input:focus+.slider {
+  @apply shadow-inner;
+}
+
+input:checked+.slider:before {
+  @apply 
+  transform
+  translate-x-8;
+}
+
+/* Rounded sliders */
+.slider.round {
+  @apply
+  rounded-full;
+}
+
+.slider.round:before {
+  @apply
+  rounded-full;
 }
 
 

@@ -61,7 +61,7 @@ export default function ContactPage() {
   return (
     <Layout
       className={`
-      bg-primaryBg
+      bg-neutralBgFarther
       text-onNeutralText
     `}
     >
@@ -70,7 +70,7 @@ export default function ContactPage() {
       diagonal-t
       py-56
       relative
-      bg-neutralBg
+      bg-primaryBgFarther
       md:py-64
       `}
       ></div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
             <textarea
               value={message}
               onChange={e => setMessage(e.target.value)}
-              placeholder="We'll paint one happy little tree right here."
+              placeholder="There are no mistakes, only happy accidents."
               className={`${styles.input}
               h-32
               resize-none
@@ -173,7 +173,7 @@ export default function ContactPage() {
                 rounded-full
                 px-6
                 py-2
-                text-onPrimaryLinkActive
+                text-onPrimaryBold
                 font-bold
                 shadow
                 active:shadow-none
@@ -186,7 +186,7 @@ export default function ContactPage() {
                   inline-block
                   ml-1
                   align-text-top
-                  text-onPrimaryLinkActive
+                  text-onPrimaryBold
                   opacity-75
               `}
               >

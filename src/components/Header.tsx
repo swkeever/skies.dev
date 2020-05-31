@@ -13,9 +13,15 @@ type HeaderProps = {
   siteTitle?: string
   lightTheme: boolean
   setLightTheme: Function
+  location: string
 }
 
-const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
+const Header = ({
+  siteTitle = "",
+  lightTheme,
+  setLightTheme,
+  location,
+}: HeaderProps) => {
   const styles = {
     nav: `
     fixed 
@@ -25,18 +31,18 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     lg:top-0
     lg:bottom-auto
     w-screen
-    pt-3
-    pb-1
     bg-primary
     shadow
-    z-50`,
+    z-40`,
 
     ul: `
     list-none
     m-0
+    lg:ml-56
     p-1
     flex
     lg:justify-start
+
     divide-x
     divide-onPrimaryDivider
     uppercase
@@ -46,6 +52,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     text-center
     tracking-widest
     flex-1
+    xl:flex-none
     text-center
     `,
 
@@ -62,10 +69,22 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     `,
 
     link: `
+    inline-block
     text-onPrimaryLink
     hover:text-onPrimaryLinkHover
     outline-none
     hover:no-underline
+    lg:px-12
+    pt-2 
+    pb-1
+    `,
+
+    linkActive: `
+    
+    `,
+
+    active: `
+
     `,
 
     theme: `
@@ -76,11 +95,14 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     `,
 
     themeIcon: `
+    inline-block
 
     `,
   }
 
-  const themeIcon = lightTheme ? (
+  const activeStyles = { color: "var(--color-light)" }
+
+  const themeIcon = !lightTheme ? (
     <FaSun className={`${styles.icon} text-2xl`} />
   ) : (
     <FaMoon className={`${styles.icon}`} />
@@ -88,13 +110,35 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
 
   return (
     <header>
+      <div
+        className={`
+      z-50
+      inline
+      xl:block
+      xl:fixed
+      top-0
+      left-0
+      ml-4
+      tracking-wider
+      font-bold
+      uppercase
+      mt-3
+      text-lg
+      text-onPrimaryBold
+
+      
+      `}
+      >
+        👨‍💻 Sean Keever
+      </div>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
-          <li className={styles.li}>
+          <li className={`${styles.li} ${location === ""}`}>
             <Link
               to={routes.home}
               className={styles.link}
-              activeStyle={{ color: "var(--color-light)" }}
+              activeClassName={styles.active}
+              activeStyle={activeStyles}
             >
               <FaHome
                 className={`
@@ -109,7 +153,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             <Link
               to={routes.blogs}
               className={styles.link}
-              activeStyle={{ color: "var(--color-light)" }}
+              activeStyle={activeStyles}
             >
               <FaRegLightbulb className={styles.icon} />
               <span className={styles.span}>Blogs</span>
@@ -119,23 +163,78 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             <Link
               to={routes.contact}
               className={styles.link}
-              activeStyle={{ color: "var(--color-light)" }}
+              activeStyle={activeStyles}
             >
               <FaUserAlt className={styles.icon} />
               <span className={styles.span}>Contact</span>
             </Link>
           </li>
-          <li className={styles.li}>
-            <button
-              className={`${styles.link} ${styles.theme} ${styles.themeIcon}`}
-              onClick={() => setLightTheme(!lightTheme)}
-            >
-              {themeIcon}
-              <span className={styles.span}>Theme</span>
-            </button>
-          </li>
         </ul>
       </nav>
+
+      <div>
+        <span
+          className={`
+            fixed
+            right-0
+            top-0
+            z-50
+            mt-3
+            text-2xl
+            text-onPrimaryCloser
+            mr-24
+            px-1
+            
+          `}
+        >
+          <FaSun />
+        </span>
+        <label
+          className={`
+                switch
+                mt-1
+                fixed 
+                right-0
+                top-0
+                z-50
+                mt-2
+                mr-8
+            `}
+        >
+          <input
+            className={`
+              
+                `}
+            onClick={() => setLightTheme(!lightTheme)}
+            type="checkbox"
+            checked={!lightTheme}
+          />
+          <span
+            className={`
+                  slider
+                  round
+
+  `}
+          ></span>
+        </label>
+        <span
+          className={`
+            fixed
+            right-0
+            top-0
+            z-50
+            mt-3
+            text-xl
+            text-onPrimaryCloser
+            
+            mr-1
+            px-1
+            pt-px
+        `}
+        >
+          <FaMoon />
+        </span>
+      </div>
     </header>
   )
 }
