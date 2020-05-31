@@ -400,8 +400,10 @@ export default function BlogsPage() {
           divide-y
           divide-onNeutralSoft
           lg:w-full
+          mb-24
+          md:mb-48
           lg:mx-auto
-          lg:mb-16
+          lg:mb-32
           `}
           >
             {blogs}

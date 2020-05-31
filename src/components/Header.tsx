@@ -116,8 +116,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     
     `}
     >
-      <Link
-        to={routes.home}
+      <div
         className={`
       z-50
       hidden
@@ -140,7 +139,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
       `}
       >
         👨‍💻 Sean Keever
-      </Link>
+      </div>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li
