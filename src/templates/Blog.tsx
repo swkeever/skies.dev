@@ -14,19 +14,18 @@ export default function Template({
     article: `
     container
     mx-auto
-    px-4
-    md:px-32
-    lg:w-7/12
+    max-w-xl
     lg:py-8
-    xl:leading-loose
+    leading-relaxed
+    text-onNeutralBg
     `,
 
     date: `
     uppercase
     tracking-widest
-    text-onPrimarySoft
+    text-onPrimaryBgSoft
     text-lg
-    text-right
+    text-left
   `,
 
     span: `
@@ -39,8 +38,9 @@ export default function Template({
 
     diagonal: `
     bg-primaryBg
-    text-onPrimary
+    text-onPrimaryBg
     diagonal-b
+    mt-8
     pt-12
     pb-10 
     z-0
@@ -60,11 +60,18 @@ export default function Template({
     <Layout>
       <div className={styles.header}>
         <div className={styles.article}>
-          <h1 className="md:w-3/4 lg:w-2/3 leading-tight">
+          <h1
+            className={`
+          md:w-3/4 
+          lg:w-2/3 
+          leading-none
+          text-onPrimaryBg
+          `}
+          >
             {frontmatter.title}
           </h1>
           <p className={styles.date}>
-            <span className={styles.span}>Last published</span>
+            <span className={styles.span}>Published</span>
             <time dateTime={frontmatter.date}>{frontmatter.date}</time>
           </p>
         </div>
@@ -75,8 +82,17 @@ export default function Template({
       />
       <div className={styles.diagonal}>
         <section className={styles.article}>
-          <h2>Can this document be improved?</h2>
-          <p>
+          <h2
+            className={`
+          text-onPrimaryBg
+          leading-none
+          text-2xl
+          lg:text-3xl
+          `}
+          >
+            Can this document be improved?
+          </h2>
+          <p className={`text-onPrimaryBgSoft`}>
             Please consider opening an{" "}
             <a href={`${links.sourceRepo}/issues`}>issue</a> or{" "}
             <a href={`${links.sourceRepo}/pulls`}>pull request</a>. ❤️

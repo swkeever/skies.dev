@@ -13,10 +13,21 @@ How are you doing today?
 
 ### Getting started
 
-So first you will want to
+So first you will want to write some JavaScript.
 
 ```javascript
 const hello = "hi how are you?"
+
+let template = `
+  here is a template string!
+`
+```
+
+Then print "Hello world" in Python.
+
+```python
+def hello():
+    print('hello world')
 ```
 
 How is it going today?

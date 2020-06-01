@@ -81,7 +81,7 @@
   --color-onPrimary: var(--color-neutral-100);
   --color-onPrimarySoft: var(--color-neutral-300);
   --color-onNeutral: var(--color-neutral-100);
-  --color-onNeutralSoft: var(--color-neutral-800);
+  --color-onNeutralSoft: var(--color-neutral-700);
   --color-onPrimaryBg: var(--color-primary-100);
   --color-onPrimaryBgSoft: var(--color-primary-200);
   --color-onNeutralBg: var(--color-neutral-200);
@@ -134,7 +134,7 @@ p {
 }
 
 pre {
-  @apply mt-2 shadow-xl;
+  @apply mt-2;
 }
 
 a {
@@ -142,11 +142,18 @@ a {
 }
 
 a:hover {
-  @apply text-onNeutralBgLinkHover;
+  @apply border-b border-onNeutralBgLinkHover text-onNeutralBgLinkHover;
 }
 
 blockquote {
-  @apply bg-primaryBg text-onPrimary border-l-4 border-primaryBg card;
+  @apply 
+  mt-2
+  pb-4 
+  pt-1 
+  pl-3
+  bg-neutralBgSoft
+  text-lg
+  text-onNeutralBgSoft border-l-4 border-primary;
 }
 
 .list {
@@ -225,7 +232,7 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 }
 
 .theme-toggle {
-  @apply transition ease-in duration-75;
+  @apply transition duration-75;
 }
 
 .slider {

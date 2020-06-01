@@ -18,7 +18,6 @@
     "gatsby-source-filesystem": "^2.3.8",
     "gatsby-transformer-remark": "^2.8.13",
     "gatsby-transformer-sharp": "^2.5.3",
-    "lodash.debounce": "^4.0.8",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
@@ -36,10 +35,10 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop -o",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
-    "reinstall": "rm package-lock.json && rm -rf node_modules && npm install",
+    "reinstall": "rm package-lock.json; rm -rf node_modules && npm install",
     "serve": "gatsby serve",
     "clean": "gatsby clean && rm -rf .cache",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"

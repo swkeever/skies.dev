@@ -70,9 +70,9 @@ export default function BlogsPage() {
     container: `
     mt-8 
     px-4 
-    md:w-2/3 
+    max-w-2xl
     lg:mt-16 
-    lg:w-1/2
+    
     relative
     `,
 
@@ -136,9 +136,8 @@ export default function BlogsPage() {
     pl-10 
     pr-2
     relative
-    py-4
-    md:text-lg
-    placeholder-onNeutralSoft
+    py-2
+    placeholder-neutral
     md:w-8/12
     lg:w-7/12
     outline-none
@@ -150,7 +149,7 @@ export default function BlogsPage() {
     inline
     text-2xl 
     absolute
-    text-onNeutralSoft
+    text-neutral
     ml-3
     z-50
     `,
@@ -253,8 +252,8 @@ export default function BlogsPage() {
             <Link
               to={slug}
               className={`
-              text-onNeutral
-              hover:text-onNeutral
+              text-onNeutralBg
+              hover:text-onNeutralBg
             `}
             >
               {title}
@@ -267,6 +266,7 @@ export default function BlogsPage() {
               inline-block
               uppercase
               tracking-widest
+              text-neutral
               text-sm
           `}
           >
