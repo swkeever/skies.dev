@@ -15,7 +15,8 @@ type BlogList = {
           title: string
           slug: string
           date: string
-          tags: string
+          tags: string[]
+          image?: string
         }
         timeToRead: number
         id: string
@@ -54,8 +55,7 @@ export default function BlogsPage() {
   // and only show tags that exist in the markdown files
   const validTags = []
   data.allMarkdownRemark.edges.forEach(e => {
-    const blogTags = e.node.frontmatter.tags.split(",").map(t => t.trim())
-    blogTags.forEach(t => {
+    e.node.frontmatter.tags.forEach(t => {
       if (!validTags.includes(t)) {
         validTags.push(t)
       }
@@ -218,17 +218,14 @@ export default function BlogsPage() {
         return e.node.rawMarkdownBody.includes(filter)
       }
 
-      const nodeTags = e.node.frontmatter.tags.split(", ")
-
       return tags
         .filter(t => t.selected)
         .map(t => t.name)
-        .every(t => nodeTags.includes(t))
+        .every(t => e.node.frontmatter.tags.includes(t))
     })
     .map(e => {
       const { title, slug, date, tags } = e.node.frontmatter
       const { excerpt } = e.node
-      const blogTags = tags.split(", ")
       const dateFormat = new Intl.DateTimeFormat("en-US", {
         year: "numeric",
         month: "long",
@@ -273,7 +270,7 @@ export default function BlogsPage() {
             {dateFormat}
           </time>
           <ul className={styles.tags}>
-            {blogTags.map(t => {
+            {tags.map(t => {
               return (
                 <li
                   className={`

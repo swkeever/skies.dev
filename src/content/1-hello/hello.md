@@ -1,8 +1,10 @@
 ---
-slug: "/blogs/hello"
-date: "2019-05-04"
-title: "My first blog post"
-tags: Hello World
+title: My first blog post
+slug: hello
+date: 2019-05-04
+image:
+tags:
+  - Hello World
 ---
 
 ## Hello world
@@ -40,7 +42,7 @@ Here is a [nice link](#) that will take you somewhere cool.
 
 And a nice image
 
-![here it is](../images/seattle.jpg)
+![here it is](seattle.jpg)
 
 Not bad right?
 

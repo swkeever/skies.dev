@@ -9,19 +9,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: path.join(__dirname, `src`, `images`),
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-plugin-sharp`,
     {
       resolve: "gatsby-plugin-react-svg",
@@ -62,6 +49,7 @@ module.exports = {
               maxWidth: 590,
             },
           },
+          "gatsby-remark-external-links",
         ],
       },
     },
