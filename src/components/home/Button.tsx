@@ -7,7 +7,7 @@ export default function Button() {
     <Link
       to={routes.contact}
       className={`
-        absolute
+        inline-block
         bg-light
         text-onLight
         hover:text-onLight
@@ -16,13 +16,12 @@ export default function Button() {
         px-4 
         py-2 
         mt-4
+        mb-8
         font-bold
-        mb-4
         lg:px-6 
         lg:text-lg
         shadow
         active:shadow-none
-
       `}
     >
       Learn more
