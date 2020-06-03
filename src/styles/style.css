@@ -142,7 +142,7 @@ a {
 }
 
 a:hover {
-  @apply border-b border-onNeutralBgLinkHover text-onNeutralBgLinkHover;
+  @apply text-onNeutralBgLinkHover;
 }
 
 blockquote {

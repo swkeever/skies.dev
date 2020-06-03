@@ -7,7 +7,11 @@ import Code from "../../assets/code.svg"
 import Building from "../../assets/building.svg"
 import Product from "../../assets/product.svg"
 import routes from "../utils/routes"
-import Button from "../components/Button"
+import Button from "../components/home/Button"
+import Section from "../components/home/Section"
+import Content from "../components/home/Content"
+import DiagonalBg from "../components/home/DiagonalBg"
+import PrimaryBg from "../components/home/PrimaryBg"
 
 const IndexPage = () => {
   const styles = {
@@ -45,133 +49,76 @@ const IndexPage = () => {
     item: `
       mx-8
     `,
-
-    diagonal: `
-    bg-primaryBg
-    diagonal-m 
-    pt-16
-    pb-8
-    md:pt-32
-    md:pb-4
-    md:-mt-16
-    md:mb-16
-    lg:pt-64
-    `,
   }
 
   return (
     <Layout>
-      <Container
-        className={`${styles.container}
-      md:pt-16
-      `}
-      >
-        <section className={`${styles.section}  md:flex-row pt-2 lg:pt-32`}>
-          <div className={`${styles.content} ${styles.item}`}>
-            <h1
-              className={`
-            text-onNeutralBg
-            `}
-            >
-              Hi, 👋 I'm Sean.
-            </h1>
-            <p
-              className={`
+      <Section>
+        <Content>
+          <h1 className={`text-onNeutralBg`}>
+            Hi,{" "}
+            <span role="img" aria-label="Waving hand">
+              👋
+            </span>{" "}
+            I'm Sean.
+          </h1>
+          <p
+            className={`
             text-onNeutralBgSoft
             `}
-            >
-              I'm a software developer, designer, and technology enthusiast from
-              Seattle, WA.
-            </p>
-          </div>
-          <Code className={`${styles.svg} ${styles.item}`} />
-        </section>
-      </Container>
+          >
+            I'm a software developer, designer, and technology enthusiast from
+            Seattle, WA.
+          </p>
+        </Content>
+        <Code className={`${styles.svg} ${styles.item}`} />
+      </Section>
 
-      <div className={styles.diagonal}>
-        <Container className={`${styles.container}`}>
-          <section className={`${styles.section} md:flex-row-reverse`}>
-            <div className={`${styles.content} ${styles.item}`}>
-              <div className="">
-                <h2
-                  className={`
+      <DiagonalBg>
+        <Section className={`md:flex-row-reverse`}>
+          <Content>
+            <div className="">
+              <h2
+                className={`
                 text-onPrimaryBg
                 `}
-                >
-                  I like to build things.
-                </h2>
-                <p
-                  className={`
+              >
+                I like to build things.
+              </h2>
+              <p
+                className={`
                 text-onPrimaryBgSoft
                 `}
-                >
-                  From client facing applications to the platforms that serve
-                  them, I love designing and implementing software.
-                </p>
-              </div>
+              >
+                From client facing applications to the platforms that serve
+                them, I love designing and implementing software.
+              </p>
             </div>
-            <Building className={`${styles.svg} ${styles.item}`} />
-          </section>
-        </Container>
-      </div>
+          </Content>
+          <Building className={`${styles.svg} ${styles.item}`} />
+        </Section>
+      </DiagonalBg>
 
-      <div
-        className={`
-      bg-primary
-      text-light
-      pt-16
-      -mt-12
-      z-0
-      md:-mt-32
-      md:pt-48
-      md:pb-px
-      `}
-      >
-        <Container>
-          <section className={`${styles.section} md:flex-row`}>
-            <div className={`${styles.content} ${styles.item}`}>
-              <div className="">
-                <h2>Let's build your product.</h2>
-                <p
-                  className={`
+      <PrimaryBg>
+        <Section>
+          <Content>
+            <div className="relative">
+              <h2>Let&apos;s build your product.</h2>
+              <p
+                className={`
               text-onPrimarySoft
               
               `}
-                >
-                  My full stack web development experience can help you get your
-                  project off the ground.
-                </p>
-                <Link
-                  to={routes.contact}
-                  className={`
-                  bg-light
-                  text-onLight
-                  hover:text-onLight
-                  rounded-full
-                  px-4 
-                  py-2 
-                  inline-block
-                  mt-4
-                  inline-block
-                  align-middle
-                  shadow
-                  active:shadow-none
-                  hover:no-underline
-                  hover:align-top
-                  font-bold
-                  mb-4
-                  lg:px-6 
-                  lg:text-lg
-              `}
-                >
-                  Learn more
-                </Link>
-              </div>
+              >
+                My full stack web development experience can help you get your
+                project off the ground.
+              </p>
+              <Button />
             </div>
-            <Product className={`${styles.svg} ${styles.item}`} />
-          </section>
-        </Container>
-      </div>
+          </Content>
+          <Product className={`${styles.svg} ${styles.item}`} />
+        </Section>
+      </PrimaryBg>
     </Layout>
   )
 }
