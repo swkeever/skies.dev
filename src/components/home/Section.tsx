@@ -5,7 +5,8 @@ export default function Section({ children, className = "" }) {
   return (
     <Container
       className={`
-      md:pt-16
+        md:pr-8
+        max-w-screen-lg
       `}
     >
       <section
@@ -14,11 +15,9 @@ export default function Section({ children, className = "" }) {
           justify-center
           flex-col
           text-lg
-          px-4
           items-center
           md:text-base
           md:mb-32
-          lg:text-lg
           md:flex-row 
           pt-2 
           lg:pt-32
