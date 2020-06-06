@@ -1,12 +1,17 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import Container from "../Container"
 
-export default function Section({ children, className = "" }) {
+type SectionProps = {
+  children: ReactNode
+  className?: string
+}
+
+export default function Section({ children, className = "" }: SectionProps) {
   return (
     <Container
       className={`
         md:pr-8
-        max-w-screen-lg
+        px-0
       `}
     >
       <section

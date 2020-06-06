@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState, ReactChildren } from "react"
+import React, { useState, ReactChildren, ReactNode } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import "../styles/style.css"
 import Header from "./Header"
@@ -13,7 +13,7 @@ import Footer from "./Footer"
 import SEO from "./SEO"
 
 type LayoutPropTypes = {
-  children: ReactChildren
+  children: ReactNode
   className?: string
   location: string
 }
