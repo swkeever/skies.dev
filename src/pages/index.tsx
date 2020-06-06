@@ -35,7 +35,7 @@ const IndexPage = () => {
             </span>{" "}
             I'm Sean.
           </h1>
-          <p className={`text-onNeutralBgSoft`}>
+          <p className="text-onNeutralBgSoft">
             I'm a software developer, designer, and technology enthusiast from
             Seattle, WA.
           </p>

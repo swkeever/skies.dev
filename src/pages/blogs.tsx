@@ -1,11 +1,12 @@
-import React, { useState, useCallback, useEffect } from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import { FaSistrix, FaArrowRight } from "react-icons/fa"
 import Layout from "../components/Layout"
 import Container from "../components/Container"
-import Bulb from "../../assets/bulb.svg"
 import Empty from "../../assets/empty.svg"
-import { FaSistrix, FaArrowRight } from "react-icons/fa"
-import Button from "../components/Button"
+import Header from "../components/blogs/Header"
+import BlogsContainer from "../components/blogs/BlogsContainer"
+import Filters from "../components/blogs/Filters"
 
 type BlogList = {
   allMarkdownRemark: {
@@ -67,33 +68,6 @@ export default function BlogsPage() {
   )
 
   const styles = {
-    container: `
-    mt-8 
-    px-4 
-    max-w-2xl
-    lg:mt-16 
-    
-    relative
-    `,
-
-    header: `
-    w-11/12
-    leading-tight
-    md:text-4xl
-    text-onPrimaryBg
-    md:w-8/12
-    md:w-9/12
-    lg:w-7/12
-    `,
-
-    description: `
-    w-7/12
-    -mb-4
-    lg:w-6/12
-    lg:text-lg
-    text-onPrimaryBgSoft
-    `,
-
     ul: `
     list-none
     ml-0
@@ -104,87 +78,9 @@ export default function BlogsPage() {
     mb-8
     `,
 
-    svg: `
-    w-40 
-    absolute 
-    right-0 
-    top-0
-    mr-4
-    h-auto
-    -mt-40
-    md:-mt-40 
-    md:w-48
-    lg:w-64 
-    lg:-mt-64 
-    `,
-
-    diagonal: `
-    diagonal-t 
-    bg-primaryBg
-    pt-px 
-    pb-20
-    md:pb-16 
-    lg:pb-20 
-    `,
-
-    input: `
-    -mt-8
-    bg-neutralBgSoft
-    w-9/12
-    rounded-md
-    text-onPrimary
-    pl-10 
-    pr-2
-    relative
-    py-2
-    placeholder-neutral
-    md:w-8/12
-    lg:w-7/12
-    outline-none
-    shadow-inner
-    focus:shadow-focus
-    `,
-
-    searchIcon: `
-    inline
-    text-2xl 
-    absolute
-    text-neutral
-    ml-3
-    z-50
-    `,
-
     tags: `
     list-none 
     ml-0
-    `,
-
-    tag: `
-    inline-block 
-    bg-neutral
-    text-onNeutral
-    rounded-full 
-    px-4 
-    mr-2
-    mb-2 
-    transition
-    duration-75
-    cursor-pointer 
-    shadow
-    `,
-
-    tagActive: `
-    transition
-    duration-75 
-    inline-block
-    bg-primary
-    shadow-inner
-    text-light
-    rounded-full
-    px-4 
-    mr-2 
-    mb-2
-    cursor-pointer 
     `,
 
     emptySvg: `
@@ -270,10 +166,9 @@ export default function BlogsPage() {
             {dateFormat}
           </time>
           <ul className={styles.tags}>
-            {tags.map(t => {
-              return (
-                <li
-                  className={`
+            {tags.map(t => (
+              <li
+                className={`
                       inline-block 
                       bg-primaryBg
                       text-onPrimaryBgSoft
@@ -284,11 +179,10 @@ export default function BlogsPage() {
                       mb-2 
                       shadow-xs
                 `}
-                >
-                  {t}
-                </li>
-              )
-            })}
+              >
+                {t}
+              </li>
+            ))}
           </ul>
           <p
             className={`
@@ -327,70 +221,20 @@ export default function BlogsPage() {
   return (
     <Layout
       className={`
-    min-h-screen 
-    bg-neutralBg
-    text-onNeutral
+        min-h-screen 
+        bg-neutralBg
+        text-onNeutral
     `}
     >
-      <div className={styles.diagonal}>
-        <Container className={`${styles.container} ${styles.headerContainer}`}>
-          <h1 className={styles.header}>
-            Blogs about life as a software engineer.
-          </h1>
-          <p className={styles.description}>
-            I write about lessons learned in the field, and anything else I feel
-            is important.
-          </p>
-        </Container>
-      </div>
-      <Container className={styles.container}>
-        <Bulb className={styles.svg} />
-      </Container>
-      <Container className={styles.container}>
-        <label for="filter" className="hidden">
-          Search
-        </label>
-        <div>
-          <FaSistrix className={styles.searchIcon} />
-          <input
-            autoFocus
-            value={filter}
-            onChange={e => {
-              setFilter(e.target.value)
-            }}
-            className={styles.input}
-            placeholder="What can I help you find?"
-            name="filter"
-            type="text"
-          ></input>
-        </div>
+      <Header />
+      <Filters
+        filter={filter}
+        setFilter={setFilter}
+        tags={tags}
+        setTags={setTags}
+      />
 
-        <label className="block font-bold mt-4 -mb-2" for="tags">
-          I'm interested in
-        </label>
-        <ul id="tags" className={styles.tags}>
-          {tags.map((t, idx) => {
-            return (
-              <li
-                key={t.name}
-                onClick={() => {
-                  const newTags = tags.slice()
-                  newTags[idx] = {
-                    name: t.name,
-                    selected: !t.selected,
-                  }
-                  setTags(newTags)
-                }}
-                className={t.selected ? styles.tagActive : styles.tag}
-              >
-                {t.name}
-              </li>
-            )
-          })}
-        </ul>
-      </Container>
-
-      <Container className={styles.container}>
+      <BlogsContainer>
         {blogs.length ? (
           <ul
             className={`${styles.ul}
@@ -413,7 +257,7 @@ export default function BlogsPage() {
             <Empty className={styles.emptySvg} />
           </div>
         )}
-      </Container>
+      </BlogsContainer>
     </Layout>
   )
 }
