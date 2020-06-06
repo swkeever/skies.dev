@@ -21,7 +21,7 @@ export default function Item({
         lg:justify-start
         pt-1 
         ${
-          pathname === route
+          pathname.includes(route)
           && `
             border-b-4
             border-onPrimary
