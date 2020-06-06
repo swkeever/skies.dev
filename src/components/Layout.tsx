@@ -39,13 +39,6 @@ const Layout = ({ children, className = '' }: LayoutPropTypes) => {
     }
   `);
 
-  const styles = {
-    main: `
-      mb-0
-      lg:mt-8
-    `,
-  };
-
   function saveLightTheme(theme: boolean) {
     localStorage.setItem('theme', theme ? 'light' : 'dark');
     setLightTheme(theme);
@@ -65,7 +58,14 @@ const Layout = ({ children, className = '' }: LayoutPropTypes) => {
         `}
       >
         <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
-        <main className={styles.main}>{children}</main>
+        <main
+          className={`
+            mb-0
+            lg:mt-8
+          `}
+        >
+          {children}
+        </main>
         <Footer />
       </div>
     </>
