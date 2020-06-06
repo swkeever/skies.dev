@@ -1,12 +1,38 @@
-import React from "react"
+import React from 'react';
+import Lost from '../../assets/lost.svg';
 
-import Layout from "../components/Layout"
+import Layout from '../components/Layout';
+import Container from '../components/Container';
 
 const NotFoundPage = () => (
   <Layout>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <Container
+      className={`
+      h-screen
+      flex
+      flex-col
+      justify-center
+    `}
+    >
+      <h1
+        className={`
+        text-xl
+        text-center
+        mb-4
+      `}
+      >
+        The page you requested does not exist.
+      </h1>
+      <Lost
+        className={`
+        w-10/12
+        lg:w-7/12
+        h-auto
+        mx-auto
+      `}
+      />
+    </Container>
   </Layout>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;

@@ -42,6 +42,7 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
 
             return (
               <Item
+                key={slug}
                 title={title}
                 slug={slug}
                 date={dateFormat}

@@ -201,8 +201,7 @@ https: //stackoverflow.com/a/37432260/13400099
 
   0%,
   100% {
-    @apply text-onPrimary;
-    background: transparent;
+    @apply text-onPrimary bg-neutralBgSoft;
   }
 }
 

@@ -5,7 +5,7 @@ import { FaArrowRight } from 'react-icons/fa';
 export default function ReadMore({ slug }: { slug: string }) {
   return (
     <Link
-      to={slug}
+      to={`/${slug}`}
       className={`
         text-onNeturalLink
         pb-1
