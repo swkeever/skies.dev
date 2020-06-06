@@ -25,9 +25,10 @@ function getLightTheme(): boolean {
   return theme === 'light';
 }
 
-const Layout = ({ children, location, className = '' }: LayoutPropTypes) => {
+const Layout = ({ children, className = '' }: LayoutPropTypes) => {
   const [lightTheme, setLightTheme] = useState(getLightTheme());
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -51,7 +52,6 @@ const Layout = ({ children, location, className = '' }: LayoutPropTypes) => {
   }
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
-
   const extraClasses = className || 'bg-neutralBg text-onNeutral';
 
   return (
@@ -64,12 +64,7 @@ const Layout = ({ children, location, className = '' }: LayoutPropTypes) => {
         flex-col
         `}
       >
-        <Header
-          location={location}
-          lightTheme={lightTheme}
-          setLightTheme={saveLightTheme}
-          siteTitle={data.site.siteMetadata.title}
-        />
+        <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
         <main className={styles.main}>{children}</main>
         <Footer />
       </div>
