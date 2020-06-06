@@ -21,5 +21,8 @@ module.exports = {
     "react/jsx-filename-extension": 0,
     "import/extensions": "off",
     "import/no-unresolved": "off",
+    // note you must disable the base rule as it can report incorrect errors
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
   },
 }
