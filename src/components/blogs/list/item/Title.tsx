@@ -16,7 +16,7 @@ export default function Title({
       `}
     >
       <Link
-        to={slug}
+        to={`/${slug}`}
         className={`
           text-onNeutralBg
           hover:text-onNeutralBg

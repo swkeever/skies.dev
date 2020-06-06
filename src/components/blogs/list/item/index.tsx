@@ -22,7 +22,6 @@ export default function Item({
 }: ItemPropTypes) {
   return (
     <li
-      key={slug}
       className={`
         mb-8
         pb-8
@@ -31,7 +30,7 @@ export default function Item({
     >
       <Title title={title} slug={slug} />
       <Date date={date} />
-      <Tags tags={tags} />
+      <Tags tags={tags} slug={slug} />
       <Excerpt excerpt={excerpt} />
       <ReadMore slug={slug} />
     </li>

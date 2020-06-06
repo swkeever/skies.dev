@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Tags({ tags }: { tags: string[] }) {
+export default function Tags({ tags, slug }: { tags: string[]; slug: string }) {
   return (
     <ul
       className={`
@@ -10,6 +10,7 @@ export default function Tags({ tags }: { tags: string[] }) {
     >
       {tags.map((t) => (
         <li
+          key={`${slug}-${t}`}
           className={`
             inline-block 
             bg-primaryBg

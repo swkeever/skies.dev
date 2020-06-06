@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react"
+import React from 'react';
 import {
   FaHome,
   FaUserAlt,
   FaRegLightbulb,
   FaMoon,
   FaSun,
-} from "react-icons/fa"
-import { Link } from "gatsby"
-import routes from "../utils/routes"
-import { useLocation } from "@reach/router"
+} from 'react-icons/fa';
+import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
+import routes from '../utils/routes';
 
 type HeaderProps = {
-  siteTitle?: string
   lightTheme: boolean
   setLightTheme: Function
 }
 
-const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
-  const { pathname } = useLocation()
-  console.log(location)
+const Header = ({ lightTheme, setLightTheme }: HeaderProps) => {
+  const { pathname } = useLocation();
 
   const styles = {
     nav: `
@@ -101,15 +99,9 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
     inline-block
 
     `,
-  }
+  };
 
-  const activeStyles = { color: "var(--color-light)" }
-
-  const themeIcon = !lightTheme ? (
-    <FaSun className={`${styles.icon} text-2xl`} />
-  ) : (
-    <FaMoon className={`${styles.icon}`} />
-  )
+  const activeStyles = { color: 'var(--color-light)' };
 
   return (
     <header
@@ -139,7 +131,11 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
       
       `}
       >
-        👨‍💻 Sean Keever
+        <span role="img" aria-label="Man technologist">
+          👨‍💻
+        </span>
+        {' '}
+        Sean Keever
       </div>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
@@ -212,6 +208,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
           <FaSun />
         </span>
         <label
+          htmlFor="theme-toggle"
           className={`
                 switch
                 mt-1
@@ -224,10 +221,11 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
             `}
         >
           <input
+            id="theme-toggle"
             className={`
               
                 `}
-            onClick={() => setLightTheme(!lightTheme)}
+            onChange={() => setLightTheme(!lightTheme)}
             type="checkbox"
             checked={!lightTheme}
           />
@@ -237,7 +235,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
                   round
 
   `}
-          ></span>
+          />
         </label>
         <span
           className={`
@@ -259,7 +257,7 @@ const Header = ({ siteTitle = "", lightTheme, setLightTheme }: HeaderProps) => {
         </span>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

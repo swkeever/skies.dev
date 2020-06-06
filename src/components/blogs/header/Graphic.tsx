@@ -1,5 +1,5 @@
 import React from 'react';
-import Bulb from '../../../assets/bulb.svg';
+import Bulb from '../../../../assets/bulb.svg';
 import BlogsContainer from '../BlogsContainer';
 
 export default function Graphic() {
