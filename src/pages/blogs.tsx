@@ -1,12 +1,11 @@
-import React, { useState } from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import { FaSistrix, FaArrowRight } from "react-icons/fa"
-import Layout from "../components/Layout"
-import Container from "../components/Container"
-import Empty from "../../assets/empty.svg"
-import Header from "../components/blogs/Header"
-import BlogsContainer from "../components/blogs/BlogsContainer"
-import Filters from "../components/blogs/Filters"
+import React, { useState } from 'react';
+import { useStaticQuery, graphql, Link } from 'gatsby';
+import { FaArrowRight } from 'react-icons/fa';
+import Layout from '../components/Layout';
+import Empty from '../../assets/empty.svg';
+import Header from '../components/blogs/Header';
+import BlogsContainer from '../components/blogs/BlogsContainer';
+import Filters from '../components/blogs/Filters';
 
 type BlogList = {
   allMarkdownRemark: {
@@ -29,7 +28,7 @@ type BlogList = {
 }
 
 export default function BlogsPage() {
-  const [filter, setFilter] = useState("")
+  const [filterString, setFilterString] = useState('');
 
   const data: BlogList = useStaticQuery(graphql`
     query {
@@ -50,22 +49,22 @@ export default function BlogsPage() {
         }
       }
     }
-  `)
+  `);
 
   // parse the tags from the markdown files
   // and only show tags that exist in the markdown files
-  const validTags = []
-  data.allMarkdownRemark.edges.forEach(e => {
-    e.node.frontmatter.tags.forEach(t => {
+  const validTags = [];
+  data.allMarkdownRemark.edges.forEach((e) => {
+    e.node.frontmatter.tags.forEach((t) => {
       if (!validTags.includes(t)) {
-        validTags.push(t)
+        validTags.push(t);
       }
-    })
-  })
+    });
+  });
 
-  const [tags, setTags] = useState(
-    validTags.map(t => ({ name: t, selected: false }))
-  )
+  const [filterTags, setFilterTags] = useState(
+    validTags.map((t) => ({ name: t, selected: false })),
+  );
 
   const styles = {
     ul: `
@@ -106,27 +105,29 @@ export default function BlogsPage() {
     mb-4
     lg:text-xl
     `,
-  }
+  };
 
   const blogs = data.allMarkdownRemark.edges
-    .filter(e => {
-      if (filter) {
-        return e.node.rawMarkdownBody.includes(filter)
+    .filter((e) => {
+      if (filterString) {
+        return e.node.rawMarkdownBody.includes(filterString);
       }
 
-      return tags
-        .filter(t => t.selected)
-        .map(t => t.name)
-        .every(t => e.node.frontmatter.tags.includes(t))
+      return filterTags
+        .filter((t) => t.selected)
+        .map((t) => t.name)
+        .every((t) => e.node.frontmatter.tags.includes(t));
     })
-    .map(e => {
-      const { title, slug, date, tags } = e.node.frontmatter
-      const { excerpt } = e.node
-      const dateFormat = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }).format(new Date(date))
+    .map((e) => {
+      const {
+        title, slug, date, tags,
+      } = e.node.frontmatter;
+      const { excerpt } = e.node;
+      const dateFormat = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }).format(new Date(date));
 
       return (
         <li
@@ -166,7 +167,7 @@ export default function BlogsPage() {
             {dateFormat}
           </time>
           <ul className={styles.tags}>
-            {tags.map(t => (
+            {tags.map((t) => (
               <li
                 className={`
                       inline-block 
@@ -215,8 +216,8 @@ export default function BlogsPage() {
             </span>
           </Link>
         </li>
-      )
-    })
+      );
+    });
 
   return (
     <Layout
@@ -228,10 +229,10 @@ export default function BlogsPage() {
     >
       <Header />
       <Filters
-        filter={filter}
-        setFilter={setFilter}
-        tags={tags}
-        setTags={setTags}
+        filter={filterString}
+        setFilter={setFilterString}
+        tags={filterTags}
+        setTags={setFilterTags}
       />
 
       <BlogsContainer>
@@ -252,12 +253,12 @@ export default function BlogsPage() {
         ) : (
           <div className={styles.emptyContainer}>
             <h2 className={styles.emptyHeader}>
-              Hmm. I don't have anything that matches your search.
+              Hmm. I don&apos;t have anything that matches your search.
             </h2>
             <Empty className={styles.emptySvg} />
           </div>
         )}
       </BlogsContainer>
     </Layout>
-  )
+  );
 }
