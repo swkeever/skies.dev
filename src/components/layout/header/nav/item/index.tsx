@@ -1,6 +1,14 @@
 import React, { ReactNode } from 'react';
 import { Link } from 'gatsby';
 import { useLocation } from '@reach/router';
+import routes from '../../../../../utils/routes';
+
+function isActive(pathname: string, route: string): boolean {
+  if (pathname.includes(routes.blogs)) {
+    return pathname.substring(0, routes.blogs.length) === route;
+  }
+  return pathname === route;
+}
 
 export default function Item({
   route,
@@ -21,7 +29,7 @@ export default function Item({
         lg:justify-start
         pt-1 
         ${
-          pathname === route
+          isActive(pathname, route)
           && `
             border-b-4
             border-onPrimary
@@ -44,7 +52,7 @@ export default function Item({
           text-center
           py-2 
         `}
-        activeStyle={{ color: 'var(--color-light)' }}
+        style={isActive(pathname, route) ? { color: 'var(--color-light)' } : {}}
       >
         {children}
       </Link>

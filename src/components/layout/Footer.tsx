@@ -1,7 +1,7 @@
-import React from "react"
-import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa"
-import Container from "./Container"
-import links from "../utils/links"
+import React from 'react';
+import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
+import Container from './Container';
+import links from '../../utils/links';
 
 export default function Footer() {
   const styles = {
@@ -43,7 +43,7 @@ export default function Footer() {
     md:items-baseline
 
     `,
-  }
+  };
 
   return (
     <footer className={styles.footer}>
@@ -65,8 +65,11 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-        <p>© All Rights Reserved {new Date().getFullYear()}</p>
+        <p>
+          © All Rights Reserved
+          {new Date().getFullYear()}
+        </p>
       </Container>
     </footer>
-  )
+  );
 }

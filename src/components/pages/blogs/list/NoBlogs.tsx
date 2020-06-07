@@ -1,5 +1,5 @@
 import React from 'react';
-import Empty from '../../../../assets/empty.svg';
+import Empty from '../../../../../assets/empty.svg';
 
 export default function NoBlogs() {
   return (

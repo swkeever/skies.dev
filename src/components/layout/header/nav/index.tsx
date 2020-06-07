@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaHome, FaUserAlt, FaRegLightbulb } from 'react-icons/fa';
-import routes from '../../../utils/routes';
+import routes from '../../../../utils/routes';
 import Item from './item';
 import Name from './item/Name';
 

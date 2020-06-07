@@ -7,7 +7,7 @@
 
 import React, { useState, ReactNode } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import '../styles/style.css';
+import '../../styles/style.css';
 import Header from './header';
 import Footer from './Footer';
 

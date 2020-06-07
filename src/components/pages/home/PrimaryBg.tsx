@@ -1,6 +1,6 @@
-import React from "react"
+import React, { ReactNode } from 'react';
 
-export default function PrimaryBg({ children }) {
+export default function PrimaryBg({ children }: { children: ReactNode }) {
   return (
     <div
       className={`
@@ -16,5 +16,5 @@ export default function PrimaryBg({ children }) {
     >
       {children}
     </div>
-  )
+  );
 }

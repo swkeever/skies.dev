@@ -1,13 +1,13 @@
-import React from "react"
-import Layout from "../components/Layout"
-import Code from "../../assets/code.svg"
-import Building from "../../assets/building.svg"
-import Product from "../../assets/product.svg"
-import Button from "../components/home/Button"
-import Section from "../components/home/Section"
-import Content from "../components/home/Content"
-import DiagonalBg from "../components/home/DiagonalBg"
-import PrimaryBg from "../components/home/PrimaryBg"
+import React from 'react';
+import Layout from '../components/layout';
+import Code from '../../assets/code.svg';
+import Building from '../../assets/building.svg';
+import Product from '../../assets/product.svg';
+import Button from '../components/pages/home/Button';
+import Section from '../components/pages/home/Section';
+import Content from '../components/pages/home/Content';
+import DiagonalBg from '../components/pages/home/DiagonalBg';
+import PrimaryBg from '../components/pages/home/PrimaryBg';
 
 const IndexPage = () => {
   const svgStyles = `
@@ -18,7 +18,7 @@ const IndexPage = () => {
     md:mb-0
     md:w-7/12
     lg:w-9/12
-  `
+  `;
 
   return (
     <Layout>
@@ -29,15 +29,17 @@ const IndexPage = () => {
       >
         <Content>
           <h1 className="text-onNeutralBg">
-            Hi,{" "}
+            Hi,
+            {' '}
             <span role="img" aria-label="Waving hand">
               👋
-            </span>{" "}
-            I'm Sean.
+            </span>
+            {' '}
+            I&apos;m Sean.
           </h1>
           <p className="text-onNeutralBgSoft">
-            I'm a software developer, designer, and technology enthusiast from
-            Seattle, WA.
+            I&apos;m a software developer, designer, and technology enthusiast
+            from Seattle, WA.
           </p>
         </Content>
         <Code className={svgStyles} />
@@ -75,7 +77,7 @@ const IndexPage = () => {
         </Section>
       </PrimaryBg>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

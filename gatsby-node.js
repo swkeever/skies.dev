@@ -3,11 +3,12 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const { slugToLink } = require('./src/utils/links');
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const blogPostTemplate = require.resolve(`./src/templates/Blog.tsx`)
+  const blogPostTemplate = require.resolve('./src/templates/Blog.tsx');
 
   const result = await graphql(`
     {
@@ -24,22 +25,22 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   // Handle errors
   if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
+    reporter.panicOnBuild('Error while running GraphQL query.');
+    return;
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: node.frontmatter.slug,
+      path: slugToLink(node.frontmatter.slug),
       component: blogPostTemplate,
       context: {
         // additional data can be passed via context
         slug: node.frontmatter.slug,
       },
-    })
-  })
-}
+    });
+  });
+};

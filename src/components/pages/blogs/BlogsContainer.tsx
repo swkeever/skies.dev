@@ -1,7 +1,7 @@
-import React from "react"
-import Container from "../Container"
+import React, { ReactNode } from 'react';
+import Container from '../../layout/Container';
 
-export default function BlogsContainer({ children }) {
+export default function BlogsContainer({ children }: { children: ReactNode }) {
   return (
     <Container
       className={`
@@ -14,5 +14,5 @@ export default function BlogsContainer({ children }) {
     >
       {children}
     </Container>
-  )
+  );
 }

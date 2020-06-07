@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "gatsby"
-import routes from "../../utils/routes"
+import React from 'react';
+import { Link } from 'gatsby';
+import routes from '../../../utils/routes';
 
 export default function Button() {
   return (
@@ -26,5 +26,5 @@ export default function Button() {
     >
       Learn more
     </Link>
-  )
+  );
 }

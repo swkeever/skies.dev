@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Layout from '../components/Layout';
-import Header from '../components/blogs/header';
-import Filters from '../components/blogs/filter';
-import BlogList from '../components/blogs/list';
+import Layout from '../components/layout';
+import Header from '../components/pages/blogs/header';
+import Filters from '../components/pages/blogs/filter';
+import BlogList from '../components/pages/blogs/list';
 
 type BlogList = {
   allMarkdownRemark: {

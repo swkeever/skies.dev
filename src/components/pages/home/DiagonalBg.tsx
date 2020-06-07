@@ -1,6 +1,6 @@
-import React from "react"
+import React, { ReactNode } from 'react';
 
-export default function DiagonalBg({ children }) {
+export default function DiagonalBg({ children }: { children: ReactNode }) {
   return (
     <div
       className={`
@@ -18,5 +18,5 @@ export default function DiagonalBg({ children }) {
     >
       {children}
     </div>
-  )
+  );
 }

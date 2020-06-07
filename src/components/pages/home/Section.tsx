@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react"
-import Container from "../Container"
+import React, { ReactNode } from 'react';
+import Container from '../../layout/Container';
 
 type SectionProps = {
   children: ReactNode
   className?: string
 }
 
-export default function Section({ children, className = "" }: SectionProps) {
+export default function Section({ children, className = '' }: SectionProps) {
   return (
     <Container
       className={`
@@ -32,5 +32,5 @@ export default function Section({ children, className = "" }: SectionProps) {
         {children}
       </section>
     </Container>
-  )
+  );
 }

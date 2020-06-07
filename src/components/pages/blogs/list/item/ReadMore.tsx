@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { FaArrowRight } from 'react-icons/fa';
+import { slugToLink } from '../../../../../utils/links';
 
 export default function ReadMore({ slug }: { slug: string }) {
   return (
     <Link
-      to={`/${slug}`}
+      to={`/${slugToLink(slug)}`}
       className={`
         text-onNeturalLink
         pb-1
