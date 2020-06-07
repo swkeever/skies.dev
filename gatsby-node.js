@@ -3,8 +3,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const { slugToLink } = require('./src/utils/links');
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
@@ -35,7 +33,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: slugToLink(node.frontmatter.slug),
+      path: `/blogs/${node.frontmatter.slug}`,
       component: blogPostTemplate,
       context: {
         // additional data can be passed via context

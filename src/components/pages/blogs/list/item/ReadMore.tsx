@@ -6,7 +6,7 @@ import { slugToLink } from '../../../../../utils/links';
 export default function ReadMore({ slug }: { slug: string }) {
   return (
     <Link
-      to={`/${slugToLink(slug)}`}
+      to={slugToLink(slug)}
       className={`
         text-onNeturalLink
         pb-1

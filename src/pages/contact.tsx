@@ -4,7 +4,6 @@ import Container from '../components/layout/Container';
 import Form from '../components/pages/contact/form';
 import Diagonal from '../components/pages/contact/Diagonal';
 import Title from '../components/pages/contact/Title';
-import Subtitle from '../components/pages/contact/Subtitle';
 
 export default function ContactPage() {
   return (
@@ -36,7 +35,6 @@ export default function ContactPage() {
         `}
       >
         <Title />
-        <Subtitle />
         <Form />
       </Container>
     </Layout>

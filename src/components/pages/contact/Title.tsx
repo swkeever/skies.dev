@@ -5,6 +5,7 @@ export default function Title() {
     <h1
       className={`
         text-lg
+        mb-2
       `}
     >
       Contact
