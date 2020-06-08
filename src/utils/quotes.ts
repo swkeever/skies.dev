@@ -448,7 +448,7 @@ const quotes: Quote[] = [
   },
   {
     quote: 'Nothing is impossible, the word itself says, “I’m possible!”',
-    author: '–Audrey Hepburn',
+    author: 'Audrey Hepburn',
   },
   {
     quote: 'The only way to do great work is to love what you do.',
@@ -460,7 +460,9 @@ const quotes: Quote[] = [
   },
 ];
 
-export default quotes;
+export default function randomQuote(): Quote {
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
 
 export type Quote = {
   quote: string

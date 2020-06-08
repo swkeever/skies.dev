@@ -15,7 +15,8 @@ export default function ContactPage() {
       <div
         className={`
         diagonal-t
-        py-48
+        pt-40
+        pb-48
         relative
         bg-primary
         md:pt-64
@@ -23,7 +24,6 @@ export default function ContactPage() {
       />
       <Container
         className={`
-          mt-8 
           px-5 
           pb-5
           bg-neutralBg

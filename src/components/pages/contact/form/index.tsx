@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, TextArea } from './Field';
 import Gotcha from './Gotcha';
 import Buttons from './buttons';
-import quotes from '../../../../utils/quotes';
+import randomQuote from '../../../../utils/quotes';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -15,7 +15,7 @@ export default function Form() {
   });
 
   useEffect(() => {
-    const { quote, author } = quotes[Math.floor(Math.random() * quotes.length)];
+    const { quote, author } = randomQuote();
     setPlaceholder({
       name: author,
       email: `${author.replace(' ', '.').toLowerCase()}@example.com`,

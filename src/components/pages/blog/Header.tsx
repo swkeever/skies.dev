@@ -16,7 +16,7 @@ export default function Header({
         bg-primaryBg
         diagonal-t
         py-4
-        pb-16
+        pb-20
         lg:pb-8 
         -mb-4
       `}

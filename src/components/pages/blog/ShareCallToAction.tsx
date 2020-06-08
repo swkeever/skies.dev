@@ -43,7 +43,8 @@ export default function ShareCallToAction() {
       absolute
       right-0
       top-0
-      mt-48
+      mr-2
+      mt-56
       text-4xl
       lg:mt-48
       lg:mr-64

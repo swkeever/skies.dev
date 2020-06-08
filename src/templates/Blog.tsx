@@ -5,6 +5,7 @@ import Header from '../components/pages/blog/Header';
 import Content from '../components/pages/blog/Content';
 import CallToAction from '../components/pages/blog/CallToAction';
 import ShareCallToAction from '../components/pages/blog/ShareCallToAction';
+import links from '../utils/links';
 
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
@@ -13,6 +14,8 @@ export default function Blog({
 }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
+
+  const filepath = markdownRemark.fileAbsolutePath.split('/src/')[1];
 
   return (
     <Layout
@@ -26,11 +29,7 @@ export default function Blog({
       <Header title={frontmatter.title} date={frontmatter.date} />
       <ShareCallToAction />
       <Content html={html} />
-      <CallToAction
-        editUrl={`https://github.com/swkeever/swkeever.github.io/edit/master/src/${
-          markdownRemark.fileAbsolutePath.split('/src/')[1]
-        }`}
-      />
+      <CallToAction editUrl={links.editOnGithub(filepath)} />
     </Layout>
   );
 }
