@@ -18,11 +18,11 @@ How are you doing today?
 So first you will want to write some JavaScript.
 
 ```javascript
-const hello = "hi how are you?"
+const hello = 'hi how are you?';
 
 let template = `
   here is a template string!
-`
+`;
 ```
 
 Then print "Hello world" in Python.
@@ -60,5 +60,5 @@ And some numerics
 2. Then do that
 3. Then you're ready
 
-Some **strong** text as well as some _emphasized_ text.
-Here is some `inline code` as well.
+Some **strong** text as well as some _emphasized_ text. Here is some
+`inline code` as well.

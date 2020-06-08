@@ -8,10 +8,10 @@ import { useLocation } from '@reach/router';
 import links from '../../../utils/links';
 
 type Sharable = {
-  id: string
-  icon: ReactNode
-  link: (string) => string
-}
+  id: string;
+  icon: ReactNode;
+  link: (string) => string;
+};
 
 const shareData: Sharable[] = [
   {

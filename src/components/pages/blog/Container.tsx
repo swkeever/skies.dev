@@ -5,9 +5,9 @@ export default function Container({
   className,
   ...props
 }: {
-  children?: ReactNode
-  className?: string
-  props?: Object
+  children?: ReactNode;
+  className?: string;
+  props?: Object;
 }) {
   return (
     <div

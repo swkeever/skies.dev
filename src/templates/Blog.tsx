@@ -10,7 +10,7 @@ import links from '../utils/links';
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
 }: {
-  data: Markdown
+  data: Markdown;
 }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
@@ -36,17 +36,17 @@ export default function Blog({
 
 type Markdown = {
   markdownRemark: {
-    html: string
-    excerpt: string
+    html: string;
+    excerpt: string;
     frontmatter: {
-      date: string
-      slug: string
-      title: string
-      description: string
-    }
-    fileAbsolutePath: string
-  }
-}
+      date: string;
+      slug: string;
+      title: string;
+      description: string;
+    };
+    fileAbsolutePath: string;
+  };
+};
 
 export const pageQuery = graphql`
   query($slug: String!) {

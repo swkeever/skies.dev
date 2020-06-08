@@ -5,11 +5,11 @@ import FilterTags from './FilterTags';
 import type { Tag } from './Tags';
 
 type FiltersProps = {
-  filter: string
-  setFilter: Function
-  tags: Tag[]
-  setTags: Function
-}
+  filter: string;
+  setFilter: Function;
+  tags: Tag[];
+  setTags: Function;
+};
 
 export default function Filters({
   filter,

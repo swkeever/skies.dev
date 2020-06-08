@@ -418,6 +418,6 @@ export default function randomQuote(): Quote {
 }
 
 export type Quote = {
-  quote: string
-  author: string
-}
+  quote: string;
+  author: string;
+};

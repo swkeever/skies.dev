@@ -5,9 +5,9 @@ export default function Reset({
   setEmail,
   setMessage,
 }: {
-  setName: Function
-  setEmail: Function
-  setMessage: Function
+  setName: Function;
+  setEmail: Function;
+  setMessage: Function;
 }) {
   return (
     <button

@@ -11,3 +11,7 @@ test('removes whitespace', () => {
 test('handles initials', () => {
   expect(toHandle('Booker T. Washington')).toBe('booker.t.washington');
 });
+
+test('handles multiple initials', () => {
+  expect(toHandle('J. K. Rowling')).toBe('j.k.rowling');
+});

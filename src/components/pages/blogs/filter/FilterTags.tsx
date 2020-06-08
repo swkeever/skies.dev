@@ -1,14 +1,14 @@
 import React from 'react';
 
 export type Tag = {
-  name: string
-  selected: boolean
-}
+  name: string;
+  selected: boolean;
+};
 
 type TagsProps = {
-  tags: Tag[]
-  setTags: Function
-}
+  tags: Tag[];
+  setTags: Function;
+};
 
 export default function FilterTags({ tags, setTags }: TagsProps) {
   const styles = {

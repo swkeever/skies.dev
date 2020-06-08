@@ -75,5 +75,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
     'gatsby-plugin-webpack-bundle-analyser-v2',
+    'gatsby-plugin-remove-trailing-slashes',
   ],
 };

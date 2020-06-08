@@ -2,14 +2,14 @@ import React from 'react';
 import LabelSpan from './LabelSpan';
 
 type InputPropTypes = {
-  value: string
-  setValue: Function
-  label: string
-  placeholder: string
-  name: string
-  id: string
-  type: string
-}
+  value: string;
+  setValue: Function;
+  label: string;
+  placeholder: string;
+  name: string;
+  id: string;
+  type: string;
+};
 
 const inputStyles = `
   bg-neutralBgSoft 
@@ -34,12 +34,12 @@ export function TextArea({
   name,
   id,
 }: {
-  value: string
-  setValue: Function
-  label: string
-  placeholder: string
-  name: string
-  id: string
+  value: string;
+  setValue: Function;
+  label: string;
+  placeholder: string;
+  name: string;
+  id: string;
 }) {
   return (
     <label htmlFor={name}>

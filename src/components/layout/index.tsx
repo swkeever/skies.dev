@@ -17,10 +17,10 @@ const Layout = ({
   title = '',
   description = '',
 }: {
-  children: ReactNode
-  className?: string
-  title?: string
-  description?: string
+  children: ReactNode;
+  className?: string;
+  title?: string;
+  description?: string;
 }) => {
   const [lightTheme, setLightTheme] = useState(true);
 

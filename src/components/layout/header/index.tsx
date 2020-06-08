@@ -4,9 +4,9 @@ import Nav from './nav';
 import Brand from './Brand';
 
 type HeaderProps = {
-  lightTheme: boolean
-  setLightTheme: Function
-}
+  lightTheme: boolean;
+  setLightTheme: Function;
+};
 
 export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
   return (

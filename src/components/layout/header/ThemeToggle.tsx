@@ -5,8 +5,8 @@ export default function ThemeToggle({
   lightTheme,
   setLightTheme,
 }: {
-  lightTheme: boolean
-  setLightTheme: Function
+  lightTheme: boolean;
+  setLightTheme: Function;
 }) {
   return (
     <div>

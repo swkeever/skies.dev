@@ -7,5 +7,6 @@
   "printWidth": 80,
   "useTabs": false,
   "bracketSpacing": true,
-  "jsxBracketSameLine": false
+  "jsxBracketSameLine": false,
+  "proseWrap": "always"
 }

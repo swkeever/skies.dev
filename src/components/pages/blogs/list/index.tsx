@@ -4,14 +4,14 @@ import Item from './item';
 import NoResultsFound from './NoResultsFound';
 
 export type Blog = {
-  id: string
-  timeToRead: number
-  title: string
-  slug: string
-  date: string
-  tags: string[]
-  description: string
-}
+  id: string;
+  timeToRead: number;
+  title: string;
+  slug: string;
+  date: string;
+  tags: string[];
+  description: string;
+};
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
   return (

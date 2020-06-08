@@ -7,8 +7,8 @@ export default function Header({
   title,
   date,
 }: {
-  title: string
-  date: string
+  title: string;
+  date: string;
 }) {
   return (
     <div

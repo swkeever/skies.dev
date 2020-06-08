@@ -20,9 +20,9 @@ export default function SEO({
   description = '',
   article = false,
 }: {
-  title?: string
-  description?: string
-  article?: boolean
+  title?: string;
+  description?: string;
+  article?: boolean;
 }) {
   const { site }: { site: SiteMetadata } = useStaticQuery(query);
   const { pathname } = useLocation();
@@ -47,8 +47,8 @@ export default function SEO({
 
 type SiteMetadata = {
   siteMetadata: {
-    defaultTitle: string
-    defaultDescription: string
-    siteUrl: string
-  }
-}
+    defaultTitle: string;
+    defaultDescription: string;
+    siteUrl: string;
+  };
+};

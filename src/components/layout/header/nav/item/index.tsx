@@ -3,19 +3,22 @@ import { Link } from 'gatsby';
 import { useLocation } from '@reach/router';
 import routes from '../../../../../utils/routes';
 
-function isActive(pathname: string, route: string): boolean {
-  if (pathname.includes(routes.blogs)) {
-    return pathname.substring(0, routes.blogs.length) === route;
+export function isActive(pathname: string, route: string): boolean {
+  const pname = pathname[pathname.length - 1] === '/'
+    ? pathname.substring(0, pathname.length - 1)
+    : pathname;
+  if (pname.includes(routes.blogs)) {
+    return pname.substring(0, routes.blogs.length) === route;
   }
-  return pathname === route;
+  return pname === route;
 }
 
 export default function Item({
   route,
   children,
 }: {
-  route: string
-  children: ReactNode
+  route: string;
+  children: ReactNode;
 }) {
   const { pathname } = useLocation();
 

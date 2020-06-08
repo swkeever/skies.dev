@@ -10,19 +10,19 @@ type BlogList = {
     edges: {
       node: {
         frontmatter: {
-          title: string
-          slug: string
-          date: string
-          tags: string[]
-          description: string
-        }
-        timeToRead: number
-        id: string
-        rawMarkdownBody: string
-      }
-    }[]
-  }
-}
+          title: string;
+          slug: string;
+          date: string;
+          tags: string[];
+          description: string;
+        };
+        timeToRead: number;
+        id: string;
+        rawMarkdownBody: string;
+      };
+    }[];
+  };
+};
 
 // parse the tags from the markdown files
 // and only show tags that exist in the markdown files
@@ -43,19 +43,19 @@ export type BlogMarkdownRemark = {
     edges: {
       node: {
         frontmatter: {
-          title: string
-          slug: string
-          date: string
-          tags: string[]
-          description: string
-        }
-        id: string
-        timeToRead: number
-        rawMarkdownBody: string
-      }[]
-    }
-  }
-}
+          title: string;
+          slug: string;
+          date: string;
+          tags: string[];
+          description: string;
+        };
+        id: string;
+        timeToRead: number;
+        rawMarkdownBody: string;
+      }[];
+    };
+  };
+};
 
 export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`

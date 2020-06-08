@@ -2,9 +2,9 @@ import React from 'react';
 import { FaSistrix } from 'react-icons/fa';
 
 type InputProps = {
-  filter: string
-  setFilter: Function
-}
+  filter: string;
+  setFilter: Function;
+};
 
 export default function FilterInput({ filter, setFilter }: InputProps) {
   return (

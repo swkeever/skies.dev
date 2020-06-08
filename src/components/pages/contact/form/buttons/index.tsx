@@ -7,9 +7,9 @@ export default function Buttons({
   setEmail,
   setName,
 }: {
-  setMessage: Function
-  setEmail: Function
-  setName: Function
+  setMessage: Function;
+  setEmail: Function;
+  setName: Function;
 }) {
   return (
     <div

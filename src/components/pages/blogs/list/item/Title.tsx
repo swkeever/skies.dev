@@ -5,8 +5,8 @@ export default function Title({
   title,
   slug,
 }: {
-  title: string
-  slug: string
+  title: string;
+  slug: string;
 }) {
   return (
     <h2
