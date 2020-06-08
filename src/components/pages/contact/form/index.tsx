@@ -3,6 +3,7 @@ import { Input, TextArea } from './Field';
 import Gotcha from './Gotcha';
 import Buttons from './buttons';
 import randomQuote from '../../../../utils/quotes';
+import { toHandle } from '../../../../utils/strings';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -18,7 +19,7 @@ export default function Form() {
     const { quote, author } = randomQuote();
     setPlaceholder({
       name: author,
-      email: `${author.replace(' ', '.').toLowerCase()}@example.com`,
+      email: `${toHandle(author)}@example.com`,
       message: quote,
     });
   }, []);

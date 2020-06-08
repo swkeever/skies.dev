@@ -45,10 +45,6 @@ const quotes: Quote[] = [
     author: 'Bob Ross',
   },
   {
-    quote: 'Definiteness of purpose is the starting point of all achievement.',
-    author: 'W. Clement Stone',
-  },
-  {
     quote: 'We must balance conspicuous consumption with conscious capitalism.',
     author: 'Kevin Kruse',
   },
@@ -59,11 +55,11 @@ const quotes: Quote[] = [
   { quote: 'We become what we think about.', author: 'Earl Nightingale' },
   {
     quote:
-      '14.Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.',
+      'Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.',
     author: 'Mark Twain',
   },
   {
-    quote: '15.Life is 10% what happens to me and 90% of how I react to it.',
+    quote: 'Life is 10% what happens to me and 90% of how I react to it.',
     author: 'Charles Swindoll',
   },
   {
@@ -74,11 +70,6 @@ const quotes: Quote[] = [
   {
     quote: 'The mind is everything. What you think you become.',
     author: 'Buddha',
-  },
-  {
-    quote:
-      'The best time to plant a tree was 20 years ago. The second best time is now.',
-    author: 'Chinese Proverb',
   },
   { quote: 'An unexamined life is not worth living.', author: 'Socrates' },
   {
@@ -101,7 +92,7 @@ const quotes: Quote[] = [
   },
   {
     quote:
-      'Every child is an artist.  The problem is how to remain an artist once he grows up.',
+      'Every child is an artist. The problem is how to remain an artist once he grows up.',
     author: 'Pablo Picasso',
   },
   {
@@ -126,11 +117,6 @@ const quotes: Quote[] = [
     quote:
       'The two most important days in your life are the day you are born and the day you find out why.',
     author: 'Mark Twain',
-  },
-  {
-    quote:
-      'Whatever you can do, or dream you can, begin it.  Boldness has genius, power and magic in it.',
-    author: 'Johann Wolfgang von Goethe',
   },
   {
     quote: 'The best revenge is massive success.',
@@ -181,11 +167,6 @@ const quotes: Quote[] = [
     author: 'Booker T. Washington',
   },
   {
-    quote:
-      'Certain things catch your eye, but pursue only those that capture the heart.',
-    author: ' Ancient Indian Proverb',
-  },
-  {
     quote: 'Believe you can and you’re halfway there.',
     author: 'Theodore Roosevelt',
   },
@@ -204,17 +185,13 @@ const quotes: Quote[] = [
     author: 'Maimonides',
   },
   {
-    quote: 'Start where you are. Use what you have.  Do what you can.',
+    quote: 'Start where you are. Use what you have. Do what you can.',
     author: 'Arthur Ashe',
   },
   {
     quote:
       'When I was 5 years old, my mother always told me that happiness was the key to life.  When I went to school, they asked me what I wanted to be when I grew up.  I wrote down ‘happy’.  They told me I didn’t understand the assignment, and I told them they didn’t understand life.',
     author: 'John Lennon',
-  },
-  {
-    quote: 'Fall seven times and stand up eight.',
-    author: 'Japanese Proverb',
   },
   {
     quote:
@@ -253,15 +230,6 @@ const quotes: Quote[] = [
     quote:
       'First, have a definite, clear practical ideal; a goal, an objective. Second, have the necessary means to achieve your ends; wisdom, money, materials, and methods. Third, adjust all your means to that end.',
     author: 'Aristotle',
-  },
-  {
-    quote: 'If the wind will not serve, take to the oars.',
-    author: 'Latin Proverb',
-  },
-  {
-    quote:
-      'You can’t fall if you don’t climb.  But there’s no joy in living your whole life on the ground.',
-    author: 'Unknown',
   },
   {
     quote:
@@ -307,18 +275,8 @@ const quotes: Quote[] = [
     author: 'Benjamin Franklin',
   },
   {
-    quote:
-      'In order to succeed, your desire for success should be greater than your fear of failure.',
-    author: 'Bill Cosby',
-  },
-  {
     quote: 'A person who never made a mistake never tried anything new.',
     author: ' Albert Einstein',
-  },
-  {
-    quote:
-      'The person who says it cannot be done should not interrupt the person who is doing it.',
-    author: 'Chinese Proverb',
   },
   {
     quote: 'There are no traffic jams along the extra mile.',
@@ -332,11 +290,6 @@ const quotes: Quote[] = [
   {
     quote: 'I would rather die of passion than of boredom.',
     author: 'Vincent van Gogh',
-  },
-  {
-    quote:
-      'A truly rich man is one whose children run into his arms when his hands are empty.',
-    author: 'Unknown',
   },
   {
     quote:

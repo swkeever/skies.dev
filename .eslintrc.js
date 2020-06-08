@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    "jest/globals": true,
   },
   extends: ["plugin:react/recommended", "airbnb"],
   globals: {
@@ -16,7 +17,7 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "jest"],
   rules: {
     "react/jsx-filename-extension": 0,
     "import/extensions": "off",
