@@ -7,7 +7,6 @@ const query = graphql`
   query SEO {
     site {
       siteMetadata {
-        defaultTitle: title
         defaultDescription: description
         siteUrl: url
       }
@@ -16,11 +15,11 @@ const query = graphql`
 `;
 
 export default function SEO({
-  title = '',
+  title,
   description = '',
   article = false,
 }: {
-  title?: string;
+  title: string;
   description?: string;
   article?: boolean;
 }) {
@@ -28,7 +27,7 @@ export default function SEO({
   const { pathname } = useLocation();
 
   const seo = {
-    title: title || site.siteMetadata.defaultTitle,
+    title,
     description: description || site.siteMetadata.defaultDescription,
     url: `${site.siteMetadata.siteUrl}${pathname}`,
   };
@@ -47,7 +46,6 @@ export default function SEO({
 
 type SiteMetadata = {
   siteMetadata: {
-    defaultTitle: string;
     defaultDescription: string;
     siteUrl: string;
   };

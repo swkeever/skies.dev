@@ -1,6 +1,5 @@
 module.exports = {
   siteMetadata: {
-    title: 'Sean Keever - Full Stack Developer',
     description: `Sean Keever is a software engineer specializing in JavaScript, 
     Java, and Python.`,
     author: 'Sean Keever',

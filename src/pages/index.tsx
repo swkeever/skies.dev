@@ -21,7 +21,7 @@ const IndexPage = () => {
   `;
 
   return (
-    <Layout>
+    <Layout title="Home">
       <Section
         className={`
         mt-8
