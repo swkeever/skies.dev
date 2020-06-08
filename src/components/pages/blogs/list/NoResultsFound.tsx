@@ -30,6 +30,7 @@ export default function NoResultsFound() {
         className={`
           w-11/12 
           h-auto 
+          mb-12
         `}
       />
     </div>
