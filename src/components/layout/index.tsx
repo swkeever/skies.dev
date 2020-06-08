@@ -6,16 +6,10 @@
  */
 
 import React, { useState, ReactNode } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import '../../styles/style.css';
 import Header from './header';
 import Footer from './Footer';
-
-type LayoutPropTypes = {
-  children: ReactNode
-  className?: string
-  location: string
-}
+import SEO from '../SEO';
 
 function getLightTheme(): boolean {
   const theme = localStorage.getItem('theme');
@@ -25,19 +19,18 @@ function getLightTheme(): boolean {
   return theme === 'light';
 }
 
-const Layout = ({ children, className = '' }: LayoutPropTypes) => {
+const Layout = ({
+  children,
+  className = '',
+  title = '',
+  description = '',
+}: {
+  children: ReactNode
+  className?: string
+  title?: string
+  description?: string
+}) => {
   const [lightTheme, setLightTheme] = useState(getLightTheme());
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
 
   function saveLightTheme(theme: boolean) {
     localStorage.setItem('theme', theme ? 'light' : 'dark');
@@ -57,6 +50,7 @@ const Layout = ({ children, className = '' }: LayoutPropTypes) => {
         flex-col
         `}
       >
+        <SEO title={title} description={description} />
         <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
         <main
           className={`

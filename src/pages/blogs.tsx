@@ -14,11 +14,10 @@ type BlogList = {
           slug: string
           date: string
           tags: string[]
-          image?: string
+          description: string
         }
         timeToRead: number
         id: string
-        excerpt: string
         rawMarkdownBody: string
       }
     }[]
@@ -39,8 +38,27 @@ function getInitialTags(data) {
   return validTags.map((t) => ({ name: t, selected: false }));
 }
 
+export type BlogMarkdownRemark = {
+  allMarkdownRemark: {
+    edges: {
+      node: {
+        frontmatter: {
+          title: string
+          slug: string
+          date: string
+          tags: string[]
+          description: string
+        }
+        id: string
+        timeToRead: number
+        rawMarkdownBody: string
+      }[]
+    }
+  }
+}
+
 export default function BlogsPage() {
-  const data: BlogList = useStaticQuery(graphql`
+  const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
@@ -50,11 +68,11 @@ export default function BlogsPage() {
               slug
               date
               tags
+              description
             }
             id
             timeToRead
             rawMarkdownBody
-            excerpt
           }
         }
       }
@@ -64,16 +82,37 @@ export default function BlogsPage() {
   const [filterString, setFilterString] = useState('');
   const [filterTags, setFilterTags] = useState(getInitialTags(data));
 
-  const blogs = data.allMarkdownRemark.edges.filter((e) => {
-    if (filterString) {
-      return e.node.rawMarkdownBody.includes(filterString);
-    }
+  const blogs = data.allMarkdownRemark.edges
+    .filter((e) => {
+      if (filterString) {
+        return e.node.rawMarkdownBody.includes(filterString);
+      }
 
-    return filterTags
-      .filter((t) => t.selected)
-      .map((t) => t.name)
-      .every((t) => e.node.frontmatter.tags.includes(t));
-  });
+      return filterTags
+        .filter((t) => t.selected)
+        .map((t) => t.name)
+        .every((t) => e.node.frontmatter.tags.includes(t));
+    })
+    .map((e) => {
+      const { id, timeToRead } = e.node;
+      const {
+        title, slug, description, date, tags,
+      } = e.node.frontmatter;
+      const dateFormat = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }).format(new Date(date));
+      return {
+        id,
+        timeToRead,
+        title,
+        slug,
+        description,
+        date: dateFormat,
+        tags,
+      };
+    });
 
   return (
     <Layout

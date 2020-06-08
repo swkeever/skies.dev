@@ -51,7 +51,7 @@ const IndexPage = () => {
             <h2 className="text-onPrimaryBg">I like to build things.</h2>
             <p className="text-onPrimaryBgSoft">
               From client facing applications to the platforms that serve them,
-              I love designing and implementing software.
+              I love creating and shipping quality software.
             </p>
           </Content>
           <Building className={svgStyles} />

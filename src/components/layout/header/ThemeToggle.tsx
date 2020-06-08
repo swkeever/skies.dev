@@ -13,14 +13,13 @@ export default function ThemeToggle({
       <span
         className={`
           fixed
-          right-0
+          left-0
           top-0
           z-50
           mt-3
           text-2xl
           text-primarySoft
           lg:text-onPrimaryBgLink
-          mr-24
           px-1
         `}
       >
@@ -32,11 +31,11 @@ export default function ThemeToggle({
           switch
           mt-1
           fixed 
-          right-0
+          left-0
           top-0
           z-50
           mt-2
-          mr-8
+          ml-8
         `}
       >
         <input
@@ -55,15 +54,16 @@ export default function ThemeToggle({
       <span
         className={`
           fixed
-          right-0
+          left-0
           top-0
           z-50
           mt-3
+          ml-24
           text-xl
           text-primarySoft
           lg:text-onPrimaryBgLink
-          lg:mr-1
-          mr-1
+          lg:ml-1
+          ml-1
           px-1
           pt-px
         `}

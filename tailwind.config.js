@@ -1,4 +1,4 @@
-const { colors, rotate, boxShadow } = require("tailwindcss/defaultTheme")
+const { rotate, boxShadow } = require('tailwindcss/defaultTheme');
 
 // primary blue #4299E1
 
@@ -7,70 +7,71 @@ module.exports = {
   theme: {
     colors: {
       // base
-      primary: "var(--color-primary)",
-      primarySoft: "var(--color-primarySoft)",
-      primaryBold: "var(--color-primaryBold)",
+      primary: 'var(--color-primary)',
+      primarySoft: 'var(--color-primarySoft)',
+      primaryBold: 'var(--color-primaryBold)',
 
-      neutral: "var(--color-neutral)",
+      neutral: 'var(--color-neutral)',
+      neutralBold: 'var(--color-neutralBold)',
 
       // backgrounds
-      primaryBg: "var(--color-primaryBg)",
-      primaryBgSoft: "var(--color-primaryBgSoft)",
+      primaryBg: 'var(--color-primaryBg)',
+      primaryBgSoft: 'var(--color-primaryBgSoft)',
 
-      neutralBg: "var(--color-neutralBg)",
-      neutralBgSoft: "var(--color-neutralBgSoft)",
+      neutralBg: 'var(--color-neutralBg)',
+      neutralBgSoft: 'var(--color-neutralBgSoft)',
 
-      footerBg: "var(--color-footerBg)",
+      footerBg: 'var(--color-footerBg)',
 
       // text
-      onPrimary: "var(--color-onPrimary)",
-      onPrimarySoft: "var(--color-onPrimarySoft)",
+      onPrimary: 'var(--color-onPrimary)',
+      onPrimarySoft: 'var(--color-onPrimarySoft)',
 
-      onNeutral: "var(--color-onNeutral)",
-      onNeutralSoft: "var(--color-onNeutralSoft)",
+      onNeutral: 'var(--color-onNeutral)',
+      onNeutralSoft: 'var(--color-onNeutralSoft)',
 
-      onPrimaryBg: "var(--color-onPrimaryBg)",
-      onPrimaryBgSoft: "var(--color-onPrimaryBgSoft)",
+      onPrimaryBg: 'var(--color-onPrimaryBg)',
+      onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
 
-      onNeutralBg: "var(--color-onNeutralBg)",
-      onNeutralBgSoft: "var(--color-onNeutralBgSoft)",
+      onNeutralBg: 'var(--color-onNeutralBg)',
+      onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
 
-      light: "var(--color-light)",
-      onLight: "var(--color-onLight)",
+      light: 'var(--color-light)',
+      onLight: 'var(--color-onLight)',
 
-      onPrimaryBgLink: "var(--color-onPrimaryBgLink)",
-      onPrimaryBgLinkHover: "var(--color-onPrimaryBgLinkHover)",
-      onNeutralBgLink: "var(--color-onNeutralBgLink)",
-      onNeutralBgLinkHover: "var(--color-onNeutralBgLinkHover)",
+      onPrimaryBgLink: 'var(--color-onPrimaryBgLink)',
+      onPrimaryBgLinkHover: 'var(--color-onPrimaryBgLinkHover)',
+      onNeutralBgLink: 'var(--color-onNeutralBgLink)',
+      onNeutralBgLinkHover: 'var(--color-onNeutralBgLinkHover)',
     },
     rotate: {
       ...rotate,
-      "360": "360deg",
+      360: '360deg',
     },
     boxShadow: {
       ...boxShadow,
-      focus: "0 0 5px rgba(66, 153, 225, 0.7)",
+      focus: '0 0 5px rgba(66, 153, 225, 0.7)',
     },
     screens: {
-      sm: "640px",
+      sm: '640px',
       // => @media (min-width: 640px) { ... }
 
-      md: "760px",
+      md: '760px',
       // => @media (min-width: 768px) { ... }
 
-      lg: "1024px",
+      lg: '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      xl: "1280px",
+      xl: '1280px',
       // => @media (min-width: 1280px) { ... }
     },
   },
   variants: {
-    rotate: ["responsive", "hover", "focus", "active"],
-    flexDirection: ["responsive", "even", "odd"],
-    borderWidth: ["responsive", "focus", "hover"],
-    transitionDuration: ["responsive", "hover", "focus"],
-    boxShadow: ["responsive", "hover", "focus", "active"],
+    rotate: ['responsive', 'hover', 'focus', 'active'],
+    flexDirection: ['responsive', 'even', 'odd'],
+    borderWidth: ['responsive', 'focus', 'hover'],
+    transitionDuration: ['responsive', 'hover', 'focus'],
+    boxShadow: ['responsive', 'hover', 'focus', 'active'],
   },
   plugins: [],
-}
+};

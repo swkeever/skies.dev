@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogsContainer from '../BlogsContainer';
-import Input from './Input';
-import Tags from './Tags';
+import FilterInput from './FilterInput';
+import FilterTags from './FilterTags';
 import type { Tag } from './Tags';
 
 type FiltersProps = {
@@ -19,8 +19,8 @@ export default function Filters({
 }: FiltersProps) {
   return (
     <BlogsContainer>
-      <Input filter={filter} setFilter={setFilter} />
-      <Tags tags={tags} setTags={setTags} />
+      <FilterInput filter={filter} setFilter={setFilter} />
+      <FilterTags tags={tags} setTags={setTags} />
     </BlogsContainer>
   );
 }

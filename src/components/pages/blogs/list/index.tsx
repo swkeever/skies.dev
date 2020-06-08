@@ -1,14 +1,16 @@
 import React from 'react';
 import BlogsContainer from '../BlogsContainer';
 import Item from './item';
-import NoBlogs from './NoBlogs';
+import NoResultsFound from './NoResultsFound';
 
-type Blog = {
+export type Blog = {
+  id: string
+  timeToRead: number
   title: string
   slug: string
   date: string
   tags: string[]
-  excerpt: string
+  description: string
 }
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
@@ -29,31 +31,12 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
             lg:mb-32
           `}
         >
-          {blogs.map((e) => {
-            const {
-              title, slug, date, tags,
-            } = e.node.frontmatter;
-            const { excerpt } = e.node;
-            const dateFormat = new Intl.DateTimeFormat('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            }).format(new Date(date));
-
-            return (
-              <Item
-                key={slug}
-                title={title}
-                slug={slug}
-                date={dateFormat}
-                tags={tags}
-                excerpt={excerpt}
-              />
-            );
-          })}
+          {blogs.map((b) => (
+            <Item key={b.id} blog={b} />
+          ))}
         </ul>
       ) : (
-        <NoBlogs />
+        <NoResultsFound />
       )}
     </BlogsContainer>
   );

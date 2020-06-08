@@ -2,7 +2,7 @@
 title: My first blog post
 slug: hello
 date: 2019-05-04
-image:
+description: This is a sample blog that I use to play around with styling.
 tags:
   - Hello World
 ---

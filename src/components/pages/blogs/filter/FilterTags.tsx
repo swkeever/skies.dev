@@ -10,11 +10,11 @@ type TagsProps = {
   setTags: Function
 }
 
-export default function Tags({ tags, setTags }: TagsProps) {
+export default function FilterTags({ tags, setTags }: TagsProps) {
   const styles = {
     tag: `
     inline-block 
-    bg-neutral
+    bg-neutralBgSoft
     text-onNeutral
     rounded-full 
     px-4 

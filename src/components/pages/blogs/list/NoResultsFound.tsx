@@ -1,7 +1,7 @@
 import React from 'react';
 import Empty from '../../../../../assets/empty.svg';
 
-export default function NoBlogs() {
+export default function NoResultsFound() {
   return (
     <div
       className={`

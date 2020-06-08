@@ -1,17 +1,17 @@
-const path = require(`path`)
-
 module.exports = {
   siteMetadata: {
-    title: `Sean Keever | Full Stack Developer`,
-    description: `Sean Keever is a software engineering specialized in JavaScript, 
+    title: 'Sean Keever | Full Stack Developer',
+    description: `Sean Keever is a software engineer specializing in JavaScript, 
     Java, and Python.`,
-    author: `Sean Keever`,
+    author: 'Sean Keever',
+    url: 'https://swkeever.github.io',
+    handle: 'swkeever',
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sharp`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sharp',
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /assets/, // See below to configure properly
@@ -19,9 +19,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `content`,
+        name: 'content',
         path: `${__dirname}/src/content`,
       },
     },
@@ -29,19 +29,26 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    `gatsby-plugin-postcss`,
+    'gatsby-plugin-postcss',
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-vscode`,
+            resolve: 'gatsby-remark-vscode',
             options: {
-              theme: "Dark (Visual Studio)", // Or install your favorite theme from GitHub
+              theme: 'Default Dark+',
+              inlineCode: {
+                marker: '•',
+                theme: {
+                  default: 'Default Light+',
+                  dark: 'Default Dark+',
+                },
+              },
             },
           },
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
@@ -49,10 +56,10 @@ module.exports = {
               maxWidth: 590,
             },
           },
-          "gatsby-remark-external-links",
+          'gatsby-remark-external-links',
         ],
       },
     },
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
   ],
-}
+};

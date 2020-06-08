@@ -2,6 +2,7 @@
 slug: course-advice
 date: 2020-05-25
 title: Course Advice for Software Engineers
+description: In this article I describe the courses I suggest students take for different kinds of software engineer roles.
 tags:
   - Computer Science
   - College

@@ -6,7 +6,7 @@ type InputProps = {
   setFilter: Function
 }
 
-export default function Input({ filter, setFilter }: InputProps) {
+export default function FilterInput({ filter, setFilter }: InputProps) {
   return (
     <>
       <label htmlFor="filter-input">

@@ -4,35 +4,23 @@ import ReadMore from './ReadMore';
 import Title from './Title';
 import Date from './Date';
 import Tags from './Tags';
+import { Blog } from '..';
 
-type ItemPropTypes = {
-  title: string
-  slug: string
-  date: string
-  tags: string[]
-  excerpt: string
-}
-
-export default function Item({
-  title,
-  slug,
-  date,
-  tags,
-  excerpt,
-}: ItemPropTypes) {
+export default function Item({ key, blog }: { key: string; blog: Blog }) {
   return (
     <li
+      key={key}
       className={`
         mb-8
         pb-8
         pt-10
       `}
     >
-      <Title title={title} slug={slug} />
-      <Date date={date} />
-      <Tags tags={tags} slug={slug} />
-      <Excerpt excerpt={excerpt} />
-      <ReadMore slug={slug} />
+      <Title title={blog.title} slug={blog.slug} />
+      <Date date={blog.date} />
+      <Tags tags={blog.tags} slug={blog.slug} />
+      <Excerpt description={blog.description} />
+      <ReadMore slug={blog.slug} />
     </li>
   );
 }

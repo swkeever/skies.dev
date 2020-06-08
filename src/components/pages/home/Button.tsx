@@ -17,6 +17,7 @@ export default function Button() {
         py-2 
         mt-4
         mb-8
+        lg:mt-6
         font-bold
         lg:px-6 
         lg:text-lg

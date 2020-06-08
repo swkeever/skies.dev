@@ -12,7 +12,7 @@ export default function DiagonalBg({ children }: { children: ReactNode }) {
       md:pb-4
       md:-mt-16
       md:mb-16
-      lg:pt-12
+      lg:pt-8
       lg:pb-20
     `}
     >

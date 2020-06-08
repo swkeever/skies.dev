@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Excerpt({ excerpt }: { excerpt: string }) {
+export default function Excerpt({ description }: { description: string }) {
   return (
     <p
       className={`
@@ -9,7 +9,7 @@ export default function Excerpt({ excerpt }: { excerpt: string }) {
         lg:leading-relaxed
       `}
     >
-      {excerpt}
+      {description}
     </p>
   );
 }
