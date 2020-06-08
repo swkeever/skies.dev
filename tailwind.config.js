@@ -3,6 +3,13 @@ const { rotate, boxShadow } = require('tailwindcss/defaultTheme');
 // primary blue #4299E1
 
 module.exports = {
+  purge: [
+    './src/**/*.html',
+    './src/**/*.jsx',
+    './src/**/*.tsx',
+    './src/**/*.js',
+    './src/**/*.ts',
+  ],
   theme: {
     colors: {
       // base
