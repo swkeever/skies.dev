@@ -24,16 +24,17 @@ export default function Item({
       className={`    
         text-center
         tracking-widest
+        
         flex-1
         lg:flex-none
         lg:justify-start
-        pt-1 
+        pt-1
 
         ${
           isActive(pathname, route)
           && `
-            border-b-4
-            border-onPrimary
+            lg:border-b-4
+            lg:border-onPrimary
         `
         }
       `}
@@ -50,8 +51,8 @@ export default function Item({
           px-8
           md:px-16
           lg:px-12
-          text-center
-          py-2 
+          py-3 
+          lg:py-2
         `}
         style={isActive(pathname, route) ? { color: 'var(--color-light)' } : {}}
       >
