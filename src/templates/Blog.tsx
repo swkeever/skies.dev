@@ -27,7 +27,7 @@ export default function Blog({
       <ShareCallToAction />
       <Content html={html} />
       <CallToAction
-        editUrl={`https://github.com/swkeever/swkeever.github.io/tree/master/src/${
+        editUrl={`https://github.com/swkeever/swkeever.github.io/edit/master/src/${
           markdownRemark.fileAbsolutePath.split('/src/')[1]
         }`}
       />

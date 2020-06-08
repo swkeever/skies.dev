@@ -60,9 +60,11 @@ export default function ShareCallToAction() {
           `}
         >
           <a
+            rel="noopener noreferrer"
+            target="_blank"
             href={link(pathname)}
             className={`
-              text-primarySoft
+              text-onPrimaryBg
             `}
           >
             {icon}

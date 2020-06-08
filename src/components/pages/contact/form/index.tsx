@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, TextArea } from './Field';
 import Gotcha from './Gotcha';
 import Buttons from './buttons';
@@ -8,13 +8,20 @@ export default function Form() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [placeholder, setPlaceholder] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
 
-  const { quote, author } = quotes[Math.floor(Math.random() * quotes.length)];
-  const placeholder = {
-    name: author,
-    email: `${author.replace(' ', '.').toLowerCase()}@example.com`,
-    message: quote,
-  };
+  useEffect(() => {
+    const { quote, author } = quotes[Math.floor(Math.random() * quotes.length)];
+    setPlaceholder({
+      name: author,
+      email: `${author.replace(' ', '.').toLowerCase()}@example.com`,
+      message: quote,
+    });
+  }, []);
 
   return (
     <form

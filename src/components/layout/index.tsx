@@ -5,19 +5,11 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import '../../styles/style.css';
 import Header from './header';
 import Footer from './Footer';
 import SEO from '../SEO';
-
-function getLightTheme(): boolean {
-  const theme = localStorage.getItem('theme');
-  if (!theme) {
-    return true;
-  }
-  return theme === 'light';
-}
 
 const Layout = ({
   children,
@@ -30,12 +22,20 @@ const Layout = ({
   title?: string
   description?: string
 }) => {
-  const [lightTheme, setLightTheme] = useState(getLightTheme());
+  const [lightTheme, setLightTheme] = useState(true);
 
   function saveLightTheme(theme: boolean) {
     localStorage.setItem('theme', theme ? 'light' : 'dark');
     setLightTheme(theme);
   }
+
+  useEffect(() => {
+    const userTheme = localStorage.getItem('theme');
+    if (!userTheme) {
+      setLightTheme(true);
+    }
+    setLightTheme(userTheme === 'light');
+  });
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
   const extraClasses = className || 'bg-neutralBg text-onNeutral';
