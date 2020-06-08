@@ -19,7 +19,7 @@ export default function NoResultsFound() {
           w-64 
           mx-auto
           font-normal
-          text-onPrimary
+          text-onNeutralBgSoft
           mb-4
           lg:text-xl
         `}
