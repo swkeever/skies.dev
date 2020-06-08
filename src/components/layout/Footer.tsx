@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
+import { Link } from '@reach/router';
 import Container from './Container';
 import links from '../../utils/links';
 
@@ -43,6 +44,10 @@ export default function Footer() {
     md:items-baseline
 
     `,
+
+    adminLi: `
+    px-2
+    `,
   };
 
   return (
@@ -69,17 +74,29 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-        <p>
-          © All Rights Reserved
-          <time
-            dateTime={new Date().getFullYear().toString()}
-            className={`
+        <ul
+          className={`
+          list-none
+          flex
+          divide-x
+          divide-onNeutralBgSoft
+        `}
+        >
+          <li className={styles.adminLi}>
+            © All Rights Reserved
+            <time
+              dateTime={new Date().getFullYear().toString()}
+              className={`
             ml-1
           `}
-          >
-            {new Date().getFullYear()}
-          </time>
-        </p>
+            >
+              {new Date().getFullYear()}
+            </time>
+          </li>
+          <li className={styles.adminLi}>
+            <Link to={links.sitemap}>Sitemap</Link>
+          </li>
+        </ul>
       </Container>
     </footer>
   );

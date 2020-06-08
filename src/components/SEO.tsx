@@ -8,7 +8,7 @@ const query = graphql`
     site {
       siteMetadata {
         defaultDescription: description
-        siteUrl: url
+        siteUrl
       }
     }
   }

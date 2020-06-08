@@ -3,7 +3,7 @@ module.exports = {
     description: `Sean Keever is a software engineer specializing in JavaScript, 
     Java, and Python.`,
     author: 'Sean Keever',
-    url: 'https://swkeever.github.io',
+    siteUrl: 'https://swkeever.github.io',
     handle: 'swkeever',
   },
   plugins: [
@@ -91,5 +91,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    'gatsby-plugin-sitemap',
   ],
 };
