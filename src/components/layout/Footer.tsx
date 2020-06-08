@@ -10,7 +10,7 @@ export default function Footer() {
       mb-8
       px-4
       pt-4 
-      pb-12
+      pb-20
       z-20
       text-base
       text-xs
@@ -71,7 +71,14 @@ export default function Footer() {
         </ul>
         <p>
           © All Rights Reserved
-          {new Date().getFullYear()}
+          <time
+            dateTime={new Date().getFullYear().toString()}
+            className={`
+            ml-1
+          `}
+          >
+            {new Date().getFullYear()}
+          </time>
         </p>
       </Container>
     </footer>
