@@ -35,7 +35,7 @@ export default function SEO({
 
   return (
     <Helmet titleTemplate="%s - Sean Keever" title={seo.title}>
-      <html lang="en" amp />
+      <html lang="en" />
       <meta charSet="utf-8" />
       <meta name="description" content={seo.description} />
       <meta property="og:url" content={seo.url} />

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Sean Keever | Full Stack Developer',
+    title: 'Sean Keever - Full Stack Developer',
     description: `Sean Keever is a software engineer specializing in JavaScript, 
     Java, and Python.`,
     author: 'Sean Keever',
@@ -76,5 +76,21 @@ module.exports = {
     'gatsby-plugin-minify-html',
     'gatsby-plugin-webpack-bundle-analyser-v2',
     'gatsby-plugin-remove-trailing-slashes',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: "Sean Keever's personal page",
+        short_name: 'Sean Keever',
+        description:
+          'Sean Keever is a full stack developer who writes about software engineering.',
+        lang: 'en',
+        icon: 'src/content/technologist.png',
+        start_url: '/',
+        background_color: '#F7FAFC',
+        theme_color: '#4299E1',
+        display: 'standalone',
+      },
+    },
+    'gatsby-plugin-offline',
   ],
 };

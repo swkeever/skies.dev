@@ -31,10 +31,16 @@ const Layout = ({
 
   useEffect(() => {
     const userTheme = localStorage.getItem('theme');
-    if (!userTheme) {
+    if (userTheme) {
+      setLightTheme(userTheme === 'light');
+    } else if (
+      window.matchMedia
+      && window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setLightTheme(false);
+    } else {
       setLightTheme(true);
     }
-    setLightTheme(userTheme === 'light');
   });
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';

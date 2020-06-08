@@ -7,6 +7,7 @@ import Title from '../components/pages/contact/Title';
 export default function ContactPage() {
   return (
     <Layout
+      title="Contact"
       className={`
         bg-neutralBgSoft
         text-onNeutral
