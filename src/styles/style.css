@@ -282,4 +282,12 @@ input:checked+.slider:before {
 }
 
 
+/* for iOS */
+@screen sm {
+  .navbar-padding {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+
 @tailwind utilities;

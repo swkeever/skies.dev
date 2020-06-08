@@ -14,7 +14,6 @@ export default function Nav() {
 
   return (
     <nav
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       className={`
         fixed 
         bottom-0 
@@ -26,6 +25,8 @@ export default function Nav() {
         bg-primary
         shadow
         z-40
+
+        navbar-padding
       `}
     >
       <ul
