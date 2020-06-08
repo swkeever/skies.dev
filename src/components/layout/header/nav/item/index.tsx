@@ -4,6 +4,9 @@ import { useLocation } from '@reach/router';
 import routes from '../../../../../utils/routes';
 
 export function isActive(pathname: string, route: string): boolean {
+  if (pathname.length === 1) {
+    return route === routes.home;
+  }
   const pname = pathname[pathname.length - 1] === '/'
     ? pathname.substring(0, pathname.length - 1)
     : pathname;
