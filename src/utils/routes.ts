@@ -1,7 +1,7 @@
 const routes = {
-  blogs: "/blogs",
-  contact: "/contact",
-  home: "/",
-}
+  blogs: '/blogs',
+  contact: '/contact',
+  home: '/',
+};
 
-export default routes
+export default routes;
