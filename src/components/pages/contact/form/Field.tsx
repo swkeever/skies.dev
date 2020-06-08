@@ -49,9 +49,9 @@ export function TextArea({
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
         className={`${inputStyles}
-              h-32
-              resize-none
-              `}
+          h-32
+          resize-none
+        `}
         name={name}
         id={id}
         required

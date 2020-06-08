@@ -6,7 +6,8 @@ import Name from './item/Name';
 
 export default function Nav() {
   const iconStyles = `
-    text-xl
+    text-2xl
+    md:text-xl
     inline
     mr-2
   `;
@@ -24,6 +25,10 @@ export default function Nav() {
         bg-primary
         shadow
         z-40
+        border-b-8
+        lg:border-b-0
+        border-footerBg
+        pb-12
       `}
     >
       <ul

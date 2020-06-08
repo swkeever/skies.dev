@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../components/layout';
 import Container from '../components/layout/Container';
 import Form from '../components/pages/contact/form';
-import Diagonal from '../components/pages/contact/Diagonal';
 import Title from '../components/pages/contact/Title';
 
 export default function ContactPage() {
@@ -13,7 +12,15 @@ export default function ContactPage() {
         text-onNeutral
       `}
     >
-      <Diagonal />
+      <div
+        className={`
+        diagonal-t
+        py-48
+        relative
+        bg-primary
+        md:pt-64
+      `}
+      />
       <Container
         className={`
           mt-8 
@@ -22,6 +29,7 @@ export default function ContactPage() {
           bg-neutralBg
           z-30
           -mt-64
+          mb-32
           relative
           w-10/12
           mx-auto

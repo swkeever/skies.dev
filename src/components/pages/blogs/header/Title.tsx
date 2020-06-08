@@ -5,6 +5,7 @@ export default function Title() {
     <h1
       className={`
         w-11/12
+        mt-12
         leading-tight
         md:text-4xl
         text-onPrimaryBg

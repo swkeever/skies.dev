@@ -50,17 +50,21 @@ export default function Footer() {
       <Container className={styles.container}>
         <ul className={styles.ul}>
           <li className={styles.li}>
-            <a href={links.sourceRepo}>
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href={links.sourceRepo}
+            >
               <FaCode />
             </a>
           </li>
           <li className={styles.li}>
-            <a href={links.github}>
+            <a rel="noopener noreferrer" target="_blank" href={links.github}>
               <FaGithub />
             </a>
           </li>
           <li className={styles.li}>
-            <a href={links.linkedIn}>
+            <a rel="noopener noreferrer" target="_blank" href={links.linkedIn}>
               <FaLinkedin />
             </a>
           </li>
