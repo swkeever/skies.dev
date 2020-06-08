@@ -50,7 +50,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "dev-m": "./scripts/runDevServer.sh",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml}\" && npx eslint --fix \"*.{js,jsx,ts,tsx}\"",
     "start": "npm run develop",
     "deploy": "gatsby build && gh-pages -d public -b master",
     "reinstall": "rm package-lock.json; rm -rf node_modules && npm install",

@@ -2,7 +2,7 @@ name: Continuous Deployment
 
 on:
   push:
-    branches: 
+    branches:
       - develop
 
 jobs:
@@ -32,4 +32,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: master 
+          publish_branch: master
