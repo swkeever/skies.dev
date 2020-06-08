@@ -25,8 +25,7 @@ export default function Nav() {
         bg-primary
         shadow
         z-40
-
-        navbar-padding
+        ios-fix
       `}
     >
       <ul
@@ -37,6 +36,7 @@ export default function Nav() {
           flex
           lg:justify-start
           uppercase
+
         `}
       >
         <Item route={routes.home}>

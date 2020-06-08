@@ -28,6 +28,7 @@ export default function Item({
         lg:flex-none
         lg:justify-start
         pt-1 
+
         ${
           isActive(pathname, route)
           && `
