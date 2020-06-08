@@ -13,4 +13,6 @@ jobs:
         with:
           node-version: 12
       - run: npm ci 
+      - run: git config --global user.email "action@github.com"
+      - run: git config --global user.name "Github Action"
       - run: npm run deploy 
