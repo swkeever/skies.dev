@@ -148,14 +148,7 @@ a:hover {
 }
 
 blockquote {
-  @apply 
-  mt-2
-  pb-4 
-  pt-1 
-  pl-3
-  bg-neutralBgSoft
-  text-lg
-  text-onNeutralBgSoft border-l-4 border-primary;
+  @apply mt-2 pb-4 pt-1 pl-3 bg-neutralBgSoft text-lg text-onNeutralBgSoft border-l-4 border-primary;
 }
 
 .list {
@@ -237,8 +230,7 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 }
 
 .slider {
-  @apply absolute cursor-pointer bg-primarySoft
- top-0 left-0 right-0 bottom-0 theme-toggle shadow-md;
+  @apply absolute cursor-pointer bg-primarySoft top-0 left-0 right-0 bottom-0 theme-toggle shadow-md;
 }
 
 @screen lg {
@@ -250,8 +242,7 @@ https: //www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 .slider:before {
   content: "";
 
-  @apply absolute bg-primaryBold 
-    w-6 h-6 ml-1 mt-1 theme-toggle;
+  @apply absolute bg-primaryBold w-6 h-6 ml-1 mt-1 theme-toggle;
 }
 
 input:checked+.slider {
@@ -279,14 +270,6 @@ input:checked+.slider:before {
 
 .slider.round:before {
   @apply rounded-full;
-}
-
-
-/* for iOS */
-@screen sm {
-  .ios-fix {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
 }
 
 

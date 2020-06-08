@@ -25,8 +25,8 @@ export default function Nav() {
         bg-primary
         shadow
         z-40
-        ios-fix
       `}
+      style={{ paddingBottom: 'env(safe-area-inset-bottom);' }}
     >
       <ul
         className={`
