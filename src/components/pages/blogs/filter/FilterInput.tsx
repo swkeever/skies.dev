@@ -33,7 +33,7 @@ export default function FilterInput({ filter, setFilter }: InputProps) {
               bg-neutralBgSoft
               w-9/12
               rounded-md
-              text-onPrimary
+              text-onNeutral
               pl-10 
               pr-2
               relative

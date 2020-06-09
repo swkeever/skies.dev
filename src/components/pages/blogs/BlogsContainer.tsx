@@ -1,7 +1,13 @@
 import React, { ReactNode } from 'react';
 import Container from '../../layout/Container';
 
-export default function BlogsContainer({ children }: { children: ReactNode }) {
+export default function BlogsContainer({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <Container
       className={`
@@ -10,6 +16,7 @@ export default function BlogsContainer({ children }: { children: ReactNode }) {
         max-w-2xl
         lg:mt-16 
         relative
+        ${className}
     `}
     >
       {children}
