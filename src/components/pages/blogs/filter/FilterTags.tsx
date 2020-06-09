@@ -26,7 +26,10 @@ export default function FilterTags({ tags, setTags }: TagsProps) {
   };
 
   return (
-    <>
+    <div
+      className={`
+    `}
+    >
       <label className="block font-bold mt-4 -mb-2" htmlFor="tags">
         I&apos;m interested in
         <ul
@@ -69,6 +72,6 @@ export default function FilterTags({ tags, setTags }: TagsProps) {
           ))}
         </ul>
       </label>
-    </>
+    </div>
   );
 }

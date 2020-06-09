@@ -18,7 +18,10 @@ export default function Filters({
   setTags,
 }: FiltersProps) {
   return (
-    <BlogsContainer>
+    <BlogsContainer
+      className={`
+    `}
+    >
       <FilterInput filter={filter} setFilter={setFilter} />
       <FilterTags tags={tags} setTags={setTags} />
     </BlogsContainer>
