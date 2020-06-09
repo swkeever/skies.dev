@@ -2,6 +2,7 @@ import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 import Container from './Container';
 import ShareCallToAction from './ShareCallToAction';
+import Button from '../../Button';
 
 export default function CallToAction({ editUrl }: { editUrl: string }) {
   return (
@@ -25,35 +26,14 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
             lg:text-3xl
           `}
         >
-          Thanks for reading!
-          <span
-            role="img"
-            aria-label="Cool"
-            className={`
-            ml-2
-          `}
-          >
-            😎
-          </span>
+          Can this document be improved?
         </h2>
-        <a
-          rel="noopener noreferrer"
-          target="_blank"
-          href={editUrl}
+        <Button
+          tag="a"
+          to={editUrl}
+          color="primary"
           className={`
             mt-8
-            inline-block
-            bg-primary
-            text-light
-            hover:text-light
-            hover:underline
-            shadow
-            cursor-pointer
-            active:shadow-none
-            font-bold
-            rounded-full
-            px-4
-            py-1
           `}
         >
           Edit on GitHub
@@ -65,7 +45,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
               text-onPrimarySoft  
             `}
           />
-        </a>
+        </Button>
         <ShareCallToAction />
       </Container>
     </div>

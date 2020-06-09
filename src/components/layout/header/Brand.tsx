@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from '@reach/router';
+import routes from '../../../utils/routes';
 
 export default function Brand() {
   return (
-    <div
+    <Link
+      to={routes.home}
       className={`
           z-50
           hidden
@@ -26,6 +29,6 @@ export default function Brand() {
       </span>
       {' '}
       Sean Keever
-    </div>
+    </Link>
   );
 }

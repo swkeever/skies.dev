@@ -8,6 +8,7 @@ import Section from '../components/pages/home/Section';
 import Content from '../components/pages/home/Content';
 import DiagonalBg from '../components/pages/home/DiagonalBg';
 import PrimaryBg from '../components/pages/home/PrimaryBg';
+import routes from '../utils/routes';
 
 const IndexPage = () => {
   const svgStyles = `
@@ -71,7 +72,18 @@ const IndexPage = () => {
               My full stack web development experience can help you get your
               project off the ground.
             </p>
-            <Button />
+            <Button
+              tag="Link"
+              to={routes.contact}
+              color="light"
+              className={`
+                mt-4
+                mb-8
+                lg:mt-6
+              `}
+            >
+              Contact me
+            </Button>
           </Content>
           <Product className={svgStyles} />
         </Section>

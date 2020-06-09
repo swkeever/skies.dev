@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { FiSend } from 'react-icons/fi';
 import { Input, TextArea } from './Field';
 import Gotcha from './Gotcha';
-import Buttons from './buttons';
 import randomQuote from '../../../../utils/quotes';
 import { toHandle } from '../../../../utils/strings';
+import Button from '../../../Button';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -30,6 +31,7 @@ export default function Form() {
       action="https://formspree.io/maypervg"
       className={`
         w-auto
+        clearfix
       `}
     >
       <Gotcha />
@@ -59,7 +61,25 @@ export default function Form() {
         name="message"
         id="message"
       />
-      <Buttons setName={setName} setEmail={setEmail} setMessage={setMessage} />
+      <Button
+        tag="button"
+        color="primary"
+        className="float-right"
+        type="submit"
+      >
+        Send
+        <span
+          className={`
+          inline-block
+          ml-1
+          align-text-top
+          text-light
+          opacity-75
+        `}
+        >
+          <FiSend />
+        </span>
+      </Button>
     </form>
   );
 }

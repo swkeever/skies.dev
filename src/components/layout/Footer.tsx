@@ -80,7 +80,7 @@ export default function Footer() {
           list-none
           flex
           divide-x
-          divide-onNeutralBgSoft
+          divide-neutral
         `}
         >
           <li className={styles.adminLi}>
