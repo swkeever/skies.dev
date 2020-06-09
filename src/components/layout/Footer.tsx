@@ -3,6 +3,7 @@ import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
 import { Link } from '@reach/router';
 import Container from './Container';
 import links from '../../utils/links';
+import routes from '../../utils/routes';
 
 export default function Footer() {
   const styles = {
@@ -94,7 +95,7 @@ export default function Footer() {
             </time>
           </li>
           <li className={styles.adminLi}>
-            <Link to={links.sitemap}>Sitemap</Link>
+            <Link to={routes.sitemap}>Sitemap</Link>
           </li>
         </ul>
       </Container>

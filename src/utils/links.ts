@@ -15,7 +15,6 @@ const links = {
     twitter: (pathname: string): string => `https://twitter.com/intent/tweet?text=${withSiteUrl(pathname)}`,
   },
   editOnGithub: (filepath: string): string => `https://github.com/swkeever/swkeever.github.io/edit/develop/src/${filepath}`,
-  sitemap: `${siteUrl}/sitemap.xml`,
 };
 
 export function slugToLink(slug: string): string {

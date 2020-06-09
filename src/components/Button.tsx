@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import routes from '../../../utils/routes';
+import routes from '../utils/routes';
 
 export default function Button() {
   return (
@@ -25,7 +25,7 @@ export default function Button() {
         active:shadow-none
       `}
     >
-      Learn more
+      Contact me
     </Link>
   );
 }

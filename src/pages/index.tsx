@@ -3,7 +3,7 @@ import Layout from '../components/layout';
 import Code from '../../assets/code.svg';
 import Building from '../../assets/building.svg';
 import Product from '../../assets/product.svg';
-import Button from '../components/pages/home/Button';
+import Button from '../components/Button';
 import Section from '../components/pages/home/Section';
 import Content from '../components/pages/home/Content';
 import DiagonalBg from '../components/pages/home/DiagonalBg';

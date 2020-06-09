@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { slugToLink } from '../../../../../utils/links';
 
 export default function Title({
   title,
@@ -16,7 +17,7 @@ export default function Title({
       `}
     >
       <Link
-        to={`/${slug}`}
+        to={slugToLink(slug)}
         className={`
           text-onNeutralBg
           hover:text-onNeutralBg
