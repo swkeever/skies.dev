@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaHome, FaUserAlt, FaRegLightbulb } from 'react-icons/fa';
+import {
+  FaHome, FaUserAlt, FaRegLightbulb, FaScroll,
+} from 'react-icons/fa';
 import routes from '../../../../utils/routes';
 import Item from './item';
 import Name from './item/Name';
@@ -58,6 +60,10 @@ export default function Nav() {
         <Item route={routes.contact}>
           <FaUserAlt className={iconStyles} />
           <Name name="Contact" />
+        </Item>
+        <Item route={routes.resume}>
+          <FaScroll className={iconStyles} />
+          <Name name="Resume" />
         </Item>
       </ul>
     </nav>
