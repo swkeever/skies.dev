@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactNode } from 'react';
 import { Link } from 'gatsby';
-import { toTitleCase } from '../utils/strings';
 
 export default function Button({
   tag,
@@ -18,13 +17,27 @@ export default function Button({
   children: ReactNode;
   props?: Object;
 }) {
-  const capitalizedColor = toTitleCase(color);
+  let bgColor;
+  let textColor;
+
+  switch (color) {
+    case 'light':
+      bgColor = 'bg-light';
+      textColor = 'text-onLight';
+      break;
+    case 'primary':
+      bgColor = 'bg-primary';
+      textColor = 'text-onPrimary';
+      break;
+    default:
+      throw new Error('unknown color');
+  }
 
   const styles = `
     inline-block
-    bg-${color}
-    text-on${capitalizedColor}
-    hover:text-on${capitalizedColor}
+    ${bgColor}
+    ${textColor}
+    hover:${textColor}
     rounded-full
     focus:outline-none
     px-4 
