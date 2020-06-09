@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Excerpt({ description }: { description: string }) {
+export default function Description({ description }: { description: string }) {
   return (
     <p
       className={`

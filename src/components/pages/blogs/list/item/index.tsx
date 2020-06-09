@@ -1,5 +1,5 @@
 import React from 'react';
-import Excerpt from './Excerpt';
+import Description from './Description';
 import ReadMore from './ReadMore';
 import Title from './Title';
 import Date from './Date';
@@ -19,7 +19,7 @@ export default function Item({ key, blog }: { key: string; blog: Blog }) {
       <Title title={blog.title} slug={blog.slug} />
       <Date date={blog.date} />
       <Tags tags={blog.tags} slug={blog.slug} />
-      <Excerpt description={blog.description} />
+      <Description description={blog.description} />
       <ReadMore slug={blog.slug} />
     </li>
   );
