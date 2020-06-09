@@ -45,8 +45,6 @@ export default function FilterTags({ tags, setTags }: TagsProps) {
                 px-4 
                 mr-2 
                 mb-2
-                transition
-                duration-75
                 cursor-pointer 
               `}
             >

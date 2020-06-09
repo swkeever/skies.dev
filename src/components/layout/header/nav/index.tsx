@@ -21,10 +21,8 @@ export default function Nav() {
         lg:top-0
         lg:bottom-auto
         w-full
-        h-20
         lg:h-12
         bg-primary
-        shadow
         z-40
         pt-2
         lg:pt-0
@@ -32,6 +30,9 @@ export default function Nav() {
       `}
     >
       <ul
+        style={{
+          paddingBottom: 'env(safe-area-inset-bottom)',
+        }}
         className={`
           list-none
           m-0
@@ -39,7 +40,6 @@ export default function Nav() {
           flex
           lg:justify-start
           uppercase
-
         `}
       >
         <Item route={routes.home}>

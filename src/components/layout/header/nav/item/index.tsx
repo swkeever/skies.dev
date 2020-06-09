@@ -57,8 +57,9 @@ export default function Item({
           px-8
           md:px-16
           lg:px-12
-          py-3 
-          lg:py-2
+          pt-2
+          pb-5
+          md:py-2
         `}
         style={isActive(pathname, route) ? { color: 'var(--color-light)' } : {}}
       >
