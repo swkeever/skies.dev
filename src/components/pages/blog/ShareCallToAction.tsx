@@ -39,18 +39,11 @@ export default function ShareCallToAction() {
       className={`
       list-none
       flex
-      md:fixed
-      absolute
-      right-0
-      top-0
-      mr-2
-      mt-56
+      justify-end
       text-4xl
-      lg:mt-48
-      lg:mr-64
-      bg-transparent
+      ml-0
+      my-0
       space-x-3
-      z-30
     `}
     >
       {shareData.map(({ id, icon, link }) => (
@@ -65,7 +58,7 @@ export default function ShareCallToAction() {
             target="_blank"
             href={link(pathname)}
             className={`
-              text-onPrimaryBg
+              text-primaryBold
             `}
           >
             {icon}

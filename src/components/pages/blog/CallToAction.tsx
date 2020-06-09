@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 import Container from './Container';
-import ShareCallToAction from './ShareCallToAction';
 import Button from '../../Button';
 
 export default function CallToAction({ editUrl }: { editUrl: string }) {
@@ -63,7 +62,6 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
             `}
           />
         </Button>
-        <ShareCallToAction />
       </Container>
     </div>
   );

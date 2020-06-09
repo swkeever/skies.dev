@@ -4,7 +4,6 @@ import Layout from '../components/layout';
 import Header from '../components/pages/blog/Header';
 import Content from '../components/pages/blog/Content';
 import CallToAction from '../components/pages/blog/CallToAction';
-import ShareCallToAction from '../components/pages/blog/ShareCallToAction';
 import links from '../utils/links';
 
 export default function Blog({
@@ -27,7 +26,6 @@ export default function Blog({
       description={frontmatter.description}
     >
       <Header title={frontmatter.title} date={frontmatter.date} />
-      <ShareCallToAction />
       <Content html={html} />
       <CallToAction editUrl={links.editOnGithub(filepath)} />
     </Layout>

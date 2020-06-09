@@ -2,6 +2,7 @@ import React from 'react';
 import Container from './Container';
 import Title from './Title';
 import Date from './Date';
+import ShareCallToAction from './ShareCallToAction';
 
 export default function Header({
   title,
@@ -15,15 +16,16 @@ export default function Header({
       className={`
         bg-primaryBg
         diagonal-t
-        py-4
-        pb-20
-        lg:pb-8 
+        pt-5
+        pb-10
+        lg:pb-2
         -mb-4
       `}
     >
       <Container>
         <Title title={title} />
         <Date date={date} />
+        <ShareCallToAction />
       </Container>
     </div>
   );
