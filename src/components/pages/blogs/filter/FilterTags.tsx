@@ -13,31 +13,15 @@ type TagsProps = {
 export default function FilterTags({ tags, setTags }: TagsProps) {
   const styles = {
     tag: `
-    inline-block 
     bg-neutralBgSoft
     text-onNeutral
-    rounded-full 
-    px-4 
-    mr-2
-    mb-2 
-    transition
-    duration-75
-    cursor-pointer 
     shadow
     `,
 
     tagActive: `
-    transition
-    duration-75 
-    inline-block
     bg-primary
     shadow-inner
     text-light
-    rounded-full
-    px-4 
-    mr-2 
-    mb-2
-    cursor-pointer 
     `,
   };
 
@@ -55,10 +39,23 @@ export default function FilterTags({ tags, setTags }: TagsProps) {
           {tags.map((t, idx) => (
             <li
               key={t.name}
-              className={t.selected ? styles.tagActive : styles.tag}
+              className={`${t.selected ? styles.tagActive : styles.tag}
+                inline-block 
+                rounded-full 
+                px-4 
+                mr-2 
+                mb-2
+                transition
+                duration-75
+                cursor-pointer 
+              `}
             >
               <button
                 type="button"
+                className={`
+                  focus:outline-none
+                  active:outline-none
+                `}
                 onClick={() => {
                   const newTags = tags.slice();
                   newTags[idx] = {

@@ -76,6 +76,7 @@ module.exports = {
     rotate: ['responsive', 'hover', 'focus', 'active'],
     flexDirection: ['responsive', 'even', 'odd'],
     borderWidth: ['responsive', 'focus', 'hover'],
+    outline: ['focus', 'active'],
     transitionDuration: ['responsive', 'hover', 'focus'],
     boxShadow: ['responsive', 'hover', 'focus', 'active'],
   },
