@@ -21,13 +21,30 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         <h2
           className={`
             text-onPrimaryBg
-            leading-none
+            leading-tight
             text-2xl
             lg:text-3xl
           `}
         >
           Can this document be improved?
         </h2>
+        <p
+          className={`
+          text-onPrimaryBgSoft
+        `}
+        >
+          This article is editable on GitHub. Any edits, big or small, are
+          welcome and much appreciated.
+          <span
+            role="img"
+            aria-label="Heart"
+            className={`
+            ml-1
+          `}
+          >
+            💙
+          </span>
+        </p>
         <Button
           tag="a"
           to={editUrl}
