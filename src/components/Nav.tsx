@@ -33,6 +33,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
         lg:flex-none
         lg:justify-start
         pt-1
+        md:mb-4
         ${
           isActive(pathname, route)
           && `
@@ -52,8 +53,6 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           outline-none
           hover:no-underline
           px-8
-          md:px-16
-          lg:px-12
           pt-2
           pb-5
           md:py-2
@@ -127,7 +126,7 @@ export default function Nav() {
         </Item>
         <Item route={routes.blogs}>
           <FaRegLightbulb className={iconStyles} />
-          <Name name="Blogs" />
+          <Name name="Blog" />
         </Item>
         <Item route={routes.contact}>
           <FaTelegramPlane className={iconStyles} />

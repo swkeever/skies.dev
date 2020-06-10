@@ -21,21 +21,26 @@ function Time({ date }: { date: string }) {
 
 function Item({
   institution,
-  area,
+  degree,
+  major,
   startDate,
   endDate,
   gpa,
   courses,
 }: {
   institution: string;
-  area: string;
+  degree: string;
+  major: string;
   startDate: string;
   endDate: string;
   gpa: string;
   courses: string;
 }) {
   return (
-    <div>
+    <div
+      className={`
+    `}
+    >
       <h3
         className={`
         mt-0
@@ -53,37 +58,81 @@ function Item({
       `}
       >
         <Time date={startDate} />
-        <span>{' - '}</span>
+        <span>&mdash;</span>
         <Time date={endDate} />
       </div>
-      <ul
+      <div
         className={`
         flex
         justify-between
-        list-none
-        ml-0
+        mt-4
+        align-baseline
       `}
       >
-        <li
-          className={`
-
-        `}
-        >
-          {area}
-        </li>
-        <li
+        <div
           className={`
           
         `}
         >
-          {`GPA ${gpa}`}
-        </li>
-      </ul>
-      <h4>Coursework</h4>
+          <span
+            className={`
+            text-xl
+            tracking-wider
+          `}
+          >
+            {degree}
+          </span>
+          <span
+            className={`
+            uppercase
+            tracking-widest
+            
+            text-sm
+            align-baseline
+            ml-1
+          `}
+          >
+            {major}
+          </span>
+        </div>
+        <div
+          className={`
+            font-xl
+            font-light
+        `}
+        >
+          <span
+            className={`
+            mr-px
+            text-sm
+            tracking-wider
+          `}
+          >
+            GPA
+          </span>
+          <span
+            className={`
+            text-xl
+          `}
+          >
+            {gpa}
+          </span>
+        </div>
+      </div>
+      <h4
+        className={`
+        text-sm
+        pb-0
+        font-normal
+      `}
+      >
+        Coursework
+      </h4>
       <ul
         className={`
         list-none
         ml-0
+        mt-1
       `}
       >
         {courses.map((c) => (
@@ -110,7 +159,7 @@ function Item({
 
 export default function Education({ education }: { education: Object }) {
   return (
-    <div>
+    <>
       <h2
         className={`
 
@@ -140,6 +189,6 @@ export default function Education({ education }: { education: Object }) {
           <Item key={i.institution} {...i} />
         ))}
       </ul>
-    </div>
+    </>
   );
 }
