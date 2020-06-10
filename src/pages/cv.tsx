@@ -6,14 +6,14 @@ import Education from '../components/cv/Education';
 import Header from '../components/cv/Header';
 import Experience from '../components/cv/Experience';
 import Skills from '../components/cv/Skills';
+import Basics from '../components/cv/Basics';
 
 export type IExperience = {
   company: string;
   position: string;
-  website: string;
+  location: string;
   startDate: string;
   endDate: string;
-  summary: string;
   highlights: string[];
 };
 
@@ -33,6 +33,7 @@ const data = {
     {
       company: 'OfferUp',
       position: 'Software Engineer, Intern',
+      location: 'Bellevue, WA',
       startDate: '2019-06',
       endDate: '2019-09',
       highlights: [
@@ -45,6 +46,7 @@ const data = {
     {
       company: 'University of Washington',
       position: 'Research Assistant',
+      location: 'Seattle, WA',
       startDate: '2019-01',
       endDate: '2019-06',
       highlights: [
@@ -56,6 +58,7 @@ const data = {
   education: [
     {
       school: 'University of Washington',
+      location: 'Seattle, WA',
       degree: 'BS',
       major: 'Computer Engineering',
       startDate: '2018-09',
@@ -64,6 +67,7 @@ const data = {
     },
     {
       school: 'Seattle Central College',
+      location: 'Seattle, WA',
       degree: 'AS',
       major: 'Pre-Engineering',
       startDate: '2016-06',
@@ -114,11 +118,18 @@ export default function CVPage() {
         pb-40
       `}
       />
-      <Container className="max-w-xl mb-16">
+      <Container className="mb-16 max-w-5xl">
         <Header {...data.basics} />
-        <Experience experience={data.experience} />
-        <Education education={data.education} />
-        <Skills skills={data.skills} />
+        <div className="flex flex-col md:flex-row-reverse">
+          <div className="md:w-7/12">
+            <Experience experience={data.experience} />
+          </div>
+          <div className="md:w-5/12 mr-12">
+            <Basics basics={data.basics} />
+            <Education education={data.education} />
+            <Skills skills={data.skills} />
+          </div>
+        </div>
       </Container>
     </Layout>
   );

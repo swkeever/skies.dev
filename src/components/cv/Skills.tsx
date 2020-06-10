@@ -37,7 +37,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
   return (
     <CVSection>
       <CVSectionTitle>
-        <FaStar className="inline mr-2 -ml-1 text-3xl text-primarySoft mb-2" />
+        <FaStar className="inline mr-2 -ml-1 text-3xl text-onPrimarySoft mb-2" />
         Skills
       </CVSectionTitle>
       <List>
