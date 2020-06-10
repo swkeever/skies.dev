@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiSend } from 'react-icons/fi';
+import { FaTelegramPlane } from 'react-icons/fa';
 import randomQuote from '../../utils/quotes';
 import { toHandle } from '../../utils/strings';
 import Button from '../Button';
@@ -120,7 +120,7 @@ export default function Form() {
           opacity-75
         `}
         >
-          <FiSend />
+          <FaTelegramPlane />
         </span>
       </Button>
     </form>
