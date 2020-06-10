@@ -22,6 +22,8 @@ export default function ThemeToggle({
           lg:text-onPrimaryBgLink
           mr-24
           px-1
+          opacity-75
+          lg:opacity-100
         `}
       >
         <FaSun />
@@ -37,6 +39,8 @@ export default function ThemeToggle({
           z-50
           mt-2
           mr-8
+          opacity-75
+          lg:opacity-100
         `}
       >
         <input
@@ -66,6 +70,8 @@ export default function ThemeToggle({
           mr-1
           px-1
           pt-px
+          opacity-75
+          lg:opacity-100
         `}
       >
         <FaMoon />

@@ -33,7 +33,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
         lg:flex-none
         lg:justify-start
         pt-1
-        md:mb-4
+        md:mb-3
         ${
           isActive(pathname, route)
           && `
@@ -54,7 +54,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           hover:no-underline
           px-8
           pt-2
-          pb-5
+          pb-4
           md:py-2
         `}
         style={isActive(pathname, route) ? { color: 'var(--color-light)' } : {}}
