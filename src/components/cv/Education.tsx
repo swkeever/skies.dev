@@ -3,14 +3,14 @@ import React from 'react';
 import { FaGraduationCap, FaChartLine } from 'react-icons/fa';
 import List from './List';
 import ListItemTitle from './ListItemTitle';
-import TimeBlock from './TimeBlock';
+import CVDate from './CVDate';
 import CVSection from './CVSection';
 import CVSectionTitle from './CVSectionTitle';
+import CVLocation from './CVLocation';
 
 function Major({ degree, major }: { degree: string; major: string }) {
   return (
-    <div className="-mt-1">
-      {/* <FaBook className="inline mb-1 text-onNeutralBgSoft mr-1" /> */}
+    <div className="-mt-2">
       <span className=" text-xl tracking-wider">{degree}</span>
       <span className="uppercase tracking-widest align-baseline ml-1">
         {major}
@@ -19,18 +19,19 @@ function Major({ degree, major }: { degree: string; major: string }) {
   );
 }
 
-function GPA({ gpa }: { gpa: string }) {
+function CVGradePointAvg({ gpa }: { gpa: string }) {
   return (
-    <div className="text-onNeutralBgSoft mt-1 md:text-right -mt-px">
+    <div className="text-onNeutralBgSoft">
       <FaChartLine className="inline text-primarySoft mb-px mr-1" />
-      <span className="text-sm tracking-wide mr-1">GPA</span>
-      <span className="text-xl">{gpa}</span>
+      <span className="text-sm tracking-wide">{'GPA '}</span>
+      {gpa}
     </div>
   );
 }
 
 function Item({
   school,
+  location,
   degree,
   major,
   startDate,
@@ -38,6 +39,7 @@ function Item({
   gpa,
 }: {
   school: string;
+  location: string;
   degree: string;
   major: string;
   startDate: string;
@@ -46,14 +48,13 @@ function Item({
   courses: string[];
 }) {
   return (
-    <li className="flex flex-col md:flex-row justify-between">
-      <div className="flex flex-col">
-        <ListItemTitle>{school}</ListItemTitle>
-        <Major degree={degree} major={major} />
-      </div>
-      <div className="flex flex-col">
-        <TimeBlock startDate={startDate} endDate={endDate} />
-        <GPA gpa={gpa} />
+    <li className="">
+      <ListItemTitle>{school}</ListItemTitle>
+      <Major degree={degree} major={major} />
+      <div className="mt-3 flex flex-col space-y-3">
+        <CVLocation location={location} />
+        <CVDate startDate={startDate} endDate={endDate} />
+        <CVGradePointAvg gpa={gpa} />
       </div>
     </li>
   );
@@ -63,7 +64,7 @@ export default function Education({ education }: { education: Object }) {
   return (
     <CVSection>
       <CVSectionTitle>
-        <FaGraduationCap className="inline mr-2 text-primarySoft mb-1" />
+        <FaGraduationCap className="inline mr-2 text-onPrimarySoft mb-1" />
         Education
       </CVSectionTitle>
       <List>

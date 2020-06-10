@@ -16,7 +16,7 @@ function Time({ date }: { date: string }) {
   );
 }
 
-export default function TimeBlock({
+export default function CVDate({
   startDate,
   endDate,
 }: {
@@ -24,7 +24,7 @@ export default function TimeBlock({
   endDate: string;
 }) {
   return (
-    <div className="mt-2">
+    <div>
       <FaRegCalendarAlt className="inline text-primarySoft mr-1 mb-1" />
       <Time date={startDate} />
       <span className="mx-px text-neutral">&mdash;</span>

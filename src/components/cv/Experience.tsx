@@ -6,17 +6,18 @@ import {
 import { IExperience } from '../../pages/cv';
 import List from './List';
 import ListItemTitle from './ListItemTitle';
-import TimeBlock from './TimeBlock';
+import CVDate from './CVDate';
 import CVSection from './CVSection';
 import CVSectionTitle from './CVSectionTitle';
+import CVLocation from './CVLocation';
 
 function Highlights({ highlights }: { highlights: string[] }) {
   return (
     <ul className="list-none ml-0 flex flex-col space-y-1">
       {highlights.map((highlight) => (
-        <li className="flex items-center -ml-3">
+        <li className="flex items-center -ml-4 md:-ml-3">
           <FaCheckCircle className="text-primarySoft text-2xl w-2/12" />
-          <p className="w-10/12">{highlight}</p>
+          <p className="w-10/12 pr-2">{highlight}</p>
         </li>
       ))}
     </ul>
@@ -34,12 +35,14 @@ function Position({ position }: { position: ReactNode }) {
 function Item({
   company,
   position,
+  location,
   startDate,
   endDate,
   highlights,
 }: {
   company: string;
   position: string;
+  location: string;
   startDate: string;
   endDate: string;
   highlights: string[];
@@ -51,8 +54,9 @@ function Item({
           <ListItemTitle>{company}</ListItemTitle>
           <Position position={position} />
         </div>
-        <div>
-          <TimeBlock startDate={startDate} endDate={endDate} />
+        <div className="mt-1">
+          <CVLocation location={location} />
+          <CVDate startDate={startDate} endDate={endDate} />
         </div>
       </div>
 
@@ -64,7 +68,7 @@ function Item({
 export default function Experience({
   experience,
 }: {
-  experience: IExperience;
+  experience: IExperience[];
 }) {
   return (
     <CVSection>
@@ -74,7 +78,7 @@ export default function Experience({
             inline
             mr-3
             text-2xl
-            text-primarySoft
+            text-onPrimarySoft
             mb-1
           `}
         />
