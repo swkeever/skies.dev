@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../components/layout';
-import Container from '../components/layout/Container';
-import Education from '../components/pages/cv/Education';
-import Header from '../components/pages/cv/Header';
+import Layout from '../components/Layout';
+import Container from '../components/Container';
+import Education from '../components/cv/Education';
+import Header from '../components/cv/Header';
 
 const data = {
   basics: {

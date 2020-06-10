@@ -1,0 +1,140 @@
+import React, { ReactNode } from 'react';
+import {
+  FaHome, FaUserAlt, FaRegLightbulb, FaScroll,
+} from 'react-icons/fa';
+import { Link, useLocation } from '@reach/router';
+import routes from '../utils/routes';
+
+export function isActive(pathname: string, route: string): boolean {
+  if (pathname.length === 1) {
+    return route === routes.home;
+  }
+  const pname = pathname[pathname.length - 1] === '/'
+    ? pathname.substring(0, pathname.length - 1)
+    : pathname;
+  if (pname.includes(routes.blogs)) {
+    return pname.substring(0, routes.blogs.length) === route;
+  }
+  return pname === route;
+}
+
+function Item({ route, children }: { route: string; children: ReactNode }) {
+  const { pathname } = useLocation();
+
+  return (
+    <li
+      className={`    
+        text-center
+        tracking-widest
+        flex-1
+        lg:flex-none
+        lg:justify-start
+        pt-1
+        ${
+          isActive(pathname, route)
+          && `
+            lg:border-b-4
+            lg:border-onPrimary
+        `
+        }
+      `}
+    >
+      <Link
+        to={route}
+        className={`
+          inline-block
+          text-onPrimaryBgLink
+          hover:text-onPrimaryBgLinkHover
+          hover:border-0
+          outline-none
+          hover:no-underline
+          px-8
+          md:px-16
+          lg:px-12
+          pt-2
+          pb-5
+          md:py-2
+        `}
+        style={isActive(pathname, route) ? { color: 'var(--color-light)' } : {}}
+      >
+        {children}
+      </Link>
+    </li>
+  );
+}
+
+const Name = ({ name }: { name: string }) => (
+  <span
+    className={`
+        text-sm
+        hidden
+        md:inline
+      `}
+  >
+    {name}
+  </span>
+);
+
+export default function Nav() {
+  const iconStyles = `
+    text-2xl
+    md:text-xl
+    inline
+    mr-2
+  `;
+
+  return (
+    <nav
+      className={`
+        fixed 
+        bottom-0 
+        left-0
+        lg:top-0
+        lg:bottom-auto
+        w-full
+        lg:h-12
+        bg-primary
+        z-40
+        pt-2
+        lg:pt-0
+
+      `}
+    >
+      <ul
+        style={{
+          paddingBottom: 'env(safe-area-inset-bottom)',
+        }}
+        className={`
+          list-none
+          m-0
+          lg:ml-48
+          flex
+          lg:justify-start
+          uppercase
+        `}
+      >
+        <Item route={routes.home}>
+          <FaHome
+            className={`
+              ${iconStyles}
+              text-2xl
+            `}
+          />
+          <Name name="Home" />
+        </Item>
+        <Item route={routes.blogs}>
+          <FaRegLightbulb className={iconStyles} />
+          <Name name="Blogs" />
+        </Item>
+        <Item route={routes.contact}>
+          <FaUserAlt className={iconStyles} />
+          <Name name="Contact" />
+        </Item>
+        <Item route={routes.resume}>
+          <FaScroll className={iconStyles} />
+          <Name name="Resume" />
+        </Item>
+      </ul>
+    </nav>
+  );
+}
