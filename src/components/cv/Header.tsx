@@ -24,7 +24,8 @@ function Title({ name, label }: { name: string; label: string }) {
         relative
         z-20
         flex
-        space-x-2
+        justify-center
+        space-x-1
       `}
     >
       <Img
