@@ -3,6 +3,17 @@ import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Education from '../components/cv/Education';
 import Header from '../components/cv/Header';
+import Experience from '../components/cv/Experience';
+
+export type IExperience = {
+  company: string;
+  position: string;
+  website: string;
+  startDate: string;
+  endDate: string;
+  summary: string;
+  highlights: string[];
+};
 
 const data = {
   basics: {
@@ -30,7 +41,7 @@ const data = {
       },
     ],
   },
-  work: [
+  experience: [
     {
       company: 'OfferUp',
       position: 'Software Engineer Intern',
@@ -63,7 +74,8 @@ const data = {
   education: [
     {
       institution: 'University of Washington',
-      area: 'B.S. Computer Engineering',
+      degree: 'BS',
+      major: 'Computer Engineering',
       startDate: '2018-09',
       endDate: '2020-06',
       gpa: '3.7',
@@ -80,7 +92,8 @@ const data = {
     },
     {
       institution: 'Seattle Central College',
-      area: 'A.S. Pre-Engineering',
+      degree: 'AS',
+      major: 'Pre-Engineering',
       startDate: '2016-06',
       endDate: '2018-06',
       gpa: '4.0',
@@ -161,6 +174,7 @@ export default function CVPage() {
         `}
         >
           <Education education={data.education} />
+          <Experience experience={data.experience} />
         </div>
       </Container>
     </Layout>
