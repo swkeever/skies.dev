@@ -1,8 +1,7 @@
 import React from 'react';
-import Layout from '../components/layout';
-import Container from '../components/layout/Container';
-import Form from '../components/pages/contact/form';
-import Title from '../components/pages/contact/Title';
+import Layout from '../components/Layout';
+import Container from '../components/Container';
+import Form from '../components/contact/Form';
 
 export default function ContactPage() {
   return (
@@ -32,18 +31,22 @@ export default function ContactPage() {
           -mt-64
           mb-32
           relative
-          w-10/12
           mx-auto
           p-2
           shadow-2xl
           rounded-md
-          md:w-2/3 
           lg:-mt-64
-          lg:w-6/12
-          xl:w-4/12
+          max-w-lg
         `}
       >
-        <Title />
+        <h1
+          className={`
+            text-lg
+            mb-2
+          `}
+        >
+          Contact
+        </h1>
         <Form />
       </Container>
     </Layout>
