@@ -9,10 +9,9 @@ import {
 
 function Time({ date }: { date: string }) {
   return (
-    <time dateTime={date} className="text-onNeutralBgSoft inline-block">
+    <time dateTime={date} className="text-onNeutralBgSoft ml-px inline-block">
       {new Intl.DateTimeFormat('en-US', {
         year: 'numeric',
-        month: 'short',
       }).format(new Date(date))}
     </time>
   );
@@ -26,7 +25,7 @@ function TimeBlock({
   endDate: string;
 }) {
   return (
-    <div className="uppercase tracking-widest text-sm mt-2">
+    <div className="uppercase mt-2">
       <FaRegCalendarAlt className="inline text-onNeutralBgSoft mr-1 mb-1" />
       <Time date={startDate} />
       <span>&mdash;</span>
@@ -40,7 +39,7 @@ function Major({ degree, major }: { degree: string; major: string }) {
     <div className="-mt-1">
       {/* <FaBook className="inline mb-1 text-onNeutralBgSoft mr-1" /> */}
       <span className=" text-xl tracking-wider">{degree}</span>
-      <span className="uppercase tracking-widest text-sm align-baseline ml-1">
+      <span className="uppercase tracking-widest align-baseline ml-1">
         {major}
       </span>
     </div>
@@ -51,14 +50,14 @@ function GPA({ gpa }: { gpa: string }) {
   return (
     <div className="text-onNeutralBgSoft mt-1 md:text-right">
       <FaChartLine className="inline text-onNeutralBgSoft mb-px mr-1" />
-      <span className="text-sm tracking-wider mr-1">GPA</span>
+      <span className="text-sm tracking-wide mr-1">GPA</span>
       <span>{gpa}</span>
     </div>
   );
 }
 
 function School({ institution }: { institution: string }) {
-  return <h3 className="mt-px">{institution}</h3>;
+  return <h3 className="text-2xl mt-px">{institution}</h3>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -104,11 +103,11 @@ function Item({
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between">
-        <div className="flex flex-col justify-between ">
+        <div className="flex flex-col">
           <School institution={institution} />
           <Major degree={degree} major={major} />
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col">
           <TimeBlock startDate={startDate} endDate={endDate} />
           <GPA gpa={gpa} />
         </div>
