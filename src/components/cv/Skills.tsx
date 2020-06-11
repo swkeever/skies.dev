@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import CVSection from './CVSection';
-import List from './List';
+import CVList from './CVList';
 import CVSectionTitle from './CVSectionTitle';
 
 export type Skill = {
@@ -40,11 +40,11 @@ export default function Skills({ skills }: { skills: Skill[] }) {
         <FaStar className="inline mr-2 -ml-1 text-3xl text-onPrimarySoft mb-2" />
         Skills
       </CVSectionTitle>
-      <List>
+      <CVList>
         {skills.map((skill) => (
           <Item key={skill.category} skill={skill} />
         ))}
-      </List>
+      </CVList>
     </CVSection>
   );
 }
