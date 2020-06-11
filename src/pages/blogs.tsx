@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
-import Layout from '../components/layout';
-import Header from '../components/pages/blogs/header';
-import Filters from '../components/pages/blogs/filter';
-import BlogList from '../components/pages/blogs/list';
-import { Tag } from '../components/pages/blogs/filter/FilterTags';
+import Layout from '../components/Layout';
+import Header from '../components/blogs/Header';
+import Search, { Tag } from '../components/blogs/Search';
+import BlogList from '../components/blogs/BlogList';
 
 type BlogList = {
   allMarkdownRemark: {
@@ -142,7 +141,7 @@ export default function BlogsPage() {
       `}
     >
       <Header />
-      <Filters
+      <Search
         filter={filterString}
         setFilter={setFilterString}
         tags={filterTags}

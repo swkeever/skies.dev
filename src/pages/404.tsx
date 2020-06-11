@@ -1,8 +1,7 @@
 import React from 'react';
 import Lost from '../../assets/lost.svg';
-
-import Layout from '../components/layout';
-import Container from '../components/layout/Container';
+import Layout from '../components/Layout';
+import Container from '../components/Container';
 
 const NotFoundPage = () => (
   <Layout>

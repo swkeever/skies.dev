@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/layout';
-import Header from '../components/pages/blog/Header';
-import Content from '../components/pages/blog/Content';
-import CallToAction from '../components/pages/blog/CallToAction';
+import Layout from '../components/Layout';
+import BlogHeader from '../components/blog/BlogHeader';
+import Content from '../components/blog/Content';
+import CallToAction from '../components/blog/CallToAction';
 import links from '../utils/links';
 
 export default function Blog({
@@ -25,7 +25,7 @@ export default function Blog({
       title={frontmatter.title}
       description={frontmatter.description}
     >
-      <Header title={frontmatter.title} date={frontmatter.date} />
+      <BlogHeader title={frontmatter.title} date={frontmatter.date} />
       <Content html={html} />
       <CallToAction editUrl={links.editOnGithub(filepath)} />
     </Layout>
