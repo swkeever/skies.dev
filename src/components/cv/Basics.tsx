@@ -30,12 +30,13 @@ export default function Basics({ basics }: { basics: CVBasics }) {
     <CVSection>
       <CVSectionTitle>
         <FaUser className="inline text-onPrimarySoft text-2xl ml-1 mb-1 mr-2" />
-        Personal
+        Basics
       </CVSectionTitle>
+
       <CVList>
-        <li className="mb-0">
+        {/* <li className="mb-0">
           <CVLocation location={basics.location} />
-        </li>
+        </li> */}
         <li>
           <FaLink className={iconStyles} />
           <Link to={routes.home} className={linkStyles}>
