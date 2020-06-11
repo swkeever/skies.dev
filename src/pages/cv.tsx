@@ -31,6 +31,17 @@ const data = {
   },
   experience: [
     {
+      company: 'University of Washington',
+      position: 'Teaching Assistant',
+      location: 'Seattle, WA',
+      startDate: '2020-01',
+      endDate: '2020-03',
+      highlights: [
+        'Prepared materials and taught operating systems to weekly classes of around 30 students.',
+        'Held office hours and helped students debug OS kernels.',
+      ],
+    },
+    {
       company: 'OfferUp',
       position: 'Software Engineer, Intern',
       location: 'Bellevue, WA',
@@ -95,14 +106,15 @@ const data = {
     },
     {
       icon: <FaTools className={`${styles} text-lg mb-1 ml-px mr-2`} />,
-      category: 'Environments and Tooling',
+      category: 'Principles & Practices',
       keywords: [
-        'IntelliJ IDEA',
-        'VS Code',
-        'Git',
+        'Responsive Design',
+        'Agile',
+        'Version Control',
         'Linux',
-        'Windows',
-        'macOS',
+        'Object-Oriented Design',
+        'REST API Design',
+        'Server-Side Scripting',
       ],
     },
   ],
@@ -121,7 +133,7 @@ export default function CVPage() {
         lg:pt-32
       `}
       />
-      <Container className="mb-16 max-w-5xl">
+      <Container className="mb-16 max-w-5xl px-2">
         <Header {...data.basics} />
         <div className="flex flex-col md:flex-row">
           <div className="md:w-5/12 md:mr-10">
