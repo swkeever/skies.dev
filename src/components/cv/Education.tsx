@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { FaGraduationCap, FaChartLine } from 'react-icons/fa';
-import List from './List';
+import CVList from './CVList';
 import ListItemTitle from './ListItemTitle';
 import CVDate from './CVDate';
 import CVSection from './CVSection';
@@ -23,8 +23,7 @@ function CVGradePointAvg({ gpa }: { gpa: string }) {
   return (
     <div className="text-onNeutralBgSoft">
       <FaChartLine className="inline text-primarySoft mb-px mr-1" />
-      <span className="text-sm tracking-wide">{'GPA '}</span>
-      {gpa}
+      {`GPA ${gpa}`}
     </div>
   );
 }
@@ -67,11 +66,11 @@ export default function Education({ education }: { education: Object }) {
         <FaGraduationCap className="inline mr-2 text-onPrimarySoft mb-1" />
         Education
       </CVSectionTitle>
-      <List>
+      <CVList>
         {education.map((i) => (
           <Item key={i.school} {...i} />
         ))}
-      </List>
+      </CVList>
     </CVSection>
   );
 }

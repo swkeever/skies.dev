@@ -6,6 +6,7 @@ const withSiteUrl = (pathname: string): string => `${siteUrl}${pathname}`;
 const links = {
   github: 'https://www.github.com/swkeever',
   linkedIn: 'https://www.linkedin.com/in/swkeever',
+  twitter: 'https://www.twitter.com/swkeever',
   sourceRepo: 'https://github.com/swkeever/swkeever.github.io',
   shareTo: {
     facebook: (pathname: string): string => `https://www.facebook.com/sharer/sharer.php?u=${withSiteUrl(pathname)}`,

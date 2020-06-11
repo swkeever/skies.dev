@@ -3,7 +3,7 @@ import { FaCode, FaTools, FaConnectdevelop } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Education from '../components/cv/Education';
-import Header from '../components/cv/Header';
+import Header from '../components/cv/CVHeader';
 import Experience from '../components/cv/Experience';
 import Skills from '../components/cv/Skills';
 import Basics from '../components/cv/Basics';
@@ -110,24 +110,27 @@ const data = {
 
 export default function CVPage() {
   return (
-    <Layout>
+    <Layout title="Resume">
       <div
         className={`
         diagonal-t
-        bg-primaryBg
+        bg-primary
         pb-40
+        pt-10
+        
+        lg:pt-32
       `}
       />
       <Container className="mb-16 max-w-5xl">
         <Header {...data.basics} />
-        <div className="flex flex-col md:flex-row-reverse">
-          <div className="md:w-7/12">
-            <Experience experience={data.experience} />
-          </div>
-          <div className="md:w-5/12 mr-12">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-5/12 md:mr-10">
             <Basics basics={data.basics} />
             <Education education={data.education} />
             <Skills skills={data.skills} />
+          </div>
+          <div className="md:w-7/12">
+            <Experience experience={data.experience} />
           </div>
         </div>
       </Container>

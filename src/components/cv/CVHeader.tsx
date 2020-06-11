@@ -20,7 +20,9 @@ function Title({ name, label }: { name: string; label: string }) {
   return (
     <div
       className={`
-        -mt-32
+        -mt-40
+        
+        
         relative
         z-20
         flex
@@ -34,29 +36,35 @@ function Title({ name, label }: { name: string; label: string }) {
           border-4
           border-neutralBg
           w-32
+          mt-6
+          md:mt-10
+          lg:w-56
+          lg:-mt-6
 
         `}
         fluid={data.file.childImageSharp.fluid}
       />
-      <div
-        className={`
-            mt-3
-        `}
-      >
+      <div className="mt-12 lg:mt-6">
         <h1
           className={`
-            text-onPrimaryBg
-            leading-none
+            lg:text-5xl
+            text-onPrimary
+            leading-tight
         `}
         >
           {name}
         </h1>
         <p
           className={`
-          text-onPrimaryBgSoft
+          text-onPrimary
           uppercase
           tracking-widest
-          mt-0
+          -mt-2
+          lg:text-2xl
+          lg:tracking-wide
+          lg:-mt-2
+          font-medium
+          text-center
         `}
         >
           {label}
@@ -74,12 +82,12 @@ export default function Header({
   label: string;
 }) {
   return (
-    <div
+    <section
       className={`
-      mb-8
+      mb-10
     `}
     >
       <Title name={name} label={label} />
-    </div>
+    </section>
   );
 }

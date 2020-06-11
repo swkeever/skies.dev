@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { ReactNode } from 'react';
-import {
-  FaCode, FaBriefcase, FaCheck, FaCheckCircle,
-} from 'react-icons/fa';
+import { FaBriefcase, FaCheckCircle } from 'react-icons/fa';
 import { IExperience } from '../../pages/cv';
-import List from './List';
+import CVList from './CVList';
 import ListItemTitle from './ListItemTitle';
 import CVDate from './CVDate';
 import CVSection from './CVSection';
@@ -49,7 +47,7 @@ function Item({
 }) {
   return (
     <li>
-      <div className="flex flex-col md:flex-row justify-between">
+      <div className="flex flex-col lg:flex-row justify-between">
         <div className="flex flex-col">
           <ListItemTitle>{company}</ListItemTitle>
           <Position position={position} />
@@ -84,11 +82,11 @@ export default function Experience({
         />
         Experience
       </CVSectionTitle>
-      <List>
+      <CVList>
         {experience.map((e) => (
           <Item key={`${e.company}-${e.position}`} {...e} />
         ))}
-      </List>
+      </CVList>
     </CVSection>
   );
 }
