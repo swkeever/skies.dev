@@ -19,6 +19,7 @@ module.exports = {
 
       neutral: 'var(--color-neutral)',
       neutralBold: 'var(--color-neutralBold)',
+      neutralSoft: 'var(--color-neutralSoft)',
 
       // backgrounds
       primaryBg: 'var(--color-primaryBg)',

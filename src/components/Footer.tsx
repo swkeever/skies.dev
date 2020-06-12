@@ -1,5 +1,12 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaCode,
+  FaTwitter,
+  FaCopyright,
+  FaSitemap,
+} from 'react-icons/fa';
 import { Link } from '@reach/router';
 import Container from './Container';
 import links from '../utils/links';
@@ -24,80 +31,72 @@ export default function Footer() {
       text-neutral
     `,
 
-    li: `
-    px-8
-    text-3xl
-    md:text-3xl
-    lg:text-4xl
-    `,
-
-    ul: `
-    ml-0
-    list-none
-    flex     
-    justify-center
-    `,
-
-    container: `
-    md:flex
-    md:flex-row-reverse 
-    md:justify-between
-    md:items-baseline
-
-    `,
-
-    adminLi: `
-    px-2
+    icon: `
+    inline
+    mb-1 
+    mr-1
     `,
   };
 
+  const socialLinks = [
+    {
+      icon: <FaGithub className={styles.icon} />,
+      to: links.github,
+      text: 'Github',
+    },
+    {
+      icon: <FaTwitter className={styles.icon} />,
+      to: links.twitter,
+      text: 'Twitter',
+    },
+    {
+      icon: <FaLinkedin className={styles.icon} />,
+      to: links.linkedIn,
+      text: 'LinkedIn',
+    },
+    {
+      icon: <FaCode className={styles.icon} />,
+      to: links.sourceRepo,
+      text: 'Source',
+    },
+  ];
+
   return (
-    <footer className={styles.footer}>
-      <Container className={styles.container}>
-        <ul className={styles.ul}>
-          <li className={styles.li}>
-            <a
-              rel="noopener noreferrer"
-              target="_blank"
-              href={links.sourceRepo}
-            >
-              <FaCode />
-            </a>
-          </li>
-          <li className={styles.li}>
-            <a rel="noopener noreferrer" target="_blank" href={links.github}>
-              <FaGithub />
-            </a>
-          </li>
-          <li className={styles.li}>
-            <a rel="noopener noreferrer" target="_blank" href={links.linkedIn}>
-              <FaLinkedin />
-            </a>
-          </li>
-        </ul>
+    <footer className="bg-footerBg text-neutral mt-auto pt-10 pb-24 lg:pb-8">
+      <Container className="max-w-md">
         <ul
           className={`
           list-none
           flex
-          divide-x
-          divide-neutral
+          justify-center
+          ml-0
+          space-x-4
+          my-0
         `}
         >
-          <li className={styles.adminLi}>
-            © All Rights Reserved
-            <time
-              dateTime={new Date().getFullYear().toString()}
-              className={`
-            ml-1
-          `}
-            >
-              {new Date().getFullYear()}
-            </time>
-          </li>
-          <li className={styles.adminLi}>
-            <Link to={routes.sitemap}>Sitemap</Link>
+          {socialLinks.map((item) => (
+            <li key={item.to}>
+              <a rel="noopener noreferrer" target="_blank" href={item.to}>
+                {item.icon}
+                {item.text}
+              </a>
+            </li>
+          ))}
+          <li>
+            <Link to={routes.sitemap}>
+              <FaSitemap className={styles.icon} />
+              Sitemap
+            </Link>
           </li>
         </ul>
+        <div className="text-center text-neutralSoft">
+          <FaCopyright className={styles.icon} />
+          All Rights Reserved
+          {' '}
+          <time dateTime={new Date().getFullYear().toString()}>
+            {new Date().getFullYear()}
+          </time>
+        </div>
       </Container>
     </footer>
   );

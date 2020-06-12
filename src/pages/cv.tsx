@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaCode, FaTools, FaConnectdevelop } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
@@ -121,15 +121,7 @@ const data = {
 };
 
 export default function CVPage() {
-  const [hidden, setHidden] = useState(true);
-
-  useEffect(() => {
-    document.addEventListener('keypress', (e) => {
-      if (e.key === 'h') {
-        setHidden(!hidden);
-      }
-    });
-  }, []);
+  const hidden = false;
 
   return (
     <Layout title="Resume" hidden={hidden}>
@@ -139,7 +131,6 @@ export default function CVPage() {
         bg-primary
         pb-40
         pt-20
-        
         lg:pt-32
         ${hidden && '-mt-8'}
       `}
