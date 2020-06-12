@@ -42,6 +42,18 @@ const data = {
       ],
     },
     {
+      company: 'Northwest Retina, LLC',
+      position: 'Software Engineer',
+      location: 'Everett, WA',
+      startDate: '2019-08',
+      endDate: '2019-09',
+      highlights: [
+        'Developed statically generated site powered by Gatsby.js for local retina doctor.',
+        'Improved SEO bringing site to first page of Google when querying "Everett retina".',
+        'Configured a CMS so clients can update their content in a dashboard UI using Netlify CMS.',
+      ],
+    },
+    {
       company: 'OfferUp',
       position: 'Software Engineer, Intern',
       location: 'Bellevue, WA',
@@ -121,6 +133,8 @@ const data = {
 };
 
 export default function CVPage() {
+  // this is here to hide the navbar/footer
+  // so i can CTRL-P to print the resume easily
   const hidden = false;
 
   return (
@@ -131,11 +145,11 @@ export default function CVPage() {
         bg-primary
         pb-40
         pt-20
-        lg:pt-32
+        md:pt-32
         ${hidden && '-mt-8'}
       `}
       />
-      <Container className="mb-16 max-w-5xl px-2">
+      <Container className="mb-16 max-w-6xl px-2">
         <Header {...data.basics} />
         <div className="flex flex-col md:flex-row">
           <div className="md:w-5/12 md:mr-10">
