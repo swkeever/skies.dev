@@ -1,14 +1,26 @@
 ---
 slug: personal-statement
 date: 2020-05-25
-title: The Personal Statement that got me into university
+title: University of Washington Computer Science Personal Statement
 description:
-  This is the personal statement that got me into the University of Washington
-  Computer Science and Engineering department.
+  The personal statement that got me into the computer science and engineering
+  department at the University of Washington.
 tags:
   - Computer Science
   - College
 ---
+
+## Context
+
+[People](https://www.reddit.com/r/udub/comments/eis7x1/major_personal_statement_tips/)
+[often](https://www.reddit.com/r/udub/comments/6ulwga/tips_for_writing_a_personal_statement_for/)
+[ask](https://www.reddit.com/r/udub/comments/9j49pp/uw_students_what_did_you_write_about_in_your/)
+for advice on their personal statement when applying to their desired major at
+University of Washington. I post my essay below to show students the personal
+statement I wrote for my application to the
+[computer science and engineering department](https://cs.uw.edu) at UW.
+
+## Essay
 
 When I was twelve years old, I fell in love with teaching myself musical
 instruments. Using the Internet, I was able to teach myself how to play guitar,
@@ -75,3 +87,13 @@ make a lasting impact on my life as an engineer and as an individual. My
 sincerest hope is to have the opportunity to maximize my strengths and reach my
 potential developing software people could use to enrich their lives for many
 years to come.
+
+## Some advice to leave you with
+
+I recommend taking a lot of care when writing your personal statement. I did a
+complete rewrite before settling on the essay I used. I had people look over my
+essay and give me feedback. I listened to narrations of my essay using an
+[online reader](https://www.naturalreaders.com/online/) to get a sense of how
+sentences flowed. All of this may be overkill and your mileage may vary. Just
+make sure you convey to the reader that you _really_ want to study in that
+major.
