@@ -36,7 +36,7 @@ const IndexPage = () => {
               👋
             </span>
             {' '}
-            I&apos;m Sean
+            I&apos;m Sean.
           </h1>
           <p className="text-onNeutralBgSoft">
             I&apos;m a software developer, designer, and technology enthusiast
@@ -61,7 +61,7 @@ const IndexPage = () => {
       <DiagonalBg>
         <Section className="md:flex-row-reverse">
           <Content>
-            <h2 className="text-onPrimaryBg">I like to help people learn</h2>
+            <h2 className="text-onPrimaryBg">I like to help people learn.</h2>
             <p className="text-onPrimaryBgSoft">
               I write about technology, software engineering, and lessons
               learned in the field.
@@ -91,9 +91,10 @@ const IndexPage = () => {
         `}
         >
           <Content>
-            <h2>Get in touch</h2>
+            <h2>Let&apos;s build your next product.</h2>
             <p className="text-onPrimarySoft">
-              Do you need a developer for your next project?
+              My full-stack web development experience can help you get your
+              project off the ground.
             </p>
             <Button
               tag="Link"
