@@ -68,6 +68,7 @@ export default function Footer() {
           className={`
           list-none
           flex
+          flex-wrap
           justify-center
           ml-0
           space-x-4
