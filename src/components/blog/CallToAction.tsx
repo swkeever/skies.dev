@@ -11,8 +11,8 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         text-onPrimaryBg
         diagonal-b
         mt-8
-        pt-6
-        pb-2 
+        pt-12
+        pb-8 
         z-0
       `}
     >
@@ -33,7 +33,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         `}
         >
           This article is editable on GitHub. Any edits, big or small, are
-          welcome and much appreciated.
+          welcome and appreciated.
           <span
             role="img"
             aria-label="Heart"
