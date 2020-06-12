@@ -41,6 +41,7 @@ export default function BlogHeader({
         text-onPrimaryBgSoft
         text-lg
         text-left
+        mt-4
       `}
         >
           <span
