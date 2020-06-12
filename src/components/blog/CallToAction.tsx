@@ -11,8 +11,8 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         text-onPrimaryBg
         diagonal-b
         mt-8
-        pt-12
-        pb-10 
+        pt-6
+        pb-2 
         z-0
       `}
     >
