@@ -90,7 +90,7 @@ export default function Footer() {
             </Link>
           </li>
         </ul>
-        <div className="text-center text-neutralSoft">
+        <div className="mt-2 text-center text-neutralSoft">
           <FaCopyright className={styles.icon} />
           All Rights Reserved
           {' '}
