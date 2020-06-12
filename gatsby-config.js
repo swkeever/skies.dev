@@ -104,7 +104,7 @@ module.exports = {
         display: 'standalone',
       },
     },
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
     'gatsby-plugin-sitemap',
   ],
 };
