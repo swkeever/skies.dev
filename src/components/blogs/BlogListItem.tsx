@@ -3,10 +3,11 @@ import { Link } from '@reach/router';
 import { FaArrowRight } from 'react-icons/fa';
 import { Blog } from '..';
 import { slugToLink } from '../../utils/links';
+import BlogMeta from '../BlogMeta';
 
 export default function Item({ blog }: { blog: Blog }): ReactElement {
   const {
-    title, slug, tags, description, date,
+    title, slug, tags, description, date, timeToRead,
   } = blog;
 
   return (
@@ -33,19 +34,7 @@ export default function Item({ blog }: { blog: Blog }): ReactElement {
           {title}
         </Link>
       </h2>
-      <time
-        className={`
-          text-neutral
-          mt-2
-          inline-block
-          uppercase
-          tracking-widest
-          text-neutral
-          text-sm
-        `}
-      >
-        {date}
-      </time>
+      <BlogMeta date={date} timeToRead={timeToRead} className="text-neutral" />
       <ul
         className={`
           list-none 

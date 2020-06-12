@@ -1,13 +1,16 @@
 import React from 'react';
 import BlogContainer from './BlogContainer';
 import ShareCallToAction from './ShareCallToAction';
+import BlogMeta from '../BlogMeta';
 
 export default function BlogHeader({
   title,
   date,
+  timeToRead,
 }: {
   title: string;
   date: string;
+  timeToRead: number;
 }) {
   return (
     <div
@@ -34,29 +37,11 @@ export default function BlogHeader({
         >
           {title}
         </h1>
-        <div
-          className={`
-        uppercase
-        tracking-widest
-        text-onPrimaryBgSoft
-        text-lg
-        text-left
-        mt-4
-      `}
-        >
-          <span
-            className={`
-          text-xs 
-          mr-1
-          block
-          -mb-px
-          lg:-mb-2
-        `}
-          >
-            Published
-          </span>
-          <time dateTime={date}>{date}</time>
-        </div>
+        <BlogMeta
+          date={date}
+          timeToRead={timeToRead}
+          className="text-primarySoft"
+        />
         <ShareCallToAction />
       </BlogContainer>
     </div>

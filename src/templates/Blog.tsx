@@ -25,7 +25,11 @@ export default function Blog({
       title={frontmatter.title}
       description={frontmatter.description}
     >
-      <BlogHeader title={frontmatter.title} date={frontmatter.date} />
+      <BlogHeader
+        title={frontmatter.title}
+        date={frontmatter.date}
+        timeToRead={markdownRemark.timeToRead}
+      />
       <Content html={html} />
       <CallToAction editUrl={links.editOnGithub(filepath)} />
     </Layout>
@@ -50,6 +54,7 @@ export const pageQuery = graphql`
   query($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
+      timeToRead
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         slug

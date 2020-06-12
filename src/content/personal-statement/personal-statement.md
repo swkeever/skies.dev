@@ -1,6 +1,6 @@
 ---
 slug: personal-statement
-date: 2020-05-25
+date: 2020-06-12
 title: University of Washington Computer Science Personal Statement
 description:
   The personal statement that got me into the computer science and engineering
