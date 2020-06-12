@@ -79,7 +79,7 @@ const IndexPage = () => {
               Learn more
             </Button>
           </Content>
-          <Learn className={svgStyles} />
+          <Learn className={`${svgStyles} -mt-2`} />
         </Section>
       </DiagonalBg>
 
