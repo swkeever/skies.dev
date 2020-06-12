@@ -51,7 +51,7 @@ export type Blog = {
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
   return (
-    <BlogsContainer>
+    <BlogsContainer className="-mt-6">
       {blogs.length ? (
         <ul
           className={`

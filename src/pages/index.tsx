@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Code from '../../assets/code.svg';
-import Building from '../../assets/building.svg';
+import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
 import Button from '../components/Button';
 import Section from '../components/home/Section';
@@ -36,12 +36,24 @@ const IndexPage = () => {
               👋
             </span>
             {' '}
-            I&apos;m Sean.
+            I&apos;m Sean
           </h1>
           <p className="text-onNeutralBgSoft">
             I&apos;m a software developer, designer, and technology enthusiast
             from Seattle, WA.
           </p>
+          <Button
+            tag="Link"
+            to={routes.resume}
+            color="primary"
+            className={`
+                mt-4
+                mb-8
+                lg:mt-6
+              `}
+          >
+            Learn more
+          </Button>
         </Content>
         <Code className={svgStyles} />
       </Section>
@@ -49,13 +61,25 @@ const IndexPage = () => {
       <DiagonalBg>
         <Section className="md:flex-row-reverse">
           <Content>
-            <h2 className="text-onPrimaryBg">I like to build things.</h2>
+            <h2 className="text-onPrimaryBg">I like to help people learn</h2>
             <p className="text-onPrimaryBgSoft">
-              From client facing applications to the platforms that serve them,
-              I love creating and shipping quality software.
+              I write about technology, software engineering, and lessons
+              learned in the field.
             </p>
+            <Button
+              tag="Link"
+              to={routes.blogs}
+              color="primary"
+              className={`
+                mt-4
+                mb-8
+                lg:mt-6
+              `}
+            >
+              Learn more
+            </Button>
           </Content>
-          <Building className={svgStyles} />
+          <Learn className={svgStyles} />
         </Section>
       </DiagonalBg>
 
@@ -67,10 +91,9 @@ const IndexPage = () => {
         `}
         >
           <Content>
-            <h2>Let&apos;s build your product.</h2>
+            <h2>Get in touch</h2>
             <p className="text-onPrimarySoft">
-              My full stack web development experience can help you get your
-              project off the ground.
+              Do you need a developer for your next project?
             </p>
             <Button
               tag="Link"

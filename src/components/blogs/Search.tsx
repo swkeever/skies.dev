@@ -32,10 +32,7 @@ export default function Search({
   };
 
   return (
-    <BlogsContainer
-      className={`
-    `}
-    >
+    <BlogsContainer>
       <label htmlFor="filter-input">
         <span className="hidden">Search</span>
         <div>

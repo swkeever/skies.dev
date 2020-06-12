@@ -33,8 +33,10 @@ function Title({ name, label }: { name: string; label: string }) {
           rounded-full
           border-4
           border-neutralBg
-          w-32
-          mt-6
+          w-24
+          mt-12
+          md:mt-0
+          lg:mt-6
           md:w-48 
           lg:w-56
           lg:-mt-6
@@ -57,10 +59,12 @@ function Title({ name, label }: { name: string; label: string }) {
           className={`
           text-onPrimarySoft
           uppercase
-          tracking-widest
+          tracking-wide
+          md:tracking-widest
           md:ml-1
           -mt-2
           md:-mt-3
+          text-xl
           md:text-2xl
           font-medium
         `}

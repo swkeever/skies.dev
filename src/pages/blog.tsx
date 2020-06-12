@@ -133,7 +133,7 @@ export default function BlogsPage() {
 
   return (
     <Layout
-      title="Blogs"
+      title="Blog"
       className={`
         min-h-screen 
         bg-neutralBg

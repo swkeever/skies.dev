@@ -2,11 +2,11 @@ import React from 'react';
 import { FaCode, FaTools, FaConnectdevelop } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
-import Education from '../components/cv/Education';
-import Header from '../components/cv/CVHeader';
-import Experience from '../components/cv/Experience';
-import Skills from '../components/cv/Skills';
-import Basics from '../components/cv/Basics';
+import Education from '../components/resume/Education';
+import Header from '../components/resume/CVHeader';
+import Experience from '../components/resume/Experience';
+import Skills from '../components/resume/Skills';
+import Basics from '../components/resume/Basics';
 
 export type IExperience = {
   company: string;
@@ -144,7 +144,7 @@ export default function CVPage() {
         diagonal-t
         bg-primary
         pb-40
-        pt-20
+        md:pt-20
         md:pt-32
         ${hidden && '-mt-8'}
       `}

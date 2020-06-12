@@ -1,8 +1,8 @@
 const routes = {
-  blogs: '/blogs',
+  blogs: '/blog',
   contact: '/contact',
   home: '/',
-  resume: '/cv',
+  resume: '/resume',
   sitemap: '/sitemap.xml',
 };
 

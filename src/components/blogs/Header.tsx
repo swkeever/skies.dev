@@ -10,9 +10,7 @@ export default function Header() {
           diagonal-t 
           bg-primaryBg
           pt-px 
-          pb-20
-          md:pb-16 
-          lg:pb-20 
+          pb-20 
         `}
       >
         <BlogsContainer>
@@ -21,6 +19,7 @@ export default function Header() {
               w-11/12
               mt-12
               leading-tight
+              text-3xl
               md:text-4xl
               text-onPrimaryBg
               md:w-8/12
