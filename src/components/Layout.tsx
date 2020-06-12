@@ -13,11 +13,13 @@ import SEO from './SEO';
 
 const Layout = ({
   children,
+  hidden = false,
   className = '',
   title = '',
   description = '',
 }: {
   children: ReactNode;
+  hidden?: boolean;
   className?: string;
   title?: string;
   description?: string;
@@ -57,7 +59,9 @@ const Layout = ({
         `}
       >
         <SEO title={title} description={description} />
-        <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
+        {!hidden && (
+          <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
+        )}
         <main
           className={`
             mb-0
@@ -66,7 +70,7 @@ const Layout = ({
         >
           {children}
         </main>
-        <Footer />
+        {!hidden && <Footer />}
       </div>
     </>
   );

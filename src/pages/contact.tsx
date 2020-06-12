@@ -36,7 +36,8 @@ export default function ContactPage() {
           shadow-2xl
           rounded-md
           lg:-mt-64
-          max-w-md
+          w-11/12
+          md:max-w-md
         `}
       >
         <h1

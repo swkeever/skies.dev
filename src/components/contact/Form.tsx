@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
 import randomQuote from '../../utils/quotes';
 import { toHandle } from '../../utils/strings';
@@ -34,24 +34,27 @@ const inputStyles = `
   mb-2
 `;
 
-export default function Form() {
+function getInitialPlaceholder() {
+  const { quote, author } = randomQuote();
+  return {
+    name: author,
+    email: `${toHandle(author)}@example.com`,
+    message: quote,
+  };
+}
+
+export default function Form({
+  placeholder = getInitialPlaceholder(),
+}: {
+  placeholder?: {
+    name: string;
+    email: string;
+    message: string;
+  };
+}) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [placeholder, setPlaceholder] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-
-  useEffect(() => {
-    const { quote, author } = randomQuote();
-    setPlaceholder({
-      name: author,
-      email: `${toHandle(author)}@example.com`,
-      message: quote,
-    });
-  }, []);
 
   return (
     <form
@@ -68,7 +71,7 @@ export default function Form() {
         <input
           value={email}
           onChange={(e) => setName(e.target.value)}
-          placeholder={placeholder.email}
+          placeholder={placeholder.name}
           className={inputStyles}
           name="name"
           id="name"
