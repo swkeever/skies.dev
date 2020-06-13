@@ -40,7 +40,7 @@ export default function BlogHeader({
         <BlogMeta
           date={date}
           timeToRead={timeToRead}
-          className="text-primarySoft"
+          className="text-onPrimaryBgSoft"
         />
         <ShareCallToAction />
       </BlogContainer>

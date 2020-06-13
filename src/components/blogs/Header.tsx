@@ -56,7 +56,7 @@ export default function Header() {
             md:-mt-40 
             md:w-48
             lg:w-64 
-            lg:-mt-64 
+            lg:-mt-56 
           `}
         />
       </BlogsContainer>
