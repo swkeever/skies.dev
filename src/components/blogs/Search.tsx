@@ -32,7 +32,7 @@ export default function Search({
   };
 
   return (
-    <BlogsContainer>
+    <BlogsContainer className="mt-2">
       <label htmlFor="filter-input">
         <span className="inline-block mb-5 font-bold">
           What can I help you find?
