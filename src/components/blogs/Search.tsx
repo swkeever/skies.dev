@@ -34,7 +34,9 @@ export default function Search({
   return (
     <BlogsContainer>
       <label htmlFor="filter-input">
-        <span className="hidden">Search</span>
+        <span className="inline-block mb-5 font-bold">
+          What can I help you find?
+        </span>
         <div>
           <FaSistrix
             className={`
@@ -69,8 +71,8 @@ export default function Search({
               shadow-inner
               focus:shadow-focus
             `}
-            placeholder="What can I help you find?"
-            type="text"
+            placeholder="Filter is applied as you type"
+            type="search"
           />
         </div>
       </label>
