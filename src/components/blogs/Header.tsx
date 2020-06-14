@@ -8,7 +8,7 @@ export default function Header() {
       <div
         className={`
           diagonal-t 
-          bg-primaryBg
+          bg-primary
           pt-px 
           pb-20 
         `}
@@ -17,11 +17,11 @@ export default function Header() {
           <h1
             className={`
               w-11/12
-              mt-12
-              leading-tight
+              mt-10
+              leading-none
               text-3xl
               md:text-4xl
-              text-onPrimaryBg
+              text-onPrimary
               md:w-8/12
               md:w-9/12
               lg:w-7/12
@@ -35,7 +35,7 @@ export default function Header() {
               -mb-4
               lg:w-6/12
               lg:text-lg
-              text-onPrimaryBgSoft
+              text-onPrimarySoft
             `}
           >
             I write about lessons learned in the field, and anything else I feel
@@ -46,17 +46,18 @@ export default function Header() {
       <BlogsContainer>
         <Bulb
           className={`
-            w-40 
             absolute 
             right-0 
             top-0
-            mr-4
             h-auto
-            -mt-40
-            md:-mt-40 
-            md:w-48
-            lg:w-64 
-            lg:-mt-56 
+            w-1/2
+            -mt-32
+            mr-2
+            md:w-5/12
+            md:-mt-40
+            md:mr-4
+            lg:mr-8
+
           `}
         />
       </BlogsContainer>

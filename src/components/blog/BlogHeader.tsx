@@ -15,7 +15,7 @@ export default function BlogHeader({
   return (
     <div
       className={`
-        bg-primaryBg
+        bg-primary
         diagonal-t
         pt-5
         pb-10
@@ -30,8 +30,8 @@ export default function BlogHeader({
         md:mt-8
         leading-none
         text-3xl
-        text-onPrimaryBg
-        md:text-3xl
+        text-onPrimary
+        lg:text-4xl
         lg:mt-0
       `}
         >
@@ -40,9 +40,12 @@ export default function BlogHeader({
         <BlogMeta
           date={date}
           timeToRead={timeToRead}
-          className="text-onPrimaryBgSoft"
+          className="text-onPrimarySoft"
         />
-        <ShareCallToAction className="-mb-4 justify-end text-primary" />
+        <ShareCallToAction
+          className="-mb-4 justify-end"
+          linkClassName="text-onPrimarySoft hover:text-onPrimary"
+        />
       </BlogContainer>
     </div>
   );

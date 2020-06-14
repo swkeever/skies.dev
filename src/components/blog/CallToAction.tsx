@@ -21,9 +21,9 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         diagonal-b
         mt-8
         pt-8
-        pb-4
-        lg:pt-0
-        lg:pb-0 
+        pb-6
+        lg:pt-3
+        lg:pb-3 
       `}
     >
       <BlogContainer className="lg:pt-8">
