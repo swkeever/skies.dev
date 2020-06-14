@@ -55,7 +55,7 @@ export default function Search({
             className={`
               -mt-8
               bg-neutralBgSoft
-              w-9/12
+              w-10/12
               rounded-md
               text-onNeutral
               pl-10 
