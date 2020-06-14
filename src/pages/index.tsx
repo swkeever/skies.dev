@@ -22,7 +22,7 @@ const IndexPage = () => {
   `;
 
   return (
-    <Layout title="Home">
+    <Layout title="Seattle Software Engineer">
       <Section className="mt-4 md:mt-16">
         <Content>
           <h1 className={`${headerStyles} text-onNeutralBg`}>
