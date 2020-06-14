@@ -43,16 +43,12 @@ export default function ShareCallToAction() {
       text-4xl
       ml-0
       my-0
+      -mb-4
       space-x-3
     `}
     >
       {shareData.map(({ id, icon, link }) => (
-        <li
-          key={id}
-          className={`
-          
-          `}
-        >
+        <li key={id}>
           <a
             rel="noopener noreferrer"
             target="_blank"
