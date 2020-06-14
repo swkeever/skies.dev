@@ -29,6 +29,7 @@ function Title({ name, label }: { name: string; label: string }) {
       `}
     >
       <Img
+        imgStyle={{ borderRadius: 9999 }}
         className={`
           rounded-full
           border-4
