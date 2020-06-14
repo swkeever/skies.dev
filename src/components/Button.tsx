@@ -45,8 +45,6 @@ export default function Button({
     font-bold
     lg:px-6 
     lg:text-lg
-    shadow
-    active:shadow-none
     ${className}
   `;
 

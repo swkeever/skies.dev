@@ -1,35 +1,30 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import Code from '../../assets/code.svg';
 import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
 import Button from '../components/Button';
 import Section from '../components/home/Section';
 import Content from '../components/home/Content';
-import DiagonalBg from '../components/home/DiagonalBg';
-import PrimaryBg from '../components/home/PrimaryBg';
 import routes from '../utils/routes';
+import Form from '../components/home/Form';
 
 const IndexPage = () => {
   const svgStyles = `
-    w-11/12
+    w-full
     h-auto
-    mt-8
-    mb-8
-    md:mb-0
-    md:w-7/12
-    lg:w-9/12
+  `;
+
+  const headerStyles = `
+  leading-tight
   `;
 
   return (
     <Layout title="Home">
-      <Section
-        className={`
-        mt-8
-      `}
-      >
+      <Section className="mt-4 md:mt-16">
         <Content>
-          <h1 className="text-onNeutralBg">
+          <h1
+            className={`${headerStyles} text-4xl lg:text-5xl text-onNeutralBg`}
+          >
             Hi,
             {' '}
             <span role="img" aria-label="Waving hand">
@@ -55,63 +50,50 @@ const IndexPage = () => {
             Learn more
           </Button>
         </Content>
-        <Code className={svgStyles} />
+        <Product className={`${svgStyles} `} />
       </Section>
 
-      <DiagonalBg>
+      <div className="relative bg-primary diagonal-m pt-8 pb-16 md:pt-20 md:pb-20">
         <Section className="md:flex-row-reverse">
           <Content>
-            <h2 className="text-onPrimaryBg">I like to help people learn.</h2>
-            <p className="text-onPrimaryBgSoft">
+            <h2 className={`${headerStyles} text-onPrimary`}>
+              I like to help people learn.
+            </h2>
+            <p className="text-onPrimarySoft">
               I write about technology, software engineering, and lessons
               learned in the field.
             </p>
             <Button
               tag="Link"
               to={routes.blogs}
-              color="primary"
-              className={`
-                mt-4
-                mb-8
-                lg:mt-6
-              `}
+              color="light"
+              className="mt-4 mb-8 lg:mt-6"
             >
               Learn more
             </Button>
           </Content>
-          <Learn className={`${svgStyles} -mt-2`} />
+          <Learn className={`${svgStyles}`} />
         </Section>
-      </DiagonalBg>
+      </div>
 
-      <PrimaryBg>
-        <Section
-          className={`
-          mt-4
-          md:-mt-20
-        `}
-        >
-          <Content>
-            <h2>Let&apos;s build your next product.</h2>
-            <p className="text-onPrimarySoft">
-              My full-stack web development experience can help you get your
-              project off the ground.
+      <div
+        id="contact"
+        className="bg-neutralBgSoft pt-8 pb-8 -mt-16 md:pt-0 md:pb-8"
+      >
+        <Section className="justify-around">
+          <Content className="mb-4">
+            <h2 className={`${headerStyles} text-onNeutralBgSoft`}>
+              Get in touch.
+            </h2>
+            <p className="text-neutral">
+              If you have any questions, send me a message.
             </p>
-            <Button
-              tag="Link"
-              to={routes.contact}
-              color="light"
-              className={`
-                mt-4
-                mb-8
-                lg:mt-6
-              `}
-            >
-              Contact me
-            </Button>
           </Content>
-          <Product className={svgStyles} />
+          <div className="relative z-30 bg-neutralBg max-w-xl p-4 shadow-2xl rounded-md lg:p-6 lg:-mt-12">
+            <Form />
+          </div>
         </Section>
-      </PrimaryBg>
+      </div>
     </Layout>
   );
 };

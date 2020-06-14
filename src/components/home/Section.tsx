@@ -8,24 +8,17 @@ type SectionProps = {
 
 export default function Section({ children, className = '' }: SectionProps) {
   return (
-    <Container
-      className={`
-        md:pr-8
-        px-0
-      `}
-    >
+    <Container>
       <section
         className={`
           flex
-          justify-center
           flex-col
           text-lg
+          px-4
+          md:px-6
           items-center
-          md:text-base
-          md:mb-32
+          
           md:flex-row 
-          pt-2 
-          lg:pt-32
           ${className}
         `}
       >

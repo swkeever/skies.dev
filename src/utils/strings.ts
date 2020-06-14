@@ -1,5 +1,5 @@
 export function toHandle(name: string): string {
-  return name.replace(/[.]/g, '').replace(/\s+/g, '.').toLowerCase();
+  return name.trim().replace(/[.]/g, '').replace(/\s+/g, '.').toLowerCase();
 }
 
 // source: https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript

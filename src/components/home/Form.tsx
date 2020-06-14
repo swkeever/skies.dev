@@ -12,6 +12,7 @@ function LabelSpan({ label }: { label: string }) {
         tracking-widest
         uppercase
         text-xs
+        lg:text-sm
       `}
     >
       {label}
@@ -32,6 +33,8 @@ const inputStyles = `
   placeholder-onNeutralSoft
   text-onNeutral
   mb-2
+  lg:mb-4 
+  lg:py-2
 `;
 
 function getInitialPlaceholder() {
