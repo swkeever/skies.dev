@@ -57,7 +57,7 @@ const IndexPage = () => {
       <div className="relative bg-primary diagonal-m pt-8 pb-16 md:pt-20 md:pb-20">
         <Section className="md:flex-row-reverse">
           <Content>
-            <h2 className={`${headerStyles} text-onPrimary`}>
+            <h2 className={`${headerStyles} mt-8 text-onPrimary`}>
               I like to help people learn.
             </h2>
             <p className="text-onPrimarySoft">
