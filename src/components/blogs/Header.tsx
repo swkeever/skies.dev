@@ -50,9 +50,9 @@ export default function Header() {
             right-0 
             top-0
             h-auto
-            w-1/2
-            -mt-32
-            mr-2
+            w-5/12
+            -mt-24
+            mr-3
             md:w-5/12
             md:-mt-40
             md:mr-4

@@ -62,7 +62,7 @@ export default function Search({
               relative
               py-2
               placeholder-neutral
-              w-64
+              w-10/12
               md:w-6/12
 
               outline-none
