@@ -79,10 +79,10 @@ const IndexPage = () => {
 
       <div
         id="contact"
-        className="bg-neutralBgSoft pt-8 pb-8 -mt-16 md:pt-0 md:pb-12"
+        className="bg-neutralBgSoft pt-8 pb-8 -mt-12 md:pt-0 md:pb-12"
       >
         <Section className="justify-around">
-          <Content>
+          <Content className="mb-4">
             <h2 className={`${headerStyles} text-onNeutralBgSoft`}>
               Get in touch.
             </h2>
