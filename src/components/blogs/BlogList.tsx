@@ -10,8 +10,6 @@ function NoResultsFound() {
         w-10/12 
         mx-auto
         mt-12
-        md:-mt-1
-        lg:-mt-8
         lg:mb-8
       `}
     >
@@ -51,7 +49,7 @@ export type Blog = {
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
   return (
-    <BlogsContainer className="mt-10">
+    <BlogsContainer>
       {blogs.length ? (
         <ul
           className={`
