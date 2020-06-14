@@ -11,6 +11,9 @@ export default function ThemeToggle({
   return (
     <div>
       <span
+        onClick={() => setLightTheme(!lightTheme)}
+        role="button"
+        aria-hidden
         className={`
           fixed
           right-0
@@ -18,9 +21,11 @@ export default function ThemeToggle({
           z-50
           mt-3
           text-2xl
-          text-primarySoft
-          lg:text-onPrimaryBgLink
-          mr-24
+          text-onPrimary
+          lg:text-onPrimary
+        
+          mr-10
+          ${lightTheme && 'hidden'}
           px-1
           opacity-75
           lg:opacity-100
@@ -36,9 +41,9 @@ export default function ThemeToggle({
           fixed 
           right-0
           top-0
-          z-50
+          z-40
           mt-2
-          mr-8
+          mr-2
           opacity-75
           lg:opacity-100
         `}
@@ -57,6 +62,9 @@ export default function ThemeToggle({
         />
       </label>
       <span
+        onClick={() => setLightTheme(!lightTheme)}
+        role="button"
+        aria-hidden
         className={`
           fixed
           right-0
@@ -64,14 +72,13 @@ export default function ThemeToggle({
           z-50
           mt-3
           text-xl
-          text-primarySoft
-          lg:text-onPrimaryBgLink
-          lg:mr-1
-          mr-1
+          text-onPrimary
+          lg:text-onPrimary
+          mr-3
+          ${!lightTheme && 'hidden'}
           px-1
           pt-px
           opacity-75
-          lg:opacity-100
         `}
       >
         <FaMoon />
