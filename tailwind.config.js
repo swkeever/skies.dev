@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const { rotate, boxShadow } = require('tailwindcss/defaultTheme');
 
 // primary blue #4299E1
@@ -11,6 +12,13 @@ module.exports = {
     './src/**/*.ts',
   ],
   theme: {
+    extend: {
+      spacing: {
+        72: '18rem',
+        84: '21rem',
+        96: '24rem',
+      },
+    },
     colors: {
       // base
       primary: 'var(--color-primary)',

@@ -49,15 +49,15 @@ export default function Header() {
             absolute 
             right-0 
             top-0
-            h-auto
-            w-5/12
-            -mt-24
-            mr-3
-            md:w-5/12
+            z-30
+            h-40
+            w-40
+            -mt-20
+            mr-1
+            md:w-64
+            md:h-72
             md:-mt-40
-            md:mr-4
-            lg:mr-8
-
+            md:mr-16
           `}
         />
       </BlogsContainer>

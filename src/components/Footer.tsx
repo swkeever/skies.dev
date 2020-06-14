@@ -13,23 +13,6 @@ import routes from '../utils/routes';
 
 export default function Footer() {
   const styles = {
-    footer: `
-      mt-auto
-      mb-8
-      px-4
-      pt-4 
-      pb-20
-      z-20
-      text-base
-      text-xs
-      text-center
-      md:pb-8
-      lg:pb-1
-      lg:mb-0
-      bg-footerBg
-      text-neutral
-    `,
-
     icon: `
     inline
     mb-1 

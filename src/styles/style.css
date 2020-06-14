@@ -180,7 +180,6 @@ hr {
   @apply border-primaryBg my-4;
 }
 
-
 @tailwind components;
 
 .diagonal-m {

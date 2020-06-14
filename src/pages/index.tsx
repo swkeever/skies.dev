@@ -11,7 +11,7 @@ import Form from '../components/home/Form';
 const IndexPage = () => {
   const svgStyles = `
     w-full
-    h-auto
+    h-full
   `;
 
   const headerStyles = `
@@ -23,7 +23,7 @@ const IndexPage = () => {
 
   return (
     <Layout title="Seattle Software Engineer">
-      <Section className="mt-4 md:mt-16">
+      <Section className="mt-4 md:mt-12">
         <Content>
           <h1 className={`${headerStyles} text-onNeutralBg`}>
             Hi,

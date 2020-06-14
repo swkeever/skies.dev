@@ -143,8 +143,8 @@ export default function CVPage() {
         diagonal-t
         bg-primary
         pb-40
-        md:pt-20
-        md:pt-32
+        md:pt-10
+        lg:pt-20
         ${hidden && '-mt-8'}
       `}
       />
