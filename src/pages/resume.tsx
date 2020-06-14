@@ -102,7 +102,7 @@ const data = {
     {
       icon: <FaCode className={`${styles} text-2xl mb-1`} />,
       category: 'Programming Languages',
-      keywords: ['Javascript', 'TypeScript', 'Java', 'Python', 'HTML', 'CSS'],
+      keywords: ['Javascript', 'Java', 'Python', 'HTML', 'CSS'],
     },
     {
       icon: <FaConnectdevelop className={`${styles} text-2xl mb-1`} />,
@@ -123,7 +123,6 @@ const data = {
         'Responsive Design',
         'Agile',
         'Version Control',
-        'Linux',
         'Object-Oriented Design',
         'REST API Design',
         'Server-Side Scripting',
