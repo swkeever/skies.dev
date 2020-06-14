@@ -1,10 +1,11 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import BlogHeader from '../components/blog/BlogHeader';
-import Content from '../components/blog/Content';
 import CallToAction from '../components/blog/CallToAction';
 import links from '../utils/links';
+import BlogContainer from '../components/blog/BlogContainer';
 
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
@@ -30,7 +31,9 @@ export default function Blog({
         date={frontmatter.date}
         timeToRead={markdownRemark.timeToRead}
       />
-      <Content html={html} />
+      <BlogContainer className="mt-8 lg:mt-0">
+        <article dangerouslySetInnerHTML={{ __html: html }} />
+      </BlogContainer>
       <CallToAction editUrl={links.editOnGithub(filepath)} />
     </Layout>
   );

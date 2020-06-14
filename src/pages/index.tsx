@@ -15,16 +15,17 @@ const IndexPage = () => {
   `;
 
   const headerStyles = `
-  leading-tight
+  leading-none
+  text-4xl 
+  lg:text-5xl
+  mb-5
   `;
 
   return (
     <Layout title="Home">
       <Section className="mt-4 md:mt-16">
         <Content>
-          <h1
-            className={`${headerStyles} text-4xl lg:text-5xl text-onNeutralBg`}
-          >
+          <h1 className={`${headerStyles} text-onNeutralBg`}>
             Hi,
             {' '}
             <span role="img" aria-label="Waving hand">
@@ -78,14 +79,14 @@ const IndexPage = () => {
 
       <div
         id="contact"
-        className="bg-neutralBgSoft pt-8 pb-8 -mt-16 md:pt-0 md:pb-8"
+        className="bg-neutralBgSoft pt-8 pb-8 -mt-16 md:pt-0 md:pb-12"
       >
         <Section className="justify-around">
-          <Content className="mb-4">
+          <Content>
             <h2 className={`${headerStyles} text-onNeutralBgSoft`}>
               Get in touch.
             </h2>
-            <p className="text-neutral">
+            <p className="text-onNeutralBgSoft">
               If you have any questions, send me a message.
             </p>
           </Content>

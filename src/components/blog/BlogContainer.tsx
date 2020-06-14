@@ -23,7 +23,6 @@ export default function BlogContainer({
         text-onNeutralBg
         ${className}
       `}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}

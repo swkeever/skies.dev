@@ -1,67 +1,50 @@
 import React from 'react';
-import { FaEdit } from 'react-icons/fa';
+import { useLocation } from '@reach/router';
 import BlogContainer from './BlogContainer';
-import Button from '../Button';
+import links from '../../utils/links';
 
 export default function CallToAction({ editUrl }: { editUrl: string }) {
+  const { pathname } = useLocation();
+  const linkStyles = `
+
+  lg:text-xl
+  border-b
+  text-onPrimary
+  hover:text-light
+  inline-block
+  mt-4
+  `;
+
   return (
     <div
       className={`
-        bg-primaryBg
-        text-onPrimaryBg
+        bg-primary
         diagonal-b
         mt-8
-        pt-12
-        pb-8 
-        z-0
+        pt-8
+        pb-4
+        lg:pt-0
+        lg:pb-0 
       `}
     >
-      <BlogContainer>
-        <h2
-          className={`
-            text-onPrimaryBg
-            leading-tight
-            text-2xl
-            lg:text-3xl
-          `}
-        >
-          Can this document be improved?
-        </h2>
-        <p
-          className={`
-          text-onPrimaryBgSoft
-        `}
-        >
-          This article is editable on GitHub. Any edits, big or small, are
-          welcome and appreciated.
-          <span
-            role="img"
-            aria-label="Heart"
-            className={`
-            ml-1
-          `}
-          >
-            💙
-          </span>
-        </p>
-        <Button
-          tag="a"
-          to={editUrl}
-          color="primary"
-          className={`
-            mt-8
-          `}
+      <BlogContainer className="flex space-x-5 lg:space-x-8">
+        <a
+          href={editUrl}
+          className={linkStyles}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Edit on GitHub
-          <FaEdit
-            className={`
-              inline
-              ml-2
-              mb-1
-              text-onPrimarySoft  
-            `}
-          />
-        </Button>
+        </a>
+
+        <a
+          href={links.discussOnTwitter(pathname)}
+          className={linkStyles}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discuss on Twitter
+        </a>
       </BlogContainer>
     </div>
   );
