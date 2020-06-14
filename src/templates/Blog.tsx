@@ -31,7 +31,7 @@ export default function Blog({
         date={frontmatter.date}
         timeToRead={markdownRemark.timeToRead}
       />
-      <BlogContainer className="mt-8 lg:mt-0">
+      <BlogContainer className="lg:py-2 mt-8 lg:mt-0">
         <article dangerouslySetInnerHTML={{ __html: html }} />
       </BlogContainer>
       <CallToAction editUrl={links.editOnGithub(filepath)} />

@@ -23,10 +23,10 @@ export default function BlogHeader({
         -mb-4
       `}
     >
-      <BlogContainer>
+      <BlogContainer className="lg:py-8">
         <h1
           className={`
-        mt-10
+        mt-6
         md:mt-8
         leading-none
         text-3xl
@@ -42,7 +42,7 @@ export default function BlogHeader({
           timeToRead={timeToRead}
           className="text-onPrimaryBgSoft"
         />
-        <ShareCallToAction />
+        <ShareCallToAction className="-mb-4 justify-end text-primary" />
       </BlogContainer>
     </div>
   );

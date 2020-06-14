@@ -18,7 +18,6 @@ export default function BlogContainer({
         lg:max-w-lg
         xl:max-w-xl
         px-2
-        lg:py-8
         leading-relaxed
         text-onNeutralBg
         ${className}

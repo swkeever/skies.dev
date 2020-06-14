@@ -31,7 +31,11 @@ const shareData: Sharable[] = [
   },
 ];
 
-export default function ShareCallToAction() {
+export default function ShareCallToAction({
+  className,
+}: {
+  className: string;
+}) {
   const { pathname } = useLocation();
 
   return (
@@ -39,24 +43,16 @@ export default function ShareCallToAction() {
       className={`
       list-none
       flex
-      justify-end
       text-4xl
       ml-0
       my-0
-      -mb-4
       space-x-3
+      ${className}
     `}
     >
       {shareData.map(({ id, icon, link }) => (
         <li key={id}>
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href={link(pathname)}
-            className={`
-              text-primaryBold
-            `}
-          >
+          <a rel="noopener noreferrer" target="_blank" href={link(pathname)}>
             {icon}
           </a>
         </li>
