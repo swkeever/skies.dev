@@ -5,31 +5,25 @@ import Container from '../components/Container';
 
 const NotFoundPage = () => (
   <Layout>
-    <Container
-      className={`
-      h-screen
-      flex
-      flex-col
-      justify-center
-    `}
-    >
+    <Container className="p-4">
       <h1
         className={`
-        text-xl
+        text-lg
+        md:text-xl
+        lg:text-2xl
+        text-onNeutralBgSoft
         text-center
         mb-4
+        mt-16
+        md:mt-32
+        lg:mt-24
       `}
       >
-        The page you requested does not exist.
+        The page you requested doesn&apos;t exist.
       </h1>
-      <Lost
-        className={`
-        w-10/12
-        lg:w-7/12
-        h-auto
-        mx-auto
-      `}
-      />
+      <div className="w-11/12 md:w-9/12 max-w-2xl mx-auto">
+        <Lost className="w-full h-full" />
+      </div>
     </Container>
   </Layout>
 );
