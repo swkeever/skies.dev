@@ -187,7 +187,7 @@ hr {
 }
 
 .diagonal-sm {
-  clip-path: polygon(0% 0%, 100% theme('spacing.6'), 100% 100%, 0% calc(100% - theme('spacing.1')));
+  clip-path: polygon(0% 0%, 100% theme('spacing.6'), 100% 100%, 0% 100%);
 }
 
 .diagonal-b {

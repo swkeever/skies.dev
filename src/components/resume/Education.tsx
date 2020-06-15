@@ -63,7 +63,7 @@ export default function Education({ education }: { education: Object }) {
   return (
     <CVSection>
       <CVSectionTitle>
-        <FaGraduationCap className="inline mr-2 text-onPrimarySoft mb-1" />
+        <FaGraduationCap className="inline mr-2 text-onPrimarySoft mb-px" />
         Education
       </CVSectionTitle>
       <CVList>

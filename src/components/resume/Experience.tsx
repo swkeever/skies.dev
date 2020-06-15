@@ -74,7 +74,7 @@ export default function Experience({
         <FaBriefcase
           className={`
             inline
-            mr-3
+            mr-2
             text-2xl
             text-onPrimarySoft
             mb-1
