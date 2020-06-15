@@ -83,7 +83,17 @@ export default function BlogsPage() {
   const [filterString, setFilterString] = useState('');
   const [filterTags, setFilterTags] = useState<Tag[]>(getInitialTags(data));
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
-  const allBlogs = data.allMarkdownRemark.edges.map((e) => {
+  type Blog = {
+    id: string;
+    timeToRead: number;
+    title: string;
+    slug: string;
+    description: string;
+    date: string;
+    tags: string[];
+    body: string;
+  };
+  const allBlogs: Blog[] = data.allMarkdownRemark.edges.map((e) => {
     const { id, timeToRead, rawMarkdownBody } = e.node;
     const {
       title, slug, description, date, tags,
@@ -125,7 +135,13 @@ export default function BlogsPage() {
       .join(' ');
 
     if (search && query) {
-      setBlogs(search.search(query));
+      const results: any = search.search(query);
+      results.sort((a: Blog, b: Blog): number => {
+        const aDate = new Date(a.date);
+        const bDate = new Date(b.date);
+        return bDate.valueOf() - aDate.valueOf();
+      });
+      setBlogs(results);
     } else {
       setBlogs(allBlogs);
     }
