@@ -10,7 +10,7 @@ export default function Header() {
           diagonal-t 
           bg-primary
           pt-px 
-          pb-20 
+          pb-16 
         `}
       >
         <BlogsContainer>
@@ -52,12 +52,13 @@ export default function Header() {
             z-30
             h-40
             w-40
+            
             -mt-20
             mr-1
             md:w-64
-            md:h-72
+            md:h-64
             md:-mt-40
-            md:mr-16
+            md:mr-20
           `}
         />
       </BlogsContainer>

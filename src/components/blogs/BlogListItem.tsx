@@ -53,7 +53,6 @@ export default function Item({ blog }: { blog: Blog }): ReactElement {
               px-2 
               mr-2
               mb-2 
-              shadow-xs
            `}
           >
             {t}

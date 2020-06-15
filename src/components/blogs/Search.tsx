@@ -21,12 +21,10 @@ export default function Search({
     inactive: `
     bg-neutralBgSoft
     text-onNeutral
-    shadow
     `,
 
     active: `
     bg-primary
-    shadow-inner
     text-light
     `,
   };
@@ -34,7 +32,9 @@ export default function Search({
   return (
     <BlogsContainer className="mt-2">
       <label htmlFor="filter-input">
-        <span className="inline-block mb-5 font-bold">Search</span>
+        <span className="inline-block mb-3 font-semibold text-onNeutralBgSoft">
+          What can I help you find?
+        </span>
         <div>
           <FaSistrix
             className={`
@@ -42,7 +42,7 @@ export default function Search({
               text-2xl 
               absolute
               text-neutral
-              ml-3
+              ml-2
               z-50
             `}
           />
@@ -62,9 +62,8 @@ export default function Search({
               relative
               py-2
               placeholder-neutral
-              w-10/12
+              w-9/12
               md:w-6/12
-
               outline-none
               shadow-inner
               focus:shadow-focus
@@ -74,14 +73,18 @@ export default function Search({
           />
         </div>
       </label>
-      <div>
-        <label className="block font-bold mt-4 -mb-2" htmlFor="tags">
+      <div className="mt-8">
+        <label
+          className="block font-semibold text-onNeutralBgSoft"
+          htmlFor="tags"
+        >
           I&apos;m interested in
           <ul
             id="tags"
             className={`
               list-none 
               ml-0
+              my-1
             `}
           >
             {tags.map((t, idx) => (

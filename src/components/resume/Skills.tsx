@@ -23,7 +23,7 @@ function Item({ skill }: { skill: Skill }) {
           .map((keyword) => (
             <li
               key={keyword}
-              className="bg-neutralBgSoft text-onNeutralBgSoft font-normal shadow-inner px-2 rounded-full"
+              className="bg-neutralBgSoft text-onNeutralBgSoft font-normal px-2 rounded-full"
             >
               {keyword}
             </li>
