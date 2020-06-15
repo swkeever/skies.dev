@@ -24,7 +24,7 @@ export default function Footer() {
     {
       icon: <FaGithub className={styles.icon} />,
       to: links.github,
-      text: 'Github',
+      text: 'GitHub',
     },
     {
       icon: <FaTwitter className={styles.icon} />,
