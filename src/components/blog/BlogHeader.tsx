@@ -18,6 +18,8 @@ export default function BlogHeader({
         bg-primary
         diagonal-t
         pt-5
+        md:pt-px
+        lg:pt-2
         pb-10
         lg:pb-2
         -mb-4

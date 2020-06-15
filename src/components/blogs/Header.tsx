@@ -10,14 +10,15 @@ export default function Header() {
           diagonal-t 
           bg-primary
           pt-px 
-          pb-16 
+          pb-20 
         `}
       >
         <BlogsContainer>
           <h1
             className={`
               w-11/12
-              mt-10
+              mt-5
+              lg:mt-12
               leading-none
               text-3xl
               md:text-4xl
@@ -52,9 +53,8 @@ export default function Header() {
             z-30
             h-40
             w-40
-            
-            -mt-20
-            mr-1
+            -mt-24
+            mr-4
             md:w-64
             md:h-64
             md:-mt-40

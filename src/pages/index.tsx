@@ -11,7 +11,7 @@ import Form from '../components/home/Form';
 const IndexPage = () => {
   const svgStyles = `
     w-full
-    h-full
+    h-auto
   `;
 
   const headerStyles = `
