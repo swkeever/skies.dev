@@ -10,7 +10,6 @@ import {
 import { Link } from '@reach/router';
 import CVSection from './CVSection';
 import CVSectionTitle from './CVSectionTitle';
-import CVLocation from './CVLocation';
 import routes from '../../utils/routes';
 import CVList from './CVList';
 import links from '../../utils/links';

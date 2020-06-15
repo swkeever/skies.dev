@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
 import randomQuote from '../../utils/quotes';
 import { toHandle } from '../../utils/strings';
@@ -47,7 +47,11 @@ function getInitialPlaceholder() {
 }
 
 export default function Form({
-  placeholder = getInitialPlaceholder(),
+  placeholder = {
+    name: '',
+    email: '',
+    message: '',
+  },
 }: {
   placeholder?: {
     name: string;
@@ -58,6 +62,16 @@ export default function Form({
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [ph, setPh] = useState(placeholder);
+
+  useEffect(() => {
+    // empty name indicates no placeholder was set
+    if (ph.name) {
+      setPh(ph);
+    } else {
+      setPh(getInitialPlaceholder());
+    }
+  }, []);
 
   return (
     <form
@@ -72,9 +86,9 @@ export default function Form({
       <label htmlFor="name">
         <LabelSpan label="Name" />
         <input
-          value={email}
+          value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder={placeholder.name}
+          placeholder={ph.name}
           className={inputStyles}
           name="name"
           id="name"
@@ -87,7 +101,7 @@ export default function Form({
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={placeholder.email}
+          placeholder={ph.email}
           className={inputStyles}
           name="email"
           id="email"
@@ -100,7 +114,7 @@ export default function Form({
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder={placeholder.message}
+          placeholder={ph.message}
           className={`${inputStyles}
             h-32
             resize-none
