@@ -6,10 +6,8 @@ import {
   FaTwitter,
   FaCopyright,
 } from 'react-icons/fa';
-import { Link } from '@reach/router';
 import Container from './Container';
 import links from '../utils/links';
-import routes from '../utils/routes';
 
 export default function Footer() {
   const styles = {
@@ -66,24 +64,14 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <ul className="ml-0 list-none space-x-8 mt-2 flex justify-center text-neutralSoft">
-          <li>
-            <FaCopyright className={styles.icon} />
-            All Rights Reserved
-            {' '}
-            <time dateTime={new Date().getFullYear().toString()}>
-              {new Date().getFullYear()}
-            </time>
-          </li>
-          <li>
-            <Link
-              className="text-neutralSoft hover:text-neutralSoft"
-              to={routes.sitemap}
-            >
-              Sitemap
-            </Link>
-          </li>
-        </ul>
+        <div className="mt-2 flex justify-center text-neutral">
+          <FaCopyright className={`${styles.icon} mt-1`} />
+          All Rights Reserved
+          {' '}
+          <time className="ml-1" dateTime={new Date().getFullYear().toString()}>
+            {new Date().getFullYear()}
+          </time>
+        </div>
       </Container>
     </footer>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
+import routes from '../utils/routes';
 
 const query = graphql`
   query SEO {
@@ -51,6 +52,8 @@ export default function SEO({
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
       {article && <meta property="og:type" content="article" />}
+
+      <link rel="sitemap" type="application/xml" href={routes.sitemap} />
     </Helmet>
   );
 }
