@@ -14,10 +14,12 @@ image: uw.jpg
 ## Context
 
 [People](https://www.reddit.com/r/udub/comments/eis7x1/major_personal_statement_tips/)
-[often](https://www.reddit.com/r/udub/comments/6ulwga/tips_for_writing_a_personal_statement_for/)
-[ask](https://www.reddit.com/r/udub/comments/9j49pp/uw_students_what_did_you_write_about_in_your/)
-for advice on their personal statement when applying to their desired major at
-University of Washington. I post my essay below to show students the personal
+often
+[ask](https://www.reddit.com/r/udub/comments/6ulwga/tips_for_writing_a_personal_statement_for/)
+for
+[advice](https://www.reddit.com/r/udub/comments/9j49pp/uw_students_what_did_you_write_about_in_your/)
+on their personal statement when applying to their desired major at University
+of Washington. I post my essay [below](#essay) to show students the personal
 statement I wrote for my application to the
 [computer science and engineering department](https://cs.uw.edu) at UW.
 

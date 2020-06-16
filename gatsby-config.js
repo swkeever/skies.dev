@@ -79,6 +79,12 @@ module.exports = {
             },
           },
           'gatsby-remark-external-links',
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              offsetY: '50',
+            },
+          },
         ],
       },
     },

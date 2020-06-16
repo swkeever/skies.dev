@@ -21,7 +21,7 @@ I break down the suggestions into 3 different engineering roles:
 
 - [Frontend](#frontend-engineer)
 - [Backend](#backend-engineer)
-- [Data Science](#data-science-engineer)
+- [Data Science](#data-science)
 
 To conclude, I give some general advice that applies to all students intersted
 in becoming software engineers. I give my opinions on the hardest and easiests
