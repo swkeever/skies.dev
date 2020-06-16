@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import Section from '../components/home/Section';
 import Content from '../components/home/Content';
 import routes from '../utils/routes';
-import Form from '../components/home/Form';
+import Form from '../components/Form';
 import SEO from '../components/SEO';
 
 const IndexPage = () => {
@@ -89,7 +89,7 @@ const IndexPage = () => {
       >
         <Section className="justify-around">
           <Content className="mb-4">
-            <h2 className={`${headerStyles} text-onNeutralBgSoft`}>
+            <h2 className={`${headerStyles} text-onNeutralBg`}>
               Get in touch.
             </h2>
             <p className="text-onNeutralBgSoft">

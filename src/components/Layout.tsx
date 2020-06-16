@@ -48,9 +48,6 @@ const Layout = ({
       <div
         className={`${themeClass}
         ${extraClasses}
-        flex
-        min-h-screen
-        flex-col
         `}
       >
         {!hidden && (
