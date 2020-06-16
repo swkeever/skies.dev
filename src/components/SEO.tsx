@@ -8,33 +8,47 @@ const query = graphql`
   query SEO {
     site {
       siteMetadata {
-        defaultDescription: description
         siteUrl
+        handle
       }
     }
   }
 `;
 
+type SEO = {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  twitter: string;
+  isArticle: boolean;
+};
+
 export default function SEO({
   title,
-  description = '',
+  description,
+  image = '',
   article = false,
 }: {
   title: string;
-  description?: string;
+  description: string;
+  image?: string;
   article?: boolean;
 }) {
   const { site }: { site: SiteMetadata } = useStaticQuery(query);
   const { pathname } = useLocation();
 
-  const seo = {
+  const seo: SEO = {
     title,
     description: description || site.siteMetadata.defaultDescription,
     url: `${site.siteMetadata.siteUrl}${pathname}`,
+    image,
+    twitter: `@${site.siteMetadata.handle}`,
+    isArticle: article,
   };
 
   return (
-    <Helmet titleTemplate="%s - Sean Keever" title={seo.title}>
+    <Helmet titleTemplate="%s | Sean Keever" title={seo.title}>
       <html lang="en" />
       <meta charSet="utf-8" />
 
@@ -49,9 +63,21 @@ export default function SEO({
       />
 
       <meta name="description" content={seo.description} />
+      {seo.image && <meta name="image" content={seo.image} />}
+
+      {/* Facebook metadata */}
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
-      {article && <meta property="og:type" content="article" />}
+      <meta property="og:description" content={seo.description} />
+      {seo.image && <meta property="og:image" content={seo.image} />}
+      {seo.isArticle && <meta property="og:type" content="article" />}
+
+      {/* Twitter metadata */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={seo.twitter} />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      {seo.image && <meta name="twitter:image" content={seo.image} />}
 
       <link rel="sitemap" type="application/xml" href={routes.sitemap} />
     </Helmet>
@@ -60,7 +86,7 @@ export default function SEO({
 
 type SiteMetadata = {
   siteMetadata: {
-    defaultDescription: string;
     siteUrl: string;
+    handle: string;
   };
 };

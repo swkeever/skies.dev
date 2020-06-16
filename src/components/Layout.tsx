@@ -9,20 +9,15 @@ import React, { useState, ReactNode, useEffect } from 'react';
 import '../styles/style.css';
 import Header from './Header';
 import Footer from './Footer';
-import SEO from './SEO';
 
 const Layout = ({
   children,
   hidden = false,
   className = '',
-  title = '',
-  description = '',
 }: {
   children: ReactNode;
   hidden?: boolean;
   className?: string;
-  title?: string;
-  description?: string;
 }) => {
   const [lightTheme, setLightTheme] = useState(true);
 
@@ -58,7 +53,6 @@ const Layout = ({
         flex-col
         `}
       >
-        <SEO title={title} description={description} />
         {!hidden && (
           <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
         )}

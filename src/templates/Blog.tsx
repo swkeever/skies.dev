@@ -6,6 +6,7 @@ import BlogHeader from '../components/blog/BlogHeader';
 import CallToAction from '../components/blog/CallToAction';
 import links from '../utils/links';
 import BlogContainer from '../components/blog/BlogContainer';
+import SEO from '../components/SEO';
 
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
@@ -26,6 +27,11 @@ export default function Blog({
       title={frontmatter.title}
       description={frontmatter.description}
     >
+      <SEO
+        article
+        title={frontmatter.title}
+        description={frontmatter.description}
+      />
       <BlogHeader
         title={frontmatter.title}
         date={frontmatter.date}

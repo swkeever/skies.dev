@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import Header from '../components/blogs/Header';
 import Search, { Tag } from '../components/blogs/Search';
 import BlogList from '../components/blogs/BlogList';
+import SEO from '../components/SEO';
 
 type BlogList = {
   allMarkdownRemark: {
@@ -149,13 +150,16 @@ export default function BlogsPage() {
 
   return (
     <Layout
-      title="Blog"
       className={`
         min-h-screen 
         bg-neutralBg
         text-onNeutral
       `}
     >
+      <SEO
+        title="Blog"
+        description="Sean Keever's blog about software engineering."
+      />
       <Header />
       <Search
         filter={filterString}

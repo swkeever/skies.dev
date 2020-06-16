@@ -1,8 +1,5 @@
 module.exports = {
   siteMetadata: {
-    description: `Sean Keever is a software engineer specializing in JavaScript, 
-    Java, and Python.`,
-    author: 'Sean Keever',
     siteUrl: 'https://swkeever.github.io',
     handle: 'swkeever',
   },

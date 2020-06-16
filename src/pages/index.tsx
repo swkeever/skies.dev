@@ -7,6 +7,7 @@ import Section from '../components/home/Section';
 import Content from '../components/home/Content';
 import routes from '../utils/routes';
 import Form from '../components/home/Form';
+import SEO from '../components/SEO';
 
 const IndexPage = () => {
   const svgStyles = `
@@ -22,7 +23,12 @@ const IndexPage = () => {
   `;
 
   return (
-    <Layout title="Seattle Software Engineer">
+    <Layout>
+      <SEO
+        title="Seattle Software Engineer"
+        description="Sean Keever is a software engineer specializing in JavaScript,
+    Java, and Python."
+      />
       <Section className="mt-4 md:mt-12">
         <Content>
           <h1 className={`${headerStyles} text-onNeutralBg`}>

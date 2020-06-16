@@ -7,6 +7,7 @@ import Header from '../components/resume/CVHeader';
 import Experience from '../components/resume/Experience';
 import Skills from '../components/resume/Skills';
 import Basics from '../components/resume/Basics';
+import SEO from '../components/SEO';
 
 export type IExperience = {
   company: string;
@@ -137,7 +138,7 @@ export default function CVPage() {
   const hidden = false;
 
   return (
-    <Layout title="Resume" hidden={hidden}>
+    <Layout hidden={hidden}>
       <div
         className={`
         diagonal-t
@@ -148,6 +149,7 @@ export default function CVPage() {
         ${hidden && '-mt-8'}
       `}
       />
+      <SEO title="Resume" description="Sean Keever's resume" />
       <Container className="mb-16 max-w-6xl px-2">
         <Header {...data.basics} />
         <div className="flex flex-col md:flex-row">

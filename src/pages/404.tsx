@@ -2,9 +2,14 @@ import React from 'react';
 import Lost from '../../assets/lost.svg';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
+import SEO from '../components/SEO';
 
 const NotFoundPage = () => (
   <Layout>
+    <SEO
+      title="Page not found"
+      description="The page you requested does not exist on our server."
+    />
     <Container className="p-4">
       <h1
         className={`
