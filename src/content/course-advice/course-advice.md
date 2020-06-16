@@ -9,6 +9,7 @@ tags:
   - Computer Science
   - College
   - Software Engineering
+image: cherry-blossom.jpg
 ---
 
 ## Introduction

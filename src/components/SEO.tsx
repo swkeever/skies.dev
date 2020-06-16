@@ -40,7 +40,7 @@ export default function SEO({
 
   const seo: SEO = {
     title,
-    description: description || site.siteMetadata.defaultDescription,
+    description,
     url: `${site.siteMetadata.siteUrl}${pathname}`,
     image,
     twitter: `@${site.siteMetadata.handle}`,
@@ -51,6 +51,8 @@ export default function SEO({
     <Helmet titleTemplate="%s | Sean Keever" title={seo.title}>
       <html lang="en" />
       <meta charSet="utf-8" />
+      <link rel="canonical" href={seo.url} />
+      <meta name="generator" content="Sean Keever on Gatsby!" />
 
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta
@@ -68,6 +70,8 @@ export default function SEO({
       {/* Facebook metadata */}
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
+      <meta property="og:site_name" content="Sean Keever" />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:description" content={seo.description} />
       {seo.image && <meta property="og:image" content={seo.image} />}
       {seo.isArticle && <meta property="og:type" content="article" />}
@@ -76,6 +80,7 @@ export default function SEO({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={seo.twitter} />
       <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       {seo.image && <meta name="twitter:image" content={seo.image} />}
 

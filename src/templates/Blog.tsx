@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { graphql } from 'gatsby';
+import { FluidObject } from 'gatsby-image';
 import Layout from '../components/Layout';
 import BlogHeader from '../components/blog/BlogHeader';
 import CallToAction from '../components/blog/CallToAction';
@@ -24,13 +25,12 @@ export default function Blog({
         bg-neutralBg
         text-onNeutralBg
     `}
-      title={frontmatter.title}
-      description={frontmatter.description}
     >
       <SEO
         article
         title={frontmatter.title}
         description={frontmatter.description}
+        image={frontmatter.image.childImageSharp.original.src}
       />
       <BlogHeader
         title={frontmatter.title}
@@ -54,6 +54,14 @@ type Markdown = {
       slug: string;
       title: string;
       description: string;
+      image: {
+        childImageSharp: {
+          fluid: FluidObject;
+          original: {
+            src: string;
+          };
+        };
+      };
     };
     fileAbsolutePath: string;
   };
@@ -69,6 +77,16 @@ export const pageQuery = graphql`
         slug
         title
         description
+        image {
+          childImageSharp {
+            fluid(maxWidth: 700) {
+              ...GatsbyImageSharpFluid
+            }
+            original {
+              src
+            }
+          }
+        }
       }
       fileAbsolutePath
     }

@@ -8,6 +8,7 @@ description:
 tags:
   - Computer Science
   - College
+image: uw.jpg
 ---
 
 ## Context
