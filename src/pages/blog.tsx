@@ -136,12 +136,25 @@ export default function BlogsPage() {
       .join(' ');
 
     if (search && query) {
-      const results: any = search.search(query);
+      let results: any = search.search(query);
+
+      // sort the result by latest published
       results.sort((a: Blog, b: Blog): number => {
         const aDate = new Date(a.date);
         const bDate = new Date(b.date);
         return bDate.valueOf() - aDate.valueOf();
       });
+
+      // get the tag names that are selected
+      const tagsSelected = filterTags.filter((t) => t.selected).map((t) => t.name);
+
+      if (tagsSelected.length) {
+        results = results.filter((e) => e.tags.some((v) => tagsSelected.includes(v)));
+      }
+
+      // set the blogs that
+      // - are included in the filter
+      // - and included in the selected tags
       setBlogs(results);
     } else {
       setBlogs(allBlogs);
