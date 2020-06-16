@@ -29,7 +29,7 @@ const IndexPage = () => {
         description="Sean Keever is a software engineer specializing in JavaScript,
     Java, and Python."
       />
-      <Section>
+      <Section className="pt-4 md:pt-12">
         <Content>
           <h1 className={`${headerStyles} text-onNeutralBg`}>
             Hi,
