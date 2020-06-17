@@ -56,7 +56,7 @@ export default function SEO({
       <link rel="canonical" href={seo.url} />
       <meta name="generator" content="Sean Keever on Gatsby!" />
 
-      {keywords && <meta name="keywords" content={keywords.join(', ')} />}
+      <meta name="keywords" content={keywords.join(', ')} />
 
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta
@@ -69,7 +69,7 @@ export default function SEO({
       />
 
       <meta name="description" content={seo.description} />
-      {seo.image && <meta name="image" content={seo.image} />}
+      <meta name="image" content={seo.image} />
 
       {/* Facebook metadata */}
       <meta property="og:url" content={seo.url} />
@@ -77,7 +77,7 @@ export default function SEO({
       <meta property="og:site_name" content="Sean Keever" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:description" content={seo.description} />
-      {seo.image && <meta property="og:image" content={seo.image} />}
+      <meta property="og:image" content={seo.image} />
       {seo.isArticle && <meta property="og:type" content="article" />}
 
       {/* Twitter metadata */}
@@ -86,7 +86,7 @@ export default function SEO({
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
-      {seo.image && <meta name="twitter:image" content={seo.image} />}
+      <meta name="twitter:image" content={seo.image} />
 
       <link rel="sitemap" type="application/xml" href={routes.sitemap} />
     </Helmet>

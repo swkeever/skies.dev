@@ -167,6 +167,14 @@ export default function CVPage() {
       <SEO
         title="Resume"
         description="Sean Keever's resume"
+        keywords={[
+          'Sean Keever',
+          'resume',
+          'cv',
+          'hire',
+          'software engineer',
+          'developer',
+        ]}
         image={queryData.file.childImageSharp.original.src}
       />
       <Container className="mb-16 max-w-6xl px-2">
