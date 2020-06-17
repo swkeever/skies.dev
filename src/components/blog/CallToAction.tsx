@@ -19,15 +19,17 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
       className={`
         bg-neutralBgSoft
         diagonal-b
-        mt-8
-        pt-8
+        pt-16
+        -mt-24
+        lg:-mt-32
         pb-6
-        lg:pt-3
-        lg:pb-3 
+        lg:pt-12
+        lg:pb-8 
+        
       `}
     >
       <BlogContainer className="lg:pt-8">
-        <ShareCallToAction className="" />
+        <ShareCallToAction />
       </BlogContainer>
       <BlogContainer className="flex lg:pb-4 space-x-5 lg:space-x-8">
         <a

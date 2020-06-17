@@ -32,10 +32,10 @@ const shareData: Sharable[] = [
 ];
 
 export default function ShareCallToAction({
-  className,
+  className = '',
   linkClassName = '',
 }: {
-  className: string;
+  className?: string;
   linkClassName?: string;
 }) {
   const { pathname } = useLocation();
