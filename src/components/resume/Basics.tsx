@@ -40,7 +40,7 @@ export default function Basics({ basics }: { basics: CVBasics }) {
         </li> */}
         <li className="mb-0">
           <FaLink className={iconStyles} />
-          <Link to={routes.home} className={linkStyles}>
+          <Link to={routes.contact} className={linkStyles}>
             {`${links.siteUrlShort}${routes.contact}`}
           </Link>
         </li>
