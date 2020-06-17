@@ -43,7 +43,7 @@ export default function Search({
               absolute
               text-neutral
               ml-2
-              z-50
+              z-30
             `}
           />
           <input
