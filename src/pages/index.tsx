@@ -54,10 +54,9 @@ const IndexPage = () => {
           <h1 className={`${headerStyles} text-onNeutralBg`}>
             Hi,
             {' '}
-            <span role="img" aria-label="Waving hand">
-              👋&#xFE0E;
+            <span className="mr-2" role="img" aria-label="Waving hand">
+              👋
             </span>
-            {' '}
             I&apos;m Sean.
           </h1>
           <p className="text-onNeutralBgSoft">

@@ -33,10 +33,9 @@ export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
           hover:text-onPrimary
         `}
       >
-        <span role="img" aria-label="Man technologist">
-          👨‍💻&#xFE0E;
+        <span className="mr-1" role="img" aria-label="Man technologist">
+          👨‍💻
         </span>
-        {' '}
         Sean Keever
       </Link>
       <Nav />
