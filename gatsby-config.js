@@ -24,14 +24,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-prettier-build',
-      options: {
-        types: ['html'],
-        concurrency: 20,
-        verbose: true,
-      },
-    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -91,7 +83,15 @@ module.exports = {
       },
     },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-minify-html',
+    // 'gatsby-plugin-minify-html',
+    {
+      resolve: 'gatsby-plugin-prettier-build',
+      options: {
+        types: ['html'],
+        concurrency: 20,
+        verbose: true,
+      },
+    },
     'gatsby-plugin-webpack-bundle-analyser-v2',
     'gatsby-plugin-remove-trailing-slashes',
     {
