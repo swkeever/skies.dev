@@ -14,9 +14,7 @@ export default function BlogContainer({
       className={`
         container
         mx-auto
-        md:max-w-md
-        lg:max-w-lg
-        xl:max-w-xl
+        max-w-xl
         px-2
         leading-relaxed
         text-onNeutralBg

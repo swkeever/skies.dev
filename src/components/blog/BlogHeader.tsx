@@ -22,8 +22,9 @@ export default function BlogHeader({
         pt-5
         md:pt-px
         lg:pt-2
-        pb-10
-        lg:pb-2
+        pb-16
+        md:pb-12
+        lg:pb-3
         -mb-4
       `}
     >
@@ -47,7 +48,7 @@ export default function BlogHeader({
           className="text-onPrimarySoft space-x-8"
         />
         <ShareCallToAction
-          className="-mb-4 justify-end"
+          className="mt-2 -ml-1"
           linkClassName="text-onPrimarySoft hover:text-onPrimary"
         />
       </BlogContainer>

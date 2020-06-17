@@ -9,7 +9,6 @@ import links from '../utils/links';
 import BlogContainer from '../components/blog/BlogContainer';
 import SEO from '../components/SEO';
 
-
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
 }: {
@@ -42,11 +41,11 @@ export default function Blog({
 
       <BlogContainer className="lg:py-2 mt-8 lg:mt-0">
         <Img
-          className="w-8/12 mt-4 mb-8 mx-auto relative z-10"
+          className="w-64 ml-auto -mt-32 mr-2 relative z-10"
           fluid={frontmatter.image.childImageSharp.fluid}
           alt={frontmatter.title}
         />
-        <article dangerouslySetInnerHTML={{ __html: html }} />
+        <article className="mt-8" dangerouslySetInnerHTML={{ __html: html }} />
       </BlogContainer>
       <CallToAction editUrl={links.editOnGithub(filepath)} />
     </Layout>
