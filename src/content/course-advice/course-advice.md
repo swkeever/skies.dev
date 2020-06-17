@@ -1,15 +1,15 @@
 ---
 slug: course-advice
 date: 2020-05-25
-title: Course Advice for Software Engineers
+title: Best Computer Science Courses for Frontend, Backend, and Data Science
 description:
-  In this article I describe the courses I suggest students take for different
-  kinds of software engineer roles.
+  What computer science courses best prepare students for industry software
+  engineer titles including frontend, backend, and data science.
 tags:
-  - Computer Science
   - College
   - Software Engineering
-image: cherry-blossom.jpg
+  - Computer Science
+image: ./software_engineer.png
 ---
 
 ## Introduction

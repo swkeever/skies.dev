@@ -8,7 +8,7 @@ description:
 tags:
   - Computer Science
   - College
-image: uw.jpg
+image: graduation.png
 ---
 
 ## Context

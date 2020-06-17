@@ -42,7 +42,7 @@ export default function BlogHeader({
         <BlogMeta
           date={date}
           timeToRead={timeToRead}
-          className="text-onPrimarySoft"
+          className="text-onPrimarySoft space-x-8"
         />
         <ShareCallToAction
           className="-mb-4 justify-end"

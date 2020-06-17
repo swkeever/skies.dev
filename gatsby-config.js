@@ -24,6 +24,14 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-prettier-build',
+      options: {
+        types: ['html'],
+        concurrency: 20,
+        verbose: true,
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -59,14 +67,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-vscode',
             options: {
-              theme: 'Default Dark+',
-              inlineCode: {
-                marker: '•',
-                theme: {
-                  default: 'Default Light+',
-                  dark: 'Default Dark+',
-                },
-              },
+              theme: 'Dark+ (default dark)',
             },
           },
           {
@@ -83,6 +84,7 @@ module.exports = {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
               offsetY: '50',
+              icon: false,
             },
           },
         ],

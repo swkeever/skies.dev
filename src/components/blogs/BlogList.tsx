@@ -1,7 +1,7 @@
 import React from 'react';
-import BlogsContainer from './BlogsContainer';
-import Item from './BlogListItem';
+import BlogListItem from './BlogListItem';
 import Empty from '../../../assets/empty.svg';
+import { Blog } from '../../pages/blog';
 
 function NoResultsFound() {
   return (
@@ -37,41 +37,17 @@ function NoResultsFound() {
   );
 }
 
-export type Blog = {
-  id: string;
-  timeToRead: number;
-  title: string;
-  slug: string;
-  date: string;
-  tags: string[];
-  description: string;
-};
-
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
-  return (
-    <BlogsContainer>
-      {blogs.length ? (
-        <ul
-          className={`
-            list-none
-            ml-0
-            md:text-lg
-            divide-y
-            divide-onNeutralSoft
-            lg:w-full
-            mb-24
-            md:mb-48
-            lg:mx-auto
-            lg:mb-32
-          `}
-        >
+  if (blogs.length) {
+    return (
+      <div className="bg-neutralBgSoft pt-8 pb-12 mx-auto">
+        <ul className="list-none mb-0 container px-4 lg:w-6/12 mx-auto grid grid-cols-1 md:grid-cols-2  gap-6">
           {blogs.map((b) => (
-            <Item key={b.id} blog={b} />
+            <BlogListItem key={b.id} blog={b} />
           ))}
         </ul>
-      ) : (
-        <NoResultsFound />
-      )}
-    </BlogsContainer>
-  );
+      </div>
+    );
+  }
+  return <NoResultsFound />;
 }

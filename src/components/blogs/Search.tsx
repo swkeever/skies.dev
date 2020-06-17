@@ -30,7 +30,7 @@ export default function Search({
   };
 
   return (
-    <BlogsContainer className="mt-2">
+    <BlogsContainer className="mt-2 pb-8">
       <label htmlFor="filter-input">
         <span className="inline-block mb-3 font-semibold text-onNeutralBgSoft">
           What can I help you find?
@@ -98,7 +98,7 @@ export default function Search({
                   px-4 
                   mr-2 
                   mb-2
-                  cursor-pointer 
+                  cursor-pointer
                 `}
               >
                 <button
@@ -106,6 +106,9 @@ export default function Search({
                   className={`
                     focus:outline-none
                     active:outline-none
+                    font-medium
+                    ${!t.selected ? 'text-onNeutralBgSoft' : 'text-onPrimary'}
+                    
                   `}
                   onClick={() => {
                     const newTags = tags.slice();

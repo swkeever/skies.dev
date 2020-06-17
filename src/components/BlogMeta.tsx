@@ -18,14 +18,14 @@ export default function BlogMeta({
   `;
 
   return (
-    <ul className={`flex ml-0 ${className}`}>
-      <li className={`${timeStyles} pr-4`}>
+    <ul className={`flex mb-0 ml-0 ${className}`}>
+      <li className={`${timeStyles}`}>
         <time>
           <FaRegCalendarAlt className="inline mr-1 mb-1" />
           {date}
         </time>
       </li>
-      <li className={`${timeStyles} pl-4`}>
+      <li className={`${timeStyles}`}>
         <div className="ml-px">
           <FaRegClock className="inline mr-1 mb-1" />
           {timeToRead}

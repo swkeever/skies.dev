@@ -1,30 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
+import { FluidObject } from 'gatsby-image';
 import Layout from '../components/Layout';
 import Header from '../components/blogs/Header';
 import Search, { Tag } from '../components/blogs/Search';
 import BlogList from '../components/blogs/BlogList';
 import SEO from '../components/SEO';
-
-type BlogList = {
-  allMarkdownRemark: {
-    edges: {
-      node: {
-        frontmatter: {
-          title: string;
-          slug: string;
-          date: string;
-          tags: string[];
-          description: string;
-        };
-        timeToRead: number;
-        id: string;
-        rawMarkdownBody: string;
-      };
-    }[];
-  };
-};
 
 // parse the tags from the markdown files
 // and only show tags that exist in the markdown files
@@ -50,6 +32,14 @@ export type BlogMarkdownRemark = {
           date: string;
           tags: string[];
           description: string;
+          image: {
+            childImageSharp: {
+              fluid: FluidObject;
+              original: {
+                src: string;
+              };
+            };
+          };
         };
         id: string;
         timeToRead: number;
@@ -59,8 +49,21 @@ export type BlogMarkdownRemark = {
   };
 };
 
+export type Blog = {
+  id: string;
+  timeToRead: number;
+  title: string;
+  slug: string;
+  description: string;
+  date: string;
+  tags: string[];
+  body: string;
+  imageFluid: FluidObject;
+  imageSrc: string;
+};
+
 export default function BlogsPage() {
-  const data: BlogMarkdownRemark = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
@@ -71,6 +74,16 @@ export default function BlogsPage() {
               date
               tags
               description
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 700) {
+                    ...GatsbyImageSharpFluid
+                  }
+                  original {
+                    src
+                  }
+                }
+              }
             }
             id
             timeToRead
@@ -84,20 +97,11 @@ export default function BlogsPage() {
   const [filterString, setFilterString] = useState('');
   const [filterTags, setFilterTags] = useState<Tag[]>(getInitialTags(data));
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
-  type Blog = {
-    id: string;
-    timeToRead: number;
-    title: string;
-    slug: string;
-    description: string;
-    date: string;
-    tags: string[];
-    body: string;
-  };
+
   const allBlogs: Blog[] = data.allMarkdownRemark.edges.map((e) => {
     const { id, timeToRead, rawMarkdownBody } = e.node;
     const {
-      title, slug, description, date, tags,
+      title, slug, description, date, tags, image,
     } = e.node.frontmatter;
     const dateFormat = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -113,6 +117,8 @@ export default function BlogsPage() {
       date: dateFormat,
       tags,
       body: rawMarkdownBody,
+      imageFluid: image.childImageSharp.fluid,
+      imageSrc: image.childImageSharp.original.src,
     };
   });
   const [blogs, setBlogs] = useState(allBlogs);

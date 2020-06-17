@@ -1,94 +1,44 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@reach/router';
-import { FaArrowRight } from 'react-icons/fa';
-import { Blog } from '..';
+import Img from 'gatsby-image';
+import { Blog } from '../../pages/blog';
 import { slugToLink } from '../../utils/links';
 import BlogMeta from '../BlogMeta';
 
-export default function Item({ blog }: { blog: Blog }): ReactElement {
-  const {
-    title, slug, tags, description, date, timeToRead,
-  } = blog;
+export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
+  const li = (
+    <li className="bg-neutralBg lg:transition lg:transform hover:scale-105 hover:shadow-xl hover:-translate-y-3 shadow-md duration-300 rounded-lg">
+      <div className="diagonal-t rounded-t-lg relative pb-48 -mb-48 z-0 bg-primary" />
 
-  return (
-    <li
-      className={`
-        mb-8
-        pb-8
-        pt-10
-      `}
-    >
-      <h2
-        className={`
-          text-xl
-          leading-tight
-        `}
-      >
-        <Link
-          to={slugToLink(slug)}
-          className={`
-            text-onNeutralBg
-            hover:text-onNeutralBg
-          `}
-        >
-          {title}
-        </Link>
-      </h2>
-      <BlogMeta date={date} timeToRead={timeToRead} className="text-neutral" />
-      <ul
-        className={`
-          list-none 
-          ml-0
-        `}
-      >
-        {tags.map((t) => (
-          <li
-            key={`${slug}-${t}`}
-            className={`
-              inline-block 
-              bg-primaryBg
-              text-onPrimaryBgSoft
-              rounded-full 
-              text-base
-              px-2 
-              mr-2
-              mb-2 
-           `}
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
-      <p
-        className={`
-        text-onNeutralBgSoft
-        mb-4
-        lg:leading-relaxed
-      `}
-      >
-        {description}
-      </p>
       <Link
-        to={slugToLink(slug)}
-        className={`
-        text-onNeturalLink
-        pb-1
-        border-b
-        hover:text-onNeutralBgLinkHover
-      `}
+        to={slugToLink(blog.slug)}
+        className="flex flex-col text-onNeutralBg hover:text-onNeutralBg"
       >
-        Read more
-        <span
-          className={`
-          inline-block
-          align-text-bottom
-          ml-1
-          text-onNeutralBgLink
-        `}
-        >
-          <FaArrowRight />
-        </span>
+        <div className="relative px-4 z-10 h-24">
+          <BlogMeta
+            date={blog.date}
+            timeToRead={blog.timeToRead}
+            className="justify-between relative z-20 text-sm text-onPrimarySoft"
+          />
+          <ul className="ml-0 mt-1 text-sm list-none flex flex-wrap">
+            {blog.tags.map((t) => (
+              <li className="bg-primaryBg mr-1 mb-1 relative z-40 text-onPrimaryBgSoft rounded-full px-2">
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <Img className="-mt-10" fluid={blog.imageFluid} alt={blog.title} />
+        <div className="mt-4 px-4 pb-4">
+          <h2 className="mt-auto relative z-20 text-xl ">{blog.title}</h2>
+          <p className="mt-1 relative z-20 text-onNeutralBgSoft">
+            {blog.description}
+          </p>
+        </div>
       </Link>
     </li>
   );
+
+  return <>{li}</>;
 }
