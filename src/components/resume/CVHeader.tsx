@@ -1,25 +1,19 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 
-export const query = graphql`
-  query {
-    file(relativePath: { eq: "me.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 500, quality: 100) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`;
-
-function Title({ name, label }: { name: string; label: string }) {
-  const data = useStaticQuery(query);
-
+export default function Header({
+  name,
+  label,
+  image,
+}: {
+  name: string;
+  label: string;
+  image: FluidObject;
+}) {
   return (
-    <div
-      className={`
+    <section className="mb-6 md:mb-0">
+      <div
+        className={`
         -mt-40
         relative
         z-20
@@ -27,10 +21,10 @@ function Title({ name, label }: { name: string; label: string }) {
         justify-center
         space-x-1
       `}
-    >
-      <Img
-        imgStyle={{ borderRadius: 9999 }}
-        className={`
+      >
+        <Img
+          imgStyle={{ borderRadius: 9999 }}
+          className={`
           rounded-full
           border-4
           border-neutralBg
@@ -42,22 +36,22 @@ function Title({ name, label }: { name: string; label: string }) {
           lg:w-56
           lg:-mt-6
         `}
-        fluid={data.file.childImageSharp.fluid}
-      />
-      <div className="mt-12 md:mt-8">
-        <h1
-          className={`
+          fluid={image}
+        />
+        <div className="mt-12 md:mt-8">
+          <h1
+            className={`
             text-4xl
             md:text-5xl
             uppercase
             text-onPrimary
             leading-tight
         `}
-        >
-          {name}
-        </h1>
-        <p
-          className={`
+          >
+            {name}
+          </h1>
+          <p
+            className={`
           text-onPrimarySoft
           uppercase
           tracking-wide
@@ -69,24 +63,11 @@ function Title({ name, label }: { name: string; label: string }) {
           md:text-2xl
           font-medium
         `}
-        >
-          {label}
-        </p>
+          >
+            {label}
+          </p>
+        </div>
       </div>
-    </div>
-  );
-}
-
-export default function Header({
-  name,
-  label,
-}: {
-  name: string;
-  label: string;
-}) {
-  return (
-    <section className="mb-6 md:mb-0">
-      <Title name={name} label={label} />
     </section>
   );
 }

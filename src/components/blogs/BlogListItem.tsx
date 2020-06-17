@@ -7,34 +7,41 @@ import BlogMeta from '../BlogMeta';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
   const li = (
-    <li className="bg-neutralBg lg:transition lg:transform hover:scale-105 hover:shadow-xl hover:-translate-y-3 shadow-md duration-300 rounded-lg">
-      <div className="diagonal-t rounded-t-lg relative pb-48 -mb-48 z-0 bg-primary" />
-
+    <li className="bg-neutralBg border-t-4 border-primary lg:transition lg:transform hover:scale-105 hover:shadow-xl hover:-translate-y-3 shadow-md duration-300 rounded-b-lg rounded-t-sm mb-0">
       <Link
         to={slugToLink(blog.slug)}
-        className="flex flex-col text-onNeutralBg hover:text-onNeutralBg"
+        className="flex flex-col h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
       >
-        <div className="relative px-4 z-10 h-24">
+        <div className="px-4 z-10 h-24">
           <BlogMeta
             date={blog.date}
             timeToRead={blog.timeToRead}
-            className="justify-between relative z-20 text-sm text-onPrimarySoft"
+            className="justify-between relative z-20 text-sm text-onNeutralBgSoft"
           />
-          <ul className="ml-0 mt-1 text-sm list-none flex flex-wrap">
+          <ul className=" ml-0 mt-1 text-sm list-none flex flex-wrap">
             {blog.tags.map((t) => (
-              <li className="bg-primaryBg mr-1 mb-1 relative z-40 text-onPrimaryBgSoft rounded-full px-2">
+              <li className="bg-primaryBgSoft mr-1 mb-1 relative z-40 text-onPrimaryBgSoft rounded-full px-2">
                 {t}
               </li>
             ))}
           </ul>
         </div>
 
-        <Img className="-mt-10" fluid={blog.imageFluid} alt={blog.title} />
-        <div className="mt-4 px-4 pb-4">
-          <h2 className="mt-auto relative z-20 text-xl ">{blog.title}</h2>
-          <p className="mt-1 relative z-20 text-onNeutralBgSoft">
-            {blog.description}
-          </p>
+        <Img
+          className="w-11/12  mx-auto relative z-10"
+          fluid={blog.imageFluid}
+          alt={blog.title}
+          fadeIn={false}
+        />
+        <div className=" bg-primary relative z-0 mt-auto diagonal-b pt-12 -mt-12 rounded-b-md pb-4">
+          <div className="mt-4 px-4">
+            <h2 className="mt-auto relative leading-none text-onPrimary z-20 text-xl ">
+              {blog.title}
+            </h2>
+            <p className="mt-1 relative leading-snug z-20 text-onPrimarySoft">
+              {blog.description}
+            </p>
+          </div>
         </div>
       </Link>
     </li>

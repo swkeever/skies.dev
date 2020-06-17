@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCode, FaTools, FaConnectdevelop } from 'react-icons/fa';
+import { useStaticQuery, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Education from '../components/resume/Education';
@@ -136,6 +137,20 @@ export default function CVPage() {
   // this is here to hide the navbar/footer
   // so i can CTRL-P to print the resume easily
   const hidden = false;
+  const queryData = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "me.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+          original {
+            src
+          }
+        }
+      }
+    }
+  `);
 
   return (
     <Layout hidden={hidden}>
@@ -149,9 +164,13 @@ export default function CVPage() {
         ${hidden && '-mt-8'}
       `}
       />
-      <SEO title="Resume" description="Sean Keever's resume" />
+      <SEO
+        title="Resume"
+        description="Sean Keever's resume"
+        image={queryData.file.childImageSharp.original.src}
+      />
       <Container className="mb-16 max-w-6xl px-2">
-        <Header {...data.basics} />
+        <Header image={queryData.file.childImageSharp.fluid} {...data.basics} />
         <div className="flex flex-col md:flex-row">
           <div className="md:w-5/12 md:mr-10">
             <Basics basics={data.basics} />

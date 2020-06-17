@@ -47,6 +47,13 @@ export type BlogMarkdownRemark = {
       }[];
     };
   };
+  file: {
+    childImageSharp: {
+      original: {
+        src: string;
+      };
+    };
+  };
 };
 
 export type Blog = {
@@ -63,7 +70,7 @@ export type Blog = {
 };
 
 export default function BlogsPage() {
-  const data = useStaticQuery(graphql`
+  const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
@@ -76,8 +83,8 @@ export default function BlogsPage() {
               description
               image {
                 childImageSharp {
-                  fluid(maxWidth: 700) {
-                    ...GatsbyImageSharpFluid
+                  fluid(maxWidth: 400) {
+                    ...GatsbyImageSharpFluid_noBase64
                   }
                   original {
                     src
@@ -88,6 +95,13 @@ export default function BlogsPage() {
             id
             timeToRead
             rawMarkdownBody
+          }
+        }
+      }
+      file(relativePath: { eq: "bulb.png" }) {
+        childImageSharp {
+          original {
+            src
           }
         }
       }
@@ -178,6 +192,8 @@ export default function BlogsPage() {
       <SEO
         title="Blog"
         description="Sean Keever's blog about software engineering."
+        keywords={filterTags.map((t) => t.name).concat('blog')}
+        image={data.file.childImageSharp.original.src}
       />
       <Header />
       <Search

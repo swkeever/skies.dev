@@ -54,6 +54,8 @@ module.exports = {
       light: 'var(--color-light)',
       onLight: 'var(--color-onLight)',
 
+      transparent: 'transparent',
+
       onPrimaryBgLink: 'var(--color-onPrimaryBgLink)',
       onPrimaryBgLinkHover: 'var(--color-onPrimaryBgLinkHover)',
       onNeutralBgLink: 'var(--color-onNeutralBgLink)',

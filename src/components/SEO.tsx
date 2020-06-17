@@ -27,13 +27,15 @@ type SEO = {
 export default function SEO({
   title,
   description,
-  image = '',
+  image,
   article = false,
+  keywords,
 }: {
   title: string;
   description: string;
-  image?: string;
+  image: string;
   article?: boolean;
+  keywords: string[];
 }) {
   const { site }: { site: SiteMetadata } = useStaticQuery(query);
   const { pathname } = useLocation();
@@ -53,6 +55,8 @@ export default function SEO({
       <meta charSet="utf-8" />
       <link rel="canonical" href={seo.url} />
       <meta name="generator" content="Sean Keever on Gatsby!" />
+
+      {keywords && <meta name="keywords" content={keywords.join(', ')} />}
 
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta

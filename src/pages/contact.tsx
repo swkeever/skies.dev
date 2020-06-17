@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Form from '../components/Form';
@@ -6,10 +7,24 @@ import Container from '../components/Container';
 import Message from '../../assets/message.svg';
 
 export default function ContactPage() {
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "message.png" }) {
+        childImageSharp {
+          original {
+            src
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <Layout className="bg-neutralBgSoft">
       <SEO
         title="Contact"
+        image={data.file.childImageSharp.original.src}
+        keywords={['Contact', 'Sean Keever', 'Email']}
         description="Use the contact form to contact Sean Keever."
       />
       <div className="bg-primary diagonal-t pb-24 md:pb-40 xl:pb-56" />

@@ -9,7 +9,7 @@ tags:
   - College
   - Software Engineering
   - Computer Science
-image: ./software_engineer.png
+image: web_developer.png
 ---
 
 ## Introduction

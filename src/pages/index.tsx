@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
@@ -10,6 +11,18 @@ import Form from '../components/Form';
 import SEO from '../components/SEO';
 
 const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "product.png" }) {
+        childImageSharp {
+          original {
+            src
+          }
+        }
+      }
+    }
+  `);
+
   const svgStyles = `
     w-full
     h-auto
@@ -28,6 +41,13 @@ const IndexPage = () => {
         title="Seattle Software Engineer"
         description="Sean Keever is a software engineer specializing in JavaScript,
     Java, and Python."
+        keywords={[
+          'Sean Keever',
+          'software engineer',
+          'Seattle',
+          'full stack developer',
+        ]}
+        image={data.file.childImageSharp.original.src}
       />
       <Section className="pt-4 md:pt-12">
         <Content>

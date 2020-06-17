@@ -1,13 +1,14 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { graphql } from 'gatsby';
-import { FluidObject } from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import Layout from '../components/Layout';
 import BlogHeader from '../components/blog/BlogHeader';
 import CallToAction from '../components/blog/CallToAction';
 import links from '../utils/links';
 import BlogContainer from '../components/blog/BlogContainer';
 import SEO from '../components/SEO';
+
 
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
@@ -30,6 +31,7 @@ export default function Blog({
         article
         title={frontmatter.title}
         description={frontmatter.description}
+        keywords={frontmatter.tags}
         image={frontmatter.image.childImageSharp.original.src}
       />
       <BlogHeader
@@ -37,7 +39,13 @@ export default function Blog({
         date={frontmatter.date}
         timeToRead={markdownRemark.timeToRead}
       />
+
       <BlogContainer className="lg:py-2 mt-8 lg:mt-0">
+        <Img
+          className="w-8/12 mt-4 mb-8 mx-auto relative z-10"
+          fluid={frontmatter.image.childImageSharp.fluid}
+          alt={frontmatter.title}
+        />
         <article dangerouslySetInnerHTML={{ __html: html }} />
       </BlogContainer>
       <CallToAction editUrl={links.editOnGithub(filepath)} />
@@ -54,6 +62,7 @@ type Markdown = {
       slug: string;
       title: string;
       description: string;
+      tags: string[];
       image: {
         childImageSharp: {
           fluid: FluidObject;
@@ -77,6 +86,7 @@ export const pageQuery = graphql`
         slug
         title
         description
+        tags
         image {
           childImageSharp {
             fluid(maxWidth: 700) {

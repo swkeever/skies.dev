@@ -16,6 +16,8 @@ export default function BlogHeader({
     <div
       className={`
         bg-primary
+        relative
+        z-10
         diagonal-t
         pt-5
         md:pt-px
