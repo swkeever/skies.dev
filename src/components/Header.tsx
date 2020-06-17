@@ -34,7 +34,7 @@ export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
         `}
       >
         <span role="img" aria-label="Man technologist">
-          👨‍💻
+          👨‍💻&#xFE0E;
         </span>
         {' '}
         Sean Keever

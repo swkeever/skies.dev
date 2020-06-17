@@ -55,7 +55,7 @@ const IndexPage = () => {
             Hi,
             {' '}
             <span role="img" aria-label="Waving hand">
-              👋
+              👋&#xFE0E;
             </span>
             {' '}
             I&apos;m Sean.
