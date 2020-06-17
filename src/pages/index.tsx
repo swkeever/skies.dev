@@ -61,7 +61,7 @@ const IndexPage = () => {
             I&apos;m Sean.
           </h1>
           <p className="text-onNeutralBgSoft">
-            I&apos;m a software developer, designer, and technology enthusiast
+            I&apos;m a software engineer, designer, and technology enthusiast
             from Seattle, WA.
           </p>
           <Button
