@@ -23,6 +23,7 @@ export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
           top-0
           left-0
           ml-4
+          flex-none
           tracking-wider
           font-bold
           uppercase

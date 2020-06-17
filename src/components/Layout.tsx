@@ -48,7 +48,7 @@ const Layout = ({
       <div
         className={`${themeClass}
         ${extraClasses}
-        h-screen
+        min-h-screen
         flex
         flex-col
         justify-between
@@ -61,6 +61,7 @@ const Layout = ({
           className={`
             mb-0
             lg:mt-8
+            flex-grow
           `}
         >
           {children}
