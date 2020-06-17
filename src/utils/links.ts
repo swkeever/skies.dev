@@ -1,9 +1,12 @@
 import routes from './routes';
 
-const siteUrl = 'https://swkeever.github.io';
+const siteUrlShort = 'swkeever.github.io';
+const siteUrl = `https://${siteUrlShort}`;
 const withSiteUrl = (pathname: string): string => `${siteUrl}${pathname}`;
 
 const links = {
+  siteUrl,
+  siteUrlShort,
   github: 'https://www.github.com/swkeever',
   linkedIn: 'https://www.linkedin.com/in/swkeever',
   twitter: 'https://www.twitter.com/swkeever',

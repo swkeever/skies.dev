@@ -6,6 +6,8 @@ import {
   FaLinkedin,
   FaTwitter,
   FaGithub,
+  FaPaperPlane,
+  FaTelegramPlane,
 } from 'react-icons/fa';
 import { Link } from '@reach/router';
 import CVSection from './CVSection';
@@ -28,18 +30,18 @@ export default function Basics({ basics }: { basics: CVBasics }) {
   return (
     <CVSection>
       <CVSectionTitle>
-        <FaUser className="inline text-onPrimarySoft text-2xl ml-1 mb-1 mr-2" />
-        Basics
+        <FaTelegramPlane className="inline text-onPrimarySoft text-2xl mb-1 mr-2" />
+        Connect
       </CVSectionTitle>
 
       <CVList>
         {/* <li className="mb-0">
           <CVLocation location={basics.location} />
         </li> */}
-        <li>
+        <li className="mb-0">
           <FaLink className={iconStyles} />
           <Link to={routes.home} className={linkStyles}>
-            swkeever.github.io
+            {`${links.siteUrlShort}${routes.contact}`}
           </Link>
         </li>
         <li>
