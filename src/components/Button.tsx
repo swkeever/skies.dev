@@ -19,15 +19,18 @@ export default function Button({
 }) {
   let bgColor;
   let textColor;
+  let bgHover;
 
   switch (color) {
     case 'light':
       bgColor = 'bg-light';
       textColor = 'text-onLight';
+      bgHover = 'bg-lightSoft';
       break;
     case 'primary':
       bgColor = 'bg-primary';
       textColor = 'text-onPrimary';
+      bgHover = 'bg-primaryBold';
       break;
     default:
       throw new Error('unknown color');
@@ -41,9 +44,13 @@ export default function Button({
     rounded-full
     focus:outline-none
     px-4 
-    hover:underline
+    transition
+    duration-75 
+
+    hover:${bgHover}
     py-2 
     font-bold
+    hover:font-bold
     lg:px-6 
     lg:text-lg
     ${className}
