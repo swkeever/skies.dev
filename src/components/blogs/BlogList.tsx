@@ -48,9 +48,5 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
     <NoResultsFound />
   );
 
-  return (
-    <div className="bg-neutralBgSoft shadow-inner pt-8 pb-12 mx-auto">
-      {children}
-    </div>
-  );
+  return <div className="bg-neutralBgSoft pt-8 pb-12 mx-auto">{children}</div>;
 }
