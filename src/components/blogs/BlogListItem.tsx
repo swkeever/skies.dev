@@ -18,11 +18,8 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
     hover:shadow-xl 
     translate-y-0
     hover:-translate-y-3 
-    active:translate-y-0
-    active:scale-100 
-    active:shadow-md
     shadow-md 
-    duration-200 
+    duration-300 
     rounded-b-lg 
     rounded-t-sm 
     mb-0
