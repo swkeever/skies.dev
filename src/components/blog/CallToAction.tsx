@@ -24,7 +24,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
     >
       <BlogContainer className="lg:pt-8" />
 
-      <div className="container mt-4 max-w-xl mx-auto">
+      <div className="container mt-4 px-4 max-w-xl mx-auto">
         <ShareCallToAction linkClassName="mb-4 block text-onNeutralBgSoft hover:text-onNeutralBgLinkHover" />
 
         <Button

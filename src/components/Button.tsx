@@ -45,8 +45,7 @@ export default function Button({
     focus:outline-none
     px-4 
     transition
-    duration-75 
-
+    duration-300 
     hover:${bgHover}
     py-2 
     font-bold

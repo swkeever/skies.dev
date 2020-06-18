@@ -89,6 +89,8 @@ module.exports = {
     flexDirection: ['responsive', 'even', 'odd'],
     borderWidth: ['responsive', 'focus', 'hover'],
     outline: ['focus', 'active'],
+    translate: ['responsive', 'hover', 'focus', 'active'],
+    scale: ['responsive', 'hover', 'focus', 'active'],
     transitionDuration: ['responsive', 'hover', 'focus'],
     boxShadow: ['responsive', 'hover', 'focus', 'active'],
   },
