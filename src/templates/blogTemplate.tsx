@@ -40,13 +40,16 @@ export default function Blog({
         timeToRead={markdownRemark.timeToRead}
       />
 
-      <BlogContainer className="lg:py-2 mt-8 lg:mt-0">
+      <BlogContainer>
         <Img
-          className="w-64 ml-auto -mt-32 mr-2 relative z-10"
+          className="w-48 md:w-64 ml-auto -mt-24 md:-mt-32 mr-2 relative z-10"
           fluid={frontmatter.image.childImageSharp.fluid}
           alt={frontmatter.title}
         />
-        <article className="mt-8" dangerouslySetInnerHTML={{ __html: html }} />
+        <article
+          className="mt-8 lg:-mt-4"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
         <Connection className="ml-auto mt-8 relative z-10 w-7/12 h-full " />
       </BlogContainer>
 

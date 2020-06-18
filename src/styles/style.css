@@ -120,23 +120,49 @@ h6 {
 }
 
 h1 {
-  @apply text-4xl;
-}
-
-h2 {
   @apply text-3xl;
 }
-
+h2 {
+  @apply text-2xl;
+}
 h3 {
   @apply text-xl;
 }
-
 h4 {
   @apply text-lg;
 }
 
+
+
+
+
+
 p {
-  @apply mt-3;
+  @apply leading-7 mt-2 mb-6 text-base;
+}
+
+@screen md {
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  p {
+    @apply leading-8 text-xl;
+  }
+}
+
+@screen lg {
+  p {
+    @apply leading-9;
+  }
 }
 
 .card {
@@ -148,11 +174,11 @@ pre {
 }
 
 a {
-  @apply text-onNeutralBgLink;
+  @apply text-onNeutralBgLink font-medium;
 }
 
 a:hover {
-  @apply text-onNeutralBgLinkHover;
+  @apply text-onNeutralBgLinkHover font-medium;
 }
 
 blockquote {
@@ -160,7 +186,7 @@ blockquote {
 }
 
 .list {
-  @apply ml-8 my-4;
+  @apply ml-6 my-4;
 }
 
 ul {

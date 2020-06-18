@@ -19,12 +19,8 @@ export default function BlogHeader({
         relative
         z-10
         diagonal-t
-        pt-5
-        md:pt-px
-        lg:pt-2
+        pt-2
         pb-16
-        md:pb-12
-        lg:pb-3
         -mb-4
       `}
     >
@@ -36,7 +32,7 @@ export default function BlogHeader({
         leading-none
         text-3xl
         text-onPrimary
-        lg:text-4xl
+        md:text-4xl
         lg:mt-0
       `}
         >

@@ -14,10 +14,8 @@ export default function BlogContainer({
       className={`
         container
         mx-auto
-        max-w-xl
-        px-2
-        leading-relaxed
-        text-onNeutralBg
+        max-w-3xl
+        px-4
         ${className}
       `}
       {...props}

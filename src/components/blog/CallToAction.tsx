@@ -22,11 +22,11 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         
       `}
     >
-      <BlogContainer className="lg:pt-8">
-        <ShareCallToAction linkClassName="text-onNeutralBgSoft hover:text-onNeutralBgLinkHover" />
-      </BlogContainer>
+      <BlogContainer className="lg:pt-8" />
 
       <div className="container mt-4 max-w-xl mx-auto">
+        <ShareCallToAction linkClassName="mb-4 block text-onNeutralBgSoft hover:text-onNeutralBgLinkHover" />
+
         <Button
           tag="a"
           to={links.discussOnTwitter(pathname)}
