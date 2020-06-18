@@ -137,7 +137,7 @@ h4 {
 
 
 
-p {
+article>p {
   @apply leading-7 mt-2 mb-6 text-base;
 }
 
@@ -154,13 +154,13 @@ p {
     @apply text-2xl;
   }
 
-  p {
+  article>p {
     @apply leading-8 text-xl;
   }
 }
 
 @screen lg {
-  p {
+  article>p {
     @apply leading-9;
   }
 }

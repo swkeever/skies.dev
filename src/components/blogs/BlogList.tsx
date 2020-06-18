@@ -39,7 +39,7 @@ function NoResultsFound() {
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
   const children = blogs.length ? (
-    <ul className="list-none mb-0 max-w-4xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2  gap-6">
+    <ul className="list-none mb-0 max-w-3xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2  gap-6">
       {blogs.map((b) => (
         <BlogListItem key={b.id} blog={b} />
       ))}

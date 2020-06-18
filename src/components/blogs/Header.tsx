@@ -57,8 +57,12 @@ export default function Header() {
             mr-4
             md:w-64
             md:h-64
-            md:-mt-40
-            md:mr-20
+            md:-mt-32
+            md:mr-16
+            lg:w-5/12
+            lg:h-auto
+            lg:-mt-56
+            lg:mr-8
           `}
         />
       </BlogsContainer>

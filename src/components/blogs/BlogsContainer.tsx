@@ -12,7 +12,7 @@ export default function BlogsContainer({
     <Container
       className={`
         px-4 
-        max-w-2xl
+        max-w-3xl
         relative
         ${className}
     `}
