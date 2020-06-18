@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
-import routes from '../utils/routes';
 
 const query = graphql`
   query SEO {
@@ -87,8 +86,6 @@ export default function SEO({
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
-
-      <link rel="sitemap" type="application/xml" href={routes.sitemap} />
     </Helmet>
   );
 }

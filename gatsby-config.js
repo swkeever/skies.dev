@@ -103,7 +103,12 @@ module.exports = {
     },
     // 'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        createLinkInHead: true,
+      },
+    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
