@@ -50,9 +50,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
           hover:border-0
-          outline-none
-          transition
-          duration-300
+          outline-none          
           hover:no-underline
           px-8
           pt-2
