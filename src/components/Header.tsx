@@ -31,9 +31,10 @@ export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
           text-lg
           text-onPrimary
           hover:text-onPrimary
+          hover:font-bold
         `}
       >
-        <span className="mr-1" role="img" aria-label="Man technologist">
+        <span className="mr-1 " role="img" aria-label="Man technologist">
           👨‍💻
         </span>
         Sean Keever
