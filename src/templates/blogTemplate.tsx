@@ -50,7 +50,7 @@ export default function Blog({
           className="mt-8 lg:-mt-4"
           dangerouslySetInnerHTML={{ __html: html }}
         />
-        <Connection className="ml-auto mt-8 relative z-10 w-7/12 h-full " />
+        <Connection className="ml-auto mt-8 md:mr-8 relative z-10 w-7/12  h-full " />
       </BlogContainer>
 
       <CallToAction editUrl={links.editOnGithub(filepath)} />
