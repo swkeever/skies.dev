@@ -1,7 +1,8 @@
 ---
 slug: course-advice
 date: 2020-05-25
-title: Best Computer Science Courses for Frontend, Backend, and Data Science
+title:
+  (WIP) Best Computer Science Courses for Frontend, Backend, and Data Science
 description:
   What computer science courses best prepare students for industry software
   engineer titles including frontend, backend, and data science.
@@ -14,20 +15,26 @@ image: web_developer.png
 
 ## Introduction
 
-This purpose of this document is to provide some guidance on what electives you
-might want to consider to prepare for common software engineer job titles.
+This purpose of this article is to provide some guidance on what computer
+science electives you might want to consider when preparing for jobs in industry
+as a software engineer. Since I graduated from University of Washington with a
+B.S. in computer engineering, I use the
+[UW CSE department's courses](https://www.cs.washington.edu/education/courses/)
+as examples throughout. A lot of CS programs have similar courses so students
+could still follow along.
 
-I break down the suggestions into 3 different engineering roles:
+I break down the suggestions into 3 common software engineer titles:
 
-- [Frontend](#frontend-engineer)
-- [Backend](#backend-engineer)
-- [Data Science](#data-science)
+- [Frontend Engineer](#frontend-engineer)
+- [Backend Engineer](#backend-engineer)
+- [Data Scientist](#data-scientist)
 
-To conclude, I give some general advice that applies to all students intersted
-in becoming software engineers. I give my opinions on the hardest and easiests
-courses, as well as courses I think everyone should take.
+To conclude, I give some general advice that would apply to all students seeking
+a job as a software engineer, not matter the specialty. I give my opinions on
+the hardest and easiests courses, as well as courses I think everyone should
+take.
 
-To limit scope, I don't include classes that are:
+To limit the scope of this article, I don't include classes that are:
 
 - **Required for CSE majors**--you have to take those classes anyway.
 - **Prerequisites**. If CSE451 is suggested, it is implied that CSE333 should
@@ -37,63 +44,48 @@ To limit scope, I don't include classes that are:
 - **Graduate level.** This document is aimed at undergrads, so I exclude 5xx
   classes.
 
-### Who am I and why did I write this document?
-
-I'm part of the Class of 2020. Ever since I started at UW as a transfer student,
-I've taken a lot of interest in finding out the best classes to take to best
-prepare for industry.
-
-I've taken many of the courses I list. For the courses I haven't taken, I've
-researched what the courses entail, and have collected feedback from other
-students who have taken those classes.
-
-Thus, I believe I'm in a good position to offer some course advice.
-
-### Almost ready?
-
-Note **these suggestions are not endorsed by the Paul Allen School.** For an
-endorsed list of suggested courses, you can check out
-[Course Pathways](https://www.cs.washington.edu/academics/ugrad/courses/course-pathways).
-
-OK, let's get started!
-
 ## Frontend Engineer
 
-This list is for people intersetd in:
+This list is for people interested in:
 
-- user interfaces
-- usability
-- user experience
+- user interface design
+- user experience research
+- web or mobile development
 
-### Core
+To be honest, the CSE department doesn't have _that much_ when it comes to
+frontend development. If you know you're interested in frontend development, I'd
+recommend taking a look at courses in HCDE, INFO, and DESIGN as well.
 
 - [CSE440 Human Computer Interaction](https://courses.cs.washington.edu/courses/cse440/):
-  Teaches design of effective user interfaces and how to user testing.
-- [CSE340 Interaction Programming](https://courses.cs.washington.edu/courses/cse340/):
-  Introduces mobile development for Android. The high-level skills you learn
-  from this class should be transferrable should you want to develop for iOS.
-- [CSE154 Web Development](https://courses.cs.washington.edu/courses/cse154/):
-  Introduces web development including HTML, CSS, and JavaScript.
-
-### Also consider
-
-- [CSE403 Software Engineering](https://courses.cs.washington.edu/courses/cse403/):
-  This course usually lets you develop an open-ended project on a team. This is
-  another good opportunity to practice developing user interfaces and doing
-  usability testing.
+  Teaches design of effective user interfaces and how to user testing. You do a
+  quarter long project where you get experience doing user studies and
+  implementing a UI prototype. I feel like the skills you take away from this
+  class could apply to any specialty in UI development.
 - [CSE341 Programming Languages](https://courses.cs.washington.edu/courses/cse403/):
-  Knowing how to recognize programming paradigms is especially useful for web
-  development, due to the quickly evolving nature of JavaScript frameworks.
+  This course would be beneficial for people interested in learning JavaScript
+  for web development. The course doesn't teach JavaScript per se, but it does
+  teach functional programming, which we are seeing a lot more of in
+  [modern JavaScript](https://link.medium.com/vHX7Nzr8o7).
+- [CSE154 Web Development](https://courses.cs.washington.edu/courses/cse154/):
+  Introduces HTML, CSS, and JavaScript, which are the 3 core technologies for
+  client-side web development. I've heard the quality of the course has improved
+  in recent times so this could be a good one to look out for. If you don't take
+  this course, take University of Helskinki's free
+  [Full Stack Open](https://fullstackopen.com/en/) course. It is great.
+- [CSE340 Interaction Programming](https://courses.cs.washington.edu/courses/cse340/):
+  This is the only class in the CSE department that teaches mobile development.
+  I will warn you though, this course is fairly new, and I've heard that some of
+  the kinks with logistics still need to be ironed out.
 
 ## Backend Engineer
 
 This list is for people interested in:
 
-- backend
-- site-reliability
-- systems
+- developing APIs using REST, GraphQL, etc
+- site-reliability and cloud engineering
+- lower level systems development
 
-### Core
+Unlike [frontend](#frontend-engineer)
 
 - [CSE452 Distributed Systems](https://courses.cs.washington.edu/courses/cse452/):
   Most systems these days are distributed systems. This course will give an
@@ -113,13 +105,11 @@ This list is for people interested in:
 - [CSE401 Compilers](https://courses.cs.washington.edu/courses/cse401/): As a
   platform engineer, you may need to kn
 
-## Data Science
+## Data Scientist
 
 If you know you want to data science, UW offers a
 [Data Science option](https://www.cs.washington.edu/academics/ugrad/courses/data-science),
 which is fairly close to the courses I list here.
-
-### Core
 
 - [CSE446 Machine Learning](https://courses.cs.washington.edu/courses/cse446/):
   ML permuates a lot of modern AI, from recommender systems, image recognition,
@@ -160,6 +150,13 @@ speciality.
   tech companies want you to be able to solve algorithms/data structures
   problems. This course will you help you develop a mental framework for
   understanding algorithms.
+- [CSE403 Software Engineering](https://courses.cs.washington.edu/courses/cse403/):
+  This is an article about computer science courses to take for software
+  engineering, right? This course lets you work on a quarter-long project where
+  you learn the software development lifecycle. I've heard mixed reviews about
+  this course, as it may not be much "new" material after
+  [CSE331](https://courses.cs.washington.edu/courses/cse331/). Still, it's
+  probably still one of the more practical CSE courses you could take.
 - [CSE484 Computer Security](https://courses.cs.washington.edu/courses/cse484/):
   No matter what you do as a software engineer, you should have some awareness
   about security.

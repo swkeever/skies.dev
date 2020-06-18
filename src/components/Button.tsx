@@ -41,6 +41,11 @@ export default function Button({
     rounded-full
     focus:outline-none
     px-4 
+    transition
+    transform
+    duration-300 
+    hover:shadow-lg
+    hover:-translate-y-1
     py-2 
     font-bold
     lg:px-6 

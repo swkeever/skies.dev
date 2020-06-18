@@ -3,16 +3,10 @@ import { useLocation } from '@reach/router';
 import BlogContainer from './BlogContainer';
 import links from '../../utils/links';
 import ShareCallToAction from './ShareCallToAction';
+import Button from '../Button';
 
 export default function CallToAction({ editUrl }: { editUrl: string }) {
   const { pathname } = useLocation();
-  const linkStyles = `
-
-  lg:text-xl
-  border-b
-  inline-block
-  mt-4
-  `;
 
   return (
     <div
@@ -23,7 +17,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         -mt-24
         lg:-mt-32
         pb-6
-        lg:pt-12
+        lg:pt-16
         lg:pb-8 
         
       `}
@@ -31,25 +25,26 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
       <BlogContainer className="lg:pt-8">
         <ShareCallToAction />
       </BlogContainer>
-      <BlogContainer className="flex lg:pb-4 space-x-5 lg:space-x-8">
+
+      <div className="container mt-4 max-w-xl mx-auto">
+        <Button
+          tag="a"
+          to={links.discussOnTwitter(pathname)}
+          color="primary"
+          className=""
+        >
+          Discuss on Twitter
+        </Button>
+
         <a
           href={editUrl}
-          className={linkStyles}
+          className="ml-5 text-lg border-b text-onNeutralBgSoft hover:text-primary pb-2"
           target="_blank"
           rel="noopener noreferrer"
         >
           Edit on GitHub
         </a>
-
-        <a
-          href={links.discussOnTwitter(pathname)}
-          className={linkStyles}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Discuss on Twitter
-        </a>
-      </BlogContainer>
+      </div>
     </div>
   );
 }

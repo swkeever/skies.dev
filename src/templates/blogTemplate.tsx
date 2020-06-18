@@ -8,7 +8,7 @@ import CallToAction from '../components/blog/CallToAction';
 import links from '../utils/links';
 import BlogContainer from '../components/blog/BlogContainer';
 import SEO from '../components/SEO';
-import Collaborators from '../../assets/collaborators.svg';
+import Connection from '../../assets/connection.svg';
 
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
@@ -47,7 +47,7 @@ export default function Blog({
           alt={frontmatter.title}
         />
         <article className="mt-8" dangerouslySetInnerHTML={{ __html: html }} />
-        <Collaborators className="ml-auto mt-12 relative z-10 w-1/2 h-full " />
+        <Connection className="ml-auto mt-8 relative z-10 w-7/12 h-full " />
       </BlogContainer>
 
       <CallToAction editUrl={links.editOnGithub(filepath)} />

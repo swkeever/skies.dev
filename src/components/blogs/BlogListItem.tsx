@@ -7,7 +7,7 @@ import BlogMeta from '../BlogMeta';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
   const li = (
-    <li className="bg-neutralBg border-t-4 border-primary lg:transition lg:transform hover:scale-105 hover:shadow-xl hover:-translate-y-3 shadow-md duration-300 rounded-b-lg rounded-t-sm mb-0">
+    <li className="bg-neutralBg border-t-4 border-primary md:transition md:transform hover:scale-105 hover:shadow-xl hover:-translate-y-3 shadow-md duration-300 rounded-b-lg rounded-t-sm mb-0">
       <Link
         to={slugToLink(blog.slug)}
         className="flex flex-col h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
