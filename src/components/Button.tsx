@@ -25,12 +25,12 @@ export default function Button({
     case 'light':
       bgColor = 'bg-light';
       textColor = 'text-onLight';
-      bgHover = 'bg-lightSoft';
+      bgHover = 'hover:bg-lightSoft';
       break;
     case 'primary':
       bgColor = 'bg-primary';
       textColor = 'text-onPrimary';
-      bgHover = 'bg-primaryBold';
+      bgHover = 'hover:bg-primaryBold';
       break;
     default:
       throw new Error('unknown color');
@@ -44,9 +44,16 @@ export default function Button({
     rounded-full
     focus:outline-none
     px-4 
+    ${bgHover}
     transition
+    transform
+    hover:-translate-y-px
+    hover:shadow-md
+    active:translate-y-0 
+    active:shadow-none
+    translate-y-0 
+    shadow-none
     duration-300 
-    hover:${bgHover}
     py-2 
     font-bold
     hover:font-bold

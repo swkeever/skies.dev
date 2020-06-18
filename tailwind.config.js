@@ -52,7 +52,7 @@ module.exports = {
       onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
 
       light: 'var(--color-light)',
-      lightSoft: 'var(--color-neutral-200)',
+      lightSoft: 'var(--color-primary-100)',
       onLight: 'var(--color-onLight)',
 
       transparent: 'transparent',
