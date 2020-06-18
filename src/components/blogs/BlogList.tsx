@@ -38,16 +38,19 @@ function NoResultsFound() {
 }
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
-  if (blogs.length) {
-    return (
-      <div className="bg-neutralBgSoft pt-8 pb-12 mx-auto">
-        <ul className="list-none mb-0 max-w-4xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2  gap-6">
-          {blogs.map((b) => (
-            <BlogListItem key={b.id} blog={b} />
-          ))}
-        </ul>
-      </div>
-    );
-  }
-  return <NoResultsFound />;
+  const children = blogs.length ? (
+    <ul className="list-none mb-0 max-w-4xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2  gap-6">
+      {blogs.map((b) => (
+        <BlogListItem key={b.id} blog={b} />
+      ))}
+    </ul>
+  ) : (
+    <NoResultsFound />
+  );
+
+  return (
+    <div className="bg-neutralBgSoft shadow-inner pt-8 pb-12 mx-auto">
+      {children}
+    </div>
+  );
 }
