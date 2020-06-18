@@ -23,7 +23,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
       `}
     >
       <BlogContainer className="lg:pt-8">
-        <ShareCallToAction />
+        <ShareCallToAction linkClassName="text-onNeutralBgSoft hover:text-onNeutralBgLinkHover" />
       </BlogContainer>
 
       <div className="container mt-4 max-w-xl mx-auto">
@@ -38,7 +38,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
 
         <a
           href={editUrl}
-          className="ml-5 text-lg border-b text-onNeutralBgSoft hover:text-primary pb-2"
+          className="ml-5 text-lg border-b text-onNeutralBgSoft hover:text-onNeutralBgLinkHover pb-2"
           target="_blank"
           rel="noopener noreferrer"
         >
