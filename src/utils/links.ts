@@ -18,7 +18,7 @@ const links = {
     )}&title=&summary=&source=`,
     twitter: (pathname: string): string => `https://twitter.com/intent/tweet?text=${withSiteUrl(pathname)}`,
   },
-  editOnGithub: (filepath: string): string => `https://github.com/swkeever/swkeever.github.io/blob/develop/src/${filepath}`,
+  editOnGithub: (filepath: string): string => `https://github.com/swkeever/swkeever.github.io/edit/develop/src/${filepath}`,
   discussOnTwitter: (filepath: string): string => `https://www.twitter.com/search?q=${siteUrl}${filepath}`,
 };
 
