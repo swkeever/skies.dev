@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { ReactNode } from 'react';
 import { FaBriefcase, FaCheckCircle } from 'react-icons/fa';
-import { IExperience } from '../../pages/resume';
+import { IExperience } from '../../pages/about';
 import CVList from './CVList';
 import ListItemTitle from './ListItemTitle';
 import CVDate from './CVDate';

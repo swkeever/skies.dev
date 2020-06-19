@@ -10,14 +10,16 @@ export default function Header() {
           diagonal-t 
           bg-primary
           pt-px 
-          pb-20 
+          pb-24 
+          md:pb-20
         `}
       >
         <BlogsContainer>
           <h1
             className={`
               w-11/12
-              mt-5
+              mt-10
+              md:mt-5 
               lg:mt-12
               leading-none
               text-3xl
@@ -26,21 +28,22 @@ export default function Header() {
               md:w-8/12
               md:w-9/12
               lg:w-7/12
+              mb-4
             `}
           >
-            Blogs about life as a software engineer.
+            Learn about software engineering and web development.
           </h1>
           <p
             className={`
-              w-7/12
+              md:w-7/12
               -mb-4
               lg:w-6/12
               lg:text-lg
               text-onPrimarySoft
             `}
           >
-            I write about lessons learned in the field, and anything else I feel
-            is important.
+            Explore byte-sized articles in computer science, software
+            engineering, and web development.
           </p>
         </BlogsContainer>
       </div>
@@ -53,11 +56,11 @@ export default function Header() {
             z-30
             h-40
             w-40
-            -mt-24
+            -mt-20
             mr-4
             md:w-64
             md:h-64
-            md:-mt-32
+            md:-mt-40
             md:mr-16
             lg:w-4/12
             lg:h-auto

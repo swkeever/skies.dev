@@ -23,7 +23,7 @@ const links = {
 };
 
 export function slugToLink(slug: string): string {
-  return `${routes.blogs}/${slug}`;
+  return `${routes.learn}/${slug}`;
 }
 
 export default links;

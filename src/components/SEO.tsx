@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
+import routes from '../utils/routes';
 
 const query = graphql`
   query SEO {
@@ -48,8 +49,10 @@ export default function SEO({
     isArticle: article,
   };
 
+  const template = pathname === routes.home ? 'Sean Keever | %s' : '%s | Sean Keever';
+
   return (
-    <Helmet titleTemplate="%s | Sean Keever" title={seo.title}>
+    <Helmet titleTemplate={template} title={seo.title}>
       <html lang="en" />
       <meta charSet="utf-8" />
       <link rel="canonical" href={seo.url} />

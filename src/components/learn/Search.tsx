@@ -61,14 +61,12 @@ export default function Search({
               pr-2
               relative
               py-2
-              placeholder-neutral
               w-9/12
               md:w-6/12
               outline-none
               shadow-inner
               focus:shadow-focus
             `}
-            placeholder="Filter is applied as you type"
             type="search"
           />
         </div>

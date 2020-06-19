@@ -1,7 +1,7 @@
 ---
 slug: stacks
 date: 2020-06-18
-title: Learn the Stack Data Structure at Chipotle
+title: Learn about the Stack Data Structure with Chipotle
 description:
   Stacks have many applications in computing including maze solving, program
   execution, "undo" mechanisms, and more.

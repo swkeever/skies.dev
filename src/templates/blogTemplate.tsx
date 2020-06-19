@@ -3,10 +3,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import Layout from '../components/Layout';
-import BlogHeader from '../components/blog/BlogHeader';
-import CallToAction from '../components/blog/CallToAction';
+import BlogHeader from '../components/article/BlogHeader';
+import CallToAction from '../components/article/CallToAction';
 import links from '../utils/links';
-import BlogContainer from '../components/blog/BlogContainer';
+import BlogContainer from '../components/article/BlogContainer';
 import SEO from '../components/SEO';
 import Connection from '../../assets/connection.svg';
 

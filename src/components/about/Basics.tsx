@@ -20,7 +20,7 @@ export type CVBasics = {};
 
 export default function Basics({ basics }: { basics: CVBasics }) {
   const iconStyles = 'inline text-primarySoft mr-1';
-  const linkStyles = 'ml-px text-onNeutralBgSoft';
+  const linkStyles = 'ml-1 text-onNeutralBgSoft hover:text-onNeutralBgLinkHover';
   const anchorProps = {
     className: linkStyles,
     target: '_blank',

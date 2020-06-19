@@ -3,6 +3,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const routes = require('./src/utils/routes');
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
@@ -34,7 +35,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: `/blog/${node.frontmatter.slug}`,
+      path: `${routes.learn}/${node.frontmatter.slug}`,
       component: blogPostTemplate,
       context: {
         // additional data can be passed via context

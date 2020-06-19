@@ -15,8 +15,8 @@ export function isActive(pathname: string, route: string): boolean {
   const pname = pathname[pathname.length - 1] === '/'
     ? pathname.substring(0, pathname.length - 1)
     : pathname;
-  if (pname.includes(routes.blogs)) {
-    return pname.substring(0, routes.blogs.length) === route;
+  if (pname.includes(routes.learn)) {
+    return pname.substring(0, routes.learn.length) === route;
   }
   return pname === route;
 }
@@ -124,17 +124,17 @@ export default function Nav() {
           />
           <Name name="Home" />
         </Item>
-        <Item route={routes.blogs}>
+        <Item route={routes.about}>
+          <FaScroll className={iconStyles} />
+          <Name name="About" />
+        </Item>
+        <Item route={routes.learn}>
           <FaRegLightbulb className={iconStyles} />
-          <Name name="Blog" />
+          <Name name="Learn" />
         </Item>
         <Item route={routes.contact}>
           <FaTelegramPlane className={iconStyles} />
           <Name name="Contact" />
-        </Item>
-        <Item route={routes.resume}>
-          <FaScroll className={iconStyles} />
-          <Name name="Resume" />
         </Item>
       </ul>
     </nav>

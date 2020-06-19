@@ -38,7 +38,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO
-        title="Seattle Software Engineer"
+        title="Full Stack Developer"
         description="Sean Keever is a software engineer specializing in JavaScript,
     Java, and Python."
         keywords={[

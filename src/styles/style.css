@@ -131,12 +131,7 @@ h4 {
   @apply text-lg;
 }
 
-
-
-
-
-
-article>p, article>ul {
+article p, article ul {
   @apply leading-7 mt-2 mb-6 text-base;
 }
 
@@ -153,13 +148,13 @@ article>p, article>ul {
     @apply text-2xl;
   }
 
-  article>p, article>ul {
+  article p, article ul {
     @apply leading-8 text-xl;
   }
 }
 
 @screen lg {
-  article>p, article>ul {
+  article p, article ul {
     @apply leading-9;
   }
 }
@@ -173,11 +168,15 @@ pre {
 }
 
 a {
-  @apply text-onNeutralBgLink font-medium;
+  @apply text-onNeutralBgLink;
 }
 
 a:hover {
-  @apply text-onNeutralBgLinkHover font-medium;
+  @apply text-onNeutralBgLinkHover;
+}
+
+article a:hover {
+  @apply pb-1 border-b border-onNeutralBgLinkHover;
 }
 
 blockquote {

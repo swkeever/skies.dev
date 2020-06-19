@@ -49,8 +49,6 @@ export default function Button({
     px-4 
     ${bgHover}
     ${textHover}
-    transition 
-    duration-100 
     py-2 
     font-bold
     hover:font-bold
