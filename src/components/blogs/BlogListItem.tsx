@@ -37,7 +37,10 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
           />
           <ul className=" ml-0 mt-1 text-sm list-none flex flex-wrap">
             {blog.tags.map((t) => (
-              <li className="bg-primaryBgSoft mr-1 mb-1 relative z-40 text-onPrimaryBgSoft rounded-full px-2">
+              <li
+                key={`${blog.id}-${t}`}
+                className="bg-primaryBgSoft mr-1 mb-1 relative z-40 text-onPrimaryBgSoft rounded-full px-2"
+              >
                 {t}
               </li>
             ))}

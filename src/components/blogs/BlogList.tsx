@@ -39,7 +39,7 @@ function NoResultsFound() {
 
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
   const children = blogs.length ? (
-    <ul className="list-none mb-0 max-w-3xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2  gap-6">
+    <ul className="list-none mb-0 max-w-5xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
       {blogs.map((b) => (
         <BlogListItem key={b.id} blog={b} />
       ))}
@@ -48,5 +48,7 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
     <NoResultsFound />
   );
 
-  return <div className="bg-neutralBgSoft pt-8 pb-12 mx-auto">{children}</div>;
+  return (
+    <div className="bg-neutralBgSoft h-auto pt-8 pb-12 mx-auto">{children}</div>
+  );
 }

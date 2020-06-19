@@ -42,7 +42,7 @@ export default function Blog({
 
       <BlogContainer>
         <Img
-          className="w-48 md:w-64 ml-auto -mt-24 md:-mt-32 mr-2 relative z-10"
+          className="w-48 md:w-64 ml-auto -mt-24 md:-mt-32 lg:-mt-40 lg:w-5/12 mr-2 relative z-10"
           fluid={frontmatter.image.childImageSharp.fluid}
           alt={frontmatter.title}
         />

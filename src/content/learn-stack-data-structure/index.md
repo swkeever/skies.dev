@@ -1,0 +1,97 @@
+---
+slug: stacks-and-queues
+date: 2020-06-18
+title: Learn the Stack Data Structure at Chipotle
+description:
+  Stacks have many applications in computing including maze solving, program
+  execution, "undo" mechanisms, and more.
+tags:
+  - Computer Science
+  - Data Structures
+image: eating_together.png
+---
+
+## What is a stack?
+
+A stack is an array of elements stored in **last in, first out (LIFO)** order.
+There are two fundamental operations you can do on a stack:
+
+- When you **push** an item on a stack, it means you **insert** an item.
+- When you **pop** an item off the stack, it means you **remove** the _last
+  inserted item_ from the stack.
+
+That's basically all there is to it.
+
+## Stacks at Chipotle
+
+Imagine you're at Chipotle getting a burrito.
+
+The line makes your burrito and you get to the cashier who says, "Would you like
+your burrito for here or to go?"
+
+You reply, "For here."
+
+The cashier grabs a tray from _the top of a stack of trays_ and puts your
+burrito inside. Notice, the cashier didn't pick up half of the trays and give
+you one from the middle. She also didn't turn the trays over and give you one
+off the bottom. She gave you the tray that was on top.
+
+This is exactly how stacks in computer science behave. When you remove an item
+from a stack, the item comes off the top. We say the item is **popped** off the
+stack. When you **pop** an item off a stack, it means you remove the last
+element you inserted.
+
+### Don't forget to push your tray
+
+After eating your burrito, you look around the restaurant to find where to put
+your tray. You see a stack of trays by the compost bin.
+
+You walk over and put your tray _on top of the stack of trays_. Again notice,
+you didn't pick up half of the trays and stick your tray in the middle. You
+didn't turn the trays over and put your tray at the bottom. You put your tray on
+the top of the stack.
+
+This is how a stack behaves in computer science as well. When you put an item on
+the stack, the item is placed on top of the stack. We say the item is **pushed**
+on the stack. When you **push** an item on a stack, it means you put an element
+on the top of the stack.
+
+## Thank you, come again
+
+In summary, when you **push** an element onto the stack, that element goes on
+top of the stack. When you **pop** an element off the stack, that element comes
+off the top of the stack.
+
+You will commonly hear that a stack is a **LIFO data structure**. This means
+that elements are ordered **last in, first out**. Below is a simple JavaScript
+program that shows this behavior.
+
+```javascript
+const stack = [];
+
+// push 1, 2, 3 on the stack
+stack.push(1); // [1]
+stack.push(2); // [1, 2]
+stack.push(3); // [1, 2, 3]
+
+// pop all the elements off the stack
+const x = stack.pop(); // x = 3, stack = [1, 2]
+const y = stack.pop(); // y = 2, stack = [1]
+const z = stack.pop(); // z = 1, stack = []
+```
+
+Now it's your turn. I'll write a program. Can you tell me what the values of
+`x`, `y`, and `z` are? Let me know on Twitter! 👍
+
+```javascript
+const stack = [3, 2, 1];
+const x = stack.pop(); // x = ???
+stack.push(4);
+stack.push(5);
+stack.pop();
+stack.pop();
+const y = stack.pop(); // y = ???
+stack.pop();
+stack.push(6);
+const y = stack.pop(); // z = ???
+```

@@ -184,7 +184,6 @@ export default function BlogsPage() {
   return (
     <Layout
       className={`
-        min-h-screen 
         bg-neutralBg
         text-onNeutral
       `}
