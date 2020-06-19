@@ -1,5 +1,5 @@
 ---
-slug: stacks-and-queues
+slug: learn-stack-data-structure
 date: 2020-06-18
 title: Learn the Stack Data Structure at Chipotle
 description:
