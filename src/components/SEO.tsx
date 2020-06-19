@@ -41,7 +41,10 @@ export default function SEO({
   const { pathname } = useLocation();
 
   const seo: SEO = {
-    title,
+    title:
+      pathname === routes.home
+        ? `Sean Keever | ${title}`
+        : `${title} | Sean Keever`,
     description,
     url: `${site.siteMetadata.siteUrl}${pathname}`,
     image,
@@ -49,10 +52,9 @@ export default function SEO({
     isArticle: article,
   };
 
-  const template = pathname === routes.home ? 'Sean Keever | %s' : '%s | Sean Keever';
-
   return (
-    <Helmet titleTemplate={template} title={seo.title}>
+    <Helmet>
+      <title>{seo.title}</title>
       <html lang="en" />
       <meta charSet="utf-8" />
       <link rel="canonical" href={seo.url} />
