@@ -80,15 +80,16 @@ export default function SEO({
       <meta property="og:locale" content="en_US" />
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="400" />
+      <meta property="og:image:height" content="400" />
+      <meta property="og:image:alt" content={seo.title} />
       {seo.isArticle && <meta property="og:type" content="article" />}
 
       {/* Twitter metadata */}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content={seo.twitter} />
       <meta name="twitter:creator" content={seo.twitter} />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:url" content={seo.url} />
-      <meta name="twitter:description" content={seo.description} />
-      <meta name="twitter:image" content={seo.image} />
     </Helmet>
   );
 }
