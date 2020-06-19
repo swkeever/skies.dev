@@ -62,6 +62,10 @@ const Layout = ({
             mb-0
             lg:mt-8
             flex-grow
+            h-auto
+            w-full
+            flex
+            flex-col
           `}
         >
           {children}

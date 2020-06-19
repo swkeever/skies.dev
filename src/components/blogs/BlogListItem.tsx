@@ -15,13 +15,12 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
     md:transition 
     md:transform 
     hover:scale-105 
-    hover:shadow-xl 
+    hover:shadow-lg 
     translate-y-0
     hover:-translate-y-3 
-    shadow-md 
+    shadow-none 
     duration-300 
     rounded-b-lg 
-    rounded-t-sm 
     mb-0
     `}
     >

@@ -50,7 +50,7 @@ export default function Button({
     ${bgHover}
     ${textHover}
     transition 
-    duration-300 
+    duration-100 
     py-2 
     font-bold
     hover:font-bold
