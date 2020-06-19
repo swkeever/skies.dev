@@ -8,7 +8,8 @@ description:
 tags:
   - Computer Science
   - College
-image: graduation.png
+siteImage: index.png
+socialImage: social.png
 ---
 
 ## Context

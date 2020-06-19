@@ -81,11 +81,15 @@ export default function BlogsPage() {
               date
               tags
               description
-              image {
+              siteImage {
                 childImageSharp {
                   fluid(maxWidth: 400) {
                     ...GatsbyImageSharpFluid_noBase64
                   }
+                }
+              }
+              socialImage {
+                childImageSharp {
                   original {
                     src
                   }
@@ -115,7 +119,13 @@ export default function BlogsPage() {
   const allBlogs: Blog[] = data.allMarkdownRemark.edges.map((e) => {
     const { id, timeToRead, rawMarkdownBody } = e.node;
     const {
-      title, slug, description, date, tags, image,
+      title,
+      slug,
+      description,
+      date,
+      tags,
+      siteImage,
+      socialImage,
     } = e.node.frontmatter;
     const dateFormat = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -131,8 +141,8 @@ export default function BlogsPage() {
       date: dateFormat,
       tags,
       body: rawMarkdownBody,
-      imageFluid: image.childImageSharp.fluid,
-      imageSrc: image.childImageSharp.original.src,
+      imageFluid: siteImage.childImageSharp.fluid,
+      imageSrc: socialImage.childImageSharp.original.src,
     };
   });
   const [blogs, setBlogs] = useState(allBlogs);

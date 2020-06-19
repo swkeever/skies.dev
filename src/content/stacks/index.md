@@ -8,7 +8,8 @@ description:
 tags:
   - Computer Science
   - Data Structures
-image: eating_together.png
+siteImage: index.png
+socialImage: social.png
 ---
 
 ## What is a stack?

@@ -83,8 +83,6 @@ export default function SEO({
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:width" content="400" />
-      <meta property="og:image:height" content="400" />
       <meta property="og:image:alt" content={seo.title} />
       {seo.isArticle && <meta property="og:type" content="article" />}
 

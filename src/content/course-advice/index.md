@@ -10,7 +10,8 @@ tags:
   - College
   - Software Engineering
   - Computer Science
-image: web_developer.png
+siteImage: index.png
+socialImage: social.png
 ---
 
 ## Introduction

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img, { FluidObject } from 'gatsby-image';
+import Img from 'gatsby-image';
 import Layout from '../components/Layout';
 import BlogHeader from '../components/article/BlogHeader';
 import CallToAction from '../components/article/CallToAction';
@@ -13,7 +13,7 @@ import Connection from '../../assets/connection.svg';
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
 }: {
-  data: Markdown;
+  data: any;
 }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
@@ -32,7 +32,7 @@ export default function Blog({
         title={frontmatter.title}
         description={frontmatter.description}
         keywords={frontmatter.tags}
-        image={frontmatter.image.childImageSharp.original.src}
+        image={frontmatter.socialImage.childImageSharp.original.src}
       />
       <BlogHeader
         title={frontmatter.title}
@@ -43,7 +43,7 @@ export default function Blog({
       <BlogContainer>
         <Img
           className="w-48 md:w-64 ml-auto -mt-24 md:-mt-32 lg:-mt-40 lg:w-5/12 mr-2 relative z-10"
-          fluid={frontmatter.image.childImageSharp.fluid}
+          fluid={frontmatter.siteImage.childImageSharp.fluid}
           alt={frontmatter.title}
         />
         <article
@@ -58,29 +58,6 @@ export default function Blog({
   );
 }
 
-type Markdown = {
-  markdownRemark: {
-    html: string;
-    excerpt: string;
-    frontmatter: {
-      date: string;
-      slug: string;
-      title: string;
-      description: string;
-      tags: string[];
-      image: {
-        childImageSharp: {
-          fluid: FluidObject;
-          original: {
-            src: string;
-          };
-        };
-      };
-    };
-    fileAbsolutePath: string;
-  };
-};
-
 export const pageQuery = graphql`
   query($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
@@ -92,11 +69,15 @@ export const pageQuery = graphql`
         title
         description
         tags
-        image {
+        siteImage {
           childImageSharp {
             fluid(maxWidth: 700) {
               ...GatsbyImageSharpFluid
             }
+          }
+        }
+        socialImage {
+          childImageSharp {
             original {
               src
             }
