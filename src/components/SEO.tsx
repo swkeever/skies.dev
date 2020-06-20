@@ -90,6 +90,7 @@ export default function SEO({
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content={seo.twitter} />
       <meta name="twitter:creator" content={seo.twitter} />
+      <meta name="twitter:image:src" content={seo.image} />
     </Helmet>
   );
 }
