@@ -109,13 +109,13 @@ module.exports = {
         createLinkInHead: true,
       },
     },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        host: 'https://swkeever.github.io',
-        sitemap: 'https://swkeever.github.io/sitemap.xml',
-        policy: [{ userAgent: '*', allow: '/' }],
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-robots-txt',
+    //   options: {
+    //     host: 'https://swkeever.github.io',
+    //     sitemap: 'https://swkeever.github.io/sitemap.xml',
+    //     policy: [{ userAgent: '*', allow: '/' }],
+    //   },
+    // },
   ],
 };
