@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import BlogListItem from './BlogListItem';
 import Empty from '../../../assets/empty.svg';
-import { Blog } from '../../pages/learn';
+import { Blog } from '../../pages/blog';
 
 function Header({ children }: { children: ReactNode }) {
   return (

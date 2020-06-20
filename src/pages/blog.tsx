@@ -201,7 +201,9 @@ export default function BlogsPage() {
       <SEO
         title="Blog"
         description="Learn about software engineering, computer science, and web development."
-        keywords={filterTags.map((t) => t.name).concat(['learn', 'how to'])}
+        keywords={filterTags
+          .map((t) => t.name)
+          .concat(['blog', 'learn', 'how to'])}
         image={data.file.childImageSharp.original.src}
       />
       <Header />

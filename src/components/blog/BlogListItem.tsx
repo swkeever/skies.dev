@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@reach/router';
 import Img from 'gatsby-image';
-import { Blog } from '../../pages/learn';
+import { Blog } from '../../pages/blog';
 import { slugToLink } from '../../utils/links';
 import BlogMeta from '../BlogMeta';
 
