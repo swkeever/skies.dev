@@ -20,6 +20,7 @@ export default function Blog({
 
   const filepath = markdownRemark.fileAbsolutePath.split('/src/')[1];
 
+  console.log(frontmatter);
   return (
     <Layout
       className={`
