@@ -88,7 +88,7 @@ export default function SEO({
       {seo.isArticle && <meta property="og:type" content="article" />}
 
       {/* Twitter metadata */}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@swkeever" />
       <meta name="twitter:creator" content="@swkeever" />
       <meta name="twitter:title" content={seo.title} />
