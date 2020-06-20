@@ -17,9 +17,9 @@ socialImage: social.png
 A stack is an array of elements stored in **last in, first out (LIFO)** order.
 There are two fundamental operations you can do on a stack:
 
-- When you **push** an item on a stack, it means you **insert** an item.
-- When you **pop** an item off the stack, it means you **remove** the _last
-  inserted item_ from the stack.
+- When you **push** an item on a stack, it means you insert an item.
+- When you **pop** an item off the stack, it means you remove the _last inserted
+  item_ from the stack.
 
 That's basically all there is to it.
 
