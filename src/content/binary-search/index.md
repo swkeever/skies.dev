@@ -15,20 +15,18 @@ socialImage: social.png
 Binary search is an **efficient search algorithm on a sorted array of
 elements.** The binary search algorithm comes from a family of algorithms called
 [divide and conquer](https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms),
-but the terminology isn't too important for this discussion.
-
-Instead of writing all the code for binary search, I want to convince you that
-you _probably already use_ the algorithm in your life.
+but the terminology isn't too important for this discussion. In this article, I
+want to convince you that you _probably already use_ the binary search algorithm
+in your life.
 
 ## Binary search in the real world
 
-Let's say you are at an AirBnB in a remote location on a weekend getaway. You
-want to disconnect yourself for a while, so you go to a place where there's no
-internet. You want to use this weekend to read some books you've been wanting to
-read.
+Let's say you're at an AirBnB in a remote location on a weekend getaway. You
+want to disconnect for a while, so you go to a place where there's no internet.
+You want to use this weekend to read science fiction novels.
 
 You are reading your book one night and you stumble on a word that you don't
-know. The word happened to be "Octothorpe".
+know. The word happened to be "octothorpe".
 
 You walk over to the bookshelf the AirBnB host provided to look for a
 dictionary. Ah, there it is.
@@ -36,14 +34,14 @@ dictionary. Ah, there it is.
 You sit down and open up the dictionary to begin searching for "octothorpe".
 What do you do?
 
-Well, you know the words in the dictionary are _sorted_, so you probably open up
-the dictionary somewhere to somewhere in the middle.
+Well, you know the words in the dictionary are _sorted_, so you open up the
+dictionary to somewhere in the middle.
 
 You see words on the page you opened up begin with the letter "G". "Octothorpe"
 cannot possibly be on any page earlier than the page with the "G" words. So you
 _completely disregard_ the pages earlier than the one with the "G" words.
 
-So, what do you do? You repeat the process on the remaining pages _after_ the
+What do you do next? You repeat the process on the remaining pages _after_ the
 page with the "G" words. You keep repeating this process until you have found
 the page with "octothorpe".
 
