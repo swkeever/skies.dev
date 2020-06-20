@@ -56,7 +56,7 @@ export default function SEO({
   return (
     <Helmet>
       <title>{seo.title}</title>
-      {/* <html lang="en" />
+      <html lang="en" />
       <meta charSet="utf-8" />
       <link rel="canonical" href={seo.url} />
       <meta name="generator" content="Sean Keever on Gatsby!" />
@@ -71,7 +71,7 @@ export default function SEO({
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-      /> */}
+      />
 
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
