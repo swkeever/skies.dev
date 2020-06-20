@@ -83,6 +83,9 @@ export default function SEO({
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
       <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:height" content="900" />
+      <meta property="og:image:width" content="900" />
+
       <meta property="og:image:alt" content={seo.title} />
       {seo.isArticle && <meta property="og:type" content="article" />}
 
@@ -91,6 +94,8 @@ export default function SEO({
       <meta name="twitter:site" content={seo.twitter} />
       <meta name="twitter:creator" content={seo.twitter} />
       <meta name="twitter:image:src" content={seo.image} />
+      <meta name="twitter:image:height" content="900" />
+      <meta name="twitter:image:width" content="900" />
     </Helmet>
   );
 }
