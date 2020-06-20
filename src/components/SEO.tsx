@@ -29,6 +29,7 @@ export default function SEO({
   description,
   image,
   article = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   keywords,
 }: {
   title: string;
@@ -55,7 +56,7 @@ export default function SEO({
   return (
     <Helmet>
       <title>{seo.title}</title>
-      <html lang="en" />
+      {/* <html lang="en" />
       <meta charSet="utf-8" />
       <link rel="canonical" href={seo.url} />
       <meta name="generator" content="Sean Keever on Gatsby!" />
@@ -70,12 +71,12 @@ export default function SEO({
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-      />
+      /> */}
 
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
 
-      {/* Facebook metadata */}
+      {/* OpenGraph tags */}
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:site_name" content="Sean Keever" />
@@ -87,7 +88,7 @@ export default function SEO({
       <meta property="og:image:alt" content={seo.title} />
       {seo.isArticle && <meta property="og:type" content="article" />}
 
-      {/* Twitter metadata */}
+      {/* Twitter tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@swkeever" />
       <meta name="twitter:creator" content="@swkeever" />
