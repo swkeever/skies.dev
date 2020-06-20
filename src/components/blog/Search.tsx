@@ -32,7 +32,7 @@ export default function Search({
   return (
     <BlogsContainer className="mt-2 pb-8">
       <label htmlFor="filter-input">
-        <span className="inline-block mb-3 font-semibold text-onNeutralBgSoft">
+        <span className="inline-block mb-3 text-onNeutralBgSoft">
           What can I help you find?
         </span>
         <div>
@@ -72,11 +72,8 @@ export default function Search({
         </div>
       </label>
       <div className="mt-8">
-        <label
-          className="block font-semibold text-onNeutralBgSoft"
-          htmlFor="tags"
-        >
-          I&apos;m interested in
+        <label className="block text-onNeutralBgSoft" htmlFor="tags">
+          <span>I&apos;m interested in</span>
           <ul
             id="tags"
             className={`

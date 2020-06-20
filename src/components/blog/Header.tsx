@@ -25,25 +25,24 @@ export default function Header() {
               text-3xl
               md:text-4xl
               text-onPrimary
-              md:w-8/12
-              md:w-9/12
+              md:w-7/12
               lg:w-7/12
               mb-4
             `}
           >
-            Learn about software engineering and web development.
+            A blog on software engineering.
           </h1>
           <p
             className={`
               md:w-7/12
               -mb-4
               lg:w-6/12
-              lg:text-lg
+              md:text-lg
               text-onPrimarySoft
             `}
           >
-            Explore byte-sized articles in computer science, software
-            engineering, and web development.
+            I write about technology, web development, and anything else I feel
+            is important.
           </p>
         </BlogsContainer>
       </div>

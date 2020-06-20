@@ -3,9 +3,9 @@ import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import { FluidObject } from 'gatsby-image';
 import Layout from '../components/Layout';
-import Header from '../components/learn/Header';
-import Search, { Tag } from '../components/learn/Search';
-import BlogList from '../components/learn/BlogList';
+import Header from '../components/blog/Header';
+import Search, { Tag } from '../components/blog/Search';
+import BlogList from '../components/blog/BlogList';
 import SEO from '../components/SEO';
 
 // parse the tags from the markdown files
@@ -199,7 +199,7 @@ export default function BlogsPage() {
       `}
     >
       <SEO
-        title="Learn"
+        title="Blog"
         description="Learn about software engineering, computer science, and web development."
         keywords={filterTags.map((t) => t.name).concat(['learn', 'how to'])}
         image={data.file.childImageSharp.original.src}
