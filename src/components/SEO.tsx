@@ -72,6 +72,7 @@ export default function SEO({
         name="viewport"
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
       />
+      <meta name="robots" content="index, follow" />
 
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
