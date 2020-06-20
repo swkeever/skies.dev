@@ -2,10 +2,10 @@ import { isActive } from '../Nav';
 import routes from '../../utils/routes';
 
 describe('blog path', () => {
-  const blogPath = `${routes.learn}/personal-statement`;
+  const blogPath = `${routes.blog}/personal-statement`;
 
   test('should be active', () => {
-    expect(isActive(blogPath, routes.learn)).toBeTruthy();
+    expect(isActive(blogPath, routes.blog)).toBeTruthy();
   });
 
   test('should not be active', () => {
@@ -23,7 +23,7 @@ describe('home page', () => {
   });
 
   test('not active', () => {
-    expect(isActive(routes.learn, routes.home)).toBeFalsy();
-    expect(isActive(routes.home, routes.blogs)).toBeFalsy();
+    expect(isActive(routes.blog, routes.home)).toBeFalsy();
+    expect(isActive(routes.home, routes.blog)).toBeFalsy();
   });
 });
