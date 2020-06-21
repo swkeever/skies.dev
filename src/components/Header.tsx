@@ -25,19 +25,16 @@ export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
           ml-4
           flex-none
           tracking-wider
-          font-bold
-          uppercase
           mt-3
           text-lg
           text-onPrimary
           hover:text-onPrimary
-          hover:font-bold
         `}
       >
         <span className="mr-1 " role="img" aria-label="Man technologist">
           👨‍💻
         </span>
-        Sean Keever
+        skies.dev
       </Link>
       <Nav />
       <ThemeToggle lightTheme={lightTheme} setLightTheme={setLightTheme} />

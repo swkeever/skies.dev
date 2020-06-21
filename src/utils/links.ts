@@ -1,6 +1,6 @@
 import routes from './routes';
 
-const siteUrlShort = 'swkeever.github.io';
+const siteUrlShort = 'skies.dev';
 const siteUrl = `https://${siteUrlShort}`;
 const withSiteUrl = (pathname: string): string => `${siteUrl}${pathname}`;
 
@@ -10,7 +10,7 @@ const links = {
   github: 'https://www.github.com/swkeever',
   linkedIn: 'https://www.linkedin.com/in/swkeever',
   twitter: 'https://www.twitter.com/swkeever',
-  sourceRepo: 'https://github.com/swkeever/swkeever.github.io',
+  sourceRepo: 'https://github.com/swkeever/skies.dev',
   shareTo: {
     facebook: (pathname: string): string => `https://www.facebook.com/sharer/sharer.php?u=${withSiteUrl(pathname)}`,
     linkedIn: (pathname: string): string => `https://www.linkedin.com/shareArticle?mini=true&url=${withSiteUrl(
@@ -18,7 +18,7 @@ const links = {
     )}&title=&summary=&source=`,
     twitter: (pathname: string): string => `https://twitter.com/intent/tweet?text=${withSiteUrl(pathname)}`,
   },
-  editOnGithub: (filepath: string): string => `https://github.com/swkeever/swkeever.github.io/edit/develop/src/${filepath}`,
+  editOnGithub: (filepath: string): string => `https://github.com/swkeever/skies.dev/edit/develop/src/${filepath}`,
   discussOnTwitter: (filepath: string): string => `https://www.twitter.com/search?q=${siteUrl}${filepath}`,
 };
 

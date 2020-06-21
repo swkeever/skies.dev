@@ -109,7 +109,7 @@ export default function Nav() {
         className={`
           list-none
           m-0
-          lg:ml-48
+          lg:ml-40
           flex
           lg:justify-start
           uppercase

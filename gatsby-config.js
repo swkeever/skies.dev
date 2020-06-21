@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://swkeever.github.io',
+    siteUrl: 'https://skies.dev',
     handle: 'swkeever',
   },
   plugins: [
@@ -120,8 +120,8 @@ module.exports = {
     // {
     //   resolve: 'gatsby-plugin-robots-txt',
     //   options: {
-    //     host: 'https://swkeever.github.io',
-    //     sitemap: 'https://swkeever.github.io/sitemap.xml',
+    //     host: 'https://skies.dev',
+    //     sitemap: 'https://skies.dev/sitemap.xml',
     //     policy: [{ userAgent: '*', allow: '/' }],
     //   },
     // },
