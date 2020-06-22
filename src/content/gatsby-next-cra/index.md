@@ -44,7 +44,7 @@ about what your site is about, making it harder for your page to show up in
 search results.
 
 Assuming SEO is not a priority, CRA is just so easy to get up and running and
-has a great developer experience. so it could be a great option. However, if you
+has a great developer experience, so it could be a great option. However, if you
 want to build a site that is easier for web crawlers to index your webpage, then
 you might want to look at either Gatsby or Next.
 
