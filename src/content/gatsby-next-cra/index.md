@@ -56,11 +56,11 @@ the HTML produced by your React (JavaScript) code. With this, the crawler can
 better understand your webpage which can help your page rank higher in search
 results.
 
-Gatsby has a huge array of [plugins](https://www.gatsbyjs.org/plugins/) that
-make a lot of things about making a website easy and convenient. For example,
-there are plugins for generating a sitemap, lazy-loading images, accessing the
-filesystem, and so much more. Gatsby also has a great community and ecosystem of
-people working to continuously improve it.
+Gatsby also has a huge array of [plugins](https://www.gatsbyjs.org/plugins/)
+that make a lot of things about making a website easy and convenient. For
+example, there are plugins for generating a sitemap, lazy-loading images,
+accessing the filesystem, and so much more. Gatsby also has a great community
+and ecosystem of people working to continuously improve it.
 
 One of the core features of Gatsby is that it uses
 [GraphQL](https://www.gatsbyjs.org/docs/graphql/) to integrate Gatsby plugins
