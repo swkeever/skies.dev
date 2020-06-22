@@ -103,7 +103,7 @@ rendering.
 
 ## Next.js
 
-[Next.js](https://nextjs.org/) is a framework that lets you choose to statically
+[Next.js](https://nextjs.org) is a framework that lets you choose to statically
 generate or server-side render any web page of your site. With server-side
 rendering, your JavaScript code is hydrated on the fly, instead of at build
 time. This is great for dynamic pages like a logged-in user's news feed. In
