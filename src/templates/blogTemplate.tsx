@@ -46,10 +46,7 @@ export default function Blog({
           fluid={frontmatter.siteImage.childImageSharp.fluid}
           alt={frontmatter.title}
         />
-        <article
-          className="mt-8 lg:-mt-4"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <article className="mt-8" dangerouslySetInnerHTML={{ __html: html }} />
         <Connection className="ml-auto mt-8 md:mr-8 relative z-10 w-7/12  h-full " />
       </BlogContainer>
 

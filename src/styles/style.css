@@ -184,7 +184,7 @@ article a:hover {
 }
 
 blockquote {
-  @apply mt-2 pb-4 pt-5 pl-3 bg-neutralBgSoft text-lg text-onNeutralBgSoft border-l-4 border-primary;
+  @apply mt-2 pb-1 pt-5 pl-3 bg-neutralBgSoft text-lg text-onNeutralBgSoft border-l-4 border-primary;
 }
 
 .list {

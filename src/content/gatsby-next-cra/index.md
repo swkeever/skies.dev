@@ -1,0 +1,149 @@
+---
+slug: gatsby-vs-next-vs-cra
+date: 2020-06-22
+title:
+  Gatsby.js vs Next.js vs Create React App - What should you choose for your
+  next project?
+description:
+  With so many ways to build an application in React.js, it can be confusing to
+  know which framework to build your app with. In this article, I explain each
+  option to help you decide.
+tags:
+  - JavaScript
+  - Web Development
+  - React
+siteImage: index.png
+socialImage: social.png
+---
+
+## Introduction
+
+Create React App, Gatsby.js, and Next.js are frameworks for writing web
+applications in React.js. With so many ways to build React apps, it can be
+confusing to know which framework to choose for building your web app. In this
+article, I describe what each framework excels at and when you might choose one
+framework over another based on different circumstances.
+
+## Create React App
+
+[Create React App (CRA)](https://github.com/facebook/create-react-app) is a
+script that quickly spins up a React project and let's you start coding right
+away.
+
+The great thing about CRA is that it is dead simple to set up. There is
+basically no configuration to get up and running. This lets you to focus on
+coding your app right away, instead of worrying about configuration files.
+
+I would recommend using CRA for projects where
+[SEO](https://en.wikipedia.org/wiki/Search_engine_optimization) is not a
+requirement. If you view page source on an app built in CRA, you will see a
+`<script>` tag that links the React application, and that's about it. Web
+crawlers parse HTML to extract information about the web page, so if all it sees
+is that it loads some JavaScript, then the crawler does not get as much context
+about what your site is about, making it harder for your page to show up in
+search results.
+
+Assuming SEO is not a priority, CRA is just so easy to get up and running and
+has a great developer experience. so it could be a great option. However, if you
+want to build a site that is easier for web crawlers to index your webpage, then
+you might want to look at either Gatsby or Next.
+
+## Gatsby.js
+
+[Gatsby.js](https://www.gatsbyjs.org/) is a static site generator for your React
+app. This means when a web crawler is looking at your website, it can see all
+the HTML produced by your React (JavaScript) code. With this, the crawler can
+better understand your webpage which can help your page rank higher in search
+results.
+
+Gatsby has a huge array of [plugins](https://www.gatsbyjs.org/plugins/) that
+make a lot of things about making a website easy and convenient. For example,
+there are plugins for generating a sitemap, lazy-loading images, accessing the
+filesystem, and so much more. Gatsby also has a great community and ecosystem of
+people working to continuously improve it.
+
+One of the core features of Gatsby is that it uses
+[GraphQL](https://www.gatsbyjs.org/docs/graphql/) to integrate Gatsby plugins
+and data-fetching. For example, if you are using the
+[gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/) plugin, you
+would need to go through the GraphQL data layer.
+
+```javascript
+import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+
+// fetching hello.jpg from GraphQL data layer
+export default function HelloImage() {
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "example.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
+  return <Img fluid={data.file.childImageSharp.fluid} alt="hello!" />;
+}
+```
+
+I recommend using Gatsby when you need your site to be SEO friendly and
+performant. Gatsby's rich plugin ecosystem makes building fast sites easy. If
+the content on your site is static and can be updated at build-time, then Gatsby
+is a great choice.
+
+> The skies.dev website uses Gatsby.
+
+If your app is more dynamic, and requires dynamic data on each page request,
+then you may want to look at Next.js, which offers out of the box server side
+rendering.
+
+## Next.js
+
+[Next.js](https://nextjs.org/) is a framework that lets you choose to statically
+generate or server-side render any web page of your site. With server-side
+rendering, your JavaScript code is hydrated on the fly, instead of at build
+time. This is great for dynamic pages like a logged in user's news feed. In
+these situations, your app would need to fetch data unique to that user to serve
+personalized content on demand.
+
+For content that doesn't change often, like your marketing pages, documentation,
+etc, Next gives you the option to statically generate pages. There are
+performance benefits to statically generate pages compared to server-side
+rendering pages so having this option is quite nice.
+
+With Next, you are getting the best of both words with statically generated
+pages as well as server-side rendered pages, making Next a great option for web
+apps.
+
+> **Question: It seems like Next does everything Gatsby does and more.** Not
+> exactly, Gatsby's plugin ecosystem alone is enough to still consider Gatsby
+> over Next in certain situations. I will write about my favorite Gatsby plugins
+> in a future post.
+
+## Other options
+
+If you need to customize the low level configuration of your app, you may want
+to create your own toolchain using a tool like
+[Webpack](https://webpack.js.org/). I probably wouldn't recommend going this
+route if you're a smaller team and need to focus on building and shipping your
+product. Going this route will require you to spend more time figuring out your
+own solutions for static generation, server-side rendering, and turn-key
+configuration the frameworks provide you.
+
+But if you have a large team of engineers and your app is operating at a scale
+that demands this customization, then going this route may be the best option.
+
+## Conclusion
+
+- Choose CRA for the easiest setup and development experience. A great option
+  when SEO is not a priority.
+- Choose Gatsby if the content on your site is static, when updates can happen
+  at build time. Gatsby is a great option for blogs, documentation, and marking
+  sites.
+- Choose Next if you want to build a web app with dynamic content. Next is a
+  great option for apps with news feeds, analytics dashboards, and otherwise
+  dynamic data.
