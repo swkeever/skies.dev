@@ -10,6 +10,7 @@ module.exports = {
     './src/**/*.tsx',
     './src/**/*.js',
     './src/**/*.ts',
+    './src/**/*.css',
   ],
   theme: {
     extend: {
