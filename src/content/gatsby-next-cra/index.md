@@ -66,7 +66,7 @@ One of the core features of Gatsby is that it uses
 [GraphQL](https://www.gatsbyjs.org/docs/graphql/) to integrate Gatsby plugins
 and data-fetching. For example, if you are using the
 [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/) plugin, you
-would need to go through the GraphQL data layer.
+would need to go through the GraphQL data layer to fetch `example.jpg`.
 
 ```javascript
 import { useStaticQuery, graphql } from 'gatsby';
