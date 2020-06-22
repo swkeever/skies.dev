@@ -1,5 +1,5 @@
 ---
-slug: gatsby-vs-next-vs-cra
+slug: cra-gatsby-next
 date: 2020-06-22
 title:
   Gatsby.js vs Next.js vs Create React App - What should you choose for your
