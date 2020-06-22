@@ -3,6 +3,7 @@ import { Link } from '@reach/router';
 import ThemeToggle from './ThemeToggle';
 import Nav from './Nav';
 import routes from '../utils/routes';
+import Logo from '../../assets/logo.svg';
 
 type HeaderProps = {
   lightTheme: boolean;
@@ -22,19 +23,12 @@ export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
           lg:fixed
           top-0
           left-0
-          ml-4
+          ml-3
           flex-none
-          tracking-wider
           mt-3
-          text-lg
-          text-onPrimary
-          hover:text-onPrimary
         `}
       >
-        <span className="mr-1 " role="img" aria-label="Man technologist">
-          👨‍💻
-        </span>
-        skies.dev
+        <Logo className="w-32 h-auto" />
       </Link>
       <Nav />
       <ThemeToggle lightTheme={lightTheme} setLightTheme={setLightTheme} />

@@ -1,10 +1,5 @@
 import React, { ReactNode } from 'react';
-import {
-  FaHome,
-  FaRegLightbulb,
-  FaScroll,
-  FaTelegramPlane,
-} from 'react-icons/fa';
+import { FaHome, FaRegLightbulb, FaTelegramPlane } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
 import routes from '../utils/routes';
 
@@ -123,10 +118,6 @@ export default function Nav() {
             `}
           />
           <Name name="Home" />
-        </Item>
-        <Item route={routes.about}>
-          <FaScroll className={iconStyles} />
-          <Name name="About" />
         </Item>
         <Item route={routes.blog}>
           <FaRegLightbulb className={iconStyles} />

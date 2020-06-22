@@ -1,6 +1,7 @@
 import React from 'react';
 import BlogsContainer from './BlogsContainer';
 import Bulb from '../../../assets/bulb.svg';
+import { blogDescription } from '../../pages/blog';
 
 export default function Header() {
   return (
@@ -30,7 +31,7 @@ export default function Header() {
               mb-4
             `}
           >
-            A blog on software engineering.
+            A Blog on Software Engineering
           </h1>
           <p
             className={`
@@ -41,8 +42,7 @@ export default function Header() {
               text-onPrimarySoft
             `}
           >
-            I write about technology, web development, and anything else I feel
-            is important.
+            {blogDescription}
           </p>
         </BlogsContainer>
       </div>

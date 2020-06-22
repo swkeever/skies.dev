@@ -14,7 +14,7 @@ describe('blog path', () => {
 });
 
 test('ignore trailing slash', () => {
-  expect(isActive(`${routes.about}/`, routes.about)).toBeTruthy();
+  expect(isActive(`${routes.resume}/`, routes.resume)).toBeTruthy();
 });
 
 describe('home page', () => {

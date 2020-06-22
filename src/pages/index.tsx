@@ -38,9 +38,8 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO
-        title="Full Stack Developer"
-        description="Sean Keever is a software engineer specializing in JavaScript,
-    Java, and Python."
+        title="Software Engineering Blog"
+        description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
         keywords={[
           'Sean Keever',
           'software engineer',
@@ -63,18 +62,6 @@ const IndexPage = () => {
             I&apos;m a software engineer, designer, and technology enthusiast
             from Seattle, WA.
           </p>
-          <Button
-            tag="Link"
-            to={routes.resume}
-            color="primary"
-            className={`
-                mt-4
-                mb-8
-                lg:mt-6
-              `}
-          >
-            Learn more
-          </Button>
         </Content>
         <Product className={`${svgStyles} `} />
       </Section>

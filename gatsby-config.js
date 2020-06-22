@@ -102,7 +102,7 @@ module.exports = {
         description:
           'Sean Keever is a full stack developer who writes about software engineering.',
         lang: 'en',
-        icon: 'src/content/technologist.png',
+        icon: 'src/images/favicon.png',
         start_url: '/',
         background_color: '#f7fafc',
         theme_color: '#4299e1',
@@ -115,15 +115,21 @@ module.exports = {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         createLinkInHead: true,
+        exclude: ['/resume'],
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-robots-txt',
-    //   options: {
-    //     host: 'https://skies.dev',
-    //     sitemap: 'https://skies.dev/sitemap.xml',
-    //     policy: [{ userAgent: '*', allow: '/' }],
-    //   },
-    // },
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-netlify-cache',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.skies.dev',
+        sitemap: 'https://www.skies.dev/sitemap.xml',
+        policy: [
+          { userAgent: '*', disallow: ['/resume/'] },
+          { userAgent: '*', allow: '/' },
+        ],
+      },
+    },
   ],
 };

@@ -3,11 +3,11 @@ import { FaCode, FaTools, FaConnectdevelop } from 'react-icons/fa';
 import { useStaticQuery, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
-import Education from '../components/about/Education';
-import Header from '../components/about/CVHeader';
-import Experience from '../components/about/Experience';
-import Skills from '../components/about/Skills';
-import Basics from '../components/about/Basics';
+import Education from '../components/resume/Education';
+import Header from '../components/resume/CVHeader';
+import Experience from '../components/resume/Experience';
+import Skills from '../components/resume/Skills';
+import Basics from '../components/resume/Basics';
 import SEO from '../components/SEO';
 
 export type IExperience = {

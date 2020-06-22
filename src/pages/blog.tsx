@@ -69,6 +69,8 @@ export type Blog = {
   imageSrc: string;
 };
 
+export const blogDescription = 'Explore articles on software engineering, computer science, web development, and more.';
+
 export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
@@ -200,7 +202,7 @@ export default function BlogsPage() {
     >
       <SEO
         title="Blog"
-        description="Learn about software engineering, computer science, and web development."
+        description={blogDescription}
         keywords={filterTags
           .map((t) => t.name)
           .concat(['blog', 'learn', 'how to'])}

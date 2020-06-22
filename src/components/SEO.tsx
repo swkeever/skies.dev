@@ -44,8 +44,8 @@ export default function SEO({
   const seo: SEO = {
     title:
       pathname === routes.home
-        ? `Sean Keever | ${title}`
-        : `${title} | Sean Keever`,
+        ? `skies.dev | ${title}`
+        : `${title} | skies.dev`,
     description,
     url: `${site.siteMetadata.siteUrl}${pathname}`,
     image,
