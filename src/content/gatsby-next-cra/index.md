@@ -27,12 +27,12 @@ framework over another based on different circumstances.
 ## Create React App
 
 [Create React App (CRA)](https://github.com/facebook/create-react-app) is a
-script that quickly spins up a React project and let's you start coding right
+script that quickly spins up a React project and lets you start coding right
 away.
 
 The great thing about CRA is that it is dead simple to set up. There is
-basically no configuration to get up and running. This lets you to focus on
-coding your app right away, instead of worrying about configuration files.
+basically no configuration to get up and running. This lets you focus on coding
+your app right away, instead of worrying about configuration files.
 
 I would recommend using CRA for projects where
 [SEO](https://en.wikipedia.org/wiki/Search_engine_optimization) is not a
@@ -97,8 +97,8 @@ is a great choice.
 
 > The skies.dev website uses Gatsby.
 
-If your app is more dynamic, and requires dynamic data on each page request,
-then you may want to look at Next.js, which offers out of the box server side
+If your app is more dynamic and requires dynamic data on each page request, then
+you may want to look at Next.js, which offers out of the box server-side
 rendering.
 
 ## Next.js
@@ -106,16 +106,16 @@ rendering.
 [Next.js](https://nextjs.org/) is a framework that lets you choose to statically
 generate or server-side render any web page of your site. With server-side
 rendering, your JavaScript code is hydrated on the fly, instead of at build
-time. This is great for dynamic pages like a logged in user's news feed. In
+time. This is great for dynamic pages like a logged-in user's news feed. In
 these situations, your app would need to fetch data unique to that user to serve
-personalized content on demand.
+personalized content on-demand.
 
 For content that doesn't change often, like your marketing pages, documentation,
 etc, Next gives you the option to statically generate pages. There are
 performance benefits to statically generate pages compared to server-side
 rendering pages so having this option is quite nice.
 
-With Next, you are getting the best of both words with statically generated
+With Next, you are getting the best of both worlds with statically generated
 pages as well as server-side rendered pages, making Next a great option for web
 apps.
 
@@ -126,7 +126,7 @@ apps.
 
 ## Other options
 
-If you need to customize the low level configuration of your app, you may want
+If you need to customize the low-level configuration of your app, you may want
 to create your own toolchain using a tool like
 [Webpack](https://webpack.js.org/). I probably wouldn't recommend going this
 route if you're a smaller team and need to focus on building and shipping your
@@ -141,8 +141,8 @@ that demands this customization, then going this route may be the best option.
 
 - Choose CRA for the easiest setup and development experience. A great option
   when SEO is not a priority.
-- Choose Gatsby if the content on your site is static, when updates can happen
-  at build time. Gatsby is a great option for blogs, documentation, and marking
+- Choose Gatsby if the content on your site is static and updates can happen at
+  build time. Gatsby is a great option for blogs, documentation, and marking
   sites.
 - Choose Next if you want to build a web app with dynamic content. Next is a
   great option for apps with news feeds, analytics dashboards, and otherwise
