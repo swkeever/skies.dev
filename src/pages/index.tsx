@@ -78,7 +78,7 @@ const IndexPage = () => {
             </p>
             <Button
               tag="Link"
-              to={routes.blogs}
+              to={routes.blog}
               color="light"
               className="mt-4 mb-8 lg:mt-6"
             >
