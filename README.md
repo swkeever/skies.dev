@@ -1,6 +1,6 @@
 # ☁️ skies.dev | Software Engineering Blog ☁️
 
-[https://skies.dev](https://skies.dev)
+🔗 [https://skies.dev](https://skies.dev)
 
 This site serves as an **open-source blog for software engineers**. Our goal is
 teach the world about software engineering, web development, computer science,
@@ -11,12 +11,12 @@ software engineers!
 
 ## Contributing 🤝
 
-### Writing articles ✍️
+### ✍️ Writing articles
 
 **Do you want to help the world learn about software development?** I am looking
 for content creators! Check out [how to post an article](src/content).
 
-### Issues 😱
+### 😱 Issues
 
 Please consider [opening an issue](https://github.com/swkeever/skies.dev/issues)
 if you see are any issues with the site.
