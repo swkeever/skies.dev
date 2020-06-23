@@ -14,7 +14,7 @@ software engineers!
 ### ✍️ Writing articles
 
 **Do you want to help the world learn about software development?** I am looking
-for content creators! Check out [how to post an article](src/content).
+for content creators! Check out [how to post an article](src/content/README.md).
 
 ### 😱 Issues
 
