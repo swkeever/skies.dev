@@ -1,4 +1,4 @@
-# skies.dev | Software Engineering Blog
+# ☁️ skies.dev | Software Engineering Blog ☁️
 
 [skies.dev](https://skies.dev) is forked from
 [Gatsby's default starter](https://github.com/gatsbyjs/gatsby-starter-default).
