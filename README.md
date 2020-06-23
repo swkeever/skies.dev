@@ -1,4 +1,4 @@
-# ☁️ skies.dev | Software Engineering Blog ☁️
+# ☁️ skies.dev | software engineering blog ☁️
 
 🔗 [https://skies.dev](https://skies.dev)
 
