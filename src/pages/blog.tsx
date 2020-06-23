@@ -19,6 +19,7 @@ function getInitialTags(data): Tag[] {
       }
     });
   });
+  validTags.sort();
   return validTags.map((t) => ({ name: t, selected: false }));
 }
 
