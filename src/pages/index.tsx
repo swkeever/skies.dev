@@ -63,7 +63,7 @@ const IndexPage = () => {
             from Seattle, WA.
           </p>
         </Content>
-        <Product className={`${svgStyles} `} />
+        <Product className={`${svgStyles} mt-6`} />
       </Section>
 
       <div className="relative bg-primary diagonal-m pt-8 pb-16 md:pt-20 md:pb-20">

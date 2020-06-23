@@ -153,7 +153,7 @@ export default function CVPage() {
   `);
 
   return (
-    <Layout hidden={hidden}>
+    <Layout hidden>
       <div
         className={`
         diagonal-t
@@ -165,7 +165,7 @@ export default function CVPage() {
       `}
       />
       <SEO
-        title="About"
+        title="Resume"
         description="Read about Sean Keever's experience as a software engineer."
         keywords={[
           'Sean Keever',
