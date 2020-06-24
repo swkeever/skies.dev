@@ -27,6 +27,8 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
       <Empty
         className={`
           max-w-2xl
+          w-full
+          px-4
           mx-auto 
           h-auto 
           mb-12
