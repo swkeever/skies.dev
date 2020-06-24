@@ -10,7 +10,6 @@ description:
 tags:
   - Gatsby
   - Tailwind CSS
-  - PurgeCSS
 siteImage: index.png
 socialImage: social.png
 ---
