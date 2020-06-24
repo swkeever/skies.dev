@@ -17,7 +17,7 @@ engineers!
 Let's say you are creating the article that will be located at
 `https://skies.dev/blog/my-article`.
 
-1. Create a new folder in `/src/content/my-article`. From this point on, all the
+1. Create `/src/content/my-article`. From this point on, all the
    files discussed are located in this directory. 📁
 2. Copy/paste the following frontmatter and place it at the top of a file named
    `index.md`.
