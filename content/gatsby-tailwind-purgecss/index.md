@@ -1,17 +1,14 @@
 ---
 slug: gatsby-tailwind-purgecss
 date: 2020-06-23
-title:
-  How to Stop PurgeCSS from Removing Markdown Page Styles in Gatsby and Tailwind
-  CSS
+title: How To Use PurgeCSS with Gatsby and Tailwind CSS
 description:
   How to tell PurgeCSS to not remove styles that are sourced from markdown
   files.
 tags:
   - Gatsby
   - Tailwind CSS
-siteImage: index.png
-socialImage: social.png
+image: index.jpg
 ---
 
 ## Problem

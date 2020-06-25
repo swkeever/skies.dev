@@ -1,15 +1,14 @@
 ---
 slug: personal-statement
 date: 2020-06-12
-title: University of Washington Computer Science Personal Statement
+title: Personal Statement that Got Me Into UW CSE
 description:
   The personal statement that got me into the computer science and engineering
   department at the University of Washington.
 tags:
   - Computer Science
   - College
-siteImage: index.png
-socialImage: social.png
+image: index.jpg
 ---
 
 ## Context

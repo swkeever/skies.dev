@@ -1,8 +1,7 @@
 ---
 slug: course-advice
 date: 2020-05-25
-title:
-  (WIP) Best Computer Science Courses for Frontend, Backend, and Data Science
+title: (WIP) Best Computer Science Courses for Industry
 description:
   What computer science courses best prepare students for industry software
   engineer titles including frontend, backend, and data science.
@@ -10,8 +9,7 @@ tags:
   - College
   - Software Engineering
   - Computer Science
-siteImage: index.png
-socialImage: social.png
+image: index.jpg
 ---
 
 ## Introduction

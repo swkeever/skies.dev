@@ -6,8 +6,7 @@ description: Binary search can greatly speed up the execution of your programs
 tags:
   - Algorithms
   - Computer Science
-siteImage: index.png
-socialImage: social.png
+image: index.jpg
 ---
 
 ## What is binary search?
