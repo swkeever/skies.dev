@@ -38,7 +38,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO
-        title="Software Engineering Blog"
+        title="A blog by Sean Keever"
         description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
         keywords={[
           'Sean Keever',
