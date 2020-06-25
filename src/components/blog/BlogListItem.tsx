@@ -3,10 +3,8 @@ import { Link } from '@reach/router';
 import Img from 'gatsby-image';
 import { Blog } from '../../pages/blog';
 import { slugToLink } from '../../utils/links';
-import BlogMeta from '../BlogMeta';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
-  console.log(blog);
   const li = (
     <li
       className={`
@@ -31,7 +29,10 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
         <div className="absolute top-0 left-0 z-10">
           <ul className="ml-2 mt-2 list-none flex flex-wrap">
             {blog.tags.map((t) => (
-              <li className="bg-neutralBg mr-1 shadow- text-sm font-medium text-onNeutralBgSoft rounded-full px-2">
+              <li
+                key={`${blog.title}-${t}`}
+                className="bg-neutralBg mr-1 shadow- text-sm font-medium text-onNeutralBgSoft rounded-full px-2"
+              >
                 {t}
               </li>
             ))}

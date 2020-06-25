@@ -1,5 +1,3 @@
-@tailwind base;
-
 :root {
   --color-primary-100: #EBF8FF;
   --color-primary-200: #BEE3F8;
@@ -25,6 +23,8 @@
   --color-light: white;
   --color-onLight: var(--color-primary-900);
 }
+
+@tailwind base;
 
 .theme-light {
   /* base */
