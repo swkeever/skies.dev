@@ -24,14 +24,14 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
     >
       <Link
         to={slugToLink(blog.slug)}
-        className="grid grid-flow-row grid-rows-4 h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
+        className="grid relative grid-flow-row grid-rows-4 h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
       >
         <div className="absolute top-0 left-0 z-10">
           <ul className="ml-2 mt-2 list-none flex flex-wrap">
             {blog.tags.map((t) => (
               <li
                 key={`${blog.title}-${t}`}
-                className="bg-neutralBg mr-1 shadow- text-sm font-medium text-onNeutralBgSoft rounded-full px-2"
+                className="bg-neutralBg mr-2 shadow- text-sm font-semibold text-onNeutralBgSoft rounded-full px-2"
               >
                 {t}
               </li>

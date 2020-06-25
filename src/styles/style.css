@@ -174,15 +174,11 @@ pre {
 }
 
 a {
-  @apply text-onNeutralBgLink;
+  @apply text-onNeutralBgLink pb-1 border-b border-primarySoft;
 }
 
 a:hover {
-  @apply text-onNeutralBgLinkHover;
-}
-
-article a:hover {
-  @apply pb-1 border-b border-onNeutralBgLinkHover;
+  @apply text-onNeutralBgLinkHover pb-1 border-b border-onNeutralBgLinkHover;
 }
 
 blockquote {
