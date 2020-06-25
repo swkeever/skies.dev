@@ -32,9 +32,6 @@ export type BlogFrontmatter = {
   image: {
     childImageSharp: {
       fluid: FluidObject;
-      original: {
-        src: string;
-      };
     };
   };
 };
@@ -68,8 +65,7 @@ export type Blog = {
   date: string;
   tags: string[];
   body: string;
-  imageFluid: FluidObject;
-  imageSrc: string;
+  image: FluidObject;
 };
 
 export const blogDescription = 'Explore articles on software engineering, computer science, web development, and more.';
@@ -86,17 +82,10 @@ export default function BlogsPage() {
               date
               tags
               description
-              siteImage {
+              image {
                 childImageSharp {
-                  fluid(maxWidth: 400) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
-              }
-              socialImage {
-                childImageSharp {
-                  original {
-                    src
+                  fluid(maxWidth: 700) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -124,13 +113,7 @@ export default function BlogsPage() {
   const allBlogs: Blog[] = data.allMarkdownRemark.edges.map((e) => {
     const { id, timeToRead, rawMarkdownBody } = e.node;
     const {
-      title,
-      slug,
-      description,
-      date,
-      tags,
-      siteImage,
-      socialImage,
+      title, slug, description, date, tags, image,
     } = e.node.frontmatter;
     const dateFormat = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -146,8 +129,7 @@ export default function BlogsPage() {
       date: dateFormat,
       tags,
       body: rawMarkdownBody,
-      imageFluid: siteImage.childImageSharp.fluid,
-      imageSrc: socialImage.childImageSharp.original.src,
+      image: image.childImageSharp.fluid,
     };
   });
   const [blogs, setBlogs] = useState(allBlogs);

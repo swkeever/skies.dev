@@ -1,9 +1,7 @@
 ---
 slug: cra-gatsby-next
 date: 2020-06-22
-title:
-  Create React App vs Gatsby.js vs Next.js - What should you choose for your
-  next project?
+title: Create React App vs Gatsby.js vs Next.js
 description:
   With so many ways to build an application in React.js, it can be confusing to
   know which framework to build your app with. In this article, I explain each
@@ -12,8 +10,7 @@ tags:
   - JavaScript
   - Web Development
   - React
-siteImage: index.png
-socialImage: social.png
+image: index.jpg
 ---
 
 ## Introduction

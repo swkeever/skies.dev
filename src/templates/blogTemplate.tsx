@@ -9,6 +9,7 @@ import links from '../utils/links';
 import BlogContainer from '../components/article/BlogContainer';
 import SEO from '../components/SEO';
 import Connection from '../../assets/connection.svg';
+import { BlogFrontmatter } from '../pages/blog';
 
 export default function Blog({
   data, // this prop will be injected by the GraphQL query below.
@@ -16,7 +17,10 @@ export default function Blog({
   data: any;
 }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark;
+  const {
+    frontmatter,
+    html,
+  }: { frontmatter: BlogFrontmatter; html: string } = markdownRemark;
 
   const filepath = markdownRemark.fileAbsolutePath.split('/src/')[1];
 
@@ -32,7 +36,7 @@ export default function Blog({
         title={frontmatter.title}
         description={frontmatter.description}
         keywords={frontmatter.tags}
-        image={frontmatter.socialImage.childImageSharp.original.src}
+        image={frontmatter.image.childImageSharp.fluid.src}
       />
       <BlogHeader
         title={frontmatter.title}
@@ -42,8 +46,8 @@ export default function Blog({
 
       <BlogContainer>
         <Img
-          className="w-48 md:w-64 ml-auto -mt-24 md:-mt-32 lg:-mt-40 lg:w-5/12 mr-2 relative z-10"
-          fluid={frontmatter.siteImage.childImageSharp.fluid}
+          className="mt-5 relative z-10 w-full h-auto"
+          fluid={frontmatter.image.childImageSharp.fluid}
           alt={frontmatter.title}
         />
         <article className="mt-8" dangerouslySetInnerHTML={{ __html: html }} />
@@ -66,17 +70,10 @@ export const pageQuery = graphql`
         title
         description
         tags
-        siteImage {
+        image {
           childImageSharp {
             fluid(maxWidth: 700) {
               ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        socialImage {
-          childImageSharp {
-            original {
-              src
             }
           }
         }
