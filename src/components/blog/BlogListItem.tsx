@@ -31,7 +31,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
             {blog.tags.map((t) => (
               <li
                 key={`${blog.title}-${t}`}
-                className="bg-neutralBg mr-2 shadow- text-sm font-semibold text-onNeutralBgSoft rounded-full px-2"
+                className="bg-neutralBg mr-2 shadow-sm text-sm font-semibold text-onNeutralBgSoft rounded-full px-2"
               >
                 {t}
               </li>
