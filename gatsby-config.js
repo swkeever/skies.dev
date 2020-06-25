@@ -1,6 +1,8 @@
+const config = require('./site.config');
+
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://skies.dev',
+    siteUrl: config.siteUrl,
     handle: 'swkeever',
   },
   plugins: [
@@ -14,14 +16,14 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: `${__dirname}/src/content`,
+        path: `${__dirname}/content`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/images`,
       },
     },
     'gatsby-plugin-react-helmet',
@@ -96,16 +98,15 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "Sean Keever's personal page",
-        short_name: 'Sean Keever',
-        description:
-          'Sean Keever is a full stack developer who writes about software engineering.',
-        lang: 'en',
-        icon: 'src/images/favicon.png',
-        start_url: '/',
-        background_color: '#f7fafc',
-        theme_color: '#4299e1',
+        name: config.siteTitle,
+        short_name: config.siteTitleShort,
+        description: config.siteDescription,
+        start_url: config.pathPrefix,
+        lang: config.lang,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
         display: 'standalone',
+        icon: 'images/favicon.png',
       },
     },
     // 'gatsby-plugin-offline',

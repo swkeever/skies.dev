@@ -23,25 +23,27 @@ function getInitialTags(data): Tag[] {
   return validTags.map((t) => ({ name: t, selected: false }));
 }
 
+export type BlogFrontmatter = {
+  title: string;
+  slug: string;
+  date: string;
+  tags: string[];
+  description: string;
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+      original: {
+        src: string;
+      };
+    };
+  };
+};
+
 export type BlogMarkdownRemark = {
   allMarkdownRemark: {
     edges: {
       node: {
-        frontmatter: {
-          title: string;
-          slug: string;
-          date: string;
-          tags: string[];
-          description: string;
-          image: {
-            childImageSharp: {
-              fluid: FluidObject;
-              original: {
-                src: string;
-              };
-            };
-          };
-        };
+        frontmatter: BlogFrontmatter;
         id: string;
         timeToRead: number;
         rawMarkdownBody: string;

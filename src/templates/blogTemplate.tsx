@@ -28,7 +28,7 @@ export default function Blog({
     `}
     >
       <SEO
-        article
+        frontmatter={frontmatter}
         title={frontmatter.title}
         description={frontmatter.description}
         keywords={frontmatter.tags}
