@@ -311,7 +311,7 @@ input:checked+.slider:before {
 @tailwind utilities;
 
 .anchor {
-  @apply border-0;
+  @apply border-0 -mb-1;
 }
 
 .anchor:hover {
