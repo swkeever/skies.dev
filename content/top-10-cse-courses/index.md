@@ -3,8 +3,8 @@ slug: top-10-cse-courses
 date: 2020-06-25
 title: Top 10 Computer Science Courses
 description:
-  What computer science courses best prepare students for industry software
-  engineer titles including frontend, backend, and data science.
+  Check out the top 10 computer science courses and pointers to resources to
+  help learn each course on your own.
 tags:
   - College
   - Computer Science
