@@ -30,8 +30,9 @@ science program.
 
 It doesn't matter what part of the stack you are working on, software engineers
 need to develop data structures to represent models of the world. In this
-course, you will learn what it means to make abstractions, and you were learn
-about the abstractions that are commonly used to solve problems. You will learn
+course, you will learn what it means to create abstractions, and you will learn
+about the abstractions that are commonly used to solve problems. A course on
+data structures and algorithms will teach you
 
 - basic structures like lists, [stacks](https://skies.dev/blog/stacks), and
   queues
