@@ -187,7 +187,8 @@ article a:hover {
 }
 
 
-article blockquote {
+article blockquote,
+article aside {
   @apply mt-2 pb-1 pt-5 pl-3 bg-neutralBgSoft text-lg text-onNeutralBgSoft border-l-4 border-primary;
 }
 
