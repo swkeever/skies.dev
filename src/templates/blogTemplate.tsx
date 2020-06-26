@@ -46,7 +46,7 @@ export default function Blog({
 
       <BlogContainer>
         <Img
-          className="-mt-20 md:-mt-24 lg:-mt-32 border-8 border-neutralBg relative z-10 w-full mx-auto h-auto"
+          className="-mt-20 md:-mt-24 lg:-mt-32 border-4 border-neutralBg relative z-10 w-full mx-auto h-auto"
           fluid={frontmatter.image.childImageSharp.fluid}
           alt={frontmatter.title}
         />
