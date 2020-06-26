@@ -34,8 +34,7 @@ course, you will learn what it means to create abstractions, and you will learn
 about the abstractions that are commonly used to solve problems. A course on
 data structures and algorithms will teach you
 
-- basic structures like lists, [stacks](https://skies.dev/blog/stacks), and
-  queues
+- basic structures like lists, [stacks](/blog/stacks), and queues
 - more complex structures like trees and graphs
 - basic sorting and searching algorithms
 
@@ -43,7 +42,7 @@ This course directly teaches skills that are often tested during software
 engineer interviews, so strictly from a getting-a-job point of view, this course
 is extremely valuable.
 
-For learning about data structures, check out
+For learning about data structures and algorithms, check out
 [Princeton's course](https://courses.cs.washington.edu/courses/cse421/). This
 course will give you experience applying algorithms to real-world problems. Once
 you're comfortable with the basics, [Leetcode](https://leetcode.com/) has an
@@ -138,7 +137,8 @@ As necessary, supplement your learning with
 
 Let's say you've written a program in Java. But your computer doesn't understand
 Java. How do you turn your code from the Java language to a language the
-computer understands? There is a piece of software called a "compiler" for that.
+computer understands? There is a piece of software called a **compiler** for
+that.
 
 A course on compilers will give you a deeper understanding of programming
 languages and how they are implemented. It will demystify what is happening when
@@ -161,9 +161,16 @@ The internet is kind of a big deal. I mean, without it, you probably wouldn't be
 reading this article. But how do computers talk to each other? In a course on
 networks, you will learn how computers communicate over the network. You will
 learn about the technologies that are prevalent in today's networks, such as IP,
-TCP, UDP, HTTP, and so forth. Most software services need to be able to
-communicate over the network in some way, so having networking knowledge can
-come in handy.
+TCP, UDP, HTTP, and apparently, a lot of acronyms that end with P.
+
+<aside>
+<p>
+The P in the examples above stands for <strong>protocol</strong>.
+</p>
+</aside>
+
+Most software services need to be able to communicate over the network in some
+way, so having networking knowledge can come in handy.
 
 Check out
 [MIT's course](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-829-computer-networks-fall-2002/index.html)
@@ -201,11 +208,12 @@ database schemas for your own applications. Expect learning about
 - ACID transactions
 - two-phase commit protocol
 
-To learn databases, complete the SimpleDB project, where you will implement a
-SQL database. The
-[lab specifications](https://github.com/MIT-DB-Class/course-info-2018) and
-[project repo](https://github.com/MIT-DB-Class/simple-db-hw) are all you need to
-complete these labs.
+To learn databases, complete the
+[SimpleDB](https://github.com/MIT-DB-Class/simple-db-hw) project, where you will
+implement a SQL database that supports B-tree indexes, transactions, write-ahead
+logging, and query optimization. Use the
+[lab specifications](https://github.com/MIT-DB-Class/course-info-2018) to guide
+you.
 
 ## 10. Computer Security
 
@@ -245,10 +253,8 @@ right away.
 
 ![Robot playing a piano](ml.jpg)
 
-The future is now. Machine learning is the technology that recommends videos on
-YouTube, serves personalized ads, self-drives cars, and guesses "hot dog" or
-"not hot dog".
-
+Machine learning is the technology that recommends videos on YouTube, serves
+personalized ads, self-drives cars, and guesses "hot dog" or "not hot dog".
 **Spoiler alert:** It's math. In particular,
 
 - linear algebra
@@ -261,10 +267,10 @@ Andrew Ng is one of the leading educators in machine learning. Start with his
 Then, move on to the
 [Deep Learning specialization](https://www.coursera.org/specializations/deep-learning).
 
-If you want to go deep with designing novel machine learning algorithms, you
-should study the math subjects I listed above.
+If you want to go deep designing novel machine learning algorithms, you should
+be well equipped mathematically.
 [Professor Leonard](https://www.youtube.com/user/professorleonard57) is a great
-resource to get you started.
+resource to get you started learning math.
 
 ## Additional reading
 
