@@ -178,15 +178,6 @@ article a:hover {
   @apply text-onNeutralBgLinkHover pb-1 border-b border-onNeutralBgLinkHover;
 }
 
-.anchor {
-  @apply border-0;
-}
-
-.anchor:hover {
-  @apply border-0;
-}
-
-
 article blockquote,
 article aside {
   @apply mt-2 pb-1 pt-5 pl-3 bg-neutralBgSoft text-lg text-onNeutralBgSoft border-l-4 border-primary;
@@ -318,3 +309,11 @@ input:checked+.slider:before {
 }
 
 @tailwind utilities;
+
+.anchor {
+  @apply border-0;
+}
+
+.anchor:hover {
+  @apply border-0;
+}
