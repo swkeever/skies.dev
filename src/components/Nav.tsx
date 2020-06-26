@@ -3,19 +3,6 @@ import { FaHome, FaRegLightbulb, FaTelegramPlane } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
 import routes from '../utils/routes';
 
-export function isActive(pathname: string, route: string): boolean {
-  if (pathname.length === 1) {
-    return route === routes.home;
-  }
-  const pname = pathname[pathname.length - 1] === '/'
-    ? pathname.substring(0, pathname.length - 1)
-    : pathname;
-  if (pname.includes(routes.blog)) {
-    return pname.substring(0, routes.blog.length) === route;
-  }
-  return pname === route;
-}
-
 function Item({ route, children }: { route: string; children: ReactNode }) {
   const { pathname } = useLocation();
 
@@ -30,7 +17,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
         pt-1
         md:mb-3
         ${
-          isActive(pathname, route)
+          pathname === route
           && `
             lg:border-b-4
             lg:border-onPrimary
@@ -52,7 +39,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           pb-4
           md:py-2
         `}
-        style={isActive(pathname, route) ? { color: 'var(--color-light)' } : {}}
+        style={pathname === route ? { color: 'var(--color-light)' } : {}}
       >
         {children}
       </Link>

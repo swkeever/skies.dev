@@ -14,7 +14,6 @@ export default function BlogMeta({
   inline-block
   uppercase
   tracking-widest
-  text-sm
   `;
 
   return (

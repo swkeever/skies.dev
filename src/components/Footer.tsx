@@ -57,7 +57,12 @@ export default function Footer() {
         >
           {socialLinks.map((item) => (
             <li key={item.to}>
-              <a rel="noopener noreferrer" target="_blank" href={item.to}>
+              <a
+                className="text-onNeutralBgLink hover:text-onNeutralBgLinkHover"
+                rel="noopener noreferrer"
+                target="_blank"
+                href={item.to}
+              >
                 {item.icon}
                 {item.text}
               </a>

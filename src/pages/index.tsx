@@ -31,6 +31,7 @@ const IndexPage = () => {
   const headerStyles = `
   leading-none
   text-4xl 
+  font-bold
   lg:text-5xl
   mb-5
   `;

@@ -30,7 +30,7 @@ export default function ContactPage() {
       <div className="bg-primary diagonal-t pb-24 md:pb-40 xl:pb-56" />
       <Container className="-mt-4 px-4 md:px-8 pb-4 md:pt-12 md:pb-12 flex flex-col md:items-center md:flex-row">
         <div className="flex flex-col justify-center">
-          <h1 className="text-onNeutralBg text-4xl lg:text-5xl mt-0">
+          <h1 className="text-onNeutralBg font-bold text-4xl lg:text-5xl mt-0">
             Contact me
           </h1>
           <p className="text-onNeutralBgSoft mt-1 mb-4 text-lg lg:text-xl">

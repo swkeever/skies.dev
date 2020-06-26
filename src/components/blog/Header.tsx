@@ -1,7 +1,6 @@
 import React from 'react';
-import BlogsContainer from './BlogsContainer';
-import Bulb from '../../../assets/bulb.svg';
 import { blogDescription } from '../../pages/blog';
+import Blog from '../../../assets/blog.svg';
 
 export default function Header() {
   return (
@@ -10,64 +9,41 @@ export default function Header() {
         className={`
           diagonal-t 
           bg-primary
-          pt-px 
-          pb-24 
-          md:pb-20
+          z-0
+          md:pt-8
+          pb-16 
         `}
       >
-        <BlogsContainer>
-          <h1
-            className={`
-              w-11/12
-              mt-10
-              md:mt-5 
-              lg:mt-12
+        <div className="flex items-center px-4 pt-2 z-10 max-w-screen-md mx-auto">
+          <div className="">
+            <h1
+              className={`
               leading-none
-              text-3xl
-              md:text-4xl
+              text-4xl
+              lg:text-5xl
               text-onPrimary
-              md:w-7/12
-              lg:w-7/12
-              mb-4
+              font-bold
+              mt-8
             `}
-          >
-            A Blog on Software Engineering
-          </h1>
-          <p
+            >
+              A Blog on Software Engineering
+            </h1>
+            <p className="text-onPrimarySoft mt-4 text-lg lg:text-xl">
+              {blogDescription}
+            </p>
+          </div>
+
+          <Blog
             className={`
-              md:w-7/12
-              -mb-4
-              lg:w-6/12
-              md:text-lg
-              text-onPrimarySoft
-            `}
-          >
-            {blogDescription}
-          </p>
-        </BlogsContainer>
-      </div>
-      <BlogsContainer>
-        <Bulb
-          className={`
-            absolute 
-            right-0 
-            top-0
-            z-30
-            h-40
-            w-40
-            -mt-20
-            mr-4
-            md:w-64
-            md:h-64
-            md:-mt-40
-            md:mr-16
-            lg:w-4/12
-            lg:h-auto
-            lg:-mt-48
-            lg:mr-16
+            w-full
+            lg:w-7/12
+            h-auto
+            hidden
+            md:block
           `}
-        />
-      </BlogsContainer>
+          />
+        </div>
+      </div>
     </>
   );
 }

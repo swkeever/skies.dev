@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaSistrix } from 'react-icons/fa';
-import BlogsContainer from './BlogsContainer';
 
 export type Tag = {
   name: string;
@@ -30,14 +29,16 @@ export default function Search({
   };
 
   return (
-    <BlogsContainer className="mt-2 pb-8">
-      <label htmlFor="filter-input">
-        <span className="inline-block mb-3 text-onNeutralBgSoft">
+    <div className="max-w-lg mx-auto px-2 mt-2 pb-8">
+      <div className="">
+        <h2 className="text-xl font-normal mt-0 text-onNeutralBgSoft mb-5">
           What can I help you find?
-        </span>
-        <div>
-          <FaSistrix
-            className={`
+        </h2>
+        <label htmlFor="filter-input">
+          <span className="hidden">Search</span>
+          <div>
+            <FaSistrix
+              className={`
               inline
               text-2xl 
               absolute
@@ -45,49 +46,41 @@ export default function Search({
               ml-2
               z-30
             `}
-          />
-          <input
-            id="filter-input"
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-            }}
-            className={`
+            />
+            <input
+              id="filter-input"
+              value={filter}
+              onChange={(e) => {
+                setFilter(e.target.value);
+              }}
+              className={`
               -mt-8
               bg-neutralBgSoft
-              rounded-md
+              rounded-full
               text-onNeutral
               pl-10 
               pr-2
               relative
               py-2
-              w-9/12
-              md:w-6/12
+              w-full
               outline-none
               shadow-inner
               focus:shadow-focus
             `}
-            type="search"
-          />
-        </div>
-      </label>
-      <div className="mt-8">
-        <label className="block text-onNeutralBgSoft" htmlFor="tags">
-          <span>I&apos;m interested in</span>
-          <ul
-            id="tags"
-            className={`
-              list-none 
-              ml-0
-              my-1
-            `}
-          >
-            {tags.map((t, idx) => (
-              <li
-                key={t.name}
-                className={`${
-                  t.selected ? tagStyles.active : tagStyles.inactive
-                }
+              type="search"
+            />
+          </div>
+        </label>
+        <div className="mt-6">
+          <label htmlFor="tags">
+            <span className="hidden">Categories</span>
+            <ul id="tags">
+              {tags.map((t, idx) => (
+                <li
+                  key={t.name}
+                  className={`${
+                    t.selected ? tagStyles.active : tagStyles.inactive
+                  }
                   inline-block 
                   rounded-full 
                   px-4 
@@ -95,32 +88,33 @@ export default function Search({
                   mb-2
                   cursor-pointer
                 `}
-              >
-                <button
-                  type="button"
-                  className={`
+                >
+                  <button
+                    type="button"
+                    className={`
                     focus:outline-none
                     active:outline-none
                     font-medium
                     ${!t.selected ? 'text-onNeutralBgSoft' : 'text-onPrimary'}
                     
                   `}
-                  onClick={() => {
-                    const newTags = tags.slice();
-                    newTags[idx] = {
-                      name: t.name,
-                      selected: !t.selected,
-                    };
-                    setTags(newTags);
-                  }}
-                >
-                  {t.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </label>
+                    onClick={() => {
+                      const newTags = tags.slice();
+                      newTags[idx] = {
+                        name: t.name,
+                        selected: !t.selected,
+                      };
+                      setTags(newTags);
+                    }}
+                  >
+                    {t.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </label>
+        </div>
       </div>
-    </BlogsContainer>
+    </div>
   );
 }

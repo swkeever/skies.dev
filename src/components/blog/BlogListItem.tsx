@@ -45,7 +45,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
           alt={blog.title}
         />
 
-        <div className="bg-neutralBg pb-4 px-2">
+        <div className="bg-neutralBg py-2 px-2">
           <h2 className="relative leading-tight font-medium text-onNeutralBgSoft z-20 text-2xl ">
             {blog.title}
           </h2>

@@ -14,7 +14,7 @@ function Header({ children }: { children: ReactNode }) {
 export default function BlogList({ blogs }: { blogs: Blog[] }) {
   const children = blogs.length ? (
     <>
-      <Header>Click a card. Any card.</Header>
+      <Header>{`${blogs.length} result${blogs.length > 1 ? 's' : ''}.`}</Header>
       <ul className="list-none mb-0 max-w-6xl px-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogs.map((b) => (
           <BlogListItem key={b.id} blog={b} />

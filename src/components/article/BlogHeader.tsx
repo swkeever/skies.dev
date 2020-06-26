@@ -19,11 +19,9 @@ export default function BlogHeader({
         relative
         z-10
         diagonal-t
-        pt-2
-        pb-12
-        md:pb-12
-        lg:pb-4
-        -mb-4
+        pt-4
+        pb-24
+        md:pb-32
       `}
     >
       <BlogContainer className="lg:py-8">
@@ -35,18 +33,20 @@ export default function BlogHeader({
             text-onPrimary
             md:text-5xl
             lg:mt-0
+            font-bold
+            
           `}
         >
           {title}
         </h1>
-        <div className="flex flex-col md:flex-row justify-between">
+        <div className="mt-4 flex md:items-center flex-col md:flex-row md:justify-between">
           <BlogMeta
             date={date}
             timeToRead={timeToRead}
-            className="text-onPrimarySoft space-x-8"
+            className="text-onPrimarySoft space-x-6 text-sm md:text-base"
           />
           <ShareCallToAction
-            className="mt-2 -ml-1"
+            className=""
             linkClassName="text-onPrimarySoft hover:text-onPrimary"
           />
         </div>
