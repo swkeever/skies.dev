@@ -183,7 +183,7 @@ article a:hover {
 }
 
 .anchor:hover {
-  @apply border-0
+  @apply border-0;
 }
 
 
