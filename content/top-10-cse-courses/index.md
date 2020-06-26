@@ -13,15 +13,14 @@ image: index.jpg
 
 This article is geared toward 3rd-year computer science students or people that
 have some basic programming experience. You should know about loops,
-conditionals, function calls, exceptions, arrays, maps, and objects at a
-minimum. If you are a beginner, complete
-[this course](https://java-programming.mooc.fi/) first before tackling the
-following material.
+conditionals, functions, exceptions, arrays, maps, and objects at a minimum. If
+you are a beginner, complete [this course](https://java-programming.mooc.fi/)
+first before tackling the following material.
 
 If you aren't in a computer science program, that's OK! There are plenty of free
-resources to learn computer science on your own. I will point you to online
-courses and projects that you can complete for each course I list. The resources
-and projects are aimed to resemble what you would find in a university computer
+resources to learn computer science on your own. I will link to online courses
+and projects that you can complete to learn computer science on your own. The
+resources and projects resemble what you would find in a university computer
 science program.
 
 ## 1. Data Structures & Algorithms
@@ -39,7 +38,7 @@ data structures and algorithms will teach you
 - basic sorting and searching algorithms
 
 This course directly teaches skills that are often tested during software
-engineer interviews, so strictly from a getting-a-job point of view, this course
+engineer interviews, so strictly from a getting-a-job perspective, this course
 is extremely valuable.
 
 For learning about data structures and algorithms, check out
@@ -63,8 +62,9 @@ You've written the perfect solution to your program. How do you know your
 algorithm is correct? You can write unit tests, but how do you know the
 algorithm is correct for _all possible inputs_? For this, you would need to
 _prove_ your algorithm is correct. A course on analysis of algorithms will teach
-you how to design algorithms and rigorously prove their correctness. You will
-learn about
+you how to design algorithms and rigorously prove their correctness. This course
+will also take your ability to solve interview problems to the next level.
+Expect to learn
 
 - graph theory
 - greedy algorithms
@@ -81,7 +81,7 @@ algorithms to get you started.
 
 The goal of a course on programming languages is not to simply teach new
 languages. The goal is to teach _about_ programming languages. Programming
-languages come and go. Knowing about programming paradigms allows programmers to
+languages come and go. But knowing programming paradigms allows programmers to
 quickly pick up new languages because they are familiar with the underlying
 concepts. A course on programming languages will teach you about
 
@@ -96,11 +96,11 @@ To learn programming languages, check out the
 
 ![computer hardware](arch.jpg)
 
-Without a CPU, your code is just syntax in a text file. A course in computer
-architecture will give you a valuable perspective when working on software. For
-instance, you'll learn that disk is slower than main memory, and main memory is
-slower than an L1 cache. You'll learn that performance optimizations in hardware
-have even led to some critical security vulnerabilities, like
+Without hardware, there is no software. A course in computer architecture will
+give you a valuable perspective when working on software. For instance, you'll
+learn that disk is slower than main memory, and main memory is slower than an L1
+cache. You'll learn that performance optimizations in hardware have even led to
+some critical security vulnerabilities, like
 [Meldown and Spectre](https://meltdownattack.com/). You'll understand why we use
 GPUs to process matrices of data for machine learning. In a course on computer
 architecture, expect to learn about
@@ -123,8 +123,12 @@ An operating system is software that sits in the middle of your applications and
 your computer architecture. An OS is responsible for a lot of things, like
 concurrently running all your applications seamlessly, storing your files on
 disk, and handling I/O. An OS is naturally a complex piece of software in order
-to wear all of these hats. A course on operating systems is valuable in that it
-forces you to design solutions to complex problems.
+to wear all of these hats. Expect a course on operating systems to teach you
+
+- process management
+- synchronization of threads
+- traps, exceptions, and interrupts
+- basics of file systems
 
 To learn operating systems, complete the
 [PintOS](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html) labs.
@@ -142,7 +146,7 @@ that.
 
 A course on compilers will give you a deeper understanding of programming
 languages and how they are implemented. It will demystify what is happening when
-you hit the big green button in your IDE or type `gcc` in your shell. A course
+you hit the big green button in your IDE or type `javac` in your shell. A course
 on compilers will teach you about
 
 - regular expressions
@@ -201,17 +205,18 @@ store. Supplement the labs with these
 Big data is a major part of society now. We need systems to store and query
 larges amounts of data. Many software systems utilize a database in some form or
 another. Knowing about how these systems work can help you when designing
-database schemas for your own applications. Expect learning about
+database schemas for your own applications. Expect a course in database systems
+to teach you
 
 - the SQL query language
 - hash and B-tree indexes
 - ACID transactions
-- two-phase commit protocol
+- write-ahead logging
 
 To learn databases, complete the
 [SimpleDB](https://github.com/MIT-DB-Class/simple-db-hw) project, where you will
 implement a SQL database that supports B-tree indexes, transactions, write-ahead
-logging, and query optimization. Use the
+logging, and query optimization. Use these
 [lab specifications](https://github.com/MIT-DB-Class/course-info-2018) to guide
 you.
 
