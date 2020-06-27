@@ -15,8 +15,10 @@ const IndexPage = () => {
     query {
       file(relativePath: { eq: "product.png" }) {
         childImageSharp {
-          original {
-            src
+          fluid(maxWidth: 700) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
+            presentationHeight
           }
         }
       }
@@ -47,7 +49,11 @@ const IndexPage = () => {
           'Seattle',
           'full stack developer',
         ]}
-        image={data.file.childImageSharp.original.src}
+        image={data.file.childImageSharp.fluid}
+        imageDims={{
+          width: data.file.childImageSharp.fluid.presentationWidth,
+          height: data.file.childImageSharp.fluid.presentationHeight,
+        }}
       />
       <Section className="pt-4 md:pt-12">
         <Content>

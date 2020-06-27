@@ -2,110 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
+import { FluidObject } from 'gatsby-image';
 import routes from '../utils/routes';
 import { BlogFrontmatter } from '../pages/blog';
-import config from '../../site.config';
-
-type SchemaOrgType = {
-  author: {
-    name: string;
-  };
-  canonicalUrl: string;
-  datePublished?: string;
-  defaultTitle: string;
-  description: string;
-  image: string;
-  article: boolean;
-  organization: {
-    name: string;
-    url: string;
-    logo: string;
-  };
-  title: string;
-  url: string;
-};
-
-// source: https://github.com/kentcdodds/kentcdodds.com
-const SchemaOrg = React.memo(
-  ({
-    author,
-    canonicalUrl,
-    datePublished,
-    defaultTitle,
-    description,
-    image,
-    article,
-    organization,
-    title,
-    url,
-  }: SchemaOrgType) => {
-    const baseSchema = [
-      {
-        '@context': 'http://schema.org',
-        '@type': 'WebSite',
-        url,
-        name: title,
-        alternateName: defaultTitle,
-      },
-    ];
-
-    const schema = article
-      ? [
-        ...baseSchema,
-        {
-          '@context': 'http://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              item: {
-                '@id': url,
-                name: title,
-                image,
-              },
-            },
-          ],
-        },
-        {
-          '@context': 'http://schema.org',
-          '@type': 'BlogPosting',
-          url,
-          name: title,
-          alternateName: defaultTitle,
-          headline: title,
-          image: {
-            '@type': 'ImageObject',
-            url: image,
-          },
-          description,
-          author: {
-            '@type': 'Person',
-            name: author.name,
-          },
-          publisher: {
-            '@type': 'Organization',
-            url: organization.url,
-            logo: organization.logo,
-            name: organization.name,
-          },
-          mainEntityOfPage: {
-            '@type': 'WebSite',
-            '@id': canonicalUrl,
-          },
-          datePublished,
-        },
-      ]
-      : baseSchema;
-
-    return (
-      <Helmet>
-        {/* Schema.org tags */}
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
-    );
-  },
-);
 
 const query = graphql`
   query SEO {
@@ -122,7 +21,14 @@ type SEO = {
   title: string;
   description: string;
   canonicalUrl: string;
-  image: string;
+  image: {
+    fluid: FluidObject;
+    dims: {
+      width: number;
+      height: number;
+    };
+    type: string;
+  };
   twitter: string;
   isArticle: boolean;
 };
@@ -131,14 +37,19 @@ export default function SEO({
   title,
   description,
   image,
+  imageDims,
   frontmatter = null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   keywords,
 }: {
   title: string;
   description: string;
-  image: string;
-  frontmatter: BlogFrontmatter;
+  image: FluidObject;
+  imageDims: {
+    width: number;
+    height: number;
+  };
+  frontmatter?: BlogFrontmatter;
   keywords: string[];
 }) {
   const { site }: { site: SiteMetadata } = useStaticQuery(query);
@@ -152,7 +63,17 @@ export default function SEO({
         : `${title} | Sean Keever`,
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
-    image,
+    image: {
+      fluid: image,
+      dims: {
+        width: imageDims.width,
+        height: imageDims.height,
+      },
+      type: image.base64.substring(
+        image.base64.indexOf(':') + 1,
+        image.base64.indexOf(';'),
+      ),
+    },
     twitter: `@${site.siteMetadata.handle}`,
     isArticle: article,
   };
@@ -177,47 +98,42 @@ export default function SEO({
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
-        <meta name="robots" content="index, follow" />
 
         <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.image} />
+        <meta name="image" content={seo.image.fluid.src} />
 
-        {/* OpenGraph tags */}
+        <meta name="twitter:site" content={seo.twitter} />
+        <meta name="twitter:creator" content={seo.twitter} />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        <meta name="twitter:image" content={seo.image.fluid.src} />
+        <meta name="twitter:card" content="summary_large_image" />
+
         <meta property="og:url" content={seo.canonicalUrl} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:site_name" content="Sean Keever" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={seo.description} />
-        <meta property="og:image" content={seo.image} />
-        <meta property="og:image:type" content="image/png" />
-
+        <meta property="og:image" content={seo.image.fluid.src} />
+        <meta property="og:image:type" content={seo.image.type} />
+        <meta property="og:image:url" content={seo.image.fluid.src} />
+        <meta
+          property="og:image:width"
+          content={seo.image.dims.width.toString()}
+        />
+        <meta
+          property="og:image:height"
+          content={seo.image.dims.height.toString()}
+        />
         <meta property="og:image:alt" content={seo.title} />
         {seo.isArticle && <meta property="og:type" content="article" />}
 
-        {/* Twitter tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@swkeever" />
-        <meta name="twitter:creator" content="@swkeever" />
-        <meta name="twitter:title" content={seo.title} />
-        <meta name="twitter:description" content={seo.description} />
-        <meta name="twitter:image" content={seo.image} />
+        <meta itemProp="name" content={seo.title} />
+        <meta itemProp="headline" content={seo.title} />
+        <meta itemProp="description" content={seo.description} />
+        <meta itemProp="image" content={seo.image.fluid.src} />
+        <meta itemProp="author" content="Sean Keever" />
       </Helmet>
-      <SchemaOrg
-        article={article}
-        url={site.siteMetadata.siteUrl}
-        title={title}
-        image={image}
-        description={seo.description}
-        datePublished={frontmatter?.date}
-        canonicalUrl={seo.canonicalUrl}
-        author={{ name: 'Sean Keever' }}
-        organization={{
-          name: 'Sean Keever',
-          url: site.siteMetadata.siteUrl,
-          logo: config.siteLogo,
-        }}
-        defaultTitle={seo.title}
-      />
     </>
   );
 }

@@ -11,8 +11,10 @@ export default function ContactPage() {
     query {
       file(relativePath: { eq: "message.png" }) {
         childImageSharp {
-          original {
-            src
+          fluid(maxWidth: 700) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
+            presentationHeight
           }
         }
       }
@@ -23,7 +25,11 @@ export default function ContactPage() {
     <Layout className="bg-neutralBgSoft">
       <SEO
         title="Contact"
-        image={data.file.childImageSharp.original.src}
+        image={data.file.childImageSharp.fluid}
+        imageDims={{
+          width: data.file.childImageSharp.fluid.presentationWidth,
+          height: data.file.childImageSharp.fluid.presentationHeight,
+        }}
         keywords={['Contact', 'Sean Keever', 'Email']}
         description="Use the contact form to contact Sean Keever."
       />

@@ -36,7 +36,11 @@ export default function Blog({
         title={frontmatter.title}
         description={frontmatter.description}
         keywords={frontmatter.tags}
-        image={frontmatter.image.childImageSharp.fluid.src}
+        image={frontmatter.image.childImageSharp.fluid}
+        imageDims={{
+          width: frontmatter.image.childImageSharp.fluid.presentationWidth,
+          height: frontmatter.image.childImageSharp.fluid.presentationHeight,
+        }}
       />
       <BlogHeader
         title={frontmatter.title}
@@ -74,6 +78,8 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 700) {
               ...GatsbyImageSharpFluid
+              presentationWidth
+              presentationHeight
             }
           }
         }

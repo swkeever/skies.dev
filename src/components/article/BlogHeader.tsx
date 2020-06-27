@@ -23,6 +23,8 @@ export default function BlogHeader({
         pb-24
         md:pb-32
       `}
+      itemScope
+      itemType="http://schema.org/BlogPosting"
     >
       <BlogContainer className="lg:py-8">
         <h1
@@ -36,6 +38,7 @@ export default function BlogHeader({
             font-bold
             
           `}
+          itemProp="name"
         >
           {title}
         </h1>

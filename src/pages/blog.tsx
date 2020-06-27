@@ -32,6 +32,8 @@ export type BlogFrontmatter = {
   image: {
     childImageSharp: {
       fluid: FluidObject;
+      presentationWidth: number;
+      presentationHeight: number;
     };
   };
 };
@@ -49,9 +51,9 @@ export type BlogMarkdownRemark = {
   };
   file: {
     childImageSharp: {
-      original: {
-        src: string;
-      };
+      fluid: FluidObject;
+      presentationWidth: number;
+      presentationHeight: number;
     };
   };
 };
@@ -98,8 +100,10 @@ export default function BlogsPage() {
       }
       file(relativePath: { eq: "bulb.png" }) {
         childImageSharp {
-          original {
-            src
+          fluid(maxWidth: 700) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
+            presentationHeight
           }
         }
       }
@@ -191,7 +195,11 @@ export default function BlogsPage() {
         keywords={filterTags
           .map((t) => t.name)
           .concat(['blog', 'learn', 'how to'])}
-        image={data.file.childImageSharp.original.src}
+        image={data.file.childImageSharp.fluid}
+        imageDims={{
+          width: data.file.childImageSharp.fluid.presentationWidth,
+          height: data.file.childImageSharp.fluid.presentationHeight,
+        }}
       />
       <Header />
       <Search
