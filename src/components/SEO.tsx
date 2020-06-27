@@ -22,10 +22,10 @@ type SEO = {
   description: string;
   canonicalUrl: string;
   image: {
-    fluid: FluidObject;
+    src: string;
     dims: {
-      width: number;
-      height: number;
+      width: string;
+      height: string;
     };
     type: string;
   };
@@ -56,6 +56,8 @@ export default function SEO({
   const { pathname } = useLocation();
   const article = frontmatter !== null;
 
+  const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;
+
   const seo: SEO = {
     title:
       pathname === routes.home
@@ -64,10 +66,10 @@ export default function SEO({
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
-      fluid: image,
+      src: image.src,
       dims: {
-        width: imageDims.width,
-        height: imageDims.height,
+        width: imageDims.width.toString(),
+        height: imageDims.height.toString(),
       },
       type: image.base64.substring(
         image.base64.indexOf(':') + 1,
@@ -100,38 +102,32 @@ export default function SEO({
         />
 
         <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.image.fluid.src} />
+        <meta name="image" content={withSiteUrl(seo.image.src)} />
 
-        {/* <meta name="twitter:site" content={seo.twitter} />
+        <meta name="twitter:site" content={seo.twitter} />
         <meta name="twitter:creator" content={seo.twitter} />
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
-        <meta name="twitter:image" content={seo.image.fluid.src} /> */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:image" content={withSiteUrl(seo.image.src)} />
+        <meta name="twitter:card" content="summary_large_image" />
 
         <meta property="og:url" content={seo.canonicalUrl} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:site_name" content="Sean Keever" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:description" content={seo.description} />
-        <meta property="og:image" content={seo.image.fluid.src} />
+        <meta property="og:image" content={withSiteUrl(seo.image.src)} />
         <meta property="og:image:type" content={seo.image.type} />
-        <meta property="og:image:url" content={seo.image.fluid.src} />
-        <meta
-          property="og:image:width"
-          content={seo.image.dims.width.toString()}
-        />
-        <meta
-          property="og:image:height"
-          content={seo.image.dims.height.toString()}
-        />
+        <meta property="og:image:url" content={withSiteUrl(seo.image.src)} />
+        <meta property="og:image:width" content={seo.image.dims.width} />
+        <meta property="og:image:height" content={seo.image.dims.height} />
         <meta property="og:image:alt" content={seo.title} />
         {seo.isArticle && <meta property="og:type" content="article" />}
 
         <meta itemProp="name" content={seo.title} />
         <meta itemProp="headline" content={seo.title} />
         <meta itemProp="description" content={seo.description} />
-        <meta itemProp="image" content={seo.image.fluid.src} />
+        <meta itemProp="image" content={withSiteUrl(seo.image.src)} />
         <meta itemProp="author" content="Sean Keever" />
       </Helmet>
     </>
