@@ -141,11 +141,10 @@ export default function CVPage() {
     query {
       file(relativePath: { eq: "me.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 500, quality: 100) {
+          fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
-          }
-          original {
-            src
+            presentationWidth
+            presentationHeight
           }
         }
       }
@@ -175,7 +174,11 @@ export default function CVPage() {
           'software engineer',
           'developer',
         ]}
-        image={queryData.file.childImageSharp.original.src}
+        image={queryData.file.childImageSharp.fluid}
+        imageDims={{
+          width: queryData.file.childImageSharp.fluid.presentationWidth,
+          height: queryData.file.childImageSharp.fluid.presentationHeight,
+        }}
       />
       <Container className="mb-16 max-w-6xl px-2">
         <Header image={queryData.file.childImageSharp.fluid} {...data.basics} />
