@@ -24,10 +24,10 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
     >
       <Link
         to={slugToLink(blog.slug)}
-        className="grid relative items-center  grid-flow-row grid-rows-4 h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
+        className=" items-center relative grid grid-rows-4 w-full h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
       >
         <Img
-          className="row-span-3 w-full mx-auto relative z-0"
+          className="row-span-3 w-full h-full "
           fluid={blog.image}
           alt={blog.title}
         />

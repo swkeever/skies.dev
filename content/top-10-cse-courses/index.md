@@ -1,7 +1,7 @@
 ---
 slug: top-10-cse-courses
 date: 2020-06-25
-title: Top 10 Computer Science Courses and How To Teach Yourself
+title: Top 10 Computer Science Courses
 description:
   Check out the top 10 computer science courses and pointers to resources to
   help learn each course on your own.
