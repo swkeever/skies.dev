@@ -29,7 +29,7 @@ export default function Search({
   };
 
   return (
-    <div className="max-w-lg mx-auto px-2 mt-2 pb-8">
+    <div className="max-w-lg mx-auto px-4 mt-2 pb-8">
       <div className="">
         <h2 className="text-xl font-normal mt-0 text-onNeutralBgSoft mb-5">
           What can I help you find?
