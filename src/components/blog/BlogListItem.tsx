@@ -24,7 +24,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
     >
       <Link
         to={slugToLink(blog.slug)}
-        className="grid relative grid-flow-row grid-rows-4 h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
+        className="grid relative items-center  grid-flow-row grid-rows-4 h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
       >
         <Img
           className="row-span-3 w-full mx-auto relative z-0"
@@ -33,7 +33,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
         />
 
         <div className="bg-neutralBg py-2 px-2">
-          <h2 className="relative leading-tight font-medium text-onNeutralBgSoft z-20 text-2xl ">
+          <h2 className="leading-tight font-medium text-onNeutralBgSoft z-20 text-2xl ">
             {blog.title}
           </h2>
         </div>

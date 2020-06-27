@@ -1,7 +1,7 @@
 ---
 slug: binary-search
 date: 2020-06-19
-title: Learn about the Binary Search Algorithm with the Dictionary
+title: Simple Explanation of the Binary Search Algorithm
 description: Binary search can greatly speed up the execution of your programs
 tags:
   - Algorithms
