@@ -107,7 +107,7 @@ export default function SEO({
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={seo.image.fluid.src} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
 
         <meta property="og:url" content={seo.canonicalUrl} />
         <meta property="og:title" content={seo.title} />
