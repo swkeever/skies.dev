@@ -10,8 +10,10 @@ const NotFoundPage = () => {
     query {
       file(relativePath: { eq: "lost.png" }) {
         childImageSharp {
-          original {
-            src
+          fluid(maxWidth: 700) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
+            presentationHeight
           }
         }
       }
@@ -22,7 +24,11 @@ const NotFoundPage = () => {
     <Layout>
       <SEO
         title="Page not found"
-        image={data.file.childImageSharp.original.src}
+        image={data.file.childImageSharp.fluid}
+        imageDims={{
+          width: data.file.childImageSharp.fluid.presentationWidth,
+          height: data.file.childImageSharp.fluid.presentationHeight,
+        }}
         keywords={['Page not found', '404']}
         description="The page you requested does not exist on our server."
       />
