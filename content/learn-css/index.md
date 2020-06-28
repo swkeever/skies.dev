@@ -176,7 +176,7 @@ further investigate.
 I happen to know this is a
 [clear fix](https://stackoverflow.com/questions/8554043/what-is-a-clearfix),
 which is being used because they are doing the layout using floats. Don't worry
-about this too much. In a [later section](#some-advice), I will suggest core CSS
+about this too much. In a [later section](#some-advice), I will suggest core
 topics to research when beginning to learn CSS.
 
 </p>
