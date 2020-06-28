@@ -50,7 +50,7 @@ alongside the Bootstrap stylesheet.
 
 <aside>
 <p>
-I'm not trying to pick on Bootstrap. I am just using Bootstrap as an example since it is a popular CSS framework. But I could've used another other CSS framework as well.
+I'm not trying to pick on Bootstrap. I am just using Bootstrap as an example since it is a widely-known CSS framework.
 </p>
 </aside>
 
