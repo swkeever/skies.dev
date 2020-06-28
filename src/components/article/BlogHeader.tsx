@@ -49,7 +49,7 @@ export default function BlogHeader({
             className="text-onPrimarySoft space-x-6 text-sm md:text-base"
           />
           <ShareCallToAction
-            className=""
+            className="md:mt-0 mt-2"
             linkClassName="text-onPrimarySoft hover:text-onPrimary"
           />
         </div>

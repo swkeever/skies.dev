@@ -93,6 +93,7 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
     'gatsby-plugin-webpack-bundle-analyser-v2',
