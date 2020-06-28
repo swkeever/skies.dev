@@ -1,7 +1,7 @@
 ---
 slug: awesome-links
 date: 2020-06-28
-title: How to Make Links to Your Website Look Awesome on Social Media
+title: How to Make Links to Your Website Look Awesome
 description:
   Check out this simple tip that you can apply to make links back to your
   website on social media look awesome.
@@ -38,11 +38,10 @@ To accomplish this, we will use the `<title>` tag and the `<meta>` tag.
 
 <aside>
 <p>
-A <strong>meta tag</strong> is commonly of the form:
-</p>
-<pre>
+A <strong>meta tag</strong> is commonly of the form: </p>
+<p>
 &lt;meta name="name" content="content" /&gt;
-</pre>
+</p>
 </aside>
 
 We update our head to the following:
@@ -72,9 +71,9 @@ used by social media sites to make a **card** from the link to your site.
 <aside>
 <p>
 Open-Graph meta tags are of the following form. Notice, we use <strong>property</strong> instead of <strong>name</strong> here.
-<pre>
+</p>
+<p>
 &lt;meta property="og:name" content="content" /&gt;
-</pre>
 </p>
 </aside>
 
@@ -119,9 +118,9 @@ as before.
 <aside>
 <p>
 Twitter meta tags are of the following form:
-<pre>
+</p>
+<p>
 &lt;meta name="twitter:name" content="content" /&gt;
-</pre>
 </p>
 </aside>
 
@@ -174,17 +173,16 @@ relative URL, and your image will not be displayed on the card.
 
 <h3>Incorrect</h3>
 
-<pre>
+<p>
 &lt;meta name="twitter:image" content="/image.jpg"/&gt;
-</pre>
+</p>
 
 <h3>Correct</h3>
 
-<pre>
+<p>
 &lt;meta name="twitter:image" content="https://skies.dev/image.jpg"/&gt;
-</pre>
-
 </p>
+
 </aside>
 
 ## Happy Sharing
