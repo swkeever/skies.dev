@@ -27,9 +27,9 @@ demonstrate.
 
 ![coffee](coffee.jpg)
 
-First, we will want is a **title** and a **description** of our webpage. A title
-is what users see on the browser tab for your website. The title and description
-are also used to tell people what your site is about when your site pops up in
+First, we want a **title** and a **description** of our webpage. A title is what
+users see on the browser tab for your website. The title and description are
+also used to tell people what your site is about when your site pops up in
 search engine results.
 
 ![showing a title on search results](results.jpg)
