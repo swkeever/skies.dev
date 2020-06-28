@@ -105,26 +105,26 @@ button:hover {
 ```
 
 It's not important what the actual values are in each CSS rule. Tailwind
-provides a carefully created design system out of the box. The design system
+provides a carefully created **design system** out of the box. The design system
 _limits_ the amount of possible CSS rules you can apply. Moreover, a design
 system will force your styles to be more consistent throughout your site.
 
-Tailwind's classes are atomic. Tailwind-defined classes usually apply a single
-CSS rule. So as a side effect of using Tailwind, you are actually _learning how
-to use CSS_.
+Tailwind's classes are atomic, and the classes Tailwind defines usually apply a
+single CSS rule. So as a side effect of using Tailwind, you are actually
+_learning how to use CSS_.
 
 ## The Strategy
 
 ![a toddler looking at a set of stairs](stairs.jpg)
 
 Assuming I've convinced you to learn CSS with Tailwind, how do you know what
-classes to use in order to apply the styles? Don't worry, this happens all of
-the time. Let's walk through a scenario as an example.
+classes to use in order to apply the styles? Let's walk through a scenario as an
+example.
 
 ### The Scenario
 
-Let's say you want to know how to implement a 3-column layout. The process we
-will use to figure this out are as follows:
+Let's say you want to implement a 3-column layout. The process we will use to
+figure this out are as follows:
 
 1. [Search the web](https://duckduckgo.com/?q=css+3+column+layout) to learn how
    to accomplish the task in CSS.
@@ -176,14 +176,14 @@ further investigate.
 I happen to know this is a
 [clear fix](https://stackoverflow.com/questions/8554043/what-is-a-clearfix),
 which is being used because they are doing the layout using floats. Don't worry
-about this too much, I will give you [advice](#some-advice) on core topics to
-research when beginning to learn CSS.
+about this too much. In a [later section](#some-advice), I will suggest core CSS
+topics to research when beginning to learn CSS.
 
 </p>
 </aside>
 
 After I see the CSS code, I turn to Tailwind's documentation and search for
-**clear fix**. I am immediately taken to a page on **Floats**. We apply a clear
+**clear fix**. I am immediately taken to a page on **floats**. We apply a clear
 fix where class `row` was set previously.
 
 ```html
