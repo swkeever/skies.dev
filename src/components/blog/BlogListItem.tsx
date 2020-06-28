@@ -20,20 +20,23 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
         border-t-4
         border-primary
         mb-0
+        block
+        w-auto
       `}
     >
       <Link
         to={slugToLink(blog.slug)}
-        className=" items-center relative grid grid-rows-4 w-full h-full justify-between text-onNeutralBg hover:text-onNeutralBg"
+        className=" items-center relative grid grid-rows-4 w-auto block justify-between text-onNeutralBg hover:text-onNeutralBg"
       >
-        <Img
-          className="row-span-3 w-full h-full "
-          fluid={blog.image}
+        <img
+          loading="lazy"
+          className="row-span-3 self-stretch"
+          src={blog.image.src}
           alt={blog.title}
         />
 
         <div className="bg-neutralBg py-2 px-2">
-          <h2 className="leading-tight font-medium text-onNeutralBgSoft z-20 text-2xl ">
+          <h2 className="leading-tight font-medium text-onNeutralBgSoft text-2xl ">
             {blog.title}
           </h2>
         </div>

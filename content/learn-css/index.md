@@ -29,14 +29,14 @@ selector {
 </pre>
 </aside>
 
-When you try to add CSS for your own webpage, things don't seem to look the way
+When you try to add CSS on your own webpage, things don't seem to look the way
 you imagined.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I rarely have problems getting CSS to work as expected, so the Family Guy CSS gif used to baffle me. But, actually, it’s a perfect metaphor when you consider Peter Griffin has no idea how the blinds work, no patience to learn, and still expects them to magically do what he wants. <a href="https://t.co/mc2gWNnQ1i">pic.twitter.com/mc2gWNnQ1i</a></p>&mdash; Nick Sherman (@NickSherman) <a href="https://twitter.com/NickSherman/status/1091065393500704768?ref_src=twsrc%5Etfw">January 31, 2019</a></blockquote>
 
 If you're like me, you may lean on CSS frameworks like
-[Bootstrap](https://getbootstrap.com/), where you can simply apply a class and
-the component becomes beautifully styled.
+[Bootstrap](https://getbootstrap.com/), so you can simply apply a class and the
+component becomes beautifully styled.
 
 ```html
 <!-- Styled with Bootstrap -->
@@ -46,7 +46,7 @@ the component becomes beautifully styled.
 The problem with a CSS framework like Bootstrap is that you will inevitably need
 to adjust something in the CSS to fit your design. You are again faced with
 writing your own custom CSS. But now, you need to patch your custom CSS to work
-alongside Bootstrap's stylesheets.
+alongside the Bootstrap stylesheet.
 
 <aside>
 <p>
@@ -104,18 +104,18 @@ button:hover {
 }
 ```
 
-It's not too important what the actual values are in each CSS rule. Tailwind
+It's not important what the actual values are in each CSS rule. Tailwind
 provides a carefully created design system out of the box. The design system
 _limits_ the amount of possible CSS rules you can apply. Moreover, a design
-system should make your styles more consistent throughout your site.
+system will force your styles to be more consistent throughout your site.
 
-Tailwind's classes are atomic; they usually apply a single CSS rule in each
-Tailwind class. So as a side effect of using Tailwind, you are actually
-_learning how to use CSS_.
+Tailwind's classes are atomic. Tailwind-defined classes usually apply a single
+CSS rule. So as a side effect of using Tailwind, you are actually _learning how
+to use CSS_.
 
 ## The Strategy
 
-![chess game](feet.jpg)
+![a toddler looking at a set of stairs](stairs.jpg)
 
 Assuming I've convinced you to learn CSS with Tailwind, how do you know what
 classes to use in order to apply the styles? Don't worry, this happens all of
@@ -126,8 +126,8 @@ the time. Let's walk through a scenario as an example.
 Let's say you want to know how to implement a 3-column layout. The process we
 will use to figure this out are as follows:
 
-1. [Search the web](https://duckduckgo.com/?q=css+3+column+layout&t=brave&ia=web)
-   to learn how to accomplish the task in CSS.
+1. [Search the web](https://duckduckgo.com/?q=css+3+column+layout) to learn how
+   to accomplish the task in CSS.
 2. [Search Tailwind's docs](https://tailwindcss.com/docs/installation/) to find
    the classes you need to apply the CSS.
 
@@ -137,7 +137,7 @@ After searching on DuckDuckGo, I see the following:
 
 ![Search results](search.png)
 
-Good. We will choose the first result from W3Schools. Here is their example:
+We will choose the first result from W3Schools. Here is their example:
 
 ![W3's example](w3example.png)
 
@@ -183,7 +183,7 @@ research when beginning to learn CSS.
 </aside>
 
 After I see the CSS code, I turn to Tailwind's documentation and search for
-**clear fix**. I am immediately taken to a page on **Floats**. We need to clear
+**clear fix**. I am immediately taken to a page on **Floats**. We apply a clear
 fix where class `row` was set previously.
 
 ```html
@@ -242,8 +242,8 @@ VS Code extensions for easy access to documentation and auto-completion.
 
 ![mountains](mountains.jpg)
 
-There are a few core properties that you should take the time to understand in
-order to feel more comfortable with CSS. They are
+There are a few important properties in CSS that you will want to understand.
+They are
 
 - Display
 - Position
@@ -275,8 +275,8 @@ simple to use and apply once you are comfortable with it.
 
 _Learning CSS is a constant journey._ Take baby steps and work incrementally.
 Search engines are your friend when you get stuck. Tailwind will help you learn
-CSS by **limiting your scope**. Moreover, your UIs should improve by utilizing a
-design system.
+CSS by **limiting your scope**. Moreover, your UIs should improve by utilizing
+the design system provided by Tailwind.
 
 Good luck on your journey learning CSS, and most importantly, have fun.
 
