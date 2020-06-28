@@ -271,7 +271,7 @@ Learn [Flexbox](https://www.youtube.com/results?search_query=flexbox) to start.
 It has [wide support](https://caniuse.com/#feat=flexbox) by browsers and it is
 simple to use and apply once you are comfortable with it.
 
-### You Got This ✌️
+<h3>You Got This <span role="img" aria-label="Victory hand">✌️</span></h3>
 
 _Learning CSS is a constant journey._ Take baby steps and work incrementally.
 Search engines are your friend when you get stuck. Tailwind will help you learn
