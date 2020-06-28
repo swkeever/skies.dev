@@ -190,7 +190,7 @@ relative URL, and your image will not be displayed on the card.
 ![giving a heart to someone](share.jpg)
 
 There are [many other meta tags](https://gist.github.com/lancejpollard/1978404)
-you could add to your head, refer to the linked gist to pick out metadata that
+you could add to your head. Refer to the linked gist to pick out metadata that
 suit your needs.
 
 I hope this article helped you learn how to make links to your website look
