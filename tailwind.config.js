@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-const { rotate, boxShadow } = require('tailwindcss/defaultTheme');
+const { rotate, boxShadow, colors } = require('tailwindcss/defaultTheme');
 
 // primary blue #4299E1
 
@@ -14,54 +14,54 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        // base
+        primary: 'var(--color-primary)',
+        primarySoft: 'var(--color-primarySoft)',
+        primaryBold: 'var(--color-primaryBold)',
+
+        neutral: 'var(--color-neutral)',
+        neutralBold: 'var(--color-neutralBold)',
+        neutralSoft: 'var(--color-neutralSoft)',
+
+        // backgrounds
+        primaryBg: 'var(--color-primaryBg)',
+        primaryBgSoft: 'var(--color-primaryBgSoft)',
+
+        neutralBg: 'var(--color-neutralBg)',
+        neutralBgSoft: 'var(--color-neutralBgSoft)',
+
+        footerBg: 'var(--color-footerBg)',
+
+        // text
+        onPrimary: 'var(--color-onPrimary)',
+        onPrimarySoft: 'var(--color-onPrimarySoft)',
+
+        onNeutral: 'var(--color-onNeutral)',
+        onNeutralSoft: 'var(--color-onNeutralSoft)',
+
+        onPrimaryBg: 'var(--color-onPrimaryBg)',
+        onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
+
+        onNeutralBg: 'var(--color-onNeutralBg)',
+        onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
+
+        light: 'var(--color-light)',
+        lightSoft: 'var(--color-primary-100)',
+        onLight: 'var(--color-onLight)',
+
+        transparent: 'transparent',
+
+        onPrimaryBgLink: 'var(--color-onPrimaryBgLink)',
+        onPrimaryBgLinkHover: 'var(--color-onPrimaryBgLinkHover)',
+        onNeutralBgLink: 'var(--color-onNeutralBgLink)',
+        onNeutralBgLinkHover: 'var(--color-onNeutralBgLinkHover)',
+      },
       spacing: {
         72: '18rem',
         84: '21rem',
         96: '24rem',
       },
-    },
-    colors: {
-      // base
-      primary: 'var(--color-primary)',
-      primarySoft: 'var(--color-primarySoft)',
-      primaryBold: 'var(--color-primaryBold)',
-
-      neutral: 'var(--color-neutral)',
-      neutralBold: 'var(--color-neutralBold)',
-      neutralSoft: 'var(--color-neutralSoft)',
-
-      // backgrounds
-      primaryBg: 'var(--color-primaryBg)',
-      primaryBgSoft: 'var(--color-primaryBgSoft)',
-
-      neutralBg: 'var(--color-neutralBg)',
-      neutralBgSoft: 'var(--color-neutralBgSoft)',
-
-      footerBg: 'var(--color-footerBg)',
-
-      // text
-      onPrimary: 'var(--color-onPrimary)',
-      onPrimarySoft: 'var(--color-onPrimarySoft)',
-
-      onNeutral: 'var(--color-onNeutral)',
-      onNeutralSoft: 'var(--color-onNeutralSoft)',
-
-      onPrimaryBg: 'var(--color-onPrimaryBg)',
-      onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
-
-      onNeutralBg: 'var(--color-onNeutralBg)',
-      onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
-
-      light: 'var(--color-light)',
-      lightSoft: 'var(--color-primary-100)',
-      onLight: 'var(--color-onLight)',
-
-      transparent: 'transparent',
-
-      onPrimaryBgLink: 'var(--color-onPrimaryBgLink)',
-      onPrimaryBgLinkHover: 'var(--color-onPrimaryBgLinkHover)',
-      onNeutralBgLink: 'var(--color-onNeutralBgLink)',
-      onNeutralBgLinkHover: 'var(--color-onNeutralBgLinkHover)',
     },
     rotate: {
       ...rotate,
