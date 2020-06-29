@@ -11,19 +11,19 @@ tags:
 image: index.jpg
 ---
 
-## Context
-
 [People](https://www.reddit.com/r/udub/comments/eis7x1/major_personal_statement_tips/)
 often
 [ask](https://www.reddit.com/r/udub/comments/6ulwga/tips_for_writing_a_personal_statement_for/)
 for
 [advice](https://www.reddit.com/r/udub/comments/9j49pp/uw_students_what_did_you_write_about_in_your/)
 on their personal statement when applying to their desired major at University
-of Washington. I post my essay [below](#essay) to show students the personal
-statement I wrote for my application to the
+of Washington. I post my essay below to show students the personal statement I
+wrote for my application to the
 [computer science and engineering department](https://cs.uw.edu) at UW.
 
 ## Essay
+
+![writing an essay](essay.jpg)
 
 When I was twelve years old, I fell in love with teaching myself musical
 instruments. Using the Internet, I was able to teach myself how to play guitar,
@@ -92,6 +92,8 @@ potential developing software people could use to enrich their lives for many
 years to come.
 
 ## Some advice to leave you with
+
+![people walking down stairs](sunset.jpg)
 
 I recommend taking a lot of care when writing your personal statement. I did a
 complete rewrite before settling on the essay I used. I had people look over my

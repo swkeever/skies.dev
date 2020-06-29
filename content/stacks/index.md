@@ -22,7 +22,9 @@ There are two fundamental operations you can do on a stack:
 
 That's basically all there is to it.
 
-## Stacks at Chipotle
+## Stacks in the Real World
+
+![open sign](open.jpg)
 
 Imagine you're at Chipotle getting a burrito.
 
@@ -43,6 +45,8 @@ element you inserted.
 
 ### Don't forget to push your tray
 
+![dishes stacked](dishes.jpg)
+
 After eating your burrito, you look around the restaurant to find where to put
 your tray. You see a stack of trays by the compost bin.
 
@@ -57,6 +61,8 @@ on the stack. When you **push** an item on a stack, it means you put an element
 on the top of the stack.
 
 ## Thank you, come again
+
+![driving down a road](drive.jpg)
 
 In summary, when you **push** an element onto the stack, that element goes on
 top of the stack. When you **pop** an element off the stack, that element comes

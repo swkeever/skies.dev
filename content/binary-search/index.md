@@ -9,7 +9,7 @@ tags:
 image: index.jpg
 ---
 
-## What is binary search?
+## What is Binary Search?
 
 Binary search is an **efficient search algorithm on a sorted array of
 elements.** The binary search algorithm comes from a family of algorithms called
@@ -18,31 +18,36 @@ but the terminology isn't too important for this discussion. In this article, I
 want to convince you that you _probably already use_ the binary search algorithm
 in your life.
 
-## Binary search in the real world
+## Binary Search in the Real World
+
+![relaxing at the cabin](relax.jpg)
 
 Let's say you're at an AirBnB in a remote location on a weekend getaway. You
 want to disconnect for a while, so you go to a place where there's no internet.
 You want to use this weekend to read science fiction novels.
 
-You are reading your book one night and you stumble on a word that you don't
-know. The word happened to be "octothorpe".
+You are reading your book one night and you stumble on a word you don't know.
+The word happened to be _octothorpe_.
 
-You walk over to the bookshelf the AirBnB host provided to look for a
-dictionary. Ah, there it is.
+You walk over to the bookshelf to look for a dictionary. Ah, there it is.
 
-You sit down and open up the dictionary to begin searching for "octothorpe".
+You sit down and open up the dictionary and begin searching for _octothorpe_.
 What do you do?
+
+![dictionary](dictionary.jpg)
 
 Well, you know the words in the dictionary are _sorted_, so you open up the
 dictionary to somewhere in the middle.
 
-You see words on the page you opened up begin with the letter "G". "Octothorpe"
+You see words on the page you opened up begin with the letter "G". _Octothorpe_
 cannot possibly be on any page earlier than the page with the "G" words. So you
 _completely disregard_ the pages earlier than the one with the "G" words.
 
 What do you do next? You repeat the process on the remaining pages _after_ the
 page with the "G" words. You keep repeating this process until you have found
 the page with "octothorpe".
+
+![lady reading on couch](reading.jpg)
 
 This is exactly how binary search works. Binary search looks in the middle of a
 sorted array of elements. If the key you are looking for is greater than the

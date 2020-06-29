@@ -13,8 +13,6 @@ tags:
 image: index.jpg
 ---
 
-## Introduction
-
 Create React App, Gatsby.js, and Next.js are frameworks for writing web
 applications in React.js. With so many ways to build React apps, it can be
 confusing to know which framework to choose for building your web app. In this
@@ -22,6 +20,8 @@ article, I describe what each framework excels at and when you might choose one
 framework over another based on different circumstances.
 
 ## Create React App
+
+![field](field.jpg)
 
 [Create React App (CRA)](https://github.com/facebook/create-react-app) is a
 script that quickly spins up a React project and lets you start coding right
@@ -46,6 +46,8 @@ want to build a site that is easier for web crawlers to index your webpage, then
 you might want to look at either Gatsby or Next.
 
 ## Gatsby.js
+
+![hiker on a ledge](hiker.jpg)
 
 [Gatsby.js](https://www.gatsbyjs.org/) is a static site generator for your React
 app. This means when a web crawler is looking at your website, it can see all
@@ -100,6 +102,8 @@ rendering.
 
 ## Next.js
 
+![man on mountain peak](summit.jpg)
+
 [Next.js](https://nextjs.org) is a framework that lets you choose to statically
 generate or server-side render any web page of your site. With server-side
 rendering, your JavaScript code is hydrated on the fly, instead of at build
@@ -123,6 +127,8 @@ apps.
 
 ## Other options
 
+![group going down a hill](return.jpg)
+
 If you need to customize the low-level configuration of your app, you may want
 to create your own toolchain using a tool like
 [Webpack](https://webpack.js.org/). I probably wouldn't recommend going this
@@ -135,6 +141,8 @@ But if you have a large team of engineers and your app is operating at a scale
 that demands this customization, then going this route may be the best option.
 
 ## Conclusion
+
+![driving home under stars](aurora.jpg)
 
 - Choose CRA for the easiest setup and development experience. A great option
   when SEO is not a priority.
