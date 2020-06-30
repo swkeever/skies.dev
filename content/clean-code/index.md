@@ -128,6 +128,6 @@ In summary,
   to learn the principles of writing clean code.
 
 To write clean code, your safest bet is to conform to the style guide of the
-project. If there is no style guide defined, adopt one, and use lint tooling to
+project. If there is no style guide defined, adopt one. Use lint tooling to
 automate enforcing it. At the end of the day, our goal is shipping software for
 our users, not styling text files.
