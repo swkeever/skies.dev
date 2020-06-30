@@ -132,14 +132,15 @@ project.
 - If the project uses short functions, then the functions you write should be
   short as well.
 - If the project indents with 4 spaces, then you should also ident with 4 spaces
-  in the scope of the project.
+  _even if you prefer to indent with 2 spaces_.
 
 Don't get hung up trying to indoctrinate your style preferences on other
 developers. We all have our different beliefs about what we consider clean code.
 Use lint tooling to automate conforming to the project's style guide. If there
-is no style guide defined, [adopt one](#tools-i-like). Keep the reader in mind
-when writing code. Ask yourself, "If I were to look at this code one year from
-now, would I understand what is going on?"
+is no style guide defined, [adopt one](#tools-i-like).
+
+Do keep the reader in mind when writing code. Ask yourself, "If I were to look
+at this code one year from now, would I understand what is going on?"
 
 <aside><p>Try looking at code from one of your old projects. Do you remember how the code works? Is the code easy to understand? If so, great! Perhaps you have written <em>clean code</em>.&nbsp;
 <span role="img" aria-label="slightly smiling face">🙂</span></p></aside>
