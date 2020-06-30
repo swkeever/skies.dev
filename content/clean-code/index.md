@@ -51,8 +51,8 @@ A <strong>linter</strong> is software that modifies code to enforce the rules of
 </p>
 </aside>
 
-If you are working on your own project that you plan to grow, you should take
-the time to set up lint tooling. You can use GitHub to
+If you are working on your own project that you plan to grow over time, you
+should take the time to set up lint tooling. You can use GitHub to
 [create a template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository)
 so that you don’t have to worry about setting it up each time.
 
