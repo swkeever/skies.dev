@@ -92,8 +92,8 @@ documentation to learn how to set up the tools you choose.
 ![clean office](office.jpg)
 
 [Clean Code](https://learning.oreilly.com/library/view/clean-code/9780136083238/)
-by Uncle Bob Martin is a popular book for those interested in learning some of
-the commonly agreed-upon principles of writing clean code.
+by Uncle Bob Martin is a popular book for those interested in learning some
+philosophies of writing clean code.
 
 However, it is important to recognize what _you think is clean code may not be
 what someone else thinks is clean code_. For example, after reading Clean Code,
