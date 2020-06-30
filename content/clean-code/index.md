@@ -34,7 +34,7 @@ going to vary from project to project, team to team. Many projects have tooling
 that make it easy to write code that conforms to a particular **style guide**.
 
 <aside>
-<p>A <strong>style guide</strong> is a set of rules that determine how code should be formatted.</p>
+<p>A <strong>style guide</strong> is a set of rules that specify how code should be formatted.</p>
 </aside>
 
 ## Use Lint Tools
@@ -47,7 +47,7 @@ and **lint tools** to help enforce it.
 
 <aside>
 <p>
-A <strong>linter</strong> is software that modifies code to enforce a style guide specified by a configuration.
+A <strong>linter</strong> is software that modifies code to enforce the rules of a style guide.
 </p>
 </aside>
 
