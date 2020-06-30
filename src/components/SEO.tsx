@@ -59,10 +59,7 @@ export default function SEO({
   const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;
 
   const seo: SEO = {
-    title:
-      pathname === routes.home
-        ? `Sean Keever | ${title}`
-        : `${title} | Sean Keever`,
+    title: undefined,
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
@@ -79,6 +76,14 @@ export default function SEO({
     twitter: `@${site.siteMetadata.handle}`,
     isArticle: article,
   };
+
+  if (!article) {
+    seo.title = pathname === routes.home
+      ? `Sean Keever | ${title}`
+      : `${title} | Sean Keever`;
+  } else {
+    seo.title = title;
+  }
 
   return (
     <>

@@ -29,7 +29,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
       >
         <img
           loading="lazy"
-          className="row-span-3 self-stretch"
+          className="row-span-3 self-stretch object-cover"
           src={blog.image.src}
           alt={blog.title}
         />

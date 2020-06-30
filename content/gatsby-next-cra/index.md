@@ -10,6 +10,8 @@ tags:
   - JavaScript
   - Web Development
   - React
+  - Gatsby
+  - Next
 image: index.jpg
 ---
 
