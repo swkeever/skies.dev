@@ -31,7 +31,11 @@ Most of the time it's just for some internet humor.
 
 So is there such thing as clean code? Yes. But what is considered clean code is
 going to vary from project to project, team to team. Many projects have tooling
-that make it easy to write code that conforms to a particular style guide.
+that make it easy to write code that conforms to a particular **style guide**.
+
+<aside>
+<p>A <strong>style guide</strong> is a set of rules that determine how code should be formatted.</p>
+</aside>
 
 ## Use Lint Tools
 
