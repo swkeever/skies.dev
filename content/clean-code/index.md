@@ -122,8 +122,7 @@ that made us both more productive.
 In summary,
 
 - Talk with your team about your project’s style guide.
-- Style according to your project’s style guide. Use linting tools to enforce
-  the style guide automatically.
+- Use lint tools to conform to your project’s style guide.
 - Read
   [Martin’s book](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
   to learn the principles of writing clean code.
