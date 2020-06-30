@@ -97,9 +97,9 @@ philosophies of writing clean code.
 
 However, it is important to recognize what _you think is clean code may not be
 what someone else thinks is clean code_. For example, after reading Clean Code,
-I was excited to start applying the code style Martin taught in my projects. The
-style is extremely modular, with very few lines of code per method. Small
-classes, small everything.
+I was excited to start applying the code style Martin taught. The style is
+extremely modular, with very few lines of code per method. Small classes, small
+everything.
 
 I was hooked. The thought of getting potential code reuse down the line excited
 me. I thought the abstractions and names I gave made the code clearer to read
