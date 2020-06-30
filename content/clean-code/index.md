@@ -27,19 +27,19 @@ code. We argue over
 - Whether you should indent with tabs or spaces
 - Vim or Emacs (but really... you should be using VS Code)
 
-Most of the time its just for some internet humor.
+Most of the time it's just for some internet humor.
 
 So is there such thing as clean code? Yes. But what is considered clean code is
 going to vary from project to project, team to team. Many projects have tooling
 that make it easy to write code that conforms to a particular style guide.
 
-## Use Linting Tools
+## Use Lint Tools
 
 ![tools](tools.jpg)
 
 What is deemed “clean code” is going to vary from project to project. If you’re
 working on a project with a team, there will probably be a defined style guide
-and **linting tools** to help enforce it.
+and **lint tools** to help enforce it.
 
 <aside>
 <p>
@@ -48,7 +48,7 @@ A <strong>linter</strong> is software that modifies code to enforce a style guid
 </aside>
 
 If you are working on your own project that you plan to grow, you should take
-the time to set up your own linting configuration. You can use GitHub to
+the time to set up lint tooling. You can use GitHub to
 [create a template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository)
 so that you don’t have to worry about setting it up each time.
 
@@ -77,14 +77,20 @@ like:
 - For **JavaScript**, [AirBnb Style GUide](https://github.com/airbnb/javascript)
 - For **Python**, [PEP 8 Style Guide](https://www.python.org/dev/peps/pep-0008/)
 
+<aside>
+<p>
+How to set up lint tooling is beyond the scope of this article. Refer to
+documentation to learn how to set up the tools you choose.
+</p>
+</aside>
+
 ## Learn to Write Clean Code
 
 ![clean office](office.jpg)
 
 [Clean Code](https://learning.oreilly.com/library/view/clean-code/9780136083238/)
-by Uncle Bob Martin is a popular book about how to write clean code. It is a
-good step in the right direction for those interested in learning some of the
-commonly agreed upon principles of writing clean code.
+by Uncle Bob Martin is a popular book for those interested in learning some of
+the commonly agreed-upon principles of writing clean code.
 
 However, it is important to recognize what _you think is clean code may not be
 what someone else thinks is clean code_. For example, after reading Clean Code,
@@ -96,9 +102,10 @@ I was hooked. The thought of getting potential code reuse down the line excited
 me. I thought the abstractions and names I gave made the code clearer to read
 and easier to understand.
 
-The developer I was working with didn’t agree. There were methods everywhere for
-everything. You had to bounce around the text file to understand what was going
-on in the code. _There was more complexity in how everything interacted._
+The developer I was working with didn’t agree. There were methods and
+abstractions everywhere for everything. You had to bounce around the text file
+to understand what was going on in the code. _There was more complexity in how
+everything interacted._
 
 From this experience, I learned what I believe is clean code may not be what
 other developers believe is clean code. In retrospect, an agreed upon style
@@ -118,8 +125,7 @@ In summary,
   [Martin’s book](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
   to learn the principles of writing clean code.
 
-Remember, what you think is clean code may not be what someone else thinks is
-clean code. Don’t worry too much about indoctrinating your style preferences on
-other developers. Just conform to the style guide of the project you’re working
-on. If there is no style guide defined in your project, adopt one. At the end of
-the day, our goal is shipping software for our users, not styling text files.
+To write clean code, your safest bet is to conform to the style guide of the
+project. If there is no style guide defined, adopt one, and use lint tooling to
+automate enforcing it. At the end of the day, our goal is shipping software for
+our users, not styling text files.
