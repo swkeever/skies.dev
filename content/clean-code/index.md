@@ -70,9 +70,8 @@ Here are some linting tools I like to use in greenfield projects:
   [Prettier](https://prettier.io/) is a good option with good
   [VS Code support](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 
-Once you’ve picked a linter for your project, you now need to configure it to
-your code style preferences. Here are some popular open-source style guides I
-like:
+Once you’ve picked a linter for your project, you now need to configure it with
+a style guide. Here are some popular open-source style guides I like:
 
 - For **C/C++**,
   [Google Style Guide](https://google.github.io/styleguide/cppguide.html)
