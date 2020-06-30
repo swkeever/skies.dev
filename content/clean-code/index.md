@@ -16,18 +16,18 @@ What constitutes as clean code? Is it
 
 - Functions that do one thing well?
 - Easy-to-understand variable names and abstractions?
-- Reduced amount of duplication in the code?
+- Reduced amount of code duplication?
 
-The thing is, there is no such thing as code that would be considered clean
-universally. What _Developer A_ thinks is clean code, _Developer B_ scoffs at.
-There are **tribal wars** over what people believe is the correct way to write
-code. We argue over
+The thing is, there is **no such thing** as code that would be considered clean
+code universally. What _Developer A_ thinks is clean code, _Developer B_ scoffs
+at. There are **tribal wars** over what people believe is the correct way to
+write code. We argue over
 
 - The use of semicolons in JavaScript
 - Whether you should indent with tabs or spaces
-- Vim or Emacs (but really... you should be using VS Code)
+- Whether you should indent with 4 spaces or 2 spaces
 
-Most of the time it's just for some internet humor.
+Most of the time, the "arguments" are just for some internet humor.
 
 So is there such thing as clean code? Yes. But what is considered clean code is
 going to vary from project to project, team to team. Many projects have tooling
@@ -56,9 +56,9 @@ should take the time to set up lint tooling. You can use GitHub to
 [create a template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository)
 so that you don’t have to worry about setting it up each time.
 
-### The Tools I Like
+### Tools I Like
 
-Here are some linting tools I like to use in greenfield projects:
+The linters I like to use in greenfield projects are as follows:
 
 - For **C/C++**, [Clang-Tidy](https://clang.llvm.org/extra/clang-tidy/).
 - For **Java**, I like IntelliJ's ability to
@@ -71,13 +71,13 @@ Here are some linting tools I like to use in greenfield projects:
   [VS Code support](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 
 Once you’ve picked a linter for your project, you now need to configure it with
-a style guide. Here are some popular open-source style guides I like:
+a style guide. Here are some popular style guides I like:
 
 - For **C/C++**,
   [Google Style Guide](https://google.github.io/styleguide/cppguide.html)
 - For **Java**,
   [Google Style Guide](https://google.github.io/styleguide/javaguide.html)
-- For **JavaScript**, [AirBnb Style GUide](https://github.com/airbnb/javascript)
+- For **JavaScript**, [AirBnb Style Guide](https://github.com/airbnb/javascript)
 - For **Python**, [PEP 8 Style Guide](https://www.python.org/dev/peps/pep-0008/)
 
 <aside>
@@ -87,7 +87,7 @@ documentation to learn how to set up the tools you choose.
 </p>
 </aside>
 
-## Learn to Write Clean Code
+## Clean Code for One != Clean Code for All
 
 ![clean office](office.jpg)
 
@@ -97,37 +97,57 @@ the commonly agreed-upon principles of writing clean code.
 
 However, it is important to recognize what _you think is clean code may not be
 what someone else thinks is clean code_. For example, after reading Clean Code,
-I was excited to start applying the code style Martin taught. The style is
-extremely modular, with very few lines of code per method. Small classes, small
-everything.
+I was excited to start applying the code style Martin taught in my projects. The
+style is extremely modular, with very few lines of code per method. Small
+classes, small everything.
 
 I was hooked. The thought of getting potential code reuse down the line excited
 me. I thought the abstractions and names I gave made the code clearer to read
 and easier to understand.
 
 The developer I was working with didn’t agree. There were methods and
-abstractions everywhere for everything. You had to bounce around the text file
-to understand what was going on in the code. _There was more complexity in how
+abstractions everywhere for everything. You had to bounce around the file to
+understand what was going on in the code. _There was more complexity in how
 everything interacted._
 
-From this experience, I learned what I believe is clean code may not be what
-other developers believe is clean code. In retrospect, an agreed upon style
-guide could have probably prevented this issue and enabled a coding environment
+Reading Clean Code made me aware of common patterns and code smells that come up
+when writing software. The book does a great job at taking to the extreme what
+constitutes as clean code and is a great starting point for someone interested
+in improving their code quality.
+
+However, from that project experience, I learned what I believe is clean code
+may not be what other developers believe is clean code. In retrospect, an agreed
+upon style guide could have prevented the issue and enabled a coding environment
 that made us both more productive.
 
-## Write Clean Code
+## How to Write Clean Code
 
 ![a white and blue wall](wall.jpg)
 
-In summary,
+To write clean code, your safest bet is to conform to the style guide of the
+project.
 
-- Talk with your team about your project’s style guide.
-- Use lint tools to conform to your project’s style guide.
+- If the project uses descriptive variable names, then the code you add should
+  have descriptive variable names.
+- If the project uses short functions, then the functions you write should be
+  short as well.
+- If the project indents with 4 spaces, then you should also ident with 4 spaces
+  in the scope of the project.
+
+Don't get hung up trying to indoctrinate your style preferences on other
+developers. We all have our different beliefs about what we consider clean code.
+Use lint tooling to automate conforming to the project's style guide. If there
+is no style guide defined, [adopt one](#tools-i-like). Keep the reader in mind
+when writing code. Ask yourself, "If I were to look at this code one year from
+now, would I understand what is going on?"
+
+<aside><p>Try looking at code from one of your old projects. Do you remember how the code works? Is the code easy to understand? If so, great! Perhaps you have written <em>clean code</em>.&nbsp;
+<span role="img" aria-label="slightly smiling face">🙂</span></p></aside>
+
+### Summary
+
 - Read
   [Martin’s book](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
-  to learn the principles of writing clean code.
-
-To write clean code, your safest bet is to conform to the style guide of the
-project. If there is no style guide defined, adopt one. Use lint tooling to
-automate enforcing it. At the end of the day, our goal is shipping software for
-our users, not styling text files.
+  to learn principles of writing clean code.
+- Code according to the project’s style guide.
+- Use lint tools to help conform to the style guide.
