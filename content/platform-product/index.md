@@ -82,8 +82,9 @@ apps upon.
 
 The platform you provide doesn't have to what your company is known for either.
 Many companies like [Reddit](https://www.reddit.com/dev/api/) and
-[Twitter](https://developer.twitter.com/en/docs) offer an external API for which
-customers can interact with their services.
+[Twitter](https://developer.twitter.com/en/docs) offer an external API that
+developers can use to build apps that interact with Reddit's and Twitter's
+services.
 
 I'm curious to know what you think.
 
