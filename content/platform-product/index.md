@@ -2,7 +2,9 @@
 slug: platform-product
 date: 2020-06-30
 title: Make Your Platform a Product
-description: Learn
+description:
+  Companies are extending their customer-base by offering their engineering
+  platform as a product, either through infrastructure or external APIs.
 tags:
   - Software Engineering
 image: index.jpg
@@ -71,12 +73,17 @@ utilize its services.
 
 ![brown building](brown.jpg)
 
-The platform you provide doesn't have to try and achieve the same goals as AWS.
-**Stripe** is a company that provides an API for processing payments. According
-to Forbes, the company
+The platform your company provides doesn't have to try and achieve the same
+goals as AWS. **Stripe** is a company that provides an API for processing
+payments. According to Forbes, the company
 [now has a valuation of \$35 billion](https://www.forbes.com/sites/donnafuscaldo/2019/09/19/stripe-now-has-a-pre-money-valuation-of-35-billion/#20e5591c62e6).
 This goes to show the demand for quality tools for which developers can build
 apps upon.
+
+The platform you provide doesn't have to what your company is known for either.
+Many companies like [Reddit](https://www.reddit.com/dev/api/) and
+[Twitter](https://developer.twitter.com/en/docs) offer an external API for which
+customers can interact with their services.
 
 I'm curious to know what you think.
 
