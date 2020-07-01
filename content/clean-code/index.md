@@ -6,9 +6,7 @@ description:
   Come check out common patterns to keep in mind when writing clean code.
 tags:
   - Web Development
-  - React
-  - Gatsby
-  - Next
+  - Software Engineering
 image: index.jpg
 ---
 

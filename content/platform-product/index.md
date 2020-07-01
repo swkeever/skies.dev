@@ -1,0 +1,88 @@
+---
+slug: platform-product
+date: 2020-06-30
+title: Make Your Platform a Product
+description: Learn
+tags:
+  - Software Engineering
+image: index.jpg
+---
+
+What do you think about when you think of household technology companies like
+Microsoft, Google, and Amazon?
+
+- Microsoft has their operating system
+- Google has their search engine
+- Amazon has their marketplace.
+
+But _what do all of these companies have in common?_ Each of these companies
+provide their **platform as a service**.
+
+- Microsoft offers Azure
+- Google offers GCP
+- Amazon offers AWS
+
+Application developers need infrastructure to build and ship their products, and
+these three companies are providing it. Companies acquire a dependency on these
+cloud services to run their applications. The result is **win-win**. Companies
+can use these cloud services to seamlessly scale up, and the cloud providers
+make more money when they do.
+
+## Bezo's Mandate
+
+![construction](build.jpg)
+
+In Steve Yegge's
+[rant on platforms](https://gist.github.com/chitchcock/1281611), Yegge wrote how
+in 2002, Amazon CEO Jeff Bezos famously issued a mandate that said something
+along the lines of:
+
+- All teams will henceforth expose their data and functionality through service
+  interfaces.
+- Teams must communicate with each other through these interfaces.
+- There will be no other form of interprocess communication allowed: no direct
+  linking, no direct reads of another team's data store, no shared-memory model,
+  no back-doors whatsoever. The only communication allowed is via service
+  interface calls over the network.
+- It doesn't matter what technology they use. HTTP, Corba, Pubsub, custom
+  protocols—doesn't matter.
+- All service interfaces, without exception, must be designed from the ground up
+  to be externalizable. That is to say, the team must plan and design to be able
+  to expose the interface to developers in the outside world. No exceptions.
+- Anyone who doesn't do this will be fired.
+- Thank you; have a nice day!
+
+Bezo's mandate birthed what has become AWS, a leading cloud provider that serves
+many [big-name companies](https://www.contino.io/insights/whos-using-aws).
+According to
+[how Amazon makes money](https://www.investopedia.com/how-amazon-makes-money-4587523),
+AWS alone brings in about _50% of Amazon's operating income_.
+
+> **Operating income** is the profit realized from a business's operations after
+> deducting operating expenses such as wages, depreciation, and cost of goods
+> sold (COGS). -
+> [Investopedia](https://www.investopedia.com/terms/o/operatingincome.asp)
+
+The result of Amazon following through with Bezo's mandate undoubtedly turned
+out to be fruitful for Amazon's business as well as all of the companies that
+utilize its services.
+
+## Make Your Platform a Product
+
+![brown building](brown.jpg)
+
+The platform you provide doesn't have to try and achieve the same goals as AWS.
+**Stripe** is a company that provides an API for processing payments. According
+to Forbes, the company
+[now has a valuation of \$35 billion](https://www.forbes.com/sites/donnafuscaldo/2019/09/19/stripe-now-has-a-pre-money-valuation-of-35-billion/#20e5591c62e6).
+This goes to show the demand for quality tools for which developers can build
+apps upon.
+
+I'm curious to know what you think.
+
+- When would it be a good idea to make a company's platform a product, either by
+  exposing an external API or offering some sort of infrastructure?
+- When would it _not_ make sense to offer a company's platform as a product?
+
+Let me know what you think on
+[Twitter](https://twitter.com/intent/tweet?text=%40swkeever%20https%3A%2F%2Fskies.dev%2Fblog%2Fplatform-product)!
