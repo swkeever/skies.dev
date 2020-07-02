@@ -20,8 +20,8 @@ When you are just starting out, don't worry about learning many different
 programming languages. I recommend picking _one language_ and sticking with it
 at least until you feel you have reached a reasonable proficiency.
 
-> It's better to be _really_ good at one programming language than just OK at
-> many different programming languages.
+> It's better to be good at one programming language than OK at many different
+> programming languages.
 
 ## Determine Your Goals
 
