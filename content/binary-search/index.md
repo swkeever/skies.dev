@@ -6,6 +6,7 @@ description: Binary search can greatly speed up the execution of your programs
 tags:
   - Algorithms
   - Computer Science
+  - Beginner
 image: index.jpg
 ---
 

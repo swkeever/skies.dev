@@ -138,6 +138,7 @@ article p,
 article ul,
 article ol,
 article code,
+article table,
 .warning-header,
 .warning-subheader {
   @apply leading-7 mt-2 mb-6 text-base;
@@ -160,6 +161,7 @@ article code,
   article ul,
   article ol,
   article code,
+  article table,
   .warning-header,
   .warning-subheader {
     @apply leading-8 text-xl;
@@ -172,6 +174,7 @@ article code,
   article ul,
   article ol,
   article code,
+  article table,
   .warning-header,
   .warning-subheader {
     @apply leading-9;
@@ -180,6 +183,23 @@ article code,
 
 article pre {
   @apply mt-2 mb-6;
+}
+
+article table {
+  @apply table-auto text-left w-full shadow;
+}
+
+article thead {
+  @apply bg-primary h-12 align-bottom text-onPrimary;
+}
+
+article td,
+article th {
+  @apply h-12 align-bottom px-2;
+}
+
+article tr:nth-child(even) {
+  @apply bg-neutralBgSoft;
 }
 
 article a {

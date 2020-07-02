@@ -7,6 +7,7 @@ description:
   execution, "undo" mechanisms, and more.
 tags:
   - Computer Science
+  - Beginner
   - Data Structures
 image: index.jpg
 ---

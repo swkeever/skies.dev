@@ -1,0 +1,140 @@
+---
+slug: first-lang
+date: 2020-07-02
+title: Best First Programming Language to Learn
+description:
+  It can be overwhelming to know where to start when beginning to learn how to
+  program. Come check out why I believe Python is the best programming language
+  to learn as a total beginner.
+tags:
+  - Beginner
+  - Software Engineering
+image: index.jpg
+---
+
+When you're just beginning to learn to program, it can be overwhelming to know
+where to start. There are many programming languages to choose from. What should
+be the first programming language you learn?
+
+When you are just starting out, don't worry about learning many different
+programming languages. I recommend picking _one language_ and sticking with it
+at least until you feel you have reached a reasonable proficiency.
+
+> It's better to be _really_ good at one programming language than just OK at
+> many different programming languages.
+
+## Determine Your Goals
+
+![woman sitting on a hill](goals.jpg)
+
+The first thing to ask yourself when beginning to learn programming is _what are
+my goals?_ Different languages are better suited for different purposes. Knowing
+what you want to do with programming should simplify your decision for what you
+should learn.
+
+The following table shows what language you should learn based on each goal. If
+you see the type of thing you want to build listed, then I recommend learning
+that corresponding programming language.
+
+| Goal                                | Language   |
+| ----------------------------------- | ---------- |
+| Web apps                            | JavaScript |
+| iOS apps                            | Swift      |
+| Android apps                        | Kotlin     |
+| Video games                         | C#         |
+| Video game engines                  | C++        |
+| Embedded systems, operating systems | C          |
+| Machine learning, data science      | Python     |
+
+If you know you want to do programming but you aren't sure what your goals are
+yet, that is perfectly normal. In this case, I believe the first programming
+language you should learn is **Python**.
+
+## Hello Python
+
+![a winding road](journey.jpg)
+
+Python is a great first language because it is simple relative to other
+languages. When programmers learn a new programming language, the first program
+we always write is called **Hello World**. Hello World is a program that prints
+out the text "Hello World." In Python, to write a Hello World program, all we
+have to do is write
+
+```python
+print('Hello World')
+```
+
+Compare this with the Hello World program written in the **Java** programming
+language.
+
+```java
+class Hello {
+  public static void main(String[] args) {
+    System.out.println("Hello World");
+  }
+}
+```
+
+Without a doubt, writing Hello World in Python is simpler because you can print
+"Hello World" right away. In Java, you have to write a class and a method before
+you can print "Hello World."
+
+<aside><p>
+There's nothing wrong with Java. Java is a fantastic language. In fact, Java <em>is</em> used as a introductory programming language in a lot of computer science curriculums. But I believe Python is better suited for beginners.
+</p></aside>
+
+## Python is Popular
+
+![highway traffic](highway.jpg)
+
+Another reason I think Python is a good first language is that it is a popular
+language. According to a
+[Stack Overflow survey](https://insights.stackoverflow.com/survey/2020#most-popular-technologies),
+Python is the **2nd most popular programming language**.
+
+<aside><p>
+In the survey, HTML/CSS is listed 2nd most popular, SQL is listed 3rd, and Python is listed 4th. HTML is a <a href="https://en.wikipedia.org/wiki/Markup_language" target="_blank" rel="noopener noreferrer">markup language</a>, CSS is a <a href="https://en.wikipedia.org/wiki/Style_sheet_language" target="_blank" rel="noopener noreferrer">style sheet language</a>, and SQL is a <a href="https://en.wikipedia.org/wiki/Query_language" target="_blank" rel="noopener noreferrer">query language</a>. Thus, Python is the 2nd most popular programming language.
+</p></aside>
+
+By learning Python, you are learning a language that is
+[widely-used in industry](https://stackshare.io/python). Python can be used to
+do a lot of things. Just to name a few, Python can be used for
+
+- Building web apps using the [Django framework](https://www.djangoproject.com/)
+- Data science and analytics using [pandas](https://pandas.pydata.org/)
+- Machine learning with [scikit-learn](https://scikit-learn.org/stable/)
+
+Don't worry about learning these frameworks and libraries just yet. I just want
+to give you a taste of what Python is well-suited for. When you're just starting
+out, **focus on learning the fundamentals**.
+
+## Learn the Fundamentals
+
+![aerial view of road](aerial.jpg)
+
+Learn how to answer the following:
+
+- What are the common **data types**?
+- What are **conditional statements**?
+- What are **loops**?
+- How to handle **exceptional** behavior?
+- What are **functions**?
+- What are **classes** and **objects**?
+
+**Focus on learning the fundamentals first**. I personally like
+[Automate the Boring Stuff](https://automatetheboringstuff.com/) for learning
+Python and also for learning how to make interesting projects. If you prefer
+videos, they have an accompanying
+[Udemy course](https://www.udemy.com/course/automate/?couponCode=JUL2020FREE). I
+think this a fun course to get you up and running with your first programming
+language.
+
+## Your Journey Starts Now
+
+![man walking on road](road.jpg)
+
+Good luck on your path learning programming. Remember, there's _always_ going to
+be things you don't know. There's so much that you could possibly learn, and
+there is no way you could learn everything. Figure out what it is _you_ like
+about programming and stick with that. At the end of the day, **have fun** with
+it and **build cool things**.

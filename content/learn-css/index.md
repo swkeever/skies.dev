@@ -8,6 +8,7 @@ description:
 tags:
   - CSS
   - Tailwind CSS
+  - Beginner
 image: index.jpg
 ---
 
