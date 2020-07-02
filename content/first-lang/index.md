@@ -76,8 +76,8 @@ class Hello {
 ```
 
 Without a doubt, writing Hello World in Python is simpler because you can print
-"Hello World" right away. In Java, you have to write a class and a method before
-you can print "Hello World."
+"Hello World" right away. In Java, you have to write a **class** and a
+**method** before you can print "Hello World."
 
 <aside><p>
 There's nothing wrong with Java. Java is a fantastic language. In fact, Java <em>is</em> used as a introductory programming language in a lot of computer science curriculums. But I believe Python is better suited for beginners.
@@ -121,7 +121,7 @@ Learn how to answer the following:
 - What are **functions**?
 - What are **classes** and **objects**?
 
-**Focus on learning the fundamentals first**. I personally like
+I personally like
 [Automate the Boring Stuff](https://automatetheboringstuff.com/) for learning
 Python and also for learning how to make interesting projects. If you prefer
 videos, they have an accompanying
