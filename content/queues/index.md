@@ -1,0 +1,107 @@
+---
+slug: queues
+date: 2020-07-03
+title: Simple Explanation of the Queue Data Structure
+description:
+  Queues have many applications in computing including scheduling, customer
+  service systems, and finding shortest paths.
+tags:
+  - Computer Science
+  - Beginner
+  - Data Structures
+image: index.jpg
+---
+
+A **queue** is an array-like data structure where elements are ordered
+**first-in, first-out (FIFO)**. There are two basic operations in a queue.
+
+- **enqueue**: insert an element in the _back_ of the queue.
+- **dequeue**: remove the element that has been in the queue _longest_.
+
+I want to convince you that you've probably known about queues for a long time.
+
+## Queues in the Real World
+
+![produce section of grocery store](grocery.jpg)
+
+Let's say you're going grocery shopping. You've picked all of your items and
+you're ready to check out so you head to the cashiers. What do you see?
+
+You see a _queue_ of people waiting to buy their groceries.
+
+<aside><p>In the U.S., we often refer to a queue as a <em>line</em>.</p></aside>
+
+Now, what do you do? You probably don't skip to the front of the queue or skip
+to somewhere in the middle. That would probably make people waiting upset. You
+go to the back of the queue.
+
+Who gets service from the cashier next? The person who has been _waiting the
+longest_. The _next person in line_. This is exactly **first in, first out**.
+Moreover, this is exactly how the queue data structure operates. A queue is a
+list data structure where elements are removed in the order they were inserted.
+
+## Practice with Queues
+
+I hope you now have a mental model for what queues are. Now let's check your
+understanding. First, I will give an example in **pseudocode** to show you how a
+queue behaves.
+
+<aside><p><strong>Pseudocode</strong> refers to high-level code that is not associated with any programming language. It's used to give an understanding of how the code works without being detailed about specific syntax.</p></aside>
+
+### Example
+
+```python
+# first we will define a queue
+queue = []
+
+# queue = [1]
+queue.enqueue(1)
+
+# queue = [1, 2]
+queue.enqueue(2)
+
+# queue = [1, 2, 3]
+queue.enqueue(3)
+
+# x = 1, queue = [2, 3]
+x = queue.dequeue()
+
+# y = 2, queue = [3]
+y = queue.dequeue()
+
+# z = 3, queue = []
+z = queue.dequeue()
+```
+
+### Practice
+
+Now, it's your turn. What are the values of `x`, `y`, and `z` after the
+following program runs?
+
+```python
+queue = []
+
+queue.enqueue(3)
+queue.enqueue(2)
+queue.dequeue()
+queue.enqueue(1)
+
+# x = ???
+x = queue.dequeue()
+
+queue.enqueue(x)
+queue.enqueue(1)
+
+# y = ???
+y = queue.dequeue()
+
+# Note, the result of queue.dequeue()
+#       is the value passed in as an
+#       argument to queue.enqueue()
+queue.enqueue(queue.dequeue())
+
+# z = ???
+z = queue.dequeue()
+```
+
+Let me know what you get!
