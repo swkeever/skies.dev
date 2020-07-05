@@ -22,7 +22,9 @@ export default function Blog({
     html,
   }: { frontmatter: BlogFrontmatter; html: string } = markdownRemark;
 
-  const filepath = markdownRemark.fileAbsolutePath.split('/src/')[1];
+  console.log(markdownRemark);
+  const filepath = markdownRemark.fileAbsolutePath.split('/content/')[1];
+  console.log(filepath);
 
   return (
     <Layout
