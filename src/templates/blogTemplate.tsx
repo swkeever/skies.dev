@@ -13,8 +13,8 @@ import BlogHeader from '../components/article/BlogHeader';
 import CallToAction from '../components/article/CallToAction';
 import links from '../utils/links';
 import BlogContainer from '../components/article/BlogContainer';
-import SEO from '../components/SEO';
 import Connection from '../../assets/connection.svg';
+import SEO from '../components/SEO';
 
 const styles = {
   copy: `
