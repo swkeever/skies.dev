@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 
 export default function BlogContainer({
-  children,
-  className,
+  children = null,
+  className = '',
   ...props
 }: {
-  children?: ReactNode;
+  children: ReactNode;
   className?: string;
   props?: Object;
 }) {
@@ -13,8 +13,10 @@ export default function BlogContainer({
     <div
       className={`
         container
+
         mx-auto
-        max-w-3xl
+        lg:ml-48
+        max-w-screen-md
         px-4
         ${className}
       `}

@@ -24,7 +24,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
     >
       <BlogContainer className="lg:pt-8" />
 
-      <div className="container mt-4 px-4 max-w-3xl mx-auto">
+      <BlogContainer>
         <ShareCallToAction linkClassName="mb-4 block text-onNeutralBgSoft hover:text-onNeutralBgLinkHover" />
 
         <Button
@@ -44,7 +44,7 @@ export default function CallToAction({ editUrl }: { editUrl: string }) {
         >
           Edit on GitHub
         </a>
-      </div>
+      </BlogContainer>
     </div>
   );
 }

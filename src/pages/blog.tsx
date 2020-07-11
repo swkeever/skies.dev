@@ -12,7 +12,7 @@ import SEO from '../components/SEO';
 // and only show tags that exist in the markdown files
 function getInitialTags(data): Tag[] {
   const validTags = [];
-  data.allMarkdownRemark.edges.forEach((e) => {
+  data.allMdx.edges.forEach((e) => {
     e.node.frontmatter.tags.forEach((t) => {
       if (!validTags.includes(t)) {
         validTags.push(t);
@@ -25,7 +25,6 @@ function getInitialTags(data): Tag[] {
 
 export type BlogFrontmatter = {
   title: string;
-  slug: string;
   date: string;
   tags: string[];
   description: string;
@@ -39,13 +38,16 @@ export type BlogFrontmatter = {
 };
 
 export type BlogMarkdownRemark = {
-  allMarkdownRemark: {
+  allMdx: {
     edges: {
       node: {
         frontmatter: BlogFrontmatter;
         id: string;
         timeToRead: number;
-        rawMarkdownBody: string;
+        rawBody: string;
+        fields: {
+          slug: string;
+        };
       }[];
     };
   };
@@ -75,12 +77,11 @@ export const blogDescription = 'Explore articles on software engineering, comput
 export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
           node {
             frontmatter {
               title
-              slug
               date
               tags
               description
@@ -92,9 +93,12 @@ export default function BlogsPage() {
                 }
               }
             }
+            fields {
+              slug
+            }
             id
             timeToRead
-            rawMarkdownBody
+            rawBody
           }
         }
       }
@@ -114,10 +118,10 @@ export default function BlogsPage() {
   const [filterTags, setFilterTags] = useState<Tag[]>(getInitialTags(data));
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
 
-  const allBlogs: Blog[] = data.allMarkdownRemark.edges.map((e) => {
-    const { id, timeToRead, rawMarkdownBody } = e.node;
+  const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
+    const { id, timeToRead, body } = e.node;
     const {
-      title, slug, description, date, tags, image,
+      title, description, date, tags, image,
     } = e.node.frontmatter;
     const dateFormat = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -128,11 +132,11 @@ export default function BlogsPage() {
       id,
       timeToRead,
       title,
-      slug,
+      slug: e.node.fields.slug,
       description,
       date: dateFormat,
       tags,
-      body: rawMarkdownBody,
+      body,
       image: image.childImageSharp.fluid,
     };
   });

@@ -1,5 +1,4 @@
 ---
-slug: learn-css
 date: 2020-06-27
 title: How To Accelerate Learning CSS
 description:
@@ -20,26 +19,25 @@ per property. That's over 5,000 different options to choose from—no wonder it'
 overwhelming!
 
 <aside>
-<p>
-In CSS, a <strong>property</strong> goes on the left-hand side of the colon, and a <strong>value</strong> goes on the right-hand side.
-</p>
-<pre>
-selector {
-  property: value;
+  In CSS, a <strong>property</strong> goes on the left-hand side of the colon,
+  and a <strong>value</strong> goes on the right-hand side.
+  <pre>
+    {`
+<selector>: {
+  <property>: <value>
 }
-</pre>
+`}
+  </pre>
 </aside>
 
 When you try to add CSS on your own webpage, things don't seem to look the way
 you imagined.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I rarely have problems getting CSS to work as expected, so the Family Guy CSS gif used to baffle me. But, actually, it’s a perfect metaphor when you consider Peter Griffin has no idea how the blinds work, no patience to learn, and still expects them to magically do what he wants. <a href="https://t.co/mc2gWNnQ1i">pic.twitter.com/mc2gWNnQ1i</a></p>&mdash; Nick Sherman (@NickSherman) <a href="https://twitter.com/NickSherman/status/1091065393500704768?ref_src=twsrc%5Etfw">January 31, 2019</a></blockquote>
-
 If you're like me, you may lean on CSS frameworks like
 [Bootstrap](https://getbootstrap.com/), so you can simply apply a class and the
 component becomes beautifully styled.
 
-```html
+```html{1}
 <!-- Styled with Bootstrap -->
 <button class="btn btn-primary">Click me</button>
 ```
@@ -50,9 +48,8 @@ writing your own custom CSS. But now, you need to patch your custom CSS to work
 alongside the Bootstrap stylesheet.
 
 <aside>
-<p>
-I'm not trying to pick on Bootstrap. I am just using Bootstrap as an example since it is a widely-known CSS framework.
-</p>
+  I'm not trying to pick on Bootstrap. I am just using Bootstrap as an example
+  since it is a widely-known CSS framework.
 </aside>
 
 ## Limit Your Scope
@@ -63,7 +60,8 @@ When you're first learning CSS, make it easier on yourself by **limiting your
 scope** when it comes to the CSS rules you use.
 
 <aside>
-<p>By limiting your scope, I mean to <strong>limit the number of options</strong> of CSS rules you can apply.</p>
+  By limiting your scope, I mean to <strong>limit the number of options</strong>{' '}
+  of CSS rules you can apply.
 </aside>
 
 This is where [Tailwind CSS](https://tailwindcss.com/docs) comes in. Tailwind
@@ -169,17 +167,18 @@ and CSS:
 ```
 
 <aside>
-<p>
+  <p>
 As someone learning CSS, I might not know what is going on with the CSS in the
 "row" class. In this case, I would copy and paste the CSS I don't understand into a search engine and
 further investigate.
-
-I happen to know this is a
-[clear fix](https://stackoverflow.com/questions/8554043/what-is-a-clearfix),
+</p>
+<p>
+I happen to know this is a&nbsp;
+<ExternalLink href="https://stackoverflow.com/questions/8554043/what-is-a-clearfix">clear fix</ExternalLink>,
 which is being used because they are doing the layout using floats. Don't worry
-about this too much. In a [later section](#some-advice), I will suggest core
+about this too much. In a&nbsp;
+<a href="#some-advice">later section</a>, I will suggest core
 topics to research when beginning to learn CSS.
-
 </p>
 </aside>
 
@@ -230,13 +229,15 @@ Tailwind. Then, this process will become very fast because you won't need to
 look things up as often.
 
 <aside>
-<p>
-I recommend the
-<a href="https://marketplace.visualstudio.com/items?itemName=austenc.tailwind-docs" target="_blank" rel="noopener noreferrer">Tailwind Docs</a>
- and
- <a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss" target="_blank" rel="noopener noreferrer">Tailwind CSS IntelliSense</a>
-VS Code extensions for easy access to documentation and auto-completion.
-</p>
+  I recommend the&nbsp;
+  <ExternalLink href="https://marketplace.visualstudio.com/items?itemName=austenc.tailwind-docs">
+    Tailwind Docs
+  </ExternalLink>
+  &nbsp;and&nbsp;
+  <ExternalLink href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">
+    Tailwind CSS IntelliSense
+  </ExternalLink>
+  &nbsp;VS Code extensions for easy access to documentation and auto-completion.
 </aside>
 
 ## Some Advice
@@ -272,7 +273,12 @@ Learn [Flexbox](https://www.youtube.com/results?search_query=flexbox) to start.
 It has [wide support](https://caniuse.com/#feat=flexbox) by browsers and it is
 simple to use and apply once you are comfortable with it.
 
-<h3>You Got This <span role="img" aria-label="Victory hand">✌️</span></h3>
+<h3>
+  You Got This{' '}
+  <span role="img" aria-label="Victory hand">
+    ✌️
+  </span>
+</h3>
 
 _Learning CSS is a constant journey._ Take baby steps and work incrementally.
 Search engines are your friend when you get stuck. Tailwind will help you learn
