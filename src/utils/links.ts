@@ -22,8 +22,4 @@ const links = {
   discussOnTwitter: (filepath: string): string => `https://www.twitter.com/search?q=${siteUrl}${filepath}`,
 };
 
-export function slugToLink(slug: string): string {
-  return `${routes.blog}/${slug}`;
-}
-
 export default links;

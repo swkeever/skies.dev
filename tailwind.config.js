@@ -95,6 +95,7 @@ module.exports = {
     transitionDuration: ['responsive', 'hover', 'focus'],
     boxShadow: ['responsive', 'hover', 'focus', 'active'],
     backgroundColor: ['responsive', 'hover', 'focus', 'even'],
+    margin: ['responsive', 'first'],
   },
   plugins: [],
 };

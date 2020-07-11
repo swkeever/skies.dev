@@ -1,5 +1,4 @@
 ---
-slug: awesome-links
 date: 2020-06-28
 title: How to Make Links to Your Website Look Awesome
 description:
@@ -37,11 +36,10 @@ search engine results.
 To accomplish this, we will use the `<title>` tag and the `<meta>` tag.
 
 <aside>
-<p>
-A <strong>meta tag</strong> is commonly of the form: </p>
-<p>
-&lt;meta name="name" content="content" /&gt;
-</p>
+  <p>
+    A <strong>meta tag</strong> is commonly of the form:{' '}
+  </p>
+  <p>&lt;meta name="name" content="content" /&gt;</p>
 </aside>
 
 We update our head to the following:
@@ -69,12 +67,11 @@ We will follow a similar procedure of adding metadata. Open-Graph metadata is
 used by social media sites to make a **card** from the link to your site.
 
 <aside>
-<p>
-Open-Graph meta tags are of the following form. Notice, we use <strong>property</strong> instead of <strong>name</strong> here.
-</p>
-<p>
-&lt;meta property="og:name" content="content" /&gt;
-</p>
+  <p>
+    Open-Graph meta tags are of the following form. Notice, we use{' '}
+    <strong>property</strong> instead of <strong>name</strong> here.
+  </p>
+  <p>&lt;meta property="og:name" content="content" /&gt;</p>
 </aside>
 
 Following the advice of the documentation, we will add the **four required meta
@@ -116,12 +113,8 @@ to learn how to turn links to our site into cards. We follow a similar procedure
 as before.
 
 <aside>
-<p>
-Twitter meta tags are of the following form:
-</p>
-<p>
-&lt;meta name="twitter:name" content="content" /&gt;
-</p>
+  <p>Twitter meta tags are of the following form:</p>
+  <p>&lt;meta name="twitter:name" content="content" /&gt;</p>
 </aside>
 
 Our document's head now becomes
@@ -166,22 +159,19 @@ information.
 <h2>Important</h2>
 
 <p>
-When specifying the URL for your image metadata, make sure to <strong>use an
-absolute URL, not a relative URL</strong>. Twitter will not be able to resolve a
-relative URL, and your image will not be displayed on the card.
+  When specifying the URL for your image metadata, make sure to{' '}
+  <strong>use an absolute URL, not a relative URL</strong>. Twitter will not be
+  able to resolve a relative URL, and your image will not be displayed on the
+  card.
 </p>
 
 <h3>Incorrect</h3>
 
-<p>
-&lt;meta name="twitter:image" content="/image.jpg"/&gt;
-</p>
+<p>&lt;meta name="twitter:image" content="/image.jpg"/&gt;</p>
 
 <h3>Correct</h3>
 
-<p>
-&lt;meta name="twitter:image" content="https://skies.dev/image.jpg"/&gt;
-</p>
+<p>&lt;meta name="twitter:image" content="https://skies.dev/image.jpg"/&gt;</p>
 
 </aside>
 

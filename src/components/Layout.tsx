@@ -65,6 +65,7 @@ const Layout = ({
             w-full
             flex
             flex-col
+            justify-between
           `}
         >
           {children}

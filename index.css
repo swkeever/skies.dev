@@ -109,133 +109,6 @@ html {
   }
 }
 
-article h1,
-article h2,
-article h3,
-article h4,
-article h5,
-article h6 {
-  @apply font-bold mt-4 leading-tight;
-}
-
-article h1 {
-  @apply text-3xl;
-}
-
-article h2 {
-  @apply text-2xl;
-}
-
-article h3 {
-  @apply text-xl;
-}
-
-article h4 {
-  @apply text-lg;
-}
-
-article p,
-article ul,
-article ol,
-article code,
-article table,
-.warning-header,
-.warning-subheader {
-  @apply leading-7 mt-2 mb-6 text-base;
-}
-
-@screen md {
-  article h1 {
-    @apply text-4xl;
-  }
-
-  article h2 {
-    @apply text-3xl;
-  }
-
-  article h3 {
-    @apply text-2xl;
-  }
-
-  article p,
-  article ul,
-  article ol,
-  article code,
-  article table,
-  .warning-header,
-  .warning-subheader {
-    @apply leading-8 text-xl;
-  }
-}
-
-@screen lg {
-
-  article p,
-  article ul,
-  article ol,
-  article code,
-  article table,
-  .warning-header,
-  .warning-subheader {
-    @apply leading-9;
-  }
-}
-
-article pre {
-  @apply mt-2 mb-6;
-}
-
-article table {
-  @apply table-auto text-left w-full shadow;
-}
-
-article thead {
-  @apply bg-primary h-12 align-bottom text-onPrimary;
-}
-
-article td,
-article th {
-  @apply h-12 align-bottom px-2;
-}
-
-article tr:nth-child(even) {
-  @apply bg-neutralBgSoft;
-}
-
-article a {
-  @apply text-onNeutralBgLink pb-1 border-b border-primarySoft;
-}
-
-
-article a:hover {
-  @apply text-onNeutralBgLinkHover pb-1 border-b border-onNeutralBgLinkHover;
-}
-
-article blockquote,
-article aside {
-  @apply mt-2 pb-1 pt-5 px-3 bg-neutralBgSoft text-lg text-onNeutralBgSoft border-l-4 border-primary;
-}
-
-.list {
-  @apply ml-6 my-4;
-}
-
-article ul {
-  @apply list list-disc;
-}
-
-article ol {
-  @apply list list-decimal;
-}
-
-article li {
-  @apply mb-1;
-}
-
-article hr {
-  @apply border-primaryBg my-4;
-}
-
 @tailwind components;
 
 .diagonal-m {
@@ -261,7 +134,6 @@ changing the background of form elements
 https: //stackoverflow.com/a/37432260/13400099
 */
 @-webkit-keyframes autofill {
-
   0%,
   100% {
     @apply text-onPrimary bg-neutralBgSoft;
@@ -343,30 +215,62 @@ input:checked+.slider:before {
 
 @tailwind utilities;
 
-.anchor {
-  @apply border-0 -mb-1;
-}
-
-.anchor:hover {
-  @apply border-0;
-}
-
 .twitter-tweet {
   @apply w-full mx-auto;
 }
 
-.warning {
-  @apply bg-yellow-100 border-l-4 border-yellow-500;
+/* VS Code theme overrides */
+.grvsc-container {
+  @apply pt-2 pb-1 rounded-md mt-4;
 }
 
-.warning-header {
-  @apply text-yellow-900 mb-0;
+.grvsc-line {
+  /* padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)); */
+  /* padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem)); */
+  @apply leading-5;
 }
 
-.warning-subheader {
-  @apply text-yellow-800 mb-0 font-semibold;
+/* See “Line Highlighting” section for details */
+.grvsc-line-highlighted {
+  @apply shadow-xs bg-green-500;
 }
 
-.warning-body {
-  @apply text-yellow-700;
-}
+  /* the permalink icon */
+  h1 .anchor svg,
+  h2 .anchor svg,
+  h3 .anchor svg,
+  h4 .anchor svg,
+  h5 .anchor svg,
+  h6 .anchor svg {
+    @apply h-full w-10 -ml-3 -mb-2 transition-all duration-200 opacity-0 inline;
+  }
+
+  h1 a.anchor,
+  h2 a.anchor,
+  h3 a.anchor,
+  h4 a.anchor,
+  h5 a.anchor,
+  h6 a.anchor {
+    @apply border-b-0;
+  }
+
+  h1:hover .anchor svg,
+  h2:hover .anchor svg,
+  h3:hover .anchor svg,
+  h4:hover .anchor svg,
+  h5:hover .anchor svg,
+  h6:hover .anchor svg {
+    @apply opacity-100 inline-block ml-2 rounded-md;
+  }
+
+  a.anchor:hover {
+    @apply text-primary fill-current stroke-current stroke-1;
+  }
+
+  article h2 {
+    @apply -mb-5;
+  }
+
+  article h3 {
+    @apply -mb-1;
+  }

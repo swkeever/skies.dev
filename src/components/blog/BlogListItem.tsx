@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@reach/router';
 import { Blog } from '../../pages/blog';
-import { slugToLink } from '../../utils/links';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
   const li = (
@@ -24,7 +23,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
       `}
     >
       <Link
-        to={slugToLink(blog.slug)}
+        to={blog.slug}
         className=" items-center relative grid grid-rows-4 w-auto block justify-between text-onNeutralBg hover:text-onNeutralBg"
       >
         <img
