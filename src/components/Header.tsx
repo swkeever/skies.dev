@@ -12,7 +12,7 @@ export default function Header() {
     lg:top-0 lg:bottom-auto
     `}
     >
-      <div className="flex h-12 items-center">
+      <div className="flex h-16 lg:h-12 items-center">
         <Link
           to={routes.home}
           className={`

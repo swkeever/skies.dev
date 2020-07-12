@@ -86,6 +86,7 @@ export default function Nav() {
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
         className={`
+        ${globalStyles.transitions.colors}
           h-full
           flex justify-around items-center
           uppercase
