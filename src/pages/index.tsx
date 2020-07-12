@@ -205,7 +205,7 @@ export default function BlogsPage() {
   return (
     <>
       <SEO
-        title="Blog"
+        title="Software Engineering Blog"
         description={blogDescription}
         keywords={tags.map((t) => t.name).concat(['blog', 'learn', 'how to'])}
         image={data.file.childImageSharp.fluid}
@@ -214,9 +214,14 @@ export default function BlogsPage() {
           height: data.file.childImageSharp.fluid.presentationHeight,
         }}
       />
-      <BlogContext.Provider value={{
-        filter, setFilter, tags, setTags, blogs,
-      }}
+      <BlogContext.Provider
+        value={{
+          filter,
+          setFilter,
+          tags,
+          setTags,
+          blogs,
+        }}
       >
         <Header />
         <BlogList blogs={blogs} />
