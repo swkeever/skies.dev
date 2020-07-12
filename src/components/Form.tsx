@@ -41,6 +41,7 @@ export default function Form() {
 
   return (
     <form
+      autoComplete="off"
       method="post"
       action="https://formspree.io/maypervg"
       className={`

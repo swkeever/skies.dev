@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import Form from '../components/Form';
 import Container from '../components/Container';
 import Message from '../../assets/message.svg';
+import { globalStyles } from '../styles';
 
 export default function ContactPage() {
   const data = useStaticQuery(graphql`
@@ -22,7 +23,7 @@ export default function ContactPage() {
   `);
 
   return (
-    <Layout className="bg-neutralBgSoft">
+    <>
       <SEO
         title="Contact"
         image={data.file.childImageSharp.fluid}
@@ -33,22 +34,27 @@ export default function ContactPage() {
         keywords={['Contact', 'Sean Keever', 'Email']}
         description="Use the contact form to contact Sean Keever."
       />
-      <div className="bg-primary diagonal-t pb-24 md:pb-40 xl:pb-56" />
-      <Container className="-mt-4 px-4 self-stretch md:px-8 pb-4 md:pt-12 md:pb-12 flex flex-col md:items-center md:flex-row">
-        <div className="flex flex-col justify-center">
-          <h1 className="text-onNeutralBg font-bold text-4xl lg:text-5xl mt-0">
-            Contact me
-          </h1>
-          <p className="text-onNeutralBgSoft mt-1 mb-4 text-lg lg:text-xl">
-            Your message will be sent to my email.
-          </p>
-          <Message className="self-center md:-mt-5 lg:-mt-20 w-full h-auto hidden md:block" />
-        </div>
-        <div className="bg-neutralBg mt-0 rounded-md pt-4 pb-5 px-4 max-w-4xl h-full shadow-2xl">
-          <Form />
-        </div>
-      </Container>
-      <div className="bg-primary diagonal-b pt-24 md:pt-40 xl:pt-56 pb-0" />
-    </Layout>
+      <div
+        className={`absolute top-0 left-0 h-64 py-48 w-full bg-skies diagonal-t 
+      z-0
+      ${globalStyles.transitions.colors}
+      `}
+      />
+
+      <div
+        className={`${globalStyles.transitions.colors} bg-neutralBgSoft pt-32 my-auto flex-grow`}
+      >
+        <Container className="px-4 pb-4 md:pb-12">
+          <div className="bg-neutralBg rounded-md z-20 relative pt-4 pb-5 mx-auto px-4 max-w-screen-sm h-full shadow-2xl">
+            <h1 className="font-semibold text-xl mb-4 text-onNeutral">
+              Contact
+            </h1>
+            <Form />
+          </div>
+        </Container>
+      </div>
+
+      {/* <div className="bg-primary diagonal-b pt-24 md:pt-40 xl:pt-32 pb-0" /> */}
+    </>
   );
 }

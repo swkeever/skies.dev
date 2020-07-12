@@ -21,7 +21,7 @@ const NotFoundPage = () => {
   `);
 
   return (
-    <Layout>
+    <>
       <SEO
         title="Page not found"
         image={data.file.childImageSharp.fluid}
@@ -32,7 +32,7 @@ const NotFoundPage = () => {
         keywords={['Page not found', '404']}
         description="The page you requested does not exist on our server."
       />
-      <Container className="p-4">
+      <Container className="p-4 my-auto">
         <h1
           className={`
         text-lg
@@ -41,18 +41,15 @@ const NotFoundPage = () => {
         text-onNeutralBgSoft
         text-center
         mb-4
-        mt-16
-        md:mt-32
-        lg:mt-24
       `}
         >
           The page you requested doesn&apos;t exist.
         </h1>
-        <div className="w-11/12 md:w-9/12 max-w-2xl mx-auto">
+        <div className="w-11/12 md:w-9/12 max-w-6xl mx-auto">
           <Lost className="w-full h-full" />
         </div>
       </Container>
-    </Layout>
+    </>
   );
 };
 

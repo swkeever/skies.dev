@@ -97,5 +97,5 @@ module.exports = {
     backgroundColor: ['responsive', 'hover', 'focus', 'even'],
     margin: ['responsive', 'first'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/ui')],
 };

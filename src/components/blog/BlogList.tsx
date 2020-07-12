@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import BlogListItem from './BlogListItem';
 import Empty from '../../../assets/empty.svg';
-import { Blog } from '../../pages/blog';
+import { Blog } from '../../pages';
+import { globalStyles } from '../../styles';
 
 function Header({ children }: { children: ReactNode }) {
   return (
@@ -38,7 +39,12 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
   );
 
   return (
-    <section className="bg-neutralBgSoft self-stretch flex-grow pt-4 pb-12">
+    <section
+      className={`
+    bg-neutralBgSoft self-stretch flex-grow pt-16 -mt-16 pb-12
+    ${globalStyles.transitions.colors}
+    `}
+    >
       {children}
     </section>
   );

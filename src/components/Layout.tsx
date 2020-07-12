@@ -6,44 +6,37 @@
  */
 
 import React, { useState, ReactNode, useEffect } from 'react';
+import { useLocation } from '@reach/router';
 import Header from './Header';
 import Footer from './Footer';
+import '../../index.css';
+import { globalStyles } from '../styles';
+
+export const LayoutContext = React.createContext({});
+
+function getInitialTheme() {
+  if (!window.matchMedia) {
+    return true;
+  }
+
+  return window.matchMedia('(prefers-color-scheme: light)').matches;
+}
 
 const Layout = ({
   children,
-  hidden = false,
   className = '',
 }: {
   children: ReactNode;
-  hidden?: boolean;
   className?: string;
 }) => {
-  const [lightTheme, setLightTheme] = useState(true);
-
-  function saveLightTheme(theme: boolean) {
-    localStorage.setItem('theme', theme ? 'light' : 'dark');
-    setLightTheme(theme);
-  }
-
-  useEffect(() => {
-    const userTheme = localStorage.getItem('theme');
-    if (userTheme) {
-      setLightTheme(userTheme === 'light');
-    } else if (
-      window.matchMedia
-      && window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setLightTheme(false);
-    } else {
-      setLightTheme(true);
-    }
-  });
+  const [lightTheme, setLightTheme] = useState(getInitialTheme());
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
-  const extraClasses = className || 'bg-neutralBg text-onNeutral';
+  const extraClasses = className
+    || `${globalStyles.transitions.colors} bg-neutralBg text-onNeutral`;
 
   return (
-    <>
+    <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>
       <div
         className={`${themeClass}
         ${extraClasses}
@@ -53,9 +46,7 @@ const Layout = ({
         justify-between
         `}
       >
-        {!hidden && (
-          <Header lightTheme={lightTheme} setLightTheme={saveLightTheme} />
-        )}
+        <Header />
         <main
           className={`
             mb-0
@@ -65,14 +56,13 @@ const Layout = ({
             w-full
             flex
             flex-col
-            justify-between
           `}
         >
           {children}
         </main>
-        {!hidden && <Footer />}
+        <Footer />
       </div>
-    </>
+    </LayoutContext.Provider>
   );
 };
 

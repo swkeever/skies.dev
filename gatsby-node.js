@@ -64,3 +64,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@lib': path.resolve(__dirname, 'src/lib'),
+        '@pages': path.resolve(__dirname, 'src/pages'),
+        '@templates': path.resolve(__dirname, 'src/templates'),
+        '@utils': path.resolve(__dirname, 'src/utils'),
+        '@layouts': path.resolve(__dirname, 'src/layouts'),
+      },
+    },
+  });
+};

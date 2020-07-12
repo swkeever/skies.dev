@@ -15,6 +15,8 @@ import links from '../utils/links';
 import BlogContainer from '../components/article/BlogContainer';
 import Connection from '../../assets/connection.svg';
 import SEO from '../components/SEO';
+import ExternalLink from '../components/ExternalLink';
+import { globalStyles } from '../styles';
 
 const styles = {
   copy: `
@@ -76,7 +78,7 @@ const shortcodes = {
     );
   },
   ExternalLink: (props) => (
-    <a
+    <ExternalLink
       {...props}
       rel="nofollow noopener noreferrer"
       target="_blank"
@@ -180,12 +182,7 @@ export default function Blog({ data: { mdx } }) {
   const filepath = fileAbsolutePath.split('/src/')[1];
 
   return (
-    <Layout
-      className={`
-        bg-neutralBg
-        text-onNeutralBg
-    `}
-    >
+    <>
       <SEO
         frontmatter={frontmatter}
         title={frontmatter.title}
@@ -197,7 +194,7 @@ export default function Blog({ data: { mdx } }) {
           height: frontmatter.image.childImageSharp.fluid.presentationHeight,
         }}
       />
-      <article>
+      <article className={`${globalStyles.transitions.colors}`}>
         <BlogHeader
           title={frontmatter.title}
           date={frontmatter.date}
@@ -218,6 +215,6 @@ export default function Blog({ data: { mdx } }) {
 
         <CallToAction editUrl={links.editOnGithub(filepath)} />
       </article>
-    </Layout>
+    </>
   );
 }

@@ -5,33 +5,27 @@ import Nav from './Nav';
 import routes from '../utils/routes';
 import Logo from '../../assets/logo.svg';
 
-type HeaderProps = {
-  lightTheme: boolean;
-  setLightTheme: Function;
-};
-
-export default function Header({ lightTheme, setLightTheme }: HeaderProps) {
+export default function Header() {
   return (
-    <header>
-      <Link
-        to={routes.home}
-        className={`
-          z-50
+    <header
+      className={`fixed w-screen z-40 bg-primary bottom-0 left-0
+    lg:top-0 lg:bottom-auto
+    `}
+    >
+      <div className="flex h-12 items-center">
+        <Link
+          to={routes.home}
+          className={`
           hidden
-          inline
+          px-2
           lg:block
-          lg:fixed
-          top-0
-          left-0
-          ml-3
-          flex-none
-          mt-3
         `}
-      >
-        <Logo className="w-32 h-auto" />
-      </Link>
-      <Nav />
-      <ThemeToggle lightTheme={lightTheme} setLightTheme={setLightTheme} />
+        >
+          <Logo className="w-32 h-auto" />
+        </Link>
+        <Nav />
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

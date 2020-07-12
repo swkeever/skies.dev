@@ -42,7 +42,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-footerBg flex-none text-neutral mt-auto pt-10 pb-24 lg:pb-8">
+    <footer className="bg-footerBg transition-all duration-200 ease-in flex-none text-neutral mt-auto pt-10 pb-24 lg:pb-8">
       <Container className="max-w-md">
         <ul
           className={`

@@ -1,22 +1,18 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@reach/router';
-import { Blog } from '../../pages/blog';
+import { Blog } from '../../pages';
+import { globalStyles } from '../../styles';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
   const li = (
     <li
       className={`
         bg-neutralBg 
-        md:transition 
-        md:transform 
-        hover:scale-105 
-        hover:shadow-lg 
-        translate-y-0
-        hover:-translate-y-3 
-        shadow-none 
-        duration-300 
+        ${globalStyles.transitions.colors}
+        box-content
+        border-neutralBgSoft
         border-t-4
-        border-primary
+        hover:border-primarySoft
         mb-0
         block
         w-auto

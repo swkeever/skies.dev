@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Implement Gatsby's Browser APIs in this file.
  *
@@ -5,4 +6,10 @@
  */
 
 // You can delete this file if you're not using it
-import './index.css';
+
+const React = require('react');
+const Layout = require('./src/components/Layout').default;
+
+exports.wrapPageElement = ({ element, props }) => (
+  <Layout {...props}>{element}</Layout>
+);

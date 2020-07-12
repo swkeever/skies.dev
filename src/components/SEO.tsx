@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'gatsby-image';
 import routes from '../utils/routes';
-import { BlogFrontmatter } from '../pages/blog';
+import { BlogFrontmatter } from '../pages';
 
 const query = graphql`
   query SEO {

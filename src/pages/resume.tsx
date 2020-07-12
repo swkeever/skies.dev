@@ -136,7 +136,6 @@ const data = {
 export default function CVPage() {
   // this is here to hide the navbar/footer
   // so i can CTRL-P to print the resume easily
-  const hidden = false;
   const queryData = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "me.jpg" }) {
@@ -152,7 +151,7 @@ export default function CVPage() {
   `);
 
   return (
-    <Layout hidden>
+    <>
       <div
         className={`
         diagonal-t
@@ -160,7 +159,6 @@ export default function CVPage() {
         pb-40
         md:pt-10
         lg:pt-20
-        ${hidden && '-mt-8'}
       `}
       />
       <SEO
@@ -193,6 +191,6 @@ export default function CVPage() {
           </div>
         </div>
       </Container>
-    </Layout>
+    </>
   );
 }

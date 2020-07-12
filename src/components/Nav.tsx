@@ -1,7 +1,9 @@
-import React, { ReactNode } from 'react';
-import { FaHome, FaRegLightbulb, FaTelegramPlane } from 'react-icons/fa';
+import React, { ReactNode, useContext } from 'react';
+import { FaRegLightbulb, FaSmile, FaFire } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
 import routes from '../utils/routes';
+import { LayoutContext } from './Layout';
+import { globalStyles } from '../styles';
 
 function Item({ route, children }: { route: string; children: ReactNode }) {
   const { pathname } = useLocation();
@@ -9,35 +11,22 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
   return (
     <li
       className={`    
-        text-center
         tracking-widest
-        flex-1
-        lg:flex-none
-        lg:justify-start
-        pt-1
-        md:mb-3
-        ${
-          pathname === route
-          && `
-            lg:border-b-4
-            lg:border-onPrimary
-        `
-        }
+        w-1/3
       `}
     >
       <Link
         to={route}
         className={`
+          ${globalStyles.transitions.colors}
+          w-full
+          text-center
           inline-block
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
           hover:border-0
           outline-none          
           hover:no-underline
-          px-8
-          pt-2
-          pb-4
-          md:py-2
         `}
         style={pathname === route ? { color: 'var(--color-light)' } : {}}
       >
@@ -60,6 +49,7 @@ const Name = ({ name }: { name: string }) => (
 );
 
 export default function Nav() {
+  const { pathname } = useLocation();
   const iconStyles = `
     text-2xl
     md:text-xl
@@ -67,20 +57,27 @@ export default function Nav() {
     mr-2
   `;
 
+  function getUnderlineOffset() {
+    const numNavItems = 3;
+    let off = numNavItems;
+    if (pathname.includes(routes.blog) || pathname === routes.home) {
+      off = 0;
+    } else if (pathname === routes.about) {
+      off = 1;
+    } else if (pathname === routes.contact) {
+      off = 2;
+    }
+
+    return off === numNavItems ? '' : `${off * (100 / numNavItems)}%`;
+  }
+
+  const underlineOffset = getUnderlineOffset();
+
   return (
     <nav
       className={`
-        fixed 
-        bottom-0 
-        left-0
-        lg:top-0
-        lg:bottom-auto
-        w-full
-        lg:h-12
-        bg-primary
-        z-40
-        pt-2
-        lg:pt-0
+      w-full h-full lg:w-1/3 xl:w-3/12
+      flex flex-col
 
       `}
     >
@@ -89,32 +86,37 @@ export default function Nav() {
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
         className={`
-          list-none
-          m-0
-          lg:ml-40
-          flex
-          lg:justify-start
+          h-full
+          flex justify-around items-center
           uppercase
         `}
       >
         <Item route={routes.home}>
-          <FaHome
+          <FaRegLightbulb className={iconStyles} />
+          <Name name="Blog" />
+        </Item>
+        <Item route={routes.about}>
+          <FaSmile
             className={`
               ${iconStyles}
               text-2xl
             `}
           />
-          <Name name="Home" />
-        </Item>
-        <Item route={routes.blog}>
-          <FaRegLightbulb className={iconStyles} />
-          <Name name="Blog" />
+          <Name name="About" />
         </Item>
         <Item route={routes.contact}>
-          <FaTelegramPlane className={iconStyles} />
+          <FaFire className={iconStyles} />
           <Name name="Contact" />
         </Item>
       </ul>
+      <hr
+        style={{ marginLeft: getUnderlineOffset() }}
+        className={`transition-all duration-500 ease-in-out 
+        border-0
+        mt-auto h-1 w-1/3 
+        ${underlineOffset ? 'bg-onPrimary' : 'bg-primary'}
+        `}
+      />
     </nav>
   );
 }

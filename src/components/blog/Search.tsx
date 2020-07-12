@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaSistrix } from 'react-icons/fa';
+import { BlogContext } from '../../pages';
 
 export type Tag = {
   name: string;
@@ -13,27 +14,31 @@ type Search = {
   setTags: Function;
 };
 
-export default function Search({
-  filter, setFilter, tags, setTags,
-}: Search) {
+export default function Search() {
+  const {
+    filter, setFilter, tags, setTags,
+  }: Search = useContext(BlogContext);
+
   const tagStyles = {
     inactive: `
-    bg-neutralBgSoft
-    text-onNeutral
+    bg-primaryBgSoft
+    text-onPrimaryBgSoft
+    shadow-lg
+    -translate-y-1
     `,
 
     active: `
-    bg-primary
-    text-light
+    bg-neutralBgSoft
+    text-onNeutralBgSoft
+    border-onPrimaryBgSoft
+    translate-y-0
+    ease-out
     `,
   };
 
   return (
-    <div className="max-w-lg mx-auto px-4 mt-2 pb-8">
+    <div className="mt-6 pb-8">
       <div className="">
-        <h2 className="text-xl font-normal mt-0 text-onNeutralBgSoft mb-5">
-          What can I help you find?
-        </h2>
         <label htmlFor="filter-input">
           <span className="hidden">Search</span>
           <div>
@@ -48,6 +53,7 @@ export default function Search({
             `}
             />
             <input
+              autoComplete="off"
               id="filter-input"
               value={filter}
               onChange={(e) => {
@@ -61,11 +67,15 @@ export default function Search({
               pl-10 
               pr-2
               relative
-              py-2
+              py-3
               w-full
               outline-none
               shadow-inner
               focus:shadow-focus
+              focus:bg-neutralBg
+              transition
+              duration-200
+              ease-out
             `}
               type="search"
             />
@@ -81,6 +91,9 @@ export default function Search({
                   className={`${
                     t.selected ? tagStyles.active : tagStyles.inactive
                   }
+                  transform
+                  translate
+                  duration-200
                   inline-block 
                   rounded-full 
                   px-4 
@@ -94,9 +107,7 @@ export default function Search({
                     className={`
                     focus:outline-none
                     active:outline-none
-                    font-medium
-                    ${!t.selected ? 'text-onNeutralBgSoft' : 'text-onPrimary'}
-                    
+                    font-medium                    
                   `}
                     onClick={() => {
                       const newTags = tags.slice();

@@ -1,49 +1,40 @@
 import React from 'react';
-import { blogDescription } from '../../pages/blog';
-import Blog from '../../../assets/blog.svg';
+import Search from './Search';
+import { globalStyles } from '../../styles';
 
 export default function Header() {
   return (
-    <>
-      <div
-        className={`
+    <section
+      className={`
           diagonal-t 
-          bg-primary
+          bg-skies
           z-0
-          md:pt-8
-          pb-16 
+          py-16
+          md:py-32
+          lg:py-48
+          xl:py-64
+          ${globalStyles.transitions.colors}
+          
         `}
+    >
+      <div
+        className={`px-4 pt-2 z-10 max-w-screen-sm mx-auto ${globalStyles.transitions.colors}`}
       >
-        <div className="flex items-center px-4 pt-2 z-10 max-w-screen-md mx-auto">
-          <div className="">
-            <h1
-              className={`
+        <h1
+          className={`
               leading-none
-              text-4xl
-              lg:text-5xl
+              text-xl
+              lg:text-lg
+              uppercase
+              tracking-wider
               text-onPrimary
-              font-bold
-              mt-8
+              font-semibold
             `}
-            >
-              A Blog on Software Engineering
-            </h1>
-            <p className="text-onPrimarySoft mt-4 text-lg lg:text-xl">
-              {blogDescription}
-            </p>
-          </div>
-
-          <Blog
-            className={`
-            w-full
-            lg:w-7/12
-            h-auto
-            hidden
-            md:block
-          `}
-          />
-        </div>
+        >
+          Software Engineering Blog
+        </h1>
+        <Search />
       </div>
-    </>
+    </section>
   );
 }

@@ -1,19 +1,124 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import * as JsSearch from 'js-search';
+import { FluidObject } from 'gatsby-image';
 import Layout from '../components/Layout';
-import Learn from '../../assets/learn.svg';
-import Product from '../../assets/product.svg';
-import Button from '../components/Button';
-import Section from '../components/home/Section';
-import Content from '../components/home/Content';
-import routes from '../utils/routes';
-import Form from '../components/Form';
+import Header from '../components/blog/Header';
+import Search, { Tag } from '../components/blog/Search';
+import BlogList from '../components/blog/BlogList';
 import SEO from '../components/SEO';
 
-const IndexPage = () => {
-  const data = useStaticQuery(graphql`
+type Context = {
+  filter: string;
+  setFilter: Function;
+  tags: string[];
+  setTags: Function;
+  blogs: Blog[];
+};
+
+export const BlogContext = React.createContext({
+  filter: '',
+  setFilter: null,
+  tags: [],
+  setTags: null,
+  blogs: [],
+});
+
+// parse the tags from the markdown files
+// and only show tags that exist in the markdown files
+function getInitialTags(data): Tag[] {
+  const validTags = [];
+  data.allMdx.edges.forEach((e) => {
+    e.node.frontmatter.tags.forEach((t) => {
+      if (!validTags.includes(t)) {
+        validTags.push(t);
+      }
+    });
+  });
+  validTags.sort();
+  return validTags.map((t) => ({ name: t, selected: false }));
+}
+
+export type BlogFrontmatter = {
+  title: string;
+  date: string;
+  tags: string[];
+  description: string;
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+      presentationWidth: number;
+      presentationHeight: number;
+    };
+  };
+};
+
+export type BlogMarkdownRemark = {
+  allMdx: {
+    edges: {
+      node: {
+        frontmatter: BlogFrontmatter;
+        id: string;
+        timeToRead: number;
+        rawBody: string;
+        fields: {
+          slug: string;
+        };
+      }[];
+    };
+  };
+  file: {
+    childImageSharp: {
+      fluid: FluidObject;
+      presentationWidth: number;
+      presentationHeight: number;
+    };
+  };
+};
+
+export type Blog = {
+  id: string;
+  timeToRead: number;
+  title: string;
+  slug: string;
+  description: string;
+  date: string;
+  tags: string[];
+  body: string;
+  image: FluidObject;
+};
+
+export const blogDescription = 'Explore articles on software engineering, computer science, web development, and more.';
+
+export default function BlogsPage() {
+  const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "product.png" }) {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+        edges {
+          node {
+            frontmatter {
+              title
+              date
+              tags
+              description
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 700) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            fields {
+              slug
+            }
+            id
+            timeToRead
+            rawBody
+          }
+        }
+      }
+      file(relativePath: { eq: "bulb.png" }) {
         childImageSharp {
           fluid(maxWidth: 700) {
             ...GatsbyImageSharpFluid
@@ -25,97 +130,97 @@ const IndexPage = () => {
     }
   `);
 
-  const svgStyles = `
-    w-full
-    h-auto
-  `;
+  const [filter, setFilter] = useState('');
+  const [tags, setTags] = useState<Tag[]>(getInitialTags(data));
+  const [search, setSearch] = useState<JsSearch.Search | null>(null);
 
-  const headerStyles = `
-  leading-none
-  text-4xl 
-  font-bold
-  lg:text-5xl
-  mb-5
-  `;
+  const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
+    const { id, timeToRead, body } = e.node;
+    const {
+      title, description, date, image,
+    } = e.node.frontmatter;
+    const dateFormat = new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(new Date(date));
+    return {
+      id,
+      timeToRead,
+      title,
+      slug: e.node.fields.slug,
+      description,
+      date: dateFormat,
+      tags: e.node.frontmatter.tags,
+      body,
+      image: image.childImageSharp.fluid,
+    };
+  });
+  const [blogs, setBlogs] = useState(allBlogs);
+
+  useEffect(() => {
+    const s = new JsSearch.Search('id');
+    s.addIndex('title');
+    s.addIndex('description');
+    s.addIndex('date');
+    s.addIndex('tags');
+    s.addIndex('body');
+    s.addDocuments(blogs);
+    setSearch(s);
+  }, []);
+
+  useEffect(() => {
+    const query = tags
+      .filter((t) => t.selected)
+      .map((t) => t.name)
+      .concat(filter)
+      .join(' ');
+
+    if (search && query) {
+      let results: any = search.search(query);
+
+      // sort the result by latest published
+      results.sort((a: Blog, b: Blog): number => {
+        const aDate = new Date(a.date);
+        const bDate = new Date(b.date);
+        return bDate.valueOf() - aDate.valueOf();
+      });
+
+      // get the tag names that are selected
+      const tagsSelected = tags.filter((t) => t.selected).map((t) => t.name);
+
+      if (tagsSelected.length) {
+        results = results.filter((e) => e.tags.some((v) => tagsSelected.includes(v)));
+      }
+
+      // set the blogs that
+      // - are included in the filter
+      // - and included in the selected tags
+      setBlogs(results);
+    } else {
+      setBlogs(allBlogs);
+    }
+  }, [filter, tags]);
 
   return (
-    <Layout>
+    <>
       <SEO
-        title="Full Stack Developer"
-        description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
-        keywords={[
-          'Sean Keever',
-          'software engineer',
-          'Seattle',
-          'full stack developer',
-        ]}
+        title="Blog"
+        description={blogDescription}
+        keywords={tags.map((t) => t.name).concat(['blog', 'learn', 'how to'])}
         image={data.file.childImageSharp.fluid}
         imageDims={{
           width: data.file.childImageSharp.fluid.presentationWidth,
           height: data.file.childImageSharp.fluid.presentationHeight,
         }}
       />
-      <Section className="pt-4 md:pt-12">
-        <Content>
-          <h1 className={`${headerStyles} text-onNeutralBg`}>
-            Hi,
-            {' '}
-            <span className="mr-2" role="img" aria-label="Waving hand">
-              👋
-            </span>
-            I&apos;m Sean.
-          </h1>
-          <p className="text-onNeutralBgSoft">
-            I&apos;m a software engineer, designer, and technology enthusiast
-            from Seattle, WA.
-          </p>
-        </Content>
-        <Product className={`${svgStyles} mt-6`} />
-      </Section>
-
-      <div className="relative bg-primary diagonal-m pt-8 pb-16 md:pt-20 md:pb-20">
-        <Section className="md:flex-row-reverse">
-          <Content>
-            <h2 className={`${headerStyles} mt-8 text-onPrimary`}>
-              I like to help people learn.
-            </h2>
-            <p className="text-onPrimarySoft">
-              I write about technology, software engineering, and lessons
-              learned in the field.
-            </p>
-            <Button
-              tag="Link"
-              to={routes.blog}
-              color="light"
-              className="mt-4 mb-8 lg:mt-6"
-            >
-              Learn more
-            </Button>
-          </Content>
-          <Learn className={`${svgStyles}`} />
-        </Section>
-      </div>
-
-      <div
-        id="contact"
-        className="bg-neutralBgSoft pt-8 pb-8 -mt-12 md:pt-0 md:pb-12"
+      <BlogContext.Provider value={{
+        filter, setFilter, tags, setTags, blogs,
+      }}
       >
-        <Section className="justify-around">
-          <Content className="mb-4">
-            <h2 className={`${headerStyles} text-onNeutralBg`}>
-              Get in touch.
-            </h2>
-            <p className="text-onNeutralBgSoft">
-              If you have any questions, send me a message.
-            </p>
-          </Content>
-          <div className="relative z-30 bg-neutralBg max-w-xl p-4 shadow-2xl rounded-md lg:p-6 lg:-mt-12">
-            <Form />
-          </div>
-        </Section>
-      </div>
-    </Layout>
+        <Header />
+        <BlogList blogs={blogs} />
+      </BlogContext.Provider>
+    </>
   );
-};
-
-export default IndexPage;
+}

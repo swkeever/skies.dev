@@ -15,7 +15,6 @@ export default function BlogContainer({
         container
 
         mx-auto
-        lg:ml-48
         max-w-screen-md
         px-4
         ${className}
