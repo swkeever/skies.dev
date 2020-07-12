@@ -1,5 +1,5 @@
 module.exports = {
-  blog: '/blog',
+  blog: '/',
   home: '/',
   contact: '/contact',
   about: '/about',
