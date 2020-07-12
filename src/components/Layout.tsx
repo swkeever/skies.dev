@@ -14,14 +14,6 @@ import { globalStyles } from '../styles';
 
 export const LayoutContext = React.createContext({});
 
-function getInitialTheme() {
-  if (!window.matchMedia) {
-    return true;
-  }
-
-  return window.matchMedia('(prefers-color-scheme: light)').matches;
-}
-
 const Layout = ({
   children,
   className = '',
@@ -29,7 +21,10 @@ const Layout = ({
   children: ReactNode;
   className?: string;
 }) => {
-  const [lightTheme, setLightTheme] = useState(getInitialTheme());
+  const [lightTheme, setLightTheme] = useState(
+    window.matchMedia
+      && window.matchMedia('(prefers-color-scheme: light)').matches,
+  );
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
   const extraClasses = className
