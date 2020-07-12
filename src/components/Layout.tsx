@@ -6,7 +6,6 @@
  */
 
 import React, { useState, ReactNode, useEffect } from 'react';
-import { useLocation } from '@reach/router';
 import Header from './Header';
 import Footer from './Footer';
 import '../../index.css';
@@ -21,10 +20,14 @@ const Layout = ({
   children: ReactNode;
   className?: string;
 }) => {
-  const [lightTheme, setLightTheme] = useState(
-    window.matchMedia
-      && window.matchMedia('(prefers-color-scheme: light)').matches,
-  );
+  const [lightTheme, setLightTheme] = useState(true);
+
+  useEffect(() => {
+    setLightTheme(
+      window.matchMedia
+        && window.matchMedia('(prefers-color-scheme: light)').matches,
+    );
+  }, []);
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
   const extraClasses = className
