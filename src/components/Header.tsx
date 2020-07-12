@@ -9,8 +9,11 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed w-screen z-40 bg-primary bottom-0 left-0 top-auto right-auto
-    lg:top-0 lg:bottom-auto
+        className={`fixed 
+        w-screen z-40 
+        bg-primary 
+        bottom-0 left-0 top-auto right-auto
+        lg:top-0 lg:bottom-auto
     `}
       >
         <div className="flex h-16 lg:h-12 items-center">

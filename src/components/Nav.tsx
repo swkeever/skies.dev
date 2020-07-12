@@ -77,17 +77,17 @@ export default function Nav() {
 
   return (
     <nav
+      style={{
+        paddingBottom: 'env(safe-area-inset-bottom)',
+        // paddingTop: 'env(safe-area-inset-top)',
+      }}
       className={`
-      w-full h-full lg:w-1/3 max-w-screen-sm
+      w-full h-full lg:w-5/12 xl:w-4/12
       flex flex-col
 
       `}
     >
       <ul
-        style={{
-          paddingBottom: 'env(safe-area-inset-bottom)',
-          // paddingTop: 'env(safe-area-inset-top)',
-        }}
         className={`
         ${globalStyles.transitions.colors}
           h-full
