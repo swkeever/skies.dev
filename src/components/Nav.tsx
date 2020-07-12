@@ -68,7 +68,9 @@ export default function Nav() {
       off = 2;
     }
 
-    return off === numNavItems ? '' : `${off * (100 / numNavItems)}%`;
+    return off === numNavItems
+      ? ''
+      : `${(off * (100 / numNavItems)).toFixed(4)}%`;
   }
 
   const underlineOffset = getUnderlineOffset();
@@ -76,7 +78,7 @@ export default function Nav() {
   return (
     <nav
       className={`
-      w-full h-full lg:w-1/3 xl:w-3/12
+      w-full h-full lg:w-1/3 max-w-screen-sm
       flex flex-col
 
       `}
@@ -84,6 +86,7 @@ export default function Nav() {
       <ul
         style={{
           paddingBottom: 'env(safe-area-inset-bottom)',
+          // paddingTop: 'env(safe-area-inset-top)',
         }}
         className={`
         ${globalStyles.transitions.colors}
@@ -111,8 +114,9 @@ export default function Nav() {
         </Item>
       </ul>
       <hr
-        style={{ marginLeft: getUnderlineOffset() }}
-        className={`transition-all duration-500 ease-in-out 
+        style={{ marginLeft: underlineOffset }}
+        className={`
+        transition-all duration-500 ease-in-out 
         border-0
         mt-auto h-1 w-1/3 
         ${underlineOffset ? 'bg-onPrimary' : 'bg-primary'}

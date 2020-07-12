@@ -9,6 +9,7 @@ import Form from '../components/Form';
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
+import Layout from '../components/Layout';
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
@@ -97,7 +98,7 @@ const IndexPage = () => {
             </p>
             <Button
               tag="Link"
-              to={routes.blog}
+              to={routes.home}
               color="light"
               className="mt-4 mb-8 lg:mt-6"
             >

@@ -27,7 +27,7 @@ import { LayoutContext } from './Layout';
 export default function ThemeToggle() {
   const { lightTheme, setLightTheme } = useContext(LayoutContext);
   return (
-    <div>
+    <div className="fixed top-0 right-0 z-50">
       <span
         onClick={() => setLightTheme(!lightTheme)}
         role="button"

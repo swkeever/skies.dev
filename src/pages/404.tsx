@@ -21,7 +21,7 @@ const NotFoundPage = () => {
   `);
 
   return (
-    <>
+    <Layout>
       <SEO
         title="Page not found"
         image={data.file.childImageSharp.fluid}
@@ -49,7 +49,7 @@ const NotFoundPage = () => {
           <Lost className="w-full h-full" />
         </div>
       </Container>
-    </>
+    </Layout>
   );
 };
 

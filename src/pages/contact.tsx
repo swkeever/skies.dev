@@ -4,7 +4,6 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Form from '../components/Form';
 import Container from '../components/Container';
-import Message from '../../assets/message.svg';
 import { globalStyles } from '../styles';
 
 export default function ContactPage() {
@@ -35,7 +34,7 @@ export default function ContactPage() {
         description="Use the contact form to contact Sean Keever."
       />
       <div
-        className={`absolute top-0 left-0 h-64 py-48 w-full bg-skies diagonal-t 
+        className={`absolute top-0 left-0 h-32 lg:h-64 lg:py-48 w-full bg-skies diagonal-t 
       z-0
       ${globalStyles.transitions.colors}
       `}
@@ -45,7 +44,7 @@ export default function ContactPage() {
         className={`${globalStyles.transitions.colors} bg-neutralBgSoft pt-32 my-auto flex-grow`}
       >
         <Container className="px-4 pb-4 md:pb-12">
-          <div className="bg-neutralBg rounded-md z-20 relative pt-4 pb-5 mx-auto px-4 max-w-screen-sm h-full shadow-2xl">
+          <div className="bg-neutralBg -mt-16 lg:mt-0 rounded-md z-20 relative pt-4 pb-5 mx-auto px-4 max-w-screen-sm h-full shadow-2xl">
             <h1 className="font-semibold text-xl mb-4 text-onNeutral">
               Contact
             </h1>
