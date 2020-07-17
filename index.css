@@ -263,7 +263,7 @@ h6:hover .anchor svg {
 }
 
 a.anchor:hover {
-  @apply text-primary fill-current stroke-current stroke-1;
+  @apply text-primary fill-current stroke-current;
 }
 
 article h2 {

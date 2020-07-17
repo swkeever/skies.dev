@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './Search';
 import { globalStyles } from '../../styles';
+import Skies from '../../../assets/skies.svg';
 
 export default function Header() {
   return (

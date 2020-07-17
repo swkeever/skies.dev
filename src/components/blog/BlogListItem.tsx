@@ -16,6 +16,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
         mb-0
         block
         w-auto
+        shadow-md
       `}
     >
       <Link
@@ -26,6 +27,8 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
           loading="lazy"
           className="row-span-3"
           src={blog.image.src}
+          sizes={blog.image.sizes}
+          srcSet={blog.image.srcSet}
           alt={blog.title}
         />
 
