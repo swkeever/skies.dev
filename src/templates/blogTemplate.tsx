@@ -8,6 +8,16 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Link, useLocation } from '@reach/router';
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaTwitter,
+  FaGithub,
+  FaRetweet,
+  FaEdit,
+  FaRegComment,
+} from 'react-icons/fa';
 import Layout from '../components/Layout';
 import BlogHeader from '../components/article/BlogHeader';
 import CallToAction from '../components/article/CallToAction';
@@ -17,10 +27,17 @@ import Connection from '../../assets/connection.svg';
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
+import TableOfContents from '../components/TableOfContents';
+import ShareCallToAction from '../components/article/ShareCallToAction';
+import Button from '../components/Button';
+import BlogMeta from '../components/BlogMeta';
 
 const styles = {
   copy: `
-  text-xl
+  text-base
+  md:text-lg
+  lg:text-xl
+  text-onNeutralBgSoft
   leading-8
   `,
 
@@ -46,6 +63,23 @@ const styles = {
   border-l-4
   p-5
   rounded-sm
+  `,
+
+  header: `
+  text-onNeutralBg
+  `,
+
+  ctaLinks: `
+  text-lg 
+  border-b border-onNeutralBgSoft 
+  hover:border-onNeutralBgLinkHover 
+  text-onNeutralBgSoft hover:text-onNeutralBgLinkHover 
+  pb-1
+  `,
+
+  ctaLinkIcons: `
+  inline
+  mb-1
   `,
 };
 
@@ -99,8 +133,18 @@ const shortcodes = {
     `}
     />
   ),
-  h2: (props) => <h2 {...props} className={`text-2xl font-bold ${styles.mt}`} />,
-  h3: (props) => <h3 {...props} className={`text-xl font-bold ${styles.mt}`} />,
+  h2: (props) => (
+    <h2
+      {...props}
+      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt}`}
+    />
+  ),
+  h3: (props) => (
+    <h3
+      {...props}
+      className={`${styles.header} text-xl md:text-2xl font-bold ${styles.mt}`}
+    />
+  ),
   table: (props) => (
     <table
       {...props}
@@ -147,10 +191,15 @@ export const pageQuery = graphql`
       id
       body
       timeToRead
+      headings {
+        depth
+        value
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
         tags
+        keywords
         image {
           childImageSharp {
             fluid(maxWidth: 700) {
@@ -170,50 +219,151 @@ export const pageQuery = graphql`
   }
 `;
 
-// type Data = {
-//   data: {
-//     mdx:
-//   }
-// }
-
-export default function Blog({ data: { mdx } }) {
+export default function Blog({ data: { mdx }, pageContext }) {
   const { frontmatter, body, fileAbsolutePath } = mdx;
-
-  const filepath = fileAbsolutePath.split('/src/')[1];
-
+  const editUrl = links.editOnGithub(
+    `${fileAbsolutePath.split('/content/')[1]}`,
+  );
   return (
     <>
       <SEO
         frontmatter={frontmatter}
         title={frontmatter.title}
         description={frontmatter.description}
-        keywords={frontmatter.tags}
+        keywords={frontmatter.keywords.concat(frontmatter.tags)}
         image={frontmatter.image.childImageSharp.fluid}
         imageDims={{
           width: frontmatter.image.childImageSharp.fluid.presentationWidth,
           height: frontmatter.image.childImageSharp.fluid.presentationHeight,
         }}
       />
-      <article className={`${globalStyles.transitions.colors}`}>
-        <BlogHeader
-          title={frontmatter.title}
-          date={frontmatter.date}
-          timeToRead={mdx.timeToRead}
+      <article
+        className={`${globalStyles.transitions.colors}
+
+      `}
+      >
+        <div
+          className={`
+        bg-skies
+        relative
+        z-10
+        diagonal-t
+        pt-8
+        pb-64
+      `}
+          itemScope
+          itemType="http://schema.org/BlogPosting"
         />
 
-        <BlogContainer>
-          <Img
-            className="-mt-20 md:-mt-24 lg:-mt-32 relative z-10 w-full mx-auto h-auto"
-            fluid={frontmatter.image.childImageSharp.fluid}
-            alt={frontmatter.title}
-          />
-          <MDXProvider components={shortcodes}>
-            <MDXRenderer>{body}</MDXRenderer>
-          </MDXProvider>
-          <Connection className="ml-auto mt-8 md:mr-8 relative z-10 w-7/12  h-full " />
-        </BlogContainer>
+        <div
+          className={`
+          max-w-screen-lg
+          mx-auto
+          grid grid-cols-12 gap-8
+          relative
+        `}
+        >
+          <aside className="hidden md:block mx-auto">
+            <ShareCallToAction
+              className={`
+              fixed `}
+              linkClassName={`
+              ${globalStyles.transitions.colors}
+              text-neutralSoft
+              hover:text-neutral
+            `}
+            />
+          </aside>
+          <div className="col-span-12 md:col-span-8 px-2">
+            <header className="-mt-48 md:-mt-64 z-30 relative">
+              <h1
+                className={`
+                  leading-none
+                  text-4xl
+                  text-onPrimary
+                  md:text-5xl
+                  font-bold
+                `}
+                itemProp="name"
+              >
+                {frontmatter.title}
+              </h1>
+              <div className="mt-4 flex md:items-center flex-col md:flex-row md:justify-between">
+                <BlogMeta
+                  date={frontmatter.date}
+                  timeToRead={mdx.timeToRead}
+                  className="text-onPrimarySoft font-medium text-sm md:text-base"
+                />
+              </div>
+            </header>
+            <Img
+              className="mt-5 relative z-10 w-full mx-auto h-auto"
+              fluid={frontmatter.image.childImageSharp.fluid}
+              alt={frontmatter.title}
+            />
 
-        <CallToAction editUrl={links.editOnGithub(filepath)} />
+            <MDXProvider components={shortcodes}>
+              <MDXRenderer>{body}</MDXRenderer>
+            </MDXProvider>
+
+            <section
+              className={`
+              max-w-screen-lg
+              flex flex-col md:flex-row
+              justify-start md:justify-between
+              
+              md:items-center
+              mt-32
+              mb-8
+              `}
+            >
+              <div>
+                <ul className="flex space-x-4">
+                  <li>
+                    <ExternalLink
+                      href={editUrl}
+                      className={`
+              ${styles.ctaLinks}
+              `}
+                    >
+                      Edit this page on GitHub
+                    </ExternalLink>
+                  </li>
+                </ul>
+              </div>
+
+              <nav className="mt-4 md:mt-0">
+                <ul className="flex space-x-4">
+                  <li>
+                    <Link
+                      to={pageContext.prev.fields.slug}
+                      className={`
+              ${styles.ctaLinks}
+              `}
+                    >
+                      <FaArrowLeft className={`${styles.ctaLinkIcons} mr-1`} />
+                      Previous
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to={pageContext.next.fields.slug}
+                      className={`
+              ${styles.ctaLinks}
+              `}
+                    >
+                      Next
+                      <FaArrowRight className={`${styles.ctaLinkIcons} ml-1`} />
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </section>
+          </div>
+          <aside className="hidden md:block">
+            <TableOfContents headings={mdx.headings} className="fixed" />
+          </aside>
+        </div>
       </article>
     </>
   );

@@ -9,6 +9,10 @@ export default function Header() {
   return (
     <>
       <header
+        style={{
+          paddingBottom: 'env(safe-area-inset-bottom)',
+          // paddingTop: 'env(safe-area-inset-top)',
+        }}
         className={`fixed 
         w-screen z-40 
         bg-primary 

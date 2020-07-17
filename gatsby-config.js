@@ -6,12 +6,12 @@ module.exports = {
     handle: 'swkeever',
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: 'UA-168956392-1',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-google-analytics',
+    //   options: {
+    //     trackingId: 'UA-168956392-1',
+    //   },
+    // },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -100,6 +100,10 @@ module.exports = {
           'gatsby-remark-table-of-contents',
         ],
       },
+    },
+    {
+      resolve: 'gatsby-plugin-anchor-links',
+      options: { offset: -50 },
     },
     'gatsby-remark-images',
     'gatsby-plugin-twitter',

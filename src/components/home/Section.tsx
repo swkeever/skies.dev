@@ -17,7 +17,6 @@ export default function Section({ children, className = '' }: SectionProps) {
           px-4
           md:px-6
           items-center
-          
           md:flex-row
           
           ${className}

@@ -1,8 +1,9 @@
 import React, { ReactNode, useContext } from 'react';
-import { FaRegLightbulb, FaSmile, FaFire } from 'react-icons/fa';
+import {
+  FaRegLightbulb, FaSmile, FaFire, FaLightbulb,
+} from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
 import routes from '../utils/routes';
-import { LayoutContext } from './Layout';
 import { globalStyles } from '../styles';
 
 function Item({ route, children }: { route: string; children: ReactNode }) {
@@ -55,11 +56,33 @@ export default function Nav() {
     md:text-xl
     inline
     mr-2
+    ${globalStyles.transitions.colors}
   `;
 
+  const isArticle = pathname.includes(routes.blog);
+
+  const navItems = [
+    <Item route={routes.home} key="nav-blog">
+      {isArticle ? (
+        <FaLightbulb className={iconStyles} />
+      ) : (
+        <FaRegLightbulb className={iconStyles} />
+      )}
+      <Name name="Blog" />
+    </Item>,
+    <Item route={routes.about} key="nav-about">
+      <FaSmile
+        className={`
+              ${iconStyles}
+              text-2xl
+            `}
+      />
+      <Name name="About" />
+    </Item>,
+  ];
+
   function getUnderlineOffset() {
-    const numNavItems = 3;
-    let off = numNavItems;
+    let off = navItems.length;
     if (pathname.includes(routes.blog) || pathname === routes.home) {
       off = 0;
     } else if (pathname === routes.about) {
@@ -68,21 +91,17 @@ export default function Nav() {
       off = 2;
     }
 
-    return off === numNavItems
+    return off === navItems.length
       ? ''
-      : `${(off * (100 / numNavItems)).toFixed(4)}%`;
+      : `${(off * (100 / navItems.length)).toFixed(4)}%`;
   }
 
   const underlineOffset = getUnderlineOffset();
 
   return (
     <nav
-      style={{
-        paddingBottom: 'env(safe-area-inset-bottom)',
-        // paddingTop: 'env(safe-area-inset-top)',
-      }}
       className={`
-      w-full h-full lg:w-5/12 xl:w-4/12
+      w-full h-full lg:w-3/12 xl:w-2/12
       flex flex-col
 
       `}
@@ -93,32 +112,22 @@ export default function Nav() {
           h-full
           flex justify-around items-center
           uppercase
+          
         `}
       >
-        <Item route={routes.home}>
-          <FaRegLightbulb className={iconStyles} />
-          <Name name="Blog" />
-        </Item>
-        <Item route={routes.about}>
-          <FaSmile
-            className={`
-              ${iconStyles}
-              text-2xl
-            `}
-          />
-          <Name name="About" />
-        </Item>
-        <Item route={routes.contact}>
+        {navItems}
+
+        {/* <Item route={routes.contact}>
           <FaFire className={iconStyles} />
           <Name name="Contact" />
-        </Item>
+        </Item> */}
       </ul>
       <hr
         style={{ marginLeft: underlineOffset }}
         className={`
         transition-all duration-500 ease-in-out 
         border-0
-        mt-auto h-1 w-1/3 
+        mt-auto h-1 w-1/2
         ${underlineOffset ? 'bg-onPrimary' : 'bg-primary'}
         `}
       />

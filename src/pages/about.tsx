@@ -57,7 +57,7 @@ const IndexPage = () => {
         }}
       />
       <Section className=" pt-4 md:pt-12 ">
-        <div className="">
+        <div className="w-7/12">
           <h1 className={`${headerStyles} text-onNeutralBg`}>
             Hi,
             {' '}
@@ -66,7 +66,7 @@ const IndexPage = () => {
             </span>
             I&apos;m Sean.
           </h1>
-          <p className="text-onNeutralBgSoft w-9/12">
+          <p className="text-onNeutralBgSoft">
             I&apos;m a software engineer, designer, and technology enthusiast
             from Seattle, WA. I&apos;m currently working on search at
             {' '}
@@ -88,7 +88,7 @@ const IndexPage = () => {
       `}
       >
         <Section className="md:flex-row-reverse">
-          <div>
+          <div className="w-7/12">
             <h2 className={`${headerStyles} mt-8 text-onPrimary`}>
               I like to help people learn.
             </h2>

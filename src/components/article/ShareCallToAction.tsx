@@ -6,6 +6,7 @@ import {
 } from 'react-icons/ti';
 import { useLocation } from '@reach/router';
 import links from '../../utils/links';
+import ExternalLink from '../ExternalLink';
 
 type Sharable = {
   id: string;
@@ -44,24 +45,17 @@ export default function ShareCallToAction({
     <ul
       className={`
       list-none
-      flex
+      flex flex-col
       text-4xl
-      ml-0
-      my-0
-      space-x-3
+      space-y-4
       ${className}
     `}
     >
       {shareData.map(({ id, icon, link }) => (
         <li key={id}>
-          <a
-            rel="noopener noreferrer"
-            className={linkClassName}
-            target="_blank"
-            href={link(pathname)}
-          >
+          <ExternalLink className={linkClassName} href={link(pathname)}>
             {icon}
-          </a>
+          </ExternalLink>
         </li>
       ))}
     </ul>

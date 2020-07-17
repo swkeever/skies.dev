@@ -13,7 +13,7 @@ export default function BlogContainer({
     <div
       className={`
         container
-
+        relative
         mx-auto
         max-w-screen-md
         px-4

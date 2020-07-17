@@ -12,21 +12,16 @@ export default function BlogMeta({
 }) {
   const timeStyles = `
   inline-block
-  uppercase
-  tracking-widest
   `;
 
   return (
-    <ul className={`flex mb-0 ml-0 ${className}`}>
-      <li className={`${timeStyles}`}>
-        <time>
-          <FaRegCalendarAlt className="inline mr-1 mb-1" />
-          {date}
-        </time>
+    <ul className={`flex ${className}`}>
+      <li>
+        <time>{date}</time>
       </li>
-      <li className={`${timeStyles}`}>
-        <div className="ml-px">
-          <FaRegClock className="inline mr-1 mb-1" />
+      <span className="mx-2">&middot;</span>
+      <li>
+        <div>
           {timeToRead}
           {' '}
           minute read
