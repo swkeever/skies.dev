@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa';
 import Container from './Container';
 import links from '../utils/links';
+import ExternalLink from './ExternalLink';
 
 export default function Footer() {
   const styles = {
@@ -43,7 +44,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-footerBg transition-all duration-200 ease-in flex-none text-neutral mt-auto pt-10 pb-24 lg:pb-8">
-      <Container className="max-w-md">
+      <Container className="max-w-screen-lg">
         <ul
           className={`
           list-none
@@ -57,15 +58,13 @@ export default function Footer() {
         >
           {socialLinks.map((item) => (
             <li key={item.to}>
-              <a
+              <ExternalLink
                 className="text-onNeutralBgLink hover:text-onNeutralBgLinkHover"
-                rel="noopener noreferrer"
-                target="_blank"
                 href={item.to}
               >
                 {item.icon}
                 {item.text}
-              </a>
+              </ExternalLink>
             </li>
           ))}
         </ul>

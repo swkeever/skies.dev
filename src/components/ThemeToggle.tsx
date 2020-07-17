@@ -35,9 +35,8 @@ export default function ThemeToggle() {
         className={`
           fixed
           right-0
-          top-0
+          top-3
           z-50
-          mt-3
           text-2xl
           text-onPrimary
           lg:text-onPrimary
@@ -55,13 +54,10 @@ export default function ThemeToggle() {
         htmlFor="theme-toggle"
         className={`
           switch
-          mt-1
           fixed 
-          right-0
-          top-0
+          right-2
+          top-2
           z-40
-          mt-2
-          mr-2
           opacity-75
           lg:opacity-100
         `}
@@ -86,9 +82,8 @@ export default function ThemeToggle() {
         className={`
           fixed
           right-0
-          top-0
+          top-3
           z-50
-          mt-3
           text-xl
           text-onPrimary
           lg:text-onPrimary

@@ -57,7 +57,7 @@ const IndexPage = () => {
         }}
       />
       <Section className=" pt-4 md:pt-12 ">
-        <div className="w-7/12">
+        <div className="md:w-7/12">
           <h1 className={`${headerStyles} text-onNeutralBg`}>
             Hi,
             {' '}
@@ -88,7 +88,7 @@ const IndexPage = () => {
       `}
       >
         <Section className="md:flex-row-reverse">
-          <div className="w-7/12">
+          <div className="md:w-7/12">
             <h2 className={`${headerStyles} mt-8 text-onPrimary`}>
               I like to help people learn.
             </h2>
@@ -113,7 +113,7 @@ const IndexPage = () => {
         id="contact"
         className={`${globalStyles.transitions.colors} bg-neutralBgSoft  pt-8 pb-8 -mt-12 md:pt-0 md:pb-12`}
       >
-        <Section className="justify-around">
+        <Section className="md:justify-around">
           <div className="mb-4">
             <h2 className={`${headerStyles} text-onNeutralBg`}>
               Get in touch.

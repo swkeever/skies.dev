@@ -1,4 +1,7 @@
+/* eslint-disable global-require */
+const cssNano = require('cssnano');
 const config = require('./site.config');
+const tailwindConfig = require('./tailwind.config');
 
 module.exports = {
   siteMetadata: {
@@ -12,6 +15,28 @@ module.exports = {
     //     trackingId: 'UA-168956392-1',
     //   },
     // },
+    {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        postCssPlugins: [
+          require('tailwindcss')(tailwindConfig),
+          require('autoprefixer'),
+          ...(process.env.NODE_ENV === 'production' ? [cssNano] : []),
+        ],
+      },
+    },
+    // Add after these plugins if used
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        printRejected: true, // Print removed selectors and processed file names
+        // develop: true, // Enable while using `gatsby develop`
+        tailwind: true, // Enable tailwindcss support
+        whitelist: [], // Don't remove this selector
+        // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
+        // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -27,26 +52,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    'gatsby-plugin-postcss',
-    // Add after these plugins if used
-    {
-      resolve: 'gatsby-plugin-purgecss',
-      options: {
-        printRejected: true, // Print removed selectors and processed file names
-        // develop: true, // Enable while using `gatsby develop`
-        tailwind: true, // Enable tailwindcss support
-        whitelist: [
-          'blockquote',
-          'aside',
-          'anchor',
-          'twitter-tweet',
-          'code',
-          'pre',
-        ], // Don't remove this selector
-        // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
-        // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
-      },
-    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -97,7 +102,6 @@ module.exports = {
             },
           },
           'gatsby-remark-responsive-iframe',
-          'gatsby-remark-table-of-contents',
         ],
       },
     },
@@ -125,12 +129,13 @@ module.exports = {
       },
     },
     // 'gatsby-plugin-offline',
+
     'gatsby-plugin-catch-links',
     {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         createLinkInHead: true,
-        exclude: ['/resume'],
+        exclude: ['/resume', '/contact'],
       },
     },
     'gatsby-plugin-netlify',
@@ -141,7 +146,7 @@ module.exports = {
         host: 'https://www.skies.dev',
         sitemap: 'https://www.skies.dev/sitemap.xml',
         policy: [
-          { userAgent: '*', disallow: ['/resume/'] },
+          { userAgent: '*', disallow: ['/resume/', '/contact/'] },
           { userAgent: '*', allow: '/' },
         ],
       },

@@ -8,7 +8,6 @@
 import React, { useState, ReactNode, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import '../../index.css';
 import { globalStyles } from '../styles';
 
 export const LayoutContext = React.createContext({});
