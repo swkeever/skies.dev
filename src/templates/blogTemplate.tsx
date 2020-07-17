@@ -8,28 +8,15 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Link, useLocation } from '@reach/router';
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaTwitter,
-  FaGithub,
-  FaRetweet,
-  FaEdit,
-  FaRegComment,
-} from 'react-icons/fa';
-import Layout from '../components/Layout';
-import BlogHeader from '../components/article/BlogHeader';
-import CallToAction from '../components/article/CallToAction';
+import { Link } from '@reach/router';
+import { FaArrowLeft, FaArrowRight, FaGithub } from 'react-icons/fa';
 import links from '../utils/links';
-import BlogContainer from '../components/article/BlogContainer';
-import Connection from '../../assets/connection.svg';
+
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
 import TableOfContents from '../components/TableOfContents';
 import ShareCallToAction from '../components/article/ShareCallToAction';
-import Button from '../components/Button';
 import BlogMeta from '../components/BlogMeta';
 
 const styles = {
@@ -142,7 +129,7 @@ const shortcodes = {
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-xl md:text-2xl font-bold ${styles.mt}`}
+      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt}`}
     />
   ),
   table: (props) => (
@@ -326,6 +313,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
               ${styles.ctaLinks}
               `}
                     >
+                      <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
                       Edit this page on GitHub
                     </ExternalLink>
                   </li>
