@@ -101,7 +101,7 @@ export default function Nav() {
   return (
     <nav
       className={`
-      w-full h-full lg:w-3/12 xl:w-2/12
+      w-full h-full lg:max-w-sm
       flex flex-col
 
       `}

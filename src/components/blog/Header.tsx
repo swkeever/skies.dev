@@ -8,12 +8,11 @@ export default function Header() {
     <section
       className={`
           diagonal-t 
-          bg-skies
+          bg-primary
           z-0
           py-16
           md:py-32
-          lg:py-48
-          xl:py-64
+          xl:py-48
           ${globalStyles.transitions.colors}
           
         `}
@@ -24,7 +23,7 @@ export default function Header() {
         <h1
           className={`
               leading-none
-              text-xl
+              text-base
               lg:text-lg
               uppercase
               tracking-wider

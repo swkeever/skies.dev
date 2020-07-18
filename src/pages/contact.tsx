@@ -34,7 +34,7 @@ export default function ContactPage() {
         description="Use the contact form to contact Sean Keever."
       />
       <div
-        className={`absolute top-0 left-0 h-32 lg:h-64 lg:py-48 w-full bg-skies diagonal-t 
+        className={`absolute top-0 left-0 h-32 lg:h-64 lg:py-48 w-full bg-primary diagonal-t 
       z-0
       ${globalStyles.transitions.colors}
       `}

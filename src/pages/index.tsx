@@ -205,7 +205,7 @@ export default function BlogsPage() {
   return (
     <>
       <SEO
-        title="Software Engineering Blog"
+        title="Software Engineering Blog by Sean Keever"
         description={blogDescription}
         keywords={tags.map((t) => t.name).concat(['blog', 'learn', 'how to'])}
         image={data.file.childImageSharp.fluid}

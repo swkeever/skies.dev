@@ -231,7 +231,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
       >
         <div
           className={`
-        bg-skies
+        bg-primary
         relative
         z-10
         diagonal-t

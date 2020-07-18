@@ -13,7 +13,8 @@ export default function Section({ children, className = '' }: SectionProps) {
         className={`
           flex
           flex-col
-          text-lg
+          text-base
+          lg:text-lg
           px-4
           md:px-6
           items-center
