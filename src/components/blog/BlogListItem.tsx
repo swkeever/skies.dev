@@ -1,43 +1,60 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@reach/router';
+import { FaArrowRight } from 'react-icons/fa';
+import Img from 'gatsby-image';
 import { Blog } from '../../pages';
 import { globalStyles } from '../../styles';
+import BlogMeta from '../BlogMeta';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
+  const Container = ({ children }: { children: ReactNode }) => (
+    <div
+      className={`py-2 px-3 
+    flex-grow
+    flex flex-col justify-start items-start`}
+    >
+      {children}
+    </div>
+  );
+
   const li = (
     <li
       className={`
-        bg-neutralBg 
         ${globalStyles.transitions.colors}
-        box-content
-        border-neutralBgSoft
-        border-t-4
-        hover:border-primarySoft
-        mb-0
-        block
-        w-auto
-        shadow-md
+        bg-neutralBg
+        pb-2
+        rounded
+        shadow
+        flex flex-col
+        h-full
       `}
     >
-      <Link
-        to={blog.slug}
-        className=" items-center relative grid grid-rows-4 w-auto block justify-between text-onNeutralBg hover:text-onNeutralBg"
-      >
-        <img
-          loading="lazy"
-          className="row-span-3"
-          src={blog.image.src}
-          sizes={blog.image.sizes}
-          srcSet={blog.image.srcSet}
-          alt={blog.title}
-        />
+      <Img fluid={blog.image} alt={blog.title} />
 
-        <div className="bg-neutralBg py-2 px-2">
-          <h2 className="leading-tight font-medium text-onNeutralBgSoft text-2xl ">
-            {blog.title}
-          </h2>
-        </div>
-      </Link>
+      <Container>
+        <h2 className="text-2xl leading-none font-bold">{blog.title}</h2>
+        <BlogMeta
+          className="text-neutralSoft text-sm mt-1"
+          date={blog.date}
+          timeToRead={blog.timeToRead}
+        />
+        <p className="text-onNeutralBgSoft mt-1">{blog.description}</p>
+        <Link
+          to={blog.slug}
+          className={`
+        inline-block
+        mt-auto
+        pt-3
+        pb-1 
+        border-b border-onNeutralBgLink hover:border-onNeutralBgLinkHover
+        text-onNeutralBgLink hover:text-onNeutralBgLinkHover
+        
+      `}
+        >
+          Read more
+          <FaArrowRight className="inline mb-1 ml-1" />
+        </Link>
+      </Container>
     </li>
   );
 

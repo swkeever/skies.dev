@@ -289,6 +289,16 @@ export default function Blog({ data: { mdx }, pageContext }) {
               alt={frontmatter.title}
             />
 
+            <div className="md:hidden mt-4">
+              {shortcodes.h2({ children: 'Table of Contents' })}
+              <TableOfContents
+                className="mt-6"
+                underline
+                watch={false}
+                headings={mdx.headings}
+              />
+            </div>
+
             <MDXProvider components={shortcodes}>
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
@@ -348,8 +358,13 @@ export default function Blog({ data: { mdx }, pageContext }) {
               </nav>
             </section>
           </div>
-          <aside className="hidden md:block">
-            <TableOfContents headings={mdx.headings} className="fixed" />
+          <aside className="col-span-3 hidden md:block relative">
+            <div className="fixed">
+              <h2 className="uppercase font-bold tracking-wider mb-2 text-neutralSoft">
+                Table of Contents
+              </h2>
+              <TableOfContents headings={mdx.headings} />
+            </div>
           </aside>
         </div>
       </article>

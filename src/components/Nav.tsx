@@ -1,8 +1,13 @@
 import React, { ReactNode, useContext } from 'react';
 import {
-  FaRegLightbulb, FaSmile, FaFire, FaLightbulb,
+  FaRegLightbulb,
+  FaSmile,
+  FaFire,
+  FaLightbulb,
+  FaSmileBeam,
 } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
+import { icons } from 'react-icons/lib';
 import routes from '../utils/routes';
 import { globalStyles } from '../styles';
 
@@ -71,12 +76,21 @@ export default function Nav() {
       <Name name="Blog" />
     </Item>,
     <Item route={routes.about} key="nav-about">
-      <FaSmile
-        className={`
+      {pathname === routes.about ? (
+        <FaSmileBeam
+          className={`
+      ${iconStyles} text-2xl
+      `}
+        />
+      ) : (
+        <FaSmile
+          className={`
               ${iconStyles}
               text-2xl
             `}
-      />
+        />
+      )}
+
       <Name name="About" />
     </Item>,
   ];

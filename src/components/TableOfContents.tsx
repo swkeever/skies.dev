@@ -14,9 +14,15 @@ type Heading = {
 export default function TableOfContents({
   headings,
   className = '',
+  olClassName = '',
+  watch = true,
+  underline = false,
 }: {
   headings: Heading[];
   className?: string;
+  olClassName?: string;
+  watch?: boolean;
+  underline?: boolean;
 }) {
   const styles = {
     copy: `
@@ -24,8 +30,11 @@ export default function TableOfContents({
     md:text-lg
     lg:text-xl
     pb-1
-    hover:border-b
-    hover:border-onNeutralBg
+    ${
+  underline
+    ? 'border-b border-onNeutralBg hover:text-onNeutralBgLink hover:border-onNeutralBgLink'
+    : 'hover:border-b hover:border-onNeutralBg'
+}
     `,
 
     li: `
@@ -34,23 +43,19 @@ export default function TableOfContents({
   };
 
   const { pathname } = useLocation();
-  console.log(pathname);
+  console.log(olClassName);
 
-  const activeHash = useActiveHash(
-    headings.map((h) => new Slugger().slug(h.value, false)),
-  );
+  const activeHash = watch
+    && useActiveHash(headings.map((h) => new Slugger().slug(h.value, false)));
 
   console.log(activeHash);
 
   return (
     <nav className={` ${className}`}>
-      <h2 className="uppercase font-bold tracking-wider mb-2 text-neutralSoft">
-        Table of Contents
-      </h2>
-
       <ol
         className={`flex flex-col space-y-4
     ${globalStyles.transitions.colors}
+    ${olClassName}
    `}
       >
         {headings.map((h) => {
@@ -62,7 +67,7 @@ export default function TableOfContents({
             ${globalStyles.transitions.colors}
             ${styles.copy}
           ${
-            activeHash === slug
+            watch && activeHash === slug
               ? 'text-onNeutralBgLink pb-1 border-b border-onNeutralBgLink'
               : 'text-onNeutralBg'
           }
