@@ -4,6 +4,7 @@ import ThemeToggle from './ThemeToggle';
 import Nav from './Nav';
 import routes from '../utils/routes';
 import Logo from '../../assets/logo.svg';
+import { globalStyles } from '../styles';
 
 export default function Header() {
   return (
@@ -20,7 +21,9 @@ export default function Header() {
         lg:top-0 lg:bottom-auto
     `}
       >
-        <div className="flex h-16 lg:h-12 items-center">
+        <div
+          className={`flex ${globalStyles.navbar.height} lg:h-12 items-center`}
+        >
           <Link
             to={routes.home}
             className={`
