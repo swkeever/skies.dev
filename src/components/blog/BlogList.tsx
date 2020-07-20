@@ -6,7 +6,7 @@ import { globalStyles } from '../../styles';
 
 function Header({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mt-5 text-onNeutralBgSoft mb-8 text-center font-light text-xl">
+    <h2 className="mt-5 mb-8 text-xl font-light text-center text-onNeutralBgSoft">
       {children}
     </h2>
   );
@@ -16,7 +16,7 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
   const children = blogs.length ? (
     <>
       <Header>{`${blogs.length} result${blogs.length > 1 ? 's' : ''}.`}</Header>
-      <ul className="max-w-screen-xl px-4 mx-auto grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <ul className="grid max-w-screen-xl grid-cols-1 gap-8 px-4 mx-auto md:grid-cols-2 xl:grid-cols-3">
         {blogs.map((b) => (
           <BlogListItem key={b.id} blog={b} />
         ))}
