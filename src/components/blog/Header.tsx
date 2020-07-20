@@ -11,8 +11,8 @@ export default function Header() {
           bg-primary
           z-0
           py-16
-          md:py-32
-          xl:py-48
+          md:py-24
+          xl:py-32
           ${globalStyles.transitions.colors}
           
         `}

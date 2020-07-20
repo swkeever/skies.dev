@@ -5,4 +5,7 @@ export const globalStyles = {
   transitions: {
     colors: 'transition-all duration-200 ease-in-out',
   },
+  navbar: {
+    height: 'h-16',
+  },
 };

@@ -41,9 +41,9 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
   return (
     <section
       className={`
-    bg-neutralBgSoft self-stretch flex-grow pt-16 -mt-16 pb-12
-    ${globalStyles.transitions.colors}
-    `}
+      bg-neutralBgSoft self-stretch flex-grow pt-16 -mt-16 pb-12
+      ${globalStyles.transitions.colors}
+      `}
     >
       {children}
     </section>

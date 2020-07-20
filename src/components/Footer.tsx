@@ -1,21 +1,16 @@
 import React from 'react';
 import {
-  FaGithub,
-  FaLinkedin,
-  FaCode,
-  FaTwitter,
-  FaCopyright,
+  FaGithub, FaLinkedinIn, FaTwitter, FaCloud,
 } from 'react-icons/fa';
 import Container from './Container';
 import links from '../utils/links';
 import ExternalLink from './ExternalLink';
+import { globalStyles } from '../styles';
 
 export default function Footer() {
   const styles = {
     icon: `
-    inline
-    mb-1 
-    mr-1
+    h-6 w-6 fill-current
     `,
   };
 
@@ -31,60 +26,44 @@ export default function Footer() {
       text: 'Twitter',
     },
     {
-      icon: <FaLinkedin className={styles.icon} />,
+      icon: <FaLinkedinIn className={styles.icon} />,
       to: links.linkedIn,
       text: 'LinkedIn',
     },
   ];
 
   return (
-    <footer className="flex-none pt-10 pb-24 mt-auto transition-all duration-200 ease-in bg-footerBg text-neutral lg:pb-8">
-      <Container className="max-w-screen-lg">
-        <ul
-          className={`
-          list-none
-          flex
-          flex-wrap
-          justify-center
-          ml-0
-          space-x-4
-          my-0
-        `}
-        >
-          {socialLinks.map((item) => (
-            <li key={item.to}>
-              <ExternalLink
-                className="text-onNeutralBgLink hover:text-onNeutralBgLinkHover"
-                href={item.to}
-              >
-                {item.icon}
-                {item.text}
+    <footer
+      className={`
+    ${globalStyles.transitions.colors}
+    
+    bg-footerBg
+    `}
+    >
+      <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+        <ul className="flex justify-center md:order-2">
+          {socialLinks.map((link) => (
+            <li className="ml-6 text-gray-400 hover:text-gray-500">
+              <ExternalLink href={link.to}>
+                <span className="sr-only">{link.text}</span>
+                {link.icon}
               </ExternalLink>
             </li>
           ))}
         </ul>
-
-        <div className="flex flex-col items-center justify-center mt-2 md:flex-row text-neutral">
-          <p className="mr-2">
-            This website is
+        <div className="mt-8 md:mt-0 md:order-1">
+          <p className="text-center text-base leading-6 text-gray-400">
+            &copy;
             {' '}
-            <ExternalLink
-              className="text-onNeutralBgLink hover:text-onNeutralBgLinkHover"
-              href={links.sourceRepo}
-            >
-              open-source software
-            </ExternalLink>
-            .
-          </p>
-          <p>
-            &copy; All Rights Reserved
+            {new Date().getFullYear()}
             {' '}
-            <time className="" dateTime={new Date().getFullYear().toString()}>
-              {new Date().getFullYear()}
-            </time>
+            Skies. All rights reserved.
           </p>
         </div>
-      </Container>
+      </div>
+
+      {/* make room for the mobile navbar */}
+      <div className={`${globalStyles.navbar.height} lg:hidden`} />
     </footer>
   );
 }

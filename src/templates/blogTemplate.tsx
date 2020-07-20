@@ -26,6 +26,7 @@ const styles = {
   lg:text-xl
   text-onNeutralBgSoft
   leading-8
+  font-serif
   `,
 
   link: `
@@ -136,14 +137,14 @@ const shortcodes = {
   table: (props) => (
     <table
       {...props}
-      className={`${styles.copy} ${styles.mt} w-full bg-primaryBgSoft`}
+      className={`${styles.copy} ${styles.mt} w-full bg-neutralBgSoft`}
     />
   ),
   th: (props) => (
     <th {...props} className="px-2 pt-3 text-left bg-primary text-onPrimary" />
   ),
   td: (props) => <td {...props} className="px-2 pt-1 text-onPrimaryBg" />,
-  tr: (props) => <tr {...props} className="even:bg-primaryBg" />,
+  tr: (props) => <tr {...props} className="even:bg-neutralBg" />,
   blockquote: (props) => (
     <blockquote
       {...props}
@@ -227,7 +228,6 @@ export default function Blog({ data: { mdx }, pageContext }) {
       />
       <article
         className={`${globalStyles.transitions.colors}
-
       `}
       >
         <div
@@ -269,7 +269,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
                   leading-none
                   text-4xl
                   text-onPrimary
-                  md:text-5xl
+                  lg:text-5xl
                   font-bold
                 `}
                 itemProp="name"
@@ -280,7 +280,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
                 <BlogMeta
                   date={frontmatter.date}
                   timeToRead={mdx.timeToRead}
-                  className="text-sm font-medium text-onPrimarySoft md:text-base"
+                  className="text-base font-medium text-onPrimarySoft md:text-lg"
                 />
               </div>
             </header>
@@ -294,77 +294,77 @@ export default function Blog({ data: { mdx }, pageContext }) {
               <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
                 Table of Contents
               </h2>
-              <TableOfContents headings={mdx.headings} />
+              <TableOfContents className="mb-8" headings={mdx.headings} />
             </div>
 
             <MDXProvider components={shortcodes}>
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
-
-            <section
-              className={`
-              max-w-screen-lg
-              flex flex-col md:flex-row
-              justify-start md:justify-between
-              
-              md:items-center
-              mt-32
-              mb-8
-              `}
-            >
-              <div>
-                <ul className="flex space-x-4">
-                  <li>
-                    <ExternalLink
-                      href={editUrl}
-                      className={`
-              ${styles.ctaLinks}
-              `}
-                    >
-                      <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
-                      Edit this page on GitHub
-                    </ExternalLink>
-                  </li>
-                </ul>
-              </div>
-
-              <nav className="mt-4 md:mt-0">
-                <ul className="flex space-x-4">
-                  <li>
-                    <Link
-                      to={pageContext.prev.fields.slug}
-                      className={`
-              ${styles.ctaLinks}
-              `}
-                    >
-                      <FaArrowLeft className={`${styles.ctaLinkIcons} mr-1`} />
-                      Previous
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to={pageContext.next.fields.slug}
-                      className={`
-              ${styles.ctaLinks}
-              `}
-                    >
-                      Next
-                      <FaArrowRight className={`${styles.ctaLinkIcons} ml-1`} />
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </section>
           </div>
           <aside className="relative hidden col-span-3 md:block">
-            <div className="sticky top-16">
-              <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
+            <div className="sticky top-32">
+              <h2 className="mt-4 mb-2 font-bold tracking-wider uppercase text-neutralSoft">
                 Table of Contents
               </h2>
               <TableOfContents headings={mdx.headings} />
             </div>
           </aside>
         </div>
+        <section
+          className={`
+              max-w-screen-lg
+              flex flex-col md:flex-row
+              justify-start md:justify-between
+              mx-auto
+              md:items-center
+              mt-64
+              mb-8
+              px-4
+              `}
+        >
+          <div>
+            <ul className="flex space-x-4">
+              <li>
+                <ExternalLink
+                  href={editUrl}
+                  className={`
+              ${styles.ctaLinks}
+              `}
+                >
+                  <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
+                  Edit this page on GitHub
+                </ExternalLink>
+              </li>
+            </ul>
+          </div>
+
+          <nav className="mt-4 md:mt-0">
+            <ul className="flex space-x-4">
+              <li>
+                <Link
+                  to={pageContext.prev.fields.slug}
+                  className={`
+              ${styles.ctaLinks}
+              `}
+                >
+                  <FaArrowLeft className={`${styles.ctaLinkIcons} mr-1`} />
+                  Previous
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={pageContext.next.fields.slug}
+                  className={`
+              ${styles.ctaLinks}
+              `}
+                >
+                  Next
+                  <FaArrowRight className={`${styles.ctaLinkIcons} ml-1`} />
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </section>
       </article>
     </>
   );
