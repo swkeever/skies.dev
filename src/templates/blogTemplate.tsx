@@ -38,6 +38,7 @@ const styles = {
   `,
 
   mt: 'mt-5 first:mt-0',
+  mt2: 'mt-10 first:mt-2',
 
   list: `
   flex flex-col
@@ -123,13 +124,13 @@ const shortcodes = {
   h2: (props) => (
     <h2
       {...props}
-      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt}`}
+      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt2}`}
     />
   ),
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt}`}
+      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt2}`}
     />
   ),
   table: (props) => (
@@ -139,7 +140,7 @@ const shortcodes = {
     />
   ),
   th: (props) => (
-    <th {...props} className="bg-primary text-onPrimary text-left px-2 pt-3" />
+    <th {...props} className="px-2 pt-3 text-left bg-primary text-onPrimary" />
   ),
   td: (props) => <td {...props} className="px-2 pt-1 text-onPrimaryBg" />,
   tr: (props) => <tr {...props} className="even:bg-primaryBg" />,
@@ -250,7 +251,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
           relative
         `}
         >
-          <aside className="hidden md:block mx-auto">
+          <aside className="hidden mx-auto md:block">
             <ShareCallToAction
               className={`
               fixed `}
@@ -261,8 +262,8 @@ export default function Blog({ data: { mdx }, pageContext }) {
             `}
             />
           </aside>
-          <div className="col-span-12 md:col-span-8 px-2">
-            <header className="-mt-48 md:-mt-64 z-30 relative">
+          <div className="col-span-12 px-2 md:col-span-8">
+            <header className="relative z-30 -mt-48 md:-mt-64">
               <h1
                 className={`
                   leading-none
@@ -275,28 +276,25 @@ export default function Blog({ data: { mdx }, pageContext }) {
               >
                 {frontmatter.title}
               </h1>
-              <div className="mt-4 flex md:items-center flex-col md:flex-row md:justify-between">
+              <div className="flex flex-col mt-4 md:items-center md:flex-row md:justify-between">
                 <BlogMeta
                   date={frontmatter.date}
                   timeToRead={mdx.timeToRead}
-                  className="text-onPrimarySoft font-medium text-sm md:text-base"
+                  className="text-sm font-medium text-onPrimarySoft md:text-base"
                 />
               </div>
             </header>
             <Img
-              className="mt-5 relative z-10 w-full mx-auto h-auto"
+              className="relative z-10 w-full h-auto mx-auto mt-5"
               fluid={frontmatter.image.childImageSharp.fluid}
               alt={frontmatter.title}
             />
 
-            <div className="md:hidden mt-4">
-              {shortcodes.h2({ children: 'Table of Contents' })}
-              <TableOfContents
-                className="mt-6"
-                underline
-                watch={false}
-                headings={mdx.headings}
-              />
+            <div className="mt-4 md:hidden">
+              <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
+                Table of Contents
+              </h2>
+              <TableOfContents headings={mdx.headings} />
             </div>
 
             <MDXProvider components={shortcodes}>
@@ -358,9 +356,9 @@ export default function Blog({ data: { mdx }, pageContext }) {
               </nav>
             </section>
           </div>
-          <aside className="col-span-3 hidden md:block relative">
-            <div className="fixed">
-              <h2 className="uppercase font-bold tracking-wider mb-2 text-neutralSoft">
+          <aside className="relative hidden col-span-3 md:block">
+            <div className="sticky top-16">
+              <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
                 Table of Contents
               </h2>
               <TableOfContents headings={mdx.headings} />

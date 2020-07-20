@@ -35,15 +35,10 @@ export default function Footer() {
       to: links.linkedIn,
       text: 'LinkedIn',
     },
-    {
-      icon: <FaCode className={styles.icon} />,
-      to: links.sourceRepo,
-      text: 'Source',
-    },
   ];
 
   return (
-    <footer className="bg-footerBg transition-all duration-200 ease-in flex-none text-neutral mt-auto pt-10 pb-24 lg:pb-8">
+    <footer className="flex-none pt-10 pb-24 mt-auto transition-all duration-200 ease-in bg-footerBg text-neutral lg:pb-8">
       <Container className="max-w-screen-lg">
         <ul
           className={`
@@ -68,13 +63,26 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <div className="mt-2 flex justify-center text-neutral">
-          <FaCopyright className={`${styles.icon} mt-1`} />
-          All Rights Reserved
-          {' '}
-          <time className="ml-1" dateTime={new Date().getFullYear().toString()}>
-            {new Date().getFullYear()}
-          </time>
+
+        <div className="flex flex-col items-center justify-center mt-2 md:flex-row text-neutral">
+          <p className="mr-2">
+            This website is
+            {' '}
+            <ExternalLink
+              className="text-onNeutralBgLink hover:text-onNeutralBgLinkHover"
+              href={links.sourceRepo}
+            >
+              open-source software
+            </ExternalLink>
+            .
+          </p>
+          <p>
+            &copy; All Rights Reserved
+            {' '}
+            <time className="" dateTime={new Date().getFullYear().toString()}>
+              {new Date().getFullYear()}
+            </time>
+          </p>
         </div>
       </Container>
     </footer>
