@@ -228,7 +228,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           </div>
 
           <nav className="mt-4 md:mt-0">
-            <ul className="flex space-x-4">
+            <ul className="flex justify-between md:justify-start md:space-x-4">
               <li>
                 <Link
                   to={pageContext.prev.fields.slug}
