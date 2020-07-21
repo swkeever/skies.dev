@@ -25,6 +25,12 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-zopfli',
+      options: {
+        extensions: ['css', 'html', 'js', 'svg'],
+      },
+    },
     // Add after these plugins if used
     {
       resolve: 'gatsby-plugin-purgecss',

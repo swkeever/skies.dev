@@ -40,7 +40,7 @@ export default function Search() {
     <div className="mt-6 pb-8">
       <div className="">
         <label htmlFor="filter-input">
-          <span className="hidden">Search</span>
+          <span className="sr-only">Search</span>
           <div>
             <FaSistrix
               className={`

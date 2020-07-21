@@ -15,18 +15,14 @@ export default function BlogMeta({
   `;
 
   return (
-    <ul className={`flex ${className}`}>
-      <li>
-        <time>{date}</time>
-      </li>
+    <div className={`flex ${className}`}>
+      <time>{date}</time>
       <span className="mx-2">&middot;</span>
-      <li>
-        <div>
-          {timeToRead}
-          {' '}
-          minute read
-        </div>
-      </li>
-    </ul>
+      <span>
+        {timeToRead}
+        {' '}
+        minute read
+      </span>
+    </div>
   );
 }

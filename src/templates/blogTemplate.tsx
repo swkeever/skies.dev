@@ -1,8 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable jsx-a11y/heading-has-content */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/no-danger */
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -18,161 +13,8 @@ import { globalStyles } from '../styles';
 import TableOfContents from '../components/TableOfContents';
 import ShareCallToAction from '../components/article/ShareCallToAction';
 import BlogMeta from '../components/BlogMeta';
-
-const styles = {
-  copy: `
-  text-base
-  md:text-lg
-  lg:text-xl
-  text-onNeutralBgSoft
-  leading-8
-  font-serif
-  `,
-
-  link: `
-  border-b 
-  pb-1 
-  border-onNeutralBgLink 
-  hover:border-onNeutralBgLinkHover 
-  text-onNeutralBgLink 
-  hover:text-onNeutralBgLinkHover
-  `,
-
-  mt: 'mt-5 first:mt-0',
-  mt2: 'mt-10 first:mt-2',
-
-  list: `
-  flex flex-col
-  space-y-2
-  ml-5
-  mb-5
-  `,
-
-  card: `
-  border-l-4
-  p-5
-  rounded-sm
-  `,
-
-  header: `
-  text-onNeutralBg
-  `,
-
-  ctaLinks: `
-  text-lg 
-  border-b border-onNeutralBgSoft 
-  hover:border-onNeutralBgLinkHover 
-  text-onNeutralBgSoft hover:text-onNeutralBgLinkHover 
-  pb-1
-  `,
-
-  ctaLinkIcons: `
-  inline
-  mb-1
-  `,
-};
-
-const shortcodes = {
-  p: (props) => (
-    <p
-      {...props}
-      className={`
-        ${styles.copy} 
-        ${styles.mt}
-    `}
-    />
-  ),
-  a: (props) => {
-    let className = '';
-
-    if (props.href.startsWith('#')) {
-      className += 'anchor';
-    }
-
-    return (
-      <a
-        {...props}
-        className={`
-        ${className}
-        ${styles.copy} 
-        ${styles.link}
-      `}
-      />
-    );
-  },
-  ExternalLink: (props) => (
-    <ExternalLink
-      {...props}
-      rel="nofollow noopener noreferrer"
-      target="_blank"
-      className={`${styles.copy} ${styles.link}`}
-    />
-  ),
-  ul: (props) => (
-    <ul {...props} className={`${styles.copy}${styles.list} list-disc`} />
-  ),
-  ol: (props) => (
-    <ul {...props} className={`${styles.copy} ${styles.list} list-decimal`} />
-  ),
-  li: (props) => (
-    <li
-      {...props}
-      className={`
-     ${styles.mt} first:mt-2
-    `}
-    />
-  ),
-  h2: (props) => (
-    <h2
-      {...props}
-      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt2}`}
-    />
-  ),
-  h3: (props) => (
-    <h3
-      {...props}
-      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt2}`}
-    />
-  ),
-  table: (props) => (
-    <table
-      {...props}
-      className={`${styles.copy} ${styles.mt} w-full bg-neutralBgSoft`}
-    />
-  ),
-  th: (props) => (
-    <th {...props} className="px-2 pt-3 text-left bg-primary text-onPrimary" />
-  ),
-  td: (props) => <td {...props} className="px-2 pt-1 text-onPrimaryBg" />,
-  tr: (props) => <tr {...props} className="even:bg-neutralBg" />,
-  blockquote: (props) => (
-    <blockquote
-      {...props}
-      className={`
-        ${styles.copy}
-        ${styles.mt}
-        ${styles.card}
-        border-primaryBgSoft
-        bg-primaryBg
-        text-onPrimaryBgSoft
-     `}
-    />
-  ),
-  aside: (props) => (
-    <aside
-      {...props}
-      className={`
-        ${styles.copy} 
-        ${styles.mt}
-        ${styles.card}
-        bg-neutralBgSoft 
-        text-onNeutralBgSoft
-        `}
-    >
-      {props.children}
-    </aside>
-  ),
-};
+import shortcodes from '../components/article/DesignSystem';
+import { BlogFrontmatter } from '../pages';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -208,11 +50,58 @@ export const pageQuery = graphql`
   }
 `;
 
-export default function Blog({ data: { mdx }, pageContext }) {
+type Fields = {
+  slug: string;
+};
+
+type NeighborContext = {
+  id: string;
+  fields: Fields;
+};
+
+export type Heading = {
+  depth: number;
+  value: string;
+};
+
+type PropTypes = {
+  data: {
+    mdx: {
+      body: string;
+      fields: Fields;
+      fileAbsolutePath: string;
+      frontmatter: BlogFrontmatter;
+      headings: Heading[];
+      timeToRead: number;
+      id: string;
+    };
+  };
+  pageContext: {
+    id: string;
+    next: NeighborContext;
+    prev: NeighborContext;
+  };
+};
+
+export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
   const { frontmatter, body, fileAbsolutePath } = mdx;
   const editUrl = links.editOnGithub(
     `${fileAbsolutePath.split('/content/')[1]}`,
   );
+  const styles = {
+    ctaLinks: `
+    text-lg 
+    border-b border-onNeutralBgSoft 
+    hover:border-onNeutralBgLinkHover 
+    text-onNeutralBgSoft hover:text-onNeutralBgLinkHover 
+    pb-1
+    `,
+
+    ctaLinkIcons: `
+    inline
+    mb-1
+    `,
+  };
   return (
     <>
       <SEO
@@ -228,7 +117,10 @@ export default function Blog({ data: { mdx }, pageContext }) {
       />
       <article
         className={`${globalStyles.transitions.colors}
+        
       `}
+        itemScope
+        itemType="http://schema.org/BlogPosting"
       >
         <div
           className={`
@@ -239,10 +131,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
         pt-8
         pb-64
       `}
-          itemScope
-          itemType="http://schema.org/BlogPosting"
         />
-
         <div
           className={`
           max-w-screen-lg
@@ -328,7 +217,7 @@ export default function Blog({ data: { mdx }, pageContext }) {
                 <ExternalLink
                   href={editUrl}
                   className={`
-              ${styles.ctaLinks}
+                  ${styles.ctaLinks}
               `}
                 >
                   <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />

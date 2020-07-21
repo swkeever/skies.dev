@@ -28,6 +28,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           w-full
           text-center
           inline-block
+          
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
           hover:border-0
@@ -46,8 +47,7 @@ const Name = ({ name }: { name: string }) => (
   <span
     className={`
         text-sm
-        hidden
-        md:inline
+        
       `}
   >
     {name}
@@ -97,7 +97,7 @@ export default function Nav() {
 
   function getUnderlineOffset() {
     let off = navItems.length;
-    if (pathname.includes(routes.blog) || pathname === routes.home) {
+    if (pathname === routes.home) {
       off = 0;
     } else if (pathname === routes.about) {
       off = 1;

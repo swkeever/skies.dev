@@ -1,28 +1,6 @@
 import React, { useContext } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { LayoutContext } from './Layout';
-// you make your checkings, and call lightmode() or darkmode()
-
-// function applyBackgroundTheme(color) {
-//     var css = "body { background: " + color + "; }",
-//     head = document.head || document.getElementsByTagName('head')[0],
-//     style = document.createElement('style');
-//     head.appendChild(style);
-
-//       style.type = 'text/css';
-//       if (style.styleSheet){
-//         style.styleSheet.cssText = css;
-//       } else {
-//         style.appendChild(document.createTextNode(css));
-//       }
-//     }
-
-// function lightmode() {
-//   applyBackgroundTheme("white") // color for light mode
-// }
-// function darkmode() {
-//   applyBackgroundTheme("black") // color for light mode
-// }
 
 export default function ThemeToggle() {
   const { lightTheme, setLightTheme } = useContext(LayoutContext);
@@ -62,6 +40,7 @@ export default function ThemeToggle() {
           lg:opacity-100
         `}
       >
+        <span className="sr-only">Change themes</span>
         <input
           id="theme-toggle"
           onChange={() => setLightTheme(!lightTheme)}

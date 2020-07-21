@@ -8,7 +8,7 @@ export default function Header() {
     <section
       className={`
           diagonal-t 
-          bg-primary
+          bg-skies
           z-0
           py-16
           md:py-24

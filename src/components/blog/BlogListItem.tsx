@@ -32,7 +32,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
             {blog.title}
           </h2>
           <BlogMeta
-            className="text-sm text-neutralSoft group-hover:text-primarySoft"
+            className="text-sm text-neutral group-hover:text-primarySoft"
             date={blog.date}
             timeToRead={blog.timeToRead}
           />
