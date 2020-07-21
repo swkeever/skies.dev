@@ -43,12 +43,9 @@ export default function TableOfContents({
   };
 
   const { pathname } = useLocation();
-  console.log(olClassName);
 
   const activeHash = watch
     && useActiveHash(headings.map((h) => new Slugger().slug(h.value, false)));
-
-  console.log(activeHash);
 
   return (
     <nav className={` ${className}`}>

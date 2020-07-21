@@ -6,7 +6,7 @@ import { globalStyles } from '../../styles';
 import BlogMeta from '../BlogMeta';
 
 export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
-  const li = (
+  return (
     <li>
       <Link
         to={blog.slug}
@@ -32,7 +32,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
             {blog.title}
           </h2>
           <BlogMeta
-            className="text-sm text-neutral group-hover:text-primarySoft"
+            className="text-sm text-neutral group-hover:text-primary"
             date={blog.date}
             timeToRead={blog.timeToRead}
           />
@@ -43,6 +43,4 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
       </Link>
     </li>
   );
-
-  return <>{li}</>;
 }
