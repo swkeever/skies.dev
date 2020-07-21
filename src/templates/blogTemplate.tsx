@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/heading-has-content */
+import React, { AnchorHTMLAttributes } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
@@ -14,7 +16,6 @@ import TableOfContents from '../components/TableOfContents';
 import ShareCallToAction from '../components/article/ShareCallToAction';
 import BlogMeta from '../components/BlogMeta';
 import shortcodes from '../components/article/DesignSystem';
-import { BlogFrontmatter } from '../pages';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -117,7 +118,6 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
       />
       <article
         className={`${globalStyles.transitions.colors}
-        
       `}
         itemScope
         itemType="http://schema.org/BlogPosting"
@@ -217,7 +217,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 <ExternalLink
                   href={editUrl}
                   className={`
-                  ${styles.ctaLinks}
+              ${styles.ctaLinks}
               `}
                 >
                   <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
