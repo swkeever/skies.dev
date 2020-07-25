@@ -1,13 +1,11 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode } from 'react';
 import {
   FaRegLightbulb,
   FaSmile,
-  FaFire,
   FaLightbulb,
   FaSmileBeam,
 } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
-import { icons } from 'react-icons/lib';
 import routes from '../utils/routes';
 import { globalStyles } from '../styles';
 
@@ -68,7 +66,7 @@ export default function Nav() {
 
   const navItems = [
     <Item route={routes.home} key="nav-blog">
-      {isArticle ? (
+      {pathname === routes.home ? (
         <FaLightbulb className={iconStyles} />
       ) : (
         <FaRegLightbulb className={iconStyles} />
