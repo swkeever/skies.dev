@@ -78,7 +78,7 @@ export default function SEO({
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
-      src: image ? image.src : file.childImageSharp.fluid.src,
+      src: image ? image.src : file.childImageSharp.fixed.src,
       dims: {
         width: imageDims ? imageDims.width.toString() : '1200',
         height: imageDims ? imageDims.height.toString() : '630',
