@@ -62,8 +62,6 @@ export default function Nav() {
     ${globalStyles.transitions.colors}
   `;
 
-  const isArticle = pathname.includes(routes.blog);
-
   const navItems = [
     <Item route={routes.home} key="nav-blog">
       {pathname === routes.home ? (
