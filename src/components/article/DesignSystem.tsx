@@ -14,12 +14,9 @@ const styles = {
   `,
 
   link: `
-  border-b 
-  pb-1 
-  border-onNeutralBgLink 
-  hover:border-onNeutralBgLinkHover 
-  text-onNeutralBgLink 
-  hover:text-onNeutralBgLinkHover
+  underline
+  text-onNeutralBg 
+  hover:text-onNeutralBgLink
   `,
 
   mt: 'mt-5 first:mt-0',
@@ -40,6 +37,7 @@ const styles = {
 
   header: `
   text-onNeutralBg
+  mb-0
   `,
 };
 
@@ -49,25 +47,26 @@ const shortcodes = {
       {...props}
       className={`
         ${styles.copy} 
-        ${styles.mt}
+        mb-5
     `}
     />
   ),
-  a: (props: AnchorHTMLAttributes) => {
+  a: ({ href, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     let className = '';
 
-    if (props.href.startsWith('#')) {
+    if (href.startsWith('#')) {
       className += 'anchor';
     }
 
     return (
       <a
-        {...props}
+        href={href}
+        {...rest}
         className={`
-        ${className}
-        ${styles.copy} 
-        ${styles.link}
-      `}
+          ${className}
+          ${styles.copy} 
+          ${styles.link}
+        `}
       />
     );
   },
@@ -99,6 +98,12 @@ const shortcodes = {
       className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt2}`}
     />
   ),
+  inlineCode: (props) => (
+    <code
+      className="bg-neutralBgSoft text-onNeutralBgSoft px-1 rounded pt-1"
+      {...props}
+    />
+  ),
   h3: (props) => (
     <h3
       {...props}
@@ -126,6 +131,7 @@ const shortcodes = {
         border-primaryBgSoft
         bg-primaryBg
         text-onPrimaryBgSoft
+        mb-5
      `}
     />
   ),
@@ -138,6 +144,7 @@ const shortcodes = {
         ${styles.card}
         bg-neutralBgSoft 
         text-onNeutralBgSoft
+        mb-5
         `}
     />
   ),

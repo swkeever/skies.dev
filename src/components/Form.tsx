@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
 import Button from './Button';
+import { globalStyles } from '../styles';
 
 function LabelSpan({ label }: { label: string }) {
   return (
@@ -20,9 +21,7 @@ function LabelSpan({ label }: { label: string }) {
 
 const inputStyles = `
   bg-neutralBgSoft 
-  shadow-inner 
-  outline-none
-  focus:shadow-focus
+  ${globalStyles.outline}
   rounded
   w-full
   rounded-md

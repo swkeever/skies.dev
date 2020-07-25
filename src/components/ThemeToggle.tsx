@@ -1,80 +1,62 @@
 import React, { useContext } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { LayoutContext } from './Layout';
+import { globalStyles } from '../styles';
 
 export default function ThemeToggle() {
   const { lightTheme, setLightTheme } = useContext(LayoutContext);
+  const styles = {
+    icon: `
+    h-4 w-4
+    ${lightTheme ? 'text-onPrimarySoft' : 'text-primary'}
+    fill-current
+    `,
+  };
   return (
-    <div className="fixed top-0 right-0 z-50">
+    // <!-- On: "bg-indigo-600", Off: "bg-gray-200" -->
+    <button
+      type="button"
+      className={`
+      ${lightTheme ? 'bg-primarySoft' : 'bg-neutralBgSoft'}
+      fixed top-2 right-2 inline-flex items-center flex-shrink-0 h-8 w-16 border-0 
+      border-transparent rounded-full z-50 cursor-pointer
+       
+      ${globalStyles.transitions.colors} 
+      ${globalStyles.outline}
+      `}
+      onClick={() => setLightTheme(!lightTheme)}
+    >
       <span
-        onClick={() => setLightTheme(!lightTheme)}
-        role="button"
-        aria-hidden
+        aria-hidden="true"
         className={`
-          fixed
-          right-0
-          top-3
-          z-50
-          text-2xl
-          text-onPrimary
-          lg:text-onPrimary
-        
-          mr-10
-          ${lightTheme && 'hidden'}
-          px-1
-          opacity-75
-          lg:opacity-100
-        `}
+      ${lightTheme ? 'translate-x-0' : 'translate-x-8'}
+      relative 
+      inline-block 
+      h-6 w-6 
+      rounded-full 
+      bg-primaryBold
+      shadow transform
+      ml-1
+      ${globalStyles.transitions.colors}`}
       >
-        <FaSun />
-      </span>
-      <label
-        htmlFor="theme-toggle"
-        className={`
-          switch
-          fixed 
-          right-2
-          top-2
-          z-40
-          opacity-75
-          lg:opacity-100
-        `}
-      >
-        <span className="sr-only">Change themes</span>
-        <input
-          id="theme-toggle"
-          onChange={() => setLightTheme(!lightTheme)}
-          type="checkbox"
-          checked={!lightTheme}
-        />
         <span
           className={`
-            slider
-            round
-          `}
-        />
-      </label>
-      <span
-        onClick={() => setLightTheme(!lightTheme)}
-        role="button"
-        aria-hidden
-        className={`
-          fixed
-          right-0
-          top-3
-          z-50
-          text-xl
-          text-onPrimary
-          lg:text-onPrimary
-          mr-3
-          ${!lightTheme && 'hidden'}
-          px-1
-          pt-px
-          opacity-75
-        `}
-      >
-        <FaMoon />
+        
+        ${
+          lightTheme
+            ? 'opacity-100 ease-in duration-200'
+            : 'opacity-100 ease-in duration-200'
+        }
+        
+        absolute inset-0 h-full w-full flex items-center justify-center transition-opacity`}
+        >
+          {lightTheme ? (
+            <FaMoon className={styles.icon} />
+          ) : (
+            <FaSun className={styles.icon} />
+          )}
+        </span>
       </span>
-    </div>
+    </button>
   );
 }

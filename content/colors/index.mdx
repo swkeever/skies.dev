@@ -1,0 +1,1314 @@
+---
+date: 2020-07-04
+title: Let's Build a Color Palette Generator
+description:
+  In this article, we will build a color palette generator and publish it on
+  GitHub.
+tags:
+  - Software Engineering
+  - Web Development
+keywords:
+  - build react project
+  - how to use create react app
+image: index.jpg
+---
+
+## Getting Started
+
+In this article, we will build the following
+[color shades generator](https://swkeever.github.io/colors/) from scratch using
+Create React App and Tailwind CSS. The goal of the app is to help users generate
+shades of colors for their design systems. At any time, you can reference the
+source code on [Github](https://github.com/swkeever/colors).
+
+We start by creating a React app.
+
+```bash
+npx create-react-app colors
+```
+
+Then we'll start our dev server with
+
+```bash
+yarn start
+```
+
+Let's go ahead and remove all the files inside of `src` so that we're left with
+the following files.
+
+- `src/App.js`
+- `src/index.js`
+
+Inside each of these files, we have
+
+```javascript
+// App.js
+import React from 'react';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Colors</h1>
+    </div>
+  );
+}
+
+export default App;
+```
+
+```javascript
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+Next, I'm going to use Tailwind CSS to easily style the layout. To make things
+super simple, I will link to the full stylesheet located on their CDN. This way,
+we can get coding right away and not worry too much about setup.
+
+We will update our `public/index.html` to the following:
+
+```xml
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Color generator tool for building color palettes and design systems."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Color Generator</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+## Layout
+
+While we're inside of `public/index.html`, I want to continue doing some markup
+to build some structure for our app. Inside of the document `body`, we will add
+a
+
+- `header` - this is where the `h1` will go and also some information about how
+  to use the app.
+- `main` - this is where the actual React app will live. This is where the main
+  functionality of the app will go.
+- `footer` - here is where we can whatever extra information we want. I will put
+  a link to follow me on Twitter. 😁
+
+We will go ahead and apply the Tailwind CSS classes to begin styling our app.
+With all of this, our `public/index.html` body updates to the following:
+
+```xml
+<body class="flex flex-col min-h-screen">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <header>
+    <div class="max-w-3xl mx-auto relative mt-4 px-2 md:px-4">
+      <h1 class="text-3xl font-bold leading-none md:text-6xl md:mt-16">
+        <span class="text-blue-800">Color</span>
+        <span class="text-blue-900">S</span>
+        <span class="text-blue-800">h</span>
+        <span class="text-blue-700">a</span>
+        <span class="text-blue-600">d</span>
+        <span class="text-blue-500">e</span>
+        <span class="text-blue-400">s</span>
+        <span class="text-blue-500">Generator</span>
+      </h1>
+      <h2 class="mt-8 md:mt-12 font-medium text-gray-700 text-lg">
+        Getting Started
+      </h2>
+      <ul
+        class="flex bg-gray-100 py-8 px-2 flex-col mt-1 rounded space-y-6 text-sm md:text-base text-gray-600"
+      >
+        <li class="flex">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="circle"
+            class="text-blue-500 w-4 inline my-auto h-4 mr-2"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"
+            ></path>
+          </svg>
+          <div class="">
+            Create, edit, and delete color shades any time.
+          </div>
+        </li>
+        <li class="flex">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="circle"
+            class="text-blue-400 w-4 inline my-auto h-4 mr-2"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"
+            ></path>
+          </svg>
+          <div class="">
+            Click a color shade to copy its HSL value.
+          </div>
+        </li>
+        <li class="flex">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="circle"
+            class="text-blue-300 w-4 inline h-4 my-auto mr-2"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"
+            ></path>
+          </svg>
+          <div class="">
+            Your work is automatically saved to your browser.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <main id="root"></main>
+  <footer class="bg-gray-200 mt-auto">
+    <div
+      class="flex h-24 px-4 items-center justify-between max-w-3xl mx-auto text-gray-600"
+    >
+      <div>
+        Created by
+        <a
+          href="https://skies.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-500 border-b border-blue-400 pb-1 hover:text-blue-600 hover:border-blue-500"
+        >
+          Sean Keever </a
+        >.
+      </div>
+      <a
+        href="https://twitter.com/swkeever?ref_src=twsrc%5Etfw"
+        class="twitter-follow-button"
+        data-size="large"
+        data-show-screen-name="false"
+        data-lang="en"
+        data-show-count="false"
+        >Follow @swkeever</a
+      >
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+    </div>
+  </footer>
+</body>
+```
+
+The reason I chose to put the `header` and `footer` markup inside of
+`public/index.html` instead of our React app is because it is static content,
+which means it won't change as we use the app. We don't need JavaScript to
+dynamically render those sections so we wrote the sections directly in
+`public/index.html`.
+
+We now have a bare bones layout we can build our color shades app upon.
+
+### Additional Notes
+
+- The `svg` icons were downloaded on [Font Awesome](https://fontawesome.com).
+- The Twitter follow button source code is from
+  [Twitter](https://publish.twitter.com/#).
+- The class names you see in the markup are from Tailwind CSS, which we linked
+  earlier.
+
+## SEO
+
+Another reason we put additional markup in `public/index.html` instead of inside
+of our React tree is because it should give us better SEO. Web crawlers should
+be able to parse and understand static HTML easier than client-rendered
+JavaScript.
+
+Now, I'm going to add some additional metadata to the `head` of the document.
+The `meta` tags I add will make it so when I share a link to our app on social
+media, the link will be rendered as a big card with an image. I wrote a more
+[detailed article](/blog/awesome-links) about how all of this works. For now, we
+will go ahead and apply the necessary changes.
+
+The `head` of `public/index.html` now looks like the following:
+
+```xml
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Generate shades of color to help you build color palettes and design systems."
+  />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Color Shades Generator</title>
+  <meta
+    name="description"
+    content="Easily create shades of colors for your design system with this color generator tool."
+  />
+
+  <link
+    href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <meta property="og:title" content="Color Shades Generator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://swkeever.github.io/colors" />
+  <meta
+    property="og:image"
+    content="https://swkeever.github.io/colors/social.jpg"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@swkeever" />
+  <meta name="twitter:creator" content="@swkeever" />
+  <meta name="twitter:title" content="Color Shades Generator" />
+  <meta
+    name="twitter:description"
+    content="Easily create shades of colors for your design system with this color generator tool."
+  />
+  <meta
+    name="twitter:image"
+    content="https://swkeever.github.io/colors/social.jpg"
+  />
+</head>
+```
+
+There is some additional assets I added such as favicons. Check out the
+[source tree](https://github.com/swkeever/colors/tree/master/public) for the
+assets I added. Everything is mostly configured the way the Create React App
+starter left it. We are now ready to build the core functionality of the app.
+
+## App State
+
+Next, let's put our application state inside of `App.js`. We will utilize
+React's [Context API](https://reactjs.org/docs/context.html) in order to pass
+state down the React tree.
+
+Our app will work as a list of colors defined by the user, so we will model our
+data as an array of some sort. Let's go ahead and set up our initial state in
+`App.js`.
+
+```jsx
+import React, { useState } from 'react';
+
+export const AppContext = React.createContext();
+
+function App() {
+  const [colors, setColors] = useState([]);
+
+  return (
+    return (
+      <AppContext.Provider
+        value={{ colors }}
+      >
+        <div className="App">
+          <h1>Colors</h1>
+        </div>
+      </AppContext.Provider>
+    );
+}
+
+export default App;
+```
+
+## Storage Layer
+
+We want to have some sort of storage layer so that when the user leaves the app
+and comes back, their work will be saved. We will take a simple approach to
+storage by utilizing the browser's
+[local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+Their work will be saved to their browser. This gives us enough storage
+persistence for the purposes of this app.
+
+Let's go ahead and define a key so we can easily access the data in local
+storage. We will define it as follows:
+
+```jsx
+// App.js
+export const APP_DATA_KEY = 'appData';
+```
+
+We are now ready to define an API for our app.
+
+## API
+
+For our API, we want to create simple
+[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations
+for our users. We will define the following API:
+
+- `handleCreate()`: creates a new color.
+- `handleReplace(newColors)`: replaces the current set of colors for
+  `newColors`.
+- `handleUpdate(idx, newColor)`: set `colors[idx]` to `newColor`.
+- `handleDelete(idx)`: deletes `colors[idx]`.
+- `deleteAll()`: removes all colors.
+
+Below, we will do some set up some utilities before we implement the API. We
+will create a new directory for the utilities in `src`. We will call it `utils`.
+Now our file structure includes `src/utils/`.
+
+### Configuration
+
+I want to define a place that will let me control the behavior of the app in one
+place. For this, I will create `src/utils/config.js`. This file will let me
+track properties about 3 properties I will use to define colors. The 3
+properties are
+
+- hue
+- saturation
+- lightness
+
+We want to have controls in our UI that lets the user customize the shades of
+colors. We will define a JavaScript object to define a configuration that we can
+use throughout our app. The configuration has the following properties:
+
+- `min`: the minimum value a given property can hold.
+- `max`: the maximum value a given property can hold.
+- `step`: the delta between any 2 adjacent values a property can hold.
+- `range`: the maximum delta from any value $i$ to value $j$.
+
+For saturation, we want to set a value for $a$, $b$, and $c$, which are inputs
+to the following function:
+
+$$
+f(x) = ax^2 + bx + c
+$$
+
+$f$ is the saturation as a function of $x \in {10, 20, \dots, 80, 90}$.
+
+<aside>
+  This mathematical function is inspired by principles taught in the book{' '}
+  <ExternalLink href="https://refactoringui.com">Refactoring UI</ExternalLink>,
+  where the author uses a parabolic curve to set the saturation as a function of
+  lightness.
+</aside>
+
+With this we define our configuration object.
+
+```javascript
+// config.js
+const config = {
+  hue: {
+    min: 0,
+    max: 359,
+    step: 1,
+    range: 30,
+  },
+  saturation: {
+    a: {
+      min: 0,
+      max: 0.05,
+      step: 0.001,
+    },
+    b: {
+      min: 0,
+      max: 100,
+      step: 1,
+    },
+    c: {
+      min: 0,
+      max: 100,
+      step: 1,
+    },
+  },
+  lightness: {
+    min: 0,
+    max: 25,
+    step: 1,
+    range: 30,
+  },
+};
+
+export default config;
+```
+
+### Generating Shades
+
+Let's create a new file `src/utils/shades.js` which will generate shades of
+colors based on the configuration specified in `src/utils/config.js`. We use the
+parabolic function described earlier to generate the saturation.
+
+```javascript
+function generateHues(hue) {
+  const hs = [];
+  const dx = hue.range / 9;
+  for (let x = 0; x < 9; x += 1) {
+    const y = (hue.start + x * dx) % 360;
+    hs.push(Math.round(y));
+  }
+  return hs;
+}
+
+function generateLightness(lightness) {
+  const ls = [];
+  const dx = lightness.range / 9;
+  for (let x = 0; x < 9; x += 1) {
+    ls.push(Math.min(100, Math.round(lightness.start + x * dx)));
+  }
+  return ls;
+}
+
+function generateSaturation(saturation) {
+  const ss = [];
+  for (let x = 10; x < 100; x += 10) {
+    const { a, b, c } = saturation;
+    let y = Math.round(a * (x - b) ** 2 + c);
+    y = Math.max(0, y);
+    y = Math.min(100, y);
+    ss.push(y);
+  }
+  return ss;
+}
+
+function combineResults({ hs, ls, ss }) {
+  const props = [];
+  for (let i = 0; i < 9; i += 1) {
+    props.push({
+      hue: hs[i],
+      saturation: ss[i],
+      lightness: ls[i],
+    });
+  }
+  return props;
+}
+
+export default function generateShades({ hue, saturation, lightness }) {
+  const hs = generateHues(hue);
+  const ls = generateLightness(lightness);
+  const ss = generateSaturation(saturation);
+  const props = combineResults({ hs, ls, ss });
+
+  return props;
+}
+```
+
+### Color Helper Functions
+
+Before we implement these methods, let's define a file with some functions that
+will help us when dealing with colors. Let's define `src/utils/colors.js` where
+we will define some functions that we will use in our API.
+
+```javascript
+import { APP_DATA_KEY } from '../App';
+import config from './config';
+
+export function getInitialColors() {
+  const appData = localStorage.getItem(APP_DATA_KEY);
+  if (appData) {
+    return JSON.parse(appData);
+  }
+  return [];
+}
+
+export function getNextColor(colors) {
+  return {
+    name: 'Click to name',
+    hue: {
+      start:
+        colors.length > 0
+          ? (colors[colors.length - 1].hue.start + 60) % 360
+          : Math.floor(Math.random() * config.hue.max),
+      range: 10,
+    },
+    saturation: {
+      a: config.saturation.a.max / 2,
+      b: config.saturation.b.max / 2,
+      c: config.saturation.c.max / 2,
+    },
+    lightness: {
+      start: config.lightness.min,
+      range: 100,
+    },
+    editing: true,
+  };
+}
+```
+
+### Implementing the API
+
+With our helpers in place, we can now go ahead and implement our API in
+`src/App.js`.
+
+For the functions that involve deleting things, let's add a prompt to ask the
+user if they are sure they want to remove a color. This way, they won't lose
+work in case they accidentally press the delete button that we will add later.
+
+We will make use of our local storage "database" to automatically save the
+user's work to their browser whenever they make a change.
+
+```jsx
+import React, { useState } from 'react';
+import { getInitialColors, getNextColor } from './utils/colors';
+// ...the rest
+
+function App() {
+  const [colors, setColors] = useState(getInitialColors());
+
+  function handleCreate() {
+    const newColors = colors.concat(getNextColor(colors));
+    localStorage.setItem(APP_DATA_KEY, JSON.stringify(newColors));
+    setColors(newColors);
+  }
+
+  function handleReplace(newColors) {
+    localStorage.setItem(APP_DATA_KEY, JSON.stringify(newColors));
+    setColors(newColors);
+  }
+
+  function handleUpdate(idx, newColor) {
+    const newColors = Array.from(colors);
+    newColors[idx] = newColor;
+    localStorage.setItem(APP_DATA_KEY, JSON.stringify(newColors));
+    setColors(newColors);
+  }
+
+  function handleDelete(idx) {
+    const deleteItem = window.confirm(
+      `Are you sure you want to delete ${colors[idx].name}?`
+    );
+    if (deleteItem) {
+      const newColors = [...colors.slice(0, idx), ...colors.slice(idx + 1)];
+      localStorage.setItem(APP_DATA_KEY, JSON.stringify(newColors));
+      setColors(newColors);
+    }
+  }
+
+  function deleteAll() {
+    const deleteItems = window.confirm(
+      'Are you sure you want to delete all colors?'
+    );
+    if (deleteItems) {
+      const newColors = [];
+      localStorage.setItem(APP_DATA_KEY, JSON.stringify(newColors));
+      setColors(newColors);
+    }
+  }
+
+  return (
+    <AppContext.Provider
+      value={{
+        colors,
+        handleCreate,
+        handleUpdate,
+        handleDelete,
+      }}
+    >
+      <div className="App">
+        <h1>Colors</h1>
+      </div>
+    </AppContext.Provider>
+  );
+}
+
+export default App;
+```
+
+This pretty much handles the CRUD operations we will perform in our app. Now
+let's look at how we can implement the rest of the UI.
+
+## Color Shades
+
+Let's install a library so we can use icons.
+
+```bash
+yarn add react-icons
+```
+
+### useSpringState Hook
+
+I'm also going to set up a custom hook that was developed by my friend
+[Andrew Guterman](hhttps://anguterman.com/). The hook is called
+`useSpringState`. The hook works similar to
+[`useState`](https://reactjs.org/docs/hooks-state.html), except in
+`useSpringState`, you pass in a baseline state $x$ and a TTL (time to live)
+value $t$. When you call `setX` with a new value $x'$, the state will be set to
+$x'$ for $t$ milliseconds before reverting back to $x$.
+
+Let's place this hook in a new file called `src/hooks/useSpringState.js`.
+
+```javascript
+import { useState, useCallback } from 'react';
+
+//
+// useState but the value acts like a physical spring:
+// When the value is set, it springs back to its initial value after "revertDelay"
+//
+// If the value is set again during the revertDelay, the delay resets
+export default function useSpringState(initialValue, revertDelay) {
+  const [value, setValue] = useState(initialValue);
+  const [timer, setTimer] = useState(null);
+
+  const pullSpring = useCallback(
+    newValue => {
+      if (timer !== null) {
+        clearTimeout(timer);
+      }
+
+      setValue(newValue); // Set the "spring" to the new value
+
+      // Set a timer to release the spring
+      setTimer(
+        setTimeout(() => {
+          setValue(initialValue);
+          setTimer(null);
+        }, revertDelay)
+      );
+    },
+    [timer, initialValue, revertDelay]
+  );
+
+  return [value, pullSpring];
+}
+```
+
+### Implementing Color Shades
+
+With this in place, we can go ahead and develop our color shades component in
+`src/components/ColorShades.js`. We will implement it to allow the user to click
+a color to copy the HSL value of the color. We will utilize the `useSpringState`
+hook to show a message to the user to let them know they copied the value.
+
+```jsx
+import React from 'react';
+import { FaCopy } from 'react-icons/fa';
+import useSpringState from '../hooks/useSpringState';
+
+export default function ColorShades({ color }) {
+  const [copied, setCopied] = useSpringState('', 3000);
+
+  return (
+    <>
+      <ul className="flex flex-col items-stretch md:flex-row justify-between md:items-center md:space-x-4">
+        {color.shades.map(({ hue, lightness, saturation }, shadeIdx) => {
+          const bgColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+          const copyText = `hsl-${hue}-${saturation}-${lightness}`;
+
+          return (
+            <li
+              key={`color-${color.index.toString()}-shade-${shadeIdx.toString()}`}
+              style={{ backgroundColor: bgColor }}
+            >
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(bgColor);
+                  setCopied(bgColor);
+                }}
+                className="p-6 md:rounded focus:outline-none opacity-0 hover:opacity-100 transition duration-75"
+              >
+                <FaCopy
+                  style={{
+                    color: `hsl(${hue}, ${saturation}%, ${Math.min(
+                      lightness + 30,
+                      100
+                    )}%)`,
+                  }}
+                  className="w-5 h-auto text-xl"
+                />
+                <span id={copyText} className="hidden ">
+                  {bgColor}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      {copied && (
+        <div className="absolute right-0 mt-2 px-2 py-1 z-50 bg-blue-100 text-xl text-blue-500 rounded">{`${copied} copied!`}</div>
+      )}
+    </>
+  );
+}
+```
+
+## Control Panel
+
+Now we will implement the control panel in `src/components/ControlPanel.js` to
+let the user configure the shades of color. We will need some range inputs for
+this job, and we will call into the API we created earlier that was provided in
+the `AppContext`.
+
+To make styling components easier, we will write our styles in an object
+`styles` where we will define various Tailwind CSS classes. The rest of the
+component will simply have `input` controls to configure the settings we defined
+in `src/utils/config.js` earlier.
+
+```jsx
+import React, { useContext } from 'react';
+import { AppContext } from '../App';
+import config from '../utils/config';
+
+function ControlHeader({ children }) {
+  return <h3 className="text-gray-700 text-2xl">{children}</h3>;
+}
+
+export default function ControlPanel({ color }) {
+  const { handleUpdate } = useContext(AppContext);
+
+  const styles = {
+    input: `
+      bg-gray-200
+      md:ml-1
+      px-1
+      block
+      mx-auto
+      cursor-pointer
+      bg-blue-500
+    `,
+
+    control: `
+      flex
+      flex-col
+      md:flex-row
+      md:space-x-8
+      md:ml-auto
+      text-gray-700
+    `,
+
+    controlRow: `
+      flex
+      flex-col
+      md:flex-row
+      text-gray-800
+    `,
+  };
+
+  return (
+    <>
+      <div className={styles.controlRow}>
+        <ControlHeader>Hue</ControlHeader>
+        <div className={styles.control}>
+          <label htmlFor="hue-start">
+            <div>Start</div>
+            <input
+              name="hue-start"
+              className={styles.input}
+              type="range"
+              min={config.hue.min}
+              max={config.hue.max}
+              step={config.hue.step}
+              value={color.hue.start}
+              onChange={e =>
+                handleUpdate(color.index, {
+                  ...color,
+                  hue: {
+                    ...color.hue,
+                    start: Number(e.target.value),
+                  },
+                })
+              }
+            />
+          </label>
+          <label htmlFor="hue-range">
+            <div>Range</div>
+            <input
+              name="hue-range"
+              className={styles.input}
+              type="range"
+              min={config.hue.min}
+              max={config.hue.range}
+              step={config.hue.step}
+              value={color.hue.range}
+              onChange={e =>
+                handleUpdate(color.index, {
+                  ...color,
+                  hue: {
+                    ...color.hue,
+                    range: Number(e.target.value),
+                  },
+                })
+              }
+            />
+          </label>
+        </div>
+      </div>
+      <div className={styles.controlRow}>
+        <ControlHeader>Saturation</ControlHeader>
+        <div className={styles.control}>
+          <label htmlFor="saturation-intensity">
+            <div>Intensity</div>
+            <input
+              name="saturation-intensity"
+              className={styles.input}
+              type="range"
+              min={config.saturation.a.min}
+              max={config.saturation.a.max}
+              step={config.saturation.a.step}
+              value={color.saturation.a}
+              onChange={e => {
+                handleUpdate(color.index, {
+                  ...color,
+                  saturation: {
+                    ...color.saturation,
+                    a: Number(e.target.value),
+                  },
+                });
+              }}
+            />
+          </label>
+          <label htmlFor="saturation-offset">
+            <div>Offset</div>
+            <input
+              name="saturation-offset"
+              className={styles.input}
+              type="range"
+              min={config.saturation.b.min}
+              max={config.saturation.b.max}
+              step={config.saturation.b.step}
+              value={color.saturation.b}
+              onChange={e => {
+                handleUpdate(color.index, {
+                  ...color,
+                  saturation: {
+                    ...color.saturation,
+                    b: Number(e.target.value),
+                  },
+                });
+              }}
+            />
+          </label>
+          <label htmlFor="saturation-boost">
+            <div>Boost</div>
+            <input
+              name="saturation-boost"
+              className={styles.input}
+              type="range"
+              min={config.saturation.c.min}
+              max={config.saturation.c.max}
+              step={config.saturation.c.step}
+              value={color.saturation.c}
+              onChange={e => {
+                handleUpdate(color.index, {
+                  ...color,
+                  saturation: {
+                    ...color.saturation,
+                    c: Number(e.target.value),
+                  },
+                });
+              }}
+            />
+          </label>
+        </div>
+      </div>
+      <div className={styles.controlRow}>
+        <ControlHeader>Lightness</ControlHeader>
+        <div className={styles.control}>
+          <label htmlFor="lightness-start">
+            <div>Start</div>
+            <input
+              name="lightness-start"
+              className={styles.input}
+              type="range"
+              min={config.lightness.min}
+              max={config.lightness.max}
+              step={config.lightness.step}
+              value={color.lightness.start}
+              onChange={e => {
+                const newStart = Number(e.target.value);
+                handleUpdate(color.index, {
+                  ...color,
+                  lightness: {
+                    ...color.lightness,
+                    start: newStart,
+                  },
+                });
+              }}
+            />
+          </label>
+          <label htmlFor="lightness-range">
+            <div>Range</div>
+            <input
+              name="lightness-range"
+              className={styles.input}
+              type="range"
+              min={100 - config.lightness.range}
+              max={100}
+              step={config.lightness.step}
+              value={color.lightness.range}
+              onChange={e =>
+                handleUpdate(color.index, {
+                  ...color,
+                  lightness: {
+                    ...color.lightness,
+                    range: Number(e.target.value),
+                  },
+                })
+              }
+            />
+          </label>
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+## Color Palette
+
+Now we need a component to display all the colors the user defines in the app.
+We will model this as an unordered list of colors. For each color, we want to
+show the user an icon to let them either edit or delete a color. If they edit a
+color, they should see the [color panel](#color-panel) developed earlier.
+
+```jsx
+import React, { useContext } from 'react';
+import { FaTrashAlt, FaEdit, FaCheck } from 'react-icons/fa';
+import { AppContext } from '../App';
+import ControlPanel from './ControlPanel';
+import ColorShades from './ColorShades';
+import generateShades from '../utils/shades';
+
+export default function ColorPalette() {
+  const { colors, handleUpdate, handleDelete } = useContext(AppContext);
+
+  return (
+    <ul className="mt-16 flex flex-col space-y-12">
+      {colors.map((clr, index) => {
+        const color = {
+          ...clr,
+          index,
+          shades: generateShades(clr),
+        };
+        const styles = {
+          icon: `
+          px-4 
+          py-2 
+          text-gray-500 
+          text-2xl
+          md:text-3xl 
+          focus:outline-none
+          `,
+        };
+
+        return (
+          <li key={`color-${color.index.toString()}`}>
+            <div className="flex justify-between mb-2">
+              <h2 className="text-2xl md:text-4xl text-gray-900">
+                <input
+                  onClick={e => e.target.select()}
+                  value={color.name}
+                  onChange={e =>
+                    handleUpdate(color.index, {
+                      ...color,
+                      name: e.target.value,
+                    })
+                  }
+                  className="focus:outline-none rounded hover:bg-gray-100 w-full cursor-pointer py-1"
+                />
+              </h2>
+              <div className="flex space-x-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleUpdate(color.index, {
+                      ...color,
+                      editing: !color.editing,
+                    })
+                  }
+                  className={`${styles.icon}
+                  ${
+                    !color.editing
+                      ? 'hover:text-yellow-500 hover:bg-yellow-100'
+                      : 'hover:text-green-500 hover:bg-green-100'
+                  }
+                  `}
+                >
+                  {color.editing ? <FaCheck /> : <FaEdit />}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(color.index)}
+                  className={`${styles.icon} 
+                hover:text-red-400
+                hover:bg-red-100 
+                `}
+                >
+                  <FaTrashAlt />
+                </button>
+              </div>
+            </div>
+            <div className="mb-4">
+              {color.editing && <ControlPanel color={color} />}
+            </div>
+            <div className="mb-8">
+              <ColorShades color={color} />
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+```
+
+## Bringing It All Together
+
+We will revist `src/App.js` to finish out our app. We will add some
+functionality to let the user generate some default colors or initialize an
+empty palette when they start the app for the first time.
+
+### Default Colors
+
+Let's add some default color configurations to `src/utils/colors.js`.
+
+```javascript
+// colors.js
+export const defaultColors = [
+  {
+    name: 'Gray',
+    lightness: {
+      start: 17,
+      range: 90,
+    },
+    saturation: {
+      a: 0.001,
+      b: 0,
+      c: 0,
+    },
+    hue: {
+      start: 207,
+      range: 0,
+    },
+    editing: true,
+  },
+  {
+    name: 'Red',
+    lightness: {
+      start: 13,
+      range: 87,
+    },
+    saturation: {
+      a: 0.025,
+      b: 98,
+      c: 42,
+    },
+    hue: {
+      range: 8,
+      start: 354,
+    },
+    editing: false,
+  },
+  {
+    name: 'Orange',
+    lightness: {
+      start: 20,
+      range: 82,
+    },
+    saturation: {
+      a: 0.05,
+      b: 94,
+      c: 90,
+    },
+    hue: {
+      range: 17,
+      start: 20,
+    },
+    editing: false,
+  },
+  {
+    name: 'Yellow',
+    lightness: {
+      start: 19,
+      range: 79,
+    },
+    saturation: {
+      a: 0.05,
+      b: 88,
+      c: 57,
+    },
+    hue: {
+      range: 13,
+      start: 48,
+    },
+    editing: false,
+  },
+  {
+    name: 'Green',
+    lightness: {
+      start: 0,
+      range: 100,
+    },
+    saturation: {
+      a: 0.025,
+      b: 50,
+      c: 50,
+    },
+    hue: {
+      range: 10,
+      start: 120,
+    },
+    editing: false,
+  },
+  {
+    name: 'Blue',
+    lightness: {
+      start: 12,
+      range: 92,
+    },
+    saturation: {
+      a: 0.025,
+      b: 50,
+      c: 50,
+    },
+    hue: {
+      range: 10,
+      start: 210,
+    },
+    editing: false,
+  },
+  {
+    name: 'Violet',
+    lightness: {
+      start: 12,
+      range: 94,
+    },
+    saturation: {
+      a: 0.025,
+      b: 50,
+      c: 50,
+    },
+    hue: {
+      range: 10,
+      start: 270,
+    },
+    editing: false,
+  },
+];
+```
+
+### Extending App.js
+
+Now we can finish out our app by showing some buttons that let the user generate
+either a initialized palette or a default set of predefined colors.
+
+```jsx
+// the rest
+import ColorPalette from './components/ColorPalette';
+
+function App() {
+  // the rest
+
+  return (
+    <AppContext.Provider
+      value={{
+        colors,
+        handleCreate,
+        handleUpdate,
+        handleDelete,
+      }}
+    >
+      <div className="max-w-3xl mt-4 px-2 md:px-4 mx-auto relative">
+        <ColorPalette />
+        {!colors.length && (
+          <h2 className="text-xl md:text-4xl text-gray-800">
+            <span
+              role="img"
+              aria-label="pointing down"
+              className="mr-4 text-2xl md:text-5xl"
+            >
+              👇
+            </span>
+            Click to get started!
+          </h2>
+        )}
+        <div className={`flex mb-8 ${colors.length > 0 && 'mt-8'}`}>
+          <button
+            type="button"
+            onClick={handleCreate}
+            className={`${styles.button} bg-blue-500 hover:bg-blue-600 text-blue-100`}
+          >
+            {colors.length === 0 ? 'Initialize palette' : 'Add new color'}
+          </button>
+          {colors.length === 0 && (
+            <button
+              type="button"
+              onClick={() => handleReplace(defaultColors)}
+              className={`${styles.button} ml-4 border-blue-400 border hover:bg-blue-100 hover:text-blue-600 text-blue-500`}
+            >
+              Generate defaults
+            </button>
+          )}
+
+          {colors.length > 1 && (
+            <button
+              type="button"
+              onClick={deleteAll}
+              className={`${styles.button} hover:bg-red-100 border border-red-400 hover:text-red-600 text-red-500 ml-auto`}
+            >
+              Delete all
+            </button>
+          )}
+        </div>
+      </div>
+    </AppContext.Provider>
+  );
+}
+
+export default App;
+```
+
+## Deployment
+
+Now we want to deploy our app. We will use
+[Github Pages](https://pages.github.com/) because it is relatively simple. First
+we'll install dependencies.
+
+```bash
+yarn add gh-pages
+```
+
+Then, we can add the following scripts to `package.json`.
+
+```json
+  "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
+  },
+```
+
+Because our app is in a [Github repo](https://github.com/swkeever/colors), Then
+we can simply use `yarn deploy` to deploy our app.
+
+With this, our app is now [live](https://swkeever.github.io/colors/). I hope you
+found this article helpful for learning how a simple app can be developed using
+Create React App and Tailwind CSS.

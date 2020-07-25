@@ -1,8 +1,7 @@
 import React from 'react';
 import Slugger from 'github-slugger';
-import { Link, useLocation } from '@reach/router';
+import { useLocation } from '@reach/router';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
-import routes from '../utils/routes';
 import { globalStyles } from '../styles';
 import { useActiveHash } from '../hooks/use-active-hash';
 

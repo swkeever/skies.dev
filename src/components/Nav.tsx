@@ -32,7 +32,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
           hover:border-0
-          outline-none          
+
           hover:no-underline
         `}
         style={pathname === route ? { color: 'var(--color-light)' } : {}}

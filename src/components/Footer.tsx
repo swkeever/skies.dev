@@ -10,7 +10,7 @@ import { globalStyles } from '../styles';
 export default function Footer() {
   const styles = {
     icon: `
-    h-6 w-6 fill-current
+    h-6 w-6 fill-current z-0
     `,
   };
 
@@ -36,15 +36,23 @@ export default function Footer() {
     <footer
       className={`
     ${globalStyles.transitions.colors}
-    
+
     bg-footerBg
     `}
     >
       <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <ul className="flex justify-center md:order-2">
           {socialLinks.map((link) => (
-            <li className="ml-6 text-gray-400 hover:text-gray-500">
-              <ExternalLink href={link.to}>
+            <li
+              className={`
+            ml-6 text-gray-400 hover:text-gray-500`}
+            >
+              <ExternalLink
+                href={link.to}
+                className={`
+                 inline-block
+              `}
+              >
                 <span className="sr-only">{link.text}</span>
                 {link.icon}
               </ExternalLink>

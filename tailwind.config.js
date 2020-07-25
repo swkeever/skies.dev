@@ -1,5 +1,8 @@
 /* eslint-disable global-require */
-const { rotate, boxShadow, colors } = require('tailwindcss/defaultTheme');
+const { rotate, colors } = require('tailwindcss/defaultTheme');
+const { boxShadow } = require('@tailwindcss/ui');
+
+console.log(boxShadow);
 
 // primary blue #4299E1
 
@@ -67,10 +70,6 @@ module.exports = {
       ...rotate,
       360: '360deg',
     },
-    boxShadow: {
-      ...boxShadow,
-      focus: '0 0 5px rgba(66, 153, 225, 0.7)',
-    },
     screens: {
       sm: '640px',
       // => @media (min-width: 640px) { ... }
@@ -93,7 +92,7 @@ module.exports = {
     translate: ['responsive', 'hover', 'focus', 'active'],
     scale: ['responsive', 'hover', 'focus', 'active'],
     transitionDuration: ['responsive', 'hover', 'focus'],
-    boxShadow: ['responsive', 'hover', 'focus', 'active'],
+    boxShadow: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     backgroundColor: ['responsive', 'hover', 'focus', 'even'],
     margin: ['responsive', 'first'],
   },

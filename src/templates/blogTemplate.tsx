@@ -118,6 +118,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
       />
       <article
         className={`${globalStyles.transitions.colors}
+        
       `}
         itemScope
         itemType="http://schema.org/BlogPosting"
@@ -183,7 +184,11 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
                 Table of Contents
               </h2>
-              <TableOfContents className="mb-8" headings={mdx.headings} />
+              <TableOfContents
+                className="mb-8"
+                watch={false}
+                headings={mdx.headings}
+              />
             </div>
 
             <MDXProvider components={shortcodes}>

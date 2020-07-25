@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactNode } from 'react';
 import { Link } from 'gatsby';
+import { globalStyles } from '../styles';
 
 export default function Button({
   tag,
@@ -45,7 +46,7 @@ export default function Button({
     ${textColor}
     hover:${textColor}
     rounded-full
-    focus:outline-none
+    ${globalStyles.outline}
     px-4 
     ${bgHover}
     ${textHover}

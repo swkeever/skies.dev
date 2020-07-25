@@ -12,6 +12,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
         to={blog.slug}
         className={`
         ${globalStyles.transitions.colors}
+        ${globalStyles.outline}
         flex flex-col
         h-full
         shadow-lg

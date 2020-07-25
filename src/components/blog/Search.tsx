@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 import { BlogContext } from '../../pages';
+import { globalStyles } from '../../styles';
 
 export type Tag = {
   name: string;
@@ -69,9 +70,8 @@ export default function Search() {
               relative
               py-3
               w-full
-              outline-none
               shadow-inner
-              focus:shadow-focus
+              ${globalStyles.outline}
               focus:bg-neutralBg
               transition
               duration-200
@@ -88,24 +88,25 @@ export default function Search() {
               {tags.map((t, idx) => (
                 <li
                   key={t.name}
-                  className={`${
-                    t.selected ? tagStyles.active : tagStyles.inactive
-                  }
-                  transform
-                  translate
-                  duration-200
-                  inline-block 
-                  rounded-full 
-                  px-4 
-                  mr-2 
-                  mb-2
-                  cursor-pointer
+                  className={`
+ inline-block               
                 `}
                 >
                   <button
                     type="button"
                     className={`
+                    ${t.selected ? tagStyles.active : tagStyles.inactive}
+                                   
+                    transform
+                  translate
+                  duration-200
+                  rounded-full 
+                  px-4 
+                  mr-2 
+                  mb-2
+                  cursor-pointer
                     focus:outline-none
+                    focus:shadow-outline
                     active:outline-none
                     font-medium                    
                   `}

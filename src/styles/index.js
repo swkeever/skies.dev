@@ -8,4 +8,5 @@ export const globalStyles = {
   navbar: {
     height: 'h-16',
   },
+  outline: 'focus:outline-none focus:shadow-outline-blue',
 };
