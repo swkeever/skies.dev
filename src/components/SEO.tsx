@@ -16,8 +16,10 @@ const query = graphql`
     }
     file(relativePath: { eq: "logo.jpg" }) {
       childImageSharp {
-        fixed(height: 1500, width: 500) {
-          ...GatsbyImageSharpFixed
+        fluid(maxWidth: 700) {
+          ...GatsbyImageSharpFluid
+          presentationWidth
+          presentationHeight
         }
       }
     }
@@ -78,10 +80,14 @@ export default function SEO({
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
-      src: image?.src || file.childImageSharp.fixed.src,
+      src: image ? image.src : file.childImageSharp.fluid.src,
       dims: {
-        width: imageDims?.width?.toString() || 1500,
-        height: imageDims?.height?.toString() || 500,
+        width: imageDims
+          ? imageDims.width.toString()
+          : file.childImageSharp.fluid.presentationWidth.toString(),
+        height: imageDims
+          ? imageDims.height.toString()
+          : file.childImageSharp.fluid.presentationHeight.toString(),
       },
       type: image
         ? image.base64.substring(
