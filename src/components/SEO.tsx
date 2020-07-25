@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
-import { FluidObject } from 'gatsby-image';
+import { FluidObject, FixedObject } from 'gatsby-image';
 import routes from '../utils/routes';
 import { BlogFrontmatter } from '../pages';
 
@@ -12,6 +12,13 @@ const query = graphql`
       siteMetadata {
         siteUrl
         handle
+      }
+    }
+    file(relativePath: { eq: "logo.jpg" }) {
+      childImageSharp {
+        fixed(height: 1500, width: 500) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
   }
@@ -36,23 +43,31 @@ type SEO = {
 export default function SEO({
   title,
   description,
-  image,
-  imageDims,
+  image = null,
+  imageDims = null,
   frontmatter = null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   keywords,
 }: {
   title: string;
   description: string;
-  image: FluidObject;
-  imageDims: {
+  image?: FluidObject;
+  imageDims?: {
     width: number;
     height: number;
   };
   frontmatter?: BlogFrontmatter;
   keywords: string[];
 }) {
-  const { site }: { site: SiteMetadata } = useStaticQuery(query);
+  type QueryData = {
+    file: {
+      childImageSharp: {
+        fixed: FluidObject;
+      };
+    };
+  };
+
+  const { site, file }: { site: QueryData } = useStaticQuery(query);
   const { pathname } = useLocation();
   const article = frontmatter !== null;
 
@@ -63,15 +78,17 @@ export default function SEO({
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
-      src: image.src,
+      src: image?.src || file.childImageSharp.fixed.src,
       dims: {
-        width: imageDims.width.toString(),
-        height: imageDims.height.toString(),
+        width: imageDims?.width?.toString() || 1500,
+        height: imageDims?.height?.toString() || 500,
       },
-      type: image.base64.substring(
-        image.base64.indexOf(':') + 1,
-        image.base64.indexOf(';'),
-      ),
+      type: image
+        ? image.base64.substring(
+          image.base64.indexOf(':') + 1,
+          image.base64.indexOf(';'),
+        )
+        : 'image/jpeg',
     },
     twitter: `@${site.siteMetadata.handle}`,
     isArticle: article,
@@ -137,9 +154,14 @@ export default function SEO({
   );
 }
 
-type SiteMetadata = {
+type QueryData = {
   siteMetadata: {
     siteUrl: string;
     handle: string;
+  };
+  file: {
+    childImageSharp: {
+      fixed: FixedObject;
+    };
   };
 };

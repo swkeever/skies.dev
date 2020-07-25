@@ -12,20 +12,6 @@ import { globalStyles } from '../styles';
 import Layout from '../components/Layout';
 
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "product.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 700) {
-            ...GatsbyImageSharpFluid
-            presentationWidth
-            presentationHeight
-          }
-        }
-      }
-    }
-  `);
-
   const svgStyles = `
     w-full
     h-auto
@@ -50,11 +36,6 @@ const IndexPage = () => {
           'Seattle',
           'full stack developer',
         ]}
-        image={data.file.childImageSharp.fluid}
-        imageDims={{
-          width: data.file.childImageSharp.fluid.presentationWidth,
-          height: data.file.childImageSharp.fluid.presentationHeight,
-        }}
       />
       <Section className=" pt-4 md:pt-12 ">
         <div className="md:w-7/12">

@@ -2,19 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import { FluidObject } from 'gatsby-image';
-import Layout from '../components/Layout';
 import Header from '../components/blog/Header';
-import Search, { Tag } from '../components/blog/Search';
+import { Tag } from '../components/blog/Search';
 import BlogList from '../components/blog/BlogList';
 import SEO from '../components/SEO';
-
-type Context = {
-  filter: string;
-  setFilter: Function;
-  tags: string[];
-  setTags: Function;
-  blogs: Blog[];
-};
 
 export const BlogContext = React.createContext({
   filter: '',
@@ -207,12 +198,7 @@ export default function BlogsPage() {
       <SEO
         title="Software Engineering Blog by Sean Keever"
         description={blogDescription}
-        keywords={tags.map((t) => t.name).concat(['blog', 'learn', 'how to'])}
-        image={data.file.childImageSharp.fluid}
-        imageDims={{
-          width: data.file.childImageSharp.fluid.presentationWidth,
-          height: data.file.childImageSharp.fluid.presentationHeight,
-        }}
+        keywords={['blog', 'skies', 'sean keever', 'software engineering blog']}
       />
       <BlogContext.Provider
         value={{

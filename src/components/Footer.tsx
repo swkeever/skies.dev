@@ -44,6 +44,7 @@ export default function Footer() {
         <ul className="flex justify-center md:order-2">
           {socialLinks.map((link) => (
             <li
+              key={`foot-${link.text}`}
               className={`
             ml-6 text-gray-400 hover:text-gray-500`}
             >
