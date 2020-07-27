@@ -27,7 +27,7 @@ Gatsby.js, styled with Tailwind CSS, versioned on GitHub, and hosted on Netlify.
 ## Gatsby
 
 [Gatsby.js](https://www.gatsbyjs.org/) is an open-source framework I'm using to
-drive this site. I chose Gatsby for serveral reasons.
+drive this site. I chose Gatsby for several reasons.
 
 - **Developer experience**: Gatsby lets me write my application in React and
   handles all the low-level optimizations to get the site ready for production.
@@ -46,15 +46,15 @@ opinion. Two of the many plugins I'm using are
 
 - [gatsby-plugin-mdx](https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/):
   This plugin lets me write blog posts (such as this one) in Markdown/JSX. MDX
-  is a convienent way of quickly writing content using markdown but still having
+  is a convenient way of quickly writing content using markdown but still having
   the flexibility to use React when needed. Gatsby is able to take these MDX
   files and generate web pages from them. Really cool.
 - [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image): Images are
   often a bottleneck in a website's performance. I use this plugin to handle
   optimizing images for performance so I don't have to think as much about it.
 
-There are other many other plugins that I use for other things here and there.
-Check out my
+There are many other plugins that I use for other things here and there. Check
+out my
 [gatsby-config](https://github.com/swkeever/skies.dev/blob/master/gatsby-config.js)
 for a look at all the plugins and configurations I'm using.
 
@@ -66,9 +66,10 @@ more comfortable with TypeScript, I used building this site as an opportunity to
 learn TypeScript better.
 
 To make things a little simpler on myself, I've set my compiler settings to be
-less strict giving me the option to opt of writing out all the types when I'm
-being lazy or am in a hurry. This is not too much of problem though because the
-tooling I've set up reminds me to fix any development shortcuts I may have made.
+less strict giving me the option to opt out of writing out all the types when
+I'm being lazy or am in a hurry. This is not too much of a problem though
+because the tooling I've set up reminds me to fix any development shortcuts I
+may have made.
 
 ## Tooling
 
@@ -116,7 +117,7 @@ this up.
 ## Tailwind CSS
 
 I use [Tailwind CSS](https://tailwindcss.com/) because I wanted my styles to
-ahere to a design system, but I didn't want to be locked into a component-based
+adhere to a design system, but I didn't want to be locked into a component-based
 CSS framework like Bootstrap, as those types of frameworks have given me trouble
 in the past when trying to handle nitty-gritty styling details.
 
@@ -148,7 +149,7 @@ Tailwind CSS.
 
 ## GitHub
 
-For version control I am using [GitHub](https://www.github.com/). Is there much
+For version control, I am using [GitHub](https://www.github.com/). Is there much
 more to say? Github is the most popular Git platform and has the most community.
 Overall Github is a solid platform to version control the site (and act as a
 CMS).
@@ -157,10 +158,10 @@ CMS).
 
 Another company that offers a great DX is [Netlify](https://www.netlify.com/),
 and that's why I am using them to host Skies. Netlify integrates well with
-itHub. With _very little_ setup, I set up CD to trigger a new build of the site
+itHub. With little setup, I set up CD to trigger a new build of the site
 whenever I push a new commit to the `master` branch. This makes it really easy
-to hot-fix bugs and push new features. Netlify also makes it easy to enable a
-SSL/TLS certicate so visitors on my site feel secure. Super cool stuff.
+to hot-fix bugs and push new features. Netlify also makes it easy to enable an
+SSL/TLS certificate so visitors on my site feel secure. Super cool stuff.
 
 ## Notable Libraries
 
@@ -183,5 +184,5 @@ if you wish to see what other libraries I'm using.
 I've thought about possibly adding a more complex backend to the site to add
 more sophisticated features. For now, I like the simplicity of keeping Skies as
 a [JAMstack](https://jamstack.org/) application, writing my content in Markdown
-(MDX) and having commits pushed to `master` automatically trigger a build on
+(MDX), and having commits pushed to `master` automatically trigger a build on
 Netlify.
