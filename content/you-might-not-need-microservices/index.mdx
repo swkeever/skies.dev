@@ -15,22 +15,22 @@ image: index.jpg
 
 ## Context
 
-[Microservices](https://microservices.io/) are a software architectural style
-where the application is decomposed into many smaller applications that each
-focus on a single business domain. These services usually have their own
-database, their own server running the service, their own metrics, etc. This
+[Microservices](https://microservices.io/) refer to a type of software
+architecture where the application is decomposed into many smaller applications
+that each focus on a single business domain. These services usually have their
+own database, their own server running the service, their own metrics, etc. This
 way, the services are decoupled from each other and engineering teams can be
 autonomous developing and specializing in one business domain.
 
-Microservices are a popular architecture for applications to scale for huge
-numbers of users. Companies like Amazon, Netflix, and
+Microservices are a popular architecture for applications that need to scale for
+huge numbers of users. Companies like Amazon, Netflix, and
 [many others](https://microservices.io/articles/whoisusingmicroservices.html)
 are using a microservice architecture in order to handle the scale that their
 business demands. When successful tech companies utilize microservices for their
 business, it's tempting to think your company should adopt a microservice
 architecture as well. You might be thinking, _"microservices are working well
 for major tech companies, so surely microservices are a good architecture for my
-startup."_
+company."_
 
 Maybe. Maybe not. It depends on the scale of your company, how many users you
 need to service, and how much engineering effort you can invest. In the rest of
@@ -48,35 +48,37 @@ and when you should adopt them.
 > _Donald Knuth_
 
 If you are an early-stage startup (e.g. have not received funding) and you are
-building an MVP, then you may want to develop your application as a monolith
-instead. By nature, microservices are distributed systems, and distributed
-systems can be extremely complex to reason about, configure, and manage. When
-adopting a microservice architecture, you will have to think about the
-following.
+still building an MVP, then you may want to develop your application as a
+monolith instead. By nature, microservices are distributed systems, and
+distributed systems can be extremely complex to reason about, configure, and
+manage. When adopting a microservice architecture, you will have to think about
+the following:
 
-- To interact with different features of your business, you'll need to set up a
-  [discovery mechanism](https://microservices.io/patterns/server-side-discovery.html)
-  so your services can interact using interprocess communication (IPC) protocols
-  such as REST or gRPC.
-- You need to figure out a story for managing transactions across multiple
-  services that each have their own database. You can use the
+- **Business logic**— To interact with different features, services must
+  interact using interprocess communication (IPC) protocols such as REST or
+  gRPC. You'll need to set up
+  [service discovery](https://microservices.io/patterns/server-side-discovery.html)
+  so your services can know how to communicate with each other over the network.
+- **Transactions**— You need to figure out a story for managing transactions
+  across multiple services that each have their own database. You can use the
   [Saga pattern](https://microservices.io/patterns/data/saga.html) but cannot
   guarantee ACID transactions for transactions that span across multiple
   services.
-- For each service, you'll need to configure and manage infrastructure such as a
-  local database, compute, metrics, etc. The devops overhead will increase as a
-  result.
+- **Infrastructure**— For each service, you'll need to configure and manage
+  infrastructure such as a local database, compute, metrics, etc.
 
 On the other hand, a monolithic application has its code in one place. When
 you're able to count the number of people developing the application on one
 hand, I think you'll find it much easier to reason about a monolithic
-architecture. In contrast with microservices, you would need to think about the
-following with a monolithic architecture.
+architecture. In contrast with microservices, when adopting a monolithic
+architecture, you'll need to think about the following:
 
-- Interacting with different features can mostly happen through method calls.
-- Handling transactions is simpler because you can use a single ACID-compliant
-  database (or whatever database suits your application requirements).
-- You only need to provision infrastructure for a single monolith application.
+- **Business logic**— Interacting with different features can mostly happen
+  locally within the scope of the application via method calls.
+- **Transactions**— You can provision a single ACID-compliant database to handle
+  transactions if that's what your application needs.
+- **Infrastructure**— You only need to provision infrastructure for a single
+  monolith application.
 
 I don't know about you, but I think the monolithic approach sounds easier. When
 you are an early-stage startup, you usually have a small team working on your
@@ -94,9 +96,10 @@ probably think about migrating your monolith into microservices.
 
 Let's say your company gets funding, your applications has many users, and you
 have grown your engineering team substantially. This is the time you may want to
-seriously consider converting your monolith into microservices. This doesn't
-mean you need to completely rewrite your application from scratch to adopt a
-microservice architecture.
+seriously consider converting your monolith into microservices.
+
+This does not mean you need to completely rewrite your application from scratch
+in order to adopt a microservice architecture.
 
 > The only thing a Big Bang rewrite guarantees is a Big Bang!
 >
@@ -104,7 +107,7 @@ microservice architecture.
 
 Write new features as services so that the size of the monolith application
 remains static. In doing so, you create a
-[Stranger application](https://docs.microsoft.com/en-us/azure/architecture/patterns/strangler)
+[Strangler application](https://docs.microsoft.com/en-us/azure/architecture/patterns/strangler)
 to help transition into the new architecture. Over time, engineering effort can
 break apart the monolith into microservices, little by little, until the
 monolith is no more. Then, your company can reap all the benefits of a
