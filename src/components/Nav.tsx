@@ -16,16 +16,15 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
     <li
       className={`    
         tracking-widest
-        w-1/3
+        h-full w-full
       `}
     >
       <Link
         to={route}
         className={`
           ${globalStyles.transitions.colors}
-          w-full
-          text-center
-          inline-block
+          block h-full
+          flex justify-center items-center
           
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
@@ -41,17 +40,6 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
   );
 }
 
-const Name = ({ name }: { name: string }) => (
-  <span
-    className={`
-        text-sm
-        
-      `}
-  >
-    {name}
-  </span>
-);
-
 export default function Nav() {
   const { pathname } = useLocation();
   const iconStyles = `
@@ -59,8 +47,18 @@ export default function Nav() {
     md:text-xl
     inline
     mr-2
-    ${globalStyles.transitions.colors}
   `;
+
+  const Name = ({ name }: { name: string }) => (
+    <span
+      className={`
+        text-sm
+        
+      `}
+    >
+      {name}
+    </span>
+  );
 
   const navItems = [
     <Item route={routes.home} key="nav-blog">
@@ -120,7 +118,7 @@ export default function Nav() {
         className={`
         ${globalStyles.transitions.colors}
           h-full
-          flex justify-around items-center
+          flex
           uppercase
           
         `}

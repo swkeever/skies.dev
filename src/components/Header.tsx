@@ -28,8 +28,10 @@ export default function Header() {
             to={routes.home}
             className={`
           hidden
-          px-2
           lg:block
+          
+          ${globalStyles.transitions.colors}
+          
         `}
           >
             <Logo className="w-32 h-auto" />

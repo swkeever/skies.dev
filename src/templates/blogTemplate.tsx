@@ -6,7 +6,9 @@ import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link } from '@reach/router';
-import { FaArrowLeft, FaArrowRight, FaGithub } from 'react-icons/fa';
+import {
+  FaArrowLeft, FaArrowRight, FaGithub, FaHome,
+} from 'react-icons/fa';
 import links from '../utils/links';
 
 import SEO from '../components/SEO';
@@ -16,6 +18,7 @@ import TableOfContents from '../components/TableOfContents';
 import ShareCallToAction from '../components/article/ShareCallToAction';
 import BlogMeta from '../components/BlogMeta';
 import shortcodes from '../components/article/DesignSystem';
+import routes from '../utils/routes';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -236,13 +239,13 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
             <ul className="flex justify-between md:justify-start md:space-x-4">
               <li>
                 <Link
-                  to={pageContext.prev.fields.slug}
+                  to={routes.home}
                   className={`
               ${styles.ctaLinks}
               `}
                 >
-                  <FaArrowLeft className={`${styles.ctaLinkIcons} mr-1`} />
-                  Previous
+                  <FaHome className={`${styles.ctaLinkIcons} mr-1`} />
+                  Home
                 </Link>
               </li>
               <li>

@@ -10,6 +10,7 @@ export default function ThemeToggle() {
     h-4 w-4
     ${lightTheme ? 'text-onPrimarySoft' : 'text-primary'}
     fill-current
+    
     `,
   };
   return (

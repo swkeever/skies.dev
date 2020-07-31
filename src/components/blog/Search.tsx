@@ -26,10 +26,11 @@ export default function Search() {
     text-onPrimaryBgSoft
     shadow-lg
     -translate-y-1
+    hover:bg-primaryBg
     `,
 
     active: `
-    bg-neutralBgSoft
+    bg-neutralBgSoft hover:bg-neutralBg
     text-onNeutralBgSoft
     border-onPrimaryBgSoft
     translate-y-0
