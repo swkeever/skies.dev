@@ -5,8 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState, ReactNode, useEffect } from 'react';
-import { useLocation } from '@reach/router';
+import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -19,7 +18,6 @@ const Layout = ({
   hidden?: boolean;
   className?: string;
 }) => {
-  const { pathname } = useLocation();
   const [lightTheme, setLightTheme] = useState(true);
 
   function saveLightTheme(theme: boolean) {

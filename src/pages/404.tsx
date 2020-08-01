@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Lost from '../../assets/lost.svg';
-import Layout from '../components/Layout';
 import Container from '../components/Container';
 import SEO from '../components/SEO';
 
@@ -21,7 +20,7 @@ const NotFoundPage = () => {
   `);
 
   return (
-    <Layout>
+    <>
       <SEO
         title="Page not found"
         image={data.file.childImageSharp.fluid}
@@ -49,7 +48,7 @@ const NotFoundPage = () => {
           <Lost className="w-full h-full" />
         </div>
       </Container>
-    </Layout>
+    </>
   );
 };
 

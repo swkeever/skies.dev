@@ -1,5 +1,4 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
 import Button from '../components/Button';
@@ -9,7 +8,6 @@ import Form from '../components/Form';
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
-import Layout from '../components/Layout';
 
 const IndexPage = () => {
   const svgStyles = `

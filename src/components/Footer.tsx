@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  FaGithub, FaLinkedinIn, FaTwitter, FaCloud,
+  FaGithub, FaLinkedinIn, FaTwitter, FaRss,
 } from 'react-icons/fa';
-import Container from './Container';
 import links from '../utils/links';
 import ExternalLink from './ExternalLink';
 import { globalStyles } from '../styles';
+import routes from '../utils/routes';
 
 export default function Footer() {
   const styles = {
@@ -15,6 +15,11 @@ export default function Footer() {
   };
 
   const socialLinks = [
+    {
+      icon: <FaRss className={styles.icon} />,
+      to: routes.rss,
+      text: 'RSS',
+    },
     {
       icon: <FaGithub className={styles.icon} />,
       to: links.github,

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React, { AnchorHTMLAttributes } from 'react';
+import React from 'react';
 import ExternalLink from '../ExternalLink';
 
 const styles = {

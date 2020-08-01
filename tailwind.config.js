@@ -1,10 +1,7 @@
 /* eslint-disable global-require */
-const { rotate, colors } = require('tailwindcss/defaultTheme');
-const { boxShadow } = require('@tailwindcss/ui');
+const { rotate } = require('tailwindcss/defaultTheme');
 
-console.log(boxShadow);
-
-// primary blue #4299E1
+// primary blue #3F83F8
 
 module.exports = {
   purge: [

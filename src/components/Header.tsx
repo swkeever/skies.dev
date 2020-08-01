@@ -28,7 +28,9 @@ export default function Header() {
             to={routes.home}
             className={`
           hidden
-          lg:block
+          lg:flex
+              
+          h-full
           ml-2
           ${globalStyles.transitions.colors}
           

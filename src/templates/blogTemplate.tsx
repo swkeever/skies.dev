@@ -1,14 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/heading-has-content */
-import React, { AnchorHTMLAttributes } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link } from '@reach/router';
-import {
-  FaArrowLeft, FaArrowRight, FaGithub, FaHome,
-} from 'react-icons/fa';
+import { FaArrowRight, FaGithub, FaHome } from 'react-icons/fa';
 import links from '../utils/links';
 
 import SEO from '../components/SEO';

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Container from '../Container';
 
 type SectionProps = {
@@ -17,7 +17,7 @@ export default function Section({ children, className = '' }: SectionProps) {
           lg:text-lg
           px-4
           md:px-6
-          items-center
+          md:items-center
           md:flex-row
           
           ${className}

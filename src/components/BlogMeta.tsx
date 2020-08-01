@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaRegClock, FaRegCalendarAlt } from 'react-icons/fa';
 
 export default function BlogMeta({
   date,
@@ -10,10 +9,6 @@ export default function BlogMeta({
   timeToRead: number;
   className?: string;
 }) {
-  const timeStyles = `
-  inline-block
-  `;
-
   return (
     <div className={`flex ${className}`}>
       <time>{date}</time>

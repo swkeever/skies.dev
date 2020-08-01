@@ -59,7 +59,6 @@
   --color-onNeutralBgLink: var(--color-primary-500);
   --color-onNeutralBgLinkHover: var(--color-primary-600);
 
-
   caret-color: var(--color-onNeutral);
 }
 
@@ -113,7 +112,8 @@
 html {
   @apply overflow-y-scroll min-h-screen;
   scroll-behavior: smooth;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 @screen sm {
@@ -125,7 +125,12 @@ html {
 @tailwind components;
 
 .diagonal-m {
-  clip-path: polygon(0% 0%, 100% theme('spacing.12'), 100% 100%, 0% calc(100% - theme('spacing.12')));
+  clip-path: polygon(
+    0% 0%,
+    100% theme('spacing.12'),
+    100% 100%,
+    0% calc(100% - theme('spacing.12'))
+  );
 }
 
 .diagonal-sm {
@@ -137,7 +142,12 @@ html {
 }
 
 .diagonal-t {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - theme('spacing.12')));
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% calc(100% - theme('spacing.12'))
+  );
 }
 
 /* 
@@ -147,7 +157,6 @@ changing the background of form elements
 https: //stackoverflow.com/a/37432260/13400099
 */
 @-webkit-keyframes autofill {
-
   0%,
   100% {
     @apply text-onPrimary bg-neutralBgSoft;
@@ -222,4 +231,3 @@ article h3 {
 }
 
 @tailwind utilities;
-

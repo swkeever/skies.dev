@@ -1,8 +1,7 @@
-import React, { ReactNode, useContext } from 'react';
-import { AnchorLink } from 'gatsby-plugin-anchor-links';
+import React, { useContext } from 'react';
 import BlogListItem from './BlogListItem';
 import Empty from '../../../assets/empty.svg';
-import { Blog, BlogContext } from '../../pages';
+import { BlogContext } from '../../pages';
 import { globalStyles } from '../../styles';
 
 function Header({ children }: { children: ReactNode }) {
@@ -42,6 +41,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
       px-4 py-2 
       leading-5 font-medium 
       rounded-full 
+      border border-neutralSoft
       ${globalStyles.outline}
       ${
         disabled
@@ -55,6 +55,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
             hover:text-onPrimaryBgSoft
             active:bg-neutralBg
             active:text-onNeutralBg
+            bg-neutralBg
 
             `
       }
@@ -67,10 +68,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
   );
 
   return (
-    <section className="max-w-screen-xl mx-auto">
-      <Header>
-        {`${allBlogs.length} result${allBlogs.length > 1 ? 's' : ''}.`}
-      </Header>
+    <div className="mt-8 max-w-screen-xl mx-auto">
       <ul
         id="blog-list"
         className={`grid
@@ -121,7 +119,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
           </PaginationButton>
         </div>
       </nav>
-    </section>
+    </div>
   );
 }
 
@@ -129,7 +127,7 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
   const children = blogs.length ? (
     <Blogs allBlogs={blogs} />
   ) : (
-    <>
+    <div className="">
       <Header>No results found.</Header>
       <Empty
         className={`
@@ -141,7 +139,7 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
           mb-12
         `}
       />
-    </>
+    </div>
   );
 
   return (

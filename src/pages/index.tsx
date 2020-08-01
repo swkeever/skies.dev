@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
-import { FluidObject } from 'gatsby-image';
 import Header from '../components/blog/Header';
-import { Tag } from '../components/blog/Search';
 import BlogList from '../components/blog/BlogList';
 import SEO from '../components/SEO';
 
@@ -148,7 +146,6 @@ export default function BlogsPage() {
       image: image.childImageSharp.fluid,
     };
   });
-  const NUM_BLOGS_PER_PAGE = 6;
 
   const [blogs, setBlogs] = useState(allBlogs);
 

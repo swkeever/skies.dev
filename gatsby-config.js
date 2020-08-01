@@ -2,11 +2,15 @@
 const cssNano = require('cssnano');
 const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
+const links = require('./src/utils/links');
+const routes = require('./src/utils/routes');
 
 module.exports = {
   siteMetadata: {
     siteUrl: config.siteUrl,
     handle: 'swkeever',
+    title: 'Skies',
+    description: 'A software engineering blog by Sean Keever',
   },
   plugins: [
     // {
@@ -145,6 +149,58 @@ module.exports = {
       options: {
         createLinkInHead: true,
         exclude: ['/resume', '/contact'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { allMdx } }) => allMdx.nodes.map((node) => ({
+              ...node.frontmatter,
+              description: node.excerpt,
+              date: node.frontmatter.date,
+              url: links.siteUrl + node.fields.slug,
+              guid: links.siteUrl + node.fields.slug,
+              custom_elements: [{ 'content:encoded': node.html }],
+            })),
+            query: `
+              {
+                allMdx(limit: 25, 
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  nodes {
+                    excerpt
+                    html
+                    fields { slug }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            output: routes.rss,
+            title: 'Skies RSS Feed',
+            // optional configuration to insert feed reference in pages:
+            // if `string` is used, it will be used to create RegExp and then test if pathname of
+            // current page satisfied this regular expression;
+            // if not provided or `undefined`, all pages will have feed reference inserted
+            match: '^/blog/',
+          },
+        ],
       },
     },
     'gatsby-plugin-netlify',

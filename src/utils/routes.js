@@ -5,4 +5,5 @@ module.exports = {
   about: '/about/',
   resume: '/resume/',
   sitemap: '/sitemap.xml',
+  rss: '/rss.xml',
 };
