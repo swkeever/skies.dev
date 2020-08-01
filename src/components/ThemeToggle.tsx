@@ -18,9 +18,9 @@ export default function ThemeToggle() {
     <button
       type="button"
       className={`
-      ${lightTheme ? 'bg-primarySoft' : 'bg-neutralBgSoft'}
-      fixed top-2 right-2 inline-flex items-center flex-shrink-0 h-8 w-16 border-0 
-      border-transparent rounded-full z-50 cursor-pointer
+      bg-neutralBgSoft
+      fixed top-2 right-2 inline-flex items-center flex-shrink-0 h-8 w-16 border
+      border-primaryBgSoft shadow-xl lg:shadow-none rounded-full z-50 cursor-pointer
        
       ${globalStyles.transitions.colors} 
       ${globalStyles.outline}
