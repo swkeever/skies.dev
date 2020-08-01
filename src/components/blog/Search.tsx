@@ -17,8 +17,10 @@ type Search = {
 
 export default function Search() {
   const {
-    filter, setFilter, tags, setTags,
-  }: Search = useContext(BlogContext);
+    filter, setFilter, tags, setTags, setPage,
+  }: Search = useContext(
+    BlogContext,
+  );
 
   const tagStyles = {
     inactive: `
@@ -60,6 +62,7 @@ export default function Search() {
               value={filter}
               onChange={(e) => {
                 setFilter(e.target.value);
+                setPage(0);
               }}
               className={`
               -mt-8
@@ -118,6 +121,7 @@ export default function Search() {
                         selected: !t.selected,
                       };
                       setTags(newTags);
+                      setPage(0);
                     }}
                   >
                     {t.name}

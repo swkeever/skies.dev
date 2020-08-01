@@ -45,6 +45,7 @@ module.exports = {
 
         onPrimaryBg: 'var(--color-onPrimaryBg)',
         onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
+        onPrimaryBgSofter: 'var(--color-onPrimaryBgSofter)',
 
         onNeutralBg: 'var(--color-onNeutralBg)',
         onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
@@ -93,8 +94,16 @@ module.exports = {
     scale: ['responsive', 'hover', 'focus', 'active'],
     transitionDuration: ['responsive', 'hover', 'focus'],
     boxShadow: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
-    backgroundColor: ['responsive', 'hover', 'focus', 'even'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'even', 'disabled'],
     margin: ['responsive', 'first'],
+    textColor: [
+      'responsive',
+      'hover',
+      'focus',
+      'active',
+      'group-hover',
+      'disabled',
+    ],
   },
   plugins: [require('@tailwindcss/ui')],
 };

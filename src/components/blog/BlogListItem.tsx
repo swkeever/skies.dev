@@ -14,11 +14,10 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
         ${globalStyles.transitions.colors}
         ${globalStyles.outline}
         flex flex-col
-        h-full
         shadow-lg
         bg-neutralBg
         rounded
-
+        h-96
         hover:bg-primaryBg
         group
 
@@ -26,7 +25,7 @@ export default function BlogListItem({ blog }: { blog: Blog }): ReactElement {
 
       `}
       >
-        <Img className="" fluid={blog.image} alt={blog.title} />
+        <Img fluid={blog.image} alt={blog.title} />
 
         <div className="flex flex-col px-3 py-2 space-y-1">
           <h2 className="text-2xl group-hover:text-onPrimaryBg font-bold leading-none text-onNeutralBg lg:text-3xl">

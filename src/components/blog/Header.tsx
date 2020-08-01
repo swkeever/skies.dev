@@ -1,7 +1,6 @@
 import React from 'react';
 import Search from './Search';
 import { globalStyles } from '../../styles';
-import Skies from '../../../assets/skies.svg';
 
 export default function Header() {
   return (
@@ -17,9 +16,7 @@ export default function Header() {
           
         `}
     >
-      <div
-        className={`px-4 pt-2 z-10 max-w-screen-sm mx-auto ${globalStyles.transitions.colors}`}
-      >
+      <div className="px-4 pt-2 z-10 max-w-screen-sm mx-auto">
         <h1
           className={`
               leading-none

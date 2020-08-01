@@ -124,6 +124,7 @@ export default function BlogsPage() {
   const [filter, setFilter] = useState('');
   const [tags, setTags] = useState<Tag[]>(getInitialTags(data));
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
+  const [page, setPage] = useState(0);
 
   const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
     const { id, timeToRead, body } = e.node;
@@ -147,6 +148,8 @@ export default function BlogsPage() {
       image: image.childImageSharp.fluid,
     };
   });
+  const NUM_BLOGS_PER_PAGE = 6;
+
   const [blogs, setBlogs] = useState(allBlogs);
 
   useEffect(() => {
@@ -206,6 +209,8 @@ export default function BlogsPage() {
           setFilter,
           tags,
           setTags,
+          page,
+          setPage,
           blogs,
         }}
       >

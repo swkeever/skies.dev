@@ -29,7 +29,7 @@ export default function Header() {
             className={`
           hidden
           lg:block
-          
+          ml-2
           ${globalStyles.transitions.colors}
           
         `}

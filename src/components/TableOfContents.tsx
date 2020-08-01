@@ -1,7 +1,6 @@
 import React from 'react';
 import Slugger from 'github-slugger';
-import { useLocation } from '@reach/router';
-import { AnchorLink } from 'gatsby-plugin-anchor-links';
+import { useLocation, Link } from '@reach/router';
 import { globalStyles } from '../styles';
 import { useActiveHash } from '../hooks/use-active-hash';
 
@@ -58,7 +57,7 @@ export default function TableOfContents({
           const slug = new Slugger().slug(h.value, false);
 
           const link = (
-            <AnchorLink
+            <Link
               className={`
             ${globalStyles.transitions.colors}
             ${styles.copy}
@@ -71,7 +70,7 @@ export default function TableOfContents({
               to={`${pathname}#${slug}`}
             >
               {h.value}
-            </AnchorLink>
+            </Link>
           );
 
           switch (h.depth) {
