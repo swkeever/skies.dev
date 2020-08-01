@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
   FaRegLightbulb,
   FaSmile,
@@ -25,7 +25,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           ${globalStyles.transitions.colors}
           block h-full
           flex justify-center items-center
-          
+          text-xs font-medium
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
           hover:border-0
@@ -118,9 +118,7 @@ export default function Nav() {
         className={`
         ${globalStyles.transitions.colors}
           h-full
-          flex
-          uppercase
-          
+          flex          
         `}
       >
         {navItems}

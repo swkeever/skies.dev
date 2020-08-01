@@ -50,7 +50,7 @@ To accomplish this, we will use the `<title>` tag and the `<meta>` tag.
 
 We update our head to the following:
 
-```html
+```xml
 <head>
   <!-- Basic tags -->
   <title>My Awesome Title</title>
@@ -83,7 +83,7 @@ used by social media sites to make a **card** from the link to your site.
 Following the advice of the documentation, we will add the **four required meta
 tags**. Our head now looks like
 
-```html
+```xml
 <head>
   <!-- Basic tags -->
   <title>My Awesome Title</title>
@@ -125,7 +125,7 @@ as before.
 
 Our document's head now becomes
 
-```html
+```xml
 <head>
   <!-- Basic tags -->
   <title>My Awesome Title</title>
@@ -161,25 +161,23 @@ then you may need to force Twitter's cache to invalidate. See this
 [StackOverflow post](https://webmasters.stackexchange.com/a/126166) for more
 information.
 
-<aside>
-<h2>Important</h2>
+### Important
 
-<p>
-  When specifying the URL for your image metadata, make sure to{' '}
-  <strong>use an absolute URL, not a relative URL</strong>. Twitter will not be
-  able to resolve a relative URL, and your image will not be displayed on the
-  card.
-</p>
+When specifying the URL for your image metadata, make sure to **use an absolute
+URL, not a relative URL**. Twitter will not be able to resolve a relative URL,
+and your image will not be displayed on the card.
 
+<Danger>
 <h3>Incorrect</h3>
 
-<p>&lt;meta name="twitter:image" content="/image.jpg"/&gt;</p>
+<p className="text-onDangerBgSoft">&lt;meta name="twitter:image" content="/image.jpg"/&gt;</p>
+</Danger>
 
+<Success>
 <h3>Correct</h3>
 
-<p>&lt;meta name="twitter:image" content="https://skies.dev/image.jpg"/&gt;</p>
-
-</aside>
+<p className="text-onSuccessBgSoft">&lt;meta name="twitter:image" content="https://example.com/image.jpg"/&gt;</p>
+</Success>
 
 ## Happy Sharing
 

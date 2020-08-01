@@ -28,11 +28,10 @@ export default function Search() {
     text-onPrimaryBgSoft
     shadow-lg
     -translate-y-1
-    hover:bg-primaryBg
     `,
 
     active: `
-    bg-neutralBgSoft hover:bg-neutralBg
+    bg-neutralBgSoft
     text-onNeutralBgSoft
     border-onPrimaryBgSoft
     translate-y-0
@@ -93,7 +92,7 @@ export default function Search() {
                 <li
                   key={t.name}
                   className={`
- inline-block               
+                     inline-block               
                 `}
                 >
                   <button

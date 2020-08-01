@@ -41,7 +41,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
       px-4 py-2 
       leading-5 font-medium 
       rounded-full 
-      border border-neutralSoft
+      border border-primaryBgSoft
       ${globalStyles.outline}
       ${
         disabled
@@ -68,13 +68,18 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
   );
 
   return (
-    <div className="mt-8 max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto">
+      <Header>
+        {`${allBlogs.length} result${
+          allBlogs.length > 1 ? 's' : ''
+        }.`}
+      </Header>
       <ul
         id="blog-list"
         className={`grid
           grid-cols-1 
           gap-8 
-          p-4
+          px-4
           md:grid-cols-2 
           lg:grid-cols-3 
       `}
@@ -86,21 +91,21 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
       <nav
         className={`
       ${globalStyles.transitions.colors}
-      mt-8 bg-neutralBgSoft
+      mt-12 bg-neutralBgSoft
         
        flex items-center justify-between 
-       sm:px-6
+       px-4
        `}
       >
         <div className="hidden sm:block">
           <p className="leading-5 text-onNeutralBgSoft">
-            Showing&nbsp;
-            <span className="font-medium">{firstBlogShown + 1}</span>
-            &nbsp;to&nbsp;
-            <span className="font-medium">{lastBlogShown}</span>
+            Showing page&nbsp;
+            <span className="font-medium">{page + 1}</span>
             &nbsp;of&nbsp;
-            <span className="font-medium">{allBlogs.length}</span>
-            &nbsp;results&nbsp;
+            <span className="font-medium">
+              {Math.ceil(allBlogs.length / blogsPerPage)}
+            </span>
+            &nbsp;pages.
           </p>
         </div>
         <div className="flex-1 flex justify-between sm:justify-end">

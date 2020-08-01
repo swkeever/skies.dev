@@ -21,7 +21,6 @@ export default function Header() {
           className={`
               leading-none
               text-base
-              lg:text-lg
               uppercase
               tracking-wider
               text-onPrimary

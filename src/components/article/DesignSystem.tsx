@@ -8,9 +8,8 @@ const styles = {
   text-base
   md:text-lg
   lg:text-xl
-  text-onNeutralBgSoft
   leading-8
-  font-serif
+  text-onNeutralBgSoft
   `,
 
   link: `
@@ -20,7 +19,7 @@ const styles = {
   `,
 
   mt: 'mt-5 first:mt-0',
-  mt2: 'mt-10 first:mt-2',
+  mt2: 'mt-10 first:mt-0',
 
   list: `
   flex flex-col
@@ -37,20 +36,29 @@ const styles = {
 
   header: `
   text-onNeutralBg
-  mb-0
+  mb-1
+  
   `,
 };
 
 const shortcodes = {
-  p: (props) => (
-    <p
-      {...props}
-      className={`
-        ${styles.copy} 
-        mb-5
+  p: (props) => {
+    const textStyles = props.className?.includes('text-')
+      ? ''
+      : 'text-onNeutralBgSoft';
+
+    return (
+      <p
+        {...props}
+        className={`
+        ${styles.copy}
+        ${textStyles} 
+        mb-5 
+        last:mb-0
     `}
-    />
-  ),
+      />
+    );
+  },
   a: ({ href, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     let className = '';
 
@@ -95,7 +103,7 @@ const shortcodes = {
   h2: (props) => (
     <h2
       {...props}
-      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt2}`}
+      className={`${styles.header} font-sans text-2xl md:text-3xl font-bold ${styles.mt2}`}
     />
   ),
   inlineCode: (props) => (
@@ -107,7 +115,7 @@ const shortcodes = {
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt2}`}
+      className={`${styles.header} font-sans text-xl md:text-2xl font-semibold ${styles.mt2}`}
     />
   ),
   table: (props) => (
@@ -146,6 +154,30 @@ const shortcodes = {
         text-onNeutralBgSoft
         mb-5
         `}
+    />
+  ),
+  Danger: (props) => (
+    <div
+      className={`
+      ${styles.copy}
+      ${styles.mt}
+      ${styles.card}
+      border-danger
+      bg-dangerBg
+      `}
+      {...props}
+    />
+  ),
+  Success: (props) => (
+    <div
+      className={`
+      ${styles.copy}
+      ${styles.mt}
+      ${styles.card}
+      border-success
+      bg-successBg
+      `}
+      {...props}
     />
   ),
 };

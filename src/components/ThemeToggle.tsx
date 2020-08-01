@@ -8,7 +8,7 @@ export default function ThemeToggle() {
   const styles = {
     icon: `
     h-4 w-4
-    ${lightTheme ? 'text-onPrimarySoft' : 'text-primary'}
+    text-onPrimarySoft
     fill-current
     
     `,

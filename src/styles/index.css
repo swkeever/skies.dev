@@ -31,16 +31,30 @@
   --color-primary: var(--color-primary-500);
   --color-primarySoft: var(--color-primary-400);
   --color-primaryBold: var(--color-primary-600);
-  --color-neutral: var(--color-neutral-500);
-  --color-neutralSoft: var(--color-neutral-400);
-  --color-neutralBold: var(--color-light);
+  --color-neutral: var(--color-neutral-600);
+  --color-neutralSoft: var(--color-neutral-500);
+  --color-neutralBold: var(--color-neutral-700);
+
+
+  --color-success: theme('colors.green.400');
+  --color-danger: theme('colors.red.400');
+
+  --color-successBg: theme('colors.green.50');
+  --color-successBgSoft: theme('colors.green.200');
+  --color-onSuccessBg: theme('colors.green.800');
+  --color-onSuccessBgSoft: theme('colors.green.600');
+
+  --color-dangerBg: theme('colors.red.50');
+  --color-dangerBgSoft: theme('colors.red.200');
+  --color-onDangerBg: theme('colors.red.800');
+  --color-onDangerBgSoft: theme('colors.red.600');
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-100);
   --color-neutralBgSoft: var(--color-neutral-200);
   --color-primaryBg: var(--color-primary-100);
   --color-primaryBgSoft: var(--color-primary-200);
-  --color-footerBg: var(--color-neutral-200);
+  --color-footerBg: var(--color-neutral-900);
 
   /* text */
   --color-onPrimary: var(--color-primary-100);
@@ -65,30 +79,44 @@
 .theme-dark {
   /* base */
   --color-primary: var(--color-primary-900);
-  --color-primarySoft: var(--color-neutral-400);
-  --color-primaryBold: var(--color-neutral-300);
-  --color-neutral: var(--color-neutral-500);
-  --color-neutralSoft: var(--color-neutral-600);
-  --color-neutralBold: var(--color-dark);
+  --color-primarySoft: var(--color-primary-800);
+  --color-primaryBold: var(--color-primary-700);
+  --color-neutral: var(--color-neutral-300);
+  --color-neutralSoft: var(--color-neutral-400);
+  --color-neutralBold: var(--color-neutral-200);
+
+    --color-success: theme('colors.green.800');
+    --color-danger: theme('colors.red.800');
+
+  --color-successBg: theme('colors.green.900');
+  --color-successBgSoft: theme('colors.green.800');
+  --color-onSuccessBg: theme('colors.green.200');
+  --color-onSuccessBgSoft: theme('colors.green.400');
+
+  --color-dangerBg: theme('colors.red.900');
+  --color-dangerBgSoft: theme('colors.red.800');
+  --color-onDangerBg: theme('colors.red.200');
+  --color-onDangerBgSoft: theme('colors.red.400');
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-900);
-  --color-primaryBg: var(--color-neutral-800);
-  --color-footerBg: var(--color-neutral-800);
-  --color-primaryBgSoft: var(--color-primary-800);
   --color-neutralBgSoft: var(--color-neutral-800);
-  --color-onPrimarySoft: var(--color-primary-100);
+
+  --color-primaryBg: var(--color-primary-900);
+  --color-primaryBgSoft: var(--color-primary-800);
+  
+  --color-footerBg: var(--color-neutral-900);
 
   /* text */
   --color-onPrimary: var(--color-primary-100);
-  --color-onPrimarySoft: var(--color-primary-300);
+  --color-onPrimarySoft: var(--color-primary-200);
   --color-onNeutral: var(--color-neutral-100);
-  --color-onNeutralSoft: var(--color-neutral-700);
-  --color-onPrimaryBg: var(--color-primary-100);
-  --color-onPrimaryBgSoft: var(--color-primary-200);
+  --color-onNeutralSoft: var(--color-neutral-200);
+  --color-onPrimaryBg: var(--color-onPrimary);
+  --color-onPrimaryBgSoft: var(--color-onPrimarySoft);
   --color-onPrimaryBgSofter: var(--color-primary-300);
-  --color-onNeutralBg: var(--color-neutral-200);
-  --color-onNeutralBgSoft: var(--color-neutral-300);
+  --color-onNeutralBg: var(--color-neutral-100);
+  --color-onNeutralBgSoft: var(--color-neutral-200);
 
   /* links */
   --color-onPrimaryBgLink: var(--color-primary-300);
@@ -111,9 +139,13 @@
 
 html {
   @apply overflow-y-scroll min-h-screen;
+
+  /* This is to control behavior of smooth scroll anchor links */
   scroll-behavior: smooth;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left);
+  scroll-padding-top: theme('spacing.12');
+
+  /* This is to support mobile browsers */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 @screen sm {
@@ -125,12 +157,10 @@ html {
 @tailwind components;
 
 .diagonal-m {
-  clip-path: polygon(
-    0% 0%,
-    100% theme('spacing.12'),
-    100% 100%,
-    0% calc(100% - theme('spacing.12'))
-  );
+  clip-path: polygon(0% 0%,
+      100% theme('spacing.12'),
+      100% 100%,
+      0% calc(100% - theme('spacing.12')));
 }
 
 .diagonal-sm {
@@ -142,12 +172,10 @@ html {
 }
 
 .diagonal-t {
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 100%,
-    0% calc(100% - theme('spacing.12'))
-  );
+  clip-path: polygon(0% 0%,
+      100% 0%,
+      100% 100%,
+      0% calc(100% - theme('spacing.12')));
 }
 
 /* 
@@ -157,6 +185,7 @@ changing the background of form elements
 https: //stackoverflow.com/a/37432260/13400099
 */
 @-webkit-keyframes autofill {
+
   0%,
   100% {
     @apply text-onPrimary bg-neutralBgSoft;

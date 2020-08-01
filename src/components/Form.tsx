@@ -11,7 +11,6 @@ function LabelSpan({ label }: { label: string }) {
         tracking-widest
         uppercase
         text-xs
-        lg:text-sm
       `}
     >
       {label}

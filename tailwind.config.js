@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-const { rotate } = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 // primary blue #3F83F8
 
@@ -14,6 +14,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         // base
         primary: 'var(--color-primary)',
@@ -23,6 +26,18 @@ module.exports = {
         neutral: 'var(--color-neutral)',
         neutralBold: 'var(--color-neutralBold)',
         neutralSoft: 'var(--color-neutralSoft)',
+
+        success: 'var(--color-success)',
+        successBg: 'var(--color-successBg)',
+        successBgSoft: 'var(--color-successBgSoft)',
+        onSuccessBg: 'var(--color-onSuccessBg)',
+        onSuccessBgSoft: 'var(--color-onSuccessBgSoft)',
+
+        danger: 'var(--color-danger)',
+        dangerBg: 'var(--color-dangerBg)',
+        dangerBgSoft: 'var(--color-dangerBgSoft)',
+        onDangerBg: 'var(--color-onDangerBg)',
+        onDangerBgSoft: 'var(--color-onDangerBgSoft)',
 
         // backgrounds
         primaryBg: 'var(--color-primaryBg)',
@@ -65,7 +80,7 @@ module.exports = {
       },
     },
     rotate: {
-      ...rotate,
+      ...defaultTheme.rotate,
       360: '360deg',
     },
     screens: {
@@ -92,7 +107,7 @@ module.exports = {
     transitionDuration: ['responsive', 'hover', 'focus'],
     boxShadow: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     backgroundColor: ['responsive', 'hover', 'focus', 'even', 'disabled'],
-    margin: ['responsive', 'first'],
+    margin: ['responsive', 'last', 'first'],
     textColor: [
       'responsive',
       'hover',
