@@ -126,7 +126,6 @@ module.exports = {
     'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
-    'gatsby-plugin-webpack-bundle-analyser-v2',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -216,5 +215,6 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-webpack-bundle-analyser-v2',
   ],
 };
