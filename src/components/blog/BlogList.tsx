@@ -69,6 +69,18 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
     </button>
   );
 
+  const Code = (props) => (
+    <code
+      {...props}
+      className={`
+      ${globalStyles.transitions.colors}
+       text-4xl
+
+       ${props.className || ''}
+      `}
+    />
+  );
+
   return (
     <div className="sm:px-6 px-4 max-w-screen-xl mx-auto">
       <Header>
@@ -98,14 +110,11 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
        `}
       >
         <div className="hidden sm:block">
-          <p className="leading-5 text-onNeutralBgSoft">
-            Showing page&nbsp;
-            <span className="font-medium">{page + 1}</span>
+          <p className="leading-5 uppercase tracking-widest text-neutralBold">
+            Page&nbsp;
+            <Code className="text-onPrimaryBgSofter">{page + 1}</Code>
             &nbsp;of&nbsp;
-            <span className="font-medium">
-              {Math.ceil(allBlogs.length / blogsPerPage)}
-            </span>
-            &nbsp;pages.
+            <Code>{Math.ceil(allBlogs.length / blogsPerPage)}</Code>
           </p>
         </div>
         <div className="flex-1 flex justify-between sm:justify-end">
