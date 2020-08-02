@@ -70,7 +70,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
   );
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="sm:px-6 px-4 max-w-screen-xl mx-auto">
       <Header>
         {`${allBlogs.length} result${allBlogs.length > 1 ? 's' : ''}.`}
       </Header>
