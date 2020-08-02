@@ -103,6 +103,7 @@ module.exports = {
             },
           },
           'gatsby-remark-external-links',
+          'gatsby-remark-a11y-emoji',
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
@@ -120,7 +121,6 @@ module.exports = {
             },
           },
           'gatsby-remark-responsive-iframe',
-          'gatsby-remark-a11y-emoji',
         ],
       },
     },

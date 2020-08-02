@@ -41,8 +41,9 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
       px-4 py-2 
       leading-5 font-medium 
       rounded-full 
-      border border-primaryBgSoft
       ${globalStyles.outline}
+                        shadow-lg
+
       ${
         disabled
           ? `
@@ -57,6 +58,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
             active:text-onNeutralBg
             bg-neutralBg
 
+
             `
       }
       ${globalStyles.transitions.colors}
@@ -70,9 +72,7 @@ function Blogs({ allBlogs }: { allBlogs: Blog[] }) {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Header>
-        {`${allBlogs.length} result${
-          allBlogs.length > 1 ? 's' : ''
-        }.`}
+        {`${allBlogs.length} result${allBlogs.length > 1 ? 's' : ''}.`}
       </Header>
       <ul
         id="blog-list"
