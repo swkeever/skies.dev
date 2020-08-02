@@ -63,11 +63,14 @@ export default function Search() {
                 setFilter(e.target.value);
                 setPage(0);
               }}
+              placeholder="What can I help you find? 🧐"
               className={`
               -mt-8
               bg-neutralBgSoft
               rounded-full
               text-onNeutral
+              placeholder-neutralSoft
+              lg:text-xl
               pl-10 
               pr-2
               relative
