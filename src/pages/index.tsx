@@ -7,6 +7,7 @@ import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import { globalStyles } from '../styles';
 import Empty from '../../assets/empty.svg';
+import { theme } from '../../tailwind.config';
 
 export type BlogFrontmatter = {
   title: string;
@@ -176,16 +177,19 @@ export default function BlogsPage() {
         keywords={['blog', 'skies', 'sean keever', 'software engineering blog']}
       />
       <section
+        style={{
+          backgroundImage: `linear-gradient(to bottom, ${theme.extend.colors.primary}, ${theme.extend.colors.primarySoft})`,
+        }}
         className={`
-          bg-primary
           z-0
+          lg:mt-4
           py-16
           md:py-20
           xl:py-24
           ${globalStyles.transitions}
         `}
       >
-        <div className="px-4 pt-2 z-10 max-w-screen-sm mx-auto">
+        <div className="px-4 pt-2 z-10 lg:-mt-4 max-w-screen-sm mx-auto">
           <h1
             className={`
               leading-none
@@ -232,7 +236,7 @@ export default function BlogsPage() {
                         relative
                         py-3
                         w-full
-                        shadow-inner
+                        shadow-lg
                         ${globalStyles.outline}
                         focus:bg-neutralBg
                         ${globalStyles.transitions}

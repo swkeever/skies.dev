@@ -27,6 +27,7 @@ export default function ThemeToggle() {
       `}
       onClick={() => setLightTheme(!lightTheme)}
     >
+      <span className="sr-only">Change theme</span>
       <span
         aria-hidden="true"
         className={`

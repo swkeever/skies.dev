@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
 import Button from '../components/Button';
-import Section from '../components/home/Section';
 import routes from '../utils/routes';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
+import Container from '../components/Container';
+
+type SectionProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+function Section({ children, className = '' }: SectionProps) {
+  return (
+    <Container>
+      <section
+        className={`
+          flex
+          flex-col
+          text-base
+          lg:text-lg
+          px-4
+          md:px-6
+          md:items-center
+          md:flex-row
+          
+          ${className}
+        `}
+      >
+        {children}
+      </section>
+    </Container>
+  );
+}
 
 const IndexPage = () => {
   const svgStyles = `
