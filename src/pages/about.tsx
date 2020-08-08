@@ -63,7 +63,7 @@ const IndexPage = () => {
 
       <div
         className={`relative bg-primary diagonal-m pt-8 pb-16 md:pt-20 md:pb-20
-      ${globalStyles.transitions.colors}
+      ${globalStyles.transitions}
       `}
       >
         <Section className="md:flex-row-reverse">
@@ -90,7 +90,7 @@ const IndexPage = () => {
 
       <div
         id="contact"
-        className={`${globalStyles.transitions.colors} bg-neutralBgSoft  pt-12 pb-8 -mt-12 md:pt-0 md:pb-12`}
+        className={`${globalStyles.transitions} bg-neutralBgSoft  pt-12 pb-8 -mt-12 md:pt-0 md:pb-12`}
       >
         <Section className="md:justify-around">
           <div className="mb-4">

@@ -17,6 +17,7 @@ module.exports = {
     //   resolve: 'gatsby-plugin-google-analytics',
     //   options: {
     //     trackingId: 'UA-168956392-1',
+    //     respectDNT: true,
     //   },
     // },
     {
@@ -206,15 +207,13 @@ module.exports = {
     },
     'gatsby-plugin-netlify',
     'gatsby-plugin-netlify-cache',
+    'gatsby-plugin-remove-trailing-slashes',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://www.skies.dev',
         sitemap: 'https://www.skies.dev/sitemap.xml',
-        policy: [
-          { userAgent: '*', disallow: ['/resume/', '/contact/'] },
-          { userAgent: '*', allow: '/' },
-        ],
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     'gatsby-plugin-webpack-bundle-analyser-v2',

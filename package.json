@@ -68,6 +68,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "gatsby-plugin-remove-trailing-slashes": "^2.3.11",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.10",
     "husky": ">=4",
     "identity-obj-proxy": "^3.0.0",

@@ -40,7 +40,7 @@ export default function Footer() {
   return (
     <footer
       className={`
-    ${globalStyles.transitions.colors}
+    ${globalStyles.transitions}
     bg-footerBg
     `}
     >

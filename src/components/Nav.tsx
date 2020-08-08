@@ -22,9 +22,9 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
       <Link
         to={route}
         className={`
-          ${globalStyles.transitions.colors}
+          ${globalStyles.transitions}
           block h-full
-          flex justify-center items-center
+          flex flex-col lg:flex-row justify-center items-center space-y-1 lg:space-x-2
           text-xs font-medium
           text-onPrimaryBgLink
           hover:text-onPrimaryBgLinkHover
@@ -45,14 +45,13 @@ export default function Nav() {
   const iconStyles = `
     text-2xl
     md:text-xl
-    inline
-    mr-2
+    block
   `;
 
   const Name = ({ name }: { name: string }) => (
     <span
       className={`
-        text-sm
+        text-xs lg:text-sm
         
       `}
     >
@@ -111,12 +110,13 @@ export default function Nav() {
       className={`
       w-full h-full lg:max-w-sm
       flex flex-col
+      
 
       `}
     >
       <ul
         className={`
-        ${globalStyles.transitions.colors}
+        ${globalStyles.transitions}
           h-full
           flex          
         `}
@@ -131,7 +131,7 @@ export default function Nav() {
       <hr
         style={{ marginLeft: underlineOffset }}
         className={`
-        transition-all duration-500 ease-in-out 
+        ${globalStyles.transitions} 
         border-0
         mt-auto h-1 w-1/2
         ${underlineOffset ? 'bg-onPrimary' : 'bg-primary'}

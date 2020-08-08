@@ -1,43 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
-import Header from '../components/blog/Header';
-import BlogList from '../components/blog/BlogList';
+import { FaSistrix } from 'react-icons/fa';
+import { Link } from '@reach/router';
+import Img from 'gatsby-image';
 import SEO from '../components/SEO';
-
-export const BlogContext = React.createContext({
-  filter: '',
-  setFilter: null,
-  tags: [],
-  setTags: null,
-  blogs: [],
-});
-
-// parse the tags from the markdown files
-// and only show tags that exist in the markdown files
-function getInitialTags(data): Tag[] {
-  const validTags = [];
-  data.allMdx.edges.forEach((e) => {
-    e.node.frontmatter.tags.forEach((t) => {
-      if (!validTags.includes(t)) {
-        validTags.push(t);
-      }
-    });
-  });
-  validTags.sort();
-  return validTags.map((t) => ({ name: t, selected: false }));
-}
+import { globalStyles } from '../styles';
+import Empty from '../../assets/empty.svg';
 
 export type BlogFrontmatter = {
   title: string;
   date: string;
-  tags: string[];
+  category: number;
   description: string;
   image: {
     childImageSharp: {
       fluid: FluidObject;
-      presentationWidth: number;
-      presentationHeight: number;
     };
   };
 };
@@ -56,13 +34,6 @@ export type BlogMarkdownRemark = {
       }[];
     };
   };
-  file: {
-    childImageSharp: {
-      fluid: FluidObject;
-      presentationWidth: number;
-      presentationHeight: number;
-    };
-  };
 };
 
 export type Blog = {
@@ -72,12 +43,45 @@ export type Blog = {
   slug: string;
   description: string;
   date: string;
-  tags: string[];
+  category: {
+    name: string;
+    className: string;
+  };
   body: string;
   image: FluidObject;
 };
 
-export const blogDescription = 'Explore articles on software engineering, computer science, web development, and more.';
+function NumResults({ children }: { children: ReactNode }) {
+  return (
+    <p className="my-8 text-xl font-light text-center text-onNeutralBgSoft">
+      {children}
+    </p>
+  );
+}
+
+type Category = {
+  name: string;
+  className: string;
+};
+
+const categories: Category[] = [
+  {
+    name: 'Opinion',
+    className: 'bg-cat0 text-onCat0',
+  },
+  {
+    name: 'Lesson',
+    className: 'bg-cat1 text-onCat1',
+  },
+  {
+    name: 'Lifestyle',
+    className: 'bg-cat2 text-onCat2',
+  },
+  {
+    name: 'Project',
+    className: 'bg-cat3 text-onCat3',
+  },
+];
 
 export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`
@@ -88,7 +92,7 @@ export default function BlogsPage() {
             frontmatter {
               title
               date
-              tags
+              category
               description
               image {
                 childImageSharp {
@@ -107,22 +111,11 @@ export default function BlogsPage() {
           }
         }
       }
-      file(relativePath: { eq: "bulb.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 700) {
-            ...GatsbyImageSharpFluid
-            presentationWidth
-            presentationHeight
-          }
-        }
-      }
     }
   `);
 
   const [filter, setFilter] = useState('');
-  const [tags, setTags] = useState<Tag[]>(getInitialTags(data));
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
-  const [page, setPage] = useState(0);
 
   const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
     const { id, timeToRead, body } = e.node;
@@ -141,7 +134,7 @@ export default function BlogsPage() {
       slug: e.node.fields.slug,
       description,
       date: dateFormat,
-      tags: e.node.frontmatter.tags,
+      category: categories[e.node.frontmatter.category],
       body,
       image: image.childImageSharp.fluid,
     };
@@ -153,22 +146,14 @@ export default function BlogsPage() {
     const s = new JsSearch.Search('id');
     s.addIndex('title');
     s.addIndex('description');
-    s.addIndex('date');
-    s.addIndex('tags');
     s.addIndex('body');
     s.addDocuments(blogs);
     setSearch(s);
   }, []);
 
   useEffect(() => {
-    const query = tags
-      .filter((t) => t.selected)
-      .map((t) => t.name)
-      .concat(filter)
-      .join(' ');
-
-    if (search && query) {
-      let results: any = search.search(query);
+    if (search && filter) {
+      const results: any = search.search(filter);
 
       // sort the result by latest published
       results.sort((a: Blog, b: Blog): number => {
@@ -177,43 +162,175 @@ export default function BlogsPage() {
         return bDate.valueOf() - aDate.valueOf();
       });
 
-      // get the tag names that are selected
-      const tagsSelected = tags.filter((t) => t.selected).map((t) => t.name);
-
-      if (tagsSelected.length) {
-        results = results.filter((e) => e.tags.some((v) => tagsSelected.includes(v)));
-      }
-
-      // set the blogs that
-      // - are included in the filter
-      // - and included in the selected tags
       setBlogs(results);
     } else {
       setBlogs(allBlogs);
     }
-  }, [filter, tags]);
+  }, [filter]);
 
   return (
     <>
       <SEO
-        title="Software Engineering Blog by Sean Keever"
-        description={blogDescription}
+        title="Blog by Sean Keever"
+        description="Life as a software engineer."
         keywords={['blog', 'skies', 'sean keever', 'software engineering blog']}
       />
-      <BlogContext.Provider
-        value={{
-          filter,
-          setFilter,
-          tags,
-          setTags,
-          page,
-          setPage,
-          blogs,
-        }}
+      <section
+        className={`
+          bg-primary
+          z-0
+          py-16
+          md:py-20
+          xl:py-24
+          ${globalStyles.transitions}
+        `}
       >
-        <Header />
-        <BlogList blogs={blogs} />
-      </BlogContext.Provider>
+        <div className="px-4 pt-2 z-10 max-w-screen-sm mx-auto">
+          <h1
+            className={`
+              leading-none
+              text-base
+              uppercase
+              tracking-wider
+              text-onPrimary
+              font-semibold
+            `}
+          >
+            Software Engineering Blog
+          </h1>
+          <div className="mt-6">
+            <div className="">
+              <label htmlFor="filter-input">
+                <span className="sr-only">Search</span>
+                <div>
+                  <FaSistrix
+                    className={`
+                      inline
+                      text-2xl 
+                      absolute
+                      text-neutral
+                      ml-2
+                      z-30
+                    `}
+                  />
+                  <input
+                    autoComplete="off"
+                    id="filter-input"
+                    value={filter}
+                    onChange={(e) => {
+                      setFilter(e.target.value);
+                    }}
+                    className={`
+                        -mt-8
+                        bg-neutralBgSoft
+                        rounded-full
+                        text-onNeutral
+                        placeholder-neutralSoft
+                        lg:text-xl
+                        pl-10 
+                        pr-2
+                        relative
+                        py-3
+                        w-full
+                        shadow-inner
+                        ${globalStyles.outline}
+                        focus:bg-neutralBg
+                        ${globalStyles.transitions}
+                      `}
+                    type="search"
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        className={`
+          bg-neutralBgSoft self-stretch flex-grow pt-16 -mt-16 pb-12
+          ${globalStyles.transitions}
+          `}
+      >
+        {blogs.length ? (
+          <div className="sm:px-6 px-4 max-w-screen-xl mx-auto">
+            <NumResults>
+              {`${blogs.length} result${blogs.length > 1 ? 's' : ''}.`}
+            </NumResults>
+            <ul
+              className={`grid
+                  grid-cols-1 
+                  gap-6
+                  md:grid-cols-2 
+                  lg:grid-cols-3 
+                `}
+            >
+              {blogs.map((blog) => (
+                <li className="">
+                  <Link
+                    to={blog.slug}
+                    className={`
+                        flex flex-col 
+                        rounded-lg shadow-lg 
+                        overflow-hidden 
+                        h-full
+                        ${globalStyles.outline}
+                      `}
+                  >
+                    <div className="flex-shrink-0">
+                      <Img
+                        className="h-48 w-full object-cover"
+                        fluid={blog.image}
+                        alt={blog.title}
+                      />
+                    </div>
+                    <div className="flex-1 bg-neutralBg p-3 flex flex-col justify-between">
+                      <div className="flex-1">
+                        <span
+                          className={`${blog.category.className} ${globalStyles.transitions} font-medium px-2 py-px rounded-full`}
+                        >
+                          {blog.category.name}
+                        </span>
+                        <h2 className="mt-2 text-2xl leading-7 font-semibold text-onNeutralBg">
+                          {blog.title}
+                        </h2>
+                        <p className="mt-3 text-base leading-6 text-neutral">
+                          {blog.description}
+                        </p>
+                      </div>
+                      <div className="mt-6 flex items-center">
+                        <div className="">
+                          <div className="flex text-sm leading-5 text-neutral">
+                            <time dateTime={blog.date}>{blog.date}</time>
+                            <span className="mx-1">&middot;</span>
+                            <span>
+                              {blog.timeToRead}
+                              &nbsp;min read
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="">
+            <NumResults>No results found.</NumResults>
+            <Empty
+              className={`
+                  max-w-2xl
+                  w-full
+                  px-4
+                  mx-auto 
+                  h-auto 
+                  mb-12
+                `}
+            />
+          </div>
+        )}
+      </section>
     </>
   );
 }

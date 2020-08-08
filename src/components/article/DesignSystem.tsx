@@ -96,7 +96,7 @@ const shortcodes = {
     <li
       {...props}
       className={`
-     ${styles.mt} first:mt-2
+     ${styles.mt}
     `}
     />
   ),

@@ -5,16 +5,20 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Link } from '@reach/router';
-import { FaArrowRight, FaGithub, FaHome } from 'react-icons/fa';
+import { Link, useLocation } from '@reach/router';
+import {
+  FaArrowRight, FaGithub, FaHome, FaArrowLeft,
+} from 'react-icons/fa';
+import {
+  TiSocialLinkedinCircular,
+  TiSocialFacebookCircular,
+  TiSocialTwitterCircular,
+} from 'react-icons/ti';
 import links from '../utils/links';
-
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
 import TableOfContents from '../components/TableOfContents';
-import ShareCallToAction from '../components/article/ShareCallToAction';
-import BlogMeta from '../components/BlogMeta';
 import shortcodes from '../components/article/DesignSystem';
 import routes from '../utils/routes';
 
@@ -31,7 +35,6 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
-        tags
         keywords
         image {
           childImageSharp {
@@ -85,17 +88,43 @@ type PropTypes = {
   };
 };
 
+type SocialLink = {
+  id: string;
+  icon: ReactNode;
+  link: (string) => string;
+};
+
+const socialLinks: SocialLink[] = [
+  {
+    id: 'linkedIn',
+    icon: <TiSocialLinkedinCircular />,
+    link: links.shareTo.linkedIn,
+  },
+  {
+    id: 'facebook',
+    icon: <TiSocialFacebookCircular />,
+    link: links.shareTo.facebook,
+  },
+  {
+    id: 'twitter',
+    icon: <TiSocialTwitterCircular />,
+    link: links.shareTo.twitter,
+  },
+];
+
 export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
+  const { pathname } = useLocation();
   const { frontmatter, body, fileAbsolutePath } = mdx;
   const editUrl = links.editOnGithub(
     `${fileAbsolutePath.split('/content/')[1]}`,
   );
   const styles = {
     ctaLinks: `
+    ${globalStyles.transitions}
     text-lg 
-    border-b border-onNeutralBgSoft 
-    hover:border-onNeutralBgLinkHover 
-    text-onNeutralBgSoft hover:text-onNeutralBgLinkHover 
+    hover:border-b
+    hover:border-onNeutralBgSoft 
+    text-onNeutralBgSoft
     pb-1
     `,
 
@@ -110,7 +139,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         frontmatter={frontmatter}
         title={frontmatter.title}
         description={frontmatter.description}
-        keywords={frontmatter.keywords.concat(frontmatter.tags)}
+        keywords={frontmatter.keywords}
         image={frontmatter.image.childImageSharp.fluid}
         imageDims={{
           width: frontmatter.image.childImageSharp.fluid.presentationWidth,
@@ -118,40 +147,54 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         }}
       />
       <article
-        className={`${globalStyles.transitions.colors}
-        
+        className={`${globalStyles.transitions}
       `}
         itemScope
         itemType="http://schema.org/BlogPosting"
       >
         <div
           className={`
-        bg-primary
-        relative
-        z-10
-        diagonal-t
-        pt-8
-        pb-64
-      `}
+            bg-primary
+            relative
+            z-10
+            diagonal-t
+            pt-8
+            pb-64
+          `}
         />
         <div
           className={`
-          max-w-screen-lg
-          mx-auto
-          grid grid-cols-12 gap-8
-          relative
-        `}
+            max-w-screen-lg
+            mx-auto
+            grid grid-cols-12 gap-8
+            relative
+          `}
         >
           <aside className="hidden mx-auto md:block">
-            <ShareCallToAction
+            <ul
               className={`
-              fixed `}
-              linkClassName={`
-              ${globalStyles.transitions.colors}
-              text-neutralSoft
-              hover:text-neutral
-            `}
-            />
+                list-none
+                flex flex-col
+                text-4xl
+                space-y-4
+                fixed
+              `}
+            >
+              {socialLinks.map(({ id, icon, link }) => (
+                <li key={id}>
+                  <ExternalLink
+                    className={`
+                      ${globalStyles.transitions}
+                      text-neutralSoft
+                      hover:text-neutral
+                    `}
+                    href={link(pathname)}
+                  >
+                    {icon}
+                  </ExternalLink>
+                </li>
+              ))}
+            </ul>
           </aside>
           <div className="col-span-12 px-2 md:col-span-8">
             <header className="relative z-30 -mt-48 md:-mt-64">
@@ -167,12 +210,14 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               >
                 {frontmatter.title}
               </h1>
-              <div className="flex flex-col mt-4 md:items-center md:flex-row md:justify-between">
-                <BlogMeta
-                  date={frontmatter.date}
-                  timeToRead={mdx.timeToRead}
-                  className="text-base font-medium text-onPrimarySoft md:text-lg"
-                />
+              <div className="mt-2 flex text-base font-medium text-onPrimarySoft md:text-lg">
+                <time>{frontmatter.date}</time>
+                <span className="mx-2">&middot;</span>
+                <span>
+                  {mdx.timeToRead}
+                  {' '}
+                  min read
+                </span>
               </div>
             </header>
             <Img
@@ -223,7 +268,12 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 <ExternalLink
                   href={editUrl}
                   className={`
-              ${styles.ctaLinks}
+              ${globalStyles.transitions}
+              text-lg 
+              border-b border-onNeutralBgSoft
+              hover:border-onNeutralBgLinkHover 
+              text-onNeutralBgSoft hover:text-onNeutralBgLinkHover
+              pb-1
               `}
                 >
                   <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
@@ -244,6 +294,15 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 >
                   <FaHome className={`${styles.ctaLinkIcons} mr-1`} />
                   Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={pageContext.prev.fields.slug}
+                  className={`${styles.ctaLinks}`}
+                >
+                  <FaArrowLeft className={`${styles.ctaLinkIcons} mr-1`} />
+                  Previous
                 </Link>
               </li>
               <li>

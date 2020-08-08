@@ -30,9 +30,9 @@ export default function Header() {
           hidden
           lg:flex
               
-          h-full
+          h-full 
           ml-2
-          ${globalStyles.transitions.colors}
+          ${globalStyles.transitions}
           
         `}
           >

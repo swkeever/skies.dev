@@ -29,8 +29,7 @@ const Layout = ({
   }, []);
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
-  const extraClasses = className
-    || `${globalStyles.transitions.colors} bg-neutralBg text-onNeutral`;
+  const extraClasses = className || `${globalStyles.transitions} bg-neutralBg text-onNeutral`;
 
   return (
     <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>

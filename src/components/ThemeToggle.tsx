@@ -22,7 +22,7 @@ export default function ThemeToggle() {
       fixed top-2 right-2 inline-flex items-center flex-shrink-0 h-8 w-16 border
       border-primaryBgSoft shadow-xl lg:shadow-none rounded-full z-50 cursor-pointer
        
-      ${globalStyles.transitions.colors} 
+      ${globalStyles.transitions} 
       ${globalStyles.outline}
       `}
       onClick={() => setLightTheme(!lightTheme)}
@@ -38,7 +38,7 @@ export default function ThemeToggle() {
       bg-primaryBold
       shadow transform
       ml-1
-      ${globalStyles.transitions.colors}`}
+      ${globalStyles.transitions}`}
       >
         <span
           className={`

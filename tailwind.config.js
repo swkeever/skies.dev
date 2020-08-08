@@ -39,6 +39,15 @@ module.exports = {
         onDangerBg: 'var(--color-onDangerBg)',
         onDangerBgSoft: 'var(--color-onDangerBgSoft)',
 
+        cat0: 'var(--color-cat0)',
+        onCat0: 'var(--color-onCat0)',
+        cat1: 'var(--color-cat1)',
+        onCat1: 'var(--color-onCat1)',
+        cat2: 'var(--color-cat2)',
+        onCat2: 'var(--color-onCat2)',
+        cat3: 'var(--color-cat3)',
+        onCat3: 'var(--color-onCat3)',
+
         // backgrounds
         primaryBg: 'var(--color-primaryBg)',
         primaryBgSoft: 'var(--color-primaryBgSoft)',

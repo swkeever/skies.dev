@@ -49,7 +49,7 @@ export default function TableOfContents({
     <nav className={` ${className}`}>
       <ol
         className={`flex flex-col space-y-4
-    ${globalStyles.transitions.colors}
+    ${globalStyles.transitions}
     ${olClassName}
    `}
       >
@@ -59,7 +59,7 @@ export default function TableOfContents({
           const link = (
             <Link
               className={`
-            ${globalStyles.transitions.colors}
+            ${globalStyles.transitions}
             ${styles.copy}
           ${
             watch && activeHash === slug
