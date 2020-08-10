@@ -276,9 +276,6 @@ article h3 {
   @apply -mb-1;
 }
 
-@tailwind utilities;
-
-
 .gatsby-resp-image-image {
   box-shadow: theme('boxShadow.lg');
 }
@@ -293,9 +290,12 @@ article h3 {
 
 @media (max-width: 640px) {
   .gatsby-resp-image-figcaption {
-      padding: 0 theme('spacing.2');
-      font-size: theme('fontSize.xs');
-      line-height: theme('lineHeight.5');
-      margin-top: theme('spacing.1');
+    padding: 0 theme('spacing.2');
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.5');
+    margin-top: theme('spacing.1');
   }
 }
+
+
+@tailwind utilities;
