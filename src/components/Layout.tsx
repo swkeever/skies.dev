@@ -12,13 +12,7 @@ import { globalStyles } from '../styles';
 
 export const LayoutContext = React.createContext({});
 
-const Layout = ({
-  children,
-  className = '',
-}: {
-  children: ReactNode;
-  className?: string;
-}) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   const [lightTheme, setLightTheme] = useState(true);
 
   useEffect(() => {
@@ -29,7 +23,7 @@ const Layout = ({
   }, []);
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
-  const extraClasses = className || `${globalStyles.transitions} bg-neutralBg text-onNeutral`;
+  const extraClasses = `${globalStyles.transitions} bg-neutralBg text-onNeutral`;
 
   return (
     <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>

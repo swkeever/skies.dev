@@ -157,7 +157,7 @@ export default function BlogsPage() {
   }, [filter]);
 
   return (
-    <div className="bg-neutralBgSoft">
+    <div className={`${globalStyles.transitions} bg-neutralBgSoft`}>
       <SEO
         title="Blog by Sean Keever"
         description="Life as a software engineer."
@@ -168,12 +168,12 @@ export default function BlogsPage() {
           bg-primary
           z-20 relative
           lg:mt-4
-          pt-16 lg:pt-12 xl:pt-12
+          pt-24
 
           ${globalStyles.transitions}
         `}
       >
-        <div className="px-4 md:pt-8 lg:pt-12 max-w-screen-sm mx-auto">
+        <div className="px-4 md:pt-8 xl:pt-20 2xl:pt-8 max-w-screen-sm mx-auto">
           <h1
             className={`
               leading-none
@@ -201,6 +201,8 @@ export default function BlogsPage() {
                     `}
                 />
                 <input
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
+                  autoFocus
                   autoComplete="off"
                   id="filter-input"
                   value={filter}
@@ -231,9 +233,11 @@ export default function BlogsPage() {
           </div>
         </div>
       </section>
-      <div className="bg-transparent relative z-0 lg:-mt-12 xl:-mt-24">
+      <div
+        className={`bg-transparent relative z-0 2xl:-mt-24 ${globalStyles.transitions}`}
+      >
         <svg
-          className="text-primary fill-current"
+          className={`text-primary fill-current ${globalStyles.transitions}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
         >
@@ -246,7 +250,7 @@ export default function BlogsPage() {
       <section
         id="blog-list"
         className={`
-          -mt-12 md:-mt-16 lg:-mt-24 xl:-mt-40 
+          -mt-4 md:-mt-16 lg:-mt-24 xl:-mt-32 2xl:-mt-48
           z-0
           bg-neutralBgSoft 
           flex flex-col justify-center
