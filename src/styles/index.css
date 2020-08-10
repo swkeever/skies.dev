@@ -276,7 +276,7 @@ article h3 {
   @apply -mb-1;
 }
 
-.gatsby-resp-image-image {
+/* .gatsby-resp-image-image {
   box-shadow: theme('boxShadow.lg');
 }
 
@@ -295,7 +295,7 @@ article h3 {
     line-height: theme('lineHeight.5');
     margin-top: theme('spacing.1');
   }
-}
+} */
 
 
 @tailwind utilities;

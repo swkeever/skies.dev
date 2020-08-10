@@ -92,7 +92,7 @@ module.exports = {
               // base for generating different widths of each image.
               maxWidth: defaultTheme.screens.sm,
               backgroundColor: 'transparent',
-              showCaptions: true,
+              // showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
               wrapperStyle: {
                 boxShadow: defaultTheme.boxShadow.lg,
               },
