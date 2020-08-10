@@ -5,21 +5,27 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { globalStyles } from '../styles';
 
 export const LayoutContext = React.createContext({});
 
+function isSystemPrefLightMode() {
+  if (window.matchMedia) {
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const Layout = ({ children }: { children: ReactNode }) => {
   const [lightTheme, setLightTheme] = useState(true);
 
   useEffect(() => {
-    setLightTheme(
-      window.matchMedia
-        && window.matchMedia('(prefers-color-scheme: light)').matches,
-    );
+    setLightTheme(isSystemPrefLightMode());
   }, []);
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
@@ -28,7 +34,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>
       <div
-        className={`${themeClass}
+        className={`
+        ${themeClass}
         ${extraClasses}
         min-h-screen
         flex
