@@ -45,12 +45,12 @@ export default function Footer() {
     `}
     >
       <div className="max-w-screen-xl mx-auto py-12 px-4 md:flex md:items-center md:justify-between">
-        <ul className="flex justify-center md:order-2">
+        <ul className="flex justify-center space-x-6 md:order-2">
           {socialLinks.map((link) => (
             <li
               key={`foot-${link.text}`}
               className={`
-            ml-6 text-gray-400 hover:text-gray-500`}
+            text-gray-400 hover:text-gray-500`}
             >
               <ExternalLink
                 href={link.to}

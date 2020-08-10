@@ -25,11 +25,8 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           ${globalStyles.transitions}
           block h-full
           flex flex-col lg:flex-row justify-center items-center space-y-1 lg:space-x-2
-          text-xs font-medium
-          text-onPrimaryBgLink
-          hover:text-onPrimaryBgLinkHover
-          hover:border-0
-
+          text-sm font-medium
+          text-onPrimary
           hover:no-underline
         `}
         style={pathname === route ? { color: 'var(--color-light)' } : {}}

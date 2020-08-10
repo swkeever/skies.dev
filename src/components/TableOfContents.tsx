@@ -34,10 +34,6 @@ export default function TableOfContents({
     : 'hover:border-b hover:border-onNeutralBg'
 }
     `,
-
-    li: `
-    
-    `,
   };
 
   const { pathname } = useLocation();

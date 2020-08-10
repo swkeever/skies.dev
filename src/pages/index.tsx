@@ -7,7 +7,7 @@ import Img from 'gatsby-image';
 import SEO from '../components/SEO';
 import { globalStyles } from '../styles';
 import Empty from '../../assets/empty.svg';
-import { theme } from '../../tailwind.config';
+import blogCategories from '../utils/blog-categories';
 
 export type BlogFrontmatter = {
   title: string;
@@ -52,12 +52,15 @@ export type Blog = {
   image: FluidObject;
 };
 
-function NumResults({ children }: { children: ReactNode }) {
-  return (
-    <p className="my-8 text-xl font-light text-center text-onNeutralBgSoft">
-      {children}
-    </p>
-  );
+function getNumResultsString(k: number): string {
+  switch (k) {
+    case 0:
+      return 'No results found';
+    case 1:
+      return `${k} result found`;
+    default:
+      return `${k} results found`;
+  }
 }
 
 type Category = {
@@ -65,24 +68,7 @@ type Category = {
   className: string;
 };
 
-const categories: Category[] = [
-  {
-    name: 'Opinion',
-    className: 'bg-cat0 text-onCat0',
-  },
-  {
-    name: 'Lesson',
-    className: 'bg-cat1 text-onCat1',
-  },
-  {
-    name: 'Lifestyle',
-    className: 'bg-cat2 text-onCat2',
-  },
-  {
-    name: 'Project',
-    className: 'bg-cat3 text-onCat3',
-  },
-];
+const categories: Category[] = blogCategories;
 
 export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`
@@ -147,6 +133,7 @@ export default function BlogsPage() {
     const s = new JsSearch.Search('id');
     s.addIndex('title');
     s.addIndex('description');
+    s.addIndex(['category', 'name']);
     s.addIndex('body');
     s.addDocuments(blogs);
     setSearch(s);
@@ -170,26 +157,23 @@ export default function BlogsPage() {
   }, [filter]);
 
   return (
-    <>
+    <div className="bg-neutralBgSoft">
       <SEO
         title="Blog by Sean Keever"
         description="Life as a software engineer."
         keywords={['blog', 'skies', 'sean keever', 'software engineering blog']}
       />
       <section
-        style={{
-          backgroundImage: `linear-gradient(to bottom, ${theme.extend.colors.primary}, ${theme.extend.colors.primarySoft})`,
-        }}
         className={`
-          z-0
+          bg-primary
+          z-20 relative
           lg:mt-4
-          py-16
-          md:py-20
-          xl:py-24
+          pt-16 lg:pt-12 xl:pt-12
+
           ${globalStyles.transitions}
         `}
       >
-        <div className="px-4 pt-2 z-10 lg:-mt-4 max-w-screen-sm mx-auto">
+        <div className="px-4 md:pt-8 lg:pt-12 max-w-screen-sm mx-auto">
           <h1
             className={`
               leading-none
@@ -202,13 +186,12 @@ export default function BlogsPage() {
           >
             Software Engineering Blog
           </h1>
-          <div className="mt-6">
-            <div className="">
-              <label htmlFor="filter-input">
-                <span className="sr-only">Search</span>
-                <div>
-                  <FaSistrix
-                    className={`
+          <div id="search-input" className="mt-6">
+            <label htmlFor="filter-input">
+              <span className="sr-only">Search</span>
+              <div>
+                <FaSistrix
+                  className={`
                       inline
                       text-2xl 
                       absolute
@@ -216,15 +199,15 @@ export default function BlogsPage() {
                       ml-2
                       z-30
                     `}
-                  />
-                  <input
-                    autoComplete="off"
-                    id="filter-input"
-                    value={filter}
-                    onChange={(e) => {
-                      setFilter(e.target.value);
-                    }}
-                    className={`
+                />
+                <input
+                  autoComplete="off"
+                  id="filter-input"
+                  value={filter}
+                  onChange={(e) => {
+                    setFilter(e.target.value);
+                  }}
+                  className={`
                         -mt-8
                         bg-neutralBgSoft
                         rounded-full
@@ -241,25 +224,43 @@ export default function BlogsPage() {
                         focus:bg-neutralBg
                         ${globalStyles.transitions}
                       `}
-                    type="search"
-                  />
-                </div>
-              </label>
-            </div>
+                  type="search"
+                />
+              </div>
+            </label>
           </div>
         </div>
       </section>
+      <div className="bg-transparent relative z-0 lg:-mt-12 xl:-mt-24">
+        <svg
+          className="text-primary fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            fillOpacity="1"
+            d="M0,128L40,144C80,160,160,192,240,197.3C320,203,400,181,480,165.3C560,149,640,139,720,138.7C800,139,880,149,960,176C1040,203,1120,245,1200,250.7C1280,256,1360,224,1400,208L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
+          />
+        </svg>
+      </div>
       <section
+        id="blog-list"
         className={`
-          bg-neutralBgSoft self-stretch flex-grow pt-16 -mt-16 pb-12
+          -mt-12 md:-mt-16 lg:-mt-24 xl:-mt-40 
+          z-0
+          bg-neutralBgSoft 
+          flex flex-col justify-center
+          self-stretch 
+          flex-grow
+          pb-16
           ${globalStyles.transitions}
           `}
       >
+        <p className="my-6 text-xl z-40 font-light text-center text-onNeutralBgSoft">
+          {getNumResultsString(blogs.length)}
+        </p>
         {blogs.length ? (
           <div className="sm:px-6 px-4 max-w-screen-xl mx-auto">
-            <NumResults>
-              {`${blogs.length} result${blogs.length > 1 ? 's' : ''}.`}
-            </NumResults>
             <ul
               className={`grid
                   grid-cols-1 
@@ -320,8 +321,7 @@ export default function BlogsPage() {
             </ul>
           </div>
         ) : (
-          <div className="">
-            <NumResults>No results found.</NumResults>
+          <div className="content-center">
             <Empty
               className={`
                   max-w-2xl
@@ -335,6 +335,6 @@ export default function BlogsPage() {
           </div>
         )}
       </section>
-    </>
+    </div>
   );
 }

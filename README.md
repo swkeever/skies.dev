@@ -1,55 +1,32 @@
-# ☁️ skies.dev | software engineering blog ☁️
+# Skies Blog
 
 🔗 [https://skies.dev](https://skies.dev)
 
-Welcome to my personal site and blog!
+This project was forked from
+[Gatsby's default starter](https://github.com/gatsbyjs/gatsby-starter-default).
 
-## Contributing 🤝
+## Writing articles
 
-I welcome contributions to this site.
+To intialize a new blog, I recommend using the `create-blog` CLI.
 
-### ✍️ Writing articles
+```
+npm run create-blog
+```
 
-Let's say you are creating the article that will be located at
-`https://skies.dev/blog/my-article`.
+## Feedback
 
-1. Create `/src/content/my-article`. From this point on, all the files discussed
-   are located in this directory. 📁
-2. Copy/paste the following frontmatter and place it at the top of a file named
-   `index.md`.
+I appreciate any feedback in the form of
+[issues](https://github.com/swkeever/skies.dev/issues).
 
-   ```markdown
-   ---
-   slug: my-article
-   date: YYYY-MM-DD
-   title: My Article's Title
-   description: My article's description.
-   tags:
-     - Computer Science
-     - Software Engineering
-   image: index.jpg
-   ---
-   ```
+[Pull requests](https://github.com/swkeever/skies.dev/pulls) are also welcome.
 
-3. Go to [Unsplash](https://unsplash.com/) and pick an image with **landscape
-   orientation**. Name the image `index.jpg`.
-4. Write your article! When you're done, submit a pull request so I can push
-   your article to the site. ✌️
+## Special Thanks
 
-### 😱 Issues
-
-Please consider [opening an issue](https://github.com/swkeever/skies.dev/issues)
-if you see are any issues with the site.
-[Pull requests](https://github.com/swkeever/skies.dev/pulls) are welcome! 🙏
-
-## Special Thanks 👏
-
-Inspriation and tips taken from other awesome open-source projects.
+Inspiration, tips, and resources are taken from other awesome open-source
+projects.
 
 - [wesbos.com](https://github.com/wesbos)
 - [overreacted.io](https://github.com/gaearon/overreacted.io)
-- [unDraw.co](https://undraw.co/) - for the images! 🖼
+- [Unsplash](https://unsplash.com)
+- [unDraw.co](https://undraw.co/)
 - [kentcdodds.com](https://github.com/kentcdodds/kentcdodds.com)
-
-🍴 This project was forked from
-[Gatsby's default starter](https://github.com/gatsbyjs/gatsby-starter-default).

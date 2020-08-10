@@ -19,7 +19,7 @@ import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
 import TableOfContents from '../components/TableOfContents';
-import shortcodes from '../components/article/DesignSystem';
+import shortcodes from '../components/Shortcodes';
 import routes from '../utils/routes';
 
 export const pageQuery = graphql`

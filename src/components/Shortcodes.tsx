@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
-import ExternalLink from '../ExternalLink';
+import ExternalLink from './ExternalLink';
 
 const styles = {
   copy: `
@@ -103,7 +103,22 @@ const shortcodes = {
   h2: (props) => (
     <h2
       {...props}
-      className={`${styles.header} font-sans text-2xl md:text-3xl font-bold ${styles.mt2}`}
+      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt2}`}
+    />
+  ),
+  h3: (props) => (
+    <h3
+      {...props}
+      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt2}`}
+    />
+  ),
+  h4: (props) => (
+    <h4
+      className={`
+        text-onNeutralBgSoft mb-1
+        text-lg md:text-xl font-semibold ${styles.mt2}
+      `}
+      {...props}
     />
   ),
   inlineCode: (props) => (
@@ -112,12 +127,7 @@ const shortcodes = {
       {...props}
     />
   ),
-  h3: (props) => (
-    <h3
-      {...props}
-      className={`${styles.header} font-sans text-xl md:text-2xl font-semibold ${styles.mt2}`}
-    />
-  ),
+
   table: (props) => (
     <table
       {...props}
@@ -163,7 +173,6 @@ const shortcodes = {
       ${styles.mt}
       ${styles.card}
       border-danger
-      bg-dangerBg
       `}
       {...props}
     />
@@ -175,7 +184,6 @@ const shortcodes = {
       ${styles.mt}
       ${styles.card}
       border-success
-      bg-successBg
       `}
       {...props}
     />

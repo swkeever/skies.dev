@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const cssNano = require('cssnano');
+const defaultTheme = require('tailwindcss/defaultTheme');
 const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
@@ -89,7 +90,13 @@ module.exports = {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
-              maxWidth: 700,
+              maxWidth: defaultTheme.screens.sm,
+              backgroundColor: 'transparent',
+              showCaptions: true,
+              wrapperStyle: {
+                boxShadow: defaultTheme.boxShadow.lg,
+              },
+              linkImagesToOriginal: false,
             },
           },
           'gatsby-remark-external-links',
@@ -207,7 +214,7 @@ module.exports = {
     },
     'gatsby-plugin-netlify',
     'gatsby-plugin-netlify-cache',
-    'gatsby-plugin-remove-trailing-slashes',
+    // 'gatsby-plugin-remove-trailing-slashes',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
