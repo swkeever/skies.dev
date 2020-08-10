@@ -2,8 +2,8 @@
 date: 2020-08-09
 title: Learn API Gateway
 description:
-  An API Gateway is a software engineering pattern that provides clients an
-  interface to a complicated backend.
+  An API Gateway is a software design pattern that provides clients an interface
+  to a complicated backend.
 category: 1
 keywords:
   - microservices
@@ -11,6 +11,7 @@ keywords:
   - rest api
   - software engineering
   - microservices pattern
+  - design patterns
 image: index.jpg
 ---
 
@@ -18,8 +19,7 @@ image: index.jpg
 
 Consider the fictional company **TravelHelper (TH)**. TH helps its users plan
 their vacations. TH has been growing over the past few years, and as a result,
-so has its application. The TH backend consists of microservices running on AWS
-infrastructure.
+so has its application. The TH backend consists of microservices running on AWS.
 
 Just to name a few, TH's backend consists of
 
@@ -34,7 +34,7 @@ autonomously.
 
 TH is trying to figure out how their web and mobile clients will interact with
 their backend. After reading
-[Make Your Product a Platform](/blog/platform-product), they want to also open
+[Make Your Product a Platform](/blog/platform-product), they also want to open
 their APIs to 3rd party developers.
 
 ## Solution 1
@@ -48,10 +48,11 @@ However, this architecture results in a few problems discussed below.
 
 ### Complexity on Clients
 
-Clients have to worry about aggregating data from multiple services in order to
-get the data in the format the client application needs. As a result, the client
-application gets more complex. What's more, this process distracts from the main
-task of building an amazing user experience.
+Clients might have to aggregate data returned by multiple services in order to
+get the data in a format that can be used by the client application. As a
+result, the client application could become more complex. What's more, this
+aggregation process distracts from the main task of building an amazing user
+experience.
 
 ### Network Overhead
 
@@ -65,25 +66,26 @@ task of building an amazing user experience.
 </aside>
 
 The architecture proposed in Solution 1 would require that clients make multiple
-round trips over the Internet when communicating with other services. This could
-add hundreds of milliseconds to your application load times depending on
-
-- how much data needs to go over the Internet, and
-- how far the data needs to go.
+round trips over the Internet when communicating with backend services. This
+could add hundreds of milliseconds to your application load times depending on
+how much data needs to travel over the Internet and how far that data needs to
+go.
 
 ### Lack of Flexibility
 
-This architecture exposes the service APIs to the clients directly. This can
-make it costly, if not impossible, to upgrade individual service APIs in the
-future.
+The Solution 1 architecture also exposes the service APIs to clients directly.
+This can make it costly, if not impossible, to upgrade individual service APIs
+in the future. This is because it is hard to know which client applications in
+the wild still depend on your backend service APIs, especially when the APIs are
+open to 3rd-party developers.
 
-After a discussion with Engineering, TH seeks an alternative solution.
+After much discussion with Engineering, TH seeks an alternative solution.
 
 ## Solution 2
 
 TH decided they think it would be beneficial to introduce a shim layer between
-the clients and the backend microservices. They introduce an **API Gateway**
-between the clients and services.
+the clients and backend microservices. They introduce an **API Gateway** between
+the clients and services.
 
 ![Solution 2: Clients interact with backend services via an API Gateway.](solution2.jpg)
 
@@ -93,19 +95,18 @@ This API Gateway will
 - Aggregate results from multiple backend services before responding to clients
 - Handle authentication and authorization
 
-### Client-Server Interface
+### Interface
 
 With an API Gateway, network overhead can reduce as clients only need to make a
-single hop over the Internet to reach the API Gateway. The API Gateway service
-can then efficiently handle communicating with backend services in a local
-network before responding to the client.
+single round trip over the Internet to reach the API Gateway. Then, the API
+Gateway service can efficiently handle communicating with backend services in a
+local network before responding to the client.
 
 ### Aggregation
 
-Before the API Gateway returns to the clients, it can efficiently aggregate data
-provided by multiple service APIs. This can greatly simplify client
-applications. As a result of reducing client code complexity, the performance of
-client applications is likely to improve.
+Before the API Gateway responds to clients, it can efficiently aggregate data
+provided by multiple service APIs. Handling aggregation on the server would
+likely simplify and improve the performance of client applications.
 
 ### Security
 
@@ -128,12 +129,12 @@ Defined in
 REST can be used in the implementation of the API Gateway service. In REST, a
 client
 
-- Makes request to a URL such as `https://api.travelhelper.app/itineraties`
+- Makes request to a URL such as `https://api.travelhelper.app/trips`
 - Specifies an HTTP verb such as `GET`, `POST`, `PUT`, or `DELETE`.
-- Optionally provides a body: data for the server to process.
+- Optionally provides a body: data for the server to use for the request.
 
-Suppose for example, a client wants to fetch a Hero with an id of 1. A client
-can perform the following request to the API Gateway.
+Suppose for example, a client wants to fetch a **Hero** with an id of **1**. A
+client can perform the following request to the API Gateway.
 
 ```
 GET https://api.travelhelper.app/hero/1
@@ -145,7 +146,9 @@ needs for the request before returning the following response to the client.
 ```json
 {
   "hero": {
+    "id": 1,
     "name": "R2-D2"
+    // ...and possibly more key/value pairs
   }
 }
 ```
@@ -153,22 +156,21 @@ needs for the request before returning the following response to the client.
 ### GraphQL
 
 An alternative approach to implementing the API Gateway is to use GraphQL, which
-was developed by Facebook in 2015. A GraphQL request specifies the format of the
-data it needs from the server.
-
-From the [documentation](https://graphql.org/learn/queries/), we see our
-clients can provide the following schema in its request to the server.
+was developed by Facebook in 2015. With GraphQL, clients can specify exactly the
+data it needs from the server. For example, a client can make a request to the
+API Gateway with the following GraphQL query.
 
 ```
 {
-  hero {
+  hero(id: "1") {
     name
   }
 }
 ```
 
-The API Gateway service can take this schema and communicate with the services
-it needs to resolve it before returning the following JSON to the client.
+The API Gateway service can then take this schema and communicate with other
+backend services in order to resolve the query before returning the following
+JSON to the client.
 
 ```json
 {
@@ -180,16 +182,20 @@ it needs to resolve it before returning the following JSON to the client.
 }
 ```
 
+A lot more can be said about GraphQL. Check out their
+[documentation](https://graphql.org/) to learn more.
+
 After much discussion among the engineering teams, TH decided to move forward
-implementing GraphQL for the API Gateway service.
+implementing GraphQL for the API Gateway service for reasons that are beyond the
+scope of this article.
 
 ## Conclusion
 
-In this article, we learned how TravelHelper implemented an API Gateway to
+In this article, we learned how an API Gateway can be used to
 
 - Provide an interface between client and server
-- Handle data aggregation of individual microservices
-- Handle authentication and authorization
+- Aggregate data returned by individual microservices
+- Act as a security layer between clients and services
 
 ### Read more
 

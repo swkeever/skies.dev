@@ -294,5 +294,8 @@ article h3 {
 @media (max-width: 640px) {
   .gatsby-resp-image-figcaption {
       padding: 0 theme('spacing.2');
+      font-size: theme('fontSize.xs');
+      line-height: theme('lineHeight.5');
+      margin-top: theme('spacing.1');
   }
 }
