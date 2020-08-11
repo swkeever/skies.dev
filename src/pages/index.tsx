@@ -159,8 +159,8 @@ export default function BlogsPage() {
   return (
     <div className={`${globalStyles.transitions} bg-neutralBgSoft`}>
       <SEO
-        title=""
-        description="Skies is a software engineering blog curated by Sean Keever, a full stack developer from Seattle, WA."
+        title="A blog by Sean Keever"
+        description="Skies is a software engineering blog curated by Seattle full stack developer Sean Keever."
         keywords={[
           'blog',
           'skies',
