@@ -61,12 +61,12 @@ const IndexPage = () => {
           'full stack developer',
         ]}
       />
-      <Section className=" pt-4 md:pt-12 ">
+      <Section className="pt-12 ">
         <div className="md:w-7/12">
           <h1 className={`${headerStyles} text-onNeutralBg`}>
             My name is
             {' '}
-            <span className="text-primary">Sean Keever.</span>
+            <span className=" text-primaryBold">Sean Keever</span>
           </h1>
           <p className="text-onNeutralBgSoft">
             I am a full stack developer from Seattle, WA. I am a University of
@@ -85,7 +85,7 @@ const IndexPage = () => {
         <Section className="md:flex-row-reverse">
           <div className="md:w-7/12">
             <h2 className={`${headerStyles} mt-8 text-onPrimary`}>
-              I like to help people learn.
+              I like to help people learn
             </h2>
             <p className="text-onPrimarySoft">
               I write articles on software engineering, computer science, and
@@ -110,8 +110,8 @@ const IndexPage = () => {
         className={`${globalStyles.transitions} bg-neutralBgSoft  pt-12 pb-8 -mt-12 md:pt-0 md:pb-12`}
       >
         <Section className="md:justify-around">
-          <div className="w-5/12 mb-4">
-            <h2 className={`${headerStyles} text-onNeutralBg`}>Reach out.</h2>
+          <div className="md:w-5/12 mb-4">
+            <h2 className={`${headerStyles} text-onNeutralBg`}>Reach out</h2>
             <p className="text-onNeutralBgSoft">
               If you would like to get in touch with me, please feel free to
               send me a message using the contact form shown here. Your message
