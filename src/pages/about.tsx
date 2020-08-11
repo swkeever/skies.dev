@@ -5,7 +5,6 @@ import Button from '../components/Button';
 import routes from '../utils/routes';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
-import ExternalLink from '../components/ExternalLink';
 import { globalStyles } from '../styles';
 import Container from '../components/Container';
 
@@ -27,7 +26,6 @@ function Section({ children, className = '' }: SectionProps) {
           md:px-6
           md:items-center
           md:flex-row
-          
           ${className}
         `}
       >
@@ -66,24 +64,14 @@ const IndexPage = () => {
       <Section className=" pt-4 md:pt-12 ">
         <div className="md:w-7/12">
           <h1 className={`${headerStyles} text-onNeutralBg`}>
-            Hi,
+            My name is
             {' '}
-            <span className="mr-2" role="img" aria-label="Waving hand">
-              👋
-            </span>
-            I&apos;m Sean.
+            <span className="text-primary">Sean Keever.</span>
           </h1>
           <p className="text-onNeutralBgSoft">
-            I&apos;m a software engineer, designer, and technology enthusiast
-            from Seattle, WA. I&apos;m currently working on search at
-            {' '}
-            <ExternalLink
-              className="border-b pb-1 text-onNeutralBgLink text-onNeutralBgLink border-onNeutralBgLink hover:text-onNeutralBgLinkHover"
-              href="https://offerup.com"
-            >
-              OfferUp
-            </ExternalLink>
-            .
+            I am a full stack developer from Seattle, WA. I am a University of
+            Washington alum and am currently a backend software engineer at
+            OfferUp.
           </p>
         </div>
         <Product className={`${svgStyles} mt-6`} />
@@ -100,8 +88,9 @@ const IndexPage = () => {
               I like to help people learn.
             </h2>
             <p className="text-onPrimarySoft">
-              I write articles on software engineering, web development, and
-              whatever else I&apos;m thinking about.
+              I write articles on software engineering, computer science, and
+              lessons learned in industry. The core mission with Skies is to
+              make software development accessible for everyone.
             </p>
             <Button
               tag="Link"
@@ -121,12 +110,12 @@ const IndexPage = () => {
         className={`${globalStyles.transitions} bg-neutralBgSoft  pt-12 pb-8 -mt-12 md:pt-0 md:pb-12`}
       >
         <Section className="md:justify-around">
-          <div className="mb-4">
-            <h2 className={`${headerStyles} text-onNeutralBg`}>
-              Get in touch.
-            </h2>
+          <div className="w-5/12 mb-4">
+            <h2 className={`${headerStyles} text-onNeutralBg`}>Reach out.</h2>
             <p className="text-onNeutralBgSoft">
-              If you have any questions, send me a message.
+              If you would like to get in touch with me, please feel free to
+              send me a message using the contact form shown here. Your message
+              will go straight to my email.
             </p>
           </div>
           <div className="relative z-30 bg-neutralBg max-w-xl p-4 shadow-2xl rounded-md lg:p-6 lg:-mt-12">

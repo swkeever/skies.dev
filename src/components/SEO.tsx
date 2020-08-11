@@ -93,7 +93,7 @@ export default function SEO({
   };
 
   if (!article) {
-    seo.title = pathname === routes.home ? `Skies | ${title}` : `${title} | Skies`;
+    seo.title = pathname === routes.home ? 'Skies' : `${title} | Skies`;
   } else {
     seo.title = title;
   }
@@ -151,15 +151,3 @@ export default function SEO({
     </>
   );
 }
-
-type QueryData = {
-  siteMetadata: {
-    siteUrl: string;
-    handle: string;
-  };
-  file: {
-    childImageSharp: {
-      fixed: FixedObject;
-    };
-  };
-};

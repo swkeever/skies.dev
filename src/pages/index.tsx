@@ -159,9 +159,15 @@ export default function BlogsPage() {
   return (
     <div className={`${globalStyles.transitions} bg-neutralBgSoft`}>
       <SEO
-        title="Blog by Sean Keever"
-        description="Life as a software engineer."
-        keywords={['blog', 'skies', 'sean keever', 'software engineering blog']}
+        title=""
+        description="Skies is a software engineering blog curated by Sean Keever, a full stack developer from Seattle, WA."
+        keywords={[
+          'blog',
+          'skies',
+          'sean keever',
+          'software engineering',
+          'seattle, wa',
+        ]}
       />
       <section
         className={`
@@ -173,7 +179,7 @@ export default function BlogsPage() {
           ${globalStyles.transitions}
         `}
       >
-        <div className="px-4 md:pt-8 xl:pt-20 2xl:pt-8 max-w-screen-sm mx-auto">
+        <div className="px-4 md:pt-8 max-w-screen-sm mx-auto">
           <h1
             className={`
               leading-none
@@ -250,7 +256,7 @@ export default function BlogsPage() {
       <section
         id="blog-list"
         className={`
-          -mt-4 md:-mt-16 lg:-mt-24 xl:-mt-32 2xl:-mt-48
+          -mt-4 md:-mt-16 xl:-mt-32 2xl:-mt-40
           z-0
           bg-neutralBgSoft 
           flex flex-col justify-center
@@ -260,7 +266,7 @@ export default function BlogsPage() {
           ${globalStyles.transitions}
           `}
       >
-        <p className="my-6 text-xl z-40 font-light text-center text-onNeutralBgSoft">
+        <p className="my-6 text-xl z-20 font-light text-center text-onNeutralBgSoft">
           {getNumResultsString(blogs.length)}
         </p>
         {blogs.length ? (

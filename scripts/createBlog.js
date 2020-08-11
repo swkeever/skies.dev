@@ -109,10 +109,10 @@ inquirer
     {
       type: 'input',
       name: 'date',
-      message: 'When will the blog be published?',
+      message: 'When will the blog be published? (YYYY-MM-DD format)',
       default: getTodaysDate(),
       // eslint-disable-next-line no-restricted-globals
-      validate: (input) => !isNaN(Date.parse(input)),
+      validate: (input) => !isNaN(Date.parse(input)) && input.length === 'YYYY-MM-DD'.length,
     },
     {
       type: 'input',
