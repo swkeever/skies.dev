@@ -145,7 +145,7 @@ export default function Newsletter({
           >
             <section className={`${showTopics ? '' : 'hidden'}`}>
               <h3 className={`${styles.h3} ${h3Styles}`}>
-                Select topics you care about.
+                Select topics you care about
               </h3>
 
               <ul className="mt-3 flex flex-wrap">
@@ -180,6 +180,7 @@ export default function Newsletter({
                         font-medium
                         px-2
                         rounded-full
+                        
                         ${globalStyles.transitions}
                         ${globalStyles.outline}
                         transform
@@ -229,7 +230,7 @@ export default function Newsletter({
             <section>
               {!showTopics ? null : (
                 <h3 className={`${styles.h3} ${h3Styles}`}>
-                  Subscribe to content you want.
+                  Get the content you want by email
                 </h3>
               )}
 
