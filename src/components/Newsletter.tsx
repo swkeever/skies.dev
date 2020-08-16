@@ -289,7 +289,12 @@ export default function Newsletter({
           </form>
 
           {/* TODO: update when we have alerts */}
-          {status === 'SUCCESS' && <p>Please go confirm your subscription!</p>}
+          {status === 'SUCCESS' && (
+            <p>
+              Please go confirm your subscription! Check your spam if you do not
+              see it.
+            </p>
+          )}
           {status === 'ERROR' && <p>Oops, try again.</p>}
         </div>
       </div>
