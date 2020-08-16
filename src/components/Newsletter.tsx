@@ -66,7 +66,7 @@ const colors = {
 };
 
 type PropTypes = {
-  color: 'primary | neutral' | 'neutralSoft';
+  color: 'primary | neutral' | 'neutralSoft' | 'primarySoft';
   tags?: string[];
   showTopics?: boolean;
   copy?: string;
@@ -257,6 +257,7 @@ export default function Newsletter({
                   {' '}
                   <span
                     className={`
+                    ${globalStyles.transitions}
                   ${styles.typewriter}
                   font-semibold `}
                   >

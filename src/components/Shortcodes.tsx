@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import ExternalLink from './ExternalLink';
+import { globalStyles } from '../styles';
 
 const styles = {
   copy: `
@@ -10,6 +11,7 @@ const styles = {
   lg:text-xl
   leading-8
   text-onNeutralBgSoft
+  ${globalStyles.transitions}
   `,
 
   link: `
@@ -36,6 +38,7 @@ const styles = {
 
   header: `
   mb-1
+  ${globalStyles.transitions}
   
   `,
 };
@@ -109,7 +112,7 @@ const shortcodes = {
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-neutralBold text-xl md:text-2xl font-semibold ${styles.mt2}`}
+      className={`${styles.header} text-onNeutralBgSoft text-xl md:text-2xl font-semibold ${styles.mt2}`}
     />
   ),
   h4: (props) => (

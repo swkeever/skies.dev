@@ -1,7 +1,6 @@
 /* eslint-disable global-require */
 const cssNano = require('cssnano');
 const defaultTheme = require('tailwindcss/defaultTheme');
-const { theme } = require('tailwindcss/stubs/defaultConfig.stub');
 const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
@@ -146,7 +145,7 @@ module.exports = {
       resolve: 'gatsby-plugin-nprogress',
       options: {
         // Setting a color is optional.
-        color: theme.colors.blue['600'],
+        color: '#1C64F2',
         // Disable the loading spinner.
         showSpinner: false,
       },

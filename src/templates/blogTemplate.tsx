@@ -190,7 +190,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 flex flex-col
                 text-4xl
                 space-y-4
-                fixed
+                sticky top-48
               `}
             >
               {socialLinks.map(({ id, icon, link }) => (
