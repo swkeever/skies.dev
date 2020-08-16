@@ -23,6 +23,7 @@
     "gatsby-plugin-minify-html": "^1.0.1",
     "gatsby-plugin-netlify": "^2.3.6",
     "gatsby-plugin-netlify-cache": "^1.2.0",
+    "gatsby-plugin-nprogress": "^2.3.10",
     "gatsby-plugin-offline": "^3.2.8",
     "gatsby-plugin-postcss": "^2.3.3",
     "gatsby-plugin-purgecss": "^5.0.0",
@@ -101,7 +102,7 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "lint": "prettier --write . && eslint --fix .",
-    "create-blog": "node scripts/createBlog.js"
+    "create-blog": "node scripts/create-blog.js"
   },
   "repository": {
     "type": "git",

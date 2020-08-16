@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
+import { Link } from '@reach/router';
 import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
-import Button from '../components/Button';
 import routes from '../utils/routes';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
 import { globalStyles } from '../styles';
-import Container from '../components/Container';
+import Newsletter from '../components/Newsletter';
 
 type SectionProps = {
   children: ReactNode;
@@ -15,23 +15,22 @@ type SectionProps = {
 
 function Section({ children, className = '' }: SectionProps) {
   return (
-    <Container>
-      <section
-        className={`
-          flex
-          flex-col
-          text-base
-          lg:text-lg
-          px-4
-          md:px-6
-          md:items-center
-          md:flex-row
-          ${className}
-        `}
-      >
-        {children}
-      </section>
-    </Container>
+    <section
+      className={`
+        max-w-screen-xl mx-auto
+        flex
+        flex-col
+        text-base
+        lg:text-lg
+        px-4
+        md:px-6
+        md:items-center
+        md:flex-row
+        ${className}
+      `}
+    >
+      {children}
+    </section>
   );
 }
 
@@ -92,14 +91,26 @@ const IndexPage = () => {
               lessons learned in industry. The core mission with Skies is to
               make software development accessible for everyone.
             </p>
-            <Button
-              tag="Link"
+            <Link
               to={routes.home}
               color="light"
-              className="mt-4 mb-8 lg:mt-6"
+              className={`mt-4 mb-8 lg:mt-6
+              inline-block
+              bg-light hover:bg-lightSoft
+              text-onLight hover:text-onLight
+              rounded-full
+              ${globalStyles.outline}
+              ${globalStyles.transitions}
+              px-4 
+              py-2 
+              font-bold
+              hover:font-bold
+              lg:px-6 
+              lg:text-lg
+              `}
             >
               See the blog
-            </Button>
+            </Link>
           </div>
           <Learn className={`${svgStyles}`} />
         </Section>
@@ -109,7 +120,7 @@ const IndexPage = () => {
         id="contact"
         className={`${globalStyles.transitions} bg-neutralBgSoft  pt-12 pb-8 -mt-12 md:pt-0 md:pb-12`}
       >
-        <Section className="md:justify-around">
+        <Section className="mb-4 md:space-x-10">
           <div className="md:w-5/12 mb-4">
             <h2 className={`${headerStyles} text-onNeutralBg`}>Reach out</h2>
             <p className="text-onNeutralBgSoft">
@@ -118,11 +129,15 @@ const IndexPage = () => {
               will go straight to my email.
             </p>
           </div>
-          <div className="relative z-30 bg-neutralBg max-w-xl p-4 shadow-2xl rounded-md lg:p-6 lg:-mt-12">
+          <div className="relative z-30 bg-neutralBg  p-4 shadow-2xl rounded-md lg:p-6 lg:-mt-12">
+            <h3 className="font-bold text-onNeutralBgSoft mb-3 text-xl">
+              Contact
+            </h3>
             <Form />
           </div>
         </Section>
       </div>
+      <Newsletter showTopics color="primarySoft" />
     </>
   );
 };

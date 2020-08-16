@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link, useLocation } from '@reach/router';
@@ -21,6 +21,7 @@ import { globalStyles } from '../styles';
 import TableOfContents from '../components/TableOfContents';
 import shortcodes from '../components/Shortcodes';
 import routes from '../utils/routes';
+import Newsletter from '../components/Newsletter';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -35,6 +36,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
         keywords
         image {
           childImageSharp {
@@ -75,7 +77,18 @@ type PropTypes = {
       body: string;
       fields: Fields;
       fileAbsolutePath: string;
-      frontmatter: BlogFrontmatter;
+      frontmatter: {
+        date: string;
+        description: string;
+        tags: string[];
+        keywords: string[];
+        image: {
+          childImageSharp: {
+            fluid: FluidObject;
+          };
+        };
+        title: string;
+      };
       headings: Heading[];
       timeToRead: number;
       id: string;
@@ -120,7 +133,6 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
   );
   const styles = {
     ctaLinks: `
-    ${globalStyles.transitions}
     text-lg 
     hover:border-b
     hover:border-onNeutralBgSoft 
@@ -139,7 +151,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         frontmatter={frontmatter}
         title={frontmatter.title}
         description={frontmatter.description}
-        keywords={frontmatter.keywords}
+        keywords={frontmatter.keywords.concat(frontmatter.tags)}
         image={frontmatter.image.childImageSharp.fluid}
         imageDims={{
           width: frontmatter.image.childImageSharp.fluid.presentationWidth,
@@ -148,6 +160,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
       />
       <article
         className={`${globalStyles.transitions}
+        mb-8
       `}
         itemScope
         itemType="http://schema.org/BlogPosting"
@@ -164,7 +177,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         />
         <div
           className={`
-            max-w-screen-lg
+            max-w-screen-xl
             mx-auto
             grid grid-cols-12 gap-8
             relative
@@ -258,7 +271,6 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               mx-auto
               md:items-center
               mt-64
-              mb-8
               px-4
               `}
         >
@@ -268,13 +280,12 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 <ExternalLink
                   href={editUrl}
                   className={`
-              ${globalStyles.transitions}
-              text-lg 
-              border-b border-onNeutralBgSoft
-              hover:border-onNeutralBgLinkHover 
-              text-onNeutralBgSoft hover:text-onNeutralBgLinkHover
-              pb-1
-              `}
+                    text-lg 
+                    border-b border-onNeutralBgSoft
+                    hover:border-onNeutralBgLinkHover 
+                    text-onNeutralBgSoft hover:text-onNeutralBgLinkHover
+                    pb-1
+                  `}
                 >
                   <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
                   Edit this page on GitHub
@@ -320,6 +331,11 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           </nav>
         </section>
       </article>
+      <Newsletter
+        tags={frontmatter.tags}
+        color="primarySoft"
+        copy="Want more articles like this?"
+      />
     </>
   );
 }

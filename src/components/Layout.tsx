@@ -32,9 +32,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const extraClasses = `${globalStyles.transitions} bg-neutralBg text-onNeutral`;
 
   return (
-    <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>
-      <div
-        className={`
+    <>
+      <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>
+        <div
+          className={`
         ${themeClass}
         ${extraClasses}
         min-h-screen
@@ -42,10 +43,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
         flex-col
         justify-between
         `}
-      >
-        <Header />
-        <main
-          className={`
+        >
+          <Header />
+          <main
+            className={`
             mb-0
             lg:mt-8
             flex-grow
@@ -54,12 +55,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
             flex
             flex-col
           `}
-        >
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </LayoutContext.Provider>
+          >
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </LayoutContext.Provider>
+    </>
   );
 };
 

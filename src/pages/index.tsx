@@ -8,6 +8,9 @@ import SEO from '../components/SEO';
 import { globalStyles } from '../styles';
 import Empty from '../../assets/empty.svg';
 import blogCategories from '../utils/blog-categories';
+import Logo from '../../assets/logo.svg';
+import Newsletter from '../components/Newsletter';
+import siteConfig from '../../site.config';
 
 export type BlogFrontmatter = {
   title: string;
@@ -157,7 +160,7 @@ export default function BlogsPage() {
   }, [filter]);
 
   return (
-    <div className={`${globalStyles.transitions} bg-neutralBgSoft`}>
+    <>
       <SEO
         title="A blog by Sean Keever"
         description="Skies is a software engineering blog curated by Seattle full stack developer Sean Keever."
@@ -173,26 +176,21 @@ export default function BlogsPage() {
         className={`
           bg-primary
           z-20 relative
-          lg:mt-4
-          pt-24
-
+          pt-12 lg:pt-16
+          flex-grow-0
           ${globalStyles.transitions}
         `}
       >
-        <div className="px-4 md:pt-8 max-w-screen-sm mx-auto">
+        <div className="px-4 max-w-screen-sm mx-auto">
           <h1
             className={`
-              leading-none
-              text-base
-              uppercase
-              tracking-wider
-              text-onPrimary
-              font-semibold
+
             `}
           >
-            Software Engineering Blog
+            <span className="sr-only">{siteConfig.siteTitle}</span>
+            <Logo className="w-7/12 h-auto mx-auto text-onPrimarySoft fill-current" />
           </h1>
-          <div id="search-input" className="mt-6">
+          <div id="search-input" className="mt-12">
             <label htmlFor="filter-input">
               <span className="sr-only">Search</span>
               <div>
@@ -240,12 +238,12 @@ export default function BlogsPage() {
         </div>
       </section>
       <div
-        className={`bg-transparent relative z-0 2xl:-mt-24 ${globalStyles.transitions}`}
+        className={`bg-neutralBgSoft flex-grow-0 relative z-0 2xl:-mt-24 ${globalStyles.transitions}`}
       >
         <svg
-          className={`text-primary fill-current ${globalStyles.transitions}`}
+          className={`text-primary fill-current h-auto ${globalStyles.transitions}`}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
+          viewBox="0 0 1440 253"
         >
           <path
             fillOpacity="1"
@@ -256,17 +254,13 @@ export default function BlogsPage() {
       <section
         id="blog-list"
         className={`
-          -mt-4 md:-mt-16 xl:-mt-32 2xl:-mt-40
-          z-0
           bg-neutralBgSoft 
-          flex flex-col justify-center
-          self-stretch 
           flex-grow
           pb-16
           ${globalStyles.transitions}
           `}
       >
-        <p className="my-6 text-xl z-20 font-light text-center text-onNeutralBgSoft">
+        <p className="mb-6 text-xl z-20 font-light text-center text-onNeutralBgSoft">
           {getNumResultsString(blogs.length)}
         </p>
         {blogs.length ? (
@@ -280,7 +274,7 @@ export default function BlogsPage() {
                 `}
             >
               {blogs.map((blog) => (
-                <li className="">
+                <li key={blog.id} className="">
                   <Link
                     to={blog.slug}
                     className={`
@@ -345,6 +339,7 @@ export default function BlogsPage() {
           </div>
         )}
       </section>
-    </div>
+      <Newsletter showTopics color="neutral" />
+    </>
   );
 }

@@ -6,6 +6,8 @@ import links from '../utils/links';
 import ExternalLink from './ExternalLink';
 import { globalStyles } from '../styles';
 import routes from '../utils/routes';
+import Logo from '../../assets/logo.svg';
+import siteConfig from '../../site.config';
 
 export default function Footer() {
   const styles = {
@@ -44,13 +46,33 @@ export default function Footer() {
     bg-footerBg
     `}
     >
-      <div className="max-w-screen-xl mx-auto py-12 px-4 md:flex md:items-center md:justify-between">
-        <ul className="flex justify-center space-x-6 md:order-2">
+      <section
+        className={`
+      max-w-screen-xl
+       space-y-12 md:space-y-0 
+       mx-auto 
+       py-12 px-4 
+       md:flex md:items-center md:justify-between
+       
+       `}
+      >
+        <h2 className="md:order-2">
+          <span className="sr-only ">{siteConfig.siteTitle}</span>
+          <Logo
+            className={`w-64 md:w-48 mx-auto md:mx-0  h-auto text-neutralSoft fill-current
+          ${globalStyles.transitions}
+          `}
+          />
+        </h2>
+
+        <ul className="flex justify-center space-x-6 md:order-3">
           {socialLinks.map((link) => (
             <li
               key={`foot-${link.text}`}
               className={`
-            text-gray-400 hover:text-gray-500`}
+            text-gray-400 hover:text-gray-500
+            ${globalStyles.transitions}
+            `}
             >
               <ExternalLink
                 href={link.to}
@@ -64,16 +86,19 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <div className="mt-8 md:mt-0 md:order-1">
-          <p className="text-center text-base leading-6 text-gray-400">
-            &copy;
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-            Skies. All rights reserved.
-          </p>
-        </div>
-      </div>
+
+        <p
+          className={`text-center text-base leading-6 text-gray-400 md:order-1 
+        ${globalStyles.transitions}
+        `}
+        >
+          &copy;
+          {' '}
+          {new Date().getFullYear()}
+          {' '}
+          Skies. All rights reserved.
+        </p>
+      </section>
 
       {/* make room for the mobile navbar */}
       <div className={`${globalStyles.navbar.height} lg:hidden`} />

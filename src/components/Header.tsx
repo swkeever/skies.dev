@@ -36,7 +36,7 @@ export default function Header() {
           
         `}
           >
-            <Logo className="w-32 h-auto" />
+            <Logo className="w-32 h-auto text-white fill-current" />
           </Link>
           <Nav />
         </div>

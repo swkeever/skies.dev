@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 const defaultTheme = require('tailwindcss/defaultTheme');
 
-// primary blue #3F83F8
+// primary blue #3F83F8 (500), #1C64F2 (600)
 
 module.exports = {
   purge: [
@@ -54,6 +54,7 @@ module.exports = {
 
         neutralBg: 'var(--color-neutralBg)',
         neutralBgSoft: 'var(--color-neutralBgSoft)',
+        neutralBgSofter: 'var(--color-neutralBgSofter)',
 
         footerBg: 'var(--color-footerBg)',
 

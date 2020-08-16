@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const cssNano = require('cssnano');
 const defaultTheme = require('tailwindcss/defaultTheme');
+const { theme } = require('tailwindcss/stubs/defaultConfig.stub');
 const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
@@ -139,6 +140,15 @@ module.exports = {
         theme_color: config.themeColor,
         display: 'standalone',
         icon: 'images/favicon.png',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        // Setting a color is optional.
+        color: theme.colors.blue['600'],
+        // Disable the loading spinner.
+        showSpinner: false,
       },
     },
     // 'gatsby-plugin-offline',

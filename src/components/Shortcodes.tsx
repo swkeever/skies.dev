@@ -35,7 +35,6 @@ const styles = {
   `,
 
   header: `
-  text-onNeutralBg
   mb-1
   
   `,
@@ -103,13 +102,14 @@ const shortcodes = {
   h2: (props) => (
     <h2
       {...props}
-      className={`${styles.header} text-2xl md:text-3xl font-bold ${styles.mt2}`}
+      className={`${styles.header} text-onNeutralBg
+ text-2xl md:text-3xl font-semibold ${styles.mt2}`}
     />
   ),
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-xl md:text-2xl font-semibold ${styles.mt2}`}
+      className={`${styles.header} text-neutralBold text-xl md:text-2xl font-semibold ${styles.mt2}`}
     />
   ),
   h4: (props) => (

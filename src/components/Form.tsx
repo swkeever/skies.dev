@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
-import Button from './Button';
 import { globalStyles } from '../styles';
 
 function LabelSpan({ label }: { label: string }) {
   return (
     <span
       className={`
-        text-neutral
+        text-neutralSoft
         tracking-widest
-        uppercase
-        text-xs
+        text-sm
       `}
     >
       {label}
@@ -19,14 +17,17 @@ function LabelSpan({ label }: { label: string }) {
 }
 
 const inputStyles = `
+  appearance-none
   bg-neutralBgSoft 
+  border border-neutralBgSofter
   ${globalStyles.outline}
+  ${globalStyles.transitions}
   rounded
   w-full
   rounded-md
   px-2 
   py-1
-  text-onNeutral
+  text-onNeutralBg
   mb-2
   lg:mb-4 
   lg:py-2
@@ -36,6 +37,7 @@ export default function Form() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [subject, setSubject] = useState('');
 
   return (
     <form
@@ -48,37 +50,53 @@ export default function Form() {
       `}
     >
       <input type="text" name="_gotcha" className="hidden" />
-      <label htmlFor="name">
-        <LabelSpan label="Name" />
+      <div className="flex space-x-5">
+        <label htmlFor="name">
+          <LabelSpan label="Name" />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={inputStyles}
+            name="name"
+            id="name"
+            type="text"
+            required
+          />
+        </label>
+        <label htmlFor="email">
+          <LabelSpan label="Email" />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={inputStyles}
+            name="email"
+            id="email"
+            type="email"
+            required
+          />
+        </label>
+      </div>
+
+      <label htmlFor={subject}>
+        <LabelSpan label="Subject" />
         <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
           className={inputStyles}
-          name="name"
-          id="name"
+          name="subject"
+          id="subject"
           type="text"
           required
         />
       </label>
-      <label htmlFor="email">
-        <LabelSpan label="Email" />
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={inputStyles}
-          name="email"
-          id="email"
-          type="email"
-          required
-        />
-      </label>
+
       <label htmlFor={name}>
         <LabelSpan label="Message" />
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={`${inputStyles}
-            h-32
+            h-48
             resize-none
           `}
           name="message"
@@ -86,10 +104,25 @@ export default function Form() {
           required
         />
       </label>
-      <Button
-        tag="button"
-        color="primary"
-        className="float-right"
+      <button
+        className={`float-right
+        
+          inline-block
+          bg-primaryBold hover:bg-primary
+
+          text-onPrimary
+          
+          rounded-full
+          ${globalStyles.transitions}
+          ${globalStyles.outline}
+          px-4 
+          
+          py-2 
+          font-bold
+          lg:px-6 
+          lg:text-lg
+
+        `}
         type="submit"
       >
         Send
@@ -104,7 +137,7 @@ export default function Form() {
         >
           <FaTelegramPlane />
         </span>
-      </Button>
+      </button>
     </form>
   );
 }

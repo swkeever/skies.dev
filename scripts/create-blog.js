@@ -6,6 +6,7 @@ const https = require('https');
 const slugger = require('github-slugger');
 const chalk = require('chalk');
 const blogCategories = require('../src/utils/blog-categories');
+const blogTags = require('../src/utils/blog-tags');
 
 const nonEmpty = (input) => input !== '';
 
@@ -77,10 +78,10 @@ function toTitleCase(input) {
 function generateFrontmatter(answers) {
   let frontmatter = '---\n';
   for (const [key, value] of Object.entries(answers)) {
-    if (key === 'keywords') {
-      frontmatter += 'keywords:\n';
-      for (const keyword of value) {
-        frontmatter += `  - ${keyword}\n`;
+    if (['keywords', 'tags'].includes(key)) {
+      frontmatter += `${key}:\n`;
+      for (const x of value) {
+        frontmatter += `  - ${x}\n`;
       }
     } else if (key === 'description') {
       frontmatter += `description:\n  ${value}\n`;
@@ -146,6 +147,14 @@ inquirer
         .split(',')
         .map((s) => s.trim())
         .filter((s) => !!s),
+      validate: (input) => input.length > 0,
+    },
+    {
+      type: 'checkbox',
+      name: 'tags',
+      message: 'Select tags for market segmentation',
+      choices: blogTags.map(({ name }) => ({ name })),
+      loop: false,
       validate: (input) => input.length > 0,
     },
     {

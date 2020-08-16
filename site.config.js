@@ -1,7 +1,7 @@
 module.exports = {
-  siteTitle: 'Sean Keever', // Navigation and Site Title
-  siteTitleAlt: "Sean Keever's personal website", // Alternative Site title for SEO
-  siteTitleShort: 'skies', // short_name for manifest
+  siteTitle: 'Skies Software Engineering Blog by Sean Keever', // Navigation and Site Title
+  siteTitleAlt: 'Skies Software Engineering Blog', // Alternative Site title for SEO
+  siteTitleShort: 'Skies', // short_name for manifest
   siteUrl: process.env.ROOT_URL || 'https://skies.dev', // Domain of your site. No trailing slash!
   lang: 'en', // Language Tag on <html> element
   pathPrefix: '/',
