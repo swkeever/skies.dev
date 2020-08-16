@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { setInterval, clearInterval } from 'timers';
 import { globalStyles } from '../styles';
 import blogTags from '../utils/blog-tags';
+import useTypeWriter from '../hooks/use-typewriter';
 
 const colors = {
   primary: {
@@ -59,12 +61,19 @@ const colors = {
   },
 };
 
+const starters = [
+  'topics you select',
+  'topics you care about',
+  'topics you enjoy',
+];
+
 type PropTypes = {
   color: 'primary | neutral' | 'neutralSoft';
   tags?: string[];
   showTopics?: boolean;
   copy?: string;
 };
+let index = 0;
 
 export default function Newsletter({
   color,
@@ -74,6 +83,33 @@ export default function Newsletter({
 }: PropTypes) {
   const [status, setStatus] = useState(null);
   const [selected, setSelected] = useState(tags);
+  const intervalRef = useRef({});
+
+  const [magicName, setMagicName] = useState(
+    selected.length ? selected[0] : starters[0],
+  );
+  const topic = useTypeWriter(magicName);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      let nextName;
+      if (selected.length) {
+        const currentName = selected[index];
+        nextName = currentName;
+        while (currentName === nextName) {
+          index = Math.floor(Math.random() * selected.length);
+          nextName = selected[index];
+        }
+      } else {
+        index = (index + 1) % starters.length;
+        nextName = starters[index];
+      }
+      setMagicName(nextName);
+    }, 3500);
+    return function clear() {
+      clearInterval(intervalRef.current);
+    };
+  }, [magicName, selected]);
 
   const FORM_ID = '1598476';
   const FORM_URL = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
@@ -108,6 +144,7 @@ export default function Newsletter({
 
   const styles = colors[color];
   const h3Styles = `text-xl font-light mb-2 ${globalStyles.transitions}`;
+
   return (
     <section className={`${styles.section}  ${globalStyles.transitions} `}>
       <div className="max-w-screen-xl mx-auto w-full relative">
@@ -230,7 +267,9 @@ export default function Newsletter({
             <section>
               {!showTopics ? null : (
                 <h3 className={`${styles.h3} ${h3Styles}`}>
-                  Get the content you want by email
+                  Get an email whenever I post about
+                  {' '}
+                  <span className="font-semibold">{topic}</span>
                 </h3>
               )}
 
