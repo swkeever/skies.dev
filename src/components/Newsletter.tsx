@@ -13,6 +13,7 @@ const colors = {
     selectAll: 'text-onPrimary hover:bg-primaryBold',
     p: 'text-onPrimary',
     h3: 'text-onPrimary',
+    typewriter: '',
     tag: {
       unchecked: 'bg-primaryBgSoft text-onPrimaryBgSoft hover:bg-primaryBg',
       checked:
@@ -27,6 +28,7 @@ const colors = {
     selectAll: 'text-onPrimaryBg hover:bg-primaryBgSoft',
     p: 'text-onPrimaryBgSoft',
     h3: 'text-onPrimaryBgSoft',
+    typewriter: 'text-onPrimaryBgSofter',
     tag: {
       unchecked: 'bg-neutralBg text-onPrimaryBgSoft hover:bg-primaryBgSoft',
       checked: 'bg-primary text-onPrimary hover:bg-primary',
@@ -40,6 +42,7 @@ const colors = {
     selectAll: 'text-onNeutralBg hover:bg-neutralBgSoft',
     p: 'text-neutralSoft',
     h3: 'text-onNeutralBgSoft',
+    typewriter: 'text-onNeutralBg',
     tag: {
       unchecked: 'bg-primaryBg text-onPrimaryBgSoft hover:bg-primaryBgSoft',
       checked: 'bg-primaryBold text-onPrimary hover:bg-primary',
@@ -54,18 +57,13 @@ const colors = {
     selectAll: '',
     p: 'text-onPrimaryBgSoft',
     h3: '',
+    typewriter: '',
     tag: {
       unchecked: 'bg-primaryBgSoft text-onPrimaryBgSoft',
       checked: '',
     },
   },
 };
-
-const starters = [
-  'topics you select',
-  'topics you care about',
-  'topics you enjoy',
-];
 
 type PropTypes = {
   color: 'primary | neutral' | 'neutralSoft';
@@ -83,33 +81,24 @@ export default function Newsletter({
 }: PropTypes) {
   const [status, setStatus] = useState(null);
   const [selected, setSelected] = useState(tags);
-  const intervalRef = useRef({});
+  const intervalRef = useRef(null);
 
-  const [magicName, setMagicName] = useState(
-    selected.length ? selected[0] : starters[0],
-  );
+  const [magicName, setMagicName] = useState('Software Engineering');
   const topic = useTypeWriter(magicName);
+  const allTags = blogTags.map(({ name }) => name);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      let nextName;
-      if (selected.length) {
-        const currentName = selected[index];
-        nextName = currentName;
-        while (currentName === nextName) {
-          index = Math.floor(Math.random() * selected.length);
-          nextName = selected[index];
-        }
-      } else {
-        index = (index + 1) % starters.length;
-        nextName = starters[index];
+      const currentName = allTags[index];
+      while (currentName === allTags[index]) {
+        index = Math.floor(Math.random() * allTags.length);
       }
-      setMagicName(nextName);
+      setMagicName(allTags[index]);
     }, 3500);
     return function clear() {
       clearInterval(intervalRef.current);
     };
-  }, [magicName, selected]);
+  }, [magicName]);
 
   const FORM_ID = '1598476';
   const FORM_URL = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
@@ -140,10 +129,8 @@ export default function Newsletter({
     }
   };
 
-  const allTags = blogTags.map(({ name }) => name);
-
   const styles = colors[color];
-  const h3Styles = `text-xl font-light mb-2 ${globalStyles.transitions}`;
+  const h3Styles = `md:text-xl font-light mb-2 overflow-hidden whitespace-no-wrap ${globalStyles.transitions}`;
 
   return (
     <section className={`${styles.section}  ${globalStyles.transitions} `}>
@@ -191,14 +178,13 @@ export default function Newsletter({
                   const tagId = id.toString();
                   const formId = `tag-4516-${tagId}`;
                   return (
-                    <li>
+                    <li key={tagId}>
                       <label htmlFor={formId}>
                         <input
                           className="hidden"
-                          key={tagId}
                           id={formId}
                           type="checkbox"
-                          onClick={() => {
+                          onChange={() => {
                             if (selected.includes(name)) {
                               setSelected(selected.filter((t) => t !== name));
                             } else {
@@ -267,9 +253,15 @@ export default function Newsletter({
             <section>
               {!showTopics ? null : (
                 <h3 className={`${styles.h3} ${h3Styles}`}>
-                  Get an email whenever I post about
+                  Get notified when I post about
                   {' '}
-                  <span className="font-semibold">{topic}</span>
+                  <span
+                    className={`
+                  ${styles.typewriter}
+                  font-semibold `}
+                  >
+                    {topic}
+                  </span>
                 </h3>
               )}
 
@@ -282,7 +274,7 @@ export default function Newsletter({
               appearance-none 
               w-full 
               px-5 py-3 
-              border border-primaryBgSoft
+              border border-primaryBgSofter
               text-base leading-6 
               rounded-full 
               
@@ -290,7 +282,7 @@ export default function Newsletter({
               bg-neutralBg 
               placeholder-neutralSoft 
               ${globalStyles.outline} 
-              focus:border-primarySoft 
+              focus:border-primaryBgSofter
               ${globalStyles.transitions} 
               `}
                 placeholder="Enter your email"

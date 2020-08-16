@@ -51,6 +51,7 @@ module.exports = {
         // backgrounds
         primaryBg: 'var(--color-primaryBg)',
         primaryBgSoft: 'var(--color-primaryBgSoft)',
+        primaryBgSofter: 'var(--color-primaryBgSofter)',
 
         neutralBg: 'var(--color-neutralBg)',
         neutralBgSoft: 'var(--color-neutralBgSoft)',

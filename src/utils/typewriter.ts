@@ -70,6 +70,6 @@ export default class TypeWriter {
 
   public rd(): number {
     const r = Math.random();
-    return r > 0.1 || r < 0.07 ? this.rd() : r * 750;
+    return r > 0.1 || r < 0.07 ? this.rd() : r * 650;
   }
 }

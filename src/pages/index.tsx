@@ -339,11 +339,7 @@ export default function BlogsPage() {
           </div>
         )}
       </section>
-      <Newsletter
-        tags={['Tailwind CSS', 'CSS', 'React']}
-        showTopics
-        color="neutral"
-      />
+      <Newsletter showTopics color="neutral" />
     </>
   );
 }

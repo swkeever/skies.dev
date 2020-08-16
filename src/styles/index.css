@@ -63,6 +63,7 @@
   --color-neutralBgSofter: var(--color-neutral-300);
   --color-primaryBg: var(--color-primary-100);
   --color-primaryBgSoft: var(--color-primary-200);
+  --color-primaryBgSofter: var(--color-primary-300);
   --color-footerBg: var(--color-neutral-800);
 
   /* text */
@@ -123,6 +124,7 @@
 
   --color-primaryBg: var(--color-primary-900);
   --color-primaryBgSoft: var(--color-primary-900);
+  --color-primaryBgSofter: var(--color-primary-800);
 
   --color-footerBg: var(--color-neutral-800);
 
