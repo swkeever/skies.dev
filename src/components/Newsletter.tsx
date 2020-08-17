@@ -80,7 +80,6 @@ export default function Newsletter({
   showTopics = false,
   copy = 'Get articles straight to your inbox',
 }: PropTypes) {
-  const [status, setStatus] = useState(null);
   const [selected, setSelected] = useState(tags);
   const intervalRef = useRef(null);
   const alert = useAlert();
@@ -129,7 +128,6 @@ export default function Newsletter({
         alert.show(message, {
           type: 'success',
         });
-        setStatus('SUCCESS');
       } else {
         const message = `
         A ${response.status} occurred. Try again?
@@ -137,10 +135,14 @@ export default function Newsletter({
         alert.show(message, {
           type: 'error',
         });
-        setStatus('ERROR');
       }
     } catch (err) {
-      setStatus('ERROR');
+      const message = `
+      An error occurred: ${err.message}
+      `;
+      alert.show(message, {
+        type: 'error',
+      });
     }
   };
 
@@ -335,10 +337,6 @@ export default function Newsletter({
               </p>
             </section>
           </form>
-
-          {/* TODO: update when we have alerts */}
-          {status === 'SUCCESS' && <p />}
-          {status === 'ERROR' && <p>Oops, try again.</p>}
         </div>
       </div>
     </section>
