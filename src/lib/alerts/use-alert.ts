@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import AlertContext from './AlertContext';
-import { AlertClient } from './AlertProvider';
+import { AlertClient } from './alerts';
 
 /**
  * Returns a reference to perform alerts.
@@ -13,6 +13,5 @@ import { AlertClient } from './AlertProvider';
  *   - in an onClick callback from a button click
  */
 export default function useAlert(): AlertClient {
-  const alert = useContext(AlertContext);
-  return alert;
+  return useContext(AlertContext);
 }

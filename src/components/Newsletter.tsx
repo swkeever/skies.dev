@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { setInterval, clearInterval } from 'timers';
-import { globalStyles } from '../styles';
-import blogTags from '../utils/blog-tags';
-import useTypeWriter from '../hooks/use-typewriter';
-import useAlert from '../lib/alerts/use-alert';
+import useAlert from '@lib/alerts/use-alert';
+import { globalStyles } from '@styles/index.js';
+import blogTags from '@utils/blog-tags';
+import useTypeWriter from '@hooks/use-typewriter';
 
 const colors = {
   primary: {
@@ -126,7 +126,7 @@ export default function Newsletter({
         Check your spam if you don't see it.
         `;
         alert.show(message, {
-          duration: 10000,
+          durationSeconds: 10,
           type: 'success',
         });
       } else {
@@ -134,7 +134,7 @@ export default function Newsletter({
         A ${response.status} occurred. Try again?
         `;
         alert.show(message, {
-          duration: 8000,
+          durationSeconds: 8,
           type: 'error',
         });
       }
@@ -143,7 +143,7 @@ export default function Newsletter({
       An error occurred: ${err.message}
       `;
       alert.show(message, {
-        duration: 8000,
+        durationSeconds: 8,
         type: 'error',
       });
     }
@@ -263,9 +263,9 @@ export default function Newsletter({
                   }
                   // // used for manual testing
                   // alert.show('You clicked it!', {
-                  //   // duration: 4000,
+                  //   durationSeconds: 4,
                   //   type: 'info',
-                  // })
+                  // });
                 }}
               >
                 {selected.length === allTags.length
