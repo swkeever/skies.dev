@@ -1,5 +1,5 @@
 type AlertOptions = {
-  duration?: number;
+  durationSeconds?: number;
   type?: 'success' | 'info' | 'warning' | 'error';
 };
 

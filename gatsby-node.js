@@ -77,6 +77,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         '@pages': path.resolve(__dirname, 'src/pages'),
         '@templates': path.resolve(__dirname, 'src/templates'),
         '@utils': path.resolve(__dirname, 'src/utils'),
+        '@hooks': path.resolve(__dirname, 'src/hooks'),
+        '@styles': path.resolve(__dirname, 'src/styles'),
+        '@assets': path.resolve(__dirname, 'assets'),
       },
     },
   });

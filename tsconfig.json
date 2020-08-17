@@ -1,0 +1,29 @@
+{
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "classic",
+    "lib": ["dom", "es2017"],
+    // "allowJs": true,
+    // "checkJs": true,
+    "jsx": "react",
+    "strict": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@lib/*": ["./src/lib/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@templates/*": ["./src/templates/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./assets/*"]
+    }
+  }
+}

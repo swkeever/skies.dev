@@ -7,27 +7,22 @@ import {
 import AlertTemplate from './AlertTemplate';
 
 const defaultOptions: AlertOptions = {
-  duration: undefined,
+  durationSeconds: undefined,
   type: 'info',
 };
-
-let uuid = 0;
 
 export default function AlertProvider({ children }: { children: ReactNode }) {
   const [alerts, setAlerts] = useState<Alert[]>([]);
 
   const show: ShowFunction = (message, options = {}) => {
-    uuid += 1;
-    setAlerts(
-      alerts.concat({
-        id: uuid,
-        message,
-        options: {
-          ...defaultOptions,
-          ...options,
-        },
-      }),
-    );
+    setAlerts((as) => as.concat({
+      id: Date.now(),
+      message,
+      options: {
+        ...defaultOptions,
+        ...options,
+      },
+    }));
   };
 
   const remove: RemoveFunction = (alert) => {
