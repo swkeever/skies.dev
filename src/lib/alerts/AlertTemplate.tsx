@@ -46,14 +46,9 @@ const colors = {
 type PropTypes = {
   alert: Alert;
   removeAlert: RemoveFunction;
-  index: number;
 };
 
-export default function AlertTemplate({
-  alert,
-  removeAlert,
-  index,
-}: PropTypes) {
+export default function AlertTemplate({ alert, removeAlert }: PropTypes) {
   const onDelete = () => removeAlert(alert);
 
   const styles = colors[alert.options.type];
@@ -67,15 +62,10 @@ export default function AlertTemplate({
 
   return (
     <div
-      key={alert.id}
-      style={{
-        top: `${index * 60 + 50}px`,
-      }}
-      className={`fixed 
-      z-50 
+      className={` 
       w-screen 
       md:w-96 
-      md:right-1 px-2 shadow-2xl
+       px-2 shadow-2xl
       ${globalStyles.transitions}
       `}
     >
