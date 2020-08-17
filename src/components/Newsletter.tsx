@@ -146,9 +146,6 @@ export default function Newsletter({
     }
   };
 
-  // used for testing alerts manually
-  // useEffect(() => alert.show('hello'), [])
-
   const styles = colors[color];
   const h3Styles = `md:text-xl font-light mb-2 overflow-hidden whitespace-no-wrap ${globalStyles.transitions}`;
 
@@ -261,6 +258,11 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
+                  // // used for manual testing
+                  // alert.show('Hello Mary', {
+                  //   duration: 4000,
+                  //   type: 'error',
+                  // })
                 }}
               >
                 {selected.length === allTags.length
