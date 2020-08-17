@@ -126,6 +126,7 @@ export default function Newsletter({
         Check your spam if you don't see it.
         `;
         alert.show(message, {
+          duration: 10000,
           type: 'success',
         });
       } else {
@@ -133,6 +134,7 @@ export default function Newsletter({
         A ${response.status} occurred. Try again?
         `;
         alert.show(message, {
+          duration: 8000,
           type: 'error',
         });
       }
@@ -141,6 +143,7 @@ export default function Newsletter({
       An error occurred: ${err.message}
       `;
       alert.show(message, {
+        duration: 8000,
         type: 'error',
       });
     }
@@ -259,9 +262,9 @@ export default function Newsletter({
                     setSelected(allTags);
                   }
                   // // used for manual testing
-                  // alert.show('Hello Mary', {
-                  //   duration: 4000,
-                  //   type: 'error',
+                  // alert.show('You clicked it!', {
+                  //   // duration: 4000,
+                  //   type: 'info',
                   // })
                 }}
               >

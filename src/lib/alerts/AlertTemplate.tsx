@@ -10,12 +10,12 @@ import { Alert, RemoveFunction } from './alerts';
 
 const colors = {
   info: {
-    bg: 'bg-primaryBg border-primary',
-    text: 'text-onPrimaryBgSoft',
+    bg: 'bg-infoBg border-info',
+    text: 'text-onInfoBgSoft',
     Icon: ({ className }) => (
-      <FaInfoCircle className={`${className} text-primary`} />
+      <FaInfoCircle className={`${className} text-info`} />
     ),
-    button: 'text-primaryBold hover:bg-primaryBgSoft focus:bg-primaryBgSoft',
+    button: 'text-infoBold hover:bg-infoBgSoft focus:bg-infoBgSoft',
   },
   success: {
     bg: 'bg-successBg border-success',
@@ -62,14 +62,24 @@ export default function AlertTemplate({ alert, removeAlert }: PropTypes) {
 
   return (
     <div
+      role="alert"
       className={` 
       w-screen 
-      md:w-96 
-       px-2 shadow-2xl
+      md:max-w-lg xl:max-w-xl
+      md:w-screen
+      px-2 
       ${globalStyles.transitions}
       `}
     >
-      <div className={`${styles.bg} border-l-4 rounded-sm p-4`}>
+      <div
+        className={`
+        ${styles.bg} 
+        shadow-2xl
+        border-l-4 
+        rounded-sm 
+        p-4
+        `}
+      >
         <div className="flex">
           <div className="flex-shrink-0">
             <styles.Icon className="h-5 w-5" />
