@@ -28,16 +28,25 @@ module.exports = {
         neutralSoft: 'var(--color-neutralSoft)',
 
         success: 'var(--color-success)',
+        successBold: 'var(--color-successBold)',
         successBg: 'var(--color-successBg)',
         successBgSoft: 'var(--color-successBgSoft)',
         onSuccessBg: 'var(--color-onSuccessBg)',
         onSuccessBgSoft: 'var(--color-onSuccessBgSoft)',
 
         danger: 'var(--color-danger)',
+        dangerBold: 'var(--color-dangerBold)',
         dangerBg: 'var(--color-dangerBg)',
         dangerBgSoft: 'var(--color-dangerBgSoft)',
         onDangerBg: 'var(--color-onDangerBg)',
         onDangerBgSoft: 'var(--color-onDangerBgSoft)',
+
+        warning: 'var(--color-warning)',
+        warningBold: 'var(--color-warningBold)',
+        warningBg: 'var(--color-warningBg)',
+        warningBgSoft: 'var(--color-warningBgSoft)',
+        onWarningBg: 'var(--color-onWarningBg)',
+        onWarningBgSoft: 'var(--color-onWarningBgSoft)',
 
         cat0: 'var(--color-cat0)',
         onCat0: 'var(--color-onCat0)',

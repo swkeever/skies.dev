@@ -45,17 +45,25 @@
   --color-onCat3: theme('colors.red.600');
 
   --color-success: theme('colors.green.400');
-  --color-danger: theme('colors.red.400');
-
+  --color-successBold: theme('colors.green.500');
   --color-successBg: theme('colors.green.50');
-  --color-successBgSoft: theme('colors.green.200');
+  --color-successBgSoft: theme('colors.green.100');
   --color-onSuccessBg: theme('colors.green.800');
   --color-onSuccessBgSoft: theme('colors.green.600');
 
+  --color-danger: theme('colors.red.400');
+  --color-dangerBold: theme('colors.red.500');
   --color-dangerBg: theme('colors.red.50');
-  --color-dangerBgSoft: theme('colors.red.200');
+  --color-dangerBgSoft: theme('colors.red.100');
   --color-onDangerBg: theme('colors.red.800');
   --color-onDangerBgSoft: theme('colors.red.600');
+
+  --color-warning: theme('colors.yellow.400');
+  --color-warningBold: theme('colors.yellow.500');
+  --color-warningBg: theme('colors.yellow.50');
+  --color-warningBgSoft: theme('colors.yellow.100');
+  --color-onWarningBg: theme('colors.yellow.800');
+  --color-onWarningBgSoft: theme('colors.yellow.600');
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-100);
@@ -104,18 +112,26 @@
   --color-cat3: theme('colors.red.900');
   --color-onCat3: theme('colors.red.300');
 
-  --color-success: theme('colors.green.800');
-  --color-danger: theme('colors.red.800');
-
-  --color-successBg: theme('colors.green.900');
-  --color-successBgSoft: theme('colors.green.800');
+  --color-success: theme('colors.green.500');
+  --color-successBold: theme('colors.green.400');
+  --color-successBg: theme('colors.green.800');
+  --color-successBgSoft: theme('colors.green.700');
   --color-onSuccessBg: theme('colors.green.200');
-  --color-onSuccessBgSoft: theme('colors.green.400');
+  --color-onSuccessBgSoft: theme('colors.green.300');
 
-  --color-dangerBg: theme('colors.red.900');
-  --color-dangerBgSoft: theme('colors.red.800');
+  --color-danger: theme('colors.red.500');
+  --color-dangerBold: theme('colors.red.400');
+  --color-dangerBg: theme('colors.red.800');
+  --color-dangerBgSoft: theme('colors.red.700');
   --color-onDangerBg: theme('colors.red.200');
-  --color-onDangerBgSoft: theme('colors.red.400');
+  --color-onDangerBgSoft: theme('colors.red.300');
+
+  --color-warning: theme('colors.yellow.400');
+  --color-warningBold: theme('colors.yellow.300');
+  --color-warningBg: theme('colors.yellow.700');
+  --color-warningBgSoft: theme('colors.yellow.600');
+  --color-onWarningBg: theme('colors.yellow.100');
+  --color-onWarningBgSoft: theme('colors.yellow.200');
 
   /* backgrounds */
   --color-neutralBg: var(--color-neutral-800);
@@ -302,6 +318,20 @@ article h3 {
     margin-top: theme('spacing.1');
   }
 } */
+.alert-enter {
+  @apply opacity-0;
+}
 
+.alert-enter-active {
+  @apply opacity-100 transition-opacity duration-500 ease-in;
+}
+
+.alert-exit {
+  @apply opacity-100;
+}
+
+.alert-exit-active {
+  @apply opacity-0 transition-opacity duration-500 ease-in;
+}
 
 @tailwind utilities;
