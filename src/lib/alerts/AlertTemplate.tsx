@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import {
   FaCheckCircle,
   FaExclamationTriangle,
-  FaRegTimesCircle,
   FaInfoCircle,
 } from 'react-icons/fa';
-import { IoMdClose } from 'react-icons/io';
+import { IoMdClose, IoIosCloseCircle } from 'react-icons/io';
 import { globalStyles } from '../../styles';
 import { Alert, RemoveFunction } from './alerts';
 
@@ -38,7 +37,7 @@ const colors = {
     bg: 'bg-dangerBg border-danger',
     text: 'text-onDangerBgSoft',
     Icon: ({ className }) => (
-      <FaRegTimesCircle className={`${className} text-danger`} />
+      <IoIosCloseCircle className={`${className} text-danger`} />
     ),
     button: 'text-dangerBold hover:bg-dangerBgSoft focus:bg-dangerBgSoft',
   },
