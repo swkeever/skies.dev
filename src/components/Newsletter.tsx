@@ -153,15 +153,14 @@ export default function Newsletter({
         <div
           className={`
           mx-auto max-w-2xl
-           sm:px-6 lg:px-8
-          
-          py-12 px-4 sm:px-6 lg:py-20 lg:px-8
+           sm:px-6 
+          py-12 px-4 lg:py-20 lg:px-8
         `}
         >
           <h2
             className={`text-3xl leading-9 font-extrabold tracking-tight  sm:text-4xl sm:leading-10
             ${globalStyles.transitions}
-        ${styles.h2}
+            ${styles.h2}
         `}
           >
             {copy}
@@ -257,7 +256,6 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
-                  alert.show('You pressed it!', { type: 'warning' });
                 }}
               >
                 {selected.length === allTags.length
