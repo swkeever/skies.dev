@@ -27,6 +27,13 @@ module.exports = {
         neutralBold: 'var(--color-neutralBold)',
         neutralSoft: 'var(--color-neutralSoft)',
 
+        info: 'var(--color-info)',
+        infoBold: 'var(--color-infoBold)',
+        infoBg: 'var(--color-infoBg)',
+        infoBgSoft: 'var(--color-infoBgSoft)',
+        onInfoBg: 'var(--color-onInfoBg)',
+        onInfoBgSoft: 'var(--color-onInfoBgSoft)',
+
         success: 'var(--color-success)',
         successBold: 'var(--color-successBold)',
         successBg: 'var(--color-successBg)',

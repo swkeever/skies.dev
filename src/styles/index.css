@@ -44,6 +44,13 @@
   --color-cat3: theme('colors.red.100');
   --color-onCat3: theme('colors.red.600');
 
+  --color-info: theme('colors.blue.400');
+  --color-infoBold: theme('colors.blue.500');
+  --color-infoBg: theme('colors.blue.50');
+  --color-infoBgSoft: theme('colors.blue.100');
+  --color-onInfoBg: theme('colors.blue.800');
+  --color-onInfoBgSoft: theme('colors.blue.600');
+
   --color-success: theme('colors.green.400');
   --color-successBold: theme('colors.green.500');
   --color-successBg: theme('colors.green.50');
@@ -111,6 +118,13 @@
   --color-onCat2: theme('colors.green.300');
   --color-cat3: theme('colors.red.900');
   --color-onCat3: theme('colors.red.300');
+
+  --color-info: theme('colors.blue.500');
+  --color-infoBold: theme('colors.blue.400');
+  --color-infoBg: theme('colors.blue.800');
+  --color-infoBgSoft: theme('colors.blue.700');
+  --color-onInfoBg: theme('colors.blue.200');
+  --color-onInfoBgSoft: theme('colors.blue.300');
 
   --color-success: theme('colors.green.500');
   --color-successBold: theme('colors.green.400');
@@ -323,7 +337,7 @@ article h3 {
 }
 
 .alert-enter-active {
-  @apply opacity-100 transition-opacity duration-500 ease-in;
+  @apply opacity-100 transition-all duration-200 ease-out;
 }
 
 .alert-exit {
@@ -331,7 +345,7 @@ article h3 {
 }
 
 .alert-exit-active {
-  @apply opacity-0 transition-opacity duration-500 ease-in;
+  @apply opacity-0 transition-all duration-200 ease-in;
 }
 
 @tailwind utilities;
