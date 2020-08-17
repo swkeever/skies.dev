@@ -9,6 +9,7 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { globalStyles } from '../styles';
+import AlertProvider from '../lib/alerts/AlertProvider';
 
 export const LayoutContext = React.createContext({});
 
@@ -36,17 +37,18 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>
         <div
           className={`
-        ${themeClass}
-        ${extraClasses}
-        min-h-screen
-        flex
-        flex-col
-        justify-between
-        `}
+              ${themeClass}
+              ${extraClasses}
+              min-h-screen
+              flex
+              flex-col
+              justify-between
+            `}
         >
           <Header />
-          <main
-            className={`
+          <AlertProvider>
+            <main
+              className={`
             mb-0
             lg:mt-8
             flex-grow
@@ -55,9 +57,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
             flex
             flex-col
           `}
-          >
-            {children}
-          </main>
+            >
+              {children}
+            </main>
+          </AlertProvider>
+
           <Footer />
         </div>
       </LayoutContext.Provider>

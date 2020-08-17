@@ -3,6 +3,7 @@ import { setInterval, clearInterval } from 'timers';
 import { globalStyles } from '../styles';
 import blogTags from '../utils/blog-tags';
 import useTypeWriter from '../hooks/use-typewriter';
+import useAlert from '../lib/alerts/use-alert';
 
 const colors = {
   primary: {
@@ -82,6 +83,7 @@ export default function Newsletter({
   const [status, setStatus] = useState(null);
   const [selected, setSelected] = useState(tags);
   const intervalRef = useRef(null);
+  const alert = useAlert();
 
   const [magicName, setMagicName] = useState('Software Engineering');
   const topic = useTypeWriter(magicName);
@@ -119,11 +121,24 @@ export default function Newsletter({
       const json = await response.json();
 
       if (json.status === 'success') {
-        setStatus('SUCCESS');
-        return;
-      }
+        const message = `
+        Please verify your email to confirm your subscription.
 
-      setStatus('ERROR');
+        Check your spam if you don't see it.
+        `;
+        alert.show(message, {
+          type: 'success',
+        });
+        setStatus('SUCCESS');
+      } else {
+        const message = `
+        A ${response.status} occurred. Try again?
+        `;
+        alert.show(message, {
+          type: 'error',
+        });
+        setStatus('ERROR');
+      }
     } catch (err) {
       setStatus('ERROR');
     }
@@ -242,6 +257,7 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
+                  alert.show('You pressed it!', { type: 'warning' });
                 }}
               >
                 {selected.length === allTags.length
@@ -267,6 +283,7 @@ export default function Newsletter({
               )}
 
               <input
+                autoComplete="off"
                 aria-label="Email address"
                 type="email"
                 name="email_address"
@@ -322,12 +339,7 @@ export default function Newsletter({
           </form>
 
           {/* TODO: update when we have alerts */}
-          {status === 'SUCCESS' && (
-            <p>
-              Please go confirm your subscription! Check your spam if you do not
-              see it.
-            </p>
-          )}
+          {status === 'SUCCESS' && <p />}
           {status === 'ERROR' && <p>Oops, try again.</p>}
         </div>
       </div>
