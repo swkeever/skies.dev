@@ -22,7 +22,6 @@ const inputStyles = `
   border border-neutralBgSofter
   ${globalStyles.outline}
   ${globalStyles.transitions}
-  rounded
   w-full
   rounded-md
   px-2 
@@ -50,7 +49,7 @@ export default function Form() {
       `}
     >
       <input type="text" name="_gotcha" className="hidden" />
-      <div className="flex space-x-5">
+      <div className="grid grid-cols-2 gap-5">
         <label htmlFor="name">
           <LabelSpan label="Name" />
           <input
