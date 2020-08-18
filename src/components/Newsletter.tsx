@@ -261,11 +261,6 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
-                  // // used for manual testing
-                  // alert.show('You clicked it!', {
-                  //   durationSeconds: 4,
-                  //   type: 'info',
-                  // });
                 }}
               >
                 {selected.length === allTags.length

@@ -5,8 +5,8 @@ import { AlertClient } from './alerts';
 /**
  * Returns a reference to perform alerts.
  *
- * To avoid infinite loops, clients must call this function in a code path
- * that runs once, not every time the component renders.
+ * To avoid infinite loops, clients must call the alert API in a code path
+ * that runs once, not every time the component re-renders.
  *
  * Examples of valid places to do an alert:
  *   - in a useEffect block with an empty dependency array
