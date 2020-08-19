@@ -13,6 +13,10 @@ module.exports = {
     './content/**/*.md',
   ],
   theme: {
+    gradientColorStops: () => ({
+      primary: 'var(--color-primary)',
+      primaryBold: 'var(--color-primaryBold)',
+    }),
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
