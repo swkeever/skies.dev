@@ -106,6 +106,18 @@ export default function Newsletter({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (selected.length === 0) {
+      const message = `
+      You must select at least one topic to subscribe to. Otherwise, you won't get any emails! 🙈
+      `;
+      alert.show(message, {
+        type: 'warning',
+        durationSeconds: 10,
+      });
+      return;
+    }
+
     const data = new FormData(e.target);
 
     try {
@@ -126,7 +138,6 @@ export default function Newsletter({
         Check your spam if you don't see it.
         `;
         alert.show(message, {
-          durationSeconds: 10,
           type: 'success',
         });
       } else {
@@ -134,7 +145,6 @@ export default function Newsletter({
         A ${response.status} occurred. Try again?
         `;
         alert.show(message, {
-          durationSeconds: 8,
           type: 'error',
         });
       }
@@ -143,7 +153,6 @@ export default function Newsletter({
       An error occurred: ${err.message}
       `;
       alert.show(message, {
-        durationSeconds: 8,
         type: 'error',
       });
     }

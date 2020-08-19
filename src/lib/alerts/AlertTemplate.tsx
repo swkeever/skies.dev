@@ -54,10 +54,11 @@ export default function AlertTemplate({ alert, removeAlert }: PropTypes) {
   const styles = colors[alert.options.type];
 
   useEffect(() => {
-    const timer = alert.options.durationSeconds
-      ? setTimeout(onDelete, alert.options.durationSeconds * 1000)
-      : null;
-    return () => timer && clearTimeout(timer);
+    if (alert.options.durationSeconds) {
+      const timer = setTimeout(onDelete, alert.options.durationSeconds * 1000);
+      return () => clearTimeout(timer);
+    }
+    return () => {};
   }, []);
 
   return (

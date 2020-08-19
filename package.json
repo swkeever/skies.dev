@@ -82,7 +82,7 @@
     "lint-staged": "^10.2.9",
     "prettier": "2.0.5",
     "react-test-renderer": "^16.13.1",
-    "tailwindcss": "^1.7.1",
+    "tailwindcss": "^1.7.2",
     "typescript": "^3.9.6",
     "typescript-eslint": "0.0.1-alpha.0"
   },
