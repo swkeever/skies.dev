@@ -67,7 +67,7 @@ const colors = {
 };
 
 type PropTypes = {
-  color: 'primary | neutral' | 'neutralSoft' | 'primarySoft';
+  color: 'primary' | 'neutral' | 'neutralSoft' | 'primarySoft';
   tags?: string[];
   showTopics?: boolean;
   copy?: string;

@@ -182,11 +182,7 @@ export default function BlogsPage() {
         `}
       >
         <div className="px-4 max-w-screen-sm mx-auto">
-          <h1
-            className={`
-
-            `}
-          >
+          <h1>
             <span className="sr-only">{siteConfig.siteTitle}</span>
             <Logo className="w-7/12 h-auto mx-auto text-onPrimarySoft fill-current" />
           </h1>
