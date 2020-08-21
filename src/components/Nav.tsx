@@ -6,8 +6,8 @@ import {
   FaSmileBeam,
 } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
+import globalStyles from '@styles/index';
 import routes from '../utils/routes';
-import { globalStyles } from '../styles';
 
 function Item({ route, children }: { route: string; children: ReactNode }) {
   const { pathname } = useLocation();

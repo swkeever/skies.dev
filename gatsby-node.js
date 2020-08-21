@@ -24,7 +24,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 };
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  // Destructure the createPage function from the actions object
+  // De-structure the createPage function from the actions object
   const { createPage } = actions;
 
   const result = await graphql(`

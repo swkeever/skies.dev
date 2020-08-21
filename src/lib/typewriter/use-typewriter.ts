@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import TypeWriter from '../utils/typewriter';
+import TypeWriter from './typewriter';
 
 const writer = new TypeWriter();
 

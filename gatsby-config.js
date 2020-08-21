@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const cssNano = require('cssnano');
 const defaultTheme = require('tailwindcss/defaultTheme');
+const path = require('path');
 const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
@@ -70,6 +71,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        defaultLayouts: {
+          default: path.join(__dirname, './src/templates/markdown-page.tsx'),
+        },
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-vscode',
@@ -186,7 +190,8 @@ module.exports = {
             })),
             query: `
               {
-                allMdx(limit: 25, 
+                allMdx(
+                  limit: 25, 
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   nodes {

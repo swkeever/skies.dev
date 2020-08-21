@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { Link } from '@reach/router';
+import globalStyles from '@styles/index';
 import Learn from '../../assets/learn.svg';
 import Product from '../../assets/product.svg';
 import routes from '../utils/routes';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
-import { globalStyles } from '../styles';
 import Newsletter from '../components/Newsletter';
 
 type SectionProps = {

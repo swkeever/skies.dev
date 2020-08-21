@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import globalStyles from '@styles/index';
 import ThemeToggle from './ThemeToggle';
 import Nav from './Nav';
 import routes from '../utils/routes';
 import Logo from '../../assets/logo.svg';
-import { globalStyles } from '../styles';
 
 export default function Header() {
   return (
