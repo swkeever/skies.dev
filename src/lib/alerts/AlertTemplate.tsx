@@ -5,7 +5,7 @@ import {
   FaInfoCircle,
 } from 'react-icons/fa';
 import { IoMdClose, IoIosCloseCircle } from 'react-icons/io';
-import { globalStyles } from '../../styles';
+import globalStyles from '@styles/index';
 import { Alert, RemoveFunction } from './alerts';
 
 const colors = {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { setInterval, clearInterval } from 'timers';
 import useAlert from '@lib/alerts/use-alert';
-import { globalStyles } from '@styles/index.js';
+import globalStyles from '@styles/index.js';
 import blogTags from '@utils/blog-tags';
-import useTypeWriter from '@hooks/use-typewriter';
+import useTypeWriter from '@lib/typewriter/use-typewriter';
 
 const colors = {
   primary: {
@@ -54,14 +54,14 @@ const colors = {
     section: 'bg-neutralBgSoft',
     h2: 'text-onNeutralBgSoft',
     h2Span: 'text-primaryBold',
-    button: 'text-onPrimary g-primaryBold hover:bg-primary',
-    selectAll: '',
-    p: 'text-onPrimaryBgSoft',
-    h3: '',
-    typewriter: '',
+    button: 'text-onPrimary bg-primaryBold hover:bg-primary',
+    selectAll: 'text-onNeutralBg hover:bg-neutralBgSofter',
+    p: 'text-neutral',
+    h3: 'text-onNeutralBgSoft',
+    typewriter: 'text-onNeutralBg',
     tag: {
-      unchecked: 'bg-primaryBgSoft text-onPrimaryBgSoft',
-      checked: '',
+      unchecked: 'bg-primaryBg text-onPrimaryBgSoft hover:bg-primaryBgSoft',
+      checked: 'bg-primaryBold text-onPrimary hover:bg-primary',
     },
   },
 };

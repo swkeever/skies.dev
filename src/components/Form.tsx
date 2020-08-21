@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa';
-import { globalStyles } from '../styles';
+import globalStyles from '@styles/index';
 
 function LabelSpan({ label }: { label: string }) {
   return (

@@ -2,12 +2,11 @@ import React from 'react';
 import {
   FaGithub, FaLinkedinIn, FaTwitter, FaRss,
 } from 'react-icons/fa';
+import { Link } from '@reach/router';
 import links from '../utils/links';
 import ExternalLink from './ExternalLink';
-import { globalStyles } from '../styles';
+import globalStyles from '../styles';
 import routes from '../utils/routes';
-import Logo from '../../assets/logo.svg';
-import siteConfig from '../../site.config';
 
 export default function Footer() {
   const styles = {
@@ -39,69 +38,64 @@ export default function Footer() {
     },
   ];
 
+  const mainNavLinks = [
+    {
+      to: routes.about,
+      text: 'About',
+    },
+    {
+      to: routes.home,
+      text: 'Blog',
+    },
+    {
+      to: routes.legal.privacyPolicy,
+      text: 'Privacy',
+    },
+  ];
+
   return (
-    <footer
-      className={`
-    ${globalStyles.transitions}
-    bg-footerBg
-    `}
-    >
-      <section
-        className={`
-      max-w-screen-xl
-       space-y-12 md:space-y-0 
-       mx-auto 
-       py-12 px-4 
-       md:flex md:items-center md:justify-between
-       
-       `}
-      >
-        <h2 className="md:order-2">
-          <span className="sr-only ">{siteConfig.siteTitle}</span>
-          <Logo
-            className={`w-64 md:w-48 mx-auto md:mx-0  h-auto text-neutralSoft fill-current
-          ${globalStyles.transitions}
-          `}
-          />
-        </h2>
-
-        <ul className="flex justify-center space-x-6 md:order-3">
-          {socialLinks.map((link) => (
-            <li
-              key={`foot-${link.text}`}
-              className={`
-            text-gray-400 hover:text-gray-500
-            ${globalStyles.transitions}
-            `}
-            >
-              <ExternalLink
-                href={link.to}
+    <footer className={`bg-footerBg ${globalStyles.transitions}`}>
+      <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
+          {mainNavLinks.map((l) => (
+            <div className="px-5 py-2">
+              <Link
+                to={l.to}
                 className={`
-                 inline-block
-              `}
+                text-base leading-6 
+                text-gray-400 hover:text-gray-500
+                ${globalStyles.transitions}
+                `}
               >
-                <span className="sr-only">{link.text}</span>
-                {link.icon}
-              </ExternalLink>
-            </li>
+                {l.text}
+              </Link>
+            </div>
           ))}
-        </ul>
-
-        <p
-          className={`text-center text-base leading-6 text-gray-400 md:order-1 
-        ${globalStyles.transitions}
-        `}
-        >
-          &copy;
-          {' '}
-          {new Date().getFullYear()}
-          {' '}
-          Skies. All rights reserved.
-        </p>
-      </section>
-
-      {/* make room for the mobile navbar */}
-      <div className={`${globalStyles.navbar.height} lg:hidden`} />
+        </nav>
+        <div className="mt-8 flex justify-center space-x-5">
+          {socialLinks.map((l) => (
+            <ExternalLink
+              href={l.to}
+              className={`text-gray-400 hover:text-gray-500
+              ${globalStyles.transitions}
+              `}
+            >
+              <span className="sr-only">{l.text}</span>
+              {l.icon}
+            </ExternalLink>
+          ))}
+        </div>
+        <div className="mt-8">
+          <p className="text-center text-base leading-6 text-gray-400">
+            &copy;
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+            Skies. All rights reserved.
+          </p>
+        </div>
+      </div>
+      <div className="h-16 md:hidden" />
     </footer>
   );
 }

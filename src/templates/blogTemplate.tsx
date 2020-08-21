@@ -14,10 +14,10 @@ import {
   TiSocialFacebookCircular,
   TiSocialTwitterCircular,
 } from 'react-icons/ti';
+import globalStyles from '@styles/index';
 import links from '../utils/links';
 import SEO from '../components/SEO';
 import ExternalLink from '../components/ExternalLink';
-import { globalStyles } from '../styles';
 import TableOfContents from '../components/TableOfContents';
 import shortcodes from '../components/Shortcodes';
 import routes from '../utils/routes';
@@ -148,7 +148,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
   return (
     <>
       <SEO
-        frontmatter={frontmatter}
+        article
         title={frontmatter.title}
         description={frontmatter.description}
         keywords={frontmatter.keywords.concat(frontmatter.tags)}

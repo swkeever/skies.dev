@@ -35,7 +35,7 @@ type SEO = {
     type: string;
   };
   twitter: string;
-  isArticle: boolean;
+  article: boolean;
 };
 
 export default function SEO({
@@ -43,7 +43,7 @@ export default function SEO({
   description,
   image = null,
   imageDims = null,
-  frontmatter = null,
+  article = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   keywords,
 }: {
@@ -54,7 +54,7 @@ export default function SEO({
     width: number;
     height: number;
   };
-  frontmatter?: BlogFrontmatter;
+  article?: boolean;
   keywords: string[];
 }) {
   type QueryData = {
@@ -67,7 +67,6 @@ export default function SEO({
 
   const { site, file }: { site: QueryData } = useStaticQuery(query);
   const { pathname } = useLocation();
-  const article = frontmatter !== null;
 
   const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;
 

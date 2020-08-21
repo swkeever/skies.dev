@@ -1,7 +1,7 @@
 import React from 'react';
 import Slugger from 'github-slugger';
 import { useLocation, Link } from '@reach/router';
-import { globalStyles } from '../styles';
+import globalStyles from '@styles/index';
 import { useActiveHash } from '../hooks/use-active-hash';
 
 type Heading = {

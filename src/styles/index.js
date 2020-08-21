@@ -1,4 +1,4 @@
-export const globalStyles = {
+const globalStyles = {
   colors: {
     primary: '#4299E1',
   },
@@ -8,3 +8,5 @@ export const globalStyles = {
   },
   outline: 'focus:outline-none focus:shadow-outline-blue',
 };
+
+export default globalStyles;

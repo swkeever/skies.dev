@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import globalStyles from '@styles/index';
 import { LayoutContext } from './Layout';
-import { globalStyles } from '../styles';
 
 export default function ThemeToggle() {
   const { lightTheme, setLightTheme } = useContext(LayoutContext);

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
+import globalStyles from '@styles/index';
 import ExternalLink from './ExternalLink';
-import { globalStyles } from '../styles';
 
 const styles = {
   copy: `
@@ -99,6 +99,16 @@ const shortcodes = {
       {...props}
       className={`
      ${styles.mt}
+    `}
+    />
+  ),
+  h1: (props) => (
+    <h1
+      {...props}
+      className={`${styles.header}
+    text-onNeutralBg
+    text-5xl md:text-6xl
+    font-extrabold mt-8 mb-8
     `}
     />
   ),
