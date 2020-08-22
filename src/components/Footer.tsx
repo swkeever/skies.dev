@@ -58,7 +58,7 @@ export default function Footer() {
       <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
           {mainNavLinks.map((l) => (
-            <div className="px-5 py-2">
+            <div key={`footer-${l.text}`} className="px-5 py-2">
               <Link
                 to={l.to}
                 className={`
@@ -75,6 +75,7 @@ export default function Footer() {
         <div className="mt-8 flex justify-center space-x-5">
           {socialLinks.map((l) => (
             <ExternalLink
+              key={`footer-${l.text}`}
               href={l.to}
               className={`text-gray-400 hover:text-gray-500
               ${globalStyles.transitions}

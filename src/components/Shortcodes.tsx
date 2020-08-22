@@ -122,7 +122,7 @@ const shortcodes = {
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-onNeutralBgSoft text-xl md:text-2xl font-semibold ${styles.mt2}`}
+      className={`${styles.header} text-onNeutralBg text-xl md:text-2xl font-semibold ${styles.mt2}`}
     />
   ),
   h4: (props) => (

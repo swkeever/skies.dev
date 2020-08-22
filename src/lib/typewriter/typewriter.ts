@@ -35,11 +35,11 @@ export default class TypeWriter {
    * @memberof TypeWriter
    */
   public typing() {
-    // earsing to last character, start write next word
+    // erasing to last character, start write next word
     if (this.erasing && !this.word) {
       return this.restartTypeWriter();
     }
-    // earsing
+    // erasing
     if (this.erasing && this.word) {
       return this.erase();
     }

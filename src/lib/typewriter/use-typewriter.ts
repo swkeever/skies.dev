@@ -4,7 +4,7 @@ import TypeWriter from './typewriter';
 const writer = new TypeWriter();
 
 export default function useTypeWriter(str: string) {
-  const [word, setWord] = useState<null | string>(null);
+  const [word, setWord] = useState<string>('');
   const intervalRef = useRef<any>({});
   const strRef = useRef<any>({});
 

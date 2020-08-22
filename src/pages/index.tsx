@@ -108,7 +108,7 @@ export default function BlogsPage() {
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
 
   const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
-    const { id, timeToRead, body } = e.node;
+    const { id, timeToRead, rawBody } = e.node;
     const {
       title, description, date, image,
     } = e.node.frontmatter;
@@ -125,7 +125,7 @@ export default function BlogsPage() {
       description,
       date: dateFormat,
       category: categories[e.node.frontmatter.category],
-      body,
+      body: rawBody,
       image: image.childImageSharp.fluid,
     };
   });
