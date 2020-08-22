@@ -72,7 +72,6 @@ export default function AlertTemplate({ alert, removeAlert }: PropTypes) {
     >
       <div
         className={`
-        mx-auto
         ${styles.bg} 
         shadow-2xl
         border-l-4
