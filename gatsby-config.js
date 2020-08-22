@@ -6,6 +6,8 @@ const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
 const routes = require('./src/utils/routes');
+// Google Analytics tracking ID
+const trackingId = 'UA-168956392-1';
 
 module.exports = {
   siteMetadata: {
@@ -15,13 +17,12 @@ module.exports = {
     description: 'A software engineering blog by Sean Keever',
   },
   plugins: [
-    // {
-    //   resolve: 'gatsby-plugin-google-analytics',
-    //   options: {
-    //     trackingId: 'UA-168956392-1',
-    //     respectDNT: true,
-    //   },
-    // },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId,
+      },
+    },
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
