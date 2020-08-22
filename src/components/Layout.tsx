@@ -7,9 +7,9 @@
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import globalStyles from '@styles/index';
+import AlertProvider from '@lib/alerts/AlertProvider';
 import Header from './Header';
 import Footer from './Footer';
-import AlertProvider from '../lib/alerts/AlertProvider';
 
 export const LayoutContext = React.createContext({});
 

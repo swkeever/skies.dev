@@ -4,6 +4,7 @@ import useAlert from '@lib/alerts/use-alert';
 import globalStyles from '@styles/index.js';
 import blogTags from '@utils/blog-tags';
 import useTypeWriter from '@lib/typewriter/use-typewriter';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 const colors = {
   primary: {
@@ -106,6 +107,15 @@ export default function Newsletter({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    trackCustomEvent({
+      // string - required - The object that was interacted with (e.g.video)
+      category: 'Subscribe Button',
+      // string - required - Type of interaction (e.g. 'play')
+      action: 'Click',
+      // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
+      label: 'Newsletter Campaign',
+    });
 
     if (selected.length === 0) {
       const message = `
@@ -270,6 +280,7 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
+                  // alert.show('hello there')
                 }}
               >
                 {selected.length === allTags.length
