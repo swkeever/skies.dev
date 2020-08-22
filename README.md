@@ -13,6 +13,17 @@ To intialize a new blog, I recommend using the `create-blog` CLI.
 npm run create-blog
 ```
 
+**Important!**
+
+The `create-blog` requires access to the Unsplash API. Create a `.env` file in
+the project root and set the following
+
+```bash
+UNSPLASH_ACCESS_KEY=<your-access-key>
+UNSPLASH_SECRET_KEY=<your-secret-key>
+UNSPLASH_API_URL=https://api.unsplash.com
+```
+
 ## Feedback
 
 I appreciate any feedback in the form of
