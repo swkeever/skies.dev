@@ -90,8 +90,8 @@ type PropTypes = {
             fluid: FluidObject;
           };
         };
-        imagePhotographer: string;
-        imageUrl: string;
+        imagePhotographer?: string;
+        imageUrl?: string;
         title: string;
       };
       headings: Heading[];
