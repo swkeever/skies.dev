@@ -6,8 +6,6 @@ const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
 const routes = require('./src/utils/routes');
-// Google Analytics tracking ID
-const trackingId = 'UA-168956392-1';
 
 module.exports = {
   siteMetadata: {
@@ -20,7 +18,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId,
+        trackingId: 'UA-168956392-1',
       },
     },
     {
