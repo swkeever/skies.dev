@@ -280,7 +280,7 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
-                  // alert.show('hello there')
+                  alert.show('hello there');
                 }}
               >
                 {selected.length === allTags.length

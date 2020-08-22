@@ -31,8 +31,8 @@ export default function AlertProvider({ children }: { children: ReactNode }) {
 
   return (
     <AlertContext.Provider value={{ show }}>
-      <div className="fixed left-1/2 transform -translate-x-1/2 top-2 mx-auto lg:top-16 z-50">
-        <TransitionGroup className="flex flex-col space-y-2">
+      <div className="fixed left-1/2 transform -translate-x-1/2 top-2 lg:top-12 z-50">
+        <TransitionGroup className="flex flex-col">
           {alerts.map((alert) => (
             <CSSTransition key={alert.id} timeout={200} classNames="alert">
               <AlertTemplate alert={alert} removeAlert={remove} />
