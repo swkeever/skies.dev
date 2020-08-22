@@ -65,18 +65,17 @@ export default function AlertTemplate({ alert, removeAlert }: PropTypes) {
     <div
       role="alert"
       className={` 
-      w-screen 
-      md:max-w-lg xl:max-w-xl
-      md:w-screen
-      px-2 
+      w-screen max-w-screen-xl
+      px-2 md:px-5
       ${globalStyles.transitions}
       `}
     >
       <div
         className={`
+        mx-auto
         ${styles.bg} 
         shadow-2xl
-        border-l-4 
+        border-l-4
         rounded-sm 
         p-4
         `}
