@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { setInterval, clearInterval } from 'timers';
 import useAlert from '@lib/alerts/use-alert';
-import globalStyles from '@styles/index.js';
+import globalStyles from '@styles/index';
 import blogTags from '@utils/blog-tags';
 import useTypeWriter from '@lib/typewriter/use-typewriter';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
@@ -280,7 +280,6 @@ export default function Newsletter({
                   } else {
                     setSelected(allTags);
                   }
-                  alert.show('hello there');
                 }}
               >
                 {selected.length === allTags.length

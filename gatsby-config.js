@@ -68,6 +68,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-mdx',
       options: {
         defaultLayouts: {
@@ -126,7 +133,24 @@ module.exports = {
         ],
       },
     },
-    'gatsby-remark-images',
+    {
+      resolve: 'gatsby-remark-images',
+      options: {
+        // It's important to specify the maxWidth (in pixels) of
+        // the content container as this plugin uses this as the
+        // base for generating different widths of each image.
+        maxWidth: defaultTheme.screens.sm,
+        backgroundColor: 'transparent',
+        // showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
+
+        // Had trouble getting this to work.
+        // wrapperStyle: {
+        //   boxShadow: defaultTheme.boxShadow.lg,
+        // },
+
+        linkImagesToOriginal: false,
+      },
+    },
     'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',

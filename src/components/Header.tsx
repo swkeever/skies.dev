@@ -31,7 +31,7 @@ export default function Header() {
           lg:flex
               
           h-full 
-          ml-2
+          mx-3
           ${globalStyles.transitions}
           
         `}
