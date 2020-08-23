@@ -29,7 +29,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     query {
-      allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+      allMdx(
+        sort: { order: DESC, fields: frontmatter___date }
+        filter: { fileAbsolutePath: { regex: "/content/" } }
+      ) {
         edges {
           node {
             id

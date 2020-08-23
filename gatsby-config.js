@@ -106,7 +106,7 @@ module.exports = {
               strict: 'ignore',
             },
           },
-          gatsbyRemarkImages,
+          { ...gatsbyRemarkImages },
           'gatsby-remark-external-links',
           {
             resolve: 'gatsby-remark-autolink-headers',
@@ -128,7 +128,7 @@ module.exports = {
         ],
       },
     },
-    gatsbyRemarkImages,
+    { ...gatsbyRemarkImages },
     'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
@@ -225,7 +225,11 @@ module.exports = {
         printRejected: true, // Print removed selectors and processed file names
         // develop: true, // Enable while using `gatsby develop`
         tailwind: true, // Enable tailwindcss support
-        whitelist: [], // Don't remove this selector
+        whitelist: [
+          'gatsby-resp-image-image',
+          'gatsby-resp-image-wrapper',
+          'gatsby-resp-image-figcaption',
+        ], // Don't remove this selector
         // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
         // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
       },
