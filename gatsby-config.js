@@ -106,7 +106,7 @@ module.exports = {
               strict: 'ignore',
             },
           },
-          { ...gatsbyRemarkImages },
+          gatsbyRemarkImages,
           'gatsby-remark-external-links',
           {
             resolve: 'gatsby-remark-autolink-headers',
@@ -128,7 +128,7 @@ module.exports = {
         ],
       },
     },
-    { ...gatsbyRemarkImages },
+    gatsbyRemarkImages,
     'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
