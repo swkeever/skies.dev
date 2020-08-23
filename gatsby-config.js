@@ -6,6 +6,19 @@ const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
 const routes = require('./src/utils/routes');
 
+const gatsbyRemarkImages = {
+  resolve: 'gatsby-remark-images',
+  options: {
+    // It's important to specify the maxWidth (in pixels) of
+    // the content container as this plugin uses this as the
+    // base for generating different widths of each image.
+    maxWidth: 1280,
+    backgroundColor: 'transparent',
+    showCaptions: true,
+    linkImagesToOriginal: false,
+  },
+};
+
 module.exports = {
   siteMetadata: {
     siteUrl: config.siteUrl,
@@ -93,24 +106,7 @@ module.exports = {
               strict: 'ignore',
             },
           },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 1280,
-              backgroundColor: 'transparent',
-              showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
-
-              // Had trouble getting this to work.
-              // wrapperStyle: {
-              //   boxShadow: defaultTheme.boxShadow.lg,
-              // },
-
-              linkImagesToOriginal: false,
-            },
-          },
+          gatsbyRemarkImages,
           'gatsby-remark-external-links',
           {
             resolve: 'gatsby-remark-autolink-headers',
@@ -132,24 +128,7 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: 'gatsby-remark-images',
-      options: {
-        // It's important to specify the maxWidth (in pixels) of
-        // the content container as this plugin uses this as the
-        // base for generating different widths of each image.
-        maxWidth: 1280,
-        backgroundColor: 'transparent',
-        showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
-
-        // Had trouble getting this to work.
-        // wrapperStyle: {
-        //   boxShadow: defaultTheme.boxShadow.lg,
-        // },
-
-        linkImagesToOriginal: false,
-      },
-    },
+    gatsbyRemarkImages,
     'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
