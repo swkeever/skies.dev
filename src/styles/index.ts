@@ -4,7 +4,7 @@ const globalStyles = {
   },
   transitions: 'transition-all duration-200 ease-in-out',
   navbar: {
-    height: 'h-16',
+    height: 'h-20',
   },
   outline: 'focus:outline-none focus:shadow-outline-blue',
 };

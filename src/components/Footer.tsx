@@ -40,12 +40,21 @@ export default function Footer() {
 
   const mainNavLinks = [
     {
+      to: routes.home,
+      text: 'Home',
+    },
+
+    {
+      to: routes.blog,
+      text: 'Blog',
+    },
+    {
       to: routes.about,
       text: 'About',
     },
     {
-      to: routes.home,
-      text: 'Blog',
+      to: routes.uses,
+      text: 'Uses',
     },
     {
       to: routes.legal.privacyPolicy,

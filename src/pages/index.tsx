@@ -1,341 +1,145 @@
-import React, { useState, useEffect } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import * as JsSearch from 'js-search';
-import { FaSistrix } from 'react-icons/fa';
+import React, { ReactNode } from 'react';
 import { Link } from '@reach/router';
-import Img from 'gatsby-image';
 import globalStyles from '@styles/index';
+import Learn from '../../assets/learn.svg';
+import Product from '../../assets/product.svg';
+import routes from '../utils/routes';
+import Form from '../components/Form';
 import SEO from '../components/SEO';
-import Empty from '../../assets/empty.svg';
-import blogCategories from '../utils/blog-categories';
-import Logo from '../../assets/logo.svg';
 import Newsletter from '../components/Newsletter';
-import siteConfig from '../../site.config';
 
-export type BlogFrontmatter = {
-  title: string;
-  date: string;
-  category: number;
-  description: string;
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
+type SectionProps = {
+  children: ReactNode;
+  className?: string;
 };
 
-export type BlogMarkdownRemark = {
-  allMdx: {
-    edges: {
-      node: {
-        frontmatter: BlogFrontmatter;
-        id: string;
-        timeToRead: number;
-        rawBody: string;
-        fields: {
-          slug: string;
-        };
-      }[];
-    };
-  };
-};
-
-export type Blog = {
-  id: string;
-  timeToRead: number;
-  title: string;
-  slug: string;
-  description: string;
-  date: string;
-  category: {
-    name: string;
-    className: string;
-  };
-  body: string;
-  image: FluidObject;
-};
-
-function getNumResultsString(k: number): string {
-  switch (k) {
-    case 0:
-      return 'No results found';
-    case 1:
-      return `${k} result found`;
-    default:
-      return `${k} results found`;
-  }
+function Section({ children, className = '' }: SectionProps) {
+  return (
+    <section
+      className={`
+        max-w-screen-xl mx-auto
+        flex
+        flex-col
+        text-base
+        lg:text-lg
+        px-4
+        md:px-6
+        md:items-center
+        md:flex-row
+        ${className}
+      `}
+    >
+      {children}
+    </section>
+  );
 }
 
-type Category = {
-  name: string;
-  className: string;
-};
+const IndexPage = () => {
+  const svgStyles = `
+    w-full
+    h-auto
+  `;
 
-const categories: Category[] = blogCategories;
-
-export default function BlogsPage() {
-  const data: BlogMarkdownRemark = useStaticQuery(graphql`
-    query {
-      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
-        edges {
-          node {
-            frontmatter {
-              title
-              date
-              category
-              description
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 700) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            fields {
-              slug
-            }
-            id
-            timeToRead
-            rawBody
-          }
-        }
-      }
-    }
-  `);
-
-  const [filter, setFilter] = useState('');
-  const [search, setSearch] = useState<JsSearch.Search | null>(null);
-
-  const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
-    const { id, timeToRead, rawBody } = e.node;
-    const {
-      title, description, date, image,
-    } = e.node.frontmatter;
-    const dateFormat = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(date));
-    return {
-      id,
-      timeToRead,
-      title,
-      slug: e.node.fields.slug,
-      description,
-      date: dateFormat,
-      category: categories[e.node.frontmatter.category],
-      body: rawBody,
-      image: image.childImageSharp.fluid,
-    };
-  });
-
-  const [blogs, setBlogs] = useState(allBlogs);
-
-  useEffect(() => {
-    const s = new JsSearch.Search('id');
-    s.addIndex('title');
-    s.addIndex('description');
-    s.addIndex(['category', 'name']);
-    s.addIndex('body');
-    s.addDocuments(blogs);
-    setSearch(s);
-  }, []);
-
-  useEffect(() => {
-    if (search && filter) {
-      const results: any = search.search(filter);
-
-      // sort the result by latest published
-      results.sort((a: Blog, b: Blog): number => {
-        const aDate = new Date(a.date);
-        const bDate = new Date(b.date);
-        return bDate.valueOf() - aDate.valueOf();
-      });
-
-      setBlogs(results);
-    } else {
-      setBlogs(allBlogs);
-    }
-  }, [filter]);
+  const headerStyles = `
+  leading-none
+  text-3xl 
+  font-bold
+  lg:text-5xl
+  mb-5
+  `;
 
   return (
     <>
       <SEO
-        title="A blog by Sean Keever"
-        description="Skies is a software engineering blog curated by Seattle full stack developer Sean Keever."
+        title="Sean Keever"
+        description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
         keywords={[
-          'blog',
-          'skies',
-          'sean keever',
-          'software engineering',
-          'seattle, wa',
+          'Sean Keever',
+          'software engineer',
+          'Seattle',
+          'full stack developer',
         ]}
       />
-      <section
-        className={`
-          bg-primary
-          z-20 relative
-          pt-12 lg:pt-16
-          flex-grow-0
-          ${globalStyles.transitions}
-        `}
-      >
-        <div className="px-4 max-w-screen-sm mx-auto">
-          <h1>
-            <span className="sr-only">{siteConfig.siteTitle}</span>
-            <Logo className="w-7/12 h-auto mx-auto text-onPrimarySoft fill-current" />
+      <Section className="pt-12 ">
+        <div className="md:w-7/12">
+          <h1 className={`${headerStyles} text-onNeutralBg`}>
+            My name is
+            {' '}
+            <span className=" text-primaryBold">Sean Keever</span>
           </h1>
-          <div id="search-input" className="mt-12">
-            <label htmlFor="filter-input">
-              <span className="sr-only">Search</span>
-              <div>
-                <FaSistrix
-                  className={`
-                      inline
-                      text-2xl 
-                      absolute
-                      text-neutral
-                      ml-2
-                      z-30
-                    `}
-                />
-                <input
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus
-                  autoComplete="off"
-                  id="filter-input"
-                  value={filter}
-                  onChange={(e) => {
-                    setFilter(e.target.value);
-                  }}
-                  className={`
-                        -mt-8
-                        bg-neutralBgSoft
-                        rounded-full
-                        text-onNeutral
-                        placeholder-neutralSoft
-                        lg:text-xl
-                        pl-10 
-                        pr-2
-                        relative
-                        py-3
-                        w-full
-                        shadow-lg
-                        ${globalStyles.outline}
-                        focus:bg-neutralBg
-                        ${globalStyles.transitions}
-                      `}
-                  type="search"
-                />
-              </div>
-            </label>
-          </div>
+          <p className="text-onNeutralBgSoft">
+            I am a full stack developer from Seattle, WA. I am a University of
+            Washington alum and am currently a backend software engineer at
+            OfferUp.
+          </p>
         </div>
-      </section>
+        <Product className={`${svgStyles} mt-6`} />
+      </Section>
+
       <div
-        className={`bg-neutralBgSoft flex-grow-0 relative z-0 2xl:-mt-24 ${globalStyles.transitions}`}
+        className={`relative bg-primary diagonal-m pt-8 pb-16 md:pt-20 md:pb-20
+      ${globalStyles.transitions}
+      `}
       >
-        <svg
-          className={`text-primary fill-current h-auto ${globalStyles.transitions}`}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 253"
-        >
-          <path
-            fillOpacity="1"
-            d="M0,128L40,144C80,160,160,192,240,197.3C320,203,400,181,480,165.3C560,149,640,139,720,138.7C800,139,880,149,960,176C1040,203,1120,245,1200,250.7C1280,256,1360,224,1400,208L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-          />
-        </svg>
-      </div>
-      <section
-        id="blog-list"
-        className={`
-          bg-neutralBgSoft 
-          flex-grow
-          pb-16
-          ${globalStyles.transitions}
-          `}
-      >
-        <p className="mb-6 text-xl z-20 font-light text-center text-onNeutralBgSoft">
-          {getNumResultsString(blogs.length)}
-        </p>
-        {blogs.length ? (
-          <div className="sm:px-6 px-4 max-w-screen-xl mx-auto">
-            <ul
-              className={`grid
-                  grid-cols-1 
-                  gap-6
-                  md:grid-cols-2 
-                  lg:grid-cols-3 
-                `}
+        <Section className="md:flex-row-reverse">
+          <div className="md:w-7/12">
+            <h2 className={`${headerStyles} mt-8 text-onPrimary`}>
+              I like to help people learn
+            </h2>
+            <p className="text-onPrimarySoft">
+              I write articles on software engineering, computer science, and
+              lessons learned in industry. The core mission with Skies is to
+              make software development accessible for everyone.
+            </p>
+            <Link
+              to={routes.home}
+              color="light"
+              className={`mt-4 mb-8 lg:mt-6
+              inline-block
+              bg-light hover:bg-lightSoft
+              text-onLight hover:text-onLight
+              rounded-full
+              ${globalStyles.outline}
+              ${globalStyles.transitions}
+              px-4 
+              py-2 
+              font-bold
+              hover:font-bold
+              lg:px-6 
+              lg:text-lg
+              `}
             >
-              {blogs.map((blog) => (
-                <li key={blog.id} className="">
-                  <Link
-                    to={blog.slug}
-                    className={`
-                        flex flex-col 
-                        rounded-lg shadow-lg 
-                        overflow-hidden 
-                        h-full
-                        ${globalStyles.outline}
-                      `}
-                  >
-                    <div className="flex-shrink-0">
-                      <Img
-                        className="h-48 w-full object-cover"
-                        fluid={blog.image}
-                        alt={blog.title}
-                      />
-                    </div>
-                    <div className="flex-1 bg-neutralBg p-3 flex flex-col justify-between">
-                      <div className="flex-1">
-                        <span
-                          className={`${blog.category.className} ${globalStyles.transitions} font-medium px-2 py-px rounded-full`}
-                        >
-                          {blog.category.name}
-                        </span>
-                        <h2 className="mt-2 text-2xl leading-7 font-semibold text-onNeutralBg">
-                          {blog.title}
-                        </h2>
-                        <p className="mt-3 text-base leading-6 text-neutral">
-                          {blog.description}
-                        </p>
-                      </div>
-                      <div className="mt-6 flex items-center">
-                        <div className="">
-                          <div className="flex text-sm leading-5 text-neutral">
-                            <time dateTime={blog.date}>{blog.date}</time>
-                            <span className="mx-1">&middot;</span>
-                            <span>
-                              {blog.timeToRead}
-                              &nbsp;min read
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              See the blog
+            </Link>
           </div>
-        ) : (
-          <div className="content-center">
-            <Empty
-              className={`
-                  max-w-2xl
-                  w-full
-                  px-4
-                  mx-auto 
-                  h-auto 
-                  mb-12
-                `}
-            />
+          <Learn className={`${svgStyles}`} />
+        </Section>
+      </div>
+
+      <div
+        id="contact"
+        className={`${globalStyles.transitions} bg-neutralBgSoft  pt-12 pb-8 -mt-12 md:pt-0 md:pb-12`}
+      >
+        <Section className="mb-4 md:space-x-10">
+          <div className="md:w-5/12 mb-4">
+            <h2 className={`${headerStyles} text-onNeutralBg`}>Reach out</h2>
+            <p className="text-onNeutralBgSoft">
+              If you would like to get in touch with me, please feel free to
+              send me a message using the contact form shown here. Your message
+              will go straight to my email.
+            </p>
           </div>
-        )}
-      </section>
-      <Newsletter showTopics color="neutral" />
+          <div className="relative z-30 bg-neutralBg  p-4 shadow-2xl rounded-md lg:p-6 lg:-mt-12">
+            <h3 className="font-bold text-onNeutralBgSoft mb-3 text-xl">
+              Contact
+            </h3>
+            <Form />
+          </div>
+        </Section>
+      </div>
+      <Newsletter showTopics color="primarySoft" />
     </>
   );
-}
+};
+
+export default IndexPage;

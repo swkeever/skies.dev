@@ -92,7 +92,7 @@ export default function SEO({
   };
 
   if (!article) {
-    seo.title = pathname === routes.home ? `Skies | ${title}` : `${title} | Skies`;
+    seo.title = pathname === routes.home ? 'Sean Keever' : `${title} / Sean Keever`;
   } else {
     seo.title = title;
   }
