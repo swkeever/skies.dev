@@ -310,28 +310,23 @@ article h3 {
   @apply -mb-1;
 }
 
-/* .gatsby-resp-image-image {
-  box-shadow: theme('boxShadow.lg');
-} */
-
 /* 
+gatsby-remark-images classes
 
-.gatsby-resp-image-figcaption {
-  color: var(--color-neutralSoft);
-  padding: 0 theme('spacing.16');
-  text-align: center;
-  margin: 0 auto;
-  font-size: theme('fontSize.sm');
+Used for images in MDX files.
+*/
+.gatsby-resp-image-wrapper {
+  @apply shadow-xl;
 }
 
-@media (max-width: 640px) {
-  .gatsby-resp-image-figcaption {
-    padding: 0 theme('spacing.2');
-    font-size: theme('fontSize.xs');
-    line-height: theme('lineHeight.5');
-    margin-top: theme('spacing.1');
-  }
-} */
+.gatsby-resp-image-image {
+  @apply rounded-sm;
+}
+
+.gatsby-resp-image-figcaption {
+  @apply text-neutralSoft text-center mx-auto leading-5 mt-1 text-xs md:text-sm px-2 md:px-16;
+}
+
 .alert-enter {
   @apply opacity-0;
 }

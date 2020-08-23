@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 const cssNano = require('cssnano');
-const defaultTheme = require('tailwindcss/defaultTheme');
 const path = require('path');
 const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
@@ -100,9 +99,9 @@ module.exports = {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
-              maxWidth: defaultTheme.screens.sm,
+              maxWidth: 1280,
               backgroundColor: 'transparent',
-              // showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
+              showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
 
               // Had trouble getting this to work.
               // wrapperStyle: {
@@ -139,9 +138,9 @@ module.exports = {
         // It's important to specify the maxWidth (in pixels) of
         // the content container as this plugin uses this as the
         // base for generating different widths of each image.
-        maxWidth: defaultTheme.screens.sm,
+        maxWidth: 1280,
         backgroundColor: 'transparent',
-        // showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
+        showCaptions: true, // Unfortunately, this breaks styles in MDX sometimes...
 
         // Had trouble getting this to work.
         // wrapperStyle: {
