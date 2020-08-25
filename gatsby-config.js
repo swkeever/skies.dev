@@ -132,6 +132,7 @@ module.exports = {
     'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
+    // 'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

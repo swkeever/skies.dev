@@ -4,9 +4,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 // primary blue #3F83F8 (500), #1C64F2 (600)
 
 module.exports = {
-  experimental: {
-    applyComplexClasses: true,
-  },
   purge: [
     './src/**/*.html',
     './src/**/*.jsx',
@@ -126,7 +123,7 @@ module.exports = {
       xl: '1280px',
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1900px',
+      '2xl': '1600px',
     },
   },
   variants: {

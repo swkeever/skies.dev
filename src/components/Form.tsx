@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaTelegramPlane } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 
 function LabelSpan({ label }: { label: string }) {
@@ -49,7 +48,7 @@ export default function Form() {
       `}
     >
       <input type="text" name="_gotcha" className="hidden" />
-      <div className="grid grid-cols-2 gap-x-3 md:gap-x-5">
+      <div className="grid grid-cols-2 gap-x-3 xl:gap-x-5">
         <label htmlFor="name">
           <LabelSpan label="Name" />
           <input
@@ -118,24 +117,13 @@ export default function Form() {
           
           py-2 
           font-bold
-          lg:px-6 
+          lg:px-8 
           lg:text-lg
 
         `}
         type="submit"
       >
         Send
-        <span
-          className={`
-          inline-block
-          ml-1
-          align-text-top
-          text-light
-          opacity-75
-        `}
-        >
-          <FaTelegramPlane />
-        </span>
       </button>
     </form>
   );

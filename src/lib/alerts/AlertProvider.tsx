@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import hash from '@utils/hash';
 import AlertContext from './AlertContext';
 import {
   AlertOptions, ShowFunction, RemoveFunction, Alert,
@@ -15,8 +15,15 @@ export default function AlertProvider({ children }: { children: ReactNode }) {
   const [alerts, setAlerts] = useState<Alert[]>([]);
 
   const show: ShowFunction = (message, options = {}) => {
+    const hashCode = hash(message);
+
+    if (alerts.filter((a) => a.id === hashCode).length > 0) {
+      // Already have this alert. Ignoring.
+      return;
+    }
+
     setAlerts((as) => as.concat({
-      id: Date.now(),
+      id: hashCode,
       message,
       options: {
         ...defaultOptions,
@@ -32,13 +39,13 @@ export default function AlertProvider({ children }: { children: ReactNode }) {
   return (
     <AlertContext.Provider value={{ show }}>
       <div className="fixed left-1/2 transform -translate-x-1/2 top-2 lg:top-12 z-50">
-        <TransitionGroup className="flex flex-col">
+        <div className="flex flex-col">
           {alerts.map((alert) => (
-            <CSSTransition key={alert.id} timeout={200} classNames="alert">
+            <div initial="hidden" animate="visible">
               <AlertTemplate alert={alert} removeAlert={remove} />
-            </CSSTransition>
+            </div>
           ))}
-        </TransitionGroup>
+        </div>
       </div>
 
       {children}

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import { FaSistrix } from 'react-icons/fa';
-import { Link } from '@reach/router';
-import Img from 'gatsby-image';
 import globalStyles from '@styles/index';
+import BlogCard from '@components/BlogCard';
 import SEO from '../components/SEO';
 import Empty from '../../assets/empty.svg';
 import blogCategories from '../utils/blog-categories';
@@ -26,17 +25,15 @@ export type BlogFrontmatter = {
 
 export type BlogMarkdownRemark = {
   allMdx: {
-    edges: {
-      node: {
-        frontmatter: BlogFrontmatter;
-        id: string;
-        timeToRead: number;
-        rawBody: string;
-        fields: {
-          slug: string;
-        };
-      }[];
-    };
+    nodes: {
+      frontmatter: BlogFrontmatter;
+      id: string;
+      timeToRead: number;
+      rawBody: string;
+      fields: {
+        slug: string;
+      };
+    }[];
   };
 };
 
@@ -73,48 +70,12 @@ type Category = {
 
 const categories: Category[] = blogCategories;
 
-export default function BlogsPage() {
-  const data: BlogMarkdownRemark = useStaticQuery(graphql`
-    query {
-      allMdx(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        filter: { fileAbsolutePath: { regex: "/content/" } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              date
-              category
-              description
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 700) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            fields {
-              slug
-            }
-            id
-            timeToRead
-            rawBody
-          }
-        }
-      }
-    }
-  `);
-
-  const [filter, setFilter] = useState('');
-  const [search, setSearch] = useState<JsSearch.Search | null>(null);
-
-  const allBlogs: Blog[] = data.allMdx.edges.map((e) => {
-    const { id, timeToRead, rawBody } = e.node;
+export function gqlResponseToBlogs(data): Blog[] {
+  return data.allMdx.nodes.map((node) => {
+    const { id, timeToRead, rawBody } = node;
     const {
       title, description, date, image,
-    } = e.node.frontmatter;
+    } = node.frontmatter;
     const dateFormat = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'long',
@@ -124,14 +85,52 @@ export default function BlogsPage() {
       id,
       timeToRead,
       title,
-      slug: e.node.fields.slug,
+      slug: node.fields.slug,
       description,
       date: dateFormat,
-      category: categories[e.node.frontmatter.category],
+      category: categories[node.frontmatter.category],
       body: rawBody,
       image: image.childImageSharp?.fluid,
     };
   });
+}
+
+export default function BlogsPage() {
+  const data: BlogMarkdownRemark = useStaticQuery(graphql`
+    query {
+      allMdx(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        filter: { fileAbsolutePath: { regex: "/content/" } }
+      ) {
+        nodes {
+          frontmatter {
+            title
+            date
+            category
+            description
+            image {
+              childImageSharp {
+                fluid(maxWidth: 700) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          fields {
+            slug
+          }
+          id
+          timeToRead
+          rawBody
+        }
+      }
+    }
+  `);
+
+  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState<JsSearch.Search | null>(null);
+
+  const allBlogs: Blog[] = gqlResponseToBlogs(data);
 
   const [blogs, setBlogs] = useState(allBlogs);
 
@@ -212,6 +211,7 @@ export default function BlogsPage() {
                   onChange={(e) => {
                     setFilter(e.target.value);
                   }}
+                  placeholder="Search"
                   className={`
                         -mt-8
                         bg-neutralBgSoft
@@ -273,53 +273,7 @@ export default function BlogsPage() {
                 `}
             >
               {blogs.map((blog) => (
-                <li key={blog.id} className="">
-                  <Link
-                    to={blog.slug}
-                    className={`
-                        flex flex-col 
-                        rounded-lg shadow-lg 
-                        overflow-hidden 
-                        h-full
-                        ${globalStyles.outline}
-                      `}
-                  >
-                    <div className="flex-shrink-0">
-                      <Img
-                        className="h-48 w-full object-cover"
-                        fluid={blog.image}
-                        alt={blog.title}
-                      />
-                    </div>
-                    <div className="flex-1 bg-neutralBg p-3 flex flex-col justify-between">
-                      <div className="flex-1">
-                        <span
-                          className={`${blog.category.className} ${globalStyles.transitions} font-medium px-2 py-px rounded-full`}
-                        >
-                          {blog.category.name}
-                        </span>
-                        <h2 className="mt-2 text-2xl leading-7 font-semibold text-onNeutralBg">
-                          {blog.title}
-                        </h2>
-                        <p className="mt-3 text-base leading-6 text-neutral">
-                          {blog.description}
-                        </p>
-                      </div>
-                      <div className="mt-6 flex items-center">
-                        <div className="">
-                          <div className="flex text-sm leading-5 text-neutral">
-                            <time dateTime={blog.date}>{blog.date}</time>
-                            <span className="mx-1">&middot;</span>
-                            <span>
-                              {blog.timeToRead}
-                              &nbsp;min read
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
+                <BlogCard key={blog.id} blog={blog} />
               ))}
             </ul>
           </div>

@@ -324,23 +324,11 @@ Used for images in MDX files.
 }
 
 .gatsby-resp-image-figcaption {
-  @apply text-neutralSoft text-center mx-auto leading-5 mt-1 text-xs md:text-sm px-2 md:px-16;
-}
-
-.alert-enter {
-  @apply opacity-0;
-}
-
-.alert-enter-active {
-  @apply opacity-100 transition-all duration-200 ease-out;
-}
-
-.alert-exit {
-  @apply opacity-100;
-}
-
-.alert-exit-active {
-  @apply opacity-0 transition-all duration-200 ease-in;
+  @apply text-neutralSoft text-center mx-auto leading-5 mt-1 text-sm px-16;
 }
 
 @tailwind utilities;
+
+@media only screen and (max-width: theme('screens.sm')) {
+  @apply text-xs px-2;
+}
