@@ -323,12 +323,16 @@ Used for images in MDX files.
   @apply rounded-sm;
 }
 
+.gatsby-resp-image-figure {
+  @apply relative;
+}
+
 .gatsby-resp-image-figcaption {
-  @apply text-neutralSoft text-center mx-auto leading-5 mt-1 text-sm px-16;
+  @apply text-neutralSoft text-center max-w-screen-lg leading-5 mt-1 text-sm;
 }
 
 @tailwind utilities;
 
-@media only screen and (max-width: theme('screens.sm')) {
-  @apply text-xs px-2;
-}
+/* @media only screen and (max-width: theme('screens.sm')) {
+  @apply text-xs;
+} */

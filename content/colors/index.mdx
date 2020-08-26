@@ -411,16 +411,16 @@ use throughout our app. The configuration has the following properties:
 - `min`: the minimum value a given property can hold.
 - `max`: the maximum value a given property can hold.
 - `step`: the delta between any 2 adjacent values a property can hold.
-- `range`: the maximum delta from any value $i$ to value $j$.
+- `range`: the maximum delta from any value `i` to value `j`.
 
-For saturation, we want to set a value for $a$, $b$, and $c$, which are inputs
+For saturation, we want to set a value for `a`, `b`, and `c`, which are inputs
 to the following function:
 
-$$
+```
 f(x) = ax^2 + bx + c
-$$
+```
 
-$f$ is the saturation as a function of $x \in {10, 20, \dots, 80, 90}$.
+`f` is the saturation as a function of `x \in {10, 20, \dots, 80, 90}`.
 
 <aside>
   This mathematical function is inspired by principles taught in the book{' '}
@@ -666,9 +666,9 @@ I'm also going to set up a custom hook that was developed by my friend
 [Andrew Guterman](hhttps://anguterman.com/). The hook is called
 `useSpringState`. The hook works similar to
 [`useState`](https://reactjs.org/docs/hooks-state.html), except in
-`useSpringState`, you pass in a baseline state $x$ and a TTL (time to live)
-value $t$. When you call `setX` with a new value $x'$, the state will be set to
-$x'$ for $t$ milliseconds before reverting back to $x$.
+`useSpringState`, you pass in a baseline state _x_ and a TTL (time to live)
+value _t_. When you call `setX` with a new value _x'_, the state will be set to
+_x'_ for _t_ milliseconds before reverting back to _x_.
 
 Let's place this hook in a new file called `src/hooks/useSpringState.js`.
 

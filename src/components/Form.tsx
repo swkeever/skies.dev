@@ -48,7 +48,7 @@ export default function Form() {
       `}
     >
       <input type="text" name="_gotcha" className="hidden" />
-      <div className="grid grid-cols-2 gap-x-3 xl:gap-x-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 xl:gap-x-5">
         <label htmlFor="name">
           <LabelSpan label="Name" />
           <input

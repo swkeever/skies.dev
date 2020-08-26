@@ -11,9 +11,14 @@ export default function BlogCard({ blog }: { blog: Blog }) {
         to={blog.slug}
         className={`
           flex flex-col 
-          rounded-lg shadow-lg 
+          rounded-lg 
           overflow-hidden 
           h-full
+          transform
+          
+          translate-y-0 hover:-translate-y-1 active:translate-y-0
+          shadow-sm hover:shadow-xl active:shadow-sm
+          ${globalStyles.transitions}
           ${globalStyles.outline}
         `}
       >

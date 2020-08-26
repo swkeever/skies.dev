@@ -3,6 +3,7 @@ import SEO from '@components/SEO';
 import { MDXProvider } from '@mdx-js/react';
 import shortcodes from '@components/Shortcodes';
 import Newsletter from '@components/Newsletter';
+import Hero from '@components/Hero';
 
 export default function MarkdownPage({
   children,
@@ -15,9 +16,10 @@ export default function MarkdownPage({
         description={frontmatter.description}
         keywords={frontmatter.keywords || []}
       />
+      <Hero />
       <section
         className={`
-        mt-8 mb-24
+        mb-24
         max-w-screen-lg mx-auto w-full
       `}
       >

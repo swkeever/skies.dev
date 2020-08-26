@@ -217,7 +217,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                   text-4xl
                   text-onPrimary
                   lg:text-5xl
-                  font-bold
+                  font-extrabold
                 `}
                 itemProp="name"
               >

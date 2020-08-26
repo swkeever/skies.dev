@@ -14,9 +14,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      },
+      // fontFamily: {
+      //   sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      // },
       colors: {
         // base
         primary: 'var(--color-primary)',
@@ -124,6 +124,7 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
 
       '2xl': '1600px',
+      '3xl': '1960px',
     },
   },
   variants: {

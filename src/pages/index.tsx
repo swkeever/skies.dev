@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import globalStyles from '@styles/index';
-import Logo from '@assets/logo.svg';
 import { useStaticQuery, graphql } from 'gatsby';
 import BlogCard from '@components/BlogCard';
-import Img, { FluidObject } from 'gatsby-image';
 import { FaArrowRight } from 'react-icons/fa';
+import Hero from '@components/Hero';
 import routes from '../utils/routes';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
 import Newsletter from '../components/Newsletter';
-import siteConfig from '../../site.config';
 import { gqlResponseToBlogs, Blog } from './blog';
 
 const IndexPage = () => {
@@ -43,22 +41,17 @@ const IndexPage = () => {
           rawBody
         }
       }
-      file(relativePath: { eq: "about/me.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1024) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
     }
   `);
-
-  const avatarFluid: FluidObject = data.file.childImageSharp.fluid;
 
   const blogs: Blog[] = gqlResponseToBlogs(data);
 
   return (
-    <>
+    <div
+      className={`
+    ${globalStyles.transitions}
+    bg-neutralBgSoft`}
+    >
       <SEO
         title="Sean Keever"
         description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
@@ -69,83 +62,10 @@ const IndexPage = () => {
           'full stack developer',
         ]}
       />
-
-      <section
-        className={`
-        bg-primary
-        ${globalStyles.transitions}
-      `}
-      >
-        <div
-          className={`px-4 z-10 relative max-w-xl mx-auto
-        mt-16 md:-mb-4 xl:-mb-16 2xl:-mb-48
-        flex items-center justify-start
-
-        `}
-        >
-          <Img
-            className={`
-            ${globalStyles.transitions}
-            flex-shrink-0 
-            rounded-full 
-            w-24 h-24 md:w-32 md:h-32 
-            shadow-lg
-            `}
-            fluid={avatarFluid}
-            alt="A picture of Sean Keever"
-          />
-          <div className="flex-grow ml-4">
-            <h1 className="">
-              <span className="sr-only">{siteConfig.siteTitle}</span>
-              <Logo
-                className={`w-full h-auto text-onPrimary fill-current
-              ${globalStyles.transitions}
-              `}
-              />
-            </h1>
-            <p
-              className={`
-              ${globalStyles.transitions}
-              text-onPrimarySoft
-            `}
-            >
-              A website by
-              {' '}
-              <Link
-                to={routes.about}
-                className={`
-              ${globalStyles.transitions}
-              text-onPrimary hover:text-onPrimarySoft
-              font-semibold
-
-              `}
-              >
-                Sean Keever
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Wave! */}
-      <div
-        className={`bg-neutralBgSoft flex-grow-0 relative z-0 ${globalStyles.transitions}`}
-      >
-        <svg
-          className={`text-primary fill-current h-auto ${globalStyles.transitions}`}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 253"
-        >
-          <path
-            fillOpacity="1"
-            d="M0,128L40,144C80,160,160,192,240,197.3C320,203,400,181,480,165.3C560,149,640,139,720,138.7C800,139,880,149,960,176C1040,203,1120,245,1200,250.7C1280,256,1360,224,1400,208L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-          />
-        </svg>
-      </div>
+      <Hero />
 
       <div
-        className={`relative bg-neutralBgSoft pb-24 pt-16 2xl:pt-0
+        className={`relative pb-24 pt-12 xl:pt-20
       ${globalStyles.transitions}
       `}
       >
@@ -194,7 +114,8 @@ const IndexPage = () => {
             See all publications
             <FaArrowRight
               className={`
-                inline ml-1 mb-px
+                inline-block 
+                ml-1 mb-1
               text-xl
             `}
             />
@@ -233,7 +154,7 @@ const IndexPage = () => {
         </section>
       </div>
       <Newsletter showTopics color="primarySoft" />
-    </>
+    </div>
   );
 };
 

@@ -81,13 +81,13 @@ export default function Newsletter({
   showTopics = false,
   copy = 'Get articles straight to your inbox',
 }: PropTypes) {
-  const [selected, setSelected] = useState(tags);
   const intervalRef = useRef(null);
   const alert = useAlert();
 
   const [magicName, setMagicName] = useState('Software Engineering');
   const topic = useTypeWriter(magicName);
   const allTags = blogTags.map(({ name }) => name);
+  const [selected, setSelected] = useState(tags.length > 0 ? tags : allTags);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
@@ -177,12 +177,13 @@ export default function Newsletter({
         <div
           className={`
           mx-auto max-w-2xl
-           sm:px-6 
           py-12 px-4 lg:py-20 lg:px-8
         `}
         >
           <h2
-            className={`text-3xl leading-9 font-extrabold tracking-tight  sm:text-4xl sm:leading-10
+            className={`
+            text-3xl md:text-4xl
+            leading-9 font-extrabold tracking-tight sm:leading-10
             ${globalStyles.transitions}
             ${styles.h2}
         `}
