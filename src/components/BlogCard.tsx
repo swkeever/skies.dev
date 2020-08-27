@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 
 export default function BlogCard({ blog }: { blog: Blog }) {
   return (
-    <li>
+    <li className="">
       <Link
         to={blog.slug}
         className={`
@@ -15,7 +15,6 @@ export default function BlogCard({ blog }: { blog: Blog }) {
           overflow-hidden 
           h-full
           transform
-          
           translate-y-0 hover:-translate-y-1 active:translate-y-0
           shadow-sm hover:shadow-xl active:shadow-sm
           ${globalStyles.transitions}

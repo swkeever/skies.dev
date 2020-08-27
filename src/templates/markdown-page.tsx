@@ -20,7 +20,7 @@ export default function MarkdownPage({
       <section
         className={`
         mb-24
-        max-w-screen-lg mx-auto w-full
+        max-w-screen-md mx-auto w-full
       `}
       >
         <div

@@ -15,13 +15,14 @@ import {
   TiSocialTwitterCircular,
 } from 'react-icons/ti';
 import globalStyles from '@styles/index';
-import links from '../utils/links';
-import SEO from '../components/SEO';
-import ExternalLink from '../components/ExternalLink';
-import TableOfContents from '../components/TableOfContents';
-import shortcodes from '../components/Shortcodes';
-import routes from '../utils/routes';
-import Newsletter from '../components/Newsletter';
+import links from '@utils/links';
+import SEO from '@components/SEO';
+import ExternalLink from '@components/ExternalLink';
+import TableOfContents from '@components/TableOfContents';
+import shortcodes from '@components/Shortcodes';
+import routes from '@utils/routes';
+import Newsletter from '@components/Newsletter';
+import TwitterFollowButton from '@components/TwitterFollowButton';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -101,30 +102,6 @@ type PropTypes = {
   };
 };
 
-type SocialLink = {
-  id: string;
-  icon: ReactNode;
-  link: (string) => string;
-};
-
-const socialLinks: SocialLink[] = [
-  {
-    id: 'linkedIn',
-    icon: <TiSocialLinkedinCircular />,
-    link: links.shareTo.linkedIn,
-  },
-  {
-    id: 'facebook',
-    icon: <TiSocialFacebookCircular />,
-    link: links.shareTo.facebook,
-  },
-  {
-    id: 'twitter',
-    icon: <TiSocialTwitterCircular />,
-    link: links.shareTo.twitter,
-  },
-];
-
 export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
   const { pathname } = useLocation();
   const { frontmatter, body, fileAbsolutePath } = mdx;
@@ -143,6 +120,12 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
     ctaLinkIcons: `
     inline
     mb-1
+    `,
+
+    shareLink: `
+    ${globalStyles.transitions}
+    text-neutralSoft
+    hover:text-neutral
     `,
   };
   return (
@@ -170,7 +153,6 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
             bg-primary
             relative
             z-10
-            diagonal-t
             pt-8
             pb-64
           `}
@@ -190,23 +172,41 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 flex flex-col
                 text-4xl
                 space-y-4
-                sticky top-48
+                pt-3
+                sticky top-32
               `}
             >
-              {socialLinks.map(({ id, icon, link }) => (
-                <li key={id}>
-                  <ExternalLink
-                    className={`
-                      ${globalStyles.transitions}
-                      text-neutralSoft
-                      hover:text-neutral
-                    `}
-                    href={link(pathname)}
-                  >
-                    {icon}
-                  </ExternalLink>
-                </li>
-              ))}
+              <li key="twitter">
+                <ExternalLink
+                  href={links.shareTo.twitter({
+                    title: frontmatter.title,
+                    pathname,
+                  })}
+                  className={styles.shareLink}
+                >
+                  <TiSocialTwitterCircular />
+                </ExternalLink>
+              </li>
+              <li key="facebook">
+                <ExternalLink
+                  className={styles.shareLink}
+                  href={links.shareTo.facebook({ pathname })}
+                >
+                  <TiSocialFacebookCircular />
+                </ExternalLink>
+              </li>
+              <li key="facebook">
+                <ExternalLink
+                  className={styles.shareLink}
+                  href={links.shareTo.linkedIn({
+                    title: frontmatter.title,
+                    description: frontmatter.description,
+                    pathname,
+                  })}
+                >
+                  <TiSocialLinkedinCircular />
+                </ExternalLink>
+              </li>
             </ul>
           </aside>
           <div className="col-span-12 px-2 md:col-span-8">
@@ -223,14 +223,17 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               >
                 {frontmatter.title}
               </h1>
-              <div className="mt-2 flex text-base font-medium text-onPrimarySoft md:text-lg">
-                <time>{frontmatter.date}</time>
-                <span className="mx-2">&middot;</span>
-                <span>
-                  {mdx.timeToRead}
-                  {' '}
-                  min read
-                </span>
+              <div className="flex justify-between items-center mt-2">
+                <div className="flex text-onPrimarySoft ">
+                  <time>{frontmatter.date}</time>
+                  <span className="mx-2">&middot;</span>
+                  <span>
+                    {mdx.timeToRead}
+                    {' '}
+                    min read
+                  </span>
+                </div>
+                <TwitterFollowButton />
               </div>
             </header>
             <Img

@@ -72,7 +72,10 @@ const IndexPage = () => {
         <section
           className={`
         mx-auto
-        max-w-screen-2xl flex flex-col items-center px-4`}
+        max-w-md
+        md:max-w-screen-md
+        xl:max-w-screen-2xl
+        flex flex-col items-center px-4`}
         >
           <h2
             className={`text-onNeutralBg font-extrabold text-3xl mb-3
@@ -92,8 +95,10 @@ const IndexPage = () => {
           <ul
             className={`
           grid 
-          grid-cols-1 md:grid-cols-2 lg:grid-cols-4
+          
+          grid-cols-1 md:grid-cols-2 xl:grid-cols-4
           gap-5
+
           `}
           >
             {blogs.map((blog) => (
