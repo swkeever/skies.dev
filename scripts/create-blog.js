@@ -5,8 +5,12 @@ const fs = require('fs');
 const https = require('https');
 const slugger = require('github-slugger');
 const chalk = require('chalk');
+const axios = require('axios').default;
 const blogCategories = require('../src/utils/blog-categories');
 const blogTags = require('../src/utils/blog-tags');
+require('dotenv').config({
+  path: '.env',
+});
 
 const nonEmpty = (input) => input !== '';
 
@@ -22,17 +26,30 @@ function getTodaysDate() {
   return [year, month, day].join('-');
 }
 
-function validURL(str) {
-  const pattern = new RegExp(
-    '^(https?:\\/\\/)?' // protocol
-    + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' // domain name
-    + '((\\d{1,3}\\.){3}\\d{1,3}))' // OR ip (v4) address
-    + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' // port and path
-    + '(\\?[;&a-z\\d%_.~+=-]*)?' // query string
-      + '(\\#[-a-z\\d_]*)?$',
-    'i',
-  ); // fragment locator
-  return !!pattern.test(str) && str.includes('images.unsplash.com/');
+let photo = null;
+
+async function setPhoto(id) {
+  try {
+    const { data } = await axios.get(
+      `${process.env.UNSPLASH_API_URL}/photos/${id}`,
+      {
+        headers: {
+          authorization: `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`,
+        },
+      },
+    );
+    photo = {
+      photographer: data.user.name,
+      link: data.links.html,
+      download: data.urls.raw,
+    };
+    return true;
+  } catch (err) {
+    console.error('\n', chalk.bgRed.white.bold('ERROR'), err.message);
+    return false;
+  }
+
+  // console.log(JSON.stringify(photo, null, 4));
 }
 
 function toTitleCase(input) {
@@ -87,9 +104,13 @@ function generateFrontmatter(answers) {
       frontmatter += `description:\n  ${value}\n`;
     } else if (key !== 'image' && key !== 'slug') {
       frontmatter += `${key}: ${value}\n`;
+    } else if (key === 'image') {
+      frontmatter += `imagePhotographer: ${photo.photographer}\n`;
+      frontmatter += `imageUrl: ${photo.link}\n`;
+      frontmatter += 'image: index.jpg\n';
     }
   }
-  frontmatter += 'image: index.jpg\n---\n\n';
+  frontmatter += '---\n\n';
   return frontmatter;
 }
 
@@ -160,9 +181,9 @@ inquirer
     {
       type: 'input',
       name: 'image',
-      message:
-        "Enter an Unsplash URL for the blog's hero image. (URL should include images.unsplash.com)",
-      validate: validURL,
+      message: 'Enter an Unsplash photo ID',
+      filter: (input) => input.trim(),
+      validate: setPhoto,
     },
   ])
   .then((intermediateAnswers) => {
@@ -185,7 +206,7 @@ inquirer
         }
         fs.mkdirSync(dir);
         fs.writeFileSync(`${dir}/index.mdx`, generateFrontmatter(answers));
-        downloadImage(answers.image, dir);
+        downloadImage(photo.download, dir);
         console.log(
           chalk.bgGreen.black.bold('SUCCESS'),
           `Blog template generated in ${dir}`,

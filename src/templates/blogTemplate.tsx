@@ -37,6 +37,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
+
         tags
         keywords
         image {
@@ -48,6 +49,8 @@ export const pageQuery = graphql`
             }
           }
         }
+        imageUrl
+        imagePhotographer
         title
       }
       fields {
@@ -88,6 +91,8 @@ type PropTypes = {
             fluid: FluidObject;
           };
         };
+        imagePhotographer?: string;
+        imageUrl?: string;
         title: string;
       };
       headings: Heading[];
@@ -236,11 +241,27 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 <TwitterFollowButton />
               </div>
             </header>
-            <Img
-              className="relative z-10 w-full h-auto mx-auto mt-5"
-              fluid={frontmatter.image.childImageSharp.fluid}
-              alt={frontmatter.title}
-            />
+            <figure>
+              <Img
+                className="relative z-10 w-full h-auto mx-auto mt-5"
+                fluid={frontmatter.image.childImageSharp.fluid}
+                alt={frontmatter.title}
+              />
+              {frontmatter.imageUrl && frontmatter.imagePhotographer ? (
+                <figcaption className="text-center text-neutralSoft my-2">
+                  <p>
+                    Photo by
+                    {' '}
+                    <ExternalLink
+                      className="underline text-neutral hover:text-neutralBold"
+                      href={frontmatter.imageUrl}
+                    >
+                      {frontmatter.imagePhotographer}
+                    </ExternalLink>
+                  </p>
+                </figcaption>
+              ) : null}
+            </figure>
 
             <div className="mt-4 md:hidden">
               <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
