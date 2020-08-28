@@ -55,7 +55,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
-    "react-icons": "^3.10.0"
+    "react-icons": "^3.10.0",
+    "vsc-community-material-theme": "github:material-theme/vsc-community-material-theme"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.10.0",

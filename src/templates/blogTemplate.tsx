@@ -228,10 +228,10 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               >
                 {frontmatter.title}
               </h1>
-              <div className="flex justify-between items-center mt-2">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-2">
                 <div className="flex text-onPrimarySoft ">
                   <time>{frontmatter.date}</time>
-                  <span className="mx-2">&middot;</span>
+                  <span className="mx-2 mb-4 md:mb-0">&middot;</span>
                   <span>
                     {mdx.timeToRead}
                     {' '}

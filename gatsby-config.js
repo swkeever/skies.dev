@@ -96,7 +96,8 @@ module.exports = {
           {
             resolve: 'gatsby-remark-vscode',
             options: {
-              theme: 'Dark+ (default dark)',
+              theme: 'Community Material Theme Darker', // From package.json: contributes.themes[0].label
+              extensions: ['vsc-community-material-theme'], // From package.json: name
             },
           },
           // {
