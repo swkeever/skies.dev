@@ -1,0 +1,304 @@
+---
+date: 2020-08-28
+title: On Finding a CSS Solution With React
+description:
+  React makes no opinions about how we should write CSS. This article explains
+  how I formed my own.
+category: 0
+keywords:
+  - react js
+  - react bootstrap
+  - css
+  - tailwind css
+  - styled components
+  - css in js
+tags:
+  - Beginner
+  - CSS
+  - Frontend
+  - Gatsby
+  - JavaScript
+  - Next
+  - React
+  - Tailwind CSS
+  - Web Development
+imagePhotographer: Simon Berger
+imageUrl: https://unsplash.com/photos/twukN12EN7c
+image: index.jpg
+---
+
+## Introduction
+
+React makes no opinions on how developers should write CSS. The choice for how
+CSS should be written in our applications is ultimately on us, the developers.
+
+I thought a lot (approximately one whole week 🙂) about how I wanted to handle
+CSS in my React projects.
+
+The goals for an ideal CSS workflow should support
+
+- **A design system**—a design system is invaluable for making our designs look
+  consistent and polished.
+- **Productivity**—our workflow should faciliate rapid development.
+- **Scalable**—we want to be sure our CSS scales with our project.
+
+So with this, let's consider the most basic solution, _vanilla CSS_, or just
+CSS.
+
+## CSS
+
+The most obvious solution to how we could write CSS in React is by writing...
+Well... CSS.
+
+What's great about plain ol' CSS is that it is extremely portable. It is a
+common tounge us frontend web developers must agree upon.
+
+We also have no problem developing a design system using
+[CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+
+![CSS variables are great unless you have to support IE, but that's none of my business.](cssvars.jpg)
+
+Where we start to see problems with vanilla CSS is with productivity and
+scalability.
+
+There is no nesting syntax with vanilla CSS so selectors end up being long,
+often duplicated pieces of code. There is also the problem with global
+stylesheets becoming unweildy as the project grows.
+
+<aside><p>
+In programming, we should be concious any time we declare a global anything.
+This is because other parts of the application could clash with the globally
+declared thing causing strange bugs.
+</p>
+
+This is why JavaScript developers often prefer to declare variables with <code>
+let</code> or <code>const</code> as opposed to <code>var</code>—these keywords
+allocate the variable only in the scope they were declared.
+
+</aside>
+
+We want to find a solution that can support
+
+- syntax that will make us more productive, such as
+  [nesting](https://stackoverflow.com/questions/4564916/nesting-css-classes).
+- scoping so that we don't have to worry about our styles clashing.
+
+To address these 2 problems, we turn to
+[CSS Modules](https://github.com/css-modules/css-modules).
+
+## CSS Modules
+
+One of the big selling points with CSS Modules is having the ability to have the
+CSS scoped to a particular component, making our styling system more robust as
+the project grows.
+
+It is possible to add Sass support alongside CSS Modules, giving us the benefits
+of using Sass, which is arguably one of the most mature CSS preprocessors out
+there.
+
+The problem for me comes in the form of productivity. With CSS Modules, we would
+need to hop back and forth between CSS and JavaScript files.
+
+With React, we colocate our JavaScript and our HTML together in the same file,
+why shouldn't we also colocate our styles?
+
+<aside>
+  <p>
+    Technically with React we're writing JSX, not HTML. But JSX is effectively
+    emulating HTML.
+  </p>
+</aside>
+
+With this, let's turn to some CSS-in-JS solutions!
+
+## CSS in Objects
+
+The most straightforward way of writing CSS-in-JS is by using the object syntax
+and injecting that into the style attribute.
+
+```jsx
+// Using object syntax to write styles
+export default function Button() {
+  return (
+    <button
+      style={{
+        backgroundColor: 'blue',
+        color: 'white',
+        padding: '5px 2px',
+      }}
+    >
+      Click{' '}
+    </button>
+  );
+}
+```
+
+The design system can be handled via exporting JavaScript constants.
+
+```jsx
+import styles from '@styles';
+
+export default function Button() {
+  return (
+    <button
+      style={{
+        backgroundColor: styles.colors.blue,
+        color: styles.colors.white,
+        padding: styles.padding.button,
+      }}
+    >
+      Click{' '}
+    </button>
+  );
+}
+```
+
+Scoping is handled naturally because we just inject the styles inline.
+
+One thing I'm personally a fan of is the camelcase object syntax. If we ever
+decided to port the object syntax into regular CSS, then that would be a huge
+effort since obviously CSS doesn't use the camelcase syntax.
+
+Let's keep considering other CSS-in-JS options.
+
+## CSS in Template Strings
+
+Another popular way to write CSS in React is by writing CSS syntax inside of
+template strings. There are several libraries that do this:
+
+- [styled-components](https://styled-components.com/)
+- [Emotion](https://emotion.sh/docs/introduction)
+- [styled-jsx](https://github.com/vercel/styled-jsx)
+
+Admittedly, having so many options that accomplish a similar thing in a similar
+way makes it hard to choose one.
+
+Another thing I've read with these kinds of libraries is there can be
+[performance penalties](https://blog.primehammer.com/the-performance-of-styled-react-components/)
+writing styles in using a library like this, abeit maybe not a large one.
+
+Overall, I think one of these libraries can be a solid catch-all CSS solution
+for a React project, but let's consider other options.
+
+<aside>
+  <p>
+    Have you tried all three of the libraries I listed? Which do you prefer? Let
+    me know on{' '}
+    <ExternalLink href="https://twitter.com/swkeever">Twitter</ExternalLink>.
+  </p>
+</aside>
+
+## Opinionated CSS Framework
+
+Let's consider some of the more opinionated CSS frameworks such as Bootstrap or
+Material UI.
+
+What's great about frameworks like this is that the design system is literally
+built in.
+
+They can let us be exteremely productive, at least at the beginning, because all
+the classes are defined.
+
+The problems I see with going this route is in terms of scalability. What if the
+CSS framework doesn't provide the functionality for a specific use case? We'll
+have to inject our own styles alongside the frameworks. What's more, we should
+make sure the styles we add our consistent with the design system of the CSS
+framework.
+
+There's also the meme that
+[every Bootstrap website looks the same](https://www.dagusa.com/). Going with an
+opinionated CSS framework can mak
+
+I next look for a solution that doesn't make so many opinions, Tailwind CSS.
+
+## Unopininated CSS Framework
+
+[Tailwind CSS](https://tailwindcss.com/) is a JavaScript application that reads
+a configuration file, and spits out a bunch of utility classes.
+
+You take the generated utility classes and apply them in the HTML, or in our
+case, the JSX.
+
+```jsx
+<h1 className="text-lg font-bold text-red-700">Hello</h1>
+```
+
+To me, Tailwind CSS fits somewhere in the middle between an opinionated CSS
+framework and writing CSS from scratch. You get the benefits of being able to
+add classes to the HTML to apply styles quickly, but Tailwind doesn't make too
+many decisions about how things should look.
+
+What's more, all of the other options (other than the opinionated CSS
+frameworks) required that we come up with the design system up front. Tailwind
+provides a design system out of the box.
+
+This is great because _I'm not a designer_. Why not let someone _who is a
+designer_ ([Steve Schoger](https://twitter.com/steveschoger)) create the design
+system for us?
+
+We should have no problems with scalability because at the end of the day,
+Tailwind is just spitting out vanilla CSS. Tailwind also has a story for
+[controlling the file size](https://tailwindcss.com/docs/controlling-file-size)
+from the generated CSS.
+
+This checks all the boxes for me. Tailwind
+
+- **provides a design system** making it easy for our styles to be consistent
+  throughout the app.
+- **let's us iterate quickly**—we can apply a class inside our HTML to declare
+  an atomic CSS rule.
+- **is just CSS** and that's what the browser is asking for.
+
+Tailwind CSS is not perfect though, and the approach of writing styles from
+utility classes is
+[certainly controversial](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/).
+
+When you write Tailwind CSS, it is not uncommon to see a huge string of class
+names.
+
+```jsx
+<button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 shadow-md hover:shadow-lg ...">
+  Click
+</button>
+```
+
+When the classes are spread out like this, often spanning multiple lines, it
+admittedly becomes hard to read. One solution inspired by Tailwind Labs
+developer [Robin Malfait](https://twitter.com/malfaitrobin) is to write a simple
+function that joins the classes together.
+
+```javascript
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+```
+
+Original source code
+[here](https://github.com/tailwindlabs/tailwindui-react/blob/develop/src/utils/class-names.ts).
+
+With this, we can call this function when declaring many classes, and we can
+easily span large strings of classes across multiple lines. For example,
+
+```jsx
+<button
+  classNames={classNames(
+    'px-4 py-2',
+    'bg-blue-500 hover:bg-blue-600',
+    'shadow-md hover:shadow-lg'
+  )}
+>
+  Click
+</button>
+```
+
+I like to group common styles together, putting padding on its own lines,
+shadows on their own lines, and so forth. This makes reading a large set of
+applied classes much easier in my opinion.
+
+## Conclusion
+
+Tailwind CSS is a great complement to React and it's probably going to be the
+tool I reach for for handling my CSS needs in future projects.
+
+What is your preferred way to write CSS with React? Let me know on
+[Twitter](https://twitter.com/swkeever)!
