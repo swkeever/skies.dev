@@ -109,6 +109,8 @@ module.exports = {
           // },
           gatsbyRemarkImages,
           'gatsby-remark-external-links',
+
+          // Note: I need to have this in order for the Table of Contents to work.
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
@@ -118,6 +120,7 @@ module.exports = {
               removeAccents: true,
             },
           },
+
           {
             resolve: 'gatsby-remark-embed-youtube',
             options: {

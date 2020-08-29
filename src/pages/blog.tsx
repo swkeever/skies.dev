@@ -4,6 +4,7 @@ import * as JsSearch from 'js-search';
 import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/BlogCard';
+import classNames from '@utils/class-names';
 import SEO from '../components/SEO';
 import Empty from '../../assets/empty.svg';
 import blogCategories from '../utils/blog-categories';
@@ -130,6 +131,25 @@ export default function BlogsPage() {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
 
+  const colors = {
+    primary: {
+      bg: 'bg-primary',
+      svg: 'text-primary',
+      logo: 'text-onPrimary',
+      input: 'shadow-lg',
+      p: 'text-neutralSoft',
+      a: 'text-onPrimary hover:text-onPrimaryBgLinkHover',
+    },
+    neutral: {
+      bg: 'bg-neutralBg',
+      svg: 'text-neutralBg',
+      logo: 'text-primaryBold',
+      input: 'shadow-lg',
+      p: 'text-neutralSoft',
+      a: 'text-onNeutralBgLink hover:text-onNeutralBgLinkHover',
+    },
+  }.primary;
+
   const allBlogs: Blog[] = gqlResponseToBlogs(data);
 
   const [blogs, setBlogs] = useState(allBlogs);
@@ -175,32 +195,37 @@ export default function BlogsPage() {
         ]}
       />
       <section
-        className={`
-          bg-neutralBg
-          z-20 relative
-          pt-12 lg:pt-16
-          flex-grow-0
-          ${globalStyles.transitions}
-        `}
+        className={classNames(
+          colors.bg,
+          'z-20 relative',
+          'pt-12 lg:pt-16',
+          'flex-grow-0',
+          globalStyles.transitions,
+        )}
       >
         <div className="px-4 max-w-screen-sm mx-auto">
           <h1>
             <span className="sr-only">{siteConfig.siteTitle}</span>
-            <Logo className="w-7/12 h-auto mx-auto text-primaryBold fill-current" />
+            <Logo
+              className={classNames(
+                'w-7/12 h-auto',
+                'mx-auto',
+                colors.logo,
+                'fill-current',
+              )}
+            />
           </h1>
           <div id="search-input" className="mt-12">
             <label htmlFor="filter-input">
               <span className="sr-only">Search</span>
               <div>
                 <FaSistrix
-                  className={`
-                      inline
-                      text-2xl 
-                      absolute
-                      text-neutral
-                      ml-2
-                      z-30
-                    `}
+                  className={classNames(
+                    'inline absolute z-30',
+                    'text-2xl',
+                    'ml-2',
+                    colors.p,
+                  )}
                 />
                 <input
                   // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -224,7 +249,7 @@ export default function BlogsPage() {
                         relative
                         py-3
                         w-full
-                        shadow-inner
+                        shadow-lg
                         ${globalStyles.outline}
                         
                         ${globalStyles.transitions}
@@ -237,10 +262,21 @@ export default function BlogsPage() {
         </div>
       </section>
       <div
-        className={`bg-neutralBgSoft flex-grow-0 relative z-0 2xl:-mt-24 ${globalStyles.transitions}`}
+        className={classNames(
+          'bg-neutralBgSoft',
+          'flex-grow-0',
+          'relative z-0',
+          '2xl:-mt-24',
+          globalStyles.transitions,
+        )}
       >
         <svg
-          className={`text-neutralBg fill-current h-auto ${globalStyles.transitions}`}
+          className={classNames(
+            colors.svg,
+            'fill-current',
+            'h-auto',
+            globalStyles.transitions,
+          )}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 253"
         >

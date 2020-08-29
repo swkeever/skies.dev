@@ -8,6 +8,19 @@ import routes from '../utils/routes';
 import Logo from '../../assets/logo.svg';
 
 export default function Header() {
+  const styles = {
+    primary: {
+      bg: 'bg-neutralBg lg:bg-primary',
+      logo: 'text-primaryBold lg:text-onPrimary',
+    },
+    neutral: {
+      bg: 'bg-neutralBg shadow-sm',
+      logo: 'text-primaryBold',
+    },
+  };
+
+  const colors = styles.primary;
+
   return (
     <>
       <header
@@ -21,8 +34,8 @@ export default function Header() {
           'lg:top-0 lg:bottom-auto',
           'w-screen',
           'z-40',
-          'bg-neutralBg',
-          'shadow-sm',
+          colors.bg,
+          // 'shadow-sm',
         )}
       >
         <div
@@ -40,7 +53,9 @@ export default function Header() {
           
         `}
           >
-            <Logo className="w-32 h-auto text-primaryBold fill-current" />
+            <Logo
+              className={classNames('w-32 h-auto', colors.logo, 'fill-current')}
+            />
           </Link>
           <Nav />
         </div>

@@ -23,6 +23,7 @@ import shortcodes from '@components/Shortcodes';
 import routes from '@utils/routes';
 import Newsletter from '@components/Newsletter';
 import TwitterFollowButton from '@components/TwitterFollowButton';
+import classNames from '@utils/class-names';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -132,6 +133,24 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
     hover:text-neutral
     `,
   };
+
+  const colors = {
+    primary: {
+      header: {
+        h1: 'text-onPrimary',
+        bg: 'bg-primary',
+        meta: 'text-onPrimarySoft',
+      },
+    },
+    neutral: {
+      header: {
+        h1: 'text-onNeutralBg',
+        bg: 'bg-neutralBgSoft',
+        meta: 'text-neutralSoft',
+      },
+    },
+  }.primary;
+
   return (
     <>
       <SEO
@@ -147,19 +166,17 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
       />
       <article
         className={`${globalStyles.transitions}
-        mb-8
+        mb-2
       `}
         itemScope
         itemType="http://schema.org/BlogPosting"
       >
         <div
-          className={`
-            bg-neutralBgSoft
-            relative
-            z-10
-            pt-8
-            pb-64
-          `}
+          className={classNames(
+            colors.header.bg,
+            'relative z-10',
+            'pt-8 pb-64',
+          )}
         />
         <div
           className={`
@@ -216,28 +233,22 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           <div className="col-span-12 px-2 md:col-span-8 pt-4">
             <header className="relative z-30 -mt-48 md:-mt-64">
               <h1
-                className={`
-                  leading-none
-                  text-4xl
-                  text-onNeutralBg
-                  lg:text-5xl
-                  font-extrabold
-                `}
+                className={classNames(
+                  'leading-none text-4xl lg:text-5xl font-extrabold',
+                  colors.header.h1,
+                )}
                 itemProp="name"
               >
                 {frontmatter.title}
               </h1>
-              <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-2">
-                <div className="flex text-neutralSoft ">
-                  <time>{frontmatter.date}</time>
-                  <span className="mx-2 mb-4 md:mb-0">&middot;</span>
-                  <span>
-                    {mdx.timeToRead}
-                    {' '}
-                    min read
-                  </span>
-                </div>
-                <TwitterFollowButton />
+              <div className={classNames('flex', 'mt-2', colors.header.meta)}>
+                <time>{frontmatter.date}</time>
+                <span className="mx-2 mb-4 md:mb-0">&middot;</span>
+                <span>
+                  {mdx.timeToRead}
+                  {' '}
+                  min read
+                </span>
               </div>
             </header>
             <figure>
@@ -315,7 +326,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
             </ul>
           </div>
 
-          <nav className="mt-4 md:mt-0">
+          <nav className="my-4 md:mt-0">
             <ul className="flex justify-between md:justify-start md:space-x-4">
               <li>
                 <Link
@@ -351,6 +362,11 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
             </ul>
           </nav>
         </section>
+        <div
+          className={classNames('flex justify-end', 'sticky bottom-2', 'mr-2')}
+        >
+          <TwitterFollowButton />
+        </div>
       </article>
       <Newsletter
         tags={frontmatter.tags}

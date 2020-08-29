@@ -8,11 +8,7 @@ import classNames from '@utils/class-names';
 import siteConfig from '../../site.config';
 import routes from '../utils/routes';
 
-type PropTypes = {
-  color: 'primary' | 'neutral';
-};
-
-export default function Hero({ color = 'neutral' }) {
+export default function Hero() {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "about/me.jpg" }) {
@@ -44,7 +40,7 @@ export default function Hero({ color = 'neutral' }) {
     },
   };
 
-  const colors = styles[color];
+  const colors = styles.primary;
 
   return (
     <>
