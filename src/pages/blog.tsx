@@ -176,7 +176,7 @@ export default function BlogsPage() {
       />
       <section
         className={`
-          bg-primary
+          bg-neutralBg
           z-20 relative
           pt-12 lg:pt-16
           flex-grow-0
@@ -186,7 +186,7 @@ export default function BlogsPage() {
         <div className="px-4 max-w-screen-sm mx-auto">
           <h1>
             <span className="sr-only">{siteConfig.siteTitle}</span>
-            <Logo className="w-7/12 h-auto mx-auto text-onPrimarySoft fill-current" />
+            <Logo className="w-7/12 h-auto mx-auto text-primaryBold fill-current" />
           </h1>
           <div id="search-input" className="mt-12">
             <label htmlFor="filter-input">
@@ -224,9 +224,9 @@ export default function BlogsPage() {
                         relative
                         py-3
                         w-full
-                        shadow-lg
+                        shadow-inner
                         ${globalStyles.outline}
-                        focus:bg-neutralBg
+                        
                         ${globalStyles.transitions}
                       `}
                   type="search"
@@ -240,7 +240,7 @@ export default function BlogsPage() {
         className={`bg-neutralBgSoft flex-grow-0 relative z-0 2xl:-mt-24 ${globalStyles.transitions}`}
       >
         <svg
-          className={`text-primary fill-current h-auto ${globalStyles.transitions}`}
+          className={`text-neutralBg fill-current h-auto ${globalStyles.transitions}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 253"
         >

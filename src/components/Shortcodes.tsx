@@ -160,8 +160,7 @@ const shortcodes = {
         ${styles.mt}
         ${styles.card}
         border-primaryBgSoft
-        bg-primaryBg
-        text-onPrimaryBgSoft
+        bg-neutralBg
         mb-5
      `}
     />
