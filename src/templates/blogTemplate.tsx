@@ -37,7 +37,6 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         description
-
         tags
         keywords
         image {
@@ -91,8 +90,8 @@ type PropTypes = {
             fluid: FluidObject;
           };
         };
-        imagePhotographer?: string;
-        imageUrl?: string;
+        imagePhotographer: string;
+        imageUrl: string;
         title: string;
       };
       headings: Heading[];
@@ -155,7 +154,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
       >
         <div
           className={`
-            bg-primary
+            bg-neutralBgSoft
             relative
             z-10
             pt-8
@@ -214,13 +213,13 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               </li>
             </ul>
           </aside>
-          <div className="col-span-12 px-2 md:col-span-8">
+          <div className="col-span-12 px-2 md:col-span-8 pt-4">
             <header className="relative z-30 -mt-48 md:-mt-64">
               <h1
                 className={`
                   leading-none
                   text-4xl
-                  text-onPrimary
+                  text-onNeutralBg
                   lg:text-5xl
                   font-extrabold
                 `}
@@ -229,7 +228,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 {frontmatter.title}
               </h1>
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-2">
-                <div className="flex text-onPrimarySoft ">
+                <div className="flex text-neutralSoft ">
                   <time>{frontmatter.date}</time>
                   <span className="mx-2 mb-4 md:mb-0">&middot;</span>
                   <span>
@@ -247,20 +246,18 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 fluid={frontmatter.image.childImageSharp.fluid}
                 alt={frontmatter.title}
               />
-              {frontmatter.imageUrl && frontmatter.imagePhotographer ? (
-                <figcaption className="text-center text-neutralSoft my-2">
-                  <p>
-                    Photo by
-                    {' '}
-                    <ExternalLink
-                      className="underline text-neutral hover:text-neutralBold"
-                      href={frontmatter.imageUrl}
-                    >
-                      {frontmatter.imagePhotographer}
-                    </ExternalLink>
-                  </p>
-                </figcaption>
-              ) : null}
+              <figcaption className="text-center text-neutralSoft my-2">
+                <p>
+                  Photo by
+                  {' '}
+                  <ExternalLink
+                    className="underline text-neutral hover:text-neutralBold"
+                    href={frontmatter.imageUrl}
+                  >
+                    {frontmatter.imagePhotographer}
+                  </ExternalLink>
+                </p>
+              </figcaption>
             </figure>
 
             <div className="mt-4 md:hidden">
@@ -357,7 +354,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
       </article>
       <Newsletter
         tags={frontmatter.tags}
-        color="primarySoft"
+        color="neutralSoft"
         copy="Want more articles like this?"
       />
     </>

@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   FaRegLightbulb,
-  FaSmile,
+  FaRegSmile,
   FaLightbulb,
-  FaSmileBeam,
+  FaRegSmileBeam,
   FaCog,
   FaCloudSun,
   FaCloudSunRain,
@@ -30,13 +30,12 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           block h-full
           flex flex-col lg:flex-row justify-center items-center space-y-1 lg:space-x-2
           text-sm
-          text-onPrimary
           transform
           hover:no-underline
           ${
             isActive
               ? `
-          text-light
+          text-primaryBold
            scale-105
           -translate-y-px
           font-semibold
@@ -44,6 +43,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
               : `
           scale-100
           translate-y-px
+          text-neutralSoft
           `
           }
         `}
@@ -93,13 +93,13 @@ export default function Nav() {
     </Item>,
     <Item route={routes.about} key="nav-about">
       {pathname === routes.about ? (
-        <FaSmileBeam
+        <FaRegSmileBeam
           className={`
       ${iconStyles} text-2xl
       `}
         />
       ) : (
-        <FaSmile
+        <FaRegSmile
           className={`
               ${iconStyles}
               text-2xl
@@ -165,7 +165,7 @@ export default function Nav() {
         
         
         w-1/4
-        ${underlineOffset ? 'bg-onPrimary' : 'bg-primary'}
+        ${underlineOffset ? 'bg-primaryBold' : 'bg-neutralBg'}
         `}
       />
     </nav>
