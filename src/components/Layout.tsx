@@ -23,7 +23,7 @@ function isSystemPrefLightMode() {
 }
 
 const Layout = ({ children }: { children: ReactNode }) => {
-  const [lightTheme, setLightTheme] = useState(true);
+  const [lightTheme, setLightTheme] = useState<boolean>(true);
 
   useEffect(() => {
     setLightTheme(isSystemPrefLightMode());
@@ -34,7 +34,12 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <LayoutContext.Provider value={{ lightTheme, setLightTheme }}>
+      <LayoutContext.Provider
+        value={{
+          lightTheme,
+          setLightTheme,
+        }}
+      >
         <div
           className={`
               ${themeClass}

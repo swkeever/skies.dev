@@ -17,7 +17,7 @@ export default function MarkdownPage({
         description={frontmatter.description}
         keywords={frontmatter.keywords || []}
       />
-      {frontmatter.withHero ? <Hero /> : null}
+      <Hero />
       <section
         className={classNames('mb-24 mx-auto', 'w-full max-w-screen-md')}
       >

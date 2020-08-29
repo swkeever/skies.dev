@@ -32,8 +32,8 @@ image: index.jpg
 React makes no opinions on how developers should write CSS. The choice for how
 CSS should be written in our applications is ultimately on us, the developers.
 
-I thought a lot (approximately _one whole week_ 🙂) about the various ways we
-could go about writing CSS in our React projects.
+I've thought a lot about the various ways we could go about writing CSS in our
+React projects.
 
 The ideal CSS workflow should support
 
@@ -50,8 +50,8 @@ So with this, let's consider the most basic starting point.
 The most obvious solution to how we could write CSS in React is by writing...
 Well... CSS.
 
-What's great about plain old CSS is that it is extremely portable. It is a
-common tongue us frontend web developers must agree upon.
+> What's great about plain old CSS is that it is extremely portable. It is a
+> common tongue us frontend web developers must agree upon.
 
 We also have no problem developing a design system using
 [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
@@ -66,36 +66,31 @@ repetitive.
 
 ```css
 .btn {
-  background-color: #007dc1;
-  border-radius: 3px;
-  display: inline-block;
-  color: #ffffff;
-  padding: 6px 24px;
+  /* regular styles */
 }
 
 .btn:hover {
-  background-color: #0061a7;
+  /* hover styles */
 }
 
 .btn:active {
-  position: relative;
-  top: 1px;
+  /* active styles */
+}
+
+.btn:focus {
+  /* focus styles */
 }
 ```
 
 There is also the problem with global stylesheets becoming unwieldy as the
 project grows.
 
-<aside><p>
-In programming, we should be conscious <em>any time</em> we declare anything globally.
-This is because other parts of the application could clash with the globally
-declared thing causing strange bugs.
-</p>
-
-This is why JavaScript developers often prefer to declare variables with <code>
-let</code> or <code>const</code> as opposed to <code>var</code>—these keywords
-allocate the variable only in the scope they were declared.
-
+<aside>
+  <p>
+    In programming, we should be conscious <em>any time</em> we declare anything
+    globally. This is because other parts of the application could clash with
+    the globally declared thing causing strange bugs.
+  </p>
 </aside>
 
 We want to find a solution that will make us more productive and hopefully solve
@@ -134,16 +129,14 @@ CSS preprocessors.
 ```scss
 /* button.module.scss */
 .btn {
-  backgroud: blue;
-  color: white;
+  // regular styles
 
   &:hover {
-    background: indigo;
+    // hover styles
   }
 
   &:active {
-    position: relative;
-    top: 1px;
+    // active styles
   }
 }
 ```
@@ -151,8 +144,8 @@ CSS preprocessors.
 The problem for me comes in the form of productivity. With CSS Modules, we would
 need to hop back and forth between CSS and JavaScript files.
 
-With React, we colocate our JavaScript and HTML together in the same file, why
-shouldn't we also colocate our CSS?
+With React, we co-locate our JavaScript and HTML together in the same file, why
+shouldn't we also co-locate our CSS?
 
 <aside>
   <p>
@@ -179,7 +172,7 @@ function Button() {
         padding: '5px 2px',
       }}
     >
-      Click{' '}
+      Click
     </button>
   );
 }
@@ -199,7 +192,7 @@ function Button() {
         padding: styles.padding.button,
       }}
     >
-      Click{' '}
+      Click
     </button>
   );
 }
@@ -230,12 +223,6 @@ const Button = styled.a`
   background: transparent;
   color: white;
   border: 2px solid white;
-  ${props =>
-    props.primary &&
-    css`
-      background: white;
-      color: black;
-    `}
 `;
 ```
 
@@ -258,10 +245,11 @@ way makes it hard to choose one.
 
 We may also take a small
 [performance hit](https://blog.primehammer.com/the-performance-of-styled-react-components/)
-writing styles using a library like this. It's something we should consider as
-our application grows.
+writing styles using a library like this, abeit it's probably not too
+significant. Nonetheless, it's something we should consider as our application
+grows.
 
-At this point, we've looked at lot of great options. However, all of the options
+At this point, we've looked at a lot of great options. However, all of the options
 we've looked at so far require us to develop our design system upfront. Let's
 see if we can find a tool that could help us in that regard as well.
 
@@ -289,9 +277,9 @@ I think these frameworks are great for prototyping but may become a bottleneck
 as our project grows.
 
 What if the CSS framework doesn't provide the functionality for a specific use
-case? We'll have to inject our own styles alongside the frameworks. What's more,
-we'd need to make sure the styles we add our consistent with the design system
-provided by the CSS framework.
+case? We'll have to inject our own styles alongside the framework's styles.
+What's more, we'd need to make sure the styles we add our consistent with the
+design system provided by the CSS framework.
 
 It's great that we can style our app quickly by applying classes, but let's look
 for a solution that gives us more granular control.
@@ -303,7 +291,7 @@ For this, we turn to [Tailwind CSS](https://tailwindcss.com/).
 Tailwind CSS is a JavaScript application that uses a configuration file to
 generate a stylesheet full of utility classes.
 
-We can then use the generated classes as we normally would.
+We can then use the generated classes like any other CSS stylesheet.
 
 ```jsx
 <h1 className="text-lg font-bold text-red-700">Hello</h1>
@@ -323,8 +311,8 @@ provides that for us.
 This is great because _I'm not a designer_.
 
 Why not let someone _who is a designer_
-([Steve Schoger](https://twitter.com/steveschoger)) create the design system
-that we can use?
+([Steve Schoger](https://twitter.com/steveschoger)) create a design system for
+us?
 
 > **Question**
 >
@@ -342,7 +330,7 @@ that we can use?
 > design system.
 >
 > With Bootstrap, you would apply a `btn` class to a button, which would create
-> a "Bootstrap button."
+> a [Bootstrap button](https://getbootstrap.com/docs/4.0/components/buttons/).
 >
 > With Tailwind, however, you would need to apply individual classes for
 > padding, border-radius, background color, etc. This gives developers much more
@@ -369,8 +357,9 @@ names.
 </button>
 ```
 
-Many classes on a single line admittedly can become hard to read. One solution
-inspired by Tailwind Labs developer
+Many classes on a single line admittedly can become hard to read.
+
+One solution inspired by Tailwind Labs developer
 [Robin Malfait](https://twitter.com/malfaitrobin) is to write a simple function
 that joins the classes together.
 
@@ -386,6 +375,8 @@ Original source code
 We can call this function when declaring many classes, and we can easily span
 large strings of classes across multiple lines in a readable way.
 
+I like to group related CSS rules together, but do what works for you.
+
 ```jsx
 <button
   classNames={classNames(
@@ -400,8 +391,15 @@ large strings of classes across multiple lines in a readable way.
 
 ## Conclusion
 
-Tailwind CSS is a great complement to React. It's probably going to be the tool
-I reach for to handle my CSS needs in future projects.
+Tailwind CSS is a great complement to React. After using Tailwind,
 
-What is your preferred way to write CSS with React? Let me know on
+- I have become [more confident](/blog/learn-css) with my CSS skills.
+- I spend less time styling than if I were to write CSS from scratch.
+- I can utilize a design system making my styles, such as spacing and colors,
+  consistent throughout my site.
+
+It's probably going to be the tool I reach for to handle my CSS needs in future
+projects.
+
+**What is your preferred way to write CSS with React?** Let me know on
 [Twitter](https://twitter.com/swkeever)!
