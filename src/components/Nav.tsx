@@ -62,7 +62,7 @@ export default function Nav() {
   const colors = {
     primary: {
       underline: {
-        on: 'bg-primaryBold lg:bg-light',
+        on: 'bg-neutralSoft lg:bg-light',
         off: 'bg-neutralBg lg:bg-primary',
       },
       icon: {

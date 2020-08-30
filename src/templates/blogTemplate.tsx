@@ -357,14 +357,14 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           </nav>
         </section>
         <div
-          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
           className={tw(
-            'float-right',
-            'sticky bottom-24 lg:bottom-2',
-            'mr-2 mt-4',
+            'sticky lg:bottom-2', // sticky on desktop
+            'mb-8 lg:mb-0 mt-4',
+            'flex justify-center lg:justify-end', // again, floating right is buggy on mobile, so only do it on desktop
+            'lg:mr-2',
           )}
         >
-          <TwitterFollowButton closable />
+          <TwitterFollowButton />
         </div>
       </article>
       <Newsletter
