@@ -4,24 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import routes from '../utils/routes';
 
-const query = graphql`
-  query SEO {
-    site {
-      siteMetadata {
-        siteUrl
-        handle
-      }
-    }
-    file(relativePath: { eq: "logo.jpg" }) {
-      childImageSharp {
-        fixed(height: 630, width: 1200) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-  }
-`;
-
 type SEO = {
   title: string;
   description: string;
@@ -58,6 +40,12 @@ export default function SEO({
   keywords: string[];
 }) {
   type QueryData = {
+    site: {
+      siteMetadata: {
+        siteUrl: string;
+        handle: string;
+      };
+    };
     file: {
       childImageSharp: {
         fixed: FluidObject;
@@ -65,7 +53,23 @@ export default function SEO({
     };
   };
 
-  const { site, file }: { site: QueryData } = useStaticQuery(query);
+  const { site, file }: QueryData = useStaticQuery(graphql`
+    query SEO {
+      site {
+        siteMetadata {
+          siteUrl
+          handle
+        }
+      }
+      file(relativePath: { eq: "logo.jpg" }) {
+        childImageSharp {
+          fixed(height: 630, width: 1200) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `);
   const { pathname } = useLocation();
 
   const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;

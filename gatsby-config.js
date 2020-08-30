@@ -21,7 +21,7 @@ const gatsbyRemarkImages = {
 
 module.exports = {
   siteMetadata: {
-    siteUrl: config.siteUrl,
+    siteUrl: 'https://skies.dev',
     handle: 'swkeever',
     title: 'Skies',
     description: 'A software engineering blog by Sean Keever',
