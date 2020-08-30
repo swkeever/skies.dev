@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import BlogCard from '@components/BlogCard';
 import { FaArrowRight } from 'react-icons/fa';
 import Hero from '@components/Hero';
+import tw from '@utils/tailwind';
 import routes from '../utils/routes';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
@@ -53,7 +54,7 @@ const IndexPage = () => {
     bg-neutralBgSoft`}
     >
       <SEO
-        title="Sean Keever"
+        title="A website by Sean Keever"
         description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
         keywords={[
           'Sean Keever',
@@ -118,11 +119,7 @@ const IndexPage = () => {
           >
             See all publications
             <FaArrowRight
-              className={`
-                inline-block 
-                ml-1 mb-1
-              text-xl
-            `}
+              className={tw('inline-block', 'ml-1 mb-1', 'text-xl')}
             />
           </Link>
         </section>
@@ -134,23 +131,24 @@ const IndexPage = () => {
       >
         <section className="max-w-screen-md mx-auto px-4">
           <h2
-            className={`
-            ${globalStyles.transitions}
-            font-extrabold
-            text-onNeutralBg
-            text-3xl
-            mb-3
-            `}
+            className={tw(
+              globalStyles.transitions,
+              'font-extrabold',
+              'text-onNeutralBg',
+              'text-3xl',
+              'mb-3',
+            )}
           >
             Contact
           </h2>
           <p
-            className={`text-onNeutralBgSoft
-            text-lg mb-16
-            max-w-lg
-            
-            ${globalStyles.transitions}
-            `}
+            className={tw(
+              'text-onNeutralBgSoft',
+              'text-xl',
+              'mb-16',
+              'max-w-lg',
+              globalStyles.transitions,
+            )}
           >
             If you would like to get in touch with me, contact me here. Your
             message will go straight to my email.

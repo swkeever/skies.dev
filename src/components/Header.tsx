@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import globalStyles from '@styles/index';
-import classNames from '@utils/class-names';
+import tw from '@utils/tailwind';
 import ThemeToggle from './ThemeToggle';
 import Nav from './Nav';
 import routes from '../utils/routes';
@@ -24,16 +24,18 @@ export default function Header() {
   return (
     <>
       <header
-        style={{
-          paddingBottom: 'env(safe-area-inset-bottom)',
-          // paddingTop: 'env(safe-area-inset-top)',
-        }}
-        className={classNames(
+        // style={{
+        //   paddingBottom: 'env(safe-area-inset-bottom)',
+        //   // paddingTop: 'env(safe-area-inset-top)',
+        // }}
+        className={tw(
           'fixed',
           'bottom-0 left-0 top-auto right-auto',
           'lg:top-0 lg:bottom-auto',
+          'border-t border-neutralBgSofter',
           'w-screen',
           'z-40',
+          'safe-bottom',
           colors.bg,
           // 'shadow-sm',
         )}
@@ -53,9 +55,7 @@ export default function Header() {
           
         `}
           >
-            <Logo
-              className={classNames('w-32 h-auto', colors.logo, 'fill-current')}
-            />
+            <Logo className={tw('w-32 h-auto', colors.logo, 'fill-current')} />
           </Link>
           <Nav />
         </div>

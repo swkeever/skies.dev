@@ -1,7 +1,7 @@
-import classNames from '../class-names';
+import tw from '../tailwind';
 
 test('should aggregate class names', () => {
-  const res = classNames('bg-red-500', 'hover:bg-red-600');
+  const res = tw('bg-red-500', 'hover:bg-red-600');
 
   expect(res).toBe('bg-red-500 hover:bg-red-600');
 });

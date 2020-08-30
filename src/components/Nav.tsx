@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import { Link, useLocation } from '@reach/router';
 import globalStyles from '@styles/index';
-import classNames from '@utils/class-names';
+import tw from '@utils/tailwind';
 import routes from '../utils/routes';
 
 function Item({ route, children }: { route: string; children: ReactNode }) {
@@ -20,7 +20,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
   const colors = {
     primary: {
       link: 'text-neutralSoft lg:text-onPrimarySoft',
-      linkActive: 'text-primaryBold lg:text-light',
+      linkActive: 'text-onNeutralBg lg:text-onPrimary',
     },
     neutral: {
       link: 'text-neutralSoft',
@@ -37,7 +37,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
     >
       <Link
         to={route}
-        className={classNames(
+        className={tw(
           globalStyles.transitions,
           'block',
           'h-full',
@@ -46,12 +46,8 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           'text-sm hover:no-underline',
           'transform',
           isActive
-            ? classNames(
-              colors.linkActive,
-              'scale-105 -translate-y-px',
-              'font-semibold',
-            )
-            : classNames(colors.link, 'scale-100 translate-y-px'),
+            ? tw(colors.linkActive, 'scale-105 -translate-y-px', 'font-medium')
+            : tw(colors.link, 'scale-100 translate-y-px'),
         )}
       >
         {children}
@@ -86,57 +82,50 @@ export default function Nav() {
     },
   }.primary;
 
-  const iconStyles = classNames(
+  const iconStyles = tw(
     'text-2xl md:text-xl',
     'block',
     globalStyles.transitions,
   );
 
   const Name = ({ name }: { name: string }) => (
-    <span
-      className={`
-        text-xs lg:text-sm
-        
-      `}
-    >
-      {name}
-    </span>
+    <span className={tw('text-xs lg:text-sm')}>{name}</span>
   );
 
   const navItems = [
     <Item route={routes.home} key="nav-home">
       {pathname === routes.home ? (
-        <FaCloudSunRain className={classNames(iconStyles, colors.icon.on)} />
+        <FaCloudSunRain className={tw(iconStyles, colors.icon.on)} />
       ) : (
-        <FaCloudSun className={classNames(iconStyles, colors.icon.off)} />
+        <FaCloudSun className={tw(iconStyles, colors.icon.off)} />
       )}
       <Name name="Home" />
     </Item>,
     <Item route={routes.blog} key="nav-blog">
       {pathname === routes.blog ? (
-        <FaLightbulb className={classNames(iconStyles, colors.icon.on)} />
+        <FaLightbulb className={tw(iconStyles, colors.icon.on)} />
       ) : (
-        <FaRegLightbulb className={classNames(iconStyles, colors.icon.off)} />
+        <FaRegLightbulb className={tw(iconStyles, colors.icon.off)} />
       )}
       <Name name="Blog" />
     </Item>,
     <Item route={routes.about} key="nav-about">
       {pathname === routes.about ? (
-        <FaRegSmileBeam className={classNames(iconStyles, colors.icon.on)} />
+        <FaRegSmileBeam className={tw(iconStyles, colors.icon.on)} />
       ) : (
-        <FaRegSmile className={classNames(iconStyles, colors.icon.off)} />
+        <FaRegSmile className={tw(iconStyles, colors.icon.off)} />
       )}
 
       <Name name="About" />
     </Item>,
     <Item route={routes.uses} key="nav-uses">
       <FaCog
-        className={classNames(
+        className={tw(
           iconStyles,
           'transform',
           pathname === routes.uses
-            ? classNames('rotate-180', colors.icon.on)
-            : classNames('rotate-0', colors.icon.off),
+            ? tw('rotate-180', colors.icon.on)
+            : tw('rotate-0', colors.icon.off),
         )}
       />
 
@@ -181,7 +170,7 @@ export default function Nav() {
       </ul>
       <hr
         style={{ marginLeft: underlineOffset }}
-        className={classNames(
+        className={tw(
           globalStyles.transitions,
           'border-0',
           'mt-auto',

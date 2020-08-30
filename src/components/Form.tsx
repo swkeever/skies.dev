@@ -104,22 +104,17 @@ export default function Form() {
       </label>
       <button
         className={`float-right
-        
           inline-block
           bg-primaryBold hover:bg-primary
-
           text-onPrimary
-          
           rounded-full
           ${globalStyles.transitions}
           ${globalStyles.outline}
-          px-4 
-          
+          px-4       
           py-2 
           font-bold
           lg:px-8 
           lg:text-lg
-
         `}
         type="submit"
       >

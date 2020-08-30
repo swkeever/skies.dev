@@ -1,4 +1,4 @@
-export default function classNames(
+export default function tw(
   ...classes: (false | null | undefined | string)[]
 ): string {
   return classes.filter(Boolean).join(' ');

@@ -189,7 +189,7 @@
 } */
 
 html {
-  @apply overflow-y-scroll min-h-screen;
+  @apply min-h-screen overflow-y-scroll;
 
   /* This is to control behavior of smooth scroll anchor links */
   scroll-behavior: smooth;
@@ -203,6 +203,11 @@ html {
   nav {
     padding-bottom: env(safe-area-inset-bottom);
   }
+}
+
+/* adds a little extra bottom padding on iOS */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 @tailwind components;
@@ -256,7 +261,7 @@ input:-webkit-autofill {
 
 /* VS Code theme overrides */
 .grvsc-container {
-  @apply pt-2 pb-1 rounded-md my-5;
+  @apply pt-2 pb-1 my-5 rounded-md;
 }
 
 .grvsc-line {
@@ -267,7 +272,7 @@ input:-webkit-autofill {
 
 /* See “Line Highlighting” section for details */
 .grvsc-line-highlighted {
-  @apply shadow-xs bg-green-500;
+  @apply bg-green-500 shadow-xs;
 }
 
 /* the permalink icon */
@@ -277,7 +282,7 @@ h3 .anchor svg,
 h4 .anchor svg,
 h5 .anchor svg,
 h6 .anchor svg {
-  @apply h-full w-10 -ml-3 -mb-2 transition-all duration-200 opacity-0 inline;
+  @apply inline w-10 h-full -mb-2 -ml-3 transition-all duration-200 opacity-0;
 }
 
 h1 a.anchor,
@@ -295,11 +300,11 @@ h3:hover .anchor svg,
 h4:hover .anchor svg,
 h5:hover .anchor svg,
 h6:hover .anchor svg {
-  @apply opacity-100 inline-block ml-2 rounded-md;
+  @apply inline-block ml-2 rounded-md opacity-100;
 }
 
 a.anchor:hover {
-  @apply text-primary fill-current stroke-current;
+  @apply fill-current stroke-current text-primary;
 }
 
 article h2 {
@@ -328,7 +333,7 @@ Used for images in MDX files.
 }
 
 .gatsby-resp-image-figcaption {
-  @apply text-neutralSoft text-center max-w-screen-lg leading-5 mt-1 text-sm;
+  @apply max-w-screen-lg mt-1 text-sm leading-5 text-center text-neutralSoft;
 }
 
 @tailwind utilities;

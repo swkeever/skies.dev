@@ -4,7 +4,7 @@ import Img, { FluidObject } from 'gatsby-image';
 import globalStyles from '@styles/index';
 import Logo from '@assets/logo.svg';
 import { Link } from '@reach/router';
-import classNames from '@utils/class-names';
+import tw from '@utils/tailwind';
 import siteConfig from '../../site.config';
 import routes from '../utils/routes';
 
@@ -44,7 +44,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className={classNames(colors.bg, globalStyles.transitions)}>
+      <section className={tw(colors.bg, globalStyles.transitions)}>
         <div
           className={`px-4 z-10 relative max-w-xl mx-auto
         py-12 lg:py-20 xl:py-24
@@ -52,7 +52,7 @@ export default function Hero() {
         `}
         >
           <Img
-            className={classNames(
+            className={tw(
               globalStyles.transitions,
               'flex-shrink-0',
               'rounded-full',
@@ -66,7 +66,7 @@ export default function Hero() {
             <h1 className="">
               <span className="sr-only">{siteConfig.siteTitle}</span>
               <Logo
-                className={classNames(
+                className={tw(
                   'w-full h-auto',
                   colors.logo,
                   'fill-current',
@@ -74,12 +74,12 @@ export default function Hero() {
                 )}
               />
             </h1>
-            <p className={classNames(globalStyles.transitions, colors.p)}>
+            <p className={tw(globalStyles.transitions, colors.p)}>
               A website by
               {' '}
               <Link
                 to={routes.about}
-                className={classNames(
+                className={tw(
                   globalStyles.transitions,
                   'font-semibold',
                   colors.a,

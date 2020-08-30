@@ -1,0 +1,183 @@
+---
+date: 2020-08-29
+title: Simple Trick to Clean Up Tailwind CSS in React
+description:
+  Opinionated style guide for Tailwind CSS inside of websites and applications
+  developed with React.js.
+category: 0
+keywords:
+  - Tailwind CSS
+  - React
+  - Style Guide
+tags:
+  - CSS
+  - Frontend
+  - React
+  - Tailwind CSS
+  - Web Development
+imagePhotographer: Anisur Rahman
+imageUrl: https://unsplash.com/photos/K2b7UDed6uQ
+image: index.jpg
+---
+
+## Problem
+
+Consider the following:
+
+_What are the ways we would write Tailwind CSS utility classes?_
+
+It could be a **string**.
+
+```jsx
+function Button() {
+  return (
+    <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 shadow-md ...">
+      Click
+    </button>
+  );
+}
+```
+
+To include JavaScript, we could write a **template literal**.
+
+```jsx
+function Button({ color }) {
+  return (
+    <button
+      className={`${whateverJavaScript(color)} 
+    px-4 py-2
+    bg-blue-500 hover:bg-blue-600
+    shadow-md
+    ...
+    `}
+    >
+      Click
+    </button>
+  );
+}
+```
+
+The problem with template literals is in the name itself.
+
+_They are literal._
+
+Formatters and linters such as Prettier and ESLint make no attempt to format the
+utility classes written in template literals, leading to files with sloppy
+indentation.
+
+## Solution
+
+The solution is inspired by code in
+[tailwindlabs/tailwindui-react](https://github.com/tailwindlabs/tailwindui-react).
+
+The solution is a **function.**
+
+**JavaScript:**
+
+```JavaScript
+// tailwind.js
+export function tw(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+```
+
+**TypeScript:**
+
+```typescript
+// tailwind.ts
+export function tw(...classes: (false | null | undefined | string)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+```
+
+> We could optionally name this function `classNames` as the original author
+> [Robin Malfait](https://twitter.com/malfaitrobin) did in
+> [tailwindui-react](https://github.com/tailwindlabs/tailwindui-react/blob/develop/src/utils/class-names.ts).
+>
+> I chose `tw` to give brevity for the writer and context for the reader.
+
+Now we can cleanly span our classes over many lines.
+
+Moreover, now **the formatter can easily format our files.**
+
+```jsx
+// @components/Hero.tsx
+import Logo from '@assets/logo.svg';
+import tw from '@utils/tailwind';
+
+function Hero() {
+  return (
+    <Logo
+      className={tw(
+        'relative',
+        'w-full h-auto',
+        'mt-2 mb-4',
+        'text-blue-600 fill-current'
+      )}
+    />
+  );
+}
+```
+
+**Group together similar classes**, such as
+
+- position
+- spacing
+- sizing
+- color
+
+When in doubt, group things the way Tailwind groups things on their
+[website](https://tailwindcss.com/docs).
+
+```jsx
+import Logo from '@assets/logo.svg';
+import tw from '@utils/tailwind';
+
+function Hero() {
+  return (
+    <Logo
+      className={tw(
+        'absolute top-2 left-2', // position
+        'mt-2 mb-4', // spacing
+        'w-full h-auto', // sizing
+        'text-blue-600 fill-current' // color
+      )}
+    />
+  );
+}
+```
+
+Easily include JavaScript sources.
+
+```jsx {diff}
+import Logo from '@assets/logo.svg';
+import tw from '@utils/tailwind';
++ import globalStyles from '@styles';
+
+function Hero() {
+  return (
+    <Logo
+      className={tw(
+        'absolute top-2 left-2', // position
+        'mt-2 mb-4', // spacing
+        'w-full h-auto', // size
+        'text-blue-600 fill-current', // color
++        globalStyles.transitions,
+      )}
+    />
+  );
+}
+```
+
+In addition, we could use a plugin like
+[Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind)
+to also alphabetize the classes.
+
+> I don't care that much to have my classes alphabetized, and I've found it to
+> make for a worse DX.
+
+Hope this helps you clean up Tailwind CSS in your own React projects.
+
+What are some of your favorite Tailwind CSS tricks?
+
+Let me know on [Twitter](https://twitter.com/swkeever)! 👋

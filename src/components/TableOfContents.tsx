@@ -2,7 +2,7 @@ import React from 'react';
 import Slugger from 'github-slugger';
 import { useLocation, Link } from '@reach/router';
 import globalStyles from '@styles/index';
-import classNames from '@utils/class-names';
+import tw from '@utils/tailwind';
 import { useActiveHash } from '../hooks/use-active-hash';
 
 type Heading = {
@@ -45,7 +45,7 @@ export default function TableOfContents({
   return (
     <nav className={` ${className}`}>
       <ol
-        className={classNames(
+        className={tw(
           'flex flex-col',
           'space-y-4',
           globalStyles.transitions,
@@ -57,16 +57,16 @@ export default function TableOfContents({
 
           const link = (
             <Link
-              className={classNames(
+              className={tw(
                 globalStyles.transitions,
                 styles.copy,
                 watch && activeHash === slug
-                  ? classNames(
+                  ? tw(
                     'text-onNeutralBgLink',
                     'pb-1',
                     'border-b border-onNeutralBgLink',
                   )
-                  : classNames('text-onNeutralBg'),
+                  : tw('text-onNeutralBg'),
               )}
               to={`${pathname}#${slug}`}
             >

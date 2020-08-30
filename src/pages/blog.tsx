@@ -4,7 +4,7 @@ import * as JsSearch from 'js-search';
 import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/BlogCard';
-import classNames from '@utils/class-names';
+import tw from '@utils/tailwind';
 import SEO from '../components/SEO';
 import Empty from '../../assets/empty.svg';
 import blogCategories from '../utils/blog-categories';
@@ -195,7 +195,7 @@ export default function BlogsPage() {
         ]}
       />
       <section
-        className={classNames(
+        className={tw(
           colors.bg,
           'z-20 relative',
           'pt-12 lg:pt-16',
@@ -207,7 +207,7 @@ export default function BlogsPage() {
           <h1>
             <span className="sr-only">{siteConfig.siteTitle}</span>
             <Logo
-              className={classNames(
+              className={tw(
                 'w-7/12 h-auto',
                 'mx-auto',
                 colors.logo,
@@ -220,7 +220,7 @@ export default function BlogsPage() {
               <span className="sr-only">Search</span>
               <div>
                 <FaSistrix
-                  className={classNames(
+                  className={tw(
                     'inline absolute z-30',
                     'text-2xl',
                     'ml-2',
@@ -262,7 +262,7 @@ export default function BlogsPage() {
         </div>
       </section>
       <div
-        className={classNames(
+        className={tw(
           'bg-neutralBgSoft',
           'flex-grow-0',
           'relative z-0',
@@ -271,7 +271,7 @@ export default function BlogsPage() {
         )}
       >
         <svg
-          className={classNames(
+          className={tw(
             colors.svg,
             'fill-current',
             'h-auto',

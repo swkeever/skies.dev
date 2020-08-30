@@ -23,7 +23,7 @@ import shortcodes from '@components/Shortcodes';
 import routes from '@utils/routes';
 import Newsletter from '@components/Newsletter';
 import TwitterFollowButton from '@components/TwitterFollowButton';
-import classNames from '@utils/class-names';
+import tw from '@utils/tailwind';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -171,13 +171,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         itemScope
         itemType="http://schema.org/BlogPosting"
       >
-        <div
-          className={classNames(
-            colors.header.bg,
-            'relative z-10',
-            'pt-8 pb-64',
-          )}
-        />
+        <div className={tw(colors.header.bg, 'relative z-10', 'pt-8 pb-64')} />
         <div
           className={`
             max-w-screen-xl
@@ -216,7 +210,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                   <TiSocialFacebookCircular />
                 </ExternalLink>
               </li>
-              <li key="facebook">
+              <li key="linkedin">
                 <ExternalLink
                   className={styles.shareLink}
                   href={links.shareTo.linkedIn({
@@ -230,10 +224,10 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               </li>
             </ul>
           </aside>
-          <div className="col-span-12 px-2 md:col-span-8 pt-4">
+          <div className="col-span-12 px-2 pt-4 md:col-span-8">
             <header className="relative z-30 -mt-48 md:-mt-64">
               <h1
-                className={classNames(
+                className={tw(
                   'leading-none text-4xl lg:text-5xl font-extrabold',
                   colors.header.h1,
                 )}
@@ -241,7 +235,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               >
                 {frontmatter.title}
               </h1>
-              <div className={classNames('flex', 'mt-2', colors.header.meta)}>
+              <div className={tw('flex', 'mt-2', colors.header.meta)}>
                 <time>{frontmatter.date}</time>
                 <span className="mx-2 mb-4 md:mb-0">&middot;</span>
                 <span>
@@ -257,7 +251,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
                 fluid={frontmatter.image.childImageSharp.fluid}
                 alt={frontmatter.title}
               />
-              <figcaption className="text-center text-neutralSoft my-2">
+              <figcaption className="my-2 text-center text-neutralSoft">
                 <p>
                   Photo by
                   {' '}
@@ -363,9 +357,14 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           </nav>
         </section>
         <div
-          className={classNames('flex justify-end', 'sticky bottom-2', 'mr-2')}
+          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+          className={tw(
+            'float-right',
+            'sticky bottom-24 lg:bottom-2',
+            'mr-2 mt-4',
+          )}
         >
-          <TwitterFollowButton />
+          <TwitterFollowButton closable />
         </div>
       </article>
       <Newsletter
