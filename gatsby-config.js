@@ -14,7 +14,9 @@ const gatsbyRemarkImages = {
     // base for generating different widths of each image.
     maxWidth: 1280,
     backgroundColor: 'transparent',
-    showCaptions: true,
+
+    // As much as I want the captions, they throw errors in the console.
+    // showCaptions: true,
     linkImagesToOriginal: false,
   },
 };

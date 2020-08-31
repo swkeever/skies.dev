@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useActiveHash = (itemIds, rootMargin = undefined) => {
+export const useActiveHash = (itemIds = [], rootMargin = undefined) => {
   const [activeHash, setActiveHash] = useState('');
 
   useEffect(() => {
