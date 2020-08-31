@@ -1,12 +1,9 @@
 import React from 'react';
-import { Link } from '@reach/router';
 import globalStyles from '@styles/index';
 import { useStaticQuery, graphql } from 'gatsby';
-import BlogCard from '@components/BlogCard';
-import { FaArrowRight } from 'react-icons/fa';
 import Hero from '@components/Hero';
 import tw from '@utils/tailwind';
-import routes from '../utils/routes';
+import BlogDisplay from '@components/BlogDisplay';
 import Form from '../components/Form';
 import SEO from '../components/SEO';
 import Newsletter from '../components/Newsletter';
@@ -66,63 +63,18 @@ const IndexPage = () => {
       <Hero />
 
       <div
-        className={`relative pb-24 pt-12 xl:pt-20
-      ${globalStyles.transitions}
-      `}
+        className={tw(
+          'relative',
+          'pb-24 pt-12 xl:pt-20',
+          globalStyles.transitions,
+        )}
       >
-        <section
-          className={`
-        mx-auto
-        max-w-md
-        md:max-w-screen-md
-        xl:max-w-screen-2xl
-        flex flex-col items-center px-4`}
-        >
-          <h2
-            className={`text-onNeutralBg font-extrabold text-3xl mb-3
-          ${globalStyles.transitions}
-          `}
-          >
-            Recent publications
-          </h2>
-          <p
-            className={`text-neutral text-lg xl:text-xl text-center max-w-lg mb-16
-          ${globalStyles.transitions}
-          `}
-          >
-            I write articles on software engineering, computer science, and
-            lessons learned in industry.
-          </p>
-          <ul
-            className={`
-          grid 
-          
-          grid-cols-1 md:grid-cols-2 xl:grid-cols-4
-          gap-5
-
-          `}
-          >
-            {blogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
-            ))}
-          </ul>
-          <Link
-            className={`
-            text-onNeutralBg hover:text-onNeutralBgLinkHover 
-            font-semibold
-            mt-8 ml-auto
-            text-lg
-            
-              ${globalStyles.transitions}
-              `}
-            to={routes.blog}
-          >
-            See all publications
-            <FaArrowRight
-              className={tw('inline-block', 'ml-1 mb-1', 'text-xl')}
-            />
-          </Link>
-        </section>
+        <BlogDisplay
+          blogs={blogs}
+          title="Recent publications"
+          subtitle="I write articles on software engineering, computer science, and lessons
+          learned in industry."
+        />
       </div>
 
       <div

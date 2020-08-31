@@ -6,9 +6,7 @@ import Img, { FluidObject } from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link, useLocation } from '@reach/router';
-import {
-  FaArrowRight, FaGithub, FaHome, FaArrowLeft,
-} from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import {
   TiSocialLinkedinCircular,
   TiSocialFacebookCircular,
@@ -24,6 +22,7 @@ import routes from '@utils/routes';
 import Newsletter from '@components/Newsletter';
 import TwitterFollowButton from '@components/TwitterFollowButton';
 import tw from '@utils/tailwind';
+import BlogDisplay from '@components/BlogDisplay';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -107,12 +106,16 @@ type PropTypes = {
   };
 };
 
-export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
+export default function Blog({ data, pageContext }: PropTypes) {
+  const { mdx } = data;
   const { pathname } = useLocation();
   const { frontmatter, body, fileAbsolutePath } = mdx;
   const editUrl = links.editOnGithub(
     `${fileAbsolutePath.split('/content/')[1]}`,
   );
+
+  const { similarBlogs } = pageContext;
+
   const styles = {
     ctaLinks: `
     text-lg 
@@ -165,9 +168,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         }}
       />
       <article
-        className={`${globalStyles.transitions}
-        mb-2
-      `}
+        className={tw(globalStyles.transitions, 'mb-2')}
         itemScope
         itemType="http://schema.org/BlogPosting"
       >
@@ -291,13 +292,13 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         </div>
         <section
           className={`
-              max-w-screen-lg
+              max-w-screen-xl
               flex flex-col md:flex-row
               justify-start md:justify-between
               mx-auto
               md:items-center
               mt-64
-              px-4
+              px-4 lg:px-0
               `}
         >
           <div>
@@ -321,7 +322,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           </div>
 
           <nav className="my-4 md:mt-0">
-            <ul className="flex justify-between md:justify-start md:space-x-4">
+            <ul className="flex justify-between md:justify-start md:space-x-3">
               <li>
                 <Link
                   to={routes.home}
@@ -329,19 +330,19 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               ${styles.ctaLinks}
               `}
                 >
-                  <FaHome className={`${styles.ctaLinkIcons} mr-1`} />
                   Home
                 </Link>
               </li>
+              <span>&middot;</span>
               <li>
                 <Link
                   to={pageContext.prev.fields.slug}
                   className={`${styles.ctaLinks}`}
                 >
-                  <FaArrowLeft className={`${styles.ctaLinkIcons} mr-1`} />
                   Previous
                 </Link>
               </li>
+              <span>&middot;</span>
               <li>
                 <Link
                   to={pageContext.next.fields.slug}
@@ -350,7 +351,6 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
               `}
                 >
                   Next
-                  <FaArrowRight className={`${styles.ctaLinkIcons} ml-1`} />
                 </Link>
               </li>
             </ul>
@@ -359,7 +359,7 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
         <div
           className={tw(
             'sticky lg:bottom-2', // sticky on desktop
-            'mb-8 lg:mb-0 mt-4',
+            'mb-8 lg:mb-0',
             'flex justify-center lg:justify-end', // again, floating right is buggy on mobile, so only do it on desktop
             'lg:mr-2',
           )}
@@ -367,9 +367,16 @@ export default function Blog({ data: { mdx }, pageContext }: PropTypes) {
           <TwitterFollowButton />
         </div>
       </article>
+      <div className={tw('bg-neutralBgSoft', 'py-16 lg:py-24')}>
+        <BlogDisplay
+          blogs={similarBlogs}
+          subtitle="Here are some other articles you may enjoy."
+          title="Related articles"
+        />
+      </div>
       <Newsletter
         tags={frontmatter.tags}
-        color="neutralSoft"
+        color="primarySoft"
         copy="Want more articles like this?"
       />
     </>

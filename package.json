@@ -92,7 +92,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "dev-m": "./scripts/runDevServer.sh",
     "format": "./scripts/format.sh",
     "start": "yarn develop",

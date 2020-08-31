@@ -177,7 +177,7 @@ export default function Newsletter({
         <div
           className={`
           mx-auto max-w-2xl
-          py-12 px-4 lg:py-20 lg:px-8
+          py-12 px-4 lg:py-24 lg:px-8
         `}
         >
           <h2
