@@ -39,9 +39,9 @@ export default function TableOfContents({
 
   const { pathname } = useLocation();
 
-  const activeHash = watch
-    ? useActiveHash(headings.map((h) => new Slugger().slug(h.value, false)))
-    : null;
+  const activeHash = useActiveHash(
+    headings.map((h) => new Slugger().slug(h.value, false)),
+  );
 
   return (
     <nav className={` ${className}`}>
