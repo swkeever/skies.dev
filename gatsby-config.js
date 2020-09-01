@@ -17,6 +17,7 @@ const gatsbyRemarkImages = {
 
     // As much as I want the captions, they throw errors in the console.
     // showCaptions: true,
+
     linkImagesToOriginal: false,
   },
 };
@@ -35,6 +36,7 @@ module.exports = {
         trackingId: 'UA-168956392-1',
       },
     },
+    'gatsby-plugin-twitter',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
@@ -135,7 +137,6 @@ module.exports = {
       },
     },
     gatsbyRemarkImages,
-    'gatsby-plugin-twitter',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
     // 'gatsby-plugin-remove-serviceworker',
