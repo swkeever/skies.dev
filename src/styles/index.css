@@ -30,6 +30,7 @@
   --color-onPrimarySofter: var(--color-primary-300);
 
   --color-footerBg: var(--color-neutral-800);
+  --caret-color: var(--color-onNeutralBg);
 }
 
 @tailwind base;
@@ -98,8 +99,6 @@
   --color-onPrimaryBgLinkHover: var(--color-primary-200);
   --color-onNeutralBgLink: var(--color-primary-500);
   --color-onNeutralBgLinkHover: var(--color-primary-600);
-
-  caret-color: var(--color-onNeutralBg);
 }
 
 .theme-dark {
@@ -165,8 +164,6 @@
   --color-onPrimaryBgLinkHover: var(--color-primary-200);
   --color-onNeutralBgLink: var(--color-primary-400);
   --color-onNeutralBgLinkHover: var(--color-primary-500);
-
-  caret-color: var(--color-onNeutral);
 }
 
 /* .theme-light .bg-skies {

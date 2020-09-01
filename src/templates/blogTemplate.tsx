@@ -6,7 +6,6 @@ import Img, { FluidObject } from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useLocation } from '@reach/router';
-import { FaGithub } from 'react-icons/fa';
 import {
   TiSocialLinkedinCircular,
   TiSocialFacebookCircular,
@@ -54,7 +53,6 @@ export const pageQuery = graphql`
       fields {
         slug
       }
-      fileAbsolutePath
     }
   }
 `;
@@ -108,11 +106,7 @@ type PropTypes = {
 export default function Blog({ data, pageContext }: PropTypes) {
   const { mdx } = data;
   const { pathname } = useLocation();
-  const { frontmatter, body, fileAbsolutePath } = mdx;
-  const editUrl = links.editOnGithub(
-    `${fileAbsolutePath.split('/content/')[1]}`,
-  );
-
+  const { frontmatter, body } = mdx;
   const { similarBlogs } = pageContext;
 
   const styles = {
@@ -237,7 +231,12 @@ export default function Blog({ data, pageContext }: PropTypes) {
               </li>
             </ul>
           </aside>
-          <div className="col-span-12 px-2 md:px-6 pt-4 lg:col-span-8">
+          <div
+            className={tw(
+              'col-span-12 px-2 md:px-6 pt-4 lg:col-span-8',
+              'mb-64',
+            )}
+          >
             <header className="relative z-30 -mt-48 md:-mt-64">
               <h1
                 className={tw(
@@ -292,36 +291,6 @@ export default function Blog({ data, pageContext }: PropTypes) {
             <MDXProvider components={shortcodes}>
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
-
-            <div
-              className={tw(
-                'max-w-screen-xl',
-                'flex',
-                'mx-auto my-4 lg:my-16 2xl:my-24',
-                'px-4 lg:px-0',
-              )}
-            >
-              <ExternalLink
-                href={editUrl}
-                className={tw(
-                  'md:text-lg font-medium',
-                  'bg-neutralBg hover:bg-onNeutralBgSoft',
-                  'text-onNeutralBgSoft hover:text-neutralBg',
-                  'px-4 py-2',
-                  'border border-neutraler',
-                  'rounded-md',
-                  'flex items-center',
-                  globalStyles.transitions,
-                )}
-              >
-                <FaGithub
-                  className={tw(
-                    'mr-2 mb-px h-6 w-6 md:h-8 md:w-8 fill-current',
-                  )}
-                />
-                Edit this page on GitHub
-              </ExternalLink>
-            </div>
           </div>
           <aside className="relative hidden col-span-3 lg:block">
             <div className="sticky top-32">
