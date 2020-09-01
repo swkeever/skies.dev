@@ -5,7 +5,7 @@ function LabelSpan({ label }: { label: string }) {
   return (
     <span
       className={`
-        text-neutralSoft
+        text-neutral
         tracking-widest
         text-sm
       `}
@@ -113,7 +113,7 @@ export default function Form() {
           px-4       
           py-2 
           font-bold
-          lg:px-8 
+          lg:px-10 
           lg:text-lg
         `}
         type="submit"

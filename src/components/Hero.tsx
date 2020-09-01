@@ -35,7 +35,7 @@ export default function Hero() {
       bg: 'bg-neutralBg',
       logo: 'text-primaryBold',
       input: 'shadow-inner',
-      p: 'text-neutralSoft',
+      p: 'text-neutral',
       a: 'text-onNeutralBgLink hover:text-onNeutralBgLinkHover',
     },
   };

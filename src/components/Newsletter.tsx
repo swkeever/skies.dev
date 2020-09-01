@@ -42,7 +42,7 @@ const colors = {
     h2Span: 'text-primaryBold',
     button: 'text-onPrimary bg-primaryBold hover:bg-primary',
     selectAll: 'text-onNeutralBg hover:bg-neutralBgSoft',
-    p: 'text-neutralSoft',
+    p: 'text-neutral',
     h3: 'text-onNeutralBgSoft',
     typewriter: 'text-onNeutralBg',
     tag: {
@@ -68,7 +68,7 @@ const colors = {
 };
 
 type PropTypes = {
-  color: 'primary' | 'neutral' | 'neutralSoft' | 'primarySoft';
+  color: 'primary' | 'neutral' | 'neutral' | 'primarySoft';
   tags?: string[];
   showTopics?: boolean;
   copy?: string;
@@ -321,7 +321,7 @@ export default function Newsletter({
               
               text-onNeutralBg 
               bg-neutralBg 
-              placeholder-neutralSoft 
+              placeholder-neutral 
               ${globalStyles.outline} 
               focus:border-primaryBgSofter
               ${globalStyles.transitions} 
@@ -330,7 +330,7 @@ export default function Newsletter({
               />
               <div
                 className={`
-            mt-3 
+            mt-2 
             rounded-full                   
             flex items-center justify-center
             shadow 

@@ -19,11 +19,11 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
 
   const colors = {
     primary: {
-      link: 'text-neutralSoft lg:text-onPrimarySoft',
+      link: 'text-neutral lg:text-onPrimarySoft',
       linkActive: 'text-onNeutralBg lg:text-onPrimary',
     },
     neutral: {
-      link: 'text-neutralSoft',
+      link: 'text-neutral',
       linkActive: 'text-primaryBold',
     },
   }.primary;
@@ -62,12 +62,12 @@ export default function Nav() {
   const colors = {
     primary: {
       underline: {
-        on: 'bg-neutralSoft lg:bg-light',
+        on: 'bg-neutral lg:bg-light',
         off: 'bg-neutralBg lg:bg-primary',
       },
       icon: {
         on: 'text-primaryBold lg:text-light',
-        off: 'text-neutralSoft lg:text-onPrimarySoft',
+        off: 'text-neutral lg:text-onPrimarySoft',
       },
     },
     neutral: {
@@ -76,7 +76,7 @@ export default function Nav() {
         off: 'bg-neutralBg',
       },
       icon: {
-        on: 'text-neutralSoft',
+        on: 'text-neutral',
         off: 'text-primaryBold',
       },
     },
@@ -94,7 +94,7 @@ export default function Nav() {
 
   const navItems = [
     <Item route={routes.home} key="nav-home">
-      {pathname === routes.home ? (
+      {routes.equals(pathname, routes.home) ? (
         <FaCloudSunRain className={tw(iconStyles, colors.icon.on)} />
       ) : (
         <FaCloudSun className={tw(iconStyles, colors.icon.off)} />
@@ -102,7 +102,7 @@ export default function Nav() {
       <Name name="Home" />
     </Item>,
     <Item route={routes.blog} key="nav-blog">
-      {pathname === routes.blog ? (
+      {routes.equals(pathname, routes.blog) ? (
         <FaLightbulb className={tw(iconStyles, colors.icon.on)} />
       ) : (
         <FaRegLightbulb className={tw(iconStyles, colors.icon.off)} />
@@ -110,7 +110,7 @@ export default function Nav() {
       <Name name="Blog" />
     </Item>,
     <Item route={routes.about} key="nav-about">
-      {pathname === routes.about ? (
+      {routes.equals(pathname, routes.about) ? (
         <FaRegSmileBeam className={tw(iconStyles, colors.icon.on)} />
       ) : (
         <FaRegSmile className={tw(iconStyles, colors.icon.off)} />
@@ -123,7 +123,7 @@ export default function Nav() {
         className={tw(
           iconStyles,
           'transform',
-          pathname === routes.uses
+          routes.equals(pathname, routes.uses)
             ? tw('rotate-180', colors.icon.on)
             : tw('rotate-0', colors.icon.off),
         )}
@@ -135,13 +135,13 @@ export default function Nav() {
 
   function getUnderlineOffset() {
     let off = navItems.length;
-    if (pathname === routes.home) {
+    if (routes.equals(pathname, routes.home)) {
       off = 0;
-    } else if (pathname === routes.blog) {
+    } else if (routes.equals(pathname, routes.blog)) {
       off = 1;
-    } else if (pathname === routes.about) {
+    } else if (routes.equals(pathname, routes.about)) {
       off = 2;
-    } else if (pathname === routes.uses) {
+    } else if (routes.equals(pathname, routes.uses)) {
       off = 3;
     }
 

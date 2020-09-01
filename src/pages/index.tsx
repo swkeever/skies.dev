@@ -108,7 +108,7 @@ const IndexPage = () => {
           <Form />
         </section>
       </div>
-      <Newsletter showTopics color="neutralSoft" />
+      <Newsletter showTopics color="neutral" />
     </div>
   );
 };
