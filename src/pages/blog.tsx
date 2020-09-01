@@ -137,7 +137,7 @@ export default function BlogsPage() {
       svg: 'text-primary',
       logo: 'text-onPrimary',
       input: 'shadow-lg',
-      p: 'text-neutralSoft',
+      p: 'text-neutral',
       a: 'text-onPrimary hover:text-onPrimaryBgLinkHover',
     },
     neutral: {
@@ -145,7 +145,7 @@ export default function BlogsPage() {
       svg: 'text-neutralBg',
       logo: 'text-primaryBold',
       input: 'shadow-lg',
-      p: 'text-neutralSoft',
+      p: 'text-neutral',
       a: 'text-onNeutralBgLink hover:text-onNeutralBgLinkHover',
     },
   }.primary;
@@ -242,7 +242,7 @@ export default function BlogsPage() {
                         bg-neutralBgSoft
                         rounded-full
                         text-onNeutral
-                        placeholder-neutralSoft
+                        placeholder-neutral
                         lg:text-xl
                         pl-10 
                         pr-2

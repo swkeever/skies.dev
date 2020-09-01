@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Link, useLocation } from '@reach/router';
+import { useLocation } from '@reach/router';
 import { FaGithub } from 'react-icons/fa';
 import {
   TiSocialLinkedinCircular,
@@ -18,7 +18,6 @@ import SEO from '@components/SEO';
 import ExternalLink from '@components/ExternalLink';
 import TableOfContents from '@components/TableOfContents';
 import shortcodes from '@components/Shortcodes';
-import routes from '@utils/routes';
 import Newsletter from '@components/Newsletter';
 import TwitterFollowButton from '@components/TwitterFollowButton';
 import tw from '@utils/tailwind';
@@ -132,9 +131,22 @@ export default function Blog({ data, pageContext }: PropTypes) {
 
     shareLink: `
     ${globalStyles.transitions}
-    text-neutralSoft
-    hover:text-neutral
+    text-neutral
+    hover:text-neutralBold
     `,
+
+    navPrevNext: tw(
+      'relative',
+      'inline-flex items-center',
+      'px-2 py-2',
+      'border border-neutralBgSofter',
+      'bg-neutralBg',
+      'text-sm leading-5 font-medium',
+      'text-neutral hover:text-neutral',
+      'focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue',
+      'active:bg-neutralBgSoft active:text-neutral',
+      globalStyles.transitions,
+    ),
   };
 
   const colors = {
@@ -149,7 +161,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
       header: {
         h1: 'text-onNeutralBg',
         bg: 'bg-neutralBgSoft',
-        meta: 'text-neutralSoft',
+        meta: 'text-neutral',
       },
     },
   }.primary;
@@ -168,7 +180,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
         }}
       />
       <article
-        className={tw(globalStyles.transitions, 'mb-2')}
+        className={tw(globalStyles.transitions)}
         itemScope
         itemType="http://schema.org/BlogPosting"
       >
@@ -181,7 +193,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
             relative
           `}
         >
-          <aside className="hidden mx-auto md:block">
+          <aside className="hidden mx-auto lg:block">
             <ul
               className={`
                 list-none
@@ -225,7 +237,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
               </li>
             </ul>
           </aside>
-          <div className="col-span-12 px-2 pt-4 md:col-span-8">
+          <div className="col-span-12 px-2 md:px-6 pt-4 lg:col-span-8">
             <header className="relative z-30 -mt-48 md:-mt-64">
               <h1
                 className={tw(
@@ -248,11 +260,11 @@ export default function Blog({ data, pageContext }: PropTypes) {
             </header>
             <figure>
               <Img
-                className="relative z-10 w-full h-auto mx-auto mt-5"
+                className="relative z-10 w-full rounded-sm h-auto mx-auto mt-5"
                 fluid={frontmatter.image.childImageSharp.fluid}
                 alt={frontmatter.title}
               />
-              <figcaption className="my-2 text-center text-neutralSoft">
+              <figcaption className="my-2 text-center text-neutral">
                 <p>
                   Photo by
                   {' '}
@@ -266,8 +278,8 @@ export default function Blog({ data, pageContext }: PropTypes) {
               </figcaption>
             </figure>
 
-            <div className="mt-4 md:hidden">
-              <h2 className="mb-2 font-bold tracking-wider uppercase text-neutralSoft">
+            <div className="mt-4 lg:hidden">
+              <h2 className="mb-2 font-bold tracking-wider uppercase text-neutral">
                 Table of Contents
               </h2>
               <TableOfContents
@@ -280,88 +292,54 @@ export default function Blog({ data, pageContext }: PropTypes) {
             <MDXProvider components={shortcodes}>
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
+
+            <div
+              className={tw(
+                'max-w-screen-xl',
+                'flex',
+                'mx-auto my-4 lg:my-16 2xl:my-24',
+                'px-4 lg:px-0',
+              )}
+            >
+              <ExternalLink
+                href={editUrl}
+                className={tw(
+                  'md:text-lg font-medium',
+                  'bg-neutralBg hover:bg-onNeutralBgSoft',
+                  'text-onNeutralBgSoft hover:text-neutralBg',
+                  'px-4 py-2',
+                  'border border-neutraler',
+                  'rounded-md',
+                  'flex items-center',
+                  globalStyles.transitions,
+                )}
+              >
+                <FaGithub
+                  className={tw(
+                    'mr-2 mb-px h-6 w-6 md:h-8 md:w-8 fill-current',
+                  )}
+                />
+                Edit this page on GitHub
+              </ExternalLink>
+            </div>
           </div>
-          <aside className="relative hidden col-span-3 md:block">
+          <aside className="relative hidden col-span-3 lg:block">
             <div className="sticky top-32">
-              <h2 className="mt-4 mb-2 font-bold tracking-wider uppercase text-neutralSoft">
+              <h2 className="mt-4 mb-2 font-bold tracking-wider uppercase text-neutral">
                 Table of Contents
               </h2>
               <TableOfContents headings={mdx.headings} />
             </div>
           </aside>
         </div>
-        <section
-          className={`
-              max-w-screen-xl
-              flex flex-col md:flex-row
-              justify-start md:justify-between
-              mx-auto
-              md:items-center
-              mt-64
-              px-4 lg:px-0
-              `}
-        >
-          <div>
-            <ul className="flex space-x-4">
-              <li>
-                <ExternalLink
-                  href={editUrl}
-                  className={`
-                    text-lg 
-                    border-b border-onNeutralBgSoft
-                    hover:border-onNeutralBgLinkHover 
-                    text-onNeutralBgSoft hover:text-onNeutralBgLinkHover
-                    pb-1
-                  `}
-                >
-                  <FaGithub className={`${styles.ctaLinkIcons} mr-1`} />
-                  Edit this page on GitHub
-                </ExternalLink>
-              </li>
-            </ul>
-          </div>
 
-          <nav className="my-4 md:mt-0">
-            <ul className="flex justify-between md:justify-start md:space-x-3">
-              <li>
-                <Link
-                  to={routes.home}
-                  className={`
-              ${styles.ctaLinks}
-              `}
-                >
-                  Home
-                </Link>
-              </li>
-              <span>&middot;</span>
-              <li>
-                <Link
-                  to={pageContext.prev.fields.slug}
-                  className={`${styles.ctaLinks}`}
-                >
-                  Previous
-                </Link>
-              </li>
-              <span>&middot;</span>
-              <li>
-                <Link
-                  to={pageContext.next.fields.slug}
-                  className={`
-              ${styles.ctaLinks}
-              `}
-                >
-                  Next
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </section>
         <div
           className={tw(
-            'sticky lg:bottom-2', // sticky on desktop
+            'fixed bottom-12',
+            'lg:sticky lg:bottom-2', // sticky on desktop
             'mb-8 lg:mb-0',
             'flex justify-center lg:justify-end', // again, floating right is buggy on mobile, so only do it on desktop
-            'lg:mr-2',
+            'z-50',
           )}
         >
           <TwitterFollowButton />

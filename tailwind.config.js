@@ -14,18 +14,26 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      // },
       colors: {
-        // base
         primary: 'var(--color-primary)',
         primarySoft: 'var(--color-primarySoft)',
         primaryBold: 'var(--color-primaryBold)',
+        primaryBg: 'var(--color-primaryBg)',
+        primaryBgSoft: 'var(--color-primaryBgSoft)',
+        primaryBgSofter: 'var(--color-primaryBgSofter)',
+        onPrimaryBg: 'var(--color-onPrimaryBg)',
+        onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
+        onPrimaryBgSofter: 'var(--color-onPrimaryBgSofter)',
 
+        neutralBg: 'var(--color-neutralBg)',
+        neutralBgSoft: 'var(--color-neutralBgSoft)',
+        neutralBgSofter: 'var(--color-neutralBgSofter)',
         neutral: 'var(--color-neutral)',
         neutralBold: 'var(--color-neutralBold)',
         neutralSoft: 'var(--color-neutralSoft)',
+        onNeutralBg: 'var(--color-onNeutralBg)',
+        onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
+        onNeutralBgSofter: 'var(--color-onNeutralBgSofter)',
 
         info: 'var(--color-info)',
         infoBold: 'var(--color-infoBold)',
@@ -64,36 +72,16 @@ module.exports = {
         cat3: 'var(--color-cat3)',
         onCat3: 'var(--color-onCat3)',
 
-        // backgrounds
-        primaryBg: 'var(--color-primaryBg)',
-        primaryBgSoft: 'var(--color-primaryBgSoft)',
-        primaryBgSofter: 'var(--color-primaryBgSofter)',
-
-        neutralBg: 'var(--color-neutralBg)',
-        neutralBgSoft: 'var(--color-neutralBgSoft)',
-        neutralBgSofter: 'var(--color-neutralBgSofter)',
-
         footerBg: 'var(--color-footerBg)',
 
         // text
         onPrimary: 'var(--color-onPrimary)',
         onPrimarySoft: 'var(--color-onPrimarySoft)',
-
-        onNeutral: 'var(--color-onNeutral)',
-        onNeutralSoft: 'var(--color-onNeutralSoft)',
-
-        onPrimaryBg: 'var(--color-onPrimaryBg)',
-        onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
-        onPrimaryBgSofter: 'var(--color-onPrimaryBgSofter)',
-
-        onNeutralBg: 'var(--color-onNeutralBg)',
-        onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
+        onPrimarySofter: 'var(--color-onPrimarySofter)',
 
         light: 'var(--color-light)',
         lightSoft: 'var(--color-primary-100)',
         onLight: 'var(--color-onLight)',
-
-        transparent: 'transparent',
 
         onPrimaryBgLink: 'var(--color-onPrimaryBgLink)',
         onPrimaryBgLinkHover: 'var(--color-onPrimaryBgLinkHover)',

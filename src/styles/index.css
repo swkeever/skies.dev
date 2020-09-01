@@ -1,5 +1,6 @@
 :root {
-  --color-primary-100: theme('colors.blue.50');
+  --color-primary-50: theme('colors.blue.50');
+  --color-primary-100: theme('colors.blue.100');
   --color-primary-200: theme('colors.blue.200');
   --color-primary-300: theme('colors.blue.300');
   --color-primary-400: theme('colors.blue.400');
@@ -9,6 +10,7 @@
   --color-primary-800: theme('colors.blue.800');
   --color-primary-900: theme('colors.blue.900');
 
+  --color-neutral-50: theme('colors.gray.50');
   --color-neutral-100: theme('colors.gray.100');
   --color-neutral-200: theme('colors.gray.200');
   --color-neutral-300: theme('colors.gray.300');
@@ -22,18 +24,38 @@
   --color-dark: black;
   --color-light: white;
   --color-onLight: var(--color-primary-900);
+
+  --color-onPrimary: var(--color-light);
+  --color-onPrimarySoft: var(--color-neutral-200);
+  --color-onPrimarySofter: var(--color-primary-300);
+
+  --color-footerBg: var(--color-neutral-800);
 }
 
 @tailwind base;
 
 .theme-light {
-  /* base */
-  --color-primary: var(--color-primary-500);
+  /* primaries */
+  --color-primaryBg: var(--color-primary-100);
+  --color-primaryBgSoft: var(--color-primary-200);
+  --color-primaryBgSofter: var(--color-primary-300);
   --color-primarySoft: var(--color-primary-400);
+  --color-primary: var(--color-primary-500);
   --color-primaryBold: var(--color-primary-600);
-  --color-neutral: var(--color-neutral-600);
-  --color-neutralSoft: var(--color-neutral-500);
-  --color-neutralBold: var(--color-neutral-700);
+  --color-onPrimaryBgSofter: var(--color-primary-700);
+  --color-onPrimaryBgSoft: var(--color-primary-800);
+  --color-onPrimaryBg: var(--color-primary-900);
+
+  /* neutrals */
+  --color-neutralBg: var(--color-neutral-100);
+  --color-neutralBgSoft: var(--color-neutral-200);
+  --color-neutralBgSofter: var(--color-neutral-300);
+  --color-neutralSoft: var(--color-neutral-400);
+  --color-neutral: var(--color-neutral-500);
+  --color-neutralBold: var(--color-neutral-600);
+  --color-onNeutralBgSofter: var(--color-neutral-700);
+  --color-onNeutralBgSoft: var(--color-neutral-800);
+  --color-onNeutralBg: var(--color-neutral-900);
 
   --color-cat0: theme('colors.blue.100');
   --color-onCat0: theme('colors.blue.600');
@@ -72,43 +94,35 @@
   --color-onWarningBg: theme('colors.yellow.800');
   --color-onWarningBgSoft: theme('colors.yellow.600');
 
-  /* backgrounds */
-  --color-neutralBg: var(--color-neutral-100);
-  --color-neutralBgSoft: var(--color-neutral-200);
-  --color-neutralBgSofter: var(--color-neutral-300);
-  --color-primaryBg: var(--color-primary-100);
-  --color-primaryBgSoft: var(--color-primary-200);
-  --color-primaryBgSofter: var(--color-primary-300);
-  --color-footerBg: var(--color-neutral-800);
-
-  /* text */
-  --color-onPrimary: var(--color-neutral-100);
-  --color-onPrimarySoft: var(--color-neutral-200);
-  --color-onPrimaryBg: var(--color-primary-900);
-  --color-onPrimaryBgSoft: var(--color-primary-800);
-  --color-onPrimaryBgSofter: var(--color-primary-700);
-  --color-onNeutral: var(--color-neutral-800);
-  --color-onNeutralSoft: var(--color-neutral-500);
-  --color-onNeutralBg: var(--color-neutral-900);
-  --color-onNeutralBgSoft: var(--color-neutral-700);
-
-  /* links */
   --color-onPrimaryBgLink: var(--color-primary-300);
   --color-onPrimaryBgLinkHover: var(--color-primary-200);
   --color-onNeutralBgLink: var(--color-primary-500);
   --color-onNeutralBgLinkHover: var(--color-primary-600);
 
-  caret-color: var(--color-onNeutral);
+  caret-color: var(--color-onNeutralBg);
 }
 
 .theme-dark {
   /* base */
-  --color-primary: var(--color-primary-800);
+  --color-onPrimaryBg: var(--color-primary-200);
+  --color-onPrimaryBgSoft: var(--color-primary-300);
+  --color-onPrimaryBgSofter: var(--color-primary-400);
   --color-primarySoft: var(--color-primary-700);
-  --color-primaryBold: var(--color-primary-600);
-  --color-neutral: var(--color-neutral-300);
-  --color-neutralSoft: var(--color-neutral-400);
-  --color-neutralBold: var(--color-neutral-200);
+  --color-primary: var(--color-primary-800);
+  --color-primaryBold: var(--color-primary-900);
+  --color-primaryBgSofter: var(--color-primary-900);
+  --color-primaryBgSoft: var(--color-primary-900);
+  --color-primaryBg: var(--color-primary-900);
+
+  --color-neutralBg: var(--color-neutral-800);
+  --color-neutralBgSoft: var(--color-neutral-700);
+  --color-neutralBgSofter: var(--color-neutral-600);
+  --color-neutralSoft: var(--color-neutral-500);
+  --color-neutral: var(--color-neutral-400);
+  --color-neutralBold: var(--color-neutral-300);
+  --color-onNeutralBgSofter: var(--color-neutral-200);
+  --color-onNeutralBgSoft: var(--color-neutral-100);
+  --color-onNeutralBg: var(--color-neutral-50);
 
   --color-cat0: theme('colors.blue.900');
   --color-onCat0: theme('colors.blue.300');
@@ -147,29 +161,6 @@
   --color-onWarningBg: theme('colors.yellow.100');
   --color-onWarningBgSoft: theme('colors.yellow.200');
 
-  /* backgrounds */
-  --color-neutralBg: var(--color-neutral-800);
-  --color-neutralBgSoft: var(--color-neutral-700);
-  --color-neutralBgSofter: var(--color-neutral-600);
-
-  --color-primaryBg: var(--color-primary-900);
-  --color-primaryBgSoft: var(--color-primary-900);
-  --color-primaryBgSofter: var(--color-primary-800);
-
-  --color-footerBg: var(--color-neutral-800);
-
-  /* text */
-  --color-onPrimary: var(--color-neutral-100);
-  --color-onPrimarySoft: var(--color-neutral-200);
-  --color-onNeutral: var(--color-neutral-100);
-  --color-onNeutralSoft: var(--color-neutral-200);
-  --color-onPrimaryBg: var(--color-primary-200);
-  --color-onPrimaryBgSoft: var(--color-primary-300);
-  --color-onPrimaryBgSofter: var(--color-primary-400);
-  --color-onNeutralBg: var(--color-neutral-200);
-  --color-onNeutralBgSoft: var(--color-neutral-300);
-
-  /* links */
   --color-onPrimaryBgLink: var(--color-primary-300);
   --color-onPrimaryBgLinkHover: var(--color-primary-200);
   --color-onNeutralBgLink: var(--color-primary-400);
@@ -333,7 +324,7 @@ Used for images in MDX files.
 }
 
 .gatsby-resp-image-figcaption {
-  @apply max-w-screen-lg mt-1 text-sm leading-5 text-center text-neutralSoft;
+  @apply max-w-screen-lg mt-1 text-sm leading-5 text-center text-neutral;
 }
 
 @tailwind utilities;

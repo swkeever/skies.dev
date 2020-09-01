@@ -14,7 +14,7 @@ const NotFoundPage = () => (
         className={`
             text-lg
             md:text-xl
-            text-neutralSoft
+            text-neutral
             text-center
             mb-4 xl:mb-8
           `}
