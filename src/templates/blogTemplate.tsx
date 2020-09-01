@@ -128,19 +128,6 @@ export default function Blog({ data, pageContext }: PropTypes) {
     text-neutral
     hover:text-neutralBold
     `,
-
-    navPrevNext: tw(
-      'relative',
-      'inline-flex items-center',
-      'px-2 py-2',
-      'border border-neutralBgSofter',
-      'bg-neutralBg',
-      'text-sm leading-5 font-medium',
-      'text-neutral hover:text-neutral',
-      'focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue',
-      'active:bg-neutralBgSoft active:text-neutral',
-      globalStyles.transitions,
-    ),
   };
 
   const colors = {
