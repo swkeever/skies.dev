@@ -23,7 +23,7 @@ export default function MarkdownPage({
           <MDXProvider components={shortcodes}>{children}</MDXProvider>
         </div>
       </section>
-      <Newsletter color="neutral" showTopics />
+      <Newsletter color="neutralSoft" showTopics />
     </>
   );
 }
