@@ -44,7 +44,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
           </div>
           <div className="flex items-center mt-6">
             <div className="">
-              <div className="flex text-sm leading-5 text-neutral">
+              <div className="flex text-sm leading-5 text-neutralSoft">
                 <time dateTime={blog.date}>{blog.date}</time>
                 <span className="mx-1">&middot;</span>
                 <span>

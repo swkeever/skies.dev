@@ -292,10 +292,11 @@ export default function Blog({ data, pageContext }: PropTypes) {
         <div
           className={tw(
             'fixed bottom-12',
-            'lg:sticky lg:bottom-2', // sticky on desktop
+            'lg:sticky lg:bottom-0', // sticky on desktop
             'mb-8 lg:mb-0',
             'flex justify-center lg:justify-end', // again, floating right is buggy on mobile, so only do it on desktop
-            'z-50',
+            'z-30',
+            'safe-bottom',
           )}
         >
           <TwitterFollowButton />

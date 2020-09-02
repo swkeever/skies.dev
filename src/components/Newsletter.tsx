@@ -9,8 +9,8 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 const colors = {
   primary: {
     section: 'bg-primary',
-    h2: 'text-onPrimarySoft',
-    h2Span: 'text-onPrimaryBgSoft',
+    h2: 'text-onPrimary',
+    h2Span: 'text-onPrimaryBg',
     button: 'text-primaryBgSoft bg-onPrimaryBgSoft hover:bg-onPrimaryBg',
     selectAll: 'text-onPrimary hover:bg-primaryBold',
     p: 'text-onPrimary',
@@ -19,7 +19,7 @@ const colors = {
     tag: {
       unchecked: 'bg-primaryBgSoft text-onPrimaryBgSoft hover:bg-primaryBg',
       checked:
-        'bg-primaryBold text-onPrimary hover:bg-onPrimaryBgSofter border-onPrimary',
+        'bg-onPrimaryBgSoft text-onPrimary hover:bg-onPrimaryBgSofter border-onPrimary',
     },
   },
   primarySoft: {
