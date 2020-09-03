@@ -15,7 +15,7 @@ import routes from '../utils/routes';
 
 function Item({ route, children }: { route: string; children: ReactNode }) {
   const { pathname } = useLocation();
-  const isActive = pathname === route;
+  const isActive = routes.equals(pathname, route);
 
   const colors = {
     primary: {
