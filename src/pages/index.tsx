@@ -52,7 +52,7 @@ const IndexPage = () => {
     >
       <SEO
         title="A website by Sean Keever"
-        description="skies.dev is a fully open-source blog on software engineering curated by Sean Keever."
+        description="Skies is blog on web development and software engineering created by Sean Keever."
         keywords={[
           'Sean Keever',
           'software engineer',
