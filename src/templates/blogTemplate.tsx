@@ -21,6 +21,7 @@ import Newsletter from '@components/Newsletter';
 import TwitterFollowButton from '@components/TwitterFollowButton';
 import tw from '@utils/tailwind';
 import BlogDisplay from '@components/BlogDisplay';
+import About from '@components/About';
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
@@ -311,9 +312,10 @@ export default function Blog({ data, pageContext }: PropTypes) {
       </div>
       <Newsletter
         tags={frontmatter.tags}
-        color="primarySoft"
+        color="neutral"
         copy="Want more articles like this?"
       />
+      <About />
     </>
   );
 }
