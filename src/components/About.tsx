@@ -44,14 +44,7 @@ export default function About({ color = 'footer' }) {
 
   return (
     <>
-      <section
-        className={tw(
-          'relative',
-
-          styles.bg,
-          globalStyles.transitions,
-        )}
-      >
+      <section className={tw('relative', styles.bg, globalStyles.transitions)}>
         <div
           className={tw(
             'grid grid-cols-1 md:grid-cols-2',
