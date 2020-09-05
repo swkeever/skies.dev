@@ -114,7 +114,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       for (const blog of allBlogs) {
         for (const tag of tags) {
-          blog.count += blog.tags.includes(tag) ? 1 : -1;
+          blog.count += blog.tags.includes(tag) ? 2 : -1;
         }
       }
 
