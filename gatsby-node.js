@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
+const blogCategories = require('./src/utils/blog-categories');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -10,6 +11,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // `File` node here
   if (node.internal.type === 'Mdx') {
     const value = createFilePath({ node, getNode });
+
+    console.log('onCreateNode', value);
 
     createNodeField({
       // Name of the field you are adding
@@ -23,8 +26,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
-
-const blogCategories = require('./src/utils/blog-categories');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // De-structure the createPage function from the actions object
@@ -113,9 +114,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       for (const blog of allBlogs) {
         for (const tag of tags) {
-          if (blog.tags.includes(tag)) {
-            blog.count += 1;
-          }
+          blog.count += blog.tags.includes(tag) ? 1 : -1;
         }
       }
 

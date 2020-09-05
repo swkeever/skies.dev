@@ -36,35 +36,6 @@ module.exports = {
         trackingId: 'UA-168956392-1',
       },
     },
-    'gatsby-plugin-twitter',
-    {
-      resolve: 'gatsby-plugin-postcss',
-      options: {
-        postCssPlugins: [
-          require('tailwindcss')(tailwindConfig),
-          require('autoprefixer'),
-          ...(process.env.NODE_ENV === 'production' ? [cssNano] : []),
-        ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-zopfli',
-      options: {
-        extensions: ['css', 'html', 'js', 'svg'],
-      },
-    },
-
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /assets/, // See below to configure properly
-        },
-      },
-    },
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
@@ -80,13 +51,13 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: `${__dirname}/content`,
+        path: `${__dirname}/content/`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'content',
+        name: 'pages',
         path: `${__dirname}/src/pages`,
       },
     },
@@ -97,13 +68,6 @@ module.exports = {
           default: path.join(__dirname, './src/templates/markdown-page.tsx'),
         },
         gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-vscode',
-            options: {
-              theme: 'Community Material Theme Darker', // From package.json: contributes.themes[0].label
-              extensions: ['vsc-community-material-theme'], // From package.json: name
-            },
-          },
           // {
           //   resolve: 'gatsby-remark-katex',
           //   options: {
@@ -111,7 +75,7 @@ module.exports = {
           //     strict: 'ignore',
           //   },
           // },
-          gatsbyRemarkImages,
+          { ...gatsbyRemarkImages },
           'gatsby-remark-external-links',
 
           // Note: I need to have this in order for the Table of Contents to work.
@@ -133,12 +97,49 @@ module.exports = {
             },
           },
           'gatsby-remark-responsive-iframe',
+          {
+            resolve: 'gatsby-remark-vscode',
+            options: {
+              theme: 'Community Material Theme Darker', // From package.json: contributes.themes[0].label
+              extensions: ['vsc-community-material-theme'], // From package.json: name
+            },
+          },
         ],
       },
     },
-    gatsbyRemarkImages,
+    { ...gatsbyRemarkImages },
+    'gatsby-plugin-twitter',
+    {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        postCssPlugins: [
+          require('tailwindcss')(tailwindConfig),
+          require('autoprefixer'),
+          ...(process.env.NODE_ENV === 'production' ? [cssNano] : []),
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-zopfli',
+      options: {
+        extensions: ['css', 'html', 'js', 'svg'],
+      },
+    },
+
+    'gatsby-plugin-react-helmet',
+
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/, // See below to configure properly
+        },
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     // 'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-manifest',

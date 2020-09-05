@@ -245,7 +245,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
                 </span>
               </div>
             </header>
-            <figure>
+            <figure className={tw('mb-20')}>
               <Img
                 className="relative z-10 w-full rounded-sm h-auto mx-auto mt-5"
                 fluid={frontmatter.image.childImageSharp.fluid}
@@ -303,6 +303,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
           <TwitterFollowButton />
         </div>
       </article>
+
       <div className={tw('bg-neutralBgSoft', 'py-16 lg:py-24')}>
         <BlogDisplay
           blogs={similarBlogs}
@@ -310,12 +311,13 @@ export default function Blog({ data, pageContext }: PropTypes) {
           title="Related articles"
         />
       </div>
+
       <Newsletter
         tags={frontmatter.tags}
         color="neutral"
         copy="Want more articles like this?"
       />
-      <About />
+      <About color="footer" />
     </>
   );
 }

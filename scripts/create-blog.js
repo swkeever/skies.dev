@@ -199,7 +199,7 @@ inquirer
       ])
       .then((moreAnswers) => {
         const answers = { ...intermediateAnswers, ...moreAnswers };
-        const dir = `./content/${answers.slug}`;
+        const dir = `./src/pages/blog/${answers.slug}`;
         if (fs.existsSync(dir)) {
           console.error(chalk.bgRed.bold('ERROR'), `${dir} already exists.`);
           process.exit(1);

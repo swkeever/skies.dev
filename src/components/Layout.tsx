@@ -8,6 +8,7 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import globalStyles from '@styles/index';
 import AlertProvider from '@lib/alerts/AlertProvider';
+import tw from '@utils/tailwind';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -24,6 +25,9 @@ function isSystemPrefLightMode() {
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const [lightTheme, setLightTheme] = useState<boolean>(true);
+  const [theme, setTheme] = useState<number>(0);
+
+  const themes = ['theme-blue', 'theme-green', 'theme-red'];
 
   useEffect(() => {
     setLightTheme(isSystemPrefLightMode());
@@ -38,17 +42,17 @@ const Layout = ({ children }: { children: ReactNode }) => {
         value={{
           lightTheme,
           setLightTheme,
+          changeTheme: () => setTheme((theme + 1) % themes.length),
         }}
       >
         <div
-          className={`
-              ${themeClass}
-              ${extraClasses}
-              min-h-screen
-              flex
-              flex-col
-              justify-between
-            `}
+          className={tw(
+            themeClass,
+            extraClasses,
+            'min-h-screen',
+            'flex-col justify-between',
+            themes[theme],
+          )}
         >
           <Header />
           <AlertProvider>

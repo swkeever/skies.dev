@@ -6,6 +6,40 @@ import routes from '@utils/routes';
 import tw from '@utils/tailwind';
 import globalStyles from '@styles/index';
 
+const colors = {
+  footer: {
+    bg: 'bg-footerBg',
+    backgroundImage: 'bg-primaryBold',
+    image: 'border-gray-700',
+    preHeader: 'text-gray-300',
+    header: 'text-light',
+    p: 'text-gray-300',
+    button: tw('text-gray-800 hover:text-gray-600', 'bg-gray-100'),
+  },
+  neutral: {
+    bg: 'bg-neutralBg',
+    backgroundImage: 'bg-primaryBold',
+    preHeader: 'text-neutral',
+    header: 'text-onNeutralBg',
+    p: 'text-neutral',
+    button: tw(
+      'text-onPrimarySoft hover:text-onPrimary',
+      'bg-primary hover:bg-primaryBold',
+    ),
+  },
+  neutralSoft: {
+    bg: 'bg-neutralBgSoft',
+    backgroundImage: 'bg-primaryBold',
+    preHeader: 'text-neutral',
+    header: 'text-onNeutralBgSoft',
+    p: 'text-neutral',
+    button: tw(
+      'text-onPrimarySoft hover:text-onPrimary',
+      'bg-primary hover:bg-primaryBold',
+    ),
+  },
+};
+
 export default function About({ color = 'footer' }) {
   const data = useStaticQuery(graphql`
     query {
@@ -19,28 +53,7 @@ export default function About({ color = 'footer' }) {
     }
   `);
 
-  const styles = {
-    footer: {
-      bg: 'bg-footerBg',
-      backgroundImage: 'bg-primaryBold',
-      image: 'border-gray-700',
-      preHeader: 'text-gray-300',
-      header: 'text-light',
-      p: 'text-gray-300',
-      button: tw('text-gray-800 hover:text-gray-600', 'bg-gray-100'),
-    },
-    neutral: {
-      bg: 'bg-neutralBg',
-      backgroundImage: 'bg-primaryBold',
-      preHeader: 'text-neutral',
-      header: 'text-onNeutralBg',
-      p: 'text-neutral',
-      button: tw(
-        'text-onPrimarySoft hover:text-onPrimary',
-        'bg-primary hover:bg-primaryBold',
-      ),
-    },
-  }[color];
+  const styles = colors[color];
 
   return (
     <>
