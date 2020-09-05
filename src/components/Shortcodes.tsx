@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import globalStyles from '@styles/index';
+import tw from '@utils/tailwind';
 import ExternalLink from './ExternalLink';
 
 const styles = {
@@ -23,12 +24,7 @@ const styles = {
   mt: 'mt-5 first:mt-0',
   mt2: 'mt-10 first:mt-0',
 
-  list: `
-  flex flex-col
-  space-y-2
-  ml-5
-  mb-5
-  `,
+  list: tw('flex flex-col space-y-3 lg:space-y-5', 'ml-5 mb-5 lg:mb-10'),
 
   card: `
   border-l-4
@@ -36,31 +32,20 @@ const styles = {
   rounded-sm
   `,
 
-  header: `
-  mb-1
-  ${globalStyles.transitions}
-  
-  `,
+  table: tw('border border-neutralBgSofter'),
 };
 
 const shortcodes = {
-  p: (props) => {
-    const textStyles = props.className?.includes('text-')
-      ? ''
-      : 'text-onNeutralBgSoft';
-
-    return (
-      <p
-        {...props}
-        className={`
-        ${styles.copy}
-        ${textStyles} 
-        mb-5 
-        last:mb-0
-    `}
-      />
-    );
-  },
+  p: (props) => (
+    <p
+      {...props}
+      className={tw(
+        styles.copy,
+        'mb-4 lg:mb-8 last:mb-0',
+        'text-onNeutralBgSofter',
+      )}
+    />
+  ),
   a: ({ href, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
     let className = '';
 
@@ -94,49 +79,60 @@ const shortcodes = {
   ol: (props) => (
     <ul {...props} className={`${styles.copy} ${styles.list} list-decimal`} />
   ),
-  li: (props) => (
-    <li
-      {...props}
-      className={`
-     ${styles.mt}
-    `}
-    />
-  ),
+  li: (props) => <li {...props} className={tw(styles.mt)} />,
   h1: (props) => (
     <h1
       {...props}
-      className={`${styles.header}
-    text-onNeutralBg
-    text-5xl md:text-6xl
-    font-extrabold mt-8 mb-8
-    `}
+      className={tw(
+        'text-onNeutralBg',
+        'text-5xl md:text-6xl font-extrabold',
+        'mt-8 mb-8',
+      )}
     />
   ),
   h2: (props) => (
     <h2
       {...props}
-      className={`${styles.header} text-onNeutralBg
- text-2xl md:text-3xl font-bold ${styles.mt2}`}
+      className={tw(
+        'text-onNeutralBgSoft',
+        'text-3xl md:text-4xl font-bold',
+        'mb-6',
+        'first:mt-0 mt-16',
+        globalStyles.transitions,
+      )}
     />
   ),
   h3: (props) => (
     <h3
       {...props}
-      className={`${styles.header} text-onNeutralBg text-xl md:text-2xl font-semibold ${styles.mt2}`}
+      className={tw(
+        'text-neutralBold',
+        'text-2xl md:text-3xl font-thin',
+        'mb-2',
+        styles.mt2,
+        globalStyles.transitions,
+      )}
     />
   ),
   h4: (props) => (
     <h4
-      className={`
-        text-onNeutralBgSoft mb-1
-        text-lg md:text-xl font-semibold ${styles.mt2}
-      `}
+      className={tw(
+        'text-neutral',
+        'text-lg md:text-xl font-semibold',
+        'mb-1',
+        styles.mt2,
+        globalStyles.transitions,
+      )}
       {...props}
     />
   ),
   inlineCode: (props) => (
     <code
-      className="bg-neutralBgSoft text-onNeutralBgSoft px-1 rounded pt-1"
+      className={tw(
+        'bg-neutralBgSoft text-onNeutralBgSofter',
+        styles.copy,
+        'rounded',
+      )}
       {...props}
     />
   ),
@@ -144,24 +140,55 @@ const shortcodes = {
   table: (props) => (
     <table
       {...props}
-      className={`${styles.copy} ${styles.mt} w-full bg-neutralBgSoft`}
+      className={tw(
+        styles.copy,
+        styles.table,
+        'rounded-md',
+        'my-5 lg:my-10',
+        'w-full',
+        'shadow-lg',
+        'bg-neutralBgSoft',
+      )}
     />
   ),
   th: (props) => (
-    <th {...props} className="px-2 pt-3 text-left bg-primary text-onPrimary" />
+    <th
+      {...props}
+      className={tw(
+        'px-2 pt-3',
+        styles.table,
+        'text-left',
+        'bg-primary text-onPrimary',
+        globalStyles.transitions,
+      )}
+    />
   ),
-  td: (props) => <td {...props} className="px-2 pt-1 text-onPrimaryBg" />,
-  tr: (props) => <tr {...props} className="even:bg-neutralBg" />,
+  td: (props) => (
+    <td
+      {...props}
+      className={tw(
+        'px-2 pt-1',
+        'text-onPrimaryBg',
+        styles.table,
+        globalStyles.transitions,
+      )}
+    />
+  ),
+  tr: (props) => (
+    <tr
+      {...props}
+      className={tw('even:bg-neutralBg', globalStyles.transitions)}
+    />
+  ),
   blockquote: (props) => (
     <blockquote
       {...props}
       className={`
         ${styles.copy}
-        ${styles.mt}
         ${styles.card}
         border-primaryBgSoft
         bg-neutralBg
-        mb-5
+        my-5 lg:my-10
      `}
     />
   ),

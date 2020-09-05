@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import globalStyles from '@styles/index';
 import Logo from '@assets/logo.svg';
 import { Link } from '@reach/router';
 import tw from '@utils/tailwind';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import siteConfig from '../../site.config';
 import routes from '../utils/routes';
+import { LayoutContext } from './Layout';
 
 export default function Hero() {
+  const { changeTheme } = useContext(LayoutContext);
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "about/me.jpg" }) {
@@ -51,17 +54,39 @@ export default function Hero() {
         flex items-center justify-start
         `}
         >
-          <Img
+          <button
             className={tw(
-              globalStyles.transitions,
-              'flex-shrink-0',
+              globalStyles.outline,
               'rounded-full',
-              'w-24 h-24 md:w-32 md:h-32',
-              'shadow-lg',
+              'transform active:translate-y-1',
+              globalStyles.transitions,
+              'shadow-lg active:shadow-sm',
             )}
-            fluid={avatarFluid}
-            alt="A picture of Sean Keever"
-          />
+            type="button"
+            onClick={() => {
+              trackCustomEvent({
+                // string - required - The object that was interacted with (e.g.video)
+                category: 'Secret Theme Button',
+                // string - required - Type of interaction (e.g. 'play')
+                action: 'Click',
+                // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
+                label: 'Theme Campaign',
+              });
+              changeTheme();
+            }}
+          >
+            <Img
+              className={tw(
+                globalStyles.transitions,
+                'flex-shrink-0',
+                'rounded-full',
+                'w-24 h-24 md:w-32 md:h-32',
+              )}
+              fluid={avatarFluid}
+              alt="A picture of Sean Keever"
+            />
+          </button>
+
           <div className="flex-grow ml-4">
             <h1 className="">
               <span className="sr-only">{siteConfig.siteTitle}</span>

@@ -6,7 +6,8 @@ const globalStyles = {
   navbar: {
     height: 'h-20',
   },
-  outline: 'focus:outline-none focus:shadow-outline-blue',
+  outline:
+    'focus:outline-none active:shadow-outline-blue focus:shadow-outline-blue',
 };
 
 export default globalStyles;

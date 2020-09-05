@@ -16,12 +16,14 @@ export const useActiveHash = (itemIds = [], rootMargin = undefined) => {
     );
 
     itemIds.forEach((id) => {
-      observer.observe(document.getElementById(id));
+      const elem = document.getElementById(id);
+      if (elem) observer.observe(elem);
     });
 
     return () => {
       itemIds.forEach((id) => {
-        observer.unobserve(document.getElementById(id));
+        const elem = document.getElementById(id);
+        if (elem) observer.unobserve(elem);
       });
     };
   }, []);

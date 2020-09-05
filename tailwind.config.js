@@ -10,7 +10,7 @@ module.exports = {
     './src/**/*.tsx',
     './src/**/*.js',
     './src/**/*.ts',
-    './content/**/*.md',
+    // './content/**/*.md',
   ],
   theme: {
     extend: {

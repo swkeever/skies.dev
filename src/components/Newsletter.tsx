@@ -25,7 +25,7 @@ const colors = {
   primarySoft: {
     section: 'bg-primaryBg',
     h2: 'text-onPrimaryBg',
-    h2Span: 'text-primaryBold',
+    h2Span: 'text-onPrimaryBgSofter',
     button: 'text-onPrimary bg-primaryBold hover:bg-primary',
     selectAll: 'text-onPrimaryBg hover:bg-primaryBgSoft',
     p: 'text-onPrimaryBgSoft',
@@ -87,7 +87,7 @@ export default function Newsletter({
   const [magicName, setMagicName] = useState('Software Engineering');
   const topic = useTypeWriter(magicName);
   const allTags = blogTags.map(({ name }) => name);
-  const [selected, setSelected] = useState(tags.length > 0 ? tags : allTags);
+  const [selected, setSelected] = useState(tags.length > 0 ? tags : []);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
