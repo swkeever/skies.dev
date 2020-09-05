@@ -13,6 +13,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 export const LayoutContext = React.createContext({});
+const themes = ['theme-blue', 'theme-green', 'theme-red'];
 
 function isSystemPrefLightMode() {
   if (window.matchMedia) {
@@ -27,8 +28,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const [lightTheme, setLightTheme] = useState<boolean>(true);
   const [theme, setTheme] = useState<number>(0);
 
-  const themes = ['theme-blue', 'theme-green', 'theme-red'];
-
   useEffect(() => {
     setLightTheme(isSystemPrefLightMode());
   }, []);
@@ -42,7 +41,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         value={{
           lightTheme,
           setLightTheme,
-          changeTheme: () => setTheme((theme + 1) % themes.length),
+          changeTheme: () => setTheme(() => (theme + 1) % themes.length),
         }}
       >
         <div
