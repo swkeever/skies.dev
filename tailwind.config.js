@@ -14,6 +14,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        24: 'repeat(24, minmax(0, 1fr))',
+      },
       colors: {
         primary: 'var(--color-primary)',
         primarySoft: 'var(--color-primarySoft)',
