@@ -164,8 +164,7 @@ module.exports = {
         showSpinner: false,
       },
     },
-    // 'gatsby-plugin-offline',
-
+    'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     {
       resolve: 'gatsby-plugin-sitemap',
