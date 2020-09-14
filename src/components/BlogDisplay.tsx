@@ -44,32 +44,30 @@ export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
           {subtitle}
         </p>
       </header>
-      <nav>
-        <ul
-          className={tw(
-            'grid gap-5',
-            'grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
-          )}
-        >
-          {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
-          ))}
-        </ul>
-        <Link
-          className={tw(
-            'block',
-            'text-onNeutralBg hover:text-onNeutralBgLinkHover',
-            'mt-8 ml-auto',
-            'font-semibold text-lg',
-            'flex justify-end items-center',
-            globalStyles.transitions,
-          )}
-          to={routes.blog}
-        >
-          See all publications
-          <FaArrowRight className={tw('inline-block', 'ml-1', 'text-xl')} />
-        </Link>
+      <nav
+        className={tw(
+          'grid gap-5',
+          'grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
+        )}
+      >
+        {blogs.map((blog) => (
+          <BlogCard key={blog.id} blog={blog} />
+        ))}
       </nav>
+      <Link
+        className={tw(
+          'block',
+          'text-onNeutralBg hover:text-onNeutralBgLinkHover',
+          'mt-8 ml-auto',
+          'font-semibold text-lg',
+          'flex justify-end items-center',
+          globalStyles.transitions,
+        )}
+        to={routes.blog}
+      >
+        See all publications
+        <FaArrowRight className={tw('inline-block', 'ml-1', 'text-xl')} />
+      </Link>
     </div>
   );
 }

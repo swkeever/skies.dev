@@ -73,11 +73,11 @@ const IndexPage = () => {
         />
       </section>
 
-      <div
+      <section
         id="contact"
         className={tw(globalStyles.transitions, 'bg-neutralBg', 'py-24')}
       >
-        <section className="max-w-screen-md mx-auto px-4">
+        <div className="max-w-screen-md mx-auto px-4">
           <h2
             className={tw(
               globalStyles.transitions,
@@ -102,8 +102,8 @@ const IndexPage = () => {
             message will go straight to my email.
           </p>
           <Form />
-        </section>
-      </div>
+        </div>
+      </section>
       <Newsletter showTopics color="primarySoft" />
     </div>
   );

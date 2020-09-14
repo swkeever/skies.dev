@@ -297,7 +297,7 @@ export default function BlogsPage() {
           {getNumResultsString(blogs.length)}
         </p>
         {blogs.length ? (
-          <ul
+          <nav
             className={tw(
               'sm:px-6 px-4',
               'max-w-screen-xl',
@@ -308,7 +308,7 @@ export default function BlogsPage() {
             {blogs.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}
-          </ul>
+          </nav>
         ) : (
           <Empty
             className={tw(
