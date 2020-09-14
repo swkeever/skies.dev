@@ -5,6 +5,7 @@ import globalStyles from '@styles/index';
 import blogTags from '@utils/blog-tags';
 import useTypeWriter from '@lib/typewriter/use-typewriter';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+import tw from '@utils/tailwind';
 
 const colors = {
   primary: {
@@ -173,194 +174,183 @@ export default function Newsletter({
 
   return (
     <section className={`${styles.section}  ${globalStyles.transitions} `}>
-      <div className="max-w-screen-xl mx-auto w-full relative">
-        <div
+      <div
+        className={tw(
+          'mx-auto max-w-2xl',
+          'w-full relative',
+          'py-12 px-4 lg:py-24 2xl:py-32 lg:px-8',
+        )}
+      >
+        <h2
           className={`
-          mx-auto max-w-2xl
-          py-12 px-4 lg:py-24 2xl:py-32 lg:px-8
-        `}
-        >
-          <h2
-            className={`
             text-3xl md:text-4xl
             leading-9 font-extrabold tracking-tight sm:leading-10
             ${globalStyles.transitions}
             ${styles.h2}
         `}
+        >
+          {copy}
+          <div
+            className={`${styles.h2Span} ${globalStyles.transitions}`}
+            id="newsletter-headline"
           >
-            {copy}
-            <br className="hidden sm:inline" />
-            <div
-              className={`${styles.h2Span} ${globalStyles.transitions}`}
-              id="newsletter-headline"
-            >
-              Sign up for the newsletter
-            </div>
-          </h2>
-          <form
-            action={FORM_URL}
-            method="post"
-            onSubmit={handleSubmit}
-            className={`${showTopics ? 'mt-12' : 'mt-4'}
+            Sign up for the newsletter
+          </div>
+        </h2>
+        <form
+          action={FORM_URL}
+          method="post"
+          onSubmit={handleSubmit}
+          className={`${showTopics ? 'mt-12' : 'mt-4'}
             
             flex-col flex space-y-5`}
-            aria-labelledby="newsletter-headline"
-          >
-            <section className={`${showTopics ? '' : 'hidden'}`}>
-              <h3 className={`${styles.h3} ${h3Styles}`}>
-                Select topics you care about
-              </h3>
+          aria-labelledby="newsletter-headline"
+        >
+          <section className={`${showTopics ? '' : 'hidden'}`}>
+            <h3 className={`${styles.h3} ${h3Styles}`}>
+              Select topics you care about
+            </h3>
 
-              <ul className="mt-3 flex flex-wrap">
-                {blogTags.map(({ id, name }) => {
-                  const isChecked = selected.includes(name);
-                  const tagId = id.toString();
-                  const formId = `tag-4516-${tagId}`;
-                  return (
-                    <li key={tagId}>
-                      <label htmlFor={formId}>
-                        <input
-                          className="hidden"
-                          id={formId}
-                          type="checkbox"
-                          onChange={() => {
-                            if (selected.includes(name)) {
-                              setSelected(selected.filter((t) => t !== name));
-                            } else {
-                              setSelected(selected.concat(name));
-                            }
-                          }}
-                          checked={isChecked}
-                          name="tags[]"
-                          value={tagId}
-                        />
-                        <div
-                          role="button"
-                          className={`
-                        mr-3 mb-3
-                        
-                        font-medium
-                        px-2
-                        rounded-full
-                        
-                        ${globalStyles.transitions}
-                        ${globalStyles.outline}
-                        transform
-                        ${
+            <ul className="mt-3 flex flex-wrap">
+              {blogTags.map(({ id, name }) => {
+                const isChecked = selected.includes(name);
+                const tagId = id.toString();
+                const formId = `tag-4516-${tagId}`;
+                return (
+                  <li key={tagId}>
+                    <label htmlFor={formId}>
+                      <input
+                        className="hidden"
+                        id={formId}
+                        type="checkbox"
+                        onChange={() => {
+                          if (selected.includes(name)) {
+                            setSelected(selected.filter((t) => t !== name));
+                          } else {
+                            setSelected(selected.concat(name));
+                          }
+                        }}
+                        checked={isChecked}
+                        name="tags[]"
+                        value={tagId}
+                      />
+                      <div
+                        role="button"
+                        className={tw(
+                          'mr-3 mb-3',
+                          'px-2',
+                          'rounded-full',
+                          'font-medium',
+                          globalStyles.transitions,
+                          globalStyles.outline,
+                          'transform',
                           isChecked
-                            ? `
-                          ${styles.tag.checked}
-                        translate-y-0 scale-100 shadow-xs
-                        `
-                            : `
-                        
-                        ${styles.tag.unchecked}
-                        -translate-y-1 scale-105 shadow-lg
-                        `
-                        }
-                      `}
-                        >
-                          {name}
-                        </div>
-                      </label>
-                    </li>
-                  );
-                })}
-              </ul>
+                            ? tw(
+                              styles.tag.checked,
+                              'translate-y-0 scale-100 shadow-xs',
+                            )
+                            : tw(
+                              styles.tag.unchecked,
+                              '-translate-y-1 scale-105 shadow-lg',
+                            ),
+                        )}
+                      >
+                        {name}
+                      </div>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
 
-              <button
-                className={`
-                ${globalStyles.transitions}
-                ${globalStyles.outline}
-                
-                float-right px-2 py-1 rounded-full mt-2 ${styles.selectAll}`}
-                type="button"
-                onClick={() => {
-                  if (selected.length === allTags.length) {
-                    setSelected([]);
-                  } else {
-                    setSelected(allTags);
-                  }
-                }}
-              >
-                {selected.length === allTags.length
-                  ? 'Unselect all'
-                  : 'Select all'}
-              </button>
-            </section>
-
-            <section>
-              {!showTopics ? null : (
-                <h3 className={`${styles.h3} ${h3Styles}`}>
-                  Get notified when I post about
-                  {' '}
-                  <span
-                    className={`
-                    ${globalStyles.transitions}
-                  ${styles.typewriter}
-                  font-semibold `}
-                  >
-                    {topic}
-                  </span>
-                </h3>
+            <button
+              className={tw(
+                globalStyles.transitions,
+                globalStyles.outline,
+                'float-right',
+                'px-2 py-1',
+                'rounded-full',
+                'mt-2',
+                styles.selectAll,
+                globalStyles.transitions,
+                globalStyles.outline,
               )}
+              type="button"
+              onClick={() => {
+                if (selected.length === allTags.length) {
+                  setSelected([]);
+                } else {
+                  setSelected(allTags);
+                }
+              }}
+            >
+              {selected.length === allTags.length
+                ? 'Unselect all'
+                : 'Select all'}
+            </button>
+          </section>
 
-              <input
-                autoComplete="off"
-                aria-label="Email address"
-                type="email"
-                name="email_address"
-                required
-                className={`
-              appearance-none 
-              w-full 
-              px-5 py-3 
-              border border-primaryBgSofter
-              text-base leading-6 
-              rounded-full 
-              
-              text-onNeutralBg 
-              bg-neutralBg 
-              placeholder-neutral 
-              ${globalStyles.outline} 
-              focus:border-primaryBgSofter
-              ${globalStyles.transitions} 
-              `}
-                placeholder="Enter your email"
-              />
-              <div
-                className={`
-            mt-2 
-            rounded-full                   
-            flex items-center justify-center
-            shadow 
-          `}
-              >
-                <button
-                  type="submit"
-                  className={`
-                  w-full
-                  py-3 
-                  border border-transparent 
-                  text-base leading-6 font-medium 
-                  rounded-full 
-                  font-bold
-                  ${styles.button}
-                  ${globalStyles.outline}
-                  ${globalStyles.transitions}
-                  `}
+          <section>
+            {!showTopics ? null : (
+              <h3 className={tw(styles.h3, h3Styles)}>
+                Get notified when I post about
+                {' '}
+                <span
+                  className={tw(
+                    globalStyles.transitions,
+                    styles.typewriter,
+                    'font-semibold',
+                  )}
                 >
-                  Subscribe
-                </button>
-              </div>
-              <p
-                className={`mt-1 font-light ${styles.p} ${globalStyles.transitions}`}
-              >
-                I will not send you spam. Unsubscribe at any time.
-              </p>
-            </section>
-          </form>
-        </div>
+                  {topic}
+                </span>
+              </h3>
+            )}
+
+            <input
+              autoComplete="off"
+              aria-label="Email address"
+              type="email"
+              name="email_address"
+              required
+              className={tw(
+                'appearance-none',
+                'w-full',
+                'px-5 py-3',
+                'border border-primaryBgSofter focus:border-primaryBgSofter',
+                'text-base leading-6',
+                'rounded-full',
+                'text-onNeutralBg placeholder-neutral',
+                globalStyles.outline,
+                globalStyles.transitions,
+              )}
+              placeholder="Enter your email"
+            />
+            <button
+              type="submit"
+              className={tw(
+                globalStyles.transitions,
+                globalStyles.outline,
+                styles.button,
+                'w-full',
+                'mt-2',
+                'flex items-center justify-center',
+                'shadow',
+                'py-3',
+                'border border-transparent',
+                'text-base leading-6 font-medium font-bold',
+                'rounded-full',
+              )}
+            >
+              Subscribe
+            </button>
+            <p
+              className={`mt-1 font-light ${styles.p} ${globalStyles.transitions}`}
+            >
+              I will not send you spam. Unsubscribe at any time.
+            </p>
+          </section>
+        </form>
       </div>
     </section>
   );

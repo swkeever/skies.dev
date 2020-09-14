@@ -62,11 +62,11 @@ export default function Nav() {
   const colors = {
     primary: {
       underline: {
-        on: 'bg-neutral lg:bg-light',
+        on: 'bg-neutral lg:bg-onPrimary',
         off: 'bg-neutralBg lg:bg-primary',
       },
       icon: {
-        on: 'text-primaryBold lg:text-light',
+        on: 'text-primaryBold lg:text-onPrimary',
         off: 'text-neutral lg:text-onPrimarySoft',
       },
     },
@@ -154,6 +154,7 @@ export default function Nav() {
 
   return (
     <nav
+      aria-label="Primary Navigation"
       className={`
       w-full h-full lg:max-w-screen-md
       flex flex-col

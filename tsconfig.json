@@ -23,7 +23,8 @@
       "@styles/*": ["./src/styles/*"],
       "@templates/*": ["./src/templates/*"],
       "@utils/*": ["./src/utils/*"],
-      "@assets/*": ["./assets/*"]
+      "@assets/*": ["./assets/*"],
+      "@content/*": ["./content/*"]
     }
   }
 }

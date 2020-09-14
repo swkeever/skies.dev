@@ -56,15 +56,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <Header />
           <AlertProvider>
             <main
-              className={`
-            mb-0
-            lg:mt-8
-            flex-grow
-            h-auto
-            w-full
-            flex
-            flex-col
-          `}
+              className={tw(
+                'mb-0 lg:mt-8',
+                'flex flex-col flex-grow',
+                'h-auto w-full',
+              )}
             >
               {children}
             </main>

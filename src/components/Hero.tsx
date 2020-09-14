@@ -49,15 +49,47 @@ export default function Hero() {
     <>
       <section className={tw(colors.bg, globalStyles.transitions)}>
         <div
-          className={`px-4 z-10 relative max-w-xl mx-auto
-        py-12 lg:py-20 xl:py-24
-        flex items-center justify-start
-        `}
+          className={tw(
+            'px-4 py-12 lg:py-20 xl:py-24',
+            'z-10 relative',
+            'max-w-xl',
+            'mx-auto',
+            'flex items-center justify-start',
+          )}
         >
+          <header className="flex-grow ml-4">
+            <h1>
+              <span className="sr-only">{siteConfig.siteTitle}</span>
+              <Logo
+                className={tw(
+                  'w-full h-auto',
+                  colors.logo,
+                  'fill-current',
+                  globalStyles.transitions,
+                )}
+              />
+            </h1>
+            <p className={tw(globalStyles.transitions, colors.p)}>
+              A website by
+              {' '}
+              <Link
+                to={routes.about}
+                className={tw(
+                  globalStyles.transitions,
+                  'font-semibold',
+                  colors.a,
+                )}
+              >
+                Sean Keever
+              </Link>
+              .
+            </p>
+          </header>
           <button
             className={tw(
               globalStyles.outline,
               'rounded-full',
+              'order-first',
               'transform active:translate-y-1',
               globalStyles.transitions,
               'shadow-lg active:shadow-sm',
@@ -86,35 +118,6 @@ export default function Hero() {
               alt="A picture of Sean Keever"
             />
           </button>
-
-          <div className="flex-grow ml-4">
-            <h1 className="">
-              <span className="sr-only">{siteConfig.siteTitle}</span>
-              <Logo
-                className={tw(
-                  'w-full h-auto',
-                  colors.logo,
-                  'fill-current',
-                  globalStyles.transitions,
-                )}
-              />
-            </h1>
-            <p className={tw(globalStyles.transitions, colors.p)}>
-              A website by
-              {' '}
-              <Link
-                to={routes.about}
-                className={tw(
-                  globalStyles.transitions,
-                  'font-semibold',
-                  colors.a,
-                )}
-              >
-                Sean Keever
-              </Link>
-              .
-            </p>
-          </div>
         </div>
       </section>
     </>

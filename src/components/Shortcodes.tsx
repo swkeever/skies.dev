@@ -1,36 +1,24 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import React, { AnchorHTMLAttributes } from 'react';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
 import ExternalLink from './ExternalLink';
 
 const styles = {
-  copy: `
-  text-base
-  md:text-lg
-  lg:text-xl
-  leading-8
-  text-onNeutralBgSoft
-  ${globalStyles.transitions}
-  `,
+  copy: tw(
+    'text-base md:text-lg lg:text-xl leading-8',
+    globalStyles.transitions,
+  ),
 
-  link: `
-  underline
-  text-onNeutralBg 
-  hover:text-onNeutralBgLink
-  `,
+  link: tw('underline', 'text-onNeutralBgSoft hover:text-onNeutralBgLink'),
 
   mt: 'mt-5 first:mt-0',
   mt2: 'mt-10 first:mt-0',
 
   list: tw('flex flex-col space-y-3 lg:space-y-5', 'ml-5 mb-5 lg:mb-10'),
 
-  card: `
-  border-l-4
-  p-5
-  rounded-sm
-  `,
+  card: tw('border-l-4', 'rounded-sm', 'p-5'),
 
   table: tw('border border-neutralBgSofter'),
 };
@@ -42,7 +30,7 @@ const shortcodes = {
       className={tw(
         styles.copy,
         'mb-4 lg:mb-8 last:mb-0',
-        'text-onNeutralBgSofter',
+        'text-onNeutralBgSoft',
       )}
     />
   ),
@@ -57,11 +45,7 @@ const shortcodes = {
       <a
         href={href}
         {...rest}
-        className={`
-          ${className}
-          ${styles.copy} 
-          ${styles.link}
-        `}
+        className={tw(className, styles.copy, styles.link)}
       />
     );
   },
@@ -79,7 +63,9 @@ const shortcodes = {
   ol: (props) => (
     <ul {...props} className={`${styles.copy} ${styles.list} list-decimal`} />
   ),
-  li: (props) => <li {...props} className={tw(styles.mt)} />,
+  li: (props) => (
+    <li {...props} className={tw(styles.mt, 'text-onNeutralBgSoft')} />
+  ),
   h1: (props) => (
     <h1
       {...props}
@@ -129,7 +115,7 @@ const shortcodes = {
   inlineCode: (props) => (
     <code
       className={tw(
-        'bg-neutralBgSoft text-onNeutralBgSofter',
+        'bg-neutralBgSoft text-onNeutralBgSoft',
         styles.copy,
         'rounded',
       )}
@@ -183,13 +169,14 @@ const shortcodes = {
   blockquote: (props) => (
     <blockquote
       {...props}
-      className={`
-        ${styles.copy}
-        ${styles.card}
-        border-primaryBgSoft
-        bg-neutralBg
-        my-5 lg:my-10
-     `}
+      className={tw(
+        props.className,
+        'my-5 lg:my-10',
+        styles.copy,
+        styles.card,
+        'border-primaryBgSoft',
+        'bg-neutralBg',
+      )}
     />
   ),
   aside: (props) => (

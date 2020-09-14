@@ -24,10 +24,6 @@ export default function Header() {
   return (
     <>
       <header
-        // style={{
-        //   paddingBottom: 'env(safe-area-inset-bottom)',
-        //   // paddingTop: 'env(safe-area-inset-top)',
-        // }}
         className={tw(
           'fixed',
           'bottom-0 left-0 top-auto right-auto',
@@ -41,19 +37,21 @@ export default function Header() {
         )}
       >
         <div
-          className={`flex ${globalStyles.navbar.height} lg:h-12 items-center`}
+          className={tw(
+            'lg:h-12',
+            'flex items-center',
+            globalStyles.navbar.height,
+          )}
         >
           <Link
             to={routes.home}
-            className={`
-          hidden
-          lg:flex
-              
-          h-full 
-          mx-3
-          ${globalStyles.transitions}
-          
-        `}
+            className={tw(
+              'hidden',
+              'lg:flex',
+              'h-full',
+              'mx-3',
+              globalStyles.transitions,
+            )}
           >
             <Logo className={tw('w-32 h-auto', colors.logo, 'fill-current')} />
           </Link>

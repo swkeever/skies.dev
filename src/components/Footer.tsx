@@ -3,6 +3,7 @@ import {
   FaGithub, FaLinkedinIn, FaTwitter, FaRss,
 } from 'react-icons/fa';
 import { Link } from '@reach/router';
+import tw from '@utils/tailwind';
 import links from '../utils/links';
 import ExternalLink from './ExternalLink';
 import globalStyles from '../styles';
@@ -63,49 +64,56 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={`bg-footerBg ${globalStyles.transitions}`}>
-      <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <footer
+      className={tw('bg-footerBg', 'mb-20 lg:mb-0', globalStyles.transitions)}
+    >
+      <section className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
           {mainNavLinks.map((l) => (
-            <div key={`footer-${l.text}`} className="px-5 py-2">
-              <Link
-                to={l.to}
-                className={`
-                text-base leading-6 
-                text-gray-400 hover:text-gray-500
-                ${globalStyles.transitions}
-                `}
-              >
-                {l.text}
-              </Link>
-            </div>
+            <Link
+              key={`footer-${l.text}`}
+              to={l.to}
+              className={tw(
+                'px-5 py-2',
+                'block',
+                'text-base leading-6',
+                'text-gray-400 hover:text-gray-500',
+                globalStyles.transitions,
+              )}
+            >
+              {l.text}
+            </Link>
           ))}
         </nav>
-        <div className="mt-8 flex justify-center space-x-5">
+        <nav className="mt-8 flex justify-center space-x-5">
           {socialLinks.map((l) => (
             <ExternalLink
               key={`footer-${l.text}`}
               href={l.to}
-              className={`text-gray-400 hover:text-gray-500
-              ${globalStyles.transitions}
-              `}
+              className={tw(
+                'text-gray-400 hover:text-gray-500',
+                globalStyles.transitions,
+              )}
             >
               <span className="sr-only">{l.text}</span>
               {l.icon}
             </ExternalLink>
           ))}
-        </div>
-        <div className="mt-8">
-          <p className="text-center text-base leading-6 text-gray-400">
-            &copy;
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-            Skies. All rights reserved.
-          </p>
-        </div>
-      </div>
-      <div className="h-16 md:hidden" />
+        </nav>
+        <p
+          className={tw(
+            'mt-8',
+            'text-center text-base leading-6',
+            'text-gray-400',
+          )}
+        >
+          &copy;
+          {' '}
+          {new Date().getFullYear()}
+          {' '}
+          Skies. All rights reserved.
+        </p>
+      </section>
     </footer>
   );
 }

@@ -45,11 +45,7 @@ const IndexPage = () => {
   const blogs: Blog[] = gqlResponseToBlogs(data);
 
   return (
-    <div
-      className={`
-    ${globalStyles.transitions}
-    bg-neutralBgSoft`}
-    >
+    <div className={tw(globalStyles.transitions, 'bg-neutralBgSoft')}>
       <SEO
         title="A website by Sean Keever"
         description="Skies is blog on web development and software engineering created by Sean Keever."
@@ -62,7 +58,7 @@ const IndexPage = () => {
       />
       <Hero />
 
-      <div
+      <section
         className={tw(
           'relative',
           'pb-24 pt-12 xl:pt-20',
@@ -75,18 +71,18 @@ const IndexPage = () => {
           subtitle="I write articles on software engineering, computer science, and lessons
           learned in industry."
         />
-      </div>
+      </section>
 
       <div
         id="contact"
-        className={`${globalStyles.transitions} bg-neutralBg py-24`}
+        className={tw(globalStyles.transitions, 'bg-neutralBg', 'py-24')}
       >
         <section className="max-w-screen-md mx-auto px-4">
           <h2
             className={tw(
               globalStyles.transitions,
               'font-extrabold',
-              'text-onNeutralBg',
+              'text-onNeutralBgSoft',
               'text-3xl',
               'mb-3',
             )}
@@ -95,8 +91,8 @@ const IndexPage = () => {
           </h2>
           <p
             className={tw(
-              'text-onNeutralBgSoft',
-              'text-xl',
+              'text-neutral',
+              'text-lg',
               'mb-16',
               'max-w-lg',
               globalStyles.transitions,

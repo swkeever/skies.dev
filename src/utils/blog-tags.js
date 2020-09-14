@@ -67,4 +67,8 @@ module.exports = [
     id: 1797154,
     name: 'JavaScript',
   },
+  {
+    id: 1857535,
+    name: 'Accessibility',
+  },
 ].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));

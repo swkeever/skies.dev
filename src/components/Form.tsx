@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import globalStyles from '@styles/index';
+import tw from '@utils/tailwind';
 
 function LabelSpan({ label }: { label: string }) {
   return (
@@ -42,18 +43,15 @@ export default function Form() {
       autoComplete="off"
       method="post"
       action="https://formspree.io/maypervg"
-      className={`
-        w-auto
-        clearfix
-      `}
+      className={tw('w-auto clearfix')}
     >
       <input type="text" name="_gotcha" className="hidden" />
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 xl:gap-x-5">
+      <section className="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 xl:gap-x-5">
         <label htmlFor="name">
           <LabelSpan label="Name" />
           <input
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(() => e.target.value)}
             className={inputStyles}
             name="name"
             id="name"
@@ -65,7 +63,7 @@ export default function Form() {
           <LabelSpan label="Email" />
           <input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(() => e.target.value)}
             className={inputStyles}
             name="email"
             id="email"
@@ -73,13 +71,13 @@ export default function Form() {
             required
           />
         </label>
-      </div>
+      </section>
 
       <label htmlFor={subject}>
         <LabelSpan label="Subject" />
         <input
           value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          onChange={(e) => setSubject(() => e.target.value)}
           className={inputStyles}
           name="subject"
           id="subject"
@@ -92,30 +90,27 @@ export default function Form() {
         <LabelSpan label="Message" />
         <textarea
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className={`${inputStyles}
-            h-48
-            resize-none
-          `}
+          onChange={(e) => setMessage(() => e.target.value)}
+          className={tw(inputStyles, 'h-48', 'resize-none')}
           name="message"
           id="message"
           required
         />
       </label>
       <button
-        className={`float-right
-          inline-block
-          bg-primaryBold hover:bg-primary
-          text-onPrimary
-          rounded-full
-          ${globalStyles.transitions}
-          ${globalStyles.outline}
-          px-4       
-          py-2 
-          font-bold
-          lg:px-10 
-          lg:text-lg
-        `}
+        className={tw(
+          'float-right',
+          'inline-block',
+          'bg-primaryBold hover:bg-primary',
+          'text-onPrimary',
+          'rounded-full',
+          globalStyles.transitions,
+          globalStyles.outline,
+          'px-4 py-2 lg:px-8',
+          'font-bold',
+          'lg:text-lg',
+          'shadow',
+        )}
         type="submit"
       >
         Send
