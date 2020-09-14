@@ -16,7 +16,7 @@ import links from '@utils/links';
 import SEO from '@components/SEO';
 import ExternalLink from '@components/ExternalLink';
 import TableOfContents from '@components/TableOfContents';
-import shortcodes from '@components/Shortcodes';
+import shortCodes from '@components/Shortcodes';
 import Newsletter from '@components/Newsletter';
 import TwitterFollowButton from '@components/TwitterFollowButton';
 import tw from '@utils/tailwind';
@@ -41,7 +41,11 @@ export const pageQuery = graphql`
         image {
           childImageSharp {
             fluid(maxWidth: 700) {
-              ...GatsbyImageSharpFluid
+              base64
+              aspectRatio
+              src
+              srcSet
+              sizes
               presentationWidth
               presentationHeight
             }
@@ -111,24 +115,19 @@ export default function Blog({ data, pageContext }: PropTypes) {
   const { similarBlogs } = pageContext;
 
   const styles = {
-    ctaLinks: `
-    text-lg 
-    hover:border-b
-    hover:border-onNeutralBgSoft 
-    text-onNeutralBgSoft
-    pb-1
-    `,
+    ctaLinks: tw(
+      'text-lg',
+      'hover:border-b hover:border-onNeutralBgSoft',
+      'pb-1',
+      'text-onNeutralBgSoft',
+    ),
 
-    ctaLinkIcons: `
-    inline
-    mb-1
-    `,
+    ctaLinkIcons: tw('inline', 'mb-1'),
 
-    shareLink: `
-    ${globalStyles.transitions}
-    text-neutral
-    hover:text-neutralBold
-    `,
+    shareLink: tw(
+      globalStyles.transitions,
+      'text-neutral hover:text-neutralBold',
+    ),
   };
 
   const colors = {
@@ -276,7 +275,11 @@ export default function Blog({ data, pageContext }: PropTypes) {
               />
             </div>
 
-            <MDXProvider components={shortcodes}>
+            <MDXProvider
+              components={{
+                ...shortCodes,
+              }}
+            >
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
           </div>
@@ -304,13 +307,13 @@ export default function Blog({ data, pageContext }: PropTypes) {
         </div>
       </article>
 
-      <div className={tw('bg-neutralBgSoft', 'py-16 lg:py-24')}>
+      <section className={tw('bg-neutralBgSoft', 'py-16 lg:py-24')}>
         <BlogDisplay
           blogs={similarBlogs}
           subtitle="Here are some other articles you may enjoy."
           title="Related articles"
         />
-      </div>
+      </section>
 
       <Newsletter
         tags={frontmatter.tags}

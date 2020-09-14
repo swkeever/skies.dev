@@ -36,6 +36,8 @@ module.exports = {
         trackingId: 'UA-168956392-1',
       },
     },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
@@ -61,6 +63,13 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
+    // {
+    //   resolve: 'gatsby-plugin-canonical-urls',
+    //   options: {
+    //     siteUrl: 'https://www.skies.dev',
+    //   },
+    // },
+    // '@pauliescanlon/gatsby-mdx-embed',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -75,6 +84,7 @@ module.exports = {
           //     strict: 'ignore',
           //   },
           // },
+
           { ...gatsbyRemarkImages },
           'gatsby-remark-external-links',
 
@@ -89,19 +99,30 @@ module.exports = {
             },
           },
 
-          {
-            resolve: 'gatsby-remark-embed-youtube',
-            options: {
-              width: 800,
-              height: 400,
-            },
-          },
+          // {
+          //   resolve: 'gatsby-remark-embed-youtube',
+          //   options: {
+          //     width: 800,
+          //     height: 400,
+          //   },
+          // },
           'gatsby-remark-responsive-iframe',
           {
             resolve: 'gatsby-remark-vscode',
             options: {
               theme: 'Community Material Theme Darker', // From package.json: contributes.themes[0].label
               extensions: ['vsc-community-material-theme'], // From package.json: name
+            },
+          },
+          {
+            resolve: 'gatsby-remark-embedder',
+            options: {
+              customTransformers: [
+                // Your custom transformers
+              ],
+              services: {
+                // The service-specific options by the name of the service
+              },
             },
           },
         ],
@@ -138,8 +159,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+
     // 'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-manifest',

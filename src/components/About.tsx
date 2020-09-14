@@ -76,10 +76,10 @@ export default function About({ color = 'footer' }) {
               'mb-12 md:mb-0',
             )}
             fluid={data.file.childImageSharp.fluid}
-            alt="Sean Keever"
+            alt="Sean Keever's avatar"
           />
-          <div className="flex flex-col justify-center">
-            <div
+          <section className="flex flex-col justify-center">
+            <header
               className={tw(
                 'text-base leading-6 font-semibold uppercase tracking-wider',
                 styles.preHeader,
@@ -87,7 +87,7 @@ export default function About({ color = 'footer' }) {
               )}
             >
               About the author
-            </div>
+            </header>
             <h2
               className={tw(
                 'mt-2',
@@ -104,26 +104,27 @@ export default function About({ color = 'footer' }) {
               through this blog. Tune in if you&apos;re interested in web
               development and software engineering.
             </p>
-            <div className="mt-8">
-              <div className="inline-flex rounded-full shadow">
-                <Link
-                  to={routes.about}
-                  className={tw(
-                    'inline-flex items-center justify-center',
-                    'px-5 py-3',
-                    'border border-transparent',
-                    'text-base leading-6 font-semibold',
-                    'rounded-full',
-                    styles.button,
-                    'focus:outline-none focus:shadow-outline',
-                    globalStyles.transitions,
-                  )}
-                >
-                  Learn more
-                </Link>
-              </div>
-            </div>
-          </div>
+            <button
+              type="button"
+              className={tw('inline-flex', 'mt-8', 'rounded-full', 'shadow')}
+            >
+              <Link
+                to={routes.about}
+                className={tw(
+                  'inline-flex items-center justify-center',
+                  'px-5 py-3',
+                  'border border-transparent',
+                  'text-base leading-6 font-semibold',
+                  'rounded-full',
+                  styles.button,
+                  'focus:outline-none focus:shadow-outline',
+                  globalStyles.transitions,
+                )}
+              >
+                Learn more
+              </Link>
+            </button>
+          </section>
         </div>
       </section>
     </>

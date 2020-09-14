@@ -10,13 +10,9 @@
   --color-neutral-800: theme('colors.gray.800');
   --color-neutral-900: theme('colors.gray.900');
 
-  --color-dark: black;
-  --color-light: white;
-  --color-onLight: var(--color-primary-900);
-
-  --color-onPrimary: var(--color-light);
-  --color-onPrimarySoft: var(--color-neutral-200);
-  --color-onPrimarySofter: var(--color-primary-300);
+  --color-onPrimary: theme('colors.white');
+  --color-onPrimarySoft: theme('colors.blue.50');
+  --color-onPrimarySofter: theme('colors.blue.100');
 
   --color-footerBg: var(--color-neutral-800);
   --caret-color: var(--color-onNeutralBg);
@@ -72,6 +68,8 @@
   --color-onPrimaryBgSofter: var(--color-primary-700);
   --color-onPrimaryBgSoft: var(--color-primary-800);
   --color-onPrimaryBg: var(--color-primary-900);
+  --color-light: white;
+  --color-onLight: var(--color-primary-900);
 
   /* neutrals */
   --color-neutralBg: var(--color-neutral-100);
@@ -138,6 +136,8 @@
   --color-primaryBgSofter: var(--color-primary-900);
   --color-primaryBgSoft: var(--color-primary-900);
   --color-primaryBg: var(--color-primary-900);
+  --color-light: theme('colors.black');
+  --color-onLight: var(--color-neutral-100);
 
   --color-neutralBg: var(--color-neutral-800);
   --color-neutralBgSoft: var(--color-neutral-700);

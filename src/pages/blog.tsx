@@ -5,6 +5,7 @@ import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/BlogCard';
 import tw from '@utils/tailwind';
+import { FluidObject } from 'node_modules/gatsby-image/index';
 import SEO from '../components/SEO';
 import Empty from '../../assets/empty.svg';
 import blogCategories from '../utils/blog-categories';
@@ -215,53 +216,50 @@ export default function BlogsPage() {
               )}
             />
           </h1>
+
           <div id="search-input" className="mt-12">
             <label htmlFor="filter-input">
               <span className="sr-only">Search</span>
-              <div>
-                <FaSistrix
-                  className={tw(
-                    'inline absolute z-30',
-                    'text-2xl',
-                    'ml-2',
-                    colors.p,
-                  )}
-                />
-                <input
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus
-                  autoComplete="off"
-                  id="filter-input"
-                  value={filter}
-                  onChange={(e) => {
-                    setFilter(e.target.value);
-                  }}
-                  placeholder="Search"
-                  className={`
-                        -mt-8
-                        bg-neutralBgSoft
-                        rounded-full
-                        text-onNeutral
-                        placeholder-neutral
-                        lg:text-xl
-                        pl-10 
-                        pr-2
-                        relative
-                        py-3
-                        w-full
-                        shadow-lg
-                        ${globalStyles.outline}
-                        
-                        ${globalStyles.transitions}
-                      `}
-                  type="search"
-                />
-              </div>
+              <FaSistrix
+                className={tw(
+                  'inline absolute z-30',
+                  'text-2xl',
+                  'ml-2',
+                  colors.p,
+                )}
+              />
+              <input
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                autoFocus
+                autoComplete="off"
+                id="filter-input"
+                value={filter}
+                onChange={(e) => {
+                  setFilter(e.target.value);
+                }}
+                placeholder="Search"
+                className={tw(
+                  '-mt-8',
+                  'pl-10 pr-2 py-3',
+                  'bg-neutralBgSoft',
+                  'rounded-full',
+                  'text-onNeutralBg',
+                  'placeholder-neutral',
+                  'lg:text-xl',
+                  'relative',
+                  'w-full',
+                  'shadow-lg',
+                  globalStyles.outline,
+                  globalStyles.transitions,
+                )}
+                type="search"
+              />
             </label>
           </div>
         </div>
       </section>
       <div
+        aria-hidden="true"
         className={tw(
           'bg-neutralBgSoft',
           'flex-grow-0',
@@ -295,37 +293,32 @@ export default function BlogsPage() {
           ${globalStyles.transitions}
           `}
       >
-        <p className="mb-6 text-xl z-20 font-light text-center text-onNeutralBgSoft">
+        <p className="mb-8 text-xl z-20 font-light text-center text-onNeutralBgSoft">
           {getNumResultsString(blogs.length)}
         </p>
         {blogs.length ? (
-          <div className="sm:px-6 px-4 max-w-screen-xl mx-auto">
-            <ul
-              className={`grid
-                  grid-cols-1 
-                  gap-6
-                  md:grid-cols-2 
-                  lg:grid-cols-3 
-                `}
-            >
-              {blogs.map((blog) => (
-                <BlogCard key={blog.id} blog={blog} />
-              ))}
-            </ul>
-          </div>
+          <ul
+            className={tw(
+              'sm:px-6 px-4',
+              'max-w-screen-xl',
+              'mx-auto',
+              'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 grid-rows-none',
+            )}
+          >
+            {blogs.map((blog) => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))}
+          </ul>
         ) : (
-          <div className="content-center">
-            <Empty
-              className={`
-                  max-w-2xl
-                  w-full
-                  px-4
-                  mx-auto 
-                  h-auto 
-                  mb-12
-                `}
-            />
-          </div>
+          <Empty
+            className={tw(
+              'content-center block',
+              'max-w-2xl',
+              'w-full h-auto',
+              'px-4',
+              'mx-auto mb-12',
+            )}
+          />
         )}
       </section>
       <Newsletter showTopics color="neutral" />

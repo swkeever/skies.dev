@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
+import { FluidObject } from 'node_modules/gatsby-image/index';
 import routes from '../utils/routes';
 
 type SEO = {

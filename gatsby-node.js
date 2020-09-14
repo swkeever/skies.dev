@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-restricted-syntax */
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
@@ -69,7 +70,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (result.errors) {
+  if (
+    result.errors
+    || !result.data.allMdx.edges.every(({ node }) => node.frontmatter !== null)
+  ) {
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
   }
 
@@ -160,6 +164,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@styles': path.resolve(__dirname, 'src/styles'),
         '@assets': path.resolve(__dirname, 'assets'),
+        '@content': path.resolve(__dirname, 'content'),
       },
     },
   });
