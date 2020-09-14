@@ -257,6 +257,7 @@ module.exports = {
           'gatsby-resp-image-image',
           'gatsby-resp-image-wrapper',
           'gatsby-resp-image-figcaption',
+          'twitter-tweet',
         ], // Don't remove this selector
         // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
         // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders

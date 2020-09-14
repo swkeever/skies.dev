@@ -48,19 +48,21 @@ export default function BlogCardExample() {
           },
         } = data;
         return (
-          <BlogCard
-            blog={{
-              id,
-              timeToRead,
-              title,
-              slug: `blog/${slug}`,
-              description,
-              date,
-              category: blogCategories[category],
-              body: rawBody,
-              image: fluid,
-            }}
-          />
+          <section className="my-8 max-w-xs mx-auto">
+            <BlogCard
+              blog={{
+                id,
+                timeToRead,
+                title,
+                slug: `blog/${slug}`,
+                description,
+                date,
+                category: blogCategories[category],
+                body: rawBody,
+                image: fluid,
+              }}
+            />
+          </section>
         );
       }}
     />
