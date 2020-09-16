@@ -59,6 +59,13 @@ export const pageQuery = graphql`
         slug
       }
     }
+    file(relativePath: { eq: "logo.jpg" }) {
+      childImageSharp {
+        fixed(height: 630, width: 1200) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
   }
 `;
 
@@ -147,6 +154,34 @@ export default function Blog({ data, pageContext }: PropTypes) {
     },
   }.primary;
 
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': links.withSiteUrl(data.mdx.fields.slug),
+    },
+    headline: data.mdx.frontmatter.title,
+    description: data.mdx.frontmatter.description,
+    image: links.withSiteUrl(
+      data.mdx.frontmatter.image.childImageSharp.fluid.src,
+    ),
+    author: {
+      '@type': 'Person',
+      name: 'Sean Keever',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Skies',
+      logo: {
+        '@type': 'ImageObject',
+        url: links.withSiteUrl(data.file.childImageSharp.fixed.src),
+      },
+    },
+    datePublished: data.mdx.frontmatter.date,
+    dateModified: data.mdx.frontmatter.date,
+  };
+
   return (
     <>
       <SEO
@@ -159,6 +194,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
           width: frontmatter.image.childImageSharp.fluid.presentationWidth,
           height: frontmatter.image.childImageSharp.fluid.presentationHeight,
         }}
+        schemaMarkup={schema}
       />
       <article
         className={tw(globalStyles.transitions)}

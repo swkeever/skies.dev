@@ -5,6 +5,7 @@ const linkedIn = 'https://www.linkedin.com/in/swkeever';
 module.exports = {
   siteUrl,
   siteUrlShort,
+  withSiteUrl,
   github: 'https://www.github.com/swkeever',
   linkedIn,
   twitter: 'https://www.twitter.com/swkeever',
