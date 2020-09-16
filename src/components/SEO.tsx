@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'node_modules/gatsby-image/index';
-import routes from '../utils/routes';
+import links from '@utils/links';
 
 type SEO = {
   title: string;
@@ -22,15 +22,16 @@ type SEO = {
 };
 
 export default function SEO({
-  title,
+  title = '',
   description,
   image = null,
   imageDims = null,
   article = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   keywords,
+  schemaMarkup = null,
 }: {
-  title: string;
+  title?: string;
   description: string;
   image?: FluidObject;
   imageDims?: {
@@ -39,6 +40,7 @@ export default function SEO({
   };
   article?: boolean;
   keywords: string[];
+  schemaMarkup?: any;
 }) {
   type QueryData = {
     site: {
@@ -76,7 +78,9 @@ export default function SEO({
   const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;
 
   const seo: SEO = {
-    title: undefined,
+    title: !title
+      ? 'Skies by Seattle Software Engineer Sean Keever'
+      : `${title} | Skies by Sean Keever`,
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
@@ -93,15 +97,26 @@ export default function SEO({
         : 'image/jpeg',
     },
     twitter: `@${site.siteMetadata.handle}`,
-    isArticle: article,
+    article,
   };
 
-  if (!article) {
-    seo.title = pathname === routes.home
-      ? `Skies / ${title}`
-      : `${title} / Skies by Sean Keever`;
+  let schema;
+  if (!schemaMarkup) {
+    schema = {
+      '@context': 'https://schema.org/',
+      '@type': 'Person',
+      name: 'Sean Keever',
+      url: links.siteUrl,
+      image: links.withSiteUrl(file.childImageSharp.fixed.src),
+      sameAs: [links.twitter, links.linkedIn, links.github, links.siteUrl],
+      jobTitle: 'Software Development Engineer',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'OfferUp',
+      },
+    };
   } else {
-    seo.title = title;
+    schema = schemaMarkup;
   }
 
   return (
@@ -146,13 +161,15 @@ export default function SEO({
         <meta property="og:image:width" content={seo.image.dims.width} />
         <meta property="og:image:height" content={seo.image.dims.height} />
         <meta property="og:image:alt" content={seo.title} />
-        {seo.isArticle && <meta property="og:type" content="article" />}
+        {seo.article && <meta property="og:type" content="article" />}
 
         <meta itemProp="name" content={seo.title} />
         <meta itemProp="headline" content={seo.title} />
         <meta itemProp="description" content={seo.description} />
         <meta itemProp="image" content={withSiteUrl(seo.image.src)} />
         <meta itemProp="author" content="Sean Keever" />
+
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
     </>
   );

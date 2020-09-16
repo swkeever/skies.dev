@@ -39,6 +39,13 @@ const IndexPage = () => {
           rawBody
         }
       }
+      file(relativePath: { eq: "logo.jpg" }) {
+        childImageSharp {
+          fixed(height: 630, width: 1200) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
     }
   `);
 
@@ -47,8 +54,7 @@ const IndexPage = () => {
   return (
     <div className={tw(globalStyles.transitions, 'bg-neutralBgSoft')}>
       <SEO
-        title="A website by Sean Keever"
-        description="Skies is blog on web development and software engineering created by Sean Keever."
+        description="Come check out articles by Seattle software developer Sean Keever on web development and software engineering."
         keywords={[
           'Sean Keever',
           'software engineer',
