@@ -39,13 +39,6 @@ const IndexPage = () => {
           rawBody
         }
       }
-      file(relativePath: { eq: "logo.jpg" }) {
-        childImageSharp {
-          fixed(height: 630, width: 1200) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
     }
   `);
 
@@ -54,7 +47,7 @@ const IndexPage = () => {
   return (
     <div className={tw(globalStyles.transitions, 'bg-neutralBgSoft')}>
       <SEO
-        description="Come check out articles by Seattle software developer Sean Keever on web development and software engineering."
+        description="Come check out articles on web development and software engineering by Seattle software developer Sean Keever."
         keywords={[
           'Sean Keever',
           'software engineer',
