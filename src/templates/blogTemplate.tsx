@@ -196,11 +196,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
         }}
         schemaMarkup={schema}
       />
-      <article
-        className={tw(globalStyles.transitions)}
-        itemScope
-        itemType="http://schema.org/BlogPosting"
-      >
+      <article className={tw(globalStyles.transitions)}>
         <div className={tw(colors.header.bg, 'relative z-10', 'pt-8 pb-64')} />
         <div
           className={`
@@ -266,7 +262,6 @@ export default function Blog({ data, pageContext }: PropTypes) {
                   'leading-none text-4xl lg:text-5xl font-extrabold',
                   colors.header.h1,
                 )}
-                itemProp="name"
               >
                 {frontmatter.title}
               </h1>

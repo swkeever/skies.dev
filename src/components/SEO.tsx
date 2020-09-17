@@ -42,21 +42,7 @@ export default function SEO({
   keywords: string[];
   schemaMarkup?: any;
 }) {
-  type QueryData = {
-    site: {
-      siteMetadata: {
-        siteUrl: string;
-        handle: string;
-      };
-    };
-    file: {
-      childImageSharp: {
-        fixed: FluidObject;
-      };
-    };
-  };
-
-  const { site, file }: QueryData = useStaticQuery(graphql`
+  const { site, logo, avatar } = useStaticQuery(graphql`
     query SEO {
       site {
         siteMetadata {
@@ -64,10 +50,17 @@ export default function SEO({
           handle
         }
       }
-      file(relativePath: { eq: "logo.jpg" }) {
+      logo: file(relativePath: { eq: "logo.jpg" }) {
         childImageSharp {
           fixed(height: 630, width: 1200) {
-            ...GatsbyImageSharpFixed
+            src
+          }
+        }
+      }
+      avatar: file(relativePath: { eq: "about/me.jpg" }) {
+        childImageSharp {
+          fixed(height: 400, width: 400) {
+            src
           }
         }
       }
@@ -84,7 +77,7 @@ export default function SEO({
     description,
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
-      src: image ? image.src : file.childImageSharp.fixed.src,
+      src: image ? image.src : logo.childImageSharp.fixed.src,
       dims: {
         width: imageDims ? imageDims.width.toString() : '1200',
         height: imageDims ? imageDims.height.toString() : '630',
@@ -107,7 +100,7 @@ export default function SEO({
       '@type': 'Person',
       name: 'Sean Keever',
       url: links.siteUrl,
-      image: links.withSiteUrl(file.childImageSharp.fixed.src),
+      image: links.withSiteUrl(avatar.childImageSharp.fixed.src),
       sameAs: [links.twitter, links.linkedIn, links.github, links.siteUrl],
       jobTitle: 'Software Development Engineer',
       worksFor: {
