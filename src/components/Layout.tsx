@@ -44,30 +44,33 @@ const Layout = ({ children }: { children: ReactNode }) => {
           changeTheme: () => setTheme(() => (theme + 1) % themes.length),
         }}
       >
-        <div
-          className={tw(
-            themeClass,
-            extraClasses,
-            'min-h-screen',
-            'flex-col justify-between',
-            themes[theme],
-          )}
-        >
-          <Header />
-          <AlertProvider>
+        <AlertProvider>
+          <div
+            className={tw(
+              themeClass,
+              extraClasses,
+              'min-h-screen',
+              'h-full',
+              'flex flex-col',
+              themes[theme],
+            )}
+          >
+            <Header />
             <main
+              // style={{ flex: '1 1 auto' }}
               className={tw(
                 'mb-0 lg:mt-8',
-                'flex flex-col flex-grow',
-                'h-auto w-full',
+                'flex-grow',
+                'flex flex-col', // for children
+                'w-full h-full',
               )}
             >
               {children}
             </main>
-          </AlertProvider>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </AlertProvider>
       </LayoutContext.Provider>
     </>
   );

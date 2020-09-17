@@ -9,7 +9,7 @@ const NotFoundPage = () => (
       keywords={['Page not found', '404']}
       description="This is the 404 page. Not much to see here."
     />
-    <section className="max-w-screen-xl mx-auto p-4 my-auto">
+    <section className="max-w-screen-xl m-auto p-4">
       <h1
         className={`
             text-lg

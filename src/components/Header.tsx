@@ -26,6 +26,7 @@ export default function Header() {
       <header
         className={tw(
           'fixed',
+          'flex-shrink-0',
           'bottom-0 left-0 top-auto right-auto',
           'lg:top-0 lg:bottom-auto',
           'border-t border-neutralBgSofter',

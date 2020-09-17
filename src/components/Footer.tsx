@@ -65,7 +65,12 @@ export default function Footer() {
 
   return (
     <footer
-      className={tw('bg-footerBg', 'mb-20 lg:mb-0', globalStyles.transitions)}
+      className={tw(
+        'bg-footerBg',
+        'flex-shrink-0',
+        'mb-20 lg:mb-0',
+        globalStyles.transitions,
+      )}
     >
       <section className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
@@ -85,21 +90,22 @@ export default function Footer() {
             </Link>
           ))}
         </nav>
-        <nav className="mt-8 flex justify-center space-x-5">
+        <ul className="mt-8 flex justify-center space-x-5">
           {socialLinks.map((l) => (
-            <ExternalLink
-              key={`footer-${l.text}`}
-              href={l.to}
-              className={tw(
-                'text-gray-400 hover:text-gray-500',
-                globalStyles.transitions,
-              )}
-            >
-              <span className="sr-only">{l.text}</span>
-              {l.icon}
-            </ExternalLink>
+            <li key={`footer-${l.text}`}>
+              <ExternalLink
+                href={l.to}
+                className={tw(
+                  'text-gray-400 hover:text-gray-500',
+                  globalStyles.transitions,
+                )}
+              >
+                <span className="sr-only">{l.text}</span>
+                {l.icon}
+              </ExternalLink>
+            </li>
           ))}
-        </nav>
+        </ul>
         <p
           className={tw(
             'mt-8',
