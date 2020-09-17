@@ -117,7 +117,11 @@ type PropTypes = {
 
 export default function Blog({ data, pageContext }: PropTypes) {
   const { mdx } = data;
+
   const { pathname } = useLocation();
+  if (!mdx?.frontmatter) {
+    return null;
+  }
   const { frontmatter, body } = mdx;
   const { similarBlogs } = pageContext;
 
