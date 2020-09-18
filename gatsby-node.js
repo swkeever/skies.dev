@@ -3,6 +3,14 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const blogCategories = require('./src/utils/blog-categories');
+const blogTags = require('./src/utils/blog-tags');
+const stopWords = require('./src/utils/stop-words');
+
+const weights = new Map();
+
+for (const blogTagProps of blogTags) {
+  weights.set(blogTagProps.name, blogTagProps.weight);
+}
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -13,7 +21,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === 'Mdx') {
     const value = createFilePath({ node, getNode });
 
-    console.log('onCreateNode', value);
+    const pathname = node.fileAbsolutePath.includes('/content/')
+      ? `/blog${value}`
+      : value;
+
+    console.info('onCreateNode', pathname);
 
     createNodeField({
       // Name of the field you are adding
@@ -23,7 +35,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       // Generated value based on filepath with "blog" prefix. you
       // don't need a separating "/" before the value because
       // createFilePath returns a path with the leading "/".
-      value: `/blog${value}`,
+      value: pathname,
     });
   }
 };
@@ -34,6 +46,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     query {
+      file(relativePath: { eq: "logo.jpg" }) {
+        childImageSharp {
+          fixed(height: 630, width: 1200) {
+            src
+          }
+        }
+      }
       allMdx(
         sort: { order: DESC, fields: frontmatter___date }
         filter: { fileAbsolutePath: { regex: "/content/" } }
@@ -42,11 +61,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             id
             timeToRead
-            rawBody
+            body
+            headings {
+              depth
+              value
+            }
             frontmatter {
               title
-              date
+              date(formatString: "MMMM DD, YYYY")
               category
+              keywords
               description
               image {
                 childImageSharp {
@@ -56,9 +80,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                     src
                     srcSet
                     sizes
+                    presentationWidth
+                    presentationHeight
                   }
                 }
               }
+              imageUrl
+              imagePhotographer
               tags
             }
             fields {
@@ -94,9 +122,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       slug: node.fields.slug,
       description: node.frontmatter.description,
       date: dateFormat,
-      body: node.rawBody,
+      body: node.body,
       category: blogCategories[node.frontmatter.category],
-      image: node.frontmatter.image.childImageSharp.fluid,
+      image: {
+        fluid: node.frontmatter.image.childImageSharp.fluid,
+        photographer: node.frontmatter.imagePhotographer,
+        url: node.frontmatter.imageUrl,
+      },
+      keywords: node.frontmatter.keywords.concat(node.frontmatter.tags),
     };
   });
 
@@ -114,12 +147,35 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           ...b,
           count: 0,
         }));
-      const { tags } = mappedBlogs[i];
+
+      // this are the blogs we are comparing against
+      const { tags, title } = mappedBlogs[i];
+      const tokens = title.split(' ').filter((s) => !stopWords.includes(s));
 
       for (const blog of allBlogs) {
+        let allWeights = 0;
         for (const tag of tags) {
-          blog.count += blog.tags.includes(tag) ? 2 : -1;
+          // give a boost for each matching tag
+          const weight = weights.get(tag);
+          allWeights += weight;
+          if (blog.tags.includes(tag)) {
+            blog.count += weight;
+          }
+
+          // give an extra boost if there are keyword matches in the title
+          const blogTokens = blog.title
+            .split(' ')
+            .filter((s) => !stopWords.includes(s));
+          const titleMatchWeight = 1;
+          for (const t of blogTokens) {
+            allWeights += titleMatchWeight;
+            if (tokens.includes(t)) {
+              blog.count += titleMatchWeight;
+            }
+          }
         }
+        // normalize
+        blog.count /= allWeights;
       }
 
       const res = allBlogs.sort((a, b) => b.count - a.count).slice(0, 4);
@@ -143,7 +199,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // You can use the values in this context in
       // our page layout component
       context: {
-        id: node.id,
+        blog: mappedBlogs[i],
+        headings: node.headings,
+        logo: result.data.file.childImageSharp.fixed.src,
         prev,
         next,
         similarBlogs,

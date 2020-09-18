@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from 'react';
-import { graphql } from 'gatsby';
-import Img, { FluidObject } from 'gatsby-image';
+import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useLocation } from '@reach/router';
@@ -23,107 +22,11 @@ import tw from '@utils/tailwind';
 import BlogDisplay from '@components/BlogDisplay';
 import About from '@components/About';
 
-export const pageQuery = graphql`
-  query BlogPostQuery($id: String) {
-    mdx(id: { eq: $id }) {
-      id
-      body
-      timeToRead
-      headings {
-        depth
-        value
-      }
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        description
-        tags
-        keywords
-        image {
-          childImageSharp {
-            fluid(maxWidth: 700) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              sizes
-              presentationWidth
-              presentationHeight
-            }
-          }
-        }
-        imageUrl
-        imagePhotographer
-        title
-      }
-      fields {
-        slug
-      }
-    }
-    file(relativePath: { eq: "logo.jpg" }) {
-      childImageSharp {
-        fixed(height: 630, width: 1200) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-  }
-`;
-
-type Fields = {
-  slug: string;
-};
-
-type NeighborContext = {
-  id: string;
-  fields: Fields;
-};
-
-export type Heading = {
-  depth: number;
-  value: string;
-};
-
-type PropTypes = {
-  data: {
-    mdx: {
-      body: string;
-      fields: Fields;
-      fileAbsolutePath: string;
-      frontmatter: {
-        date: string;
-        description: string;
-        tags: string[];
-        keywords: string[];
-        image: {
-          childImageSharp: {
-            fluid: FluidObject;
-          };
-        };
-        imagePhotographer: string;
-        imageUrl: string;
-        title: string;
-      };
-      headings: Heading[];
-      timeToRead: number;
-      id: string;
-    };
-  };
-  pageContext: {
-    id: string;
-    next: NeighborContext;
-    prev: NeighborContext;
-  };
-};
-
-export default function Blog({ data, pageContext }: PropTypes) {
-  const { mdx } = data;
-
+export default function Blog({ pageContext }) {
   const { pathname } = useLocation();
-  if (!mdx?.frontmatter) {
-    return null;
-  }
-  const { frontmatter, body } = mdx;
-  const { similarBlogs } = pageContext;
+  const {
+    similarBlogs, blog, headings, logo,
+  } = pageContext;
 
   const styles = {
     ctaLinks: tw(
@@ -163,13 +66,11 @@ export default function Blog({ data, pageContext }: PropTypes) {
     '@type': 'BlogPosting',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': links.withSiteUrl(data.mdx.fields.slug),
+      '@id': links.withSiteUrl(blog.slug),
     },
-    headline: data.mdx.frontmatter.title,
-    description: data.mdx.frontmatter.description,
-    image: links.withSiteUrl(
-      data.mdx.frontmatter.image.childImageSharp.fluid.src,
-    ),
+    headline: blog.title,
+    description: blog.description,
+    image: links.withSiteUrl(blog.image.fluid.src),
     author: {
       '@type': 'Person',
       name: 'Sean Keever',
@@ -179,24 +80,24 @@ export default function Blog({ data, pageContext }: PropTypes) {
       name: 'Skies',
       logo: {
         '@type': 'ImageObject',
-        url: links.withSiteUrl(data.file.childImageSharp.fixed.src),
+        url: links.withSiteUrl(logo),
       },
     },
-    datePublished: data.mdx.frontmatter.date,
-    dateModified: data.mdx.frontmatter.date,
+    datePublished: blog.date,
+    dateModified: blog.date,
   };
 
   return (
     <>
       <SEO
         article
-        title={frontmatter.title}
-        description={frontmatter.description}
-        keywords={frontmatter.keywords.concat(frontmatter.tags)}
-        image={frontmatter.image.childImageSharp.fluid}
+        title={blog.title}
+        description={blog.description}
+        keywords={blog.keywords}
+        image={blog.image.fluid}
         imageDims={{
-          width: frontmatter.image.childImageSharp.fluid.presentationWidth,
-          height: frontmatter.image.childImageSharp.fluid.presentationHeight,
+          width: blog.image.fluid.presentationWidth,
+          height: blog.image.fluid.presentationHeight,
         }}
         schemaMarkup={schema}
       />
@@ -224,7 +125,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
               <li key="twitter">
                 <ExternalLink
                   href={links.shareTo.twitter({
-                    title: frontmatter.title,
+                    title: blog.title,
                     pathname,
                   })}
                   className={styles.shareLink}
@@ -244,8 +145,8 @@ export default function Blog({ data, pageContext }: PropTypes) {
                 <ExternalLink
                   className={styles.shareLink}
                   href={links.shareTo.linkedIn({
-                    title: frontmatter.title,
-                    description: frontmatter.description,
+                    title: blog.title,
+                    description: blog.description,
                     pathname,
                   })}
                 >
@@ -267,13 +168,13 @@ export default function Blog({ data, pageContext }: PropTypes) {
                   colors.header.h1,
                 )}
               >
-                {frontmatter.title}
+                {blog.title}
               </h1>
               <div className={tw('flex', 'mt-2', colors.header.meta)}>
-                <time>{frontmatter.date}</time>
+                <time>{blog.date}</time>
                 <span className="mx-2 mb-4 md:mb-0">&middot;</span>
                 <span>
-                  {mdx.timeToRead}
+                  {blog.timeToRead}
                   {' '}
                   min read
                 </span>
@@ -282,8 +183,8 @@ export default function Blog({ data, pageContext }: PropTypes) {
             <figure className={tw('mb-20')}>
               <Img
                 className="relative z-10 w-full rounded-sm h-auto mx-auto mt-5"
-                fluid={frontmatter.image.childImageSharp.fluid}
-                alt={frontmatter.title}
+                fluid={blog.image.fluid}
+                alt={blog.title}
               />
               <figcaption className="my-2 text-center text-neutral">
                 <p>
@@ -291,9 +192,9 @@ export default function Blog({ data, pageContext }: PropTypes) {
                   {' '}
                   <ExternalLink
                     className="underline text-neutral hover:text-neutralBold"
-                    href={frontmatter.imageUrl}
+                    href={blog.image.url}
                   >
-                    {frontmatter.imagePhotographer}
+                    {blog.image.photographer}
                   </ExternalLink>
                 </p>
               </figcaption>
@@ -306,7 +207,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
               <TableOfContents
                 className="mb-8"
                 watch={false}
-                headings={mdx.headings}
+                headings={headings}
               />
             </div>
 
@@ -315,7 +216,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
                 ...shortCodes,
               }}
             >
-              <MDXRenderer>{body}</MDXRenderer>
+              <MDXRenderer>{blog.body}</MDXRenderer>
             </MDXProvider>
           </div>
           <aside className="relative hidden col-span-3 lg:block">
@@ -323,7 +224,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
               <h2 className="mt-4 mb-2 font-bold tracking-wider uppercase text-neutral">
                 Table of Contents
               </h2>
-              <TableOfContents headings={mdx.headings} />
+              <TableOfContents headings={headings} />
             </div>
           </aside>
         </div>
@@ -351,7 +252,7 @@ export default function Blog({ data, pageContext }: PropTypes) {
       </section>
 
       <Newsletter
-        tags={frontmatter.tags}
+        tags={blog.tags}
         color="neutral"
         copy="Want more articles like this?"
       />
