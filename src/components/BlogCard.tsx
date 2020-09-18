@@ -24,7 +24,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
         <figure className="flex-shrink-0">
           <Img
             className="object-cover w-full h-48"
-            fluid={blog.image}
+            fluid={blog.image.fluid}
             alt={blog.title}
           />
         </figure>

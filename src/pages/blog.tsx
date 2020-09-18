@@ -51,7 +51,11 @@ export type Blog = {
     className: string;
   };
   body: string;
-  image: FluidObject;
+  image: {
+    fluid: FluidObject;
+    src: string;
+    photographer: string;
+  };
 };
 
 function getNumResultsString(k: number): string {
@@ -92,7 +96,11 @@ export function gqlResponseToBlogs(data): Blog[] {
       date: dateFormat,
       category: categories[node.frontmatter.category],
       body: rawBody,
-      image: image.childImageSharp?.fluid,
+      image: {
+        fluid: image.childImageSharp?.fluid,
+        photographer: node.frontmatter.imagePhotographer,
+        url: node.frontmatter.imageUrl,
+      },
     };
   });
 }
@@ -167,16 +175,7 @@ export default function BlogsPage() {
 
   useEffect(() => {
     if (search && filter) {
-      const results: any = search.search(filter);
-
-      // sort the result by latest published
-      results.sort((a: Blog, b: Blog): number => {
-        const aDate = new Date(a.date);
-        const bDate = new Date(b.date);
-        return bDate.valueOf() - aDate.valueOf();
-      });
-
-      setBlogs(results);
+      setBlogs(search.search(filter));
     } else {
       setBlogs(allBlogs);
     }
