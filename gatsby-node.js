@@ -211,6 +211,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
+      modules: [
+        path.resolve(__dirname, 'src'),
+        path.resolve(__dirname, 'content'),
+        'node_modules',
+      ],
       alias: {
         '@components': path.resolve(__dirname, 'src/components'),
         '@lib': path.resolve(__dirname, 'src/lib'),

@@ -155,8 +155,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
-
-    // 'gatsby-plugin-remove-serviceworker',
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
