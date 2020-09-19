@@ -38,10 +38,6 @@ module.exports = {
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -184,7 +180,7 @@ module.exports = {
         showSpinner: false,
       },
     },
-    'gatsby-plugin-offline',
+    // 'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     {
       resolve: 'gatsby-plugin-sitemap',

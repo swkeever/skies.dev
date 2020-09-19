@@ -240,9 +240,9 @@ export default function BlogsPage() {
                 className={tw(
                   '-mt-8',
                   'pl-10 pr-2 py-3',
-                  'bg-neutralBgSoft',
+                  'bg-neutralBgSoft focus:bg-neutralBg',
                   'rounded-full',
-                  'text-onNeutralBg',
+                  'text-onNeutralBg font-base',
                   'placeholder-neutral',
                   'lg:text-xl',
                   'relative',

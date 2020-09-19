@@ -166,11 +166,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           const blogTokens = blog.title
             .split(' ')
             .filter((s) => !stopWords.includes(s));
-          const titleMatchWeight = 1;
           for (const t of blogTokens) {
-            allWeights += titleMatchWeight;
             if (tokens.includes(t)) {
-              blog.count += titleMatchWeight;
+              blog.count += 1;
             }
           }
         }
