@@ -248,6 +248,9 @@ module.exports = {
       options: {
         printRejected: true, // Print removed selectors and processed file names
         // develop: true, // Enable while using `gatsby develop`
+        content: [
+          path.join(process.cwd(), '/**/!(*.d).{ts,js,jsx,tsx,md,mdx}'),
+        ],
         tailwind: true, // Enable tailwindcss support
         whitelist: [
           'gatsby-resp-image-image',

@@ -5,11 +5,11 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   purge: [
-    './src/**/*.html',
-    './src/**/*.jsx',
-    './src/**/*.tsx',
-    './src/**/*.js',
-    './src/**/*.ts',
+    './**/*.html',
+    './**/*.jsx',
+    './**/*.tsx',
+    './**/*.js',
+    './**/*.ts',
     './content/**/*.mdx',
   ],
   theme: {
