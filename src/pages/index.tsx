@@ -24,6 +24,8 @@ const IndexPage = () => {
             datePublished
             category
             description
+            imagePhotographer
+            imageUrl
             image {
               childImageSharp {
                 fluid(maxWidth: 1280) {

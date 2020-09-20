@@ -15,6 +15,8 @@ export default function BlogCardExample() {
               datePublished(formatString: "MMMM DD, YYYY")
               description
               title
+              imageUrl
+              imagePhotographer
               image {
                 childImageSharp {
                   fluid(maxWidth: 700) {
@@ -35,8 +37,11 @@ export default function BlogCardExample() {
           mdx: {
             frontmatter: {
               category,
-              date,
+              dateModified,
+              datePublished,
               description,
+              imageUrl,
+              imagePhotographer,
               image: {
                 childImageSharp: { fluid },
               },
@@ -57,10 +62,17 @@ export default function BlogCardExample() {
                 title,
                 slug: `blog/${slug}`,
                 description,
-                date,
+                date: {
+                  modified: dateModified,
+                  published: datePublished,
+                },
                 category: blogCategories[category],
                 body: rawBody,
-                image: fluid,
+                image: {
+                  fluid,
+                  photographer: imagePhotographer,
+                  src: imageUrl,
+                },
               }}
             />
           </section>

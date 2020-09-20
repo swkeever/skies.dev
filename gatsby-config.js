@@ -216,7 +216,7 @@ module.exports = {
               {
                 allMdx(
                   limit: 25, 
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { order: DESC, fields: [frontmatter___dateModified] },
                 ) {
                   nodes {
                     excerpt
@@ -224,7 +224,7 @@ module.exports = {
                     fields { slug }
                     frontmatter {
                       title
-                      date
+                      dateModified
                     }
                   }
                 }

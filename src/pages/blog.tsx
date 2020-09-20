@@ -89,6 +89,9 @@ export function gqlResponseToBlogs(data): Blog[] {
       datePublished,
       dateModified,
       image,
+      category,
+      imagePhotographer,
+      imageUrl,
     } = node.frontmatter;
     return {
       id,
@@ -100,12 +103,12 @@ export function gqlResponseToBlogs(data): Blog[] {
         published: formatDate(datePublished),
         modified: formatDate(dateModified),
       },
-      category: categories[node.frontmatter.category],
+      category: categories[category],
       body: rawBody,
       image: {
         fluid: image.childImageSharp?.fluid,
-        photographer: node.frontmatter.imagePhotographer,
-        url: node.frontmatter.imageUrl,
+        photographer: imagePhotographer,
+        url: imageUrl,
       },
     };
   });
@@ -121,8 +124,8 @@ export default function BlogsPage() {
         nodes {
           frontmatter {
             title
-            datePublished(formatString: "MMMM DD, YYYY")
-            dateModified(formatString: "MMMM DD, YYYY")
+            datePublished
+            dateModified
             category
             description
             imagePhotographer
