@@ -1,10 +1,11 @@
 ---
 datePublished: 2020-09-20
 dateModified: 2020-09-20
-title: How to Write Unit Tests with Examples in JavaScript
+title: Learn About Unit Testing with TypeScript
 description:
-  What are unit tests and how do I write them?
-category: 0
+  Learn the basics of writing unit tests and practicing test-driven development
+  with examples in TypeScript.
+category: 1
 keywords:
   - unit tests
   - tdd
@@ -23,3 +24,516 @@ imageUrl: https://unsplash.com/photos/pu6rdf_nUyE
 image: index.jpg
 ---
 
+## What Are Unit Tests?
+
+Unit tests are for testing an _atomic piece_ of functionality in a software
+system.
+
+https://twitter.com/davecheney/status/1178289934542655489?s=20
+
+Suppose for example we are working at the hottest banking SaaS startup.
+
+We are tasked with writing the code for an **account** in the banking system.
+
+> **Note**
+>
+> Our examples use TypeScript instead of JavaScript so that we can explicitly
+> see the types in our API.
+
+Our product team is telling us that clients:
+
+- Should be able to create a new account with any value greater than or equal
+  to 0.
+- Should be able to see the balance of an account.
+- Should be able to deposit any amount greater than 0.
+- Should be able to withdraw any amount greater than 0 as long as sufficient
+  funds are available.
+
+With this, we come up with the following skeleton class. We know the account
+should maintain the state of the balance so we will add that as a member.
+
+```ts
+// account.ts
+
+export default class Account {
+  private _balance: number;
+}
+```
+
+We set the balance as a _private_ member because we don't want our clients to
+access the fields directly—potentially setting the balance to some wacky value.
+
+```TypeScript
+// client.ts
+
+const account = new Account();
+
+// ❌ We don't want clients to be able to do this.
+account.balance = Number.NaN;
+```
+
+Instead, we want clients to go through our interface in order to change the
+balance. This concept is known as
+[encapsulation](https://stackify.com/oop-concept-for-beginners-what-is-encapsulation/).
+
+```TypeScript
+// client.ts
+
+const account = new Account();
+
+// ✔️ Clients use our API to deposit an amount
+account.deposit(10);
+
+// ✔️ They can also withdraw an amount
+account.withdraw(5);
+```
+
+We can take the system requirements given to us by the product team and start
+writing tests.
+
+The practice of writing tests _before_ writing the implementation is known as
+**test-driven development (TDD)** and it is often praised as good practice in
+the software development community.
+
+With that, let's get started!
+
+## Writing Our First Unit Tests
+
+https://twitter.com/shanselman/status/992599087076683776?s=20
+
+We can look at the first requirement given to us by the product team.
+
+> Should be able to create a new account with any value greater than or equal
+> to 0.
+
+Let's go ahead and create a `__tests__/account.test.ts` right next to our
+`account.ts` file. This is where we will write all of our tests.
+
+We will use [Jest](https://jestjs.io/) to test our code. Jest is a popular
+framework for testing JavaScript. However, learning the Jest framework is beyond
+the scope of this article. I will do my best to keep things simple so that you
+can still follow along even if you're new to Jest.
+
+When writing unit tests, we can't possibly test all possible inputs. That would
+be a waste of compute and take a very long time.
+
+Instead, we want to think about the boundary conditions on our domain and test
+around those boundary conditions.
+
+![An abstract diagram showing boundaries in a domain.](boundary.png)
+
+The boundary condition in our `Account` class is mentioned right in the
+requirement.
+
+> Any value greater than or equal to 0.
+
+Knowing this, we can set up our tests to test along the boundaries. Namely,
+
+- Values around 0
+- The minimum possible values
+- The maximum possible values
+
+We will need to add a constructor to support this functionality. Let's do that
+now.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    // TODO: implement this
+  }
+}
+```
+
+Let's go ahead and write our first tests for this requirement.
+
+```TypeScript
+// __tests__/account.test.ts
+
+import Account from '../account';
+
+test('should not be able to have a negative initial balance', () => {
+  expect(() => new Account(-1)).toThrow();
+  expect(() => new Account(Number.MIN_SAFE_INTEGER)).toThrow();
+});
+
+test('should be able to have a positive initial balance', () => {
+  expect(new Account()).toBeTruthy();
+  expect(new Account(Number.MAX_SAFE_INTEGER)).toBeTruthy();
+});
+```
+
+With the tests in place, we can go ahead and run them and see they are failing.
+
+Now we'll go into our `Account` class and implement the functionality.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+}
+```
+
+Now when we run the tests, we should see the tests are passing.
+
+```bash
+ PASS  content/unit-tests/__tests__/account.test.ts
+  ✓ should not be able to have a negative initial balance (4 ms)
+  ✓ should be able to have a positive initial balance (1 ms)
+```
+
+Great. Let's look at the next requirement the product team is asking us to
+support.
+
+> Should be able to see the balance of an account.
+
+We will add a getter method for the balance so that clients can see the balance
+on an account.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+
+  get balance(): number {
+    // TODO: implement this
+    return -1;
+  }
+}
+```
+
+This will be a super simple method so writing tests may be overkill, but we will
+do it anyway to practice TDD.
+
+We'll write the test for this getter as follows.
+
+```TypeScript
+//__tests__/account.test.js
+
+test('should be able to return the account balance', () => {
+  expect(new Account(1).balance).toBe(1);
+  expect(new Account(Number.MAX_SAFE_INTEGER).balance).toBe(
+    Number.MAX_SAFE_INTEGER,
+  );
+});
+```
+
+And now we write the implementation.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+
+  get balance(): number {
+    return this._balance;
+  }
+}
+```
+
+Awesome.
+
+We are one step closer to having a fully functioning `Account` class. 💪
+
+## Four Steps of TDD
+
+https://twitter.com/unclebobmartin/status/1205893180681359360?s=20
+
+We are now starting to get into a TDD rhythm.
+
+1. Determine the functionality of the behavior.
+2. Design the API (the interface).
+3. Write tests that test the behavior of the API.
+4. Implement the API.
+
+First, we will determine the functionality we need.
+
+Let's look at the next requirement given to us by the product team.
+
+> Should be able to deposit any amount greater than 0.
+
+We will add a `deposit()` method to our interface that accepts an amount to
+deposit which will update the balance. We'll also design it so that the method
+returns the updated balance.
+
+Let's add the following method stub for the `deposit()` method.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+
+  get balance(): number {
+    return this._balance;
+  }
+
+  deposit(amount: number): number {
+    return -1;
+  }
+}
+```
+
+Now, we'll implement the tests for our `deposit()` method.
+
+```TypeScript
+//__tests__/account.test.js
+
+test('should be able to deposit any amount > 0', () => {
+  const account = new Account();
+  account.deposit(1);
+  expect(account.balance).toBe(1);
+  account.deposit(Number.MAX_SAFE_INTEGER - 1);
+  expect(account.balance).toBe(Number.MAX_SAFE_INTEGER);
+});
+
+test('should not be able to deposit any amount <= 0', () => {
+  const account = new Account();
+  expect(() => account.deposit(0)).toThrow();
+  expect(() => account.deposit(-1)).toThrow();
+  expect(() => account.deposit(Number.MIN_SAFE_INTEGER)).toThrow();
+});
+
+test('should return new balance after depositing', () => {
+  const account = new Account();
+  for (let i = 1; i <= 10; i += 1) {
+    expect(account.deposit(1)).toBe(i);
+  }
+});
+```
+
+Finally, we will move on with the implementation.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+
+  get balance(): number {
+    return this._balance;
+  }
+
+  deposit(amount: number): number {
+    if (amount <= 0) {
+      throw Error('deposit amount must be > 0');
+    }
+    this._balance += amount;
+    return this._balance;
+  }
+}
+```
+
+Perfect, all the tests we've added so far pass.
+
+```bash
+ PASS  content/unit-tests/__tests__/account.test.ts
+  ✓ should not be able to have a negative initial balance (4 ms)
+  ✓ should be able to have a positive initial balance (1 ms)
+  ✓ should be able to return the account balance
+  ✓ should be able to deposit any amount > 0
+  ✓ should not be able to deposit any amount <= 0 (1 ms)
+  ✓ should return new balance after depositing (2 ms)
+```
+
+## Practice Writing Unit Tests
+
+Before you move on, try and carry out the four steps of TDD for the `withdraw()`
+method.
+
+Recall, the product team gave us this requirement:
+
+> Should be able to withdraw any positive amount as long as sufficient funds are
+> available.
+
+So don't scroll down further until you're ready to see the solution.
+
+The practice will help you learn about unit tests and TDD better.
+
+Did you do it?
+
+Are you sure?
+
+Yeah?
+
+Ok, I will go ahead and implement this so I hope you tried it yourself! 😊
+
+Step 1: gather requirements. We got this already from the product team.
+
+Step 2: design the API. The API will work similarly to `deposit()` but it will
+remove an amount instead of add an amount to the account.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+
+  get balance(): number {
+    return this._balance;
+  }
+
+  deposit(amount: number): number {
+    if (amount <= 0) {
+      throw Error('deposit amount must be > 0');
+    }
+    this._balance += amount;
+    return this._balance;
+  }
+
+  withdraw(amount: number): number {
+    // TODO: implement this
+    return -1;
+  }
+}
+```
+
+Step 3: write tests against the API.
+
+```TypeScript
+//__tests__/account.test.js
+
+test('should not be able to withdraw any amount <= 0', () => {
+  const account = new Account();
+  expect(() => account.withdraw(0)).toThrow();
+  expect(() => account.withdraw(-1)).toThrow();
+  expect(() => account.withdraw(Number.MIN_SAFE_INTEGER)).toThrow();
+});
+
+test('should be able to withdraw any amount > 0 given funds are available', () => {
+  const account = new Account(Number.MAX_SAFE_INTEGER);
+  account.withdraw(1);
+  expect(account.balance).toBe(Number.MAX_SAFE_INTEGER - 1);
+  account.withdraw(account.balance);
+  expect(account.balance).toBe(0);
+});
+
+test('should not be able to withdraw an amount if not enough funds are available', () => {
+  const account = new Account();
+  expect(() => account.withdraw(account.balance + 1)).toThrow();
+});
+
+test('should return the new balance after withdrawal', () => {
+  const account = new Account(10);
+  for (let i = 1; i <= 10; i += 1) {
+    expect(account.withdraw(1)).toBe(10 - i);
+  }
+});
+```
+
+Step 4: implement the API.
+
+```TypeScript
+// account.ts
+
+export default class Account {
+  private _balance: number;
+
+  constructor(initialBalance = 0) {
+    if (initialBalance < 0) {
+      throw Error('initial balance should be >= 0');
+    }
+    this._balance = initialBalance;
+  }
+
+  get balance(): number {
+    return this._balance;
+  }
+
+  deposit(amount: number): number {
+    if (amount <= 0) {
+      throw Error('deposit amount must be > 0');
+    }
+    this._balance += amount;
+    return this._balance;
+  }
+
+  withdraw(amount: number): number {
+    if (amount <= 0) {
+      throw Error('withdraw amount must be > 0');
+    }
+    if (amount > this._balance) {
+      throw Error('amount exceeds balance');
+    }
+    this._balance -= amount;
+    return this._balance;
+  }
+}
+```
+
+As you can see, all of the tests are passing.
+
+```bash
+ PASS  content/unit-tests/__tests__/account.test.ts
+  ✓ should not be able to have a negative initial balance (4 ms)
+  ✓ should be able to have a positive initial balance (1 ms)
+  ✓ should be able to return the account balance
+  ✓ should be able to deposit any amount > 0
+  ✓ should not be able to deposit any amount <= 0 (1 ms)
+  ✓ should return new balance after depositing (2 ms)
+  ✓ should not be able to withdraw any amount <= 0 (1 ms)
+  ✓ should be able to withdraw any amount > 0 given funds are available
+  ✓ should not be able to withdraw an amount if not enough funds are available
+  ✓ should return the new balance after withdrawal (4 ms)
+```
+
+I hope this article helped you learn what unit tests are and how to think about
+writing them.
+
+If you're interested in learning more about testing, especially testing with
+JavaScript, [Kent C Dodds](https://kentcdodds.com/blog/) writes a lot on this
+subject. His blog is a great resource for reading more about testing software.
+
+I'll leave you with this: 
+
+**What unit tests would you add to test the `Account` class?**
+
+Let me know on [Twitter](https://twitter.com/swkeever)!
