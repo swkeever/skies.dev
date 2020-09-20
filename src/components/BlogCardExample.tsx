@@ -11,7 +11,8 @@ export default function BlogCardExample() {
           mdx(fields: { slug: { regex: "/semantic-html/" } }) {
             frontmatter {
               category
-              date(formatString: "MMMM DD, YYYY")
+              dateModified(formatString: "MMMM DD, YYYY")
+              datePublished(formatString: "MMMM DD, YYYY")
               description
               title
               image {

@@ -117,9 +117,8 @@ export default function SEO({
       <Helmet>
         <title>{seo.title}</title>
         <html lang="en" />
-        <meta charSet="utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="canonical" href={seo.canonicalUrl} />
-        <meta name="generator" content="Sean Keever on Gatsby!" />
 
         <meta name="keywords" content={keywords.join(', ')} />
 
@@ -155,12 +154,6 @@ export default function SEO({
         <meta property="og:image:height" content={seo.image.dims.height} />
         <meta property="og:image:alt" content={seo.title} />
         {seo.article && <meta property="og:type" content="article" />}
-
-        <meta itemProp="name" content={seo.title} />
-        <meta itemProp="headline" content={seo.title} />
-        <meta itemProp="description" content={seo.description} />
-        <meta itemProp="image" content={withSiteUrl(seo.image.src)} />
-        <meta itemProp="author" content="Sean Keever" />
 
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>

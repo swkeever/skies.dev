@@ -94,6 +94,13 @@ function toTitleCase(input) {
 
 function generateFrontmatter(answers) {
   let frontmatter = '---\n';
+
+  // insert the date
+  const date = getTodaysDate();
+  frontmatter += `datePublished: ${date}\n`;
+  frontmatter += `dateModified: ${date}\n`;
+
+  // insert the rest of the fields
   for (const [key, value] of Object.entries(answers)) {
     if (['keywords', 'tags'].includes(key)) {
       frontmatter += `${key}:\n`;
@@ -128,14 +135,6 @@ console.log(
 );
 inquirer
   .prompt([
-    {
-      type: 'input',
-      name: 'date',
-      message: 'When will the blog be published? (YYYY-MM-DD format)',
-      default: getTodaysDate(),
-      // eslint-disable-next-line no-restricted-globals
-      validate: (input) => !isNaN(Date.parse(input)) && input.length === 'YYYY-MM-DD'.length,
-    },
     {
       type: 'input',
       name: 'title',

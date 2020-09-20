@@ -59,7 +59,7 @@
 
 .theme-light {
   /* primaries */
-  --color-primaryBg: var(--color-primary-50);
+  --color-primaryBg: var(--color-primary-100);
   --color-primaryBgSoft: var(--color-primary-200);
   --color-primaryBgSofter: var(--color-primary-300);
   --color-primarySoft: var(--color-primary-400);

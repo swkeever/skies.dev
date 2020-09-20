@@ -22,44 +22,48 @@ import tw from '@utils/tailwind';
 import BlogDisplay from '@components/BlogDisplay';
 import About from '@components/About';
 
+const styles = {
+  ctaLinks: tw(
+    'text-lg',
+    'hover:border-b hover:border-onNeutralBgSoft',
+    'pb-1',
+    'text-onNeutralBgSoft',
+  ),
+
+  meta: {
+    li: tw('text-center', 'py-2'),
+  },
+
+  ctaLinkIcons: tw('inline', 'mb-1'),
+
+  shareLink: tw(
+    globalStyles.transitions,
+    'text-neutral hover:text-neutralBold',
+  ),
+};
+
+const colors = {
+  primary: {
+    header: {
+      h1: 'text-onPrimary',
+      bg: 'bg-primary',
+      meta: 'text-neutral',
+    },
+  },
+  neutral: {
+    header: {
+      h1: 'text-onNeutralBg',
+      bg: 'bg-neutralBgSoft',
+      meta: 'text-neutral',
+    },
+  },
+}.primary;
+
 export default function Blog({ pageContext }) {
   const { pathname } = useLocation();
   const {
     similarBlogs, blog, headings, logo,
   } = pageContext;
-
-  const styles = {
-    ctaLinks: tw(
-      'text-lg',
-      'hover:border-b hover:border-onNeutralBgSoft',
-      'pb-1',
-      'text-onNeutralBgSoft',
-    ),
-
-    ctaLinkIcons: tw('inline', 'mb-1'),
-
-    shareLink: tw(
-      globalStyles.transitions,
-      'text-neutral hover:text-neutralBold',
-    ),
-  };
-
-  const colors = {
-    primary: {
-      header: {
-        h1: 'text-onPrimary',
-        bg: 'bg-primary',
-        meta: 'text-onPrimarySoft',
-      },
-    },
-    neutral: {
-      header: {
-        h1: 'text-onNeutralBg',
-        bg: 'bg-neutralBgSoft',
-        meta: 'text-neutral',
-      },
-    },
-  }.primary;
 
   const schema = {
     '@context': 'https://schema.org',
@@ -83,8 +87,8 @@ export default function Blog({ pageContext }) {
         url: links.withSiteUrl(logo),
       },
     },
-    datePublished: blog.date,
-    dateModified: blog.date,
+    datePublished: blog.date.published,
+    dateModified: blog.date.modified,
   };
 
   return (
@@ -102,25 +106,46 @@ export default function Blog({ pageContext }) {
         schemaMarkup={schema}
       />
       <article className={tw(globalStyles.transitions)}>
-        <div className={tw(colors.header.bg, 'relative z-10', 'pt-8 pb-64')} />
+        <header className={tw(colors.header.bg)}>
+          <div
+            className={tw(
+              'lg:mt-4 mx-auto',
+              'grid grid-cols-12 gap-4',
+              'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
+              'mb-1',
+              'max-w-screen-xl',
+            )}
+          >
+            <h1
+              className={tw(
+                'lg:col-start-2 col-span-12 lg:col-span-8',
+
+                'leading-none text-5xl lg:text-6xl font-extrabold',
+                colors.header.h1,
+              )}
+            >
+              {blog.title}
+            </h1>
+          </div>
+        </header>
+
         <div
-          className={`
-            max-w-screen-xl
-            mx-auto
-            grid grid-cols-12 gap-8
-            relative
-          `}
+          className={tw(
+            'max-w-screen-xl',
+            'mx-auto',
+            'grid grid-cols-12 gap-8',
+            'relative',
+          )}
         >
           <aside className="hidden mx-auto lg:block">
             <ul
-              className={`
-                list-none
-                flex flex-col
-                text-4xl
-                space-y-4
-                pt-3
-                sticky top-32
-              `}
+              className={tw(
+                'list-none',
+                'flex flex-col space-y-4',
+                'text-4xl',
+                'pt-5',
+                'sticky top-40',
+              )}
             >
               <li key="twitter">
                 <ExternalLink
@@ -161,32 +186,20 @@ export default function Blog({ pageContext }) {
               'mb-64',
             )}
           >
-            <header className="relative z-30 -mt-48 md:-mt-64">
-              <h1
-                className={tw(
-                  'leading-none text-4xl lg:text-5xl font-extrabold',
-                  colors.header.h1,
-                )}
-              >
-                {blog.title}
-              </h1>
-              <div className={tw('flex', 'mt-2', colors.header.meta)}>
-                <time>{blog.date}</time>
-                <span className="mx-2 mb-4 md:mb-0">&middot;</span>
-                <span>
-                  {blog.timeToRead}
-                  {' '}
-                  min read
-                </span>
-              </div>
-            </header>
-            <figure className={tw('mb-20')}>
+            <figure className={tw('mb-16')}>
               <Img
-                className="relative z-10 w-full rounded-sm h-auto mx-auto mt-5"
+                className={tw(
+                  'relative z-10',
+                  'w-full',
+                  'rounded-sm',
+                  'h-auto',
+                  'mx-auto mt-1',
+                  'shadow-xl',
+                )}
                 fluid={blog.image.fluid}
                 alt={blog.title}
               />
-              <figcaption className="my-2 text-center text-neutral">
+              <figcaption className="mt-4 text-center text-neutral">
                 <p>
                   Photo by
                   {' '}
@@ -199,6 +212,40 @@ export default function Blog({ pageContext }) {
                 </p>
               </figcaption>
             </figure>
+
+            <ul
+              className={tw(
+                'grid grid-cols-3',
+                'text-sm font-light',
+                'border border-neutralBgSofter',
+                'rounded-lg',
+                'divide-x divide-neutralBgSofter',
+                colors.header.meta,
+                globalStyles.transitions,
+              )}
+            >
+              <li className={styles.meta.li}>
+                <time dateTime={blog.date.published}>
+                  Published
+                  {' '}
+                  {blog.date.published}
+                </time>
+              </li>
+
+              <li className={styles.meta.li}>
+                <time dateTime={blog.date.modified}>
+                  Last modified
+                  {' '}
+                  {blog.date.modified}
+                </time>
+              </li>
+
+              <li className={styles.meta.li}>
+                {blog.timeToRead}
+                {' '}
+                min read
+              </li>
+            </ul>
 
             <div className="mt-4 lg:hidden">
               <h2 className="mb-2 font-bold tracking-wider uppercase text-neutral">
