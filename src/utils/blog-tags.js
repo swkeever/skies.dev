@@ -12,17 +12,17 @@ module.exports = [
   {
     id: 1797134,
     name: 'Blogging',
-    weight: 3,
+    weight: 5,
   },
   {
     id: 1797135,
     name: 'Backend',
-    weight: 2,
+    weight: 1,
   },
   {
     id: 1797176,
     name: 'Microservices',
-    weight: 3,
+    weight: 5,
   },
   {
     id: 1797175,
@@ -32,12 +32,12 @@ module.exports = [
   {
     id: 1797136,
     name: 'Computer Science',
-    weight: 2,
+    weight: 5,
   },
   {
     id: 1797145,
     name: 'Software Engineering',
-    weight: 2,
+    weight: 5,
   },
   {
     id: 1797146,
@@ -47,12 +47,12 @@ module.exports = [
   {
     id: 1797147,
     name: 'Tailwind CSS',
-    weight: 3,
+    weight: 5,
   },
   {
     id: 1797148,
     name: 'College',
-    weight: 3,
+    weight: 5,
   },
   {
     id: 1797149,
@@ -77,7 +77,7 @@ module.exports = [
   {
     id: 1797153,
     name: 'Personal',
-    weight: 3,
+    weight: 5,
   },
   {
     id: 1797154,
@@ -87,6 +87,6 @@ module.exports = [
   {
     id: 1857535,
     name: 'Accessibility',
-    weight: 3,
+    weight: 5,
   },
 ].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));

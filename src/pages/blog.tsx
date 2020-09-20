@@ -6,6 +6,7 @@ import globalStyles from '@styles/index';
 import BlogCard from '@components/BlogCard';
 import tw from '@utils/tailwind';
 import { FluidObject } from 'node_modules/gatsby-image/index';
+import { formatDate } from '@utils/dates';
 import SEO from '../components/SEO';
 import Empty from '../../assets/empty.svg';
 import blogCategories from '../utils/blog-categories';
@@ -45,7 +46,10 @@ export type Blog = {
   title: string;
   slug: string;
   description: string;
-  date: string;
+  date: {
+    published: string;
+    modified: string;
+  };
   category: {
     name: string;
     className: string;
@@ -80,20 +84,22 @@ export function gqlResponseToBlogs(data): Blog[] {
   return data.allMdx.nodes.map((node) => {
     const { id, timeToRead, rawBody } = node;
     const {
-      title, description, date, image,
+      title,
+      description,
+      datePublished,
+      dateModified,
+      image,
     } = node.frontmatter;
-    const dateFormat = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(date));
     return {
       id,
       timeToRead,
       title,
       slug: node.fields.slug,
       description,
-      date: dateFormat,
+      date: {
+        published: formatDate(datePublished),
+        modified: formatDate(dateModified),
+      },
       category: categories[node.frontmatter.category],
       body: rawBody,
       image: {
@@ -109,15 +115,18 @@ export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
       allMdx(
-        sort: { order: DESC, fields: [frontmatter___date] }
+        sort: { order: DESC, fields: [frontmatter___dateModified] }
         filter: { fileAbsolutePath: { regex: "/content/" } }
       ) {
         nodes {
           frontmatter {
             title
-            date
+            datePublished(formatString: "MMMM DD, YYYY")
+            dateModified(formatString: "MMMM DD, YYYY")
             category
             description
+            imagePhotographer
+            imageUrl
             image {
               childImageSharp {
                 fluid(maxWidth: 700) {

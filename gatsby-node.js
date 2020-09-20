@@ -5,6 +5,7 @@ const { createFilePath } = require('gatsby-source-filesystem');
 const blogCategories = require('./src/utils/blog-categories');
 const blogTags = require('./src/utils/blog-tags');
 const stopWords = require('./src/utils/stop-words');
+const { formatDate } = require('./src/utils/dates');
 
 const weights = new Map();
 
@@ -54,7 +55,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
       allMdx(
-        sort: { order: DESC, fields: frontmatter___date }
+        sort: { order: DESC, fields: frontmatter___dateModified }
         filter: { fileAbsolutePath: { regex: "/content/" } }
       ) {
         edges {
@@ -68,7 +69,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
             frontmatter {
               title
-              date(formatString: "MMMM DD, YYYY")
+              dateModified(formatString: "MMMM DD, YYYY")
+              datePublished(formatString: "MMMM DD, YYYY")
               category
               keywords
               description
@@ -108,30 +110,26 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create blog post pages.
   // console.log(JSON.stringify(result, null, 4));
   const posts = result.data.allMdx.edges;
-  const mappedBlogs = posts.map(({ node }) => {
-    const dateFormat = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(node.frontmatter.date));
-    return {
-      id: node.id,
-      tags: node.frontmatter.tags,
-      timeToRead: node.timeToRead,
-      title: node.frontmatter.title,
-      slug: node.fields.slug,
-      description: node.frontmatter.description,
-      date: dateFormat,
-      body: node.body,
-      category: blogCategories[node.frontmatter.category],
-      image: {
-        fluid: node.frontmatter.image.childImageSharp.fluid,
-        photographer: node.frontmatter.imagePhotographer,
-        url: node.frontmatter.imageUrl,
-      },
-      keywords: node.frontmatter.keywords.concat(node.frontmatter.tags),
-    };
-  });
+  const mappedBlogs = posts.map(({ node }) => ({
+    id: node.id,
+    tags: node.frontmatter.tags,
+    timeToRead: node.timeToRead,
+    title: node.frontmatter.title,
+    slug: node.fields.slug,
+    description: node.frontmatter.description,
+    date: {
+      published: formatDate(node.frontmatter.datePublished),
+      modified: formatDate(node.frontmatter.dateModified),
+    },
+    body: node.body,
+    category: blogCategories[node.frontmatter.category],
+    image: {
+      fluid: node.frontmatter.image.childImageSharp.fluid,
+      photographer: node.frontmatter.imagePhotographer,
+      url: node.frontmatter.imageUrl,
+    },
+    keywords: node.frontmatter.keywords.concat(node.frontmatter.tags),
+  }));
 
   // you'll call `createPage` for each result
   posts.forEach(({ node }, i) => {
