@@ -14,14 +14,17 @@ const IndexPage = () => {
     query {
       allMdx(
         limit: 4
-        sort: { order: DESC, fields: [frontmatter___dateModified] }
+        sort: {
+          order: DESC
+          fields: [frontmatter___datePublished, frontmatter___dateModified]
+        }
         filter: { fileAbsolutePath: { regex: "/content/" } }
       ) {
         nodes {
           frontmatter {
             title
-            dateModified
-            datePublished
+            datePublished(formatString: "MMMM DD, YYYY")
+            dateModified(formatString: "MMMM DD, YYYY")
             category
             description
             imagePhotographer

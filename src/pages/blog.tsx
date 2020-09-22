@@ -118,14 +118,17 @@ export default function BlogsPage() {
   const data: BlogMarkdownRemark = useStaticQuery(graphql`
     query {
       allMdx(
-        sort: { order: DESC, fields: [frontmatter___dateModified] }
+        sort: {
+          order: DESC
+          fields: [frontmatter___datePublished, frontmatter___dateModified]
+        }
         filter: { fileAbsolutePath: { regex: "/content/" } }
       ) {
         nodes {
           frontmatter {
             title
-            datePublished
-            dateModified
+            datePublished(formatString: "MMMM DD, YYYY")
+            dateModified(formatString: "MMMM DD, YYYY")
             category
             description
             imagePhotographer

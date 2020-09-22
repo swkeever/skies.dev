@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'node_modules/gatsby-image/index';
 import links from '@utils/links';
+import { LayoutContext } from './Layout';
 
 type SEO = {
   title: string;
@@ -67,6 +68,7 @@ export default function SEO({
     }
   `);
   const { pathname } = useLocation();
+  const { lightTheme } = useContext(LayoutContext);
 
   const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;
 
@@ -119,9 +121,7 @@ export default function SEO({
         <html lang="en" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="canonical" href={seo.canonicalUrl} />
-
         <meta name="keywords" content={keywords.join(', ')} />
-
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
@@ -131,17 +131,18 @@ export default function SEO({
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
-
         <meta name="description" content={seo.description} />
         <meta name="image" content={withSiteUrl(seo.image.src)} />
-
         <meta name="twitter:site" content={seo.twitter} />
         <meta name="twitter:creator" content={seo.twitter} />
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={withSiteUrl(seo.image.src)} />
         <meta name="twitter:card" content="summary_large_image" />
-
+        <meta
+          name="twitter:widgets:theme"
+          content={lightTheme ? 'light' : 'dark'}
+        />
         <meta property="og:url" content={seo.canonicalUrl} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:site_name" content="Sean Keever" />
@@ -154,7 +155,6 @@ export default function SEO({
         <meta property="og:image:height" content={seo.image.dims.height} />
         <meta property="og:image:alt" content={seo.title} />
         {seo.article && <meta property="og:type" content="article" />}
-
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
     </>

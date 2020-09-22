@@ -31,7 +31,7 @@ const styles = {
   ),
 
   meta: {
-    li: tw('text-center', 'py-2'),
+    li: tw('text-center', 'py-2 md:py-4'),
   },
 
   ctaLinkIcons: tw('inline', 'mb-1'),
@@ -111,16 +111,14 @@ export default function Blog({ pageContext }) {
             className={tw(
               'lg:mt-4 mx-auto',
               'grid grid-cols-12 gap-4',
-              'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
-              'mb-1',
+              'pt-24 pb-5 lg:pt-32 px-2 md:px-6',
               'max-w-screen-xl',
             )}
           >
             <h1
               className={tw(
                 'lg:col-start-2 col-span-12 lg:col-span-8',
-
-                'leading-none text-5xl lg:text-6xl font-extrabold',
+                'leading-none text-4xl lg:text-6xl font-black',
                 colors.header.h1,
               )}
             >
@@ -181,45 +179,14 @@ export default function Blog({ pageContext }) {
             </ul>
           </aside>
           <div
-            className={tw(
-              'col-span-12 px-2 md:px-6 pt-4 lg:col-span-8',
-              'mb-64',
-            )}
+            className={tw('col-span-12 px-2 md:px-6 lg:col-span-8', 'mb-64')}
           >
-            <figure className={tw('mb-16')}>
-              <Img
-                className={tw(
-                  'relative z-10',
-                  'w-full',
-                  'rounded-sm',
-                  'h-auto',
-                  'mx-auto mt-1',
-                  'shadow-xl',
-                )}
-                fluid={blog.image.fluid}
-                alt={blog.title}
-              />
-              <figcaption className="mt-4 text-center text-neutral">
-                <p>
-                  Photo by
-                  {' '}
-                  <ExternalLink
-                    className="underline text-neutral hover:text-neutralBold"
-                    href={blog.image.url}
-                  >
-                    {blog.image.photographer}
-                  </ExternalLink>
-                </p>
-              </figcaption>
-            </figure>
-
             <ul
               className={tw(
-                'grid grid-cols-3',
+                'grid md:grid-cols-3',
                 'text-sm font-light',
-                'border border-neutralBgSofter',
-                'rounded-lg',
-                'divide-x divide-neutralBgSofter',
+                // 'border border-neutralBgSoft',
+                'divide-y md:divide-x divide-neutralBgSoft',
                 colors.header.meta,
                 globalStyles.transitions,
               )}
@@ -246,6 +213,33 @@ export default function Blog({ pageContext }) {
                 min read
               </li>
             </ul>
+
+            <figure className={tw('mb-24')}>
+              <Img
+                className={tw(
+                  'relative z-10',
+                  'w-full',
+                  'rounded-sm',
+                  'h-auto',
+                  'mx-auto',
+                  'shadow-xl',
+                )}
+                fluid={blog.image.fluid}
+                alt={blog.title}
+              />
+              <figcaption className="mt-4 text-center text-neutral">
+                <p>
+                  Photo by
+                  {' '}
+                  <ExternalLink
+                    className="underline text-neutral hover:text-neutralBold"
+                    href={blog.image.url}
+                  >
+                    {blog.image.photographer}
+                  </ExternalLink>
+                </p>
+              </figcaption>
+            </figure>
 
             <div className="mt-4 lg:hidden">
               <h2 className="mb-2 font-bold tracking-wider uppercase text-neutral">
