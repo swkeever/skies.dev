@@ -12,7 +12,7 @@ const colors = {
     backgroundImage: 'bg-primaryBold',
     image: 'border-gray-700',
     preHeader: 'text-gray-300',
-    header: 'text-light',
+    header: 'text-white',
     p: 'text-gray-300',
     button: tw('text-gray-800 hover:text-gray-600', 'bg-gray-100'),
   },
@@ -104,10 +104,7 @@ export default function About({ color = 'footer' }) {
               through this blog. Tune in if you&apos;re interested in web
               development and software engineering.
             </p>
-            <button
-              type="button"
-              className={tw('inline-flex', 'mt-8', 'rounded-full', 'shadow')}
-            >
+            <button type="button" className={tw('inline-flex', 'mt-8')}>
               <Link
                 to={routes.about}
                 className={tw(
@@ -117,7 +114,8 @@ export default function About({ color = 'footer' }) {
                   'text-base leading-6 font-semibold',
                   'rounded-full',
                   styles.button,
-                  'focus:outline-none focus:shadow-outline',
+                  'shadow',
+                  globalStyles.outline,
                   globalStyles.transitions,
                 )}
               >

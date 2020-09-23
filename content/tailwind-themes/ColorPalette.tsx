@@ -31,7 +31,7 @@ export default function ColorPalette() {
             className,
             'rounded-md',
             'p-4',
-            'text-sm font-mono font-medium',
+            'text-xs md:text-sm font-mono font-medium',
             'shadow-lg',
             globalStyles.transitions,
           )}
