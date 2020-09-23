@@ -31,7 +31,7 @@ const styles = {
   ),
 
   meta: {
-    li: tw('text-center', 'py-2 md:py-4'),
+    li: tw('md:text-center', 'py-2 md:py-4'),
   },
 
   ctaLinkIcons: tw('inline', 'mb-1'),
@@ -118,7 +118,7 @@ export default function Blog({ pageContext }) {
             <h1
               className={tw(
                 'lg:col-start-2 col-span-12 lg:col-span-8',
-                'leading-none text-4xl lg:text-6xl font-black',
+                'leading-none text-5xl lg:text-6xl font-black',
                 colors.header.h1,
               )}
             >
@@ -186,7 +186,7 @@ export default function Blog({ pageContext }) {
                 'grid md:grid-cols-3',
                 'text-sm font-light',
                 // 'border border-neutralBgSoft',
-                'divide-y md:divide-x divide-neutralBgSoft',
+                'md:divide-x divide-neutralBgSoft',
                 colors.header.meta,
                 globalStyles.transitions,
               )}
