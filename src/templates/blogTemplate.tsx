@@ -105,8 +105,8 @@ export default function Blog({ pageContext }) {
         }}
         schemaMarkup={schema}
       />
-      <article className={tw(globalStyles.transitions)}>
-        <header className={tw(colors.header.bg)}>
+      <article>
+        <header className={tw(colors.header.bg, globalStyles.transitions)}>
           <div
             className={tw(
               'lg:mt-4 mx-auto',
@@ -120,6 +120,7 @@ export default function Blog({ pageContext }) {
                 'lg:col-start-2 col-span-12 lg:col-span-8',
                 'leading-none text-5xl lg:text-6xl font-black',
                 colors.header.h1,
+                globalStyles.transitions,
               )}
             >
               {blog.title}
@@ -185,7 +186,6 @@ export default function Blog({ pageContext }) {
               className={tw(
                 'grid md:grid-cols-3',
                 'text-sm font-light',
-                // 'border border-neutralBgSoft',
                 'md:divide-x divide-neutralBgSoft',
                 colors.header.meta,
                 globalStyles.transitions,
@@ -284,7 +284,13 @@ export default function Blog({ pageContext }) {
         </div>
       </article>
 
-      <section className={tw('bg-neutralBgSoft', 'py-16 lg:py-24')}>
+      <section
+        className={tw(
+          'bg-neutralBgSoft',
+          globalStyles.transitions,
+          'py-16 lg:py-24',
+        )}
+      >
         <BlogDisplay
           blogs={similarBlogs}
           subtitle="Here are some other articles you may enjoy."
