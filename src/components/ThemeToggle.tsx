@@ -70,9 +70,9 @@ export default function ThemeToggle() {
               }}
             >
               <span className="sr-only">Blue theme</span>
-              <th.icon
-                className={tw(styles.themeIcon, styles.transform, colors.text)}
-              />
+              <span className={tw(styles.themeIcon)}>
+                <th.icon className={tw(styles.transform, colors.text)} />
+              </span>
             </button>
           );
         })}

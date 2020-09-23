@@ -25,8 +25,8 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-blue-600',
-        text: 'text-blue-400',
+        bg: 'bg-blue-800',
+        text: 'text-blue-600',
         border: 'border-blue-600',
       },
     },
@@ -43,8 +43,8 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-red-600',
-        text: 'text-red-400',
+        bg: 'bg-red-800',
+        text: 'text-red-600',
         border: 'border-red-600',
       },
     },
@@ -60,8 +60,8 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-green-600',
-        text: 'text-green-400',
+        bg: 'bg-green-800',
+        text: 'text-green-600',
         border: 'border-green-600',
       },
     },
