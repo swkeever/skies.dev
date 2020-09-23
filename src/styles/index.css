@@ -128,8 +128,8 @@
 .theme-dark {
   /* base */
   --color-onPrimaryBg: var(--color-primary-100);
-  --color-onPrimaryBgSoft: var(--color-primary-300);
-  --color-onPrimaryBgSofter: var(--color-primary-400);
+  --color-onPrimaryBgSoft: var(--color-primary-200);
+  --color-onPrimaryBgSofter: var(--color-primary-300);
   --color-primaryBold: var(--color-primary-600);
   --color-primary: var(--color-primary-800);
   --color-primarySoft: var(--color-primary-900);

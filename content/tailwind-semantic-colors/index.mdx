@@ -62,30 +62,23 @@ us the flexibility to easily change the theme of the site.
 
 We define 2 semantic types:
 
-| Name        | Description                                                              |
-| ----------- | ------------------------------------------------------------------------ |
-| **primary** | This is our brand's colors. For example, Twitter's primary color is blue |
-| **neutral** | This is our neutral color—gray in most cases                             |
+- **Primary**—this is our brand's colors. For example, Twitter's primary color
+  is blue.
+- **Neutral**—this is our neutral color—gray in most cases/
 
-Let's also define **variants** to handle different shades of color.
+For each semantic type, we define **variants** to handle different shades of
+color.
 
-| Name                  | Description                                                              |
-| --------------------- | ------------------------------------------------------------------------ |
-| **primaryBg**         | Primary background color                                                 |
-| **primaryBgSoft**     | Soft variant of primary background color                                 |
-| **primaryBgSofter**   | Softer variant of primary background color                               |
-| **primarySoft**       | Soft variant of primary color                                            |
-| **primary**           | Primary color                                                            |
-| **primaryBold**       | Bold variant of primary color                                            |
-| **onPrimaryBgSofter** | Softer variant of color with high contrast with primary background color |
-| **onPrimaryBgSoft**   | Soft variant of color with high contrast with primary background color   |
-| **onPrimaryBg**       | High contrast with primary background color                              |
+Pick variants that make sense for you and your project.
 
-An analogous table applies for the neutrals as well.
+Below are the variants that I've defined in action. Try switching the theme to
+see how it changes.
 
-> Choose as many or as few semantic names that make sense for your project.
->
-> The semantic names listed are what I chose for Skies.
+import ColorPalette from './ColorPalette';
+
+<ColorPalette />
+
+<ThemeToggleWrapper />
 
 ## Implementation
 
@@ -103,29 +96,28 @@ Let's start with the base Tailwind CSS file described in Tailwind's
 
 We define CSS custom properties for each of our primary and neutral shades.
 
-```css {diff}
-/* index.css */
-+ :root {
-+   --color-primary-100: theme('colors.blue.100');
-+   --color-primary-200: theme('colors.blue.200');
-+   --color-primary-300: theme('colors.blue.300');
-+   --color-primary-400: theme('colors.blue.400');
-+   --color-primary-500: theme('colors.blue.500');
-+   --color-primary-600: theme('colors.blue.600');
-+   --color-primary-700: theme('colors.blue.700');
-+   --color-primary-800: theme('colors.blue.800');
-+   --color-primary-900: theme('colors.blue.900');
-+
-+   --color-neutral-100: theme('colors.gray.100');
-+   --color-neutral-200: theme('colors.gray.200');
-+   --color-neutral-300: theme('colors.gray.300');
-+   --color-neutral-400: theme('colors.gray.400');
-+   --color-neutral-500: theme('colors.gray.500');
-+   --color-neutral-600: theme('colors.gray.600');
-+   --color-neutral-700: theme('colors.gray.700');
-+   --color-neutral-800: theme('colors.gray.800');
-+   --color-neutral-900: theme('colors.gray.900');
-+ }
+```css
+* index.css */ :root {
+  --color-primary-100: theme('colors.blue.100');
+  --color-primary-200: theme('colors.blue.200');
+  --color-primary-300: theme('colors.blue.300');
+  --color-primary-400: theme('colors.blue.400');
+  --color-primary-500: theme('colors.blue.500');
+  --color-primary-600: theme('colors.blue.600');
+  --color-primary-700: theme('colors.blue.700');
+  --color-primary-800: theme('colors.blue.800');
+  --color-primary-900: theme('colors.blue.900');
+
+  --color-neutral-100: theme('colors.gray.100');
+  --color-neutral-200: theme('colors.gray.200');
+  --color-neutral-300: theme('colors.gray.300');
+  --color-neutral-400: theme('colors.gray.400');
+  --color-neutral-500: theme('colors.gray.500');
+  --color-neutral-600: theme('colors.gray.600');
+  --color-neutral-700: theme('colors.gray.700');
+  --color-neutral-800: theme('colors.gray.800');
+  --color-neutral-900: theme('colors.gray.900');
+}
 
 @tailwind base;
 
@@ -137,15 +129,14 @@ We define CSS custom properties for each of our primary and neutral shades.
 We'll create `theme-light` and `theme-dark` classes for light and dark mode
 respectively.
 
-```css {diff}
+```css
 /* index.css */
 @tailwind base;
 
-+ .theme-light {
-+ }
-+
-+ .theme-dark {
-+ }
+.theme-light {
+}
+.theme-dark {
+}
 
 @tailwind components;
 
@@ -154,92 +145,92 @@ respectively.
 
 We'll start with the light theme, defining all of the variants.
 
-```css {diff}
+```css
 /* index.css */
 .theme-light {
-+  --color-primaryBg: var(--color-primary-100);
-+  --color-primaryBgSoft: var(--color-primary-200);
-+  --color-primaryBgSofter: var(--color-primary-300);
-+  --color-primarySoft: var(--color-primary-400);
-+  --color-primary: var(--color-primary-500);
-+  --color-primaryBold: var(--color-primary-600);
-+  --color-onPrimaryBgSofter: var(--color-primary-700);
-+  --color-onPrimaryBgSoft: var(--color-primary-800);
-+  --color-onPrimaryBg: var(--color-primary-900);
-+
-+  --color-neutralBg: var(--color-neutral-100);
-+  --color-neutralBgSoft: var(--color-neutral-200);
-+  --color-neutralBgSofter: var(--color-neutral-300);
-+  --color-neutralSoft: var(--color-neutral-400);
-+  --color-neutral: var(--color-neutral-500);
-+  --color-neutralBold: var(--color-neutral-600);
-+  --color-onNeutralBgSofter: var(--color-neutral-700);
-+  --color-onNeutralBgSoft: var(--color-neutral-800);
-+  --color-onNeutralBg: var(--color-neutral-900);
+  --color-primaryBg: var(--color-primary-100);
+  --color-primaryBgSoft: var(--color-primary-200);
+  --color-primaryBgSofter: var(--color-primary-300);
+  --color-primarySoft: var(--color-primary-400);
+  --color-primary: var(--color-primary-500);
+  --color-primaryBold: var(--color-primary-600);
+  --color-onPrimaryBgSofter: var(--color-primary-700);
+  --color-onPrimaryBgSoft: var(--color-primary-800);
+  --color-onPrimaryBg: var(--color-primary-900);
+
+  --color-neutralBg: var(--color-neutral-100);
+  --color-neutralBgSoft: var(--color-neutral-200);
+  --color-neutralBgSofter: var(--color-neutral-300);
+  --color-neutralSoft: var(--color-neutral-400);
+  --color-neutral: var(--color-neutral-500);
+  --color-neutralBold: var(--color-neutral-600);
+  --color-onNeutralBgSofter: var(--color-neutral-700);
+  --color-onNeutralBgSoft: var(--color-neutral-800);
+  --color-onNeutralBg: var(--color-neutral-900);
 }
 ```
 
 We do the same thing for dark mode.
 
-```css {diff}
+```css
 /* index.css */
 .theme-dark {
-+  --color-onPrimaryBg: var(--color-primary-100);
-+  --color-onPrimaryBgSoft: var(--color-primary-300);
-+  --color-onPrimaryBgSofter: var(--color-primary-400);
-+  --color-primaryBold: var(--color-primary-600);
-+  --color-primary: var(--color-primary-800);
-+  --color-primarySoft: var(--color-primary-900);
-+  --color-primaryBgSofter: var(--color-primary-900);
-+  --color-primaryBgSoft: var(--color-primary-900);
-+  --color-primaryBg: var(--color-primary-900);
-+
-+  --color-neutralBg: var(--color-neutral-800);
-+  --color-neutralBgSoft: var(--color-neutral-700);
-+  --color-neutralBgSofter: var(--color-neutral-600);
-+  --color-neutralSoft: var(--color-neutral-500);
-+  --color-neutral: var(--color-neutral-400);
-+  --color-neutralBold: var(--color-neutral-300);
-+  --color-onNeutralBgSofter: var(--color-neutral-200);
-+  --color-onNeutralBgSoft: var(--color-neutral-100);
-+  --color-onNeutralBg: var(--color-neutral-100);
+  --color-onPrimaryBg: var(--color-primary-100);
+  --color-onPrimaryBgSoft: var(--color-primary-300);
+  --color-onPrimaryBgSofter: var(--color-primary-400);
+  --color-primaryBold: var(--color-primary-600);
+  --color-primary: var(--color-primary-800);
+  --color-primarySoft: var(--color-primary-900);
+  --color-primaryBgSofter: var(--color-primary-900);
+  --color-primaryBgSoft: var(--color-primary-900);
+  --color-primaryBg: var(--color-primary-900);
+
+  --color-neutralBg: var(--color-neutral-800);
+  --color-neutralBgSoft: var(--color-neutral-700);
+  --color-neutralBgSofter: var(--color-neutral-600);
+  --color-neutralSoft: var(--color-neutral-500);
+  --color-neutral: var(--color-neutral-400);
+  --color-neutralBold: var(--color-neutral-300);
+  --color-onNeutralBgSofter: var(--color-neutral-200);
+  --color-onNeutralBgSoft: var(--color-neutral-100);
+  --color-onNeutralBg: var(--color-neutral-100);
 }
 ```
 
 We can now hook the custom colors into our Tailwind CSS config.
 
-```javascript {diff}
+```javascript
 // tailwind.config.js
 module.exports = {
   purge: [],
   theme: {
     extend: {
       colors: {
-+        primary: 'var(--color-primary)',
-+        primarySoft: 'var(--color-primarySoft)',
-+        primaryBold: 'var(--color-primaryBold)',
-+        primaryBg: 'var(--color-primaryBg)',
-+        primaryBgSoft: 'var(--color-primaryBgSoft)',
-+        primaryBgSofter: 'var(--color-primaryBgSofter)',
-+        onPrimaryBg: 'var(--color-onPrimaryBg)',
-+        onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
-+        onPrimaryBgSofter: 'var(--color-onPrimaryBgSofter)',
-+
-+        neutralBg: 'var(--color-neutralBg)',
-+        neutralBgSoft: 'var(--color-neutralBgSoft)',
-+        neutralBgSofter: 'var(--color-neutralBgSofter)',
-+        neutral: 'var(--color-neutral)',
-+        neutralBold: 'var(--color-neutralBold)',
-+        neutralSoft: 'var(--color-neutralSoft)',
-+        onNeutralBg: 'var(--color-onNeutralBg)',
-+        onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
-+        onNeutralBgSofter: 'var(--color-onNeutralBgSofter)',
-      }
+        primary: 'var(--color-primary)',
+        primarySoft: 'var(--color-primarySoft)',
+        primaryBold: 'var(--color-primaryBold)',
+        primaryBg: 'var(--color-primaryBg)',
+        primaryBgSoft: 'var(--color-primaryBgSoft)',
+        primaryBgSofter: 'var(--color-primaryBgSofter)',
+        onPrimaryBg: 'var(--color-onPrimaryBg)',
+        onPrimaryBgSoft: 'var(--color-onPrimaryBgSoft)',
+        onPrimaryBgSofter: 'var(--color-onPrimaryBgSofter)',
+
+        neutralBg: 'var(--color-neutralBg)',
+        neutralBgSoft: 'var(--color-neutralBgSoft)',
+        neutralBgSofter: 'var(--color-neutralBgSofter)',
+        neutral: 'var(--color-neutral)',
+        neutralBold: 'var(--color-neutralBold)',
+        neutralSoft: 'var(--color-neutralSoft)',
+        onNeutralBg: 'var(--color-onNeutralBg)',
+        onNeutralBgSoft: 'var(--color-onNeutralBgSoft)',
+        onNeutralBgSofter: 'var(--color-onNeutralBgSofter)',
+      },
     },
   },
   variants: {},
   plugins: [],
-}
+};
 ```
 
 We're ready to start using the semantic colors in our React app.
@@ -266,7 +257,7 @@ export default function Layout() {
 
 We'll create a checkbox to let the user toggle between light and dark mode.
 
-```jsx {diff}
+```jsx
 // layout.js
 import React, { useState } from 'react';
 
@@ -275,11 +266,11 @@ export default function Layout() {
 
   return (
     <div className={lightTheme ? 'theme-light' : 'theme-dark'}>
-+      <input
-+        type="checkbox"
-+        checked={lightTheme}
-+        onChange={() => setLightTheme(!lightTheme)}
-+      />
+      <input
+        type="checkbox"
+        checked={lightTheme}
+        onChange={() => setLightTheme(!lightTheme)}
+      />
       {/* The rest of the app goes in here. */}
     </div>
   );
@@ -293,19 +284,9 @@ want.
 
 Let's give our users the option to switch between **multiple primary colors**.
 
-```css {diff}
+```css
 /* index.css */
 :root {
--  --color-primary-100: theme('colors.blue.100');
--  --color-primary-200: theme('colors.blue.200');
--  --color-primary-300: theme('colors.blue.300');
--  --color-primary-400: theme('colors.blue.400');
--  --color-primary-500: theme('colors.blue.500');
--  --color-primary-600: theme('colors.blue.600');
--  --color-primary-700: theme('colors.blue.700');
--  --color-primary-800: theme('colors.blue.800');
--  --color-primary-900: theme('colors.blue.900');
-
   --color-neutral-100: theme('colors.gray.100');
   --color-neutral-200: theme('colors.gray.200');
   --color-neutral-300: theme('colors.gray.300');
@@ -314,44 +295,44 @@ Let's give our users the option to switch between **multiple primary colors**.
   --color-neutral-600: theme('colors.gray.600');
   --color-neutral-700: theme('colors.gray.700');
   --color-neutral-800: theme('colors.gray.800');
-   --color-neutral-900: theme('colors.gray.900');
- }
+  --color-neutral-900: theme('colors.gray.900');
+}
 
-+ .theme-blue {
-+   --color-primary-100: theme('colors.blue.100');
-+   --color-primary-200: theme('colors.blue.200');
-+   --color-primary-300: theme('colors.blue.300');
-+   --color-primary-400: theme('colors.blue.400');
-+   --color-primary-500: theme('colors.blue.500');
-+   --color-primary-600: theme('colors.blue.600');
-+   --color-primary-700: theme('colors.blue.700');
-+   --color-primary-800: theme('colors.blue.800');
-+   --color-primary-900: theme('colors.blue.900');
-+ }
-+
-+ .theme-green {
-+   --color-primary-100: theme('colors.green.100');
-+   --color-primary-200: theme('colors.green.200');
-+   --color-primary-300: theme('colors.green.300');
-+   --color-primary-400: theme('colors.green.400');
-+   --color-primary-500: theme('colors.green.500');
-+   --color-primary-600: theme('colors.green.600');
-+   --color-primary-700: theme('colors.green.700');
-+   --color-primary-800: theme('colors.green.800');
-+   --color-primary-900: theme('colors.green.900');
-+ }
-+
-+ .theme-red {
-+   --color-primary-100: theme('colors.red.100');
-+   --color-primary-200: theme('colors.red.200');
-+   --color-primary-300: theme('colors.red.300');
-+   --color-primary-400: theme('colors.red.400');
-+   --color-primary-500: theme('colors.red.500');
-+   --color-primary-600: theme('colors.red.600');
-+   --color-primary-700: theme('colors.red.700');
-+   --color-primary-800: theme('colors.red.800');
-+   --color-primary-900: theme('colors.red.900');
-+ }
+.theme-blue {
+  --color-primary-100: theme('colors.blue.100');
+  --color-primary-200: theme('colors.blue.200');
+  --color-primary-300: theme('colors.blue.300');
+  --color-primary-400: theme('colors.blue.400');
+  --color-primary-500: theme('colors.blue.500');
+  --color-primary-600: theme('colors.blue.600');
+  --color-primary-700: theme('colors.blue.700');
+  --color-primary-800: theme('colors.blue.800');
+  --color-primary-900: theme('colors.blue.900');
+}
+
+.theme-green {
+  --color-primary-100: theme('colors.green.100');
+  --color-primary-200: theme('colors.green.200');
+  --color-primary-300: theme('colors.green.300');
+  --color-primary-400: theme('colors.green.400');
+  --color-primary-500: theme('colors.green.500');
+  --color-primary-600: theme('colors.green.600');
+  --color-primary-700: theme('colors.green.700');
+  --color-primary-800: theme('colors.green.800');
+  --color-primary-900: theme('colors.green.900');
+}
+
+.theme-red {
+  --color-primary-100: theme('colors.red.100');
+  --color-primary-200: theme('colors.red.200');
+  --color-primary-300: theme('colors.red.300');
+  --color-primary-400: theme('colors.red.400');
+  --color-primary-500: theme('colors.red.500');
+  --color-primary-600: theme('colors.red.600');
+  --color-primary-700: theme('colors.red.700');
+  --color-primary-800: theme('colors.red.800');
+  --color-primary-900: theme('colors.red.900');
+}
 ```
 
 I'll leave it as an exercise to the reader to figure out the JavaScript to

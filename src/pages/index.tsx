@@ -16,7 +16,7 @@ const IndexPage = () => {
         limit: 4
         sort: {
           order: DESC
-          fields: [frontmatter___datePublished, frontmatter___dateModified]
+          fields: [frontmatter___dateModified, frontmatter___datePublished]
         }
         filter: { fileAbsolutePath: { regex: "/content/" } }
       ) {
