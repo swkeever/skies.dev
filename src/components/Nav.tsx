@@ -5,9 +5,8 @@ import {
   FaLightbulb,
   FaRegSmileBeam,
   FaCog,
-  FaCloudSun,
-  FaCloudSunRain,
 } from 'react-icons/fa';
+import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { Link, useLocation } from '@reach/router';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
@@ -62,7 +61,7 @@ export default function Nav() {
   const colors = {
     primary: {
       underline: {
-        on: 'bg-neutral lg:bg-onPrimary',
+        on: 'bg-primary lg:bg-onPrimary',
         off: 'bg-neutralBg lg:bg-primary',
       },
       icon: {
@@ -95,9 +94,9 @@ export default function Nav() {
   const navItems = [
     <Item route={routes.home} key="nav-home">
       {routes.equals(pathname, routes.home) ? (
-        <FaCloudSunRain className={tw(iconStyles, colors.icon.on)} />
+        <AiFillHome className={tw(iconStyles, colors.icon.on)} />
       ) : (
-        <FaCloudSun className={tw(iconStyles, colors.icon.off)} />
+        <AiOutlineHome className={tw(iconStyles, colors.icon.off)} />
       )}
       <Name name="Home" />
     </Item>,
@@ -156,7 +155,7 @@ export default function Nav() {
     <nav
       aria-label="Primary Navigation"
       className={`
-      w-full h-full lg:max-w-screen-md
+      w-full h-full lg:max-w-screen-sm
       flex flex-col
       `}
     >

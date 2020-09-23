@@ -59,7 +59,17 @@ export default function Header() {
           <Nav />
         </div>
       </header>
-      <ThemeToggle />
+      <section
+        className={tw(
+          'fixed top-2 lg:right-2',
+          'px-2',
+          'lg:w-auto w-full',
+          'flex justify-between lg:justify-end',
+          'z-40',
+        )}
+      >
+        <ThemeToggle />
+      </section>
     </>
   );
 }

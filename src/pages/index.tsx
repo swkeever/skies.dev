@@ -63,13 +63,7 @@ const IndexPage = () => {
       />
       <Hero />
 
-      <section
-        className={tw(
-          'relative',
-          'pb-24 pt-12 xl:pt-20',
-          globalStyles.transitions,
-        )}
-      >
+      <section className={tw('relative', 'py-20', globalStyles.transitions)}>
         <BlogDisplay
           blogs={blogs}
           title="Recent publications"
@@ -80,7 +74,7 @@ const IndexPage = () => {
 
       <section
         id="contact"
-        className={tw(globalStyles.transitions, 'bg-neutralBg', 'py-24')}
+        className={tw(globalStyles.transitions, 'bg-neutralBg', 'py-20')}
       >
         <div className="max-w-screen-md mx-auto px-4">
           <h2

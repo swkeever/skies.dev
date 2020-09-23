@@ -9,11 +9,65 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import globalStyles from '@styles/index';
 import AlertProvider from '@lib/alerts/AlertProvider';
 import tw from '@utils/tailwind';
+import { ImFire, ImLeaf, ImDroplet } from 'react-icons/im';
 import Header from './Header';
 import Footer from './Footer';
 
 export const LayoutContext = React.createContext({});
-const themes = ['theme-blue', 'theme-green', 'theme-red'];
+export const themes = [
+  {
+    name: 'blue',
+    className: 'theme-blue',
+    color: {
+      active: {
+        bg: 'bg-blue-400',
+        text: 'text-white',
+        border: 'border-white',
+      },
+      inactive: {
+        bg: 'bg-blue-600',
+        text: 'text-blue-400',
+        border: 'border-blue-600',
+      },
+    },
+    icon: (props) => <ImDroplet {...props} />,
+  },
+
+  {
+    name: 'red',
+    className: 'theme-red',
+    color: {
+      active: {
+        bg: 'bg-red-400',
+        text: 'text-white',
+        border: 'border-white',
+      },
+      inactive: {
+        bg: 'bg-red-600',
+        text: 'text-red-400',
+        border: 'border-red-600',
+      },
+    },
+    icon: (props) => <ImFire {...props} />,
+  },
+  {
+    name: 'green',
+    className: 'theme-green',
+    color: {
+      active: {
+        bg: 'bg-green-400',
+        text: 'text-white',
+        border: 'border-white',
+      },
+      inactive: {
+        bg: 'bg-green-600',
+        text: 'text-green-400',
+        border: 'border-green-600',
+      },
+    },
+    icon: (props) => <ImLeaf {...props} />,
+  },
+];
 
 function isSystemPrefLightMode() {
   if (window.matchMedia) {
@@ -42,6 +96,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
           lightTheme,
           setLightTheme,
           changeTheme: () => setTheme(() => (theme + 1) % themes.length),
+          setTheme,
+          theme,
         }}
       >
         <AlertProvider>
@@ -52,7 +108,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
               'min-h-screen',
               'h-full',
               'flex flex-col',
-              themes[theme],
+              themes[theme].className,
             )}
           >
             <Header />

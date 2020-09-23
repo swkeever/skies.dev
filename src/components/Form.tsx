@@ -106,7 +106,7 @@ export default function Form() {
           'rounded-full',
           globalStyles.transitions,
           globalStyles.outline,
-          'px-4 py-2 lg:px-8',
+          'py-2 px-8',
           'font-bold',
           'lg:text-lg',
           'shadow',

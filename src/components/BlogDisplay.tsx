@@ -15,13 +15,9 @@ type PropTypes = {
 export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
   return (
     <div
-      className={tw(
-        'mx-auto',
-        'max-w-md md:max-w-screen-md  xl:max-w-screen-2xl',
-        'px-4',
-      )}
+      className={tw('mx-auto', 'max-w-screen-md  xl:max-w-screen-2xl', 'px-4')}
     >
-      <header className={tw('flex flex-col items-center')}>
+      <header className={tw('flex flex-col lg:items-center')}>
         <h2
           className={tw(
             'text-onNeutralBg',
@@ -35,9 +31,8 @@ export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
         <p
           className={tw(
             'text-neutral',
-            'text-lg xl:text-xl text-center',
+            'text-lg xl:text-xl lg:text-center',
             'max-w-lg',
-            'mb-16',
             globalStyles.transitions,
           )}
         >
@@ -46,6 +41,7 @@ export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
       </header>
       <nav
         className={tw(
+          'mt-8',
           'grid gap-5',
           'grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
         )}
