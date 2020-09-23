@@ -95,7 +95,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
         value={{
           lightTheme,
           setLightTheme,
-          changeTheme: () => setTheme(() => (theme + 1) % themes.length),
           setTheme,
           theme,
         }}
