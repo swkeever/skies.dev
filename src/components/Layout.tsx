@@ -25,7 +25,7 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-900',
+        bg: 'bg-gray-800',
         text: 'text-blue-700',
         border: 'border-blue-700',
       },
@@ -43,7 +43,7 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-900',
+        bg: 'bg-gray-800',
         text: 'text-red-600',
         border: 'border-red-600',
       },
@@ -60,7 +60,7 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-900',
+        bg: 'bg-gray-800',
         text: 'text-green-700',
         border: 'border-green-700',
       },
