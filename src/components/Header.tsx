@@ -64,7 +64,7 @@ export default function Header() {
           'absolute lg:fixed top-2 lg:right-2',
           'lg:px-2 px-4',
           'lg:w-auto w-full',
-          'flex justify-between lg:justify-end',
+          'flex justify-end',
           'z-40',
         )}
       >
