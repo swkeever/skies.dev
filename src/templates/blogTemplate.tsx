@@ -272,7 +272,6 @@ export default function Blog({ pageContext }) {
 
         <div
           className={tw(
-            'fixed bottom-12',
             'lg:sticky lg:bottom-0', // sticky on desktop
             'mb-8 lg:mb-0',
             'flex justify-center lg:justify-end', // again, floating right is buggy on mobile, so only do it on desktop
