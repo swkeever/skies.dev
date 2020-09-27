@@ -7,7 +7,7 @@ import ExternalLink from './ExternalLink';
 
 const styles = {
   copy: tw(
-    'text-base md:text-lg lg:text-xl leading-8',
+    'text-base md:text-lg lg:text-xl leading-6 lg:leading-8',
     globalStyles.transitions,
   ),
 

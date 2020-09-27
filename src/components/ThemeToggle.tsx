@@ -4,7 +4,9 @@ import globalStyles from '@styles/index';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import analytics from '@utils/analytics';
 import tw from '@utils/tailwind';
-import { LayoutContext, themes } from './Layout';
+import {
+  LayoutContext, ldKey, rgbKey, themes,
+} from './Layout';
 
 const styles = {
   shadows: 'shadow-xl lg:shadow-none',
@@ -66,6 +68,9 @@ export default function ThemeToggle() {
                   // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
                   label: analytics.labels.theme,
                 });
+
+                window.localStorage.setItem(rgbKey, index.toString());
+
                 setTheme(() => index);
               }}
             >
@@ -100,6 +105,8 @@ export default function ThemeToggle() {
             // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
             label: analytics.labels.theme,
           });
+
+          window.localStorage.setItem(ldKey, lightTheme ? 'false' : 'true');
 
           setLightTheme(!lightTheme);
         }}

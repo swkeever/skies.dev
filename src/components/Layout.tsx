@@ -69,13 +69,29 @@ export const themes = [
   },
 ];
 
-function isSystemPrefLightMode() {
+export const ldKey = 'prefers-ld';
+export const rgbKey = 'prefers-rgb';
+
+function getInitialLDTheme(): boolean {
+  const ld = window.localStorage.getItem(ldKey);
+  if (ld !== 'undefined') {
+    return JSON.parse(ld);
+  }
   if (window.matchMedia) {
     if (window.matchMedia('(prefers-color-scheme: light)').matches) {
       return true;
     }
   }
+
   return false;
+}
+function getInitialRGBTheme(): number {
+  const rgb = window.localStorage.getItem(rgbKey);
+  if (rgb) {
+    return JSON.parse(rgb);
+  }
+
+  return 0;
 }
 
 const Layout = ({ children }: { children: ReactNode }) => {
@@ -83,7 +99,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<number>(0);
 
   useEffect(() => {
-    setLightTheme(isSystemPrefLightMode());
+    setTheme(getInitialRGBTheme());
+    setLightTheme(getInitialLDTheme());
   }, []);
 
   const themeClass = lightTheme ? 'theme-light' : 'theme-dark';
