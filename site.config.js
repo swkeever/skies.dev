@@ -2,7 +2,7 @@ module.exports = {
   siteTitle: 'Skies Software Engineering Blog by Sean Keever', // Navigation and Site Title
   siteTitleAlt: 'Skies Software Engineering Blog', // Alternative Site title for SEO
   siteTitleShort: 'Skies', // short_name for manifest
-  siteUrl: process.env.ROOT_URL || 'https://skies.dev', // Domain of your site. No trailing slash!
+  siteUrl: process.env.ROOT_URL || 'https://www.skies.dev', // Domain of your site. No trailing slash!
   lang: 'en', // Language Tag on <html> element
   pathPrefix: '/',
   siteLogo: 'images/logo.png', // Used for SEO and manifest, path to your image you placed in the 'static' folder

@@ -44,6 +44,7 @@ export default function ThemeToggle() {
           const colors = isActive ? th.color.active : th.color.inactive;
           return (
             <button
+              key={th.name}
               type="button"
               className={tw(
                 colors.bg,

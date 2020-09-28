@@ -38,7 +38,7 @@ export default function AlertProvider({ children }: { children: ReactNode }) {
 
   return (
     <AlertContext.Provider value={{ show }}>
-      <div className="fixed left-1/2 transform -translate-x-1/2 top-2 lg:top-12 z-50">
+      <div className="fixed left-1/2 transform -translate-x-1/2 top-2 lg:top-12 lg:translate-y-px z-50">
         <div className="flex flex-col">
           {alerts.map((alert) => (
             <div initial="hidden" animate="visible">

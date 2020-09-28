@@ -173,7 +173,7 @@ export default function Newsletter({
   const h3Styles = `md:text-xl font-light mb-2 overflow-hidden whitespace-no-wrap ${globalStyles.transitions}`;
 
   return (
-    <section className={`${styles.section}  ${globalStyles.transitions} `}>
+    <section className={tw(styles.section, globalStyles.transitions)}>
       <div
         className={tw(
           'mx-auto max-w-2xl',
@@ -182,16 +182,15 @@ export default function Newsletter({
         )}
       >
         <h2
-          className={`
-            text-3xl md:text-4xl
-            leading-9 font-extrabold tracking-tight sm:leading-10
-            ${globalStyles.transitions}
-            ${styles.h2}
-        `}
+          className={tw(
+            'text-3xl md:text-4xl leading-9 font-extrabold tracking-tight sm:leading-10',
+            globalStyles.transitions,
+            styles.h2,
+          )}
         >
           {copy}
           <div
-            className={`${styles.h2Span} ${globalStyles.transitions}`}
+            className={tw(styles.h2Span, globalStyles.transitions)}
             id="newsletter-headline"
           >
             Sign up for the newsletter
@@ -201,13 +200,14 @@ export default function Newsletter({
           action={FORM_URL}
           method="post"
           onSubmit={handleSubmit}
-          className={`${showTopics ? 'mt-12' : 'mt-4'}
-            
-            flex-col flex space-y-5`}
+          className={tw(
+            showTopics ? 'mt-12' : 'mt-4',
+            'flex-col flex space-y-5',
+          )}
           aria-labelledby="newsletter-headline"
         >
-          <section className={`${showTopics ? '' : 'hidden'}`}>
-            <h3 className={`${styles.h3} ${h3Styles}`}>
+          <section className={tw(showTopics ? '' : 'hidden')}>
+            <h3 className={tw(styles.h3, h3Styles)}>
               Select topics you care about
             </h3>
 
@@ -320,7 +320,8 @@ export default function Newsletter({
                 'border border-primaryBgSofter focus:border-primaryBgSofter',
                 'text-base leading-6',
                 'rounded-full',
-                'text-onNeutralBg placeholder-neutral',
+                'bg-white',
+                'text-gray-800 placeholder-neutral',
                 globalStyles.outline,
                 globalStyles.transitions,
               )}

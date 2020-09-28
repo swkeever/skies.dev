@@ -6,6 +6,7 @@ import {
 } from 'react-icons/fa';
 import { IoMdClose, IoIosCloseCircle } from 'react-icons/io';
 import globalStyles from '@styles/index';
+import tw from '@utils/tailwind';
 import { Alert, RemoveFunction } from './alerts';
 
 const colors = {
@@ -64,27 +65,27 @@ export default function AlertTemplate({ alert, removeAlert }: PropTypes) {
   return (
     <div
       role="alert"
-      className={` 
-      w-screen max-w-screen-xl
-      px-2 md:px-5
-      ${globalStyles.transitions}
-      `}
+      className={tw(
+        'w-screen max-w-screen-2xl',
+        'px-4',
+        globalStyles.transitions,
+      )}
     >
       <div
-        className={`
-        ${styles.bg} 
-        shadow-2xl
-        border-l-4
-        rounded-sm 
-        p-4
-        `}
+        className={tw(
+          styles.bg,
+          'shadow-2xl',
+          'border-l-4',
+          'rounded-sm',
+          'p-4',
+        )}
       >
         <div className="flex">
           <div className="flex-shrink-0">
             <styles.Icon className="h-5 w-5" />
           </div>
           <div className="ml-3">
-            <p className={`text-sm leading-5 font-medium ${styles.text}`}>
+            <p className={tw('text-sm leading-5 font-medium', styles.text)}>
               {alert.message}
             </p>
           </div>

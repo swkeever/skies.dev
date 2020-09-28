@@ -1,4 +1,4 @@
-const siteUrlShort = 'skies.dev';
+const siteUrlShort = 'www.skies.dev';
 const siteUrl = `https://${siteUrlShort}`;
 const withSiteUrl = (pathname) => `${siteUrl}${pathname}`;
 const linkedIn = 'https://www.linkedin.com/in/swkeever';

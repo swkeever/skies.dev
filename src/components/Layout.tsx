@@ -26,8 +26,8 @@ export const themes = [
       },
       inactive: {
         bg: 'bg-gray-800',
-        text: 'text-blue-700',
-        border: 'border-blue-700',
+        text: 'text-blue-600',
+        border: 'border-blue-600',
       },
     },
     icon: (props) => <ImDroplet {...props} />,
@@ -61,8 +61,8 @@ export const themes = [
       },
       inactive: {
         bg: 'bg-gray-800',
-        text: 'text-green-700',
-        border: 'border-green-700',
+        text: 'text-green-600',
+        border: 'border-green-600',
       },
     },
     icon: (props) => <ImLeaf {...props} />,
@@ -116,18 +116,18 @@ const Layout = ({ children }: { children: ReactNode }) => {
           theme,
         }}
       >
-        <AlertProvider>
-          <div
-            className={tw(
-              themeClass,
-              extraClasses,
-              'min-h-screen',
-              'h-full',
-              'flex flex-col',
-              themes[theme].className,
-            )}
-          >
-            <Header />
+        <div
+          className={tw(
+            themeClass,
+            extraClasses,
+            'min-h-screen',
+            'h-full',
+            'flex flex-col',
+            themes[theme].className,
+          )}
+        >
+          <Header />
+          <AlertProvider>
             <main
               // style={{ flex: '1 1 auto' }}
               className={tw(
@@ -139,10 +139,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
             >
               {children}
             </main>
+          </AlertProvider>
 
-            <Footer />
-          </div>
-        </AlertProvider>
+          <Footer />
+        </div>
       </LayoutContext.Provider>
     </>
   );

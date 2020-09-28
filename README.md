@@ -1,6 +1,6 @@
 # Skies Blog
 
-🔗 [https://skies.dev](https://skies.dev)
+🔗 [https://www.skies.dev](https://www.skies.dev)
 
 This project was forked from
 [Gatsby's default starter](https://github.com/gatsbyjs/gatsby-starter-default).

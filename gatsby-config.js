@@ -24,7 +24,7 @@ const gatsbyRemarkImages = {
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://skies.dev',
+    siteUrl: 'https://www.skies.dev',
     handle: 'swkeever',
     title: 'Skies',
     description: 'A software engineering blog by Sean Keever',
@@ -59,13 +59,6 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-canonical-urls',
-    //   options: {
-    //     siteUrl: 'https://www.skies.dev',
-    //   },
-    // },
-    // '@pauliescanlon/gatsby-mdx-embed',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -185,7 +178,7 @@ module.exports = {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         createLinkInHead: true,
-        exclude: ['/resume', '/contact'],
+        exclude: ['/rss.xml'],
       },
     },
     {
@@ -217,6 +210,7 @@ module.exports = {
                 allMdx(
                   limit: 25, 
                   sort: { order: DESC, fields: [frontmatter___dateModified] },
+                  filter: { fileAbsolutePath: { regex: "/content/" } }
                 ) {
                   nodes {
                     excerpt

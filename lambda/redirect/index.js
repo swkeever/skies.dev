@@ -5,7 +5,7 @@ exports.handler = (event, context, callback) => {
   const { querystring } = request;
 
   if (!host.startsWith('www.')) {
-    let newUrl = 'https://www.guidingdevelopers.com';
+    let newUrl = 'https://www.skies.dev';
 
     // Add path
     if (uri) newUrl += uri;
@@ -30,7 +30,7 @@ exports.handler = (event, context, callback) => {
     };
 
     callback(null, response);
+  } else {
+    callback(null, request);
   }
-
-  callback(null, request);
 };
