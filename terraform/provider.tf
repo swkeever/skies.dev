@@ -11,3 +11,4 @@ locals {
   cloudfront_ttl        = 31536000
 }
 
+data "aws_caller_identity" "current" {}

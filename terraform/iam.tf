@@ -10,6 +10,7 @@ data "template_file" "static_website_deployment_document" {
   vars = {
     cf_distribution_id = aws_cloudfront_distribution.s3_distribution.id
     s3_arn = aws_s3_bucket.my_bucket.arn
+    account_id = data.aws_caller_identity.current.account_id
   }
 }
 

@@ -2,7 +2,7 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "staticwebsitedeployment",
+            "Sid": "StaticSiteDeployment",
             "Effect": "Allow",
             "Action": [
                 "s3:PutObject",
@@ -12,7 +12,7 @@
                 "cloudfront:CreateInvalidation"
             ],
             "Resource": [
-                "arn:aws:cloudfront::674770168879:distribution/${cf_distribution_id}",
+                "arn:aws:cloudfront::${account_id}:distribution/${cf_distribution_id}",
                 "arn:aws:s3:::${s3_arn}",
                 "arn:aws:s3:::${s3_arn}/*"
             ]
