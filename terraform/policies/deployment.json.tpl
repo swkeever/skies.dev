@@ -12,9 +12,9 @@
                 "cloudfront:CreateInvalidation"
             ],
             "Resource": [
-                "arn:aws:cloudfront::${account_id}:distribution/${cf_distribution_id}",
-                "arn:aws:s3:::${s3_arn}",
-                "arn:aws:s3:::${s3_arn}/*"
+                "${cf_arn}",
+                "${s3_arn}",
+                "${s3_arn}/*"
             ]
         }
     ]

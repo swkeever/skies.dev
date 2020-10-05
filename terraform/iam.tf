@@ -8,9 +8,8 @@ data "template_file" "static_website_deployment_document" {
   template = file("policies/deployment.json.tpl")
 
   vars = {
-    cf_distribution_id = aws_cloudfront_distribution.s3_distribution.id
+    cf_arn = aws_cloudfront_distribution.s3_distribution.arn
     s3_arn = aws_s3_bucket.my_bucket.arn
-    account_id = data.aws_caller_identity.current.account_id
   }
 }
 
