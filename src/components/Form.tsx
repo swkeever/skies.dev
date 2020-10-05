@@ -2,41 +2,26 @@ import React, { useState } from 'react';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
 
-function LabelSpan({ label }: { label: string }) {
-  return (
-    <span
-      className={`
-        text-neutral
-        tracking-widest
-        text-sm
-      `}
-    >
-      {label}
-    </span>
-  );
-}
+const inputStyles = tw(
+  'appearance-none',
+  'bg-neutralBgSoft',
+  'border border-neutralBgSofter',
+  globalStyles.outline,
+  globalStyles.transitions,
+  'w-full',
+  'rounded-md',
+  'px-2 py-1 lg:py-2',
+  'text-onNeutralBg',
+  'mb-2 lg:mb-4',
+);
 
-const inputStyles = `
-  appearance-none
-  bg-neutralBgSoft 
-  border border-neutralBgSofter
-  ${globalStyles.outline}
-  ${globalStyles.transitions}
-  w-full
-  rounded-md
-  px-2 
-  py-1
-  text-onNeutralBg
-  mb-2
-  lg:mb-4 
-  lg:py-2
-`;
+const labelStyles = tw('text-neutralBold');
 
 export default function Form() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [subject, setSubject] = useState('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [subject, setSubject] = useState<string>('');
 
   return (
     <form
@@ -48,10 +33,10 @@ export default function Form() {
       <input type="text" name="_gotcha" className="hidden" />
       <section className="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 xl:gap-x-5">
         <label htmlFor="name">
-          <LabelSpan label="Name" />
+          <span className={labelStyles}>Name</span>
           <input
             value={name}
-            onChange={(e) => setName(() => e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             className={inputStyles}
             name="name"
             id="name"
@@ -60,10 +45,10 @@ export default function Form() {
           />
         </label>
         <label htmlFor="email">
-          <LabelSpan label="Email" />
+          <span className={labelStyles}>Email</span>
           <input
             value={email}
-            onChange={(e) => setEmail(() => e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className={inputStyles}
             name="email"
             id="email"
@@ -73,11 +58,11 @@ export default function Form() {
         </label>
       </section>
 
-      <label htmlFor={subject}>
-        <LabelSpan label="Subject" />
+      <label htmlFor="subject">
+        <span className={labelStyles}>Subject</span>
         <input
           value={subject}
-          onChange={(e) => setSubject(() => e.target.value)}
+          onChange={(e) => setSubject(e.target.value)}
           className={inputStyles}
           name="subject"
           id="subject"
@@ -86,11 +71,11 @@ export default function Form() {
         />
       </label>
 
-      <label htmlFor={name}>
-        <LabelSpan label="Message" />
+      <label htmlFor="message">
+        <span className={labelStyles}>Message</span>
         <textarea
           value={message}
-          onChange={(e) => setMessage(() => e.target.value)}
+          onChange={(e) => setMessage(e.target.value)}
           className={tw(inputStyles, 'h-48', 'resize-none')}
           name="message"
           id="message"

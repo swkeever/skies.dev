@@ -1,9 +1,14 @@
+/* eslint-disable lines-around-directive */
+/* eslint-disable strict */
+'use strict';
+
 exports.handler = (event, context, callback) => {
   const { request } = event.Records[0].cf;
   const { uri } = request;
   const host = request.headers.host[0].value;
   const { querystring } = request;
 
+  // Make sure the URL starts with "www." and ends with "/"
   if (!host.startsWith('www.')) {
     let newUrl = 'https://www.skies.dev';
 

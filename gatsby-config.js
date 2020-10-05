@@ -16,7 +16,8 @@ const gatsbyRemarkImages = {
     backgroundColor: 'transparent',
 
     // As much as I want the captions, they throw errors in the console.
-    showCaptions: true,
+    // Also, messes up the CSS in markdown.
+    // showCaptions: true,
 
     linkImagesToOriginal: false,
   },

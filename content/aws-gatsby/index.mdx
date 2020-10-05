@@ -48,8 +48,8 @@ You'll need to give Terraform programmatic access to create resources in AWS.
 See the
 [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 if you need information setting this up. In general, it's best practice to
-follow the **principle of least privilege** and give Terraform and GitHub
-Actions only the permissions it needs to do its job—and nothing more.
+follow the **principle of least privilege** and give Terraform only the
+permissions it needs to do its job—and nothing more.
 
 To get a crash course of what we're going to be doing, start with the following
 video. Don't worry if everything doesn't make sense right away. We're going to
@@ -455,12 +455,14 @@ https://www.youtube.com/watch?v=RRQ5-M6-8Wc
 
 First, let's write our Lambda function in `lambda/redirect/index.js`. The name
 doesn't matter so just pick a name and folder structure that makes sense for
-your project. The implementation is very similar to the one mentioned in the
+your project. The implementation is similar to the one mentioned in the
 video.
 
 ```javascript
 // lambda/redirect/index.js
 
+/* eslint-disable lines-around-directive */
+/* eslint-disable strict */
 'use strict';
 
 exports.handler = (event, context, callback) => {
@@ -469,8 +471,9 @@ exports.handler = (event, context, callback) => {
   const host = request.headers.host[0].value;
   const { querystring } = request;
 
-  if (!host.startsWith('www.')) {
-    let newUrl = 'https://www.yourdomain.com';
+  // Make sure the URL starts with "www." and ends with "/"
+  if (!host.startsWith('www.') || !uri.endsWith('/')) {
+    let newUrl = 'https://www.skies.dev';
 
     // Add path
     if (uri) newUrl += uri;
