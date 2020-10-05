@@ -5,7 +5,7 @@ resource "aws_iam_policy" "static_website_deployment_policy" {
 }
 
 data "template_file" "static_website_deployment_document" {
-  template = file("policies/deployment.json.tpl")
+  template = file("policies/deploy.json.tpl")
 
   vars = {
     cf_arn = aws_cloudfront_distribution.s3_distribution.arn
