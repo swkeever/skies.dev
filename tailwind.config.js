@@ -4,14 +4,14 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 // primary blue #3F83F8 (500), #1C64F2 (600)
 
 module.exports = {
-  // purge: [
-  //   './**/*.html',
-  //   './**/*.jsx',
-  //   './**/*.tsx',
-  //   './**/*.js',
-  //   './**/*.ts',
-  //   './content/**/*.mdx',
-  // ],
+  purge: [
+    './**/*.html',
+    './**/*.jsx',
+    './**/*.tsx',
+    './**/*.js',
+    './**/*.ts',
+    './content/**/*.mdx',
+  ],
   experimental: {
     applyComplexClasses: true,
   },
