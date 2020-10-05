@@ -89,4 +89,8 @@ module.exports = [
     name: 'Accessibility',
     weight: 5,
   },
+  {
+    name: 'AWS',
+    weight: 3,
+  },
 ].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));

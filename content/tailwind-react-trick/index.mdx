@@ -1,6 +1,6 @@
 ---
 datePublished: 2020-08-29
-dateModified: 2020-08-29
+dateModified: 2020-09-29
 title: Simple Trick to Clean Up Tailwind CSS in React
 description:
   Here's a trick I like to do to clean up Tailwind CSS in React projects.
@@ -149,10 +149,10 @@ function Hero() {
 
 Easily include JavaScript sources.
 
-```jsx {diff}
+```jsx
 import Logo from '@assets/logo.svg';
 import tw from '@utils/tailwind';
-+ import globalStyles from '@styles';
+import globalStyles from '@styles'; // highlight-line
 
 function Hero() {
   return (
@@ -162,7 +162,7 @@ function Hero() {
         'mt-2 mb-4', // spacing
         'w-full h-auto', // size
         'text-blue-600 fill-current', // color
-+        globalStyles.transitions,
+        globalStyles.transitions, // highlight-line
       )}
     />
   );

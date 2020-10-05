@@ -112,7 +112,7 @@ export default function About({ color = 'footer' }) {
                   'px-5 py-3',
                   'border border-transparent',
                   'text-base leading-6 font-semibold',
-                  'rounded-full',
+                  'rounded-lg',
                   styles.button,
                   'shadow',
                   globalStyles.outline,

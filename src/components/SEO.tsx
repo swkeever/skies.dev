@@ -12,10 +12,6 @@ type SEO = {
   canonicalUrl: string;
   image: {
     src: string;
-    dims: {
-      width: string;
-      height: string;
-    };
     type: string;
   };
   twitter: string;
@@ -24,23 +20,17 @@ type SEO = {
 
 export default function SEO({
   title = '',
-  description,
+  description = '',
   image = null,
-  imageDims = null,
   article = false,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  keywords,
+  keywords = [],
   schemaMarkup = null,
 }: {
   title?: string;
-  description: string;
+  description?: string;
   image?: FluidObject;
-  imageDims?: {
-    width: number;
-    height: number;
-  };
   article?: boolean;
-  keywords: string[];
+  keywords?: string[];
   schemaMarkup?: any;
 }) {
   const { site, logo, avatar } = useStaticQuery(graphql`
@@ -80,10 +70,6 @@ export default function SEO({
     canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
     image: {
       src: image ? image.src : logo.childImageSharp.fixed.src,
-      dims: {
-        width: imageDims ? imageDims.width.toString() : '1200',
-        height: imageDims ? imageDims.height.toString() : '630',
-      },
       type: image
         ? image.base64.substring(
           image.base64.indexOf(':') + 1,
@@ -151,8 +137,6 @@ export default function SEO({
         <meta property="og:image" content={withSiteUrl(seo.image.src)} />
         <meta property="og:image:type" content={seo.image.type} />
         <meta property="og:image:url" content={withSiteUrl(seo.image.src)} />
-        <meta property="og:image:width" content={seo.image.dims.width} />
-        <meta property="og:image:height" content={seo.image.dims.height} />
         <meta property="og:image:alt" content={seo.title} />
         {seo.article && <meta property="og:type" content="article" />}
         <script type="application/ld+json">{JSON.stringify(schema)}</script>

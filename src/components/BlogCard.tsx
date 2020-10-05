@@ -48,14 +48,24 @@ export default function BlogCard({ blog }: { blog: Blog }) {
           <p className="mt-3 text-base leading-6 text-neutral mt-6">
             {blog.description}
           </p>
-          <div className="flex items-center mt-6 text-sm leading-5 text-neutralSoft">
-            <time dateTime={blog.date.modified}>{blog.date.modified}</time>
-            <span className="mx-1">&middot;</span>
-            <span>
-              {blog.timeToRead}
-              &nbsp;min read
+          <dl className="flex items-center mt-6 text-sm leading-5 text-neutralSoft">
+            <div>
+              <dt className="sr-only">Date modified</dt>
+              <dd>
+                <time dateTime={blog.date.modified}>{blog.date.modified}</time>
+              </dd>
+            </div>
+            <span aria-hidden="true" className="mx-1">
+              &middot;
             </span>
-          </div>
+            <div>
+              <dt className="sr-only">Time to read</dt>
+              <dd>
+                {blog.timeToRead}
+                &nbsp;min read
+              </dd>
+            </div>
+          </dl>
         </section>
       </article>
     </Link>

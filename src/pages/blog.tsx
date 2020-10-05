@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
@@ -13,32 +13,7 @@ import blogCategories from '../utils/blog-categories';
 import Logo from '../../assets/logo.svg';
 import Newsletter from '../components/Newsletter';
 import siteConfig from '../../site.config';
-
-export type BlogFrontmatter = {
-  title: string;
-  date: string;
-  category: number;
-  description: string;
-  image: {
-    childImageSharp: {
-      fluid: FluidObject;
-    };
-  };
-};
-
-export type BlogMarkdownRemark = {
-  allMdx: {
-    nodes: {
-      frontmatter: BlogFrontmatter;
-      id: string;
-      timeToRead: number;
-      rawBody: string;
-      fields: {
-        slug: string;
-      };
-    }[];
-  };
-};
+import { BlogIndexQuery, PageQuery } from '../../graphql-types';
 
 export type Blog = {
   id: string;
@@ -80,7 +55,7 @@ type Category = {
 
 const categories: Category[] = blogCategories;
 
-export function gqlResponseToBlogs(data): Blog[] {
+export function gqlResponseToBlogs(data: PageQuery): Blog[] {
   return data.allMdx.nodes.map((node) => {
     const { id, timeToRead, rawBody } = node;
     const {
@@ -114,44 +89,44 @@ export function gqlResponseToBlogs(data): Blog[] {
   });
 }
 
-export default function BlogsPage() {
-  const data: BlogMarkdownRemark = useStaticQuery(graphql`
-    query {
-      allMdx(
-        sort: {
-          order: DESC
-          fields: [frontmatter___dateModified, frontmatter___datePublished]
-        }
-        filter: { fileAbsolutePath: { regex: "/content/" } }
-      ) {
-        nodes {
-          frontmatter {
-            title
-            datePublished(formatString: "MMMM DD, YYYY")
-            dateModified(formatString: "MMMM DD, YYYY")
-            category
-            description
-            imagePhotographer
-            imageUrl
-            image {
-              childImageSharp {
-                fluid(maxWidth: 700) {
-                  ...GatsbyImageSharpFluid
-                }
+export const blogPageQuery = graphql`
+  query BlogIndex {
+    allMdx(
+      sort: {
+        order: DESC
+        fields: [frontmatter___dateModified, frontmatter___datePublished]
+      }
+      filter: { fileAbsolutePath: { regex: "/content/" } }
+    ) {
+      nodes {
+        frontmatter {
+          title
+          datePublished(formatString: "MMMM DD, YYYY")
+          dateModified(formatString: "MMMM DD, YYYY")
+          category
+          description
+          keywords
+          imagePhotographer
+          imageUrl
+          image {
+            childImageSharp {
+              fluid(maxWidth: 700) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
-          fields {
-            slug
-          }
-          id
-          timeToRead
-          rawBody
         }
+        fields {
+          slug
+        }
+        id
+        timeToRead
       }
     }
-  `);
+  }
+`;
 
+export default function BlogsPage({ data }: { data: BlogIndexQuery }) {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
 
@@ -181,9 +156,9 @@ export default function BlogsPage() {
   useEffect(() => {
     const s = new JsSearch.Search('id');
     s.addIndex('title');
+    s.addIndex('keywords');
     s.addIndex('description');
     s.addIndex(['category', 'name']);
-    s.addIndex('body');
     s.addDocuments(blogs);
     setSearch(s);
   }, []);
@@ -314,9 +289,9 @@ export default function BlogsPage() {
           <nav
             className={tw(
               'sm:px-6 px-4',
-              'max-w-screen-xl',
+              'max-w-screen-2xl',
               'mx-auto',
-              'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 grid-rows-none',
+              'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-rows-none',
             )}
           >
             {blogs.map((blog) => (
@@ -335,7 +310,7 @@ export default function BlogsPage() {
           />
         )}
       </section>
-      <Newsletter showTopics color="neutral" />
+      <Newsletter color="neutral" />
     </>
   );
 }

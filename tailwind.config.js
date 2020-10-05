@@ -4,16 +4,22 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 // primary blue #3F83F8 (500), #1C64F2 (600)
 
 module.exports = {
-  purge: [
-    './**/*.html',
-    './**/*.jsx',
-    './**/*.tsx',
-    './**/*.js',
-    './**/*.ts',
-    './content/**/*.mdx',
-  ],
+  // purge: [
+  //   './**/*.html',
+  //   './**/*.jsx',
+  //   './**/*.tsx',
+  //   './**/*.js',
+  //   './**/*.ts',
+  //   './content/**/*.mdx',
+  // ],
+  experimental: {
+    applyComplexClasses: true,
+  },
   theme: {
     extend: {
+      // fontFamily: {
+      //   sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      // },
       colors: {
         primary: 'var(--color-primary)',
         primarySoft: 'var(--color-primarySoft)',
@@ -120,7 +126,7 @@ module.exports = {
     flexDirection: ['responsive', 'even', 'odd'],
     borderWidth: ['responsive', 'focus', 'hover'],
     outline: ['focus', 'active'],
-    translate: ['responsive', 'hover', 'focus', 'active'],
+    translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     scale: ['responsive', 'hover', 'focus', 'active'],
     transitionDuration: ['responsive', 'hover', 'focus'],
     boxShadow: ['responsive', 'hover', 'focus', 'active', 'group-hover'],

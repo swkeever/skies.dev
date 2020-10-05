@@ -12,11 +12,11 @@ const gatsbyRemarkImages = {
     // It's important to specify the maxWidth (in pixels) of
     // the content container as this plugin uses this as the
     // base for generating different widths of each image.
-    maxWidth: 1280,
+    maxWidth: 1024,
     backgroundColor: 'transparent',
 
     // As much as I want the captions, they throw errors in the console.
-    // showCaptions: true,
+    showCaptions: true,
 
     linkImagesToOriginal: false,
   },
@@ -36,6 +36,7 @@ module.exports = {
         trackingId: 'UA-168956392-1',
       },
     },
+    // 'gatsby-plugin-graphql-codegen',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -66,14 +67,6 @@ module.exports = {
           default: path.join(__dirname, './src/templates/markdown-page.tsx'),
         },
         gatsbyRemarkPlugins: [
-          // {
-          //   resolve: 'gatsby-remark-katex',
-          //   options: {
-          //     // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
-          //     strict: 'ignore',
-          //   },
-          // },
-
           { ...gatsbyRemarkImages },
           'gatsby-remark-external-links',
 
@@ -87,20 +80,69 @@ module.exports = {
               removeAccents: true,
             },
           },
-
-          // {
-          //   resolve: 'gatsby-remark-embed-youtube',
-          //   options: {
-          //     width: 800,
-          //     height: 400,
-          //   },
-          // },
-          'gatsby-remark-responsive-iframe',
           {
-            resolve: 'gatsby-remark-vscode',
+            resolve: 'gatsby-remark-prismjs',
             options: {
-              theme: 'Community Material Theme Darker', // From package.json: contributes.themes[0].label
-              extensions: ['vsc-community-material-theme'], // From package.json: name
+              // Class prefix for <pre> tags containing syntax highlighting;
+              // defaults to 'language-' (e.g. <pre class="language-js">).
+              // If your site loads Prism into the browser at runtime,
+              // (e.g. for use with libraries like react-live),
+              // you may use this to prevent Prism from re-processing syntax.
+              // This is an uncommon use-case though;
+              // If you're unsure, it's best to use the default value.
+              classPrefix: 'language-',
+              // This is used to allow setting a language for inline code
+              // (i.e. single backticks) by creating a separator.
+              // This separator is a string and will do no white-space
+              // stripping.
+              // A suggested value for English speakers is the non-ascii
+              // character '›'.
+              inlineCodeMarker: null,
+              // This lets you set up language aliases.  For example,
+              // setting this to '{ sh: "bash" }' will let you use
+              // the language "sh" which will highlight using the
+              // bash highlighter.
+              aliases: {},
+              // This toggles the display of line numbers globally alongside the code.
+              // To use it, add the following line in gatsby-browser.js
+              // right after importing the prism color scheme:
+              //  require("prismjs/plugins/line-numbers/prism-line-numbers.css")
+              // Defaults to false.
+              // If you wish to only show line numbers on certain code blocks,
+              // leave false and use the {numberLines: true} syntax below
+              showLineNumbers: false,
+              // If setting this to true, the parser won't handle and highlight inline
+              // code used in markdown i.e. single backtick code like `this`.
+              noInlineHighlight: true,
+              // This adds a new language definition to Prism or extend an already
+              // existing language definition. More details on this option can be
+              // found under the header "Add new language definition or extend an
+              // existing language" below.
+              languageExtensions: [
+                {
+                  language: 'superscript',
+                  extend: 'javascript',
+                  definition: {
+                    superscript_types: /(SuperType)/,
+                  },
+                  insertBefore: {
+                    function: {
+                      superscript_keywords: /(superif|superelse)/,
+                    },
+                  },
+                },
+              ],
+              // Customize the prompt used in shell output
+              // Values below are default
+              prompt: {
+                user: 'root',
+                host: 'localhost',
+                global: false,
+              },
+              // By default the HTML entities <>&'" are escaped.
+              // Add additional HTML escapes by providing a mapping
+              // of HTML entities and their escape value IE: { '}': '&#123;' }
+              escapeEntities: {},
             },
           },
           {
@@ -135,9 +177,6 @@ module.exports = {
         extensions: ['css', 'html', 'js', 'svg'],
       },
     },
-
-    'gatsby-plugin-react-helmet',
-
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -148,7 +187,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-minify-html',
-    'gatsby-plugin-remove-serviceworker',
+    // 'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -255,9 +294,6 @@ module.exports = {
         // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
       },
     },
-    'gatsby-plugin-netlify',
-    'gatsby-plugin-netlify-cache',
-    // 'gatsby-plugin-remove-trailing-slashes',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

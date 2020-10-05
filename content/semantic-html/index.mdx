@@ -1,6 +1,6 @@
 ---
 datePublished: 2020-09-12
-dateModified: 2020-09-12
+dateModified: 2020-09-29
 title: Improve Accessibility with Semantic HTML
 description: Give Googlebot some context when crawling your webpage.
 category: 1
@@ -95,9 +95,8 @@ something more _semantic_.
 Since the blog card describes a self-contained piece of content, we will swap
 the parent `<div>` with `<article>`.
 
-```html {diff}
-- <div>
-+ <article>
+```html
+<article>
   <a>
     <div>
       <img />
@@ -120,8 +119,7 @@ the parent `<div>` with `<article>`.
       </div>
     </div>
   </a>
-- </div>
-+ </article>
+</article>
 ```
 
 Next, let's go ahead and section out the content from the image.
@@ -129,16 +127,14 @@ Next, let's go ahead and section out the content from the image.
 We'll put the copy in its own `<section>` and describe the image as a
 `<figure>`.
 
-```html {diff}
+```html
 <article>
   <a>
--   <div>
-+   <figure>
+    <figure>
       <img />
--   </div>
-+   </figure>
--   <div>
-+   <section>
+    </figure>
+
+    <section>
       <div>
         <h2>
           Semantic HTML
@@ -154,8 +150,7 @@ We'll put the copy in its own `<section>` and describe the image as a
           3 min read
         </span>
       </div>
--   </div>
-+   </section>
+    </section>
   </a>
 </article>
 ```
@@ -163,32 +158,28 @@ We'll put the copy in its own `<section>` and describe the image as a
 Finally, we'll put the title of the blog in a `<header>` and put the blog's meta
 data inside of a `<footer>`.
 
-```html {diff}
-<article>
+```html
+<article> 
   <a>
     <section>
       <img />
     </section>
     <section>
--      <div>
-+      <header>
+      <header>
         <h2>
           Semantic HTML
         </h2>
--      </div>
-+      </header>
-       <p>
+      </header>
+      <p>
         This is a description of the blog.
-       </p>
--      <div>
-+      <footer>
+      </p>
+      <footer>
         <time>September 11, 2020</time>
         <span>&middot;</span>
         <span>
           3 min read
         </span>
--      </div>
-+      </footer>
+      </footer>
     </section>
   </a>
 </article>

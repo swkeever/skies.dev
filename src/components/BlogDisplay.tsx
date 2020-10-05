@@ -3,6 +3,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import { Link } from '@reach/router';
 import tw from '@utils/tailwind';
+import { Blog } from '@pages/blog';
 import BlogCard from './BlogCard';
 import routes from '../utils/routes';
 
@@ -15,7 +16,12 @@ type PropTypes = {
 export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
   return (
     <div
-      className={tw('mx-auto', 'max-w-screen-md  xl:max-w-screen-2xl', 'px-4')}
+      className={tw(
+        'mx-auto',
+        'clearfix',
+        'max-w-screen-md xl:max-w-screen-2xl',
+        'px-4',
+      )}
     >
       <header className={tw('flex flex-col lg:items-center')}>
         <h2
@@ -53,16 +59,31 @@ export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
       <Link
         className={tw(
           'block',
-          'text-onNeutralBg hover:text-onNeutralBgLinkHover',
+          'text-onNeutralBg hover:text-onNeutralBgLink',
           'mt-8 ml-auto',
+          // 'px-4 py-2',
           'font-semibold text-lg',
-          'flex justify-end items-center',
+          'float-right',
+          'group',
+          // 'rounded-full',
+          // 'hover:bg-primaryBgSoft',
+          // 'transform hover:translate-y-0 translate-y-px active:translate-y-px',
+          // 'hover:shadow-xs',
           globalStyles.transitions,
         )}
         to={routes.blog}
       >
         See all publications
-        <FaArrowRight className={tw('inline-block', 'ml-1', 'text-xl')} />
+        <FaArrowRight
+          className={tw(
+            'inline-block',
+            'ml-1',
+            'text-xl',
+            'transform group-hover:translate-x-2',
+
+            'transition-transform duration-500 ease-in-out',
+          )}
+        />
       </Link>
     </div>
   );

@@ -77,7 +77,7 @@ export default function Hero() {
               />
             </h1>
             <p className={tw(globalStyles.transitions, colors.p)}>
-              A website by
+              A blog by
               {' '}
               <Link
                 to={routes.about}

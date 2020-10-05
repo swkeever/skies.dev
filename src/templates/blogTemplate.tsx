@@ -21,6 +21,9 @@ import TwitterFollowButton from '@components/TwitterFollowButton';
 import tw from '@utils/tailwind';
 import BlogDisplay from '@components/BlogDisplay';
 import About from '@components/About';
+import { graphql } from 'gatsby';
+import { BlogPostQuery } from 'graphql-types';
+import { gqlResponseToBlogs } from '@pages/blog';
 
 const styles = {
   ctaLinks: tw(
@@ -31,7 +34,7 @@ const styles = {
   ),
 
   meta: {
-    li: tw('md:text-center', 'py-2 md:py-4'),
+    li: tw('md:text-center', 'py-2 md:py-4', 'flex justify-center space-x-1'),
   },
 
   ctaLinkIcons: tw('inline', 'mb-1'),
@@ -59,22 +62,47 @@ const colors = {
   },
 }.primary;
 
-export default function Blog({ pageContext }) {
+export default function BlogPost({
+  data: {
+    blog: {
+      fields: { slug },
+      timeToRead,
+      body,
+      headings,
+      frontmatter: {
+        title,
+        description,
+        dateModified,
+        datePublished,
+        image: {
+          childImageSharp: { fluid: imageFluid },
+        },
+        imageUrl,
+        imagePhotographer,
+        keywords,
+        tags,
+      },
+    },
+    logo: {
+      childImageSharp: {
+        fixed: { src: logoImageSrc },
+      },
+    },
+    similarBlogs,
+  },
+}: BlogPostQuery) {
   const { pathname } = useLocation();
-  const {
-    similarBlogs, blog, headings, logo,
-  } = pageContext;
 
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': links.withSiteUrl(blog.slug),
+      '@id': links.withSiteUrl(slug),
     },
-    headline: blog.title,
-    description: blog.description,
-    image: links.withSiteUrl(blog.image.fluid.src),
+    headline: title,
+    description,
+    image: links.withSiteUrl(imageFluid.src),
     author: {
       '@type': 'Person',
       name: 'Sean Keever',
@@ -84,25 +112,21 @@ export default function Blog({ pageContext }) {
       name: 'Skies',
       logo: {
         '@type': 'ImageObject',
-        url: links.withSiteUrl(logo),
+        url: links.withSiteUrl(logoImageSrc),
       },
     },
-    datePublished: blog.date.published,
-    dateModified: blog.date.modified,
+    datePublished,
+    dateModified,
   };
 
   return (
     <>
       <SEO
         article
-        title={blog.title}
-        description={blog.description}
-        keywords={blog.keywords}
-        image={blog.image.fluid}
-        imageDims={{
-          width: blog.image.fluid.presentationWidth,
-          height: blog.image.fluid.presentationHeight,
-        }}
+        title={title}
+        description={description}
+        keywords={keywords}
+        image={imageFluid}
         schemaMarkup={schema}
       />
       <article>
@@ -123,7 +147,7 @@ export default function Blog({ pageContext }) {
                 globalStyles.transitions,
               )}
             >
-              {blog.title}
+              {title}
             </h1>
           </div>
         </header>
@@ -149,7 +173,7 @@ export default function Blog({ pageContext }) {
               <li key="twitter">
                 <ExternalLink
                   href={links.shareTo.twitter({
-                    title: blog.title,
+                    title,
                     pathname,
                   })}
                   className={styles.shareLink}
@@ -169,8 +193,8 @@ export default function Blog({ pageContext }) {
                 <ExternalLink
                   className={styles.shareLink}
                   href={links.shareTo.linkedIn({
-                    title: blog.title,
-                    description: blog.description,
+                    title,
+                    description,
                     pathname,
                   })}
                 >
@@ -182,7 +206,7 @@ export default function Blog({ pageContext }) {
           <div
             className={tw('col-span-12 px-2 md:px-6 lg:col-span-8', 'mb-64')}
           >
-            <ul
+            <dl
               className={tw(
                 'grid md:grid-cols-3',
                 'text-sm font-light',
@@ -191,28 +215,29 @@ export default function Blog({ pageContext }) {
                 globalStyles.transitions,
               )}
             >
-              <li className={styles.meta.li}>
-                <time dateTime={blog.date.published}>
-                  Published
-                  {' '}
-                  {blog.date.published}
-                </time>
-              </li>
+              <div className={styles.meta.li}>
+                <dt className="inline">Published</dt>
+                <dd>
+                  <time dateTime={datePublished}>{datePublished}</time>
+                </dd>
+              </div>
 
-              <li className={styles.meta.li}>
-                <time dateTime={blog.date.modified}>
-                  Last modified
-                  {' '}
-                  {blog.date.modified}
-                </time>
-              </li>
+              <div className={styles.meta.li}>
+                <dt>Last modified</dt>
+                <dd>
+                  <time dateTime={dateModified}>{dateModified}</time>
+                </dd>
+              </div>
 
-              <li className={styles.meta.li}>
-                {blog.timeToRead}
-                {' '}
-                min read
-              </li>
-            </ul>
+              <div className={styles.meta.li}>
+                <dt className="sr-only">Time to read</dt>
+                <dd>
+                  {timeToRead}
+                  {' '}
+                  min read
+                </dd>
+              </div>
+            </dl>
 
             <figure className={tw('mb-24')}>
               <Img
@@ -224,8 +249,8 @@ export default function Blog({ pageContext }) {
                   'mx-auto',
                   'shadow-xl',
                 )}
-                fluid={blog.image.fluid}
-                alt={blog.title}
+                fluid={imageFluid}
+                alt={title}
               />
               <figcaption className="mt-4 text-center text-neutral">
                 <p>
@@ -233,20 +258,32 @@ export default function Blog({ pageContext }) {
                   {' '}
                   <ExternalLink
                     className="underline text-neutral hover:text-neutralBold"
-                    href={blog.image.url}
+                    href={imageUrl}
                   >
-                    {blog.image.photographer}
+                    {imagePhotographer}
                   </ExternalLink>
                 </p>
               </figcaption>
             </figure>
 
-            <div className="mt-4 lg:hidden">
-              <h2 className="mb-2 font-bold tracking-wider uppercase text-neutral">
+            <div
+              className={tw(
+                'mt-4',
+                'mx-auto',
+                'lg:hidden',
+                'bg-neutralBgSoft',
+                'px-5 py-10',
+                'rounded-lg',
+                'shadow-inner',
+                'max-w-screen-sm',
+                'flex flex-col justify-center',
+              )}
+            >
+              <h2 className="mb-4 font-bold tracking-wider uppercase text-neutral">
                 Table of Contents
               </h2>
               <TableOfContents
-                className="mb-8"
+                className={tw('')}
                 watch={false}
                 headings={headings}
               />
@@ -257,12 +294,12 @@ export default function Blog({ pageContext }) {
                 ...shortCodes,
               }}
             >
-              <MDXRenderer>{blog.body}</MDXRenderer>
+              <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
           </div>
-          <aside className="relative hidden col-span-3 lg:block">
+          <aside aria-hidden className="relative hidden col-span-3 lg:block">
             <div className="sticky top-32">
-              <h2 className="mt-4 mb-2 font-bold tracking-wider uppercase text-neutral">
+              <h2 className="mt-4 mb-4 font-bold tracking-wider uppercase text-neutral">
                 Table of Contents
               </h2>
               <TableOfContents headings={headings} />
@@ -291,14 +328,16 @@ export default function Blog({ pageContext }) {
         )}
       >
         <BlogDisplay
-          blogs={similarBlogs}
+          blogs={gqlResponseToBlogs({
+            allMdx: similarBlogs,
+          })}
           subtitle="Here are some other articles you may enjoy."
           title="Related articles"
         />
       </section>
 
       <Newsletter
-        tags={blog.tags}
+        tags={tags}
         color="neutral"
         copy="Want more articles like this?"
       />
@@ -306,3 +345,70 @@ export default function Blog({ pageContext }) {
     </>
   );
 }
+
+export const blogPostPageQuery = graphql`
+  query BlogPost($id: String, $similarBlogs: [String]) {
+    blog: mdx(id: { eq: $id }) {
+      id
+      timeToRead
+      body
+      headings {
+        depth
+        value
+      }
+      frontmatter {
+        title
+        dateModified(formatString: "MMMM DD, YYYY")
+        datePublished(formatString: "MMMM DD, YYYY")
+        category
+        keywords
+        description
+        image {
+          childImageSharp {
+            fluid(maxWidth: 1280) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        imageUrl
+        imagePhotographer
+        tags
+      }
+      fields {
+        slug
+      }
+    }
+    logo: file(relativePath: { eq: "logo.jpg" }) {
+      childImageSharp {
+        fixed(height: 630, width: 1200) {
+          src
+        }
+      }
+    }
+    similarBlogs: allMdx(filter: { id: { in: $similarBlogs } }) {
+      nodes {
+        id
+        timeToRead
+        frontmatter {
+          title
+          dateModified(formatString: "MMMM DD, YYYY")
+          datePublished(formatString: "MMMM DD, YYYY")
+          category
+          description
+          imagePhotographer
+          imageUrl
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1280) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import globalStyles from '@styles/index';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Hero from '@components/Hero';
 import tw from '@utils/tailwind';
 import BlogDisplay from '@components/BlogDisplay';
@@ -8,46 +8,46 @@ import Form from '../components/Form';
 import SEO from '../components/SEO';
 import Newsletter from '../components/Newsletter';
 import { gqlResponseToBlogs, Blog } from './blog';
+import { PageQuery } from '../../graphql-types';
 
-const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allMdx(
-        limit: 4
-        sort: {
-          order: DESC
-          fields: [frontmatter___dateModified, frontmatter___datePublished]
-        }
-        filter: { fileAbsolutePath: { regex: "/content/" } }
-      ) {
-        nodes {
-          frontmatter {
-            title
-            datePublished(formatString: "MMMM DD, YYYY")
-            dateModified(formatString: "MMMM DD, YYYY")
-            category
-            description
-            imagePhotographer
-            imageUrl
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1280) {
-                  ...GatsbyImageSharpFluid
-                }
+export const homePageQuery = graphql`
+  query HomePage {
+    allMdx(
+      limit: 4
+      sort: {
+        order: DESC
+        fields: [frontmatter___dateModified, frontmatter___datePublished]
+      }
+      filter: { fileAbsolutePath: { regex: "/content/" } }
+    ) {
+      nodes {
+        frontmatter {
+          title
+          datePublished(formatString: "MMMM DD, YYYY")
+          dateModified(formatString: "MMMM DD, YYYY")
+          category
+          description
+          imagePhotographer
+          imageUrl
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1280) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
-          fields {
-            slug
-          }
-          id
-          timeToRead
-          rawBody
         }
+        fields {
+          slug
+        }
+        id
+        timeToRead
       }
     }
-  `);
+  }
+`;
 
+const IndexPage = ({ data }: { data: PageQuery }) => {
   const blogs: Blog[] = gqlResponseToBlogs(data);
 
   return (
@@ -103,7 +103,7 @@ const IndexPage = () => {
           <Form />
         </div>
       </section>
-      <Newsletter showTopics color="primarySoft" />
+      <Newsletter color="neutralSoft" />
     </div>
   );
 };

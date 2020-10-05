@@ -75,7 +75,12 @@ export default function ThemeToggle() {
                 setTheme(() => index);
               }}
             >
-              <span className="sr-only">Blue theme</span>
+              <span className="sr-only">
+                Change to
+                {th.name}
+                {' '}
+                theme
+              </span>
               <span className={tw(styles.themeIcon)}>
                 <th.icon className={tw(styles.transform, colors.text)} />
               </span>
@@ -96,6 +101,7 @@ export default function ThemeToggle() {
           'cursor-pointer',
           globalStyles.transitions,
           globalStyles.outline,
+          styles.transform,
         )}
         onClick={() => {
           trackCustomEvent({
@@ -112,7 +118,7 @@ export default function ThemeToggle() {
           setLightTheme(!lightTheme);
         }}
       >
-        <span className="sr-only">Change theme</span>
+        <span className="sr-only">Change light/dark mode</span>
         <span
           aria-hidden="true"
           className={tw(

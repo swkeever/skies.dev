@@ -5,7 +5,6 @@ module.exports = {
   home: '/',
   contact: '/contact',
   about: '/about',
-  resume: '/resume',
   sitemap: '/sitemap.xml',
   uses: '/uses',
   rss: '/rss.xml',

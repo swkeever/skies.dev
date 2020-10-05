@@ -15,7 +15,6 @@
   --color-onPrimarySofter: theme('colors.blue.100');
 
   --color-footerBg: var(--color-neutral-800);
-  --caret-color: var(--color-onNeutralBg);
 }
 
 .theme-blue {
@@ -215,6 +214,10 @@ html {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
+input {
+  caret-color: var(--color-onNeutralBg);
+}
+
 @screen sm {
   nav {
     padding-bottom: env(safe-area-inset-bottom);
@@ -355,11 +358,52 @@ Used for images in MDX files.
 }
 
 .gatsby-resp-image-figcaption {
-  @apply max-w-screen-lg mt-1 text-sm leading-5 text-center text-neutral;
+  @apply max-w-screen-lg mt-1 lg:mt-4 text-sm lg:text-base leading-5 text-center text-neutral;
 }
-
-@tailwind utilities;
 
 /* @media only screen and (max-width: theme('screens.sm')) {
   @apply text-xs;
 } */
+.gatsby-highlight-code-line {
+  background-color: theme('colors.gray.800');
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid theme('colors.gray.600');
+  transition: all .2s ease-in-out;
+}
+
+/**
+ * Add back the container background-color, border-radius, padding, margin
+ * and overflow that we removed from <pre>.
+ */
+.gatsby-highlight {
+  background-color: theme('colors.gray.900');
+  border-radius: 0.3em;
+  padding: 1em;
+  overflow: auto;
+  @apply my-5 lg:my-10;
+}
+
+/**
+ * Remove the default PrismJS theme background-color, border-radius, margin,
+ * padding and overflow.
+ * 1. Make the element just wide enough to fit its content.
+ * 2. Always fill the visible space in .gatsby-highlight.
+ * 3. Adjust the position of the line numbers
+ */
+.gatsby-highlight pre[class*="language-"] {
+  background-color: transparent;
+  /* margin: 0; */
+  padding: 0;
+  overflow: initial;
+  float: left;
+  /* 1 */
+  min-width: 100%;
+  /* 2 */
+}
+
+@tailwind utilities;
+

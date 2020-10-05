@@ -133,8 +133,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // you'll call `createPage` for each result
   posts.forEach(({ node }, i) => {
-    const prev = posts[i === 0 ? posts.length - 1 : i - 1].node;
-    const next = posts[i === posts.length - 1 ? 0 : i + 1].node;
+    // const prev = posts[i === 0 ? posts.length - 1 : i - 1].node;
+    // const next = posts[i === posts.length - 1 ? 0 : i + 1].node;
 
     // finds the top 4 most similar blogs
     // based on the blog tags.
@@ -195,12 +195,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // You can use the values in this context in
       // our page layout component
       context: {
-        blog: mappedBlogs[i],
-        headings: node.headings,
-        logo: result.data.file.childImageSharp.fixed.src,
-        prev,
-        next,
-        similarBlogs,
+        id: mappedBlogs[i].id,
+        similarBlogs: similarBlogs.map((b) => b.id),
       },
     });
   });

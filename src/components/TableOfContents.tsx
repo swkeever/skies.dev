@@ -4,11 +4,7 @@ import { useLocation, Link } from '@reach/router';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
 import { useActiveHash } from '../hooks/use-active-hash';
-
-type Heading = {
-  value: string;
-  depth: number;
-};
+import { BlogHeadings } from '../../graphql-types';
 
 export default function TableOfContents({
   headings,
@@ -17,24 +13,22 @@ export default function TableOfContents({
   watch = true,
   underline = false,
 }: {
-  headings: Heading[];
+  headings: BlogHeadings[];
   className?: string;
   olClassName?: string;
   watch?: boolean;
   underline?: boolean;
 }) {
   const styles = {
-    copy: `
-    text-base
-    md:text-lg
-    lg:text-xl
-    pb-1
-    ${
-  underline
-    ? 'border-b border-onNeutralBg hover:text-onNeutralBgLink hover:border-onNeutralBgLink'
-    : 'hover:border-b hover:border-onNeutralBg'
-}
-    `,
+    copy: tw(
+      'text-base md:text-lg',
+      'pb-1',
+      underline
+        ? tw(
+          'border-b border-onNeutralBg hover:text-onNeutralBgLink hover:border-onNeutralBgLink',
+        )
+        : tw('hover:border-b hover:border-onNeutralBg'),
+    ),
   };
 
   const { pathname } = useLocation();
@@ -44,7 +38,7 @@ export default function TableOfContents({
   );
 
   return (
-    <nav className={` ${className}`}>
+    <nav className={className}>
       <ol
         className={tw(
           'flex flex-col',
@@ -67,7 +61,7 @@ export default function TableOfContents({
                     'pb-1',
                     'border-b border-onNeutralBgLink',
                   )
-                  : tw('text-onNeutralBg'),
+                  : tw('text-onNeutralBgSofter'),
               )}
               to={`${pathname}#${slug}`}
             >

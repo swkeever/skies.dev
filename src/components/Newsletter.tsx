@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { setInterval, clearInterval } from 'timers';
+import React from 'react';
 import useAlert from '@lib/alerts/use-alert';
 import globalStyles from '@styles/index';
-import blogTags from '@utils/blog-tags';
-import useTypeWriter from '@lib/typewriter/use-typewriter';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import tw from '@utils/tailwind';
 
@@ -22,6 +19,12 @@ const colors = {
       checked:
         'bg-onPrimaryBgSoft text-onPrimary hover:bg-onPrimaryBgSofter border-onPrimary',
     },
+    label: tw('text-onPrimaryBgSofter'),
+    input: tw(
+      'border border-primaryBgSofter focus:border-primaryBgSofter',
+      'bg-neutralBg',
+      'text-gray-800 placeholder-neutral',
+    ),
   },
   primarySoft: {
     section: 'bg-primaryBg',
@@ -36,11 +39,17 @@ const colors = {
       unchecked: 'bg-neutralBg text-onPrimaryBgSoft hover:bg-primaryBgSoft',
       checked: 'bg-primary text-onPrimary hover:bg-primary',
     },
+    label: tw('text-primaryBold'),
+    input: tw(
+      'border border-primaryBgSofter focus:border-primaryBgSofter',
+      'bg-white',
+      'text-gray-800 placeholder-neutral',
+    ),
   },
   neutral: {
     section: 'bg-neutralBg',
     h2: 'text-onNeutralBgSoft',
-    h2Span: 'text-primaryBold',
+    h2Span: 'text-onPrimaryBgSofter',
     button: 'text-onPrimary bg-primaryBold hover:bg-primary',
     selectAll: 'text-onNeutralBg hover:bg-neutralBgSoft',
     p: 'text-neutral',
@@ -50,12 +59,18 @@ const colors = {
       unchecked: 'bg-primaryBg text-onPrimaryBgSoft hover:bg-primaryBgSoft',
       checked: 'bg-primaryBold text-onPrimary hover:bg-primary',
     },
+    label: tw('text-neutral'),
+    input: tw(
+      'border border-neutralBgSofter focus:border-primaryBgSofter',
+      'bg-neutralBgSoft',
+      'text-gray-800 placeholder-neutralSoft',
+    ),
   },
 
   neutralSoft: {
     section: 'bg-neutralBgSoft',
     h2: 'text-onNeutralBgSoft',
-    h2Span: 'text-primaryBold',
+    h2Span: 'text-onPrimaryBgSofter',
     button: 'text-onPrimary bg-primaryBold hover:bg-primary',
     selectAll: 'text-onNeutralBg hover:bg-neutralBgSofter',
     p: 'text-neutral',
@@ -65,43 +80,34 @@ const colors = {
       unchecked: 'bg-primaryBg text-onPrimaryBgSoft hover:bg-primaryBgSoft',
       checked: 'bg-primaryBold text-onPrimary hover:bg-primary',
     },
+    label: tw('text-neutralBold'),
+    input: tw(
+      'border border-neutralBgSofter focus:border-primaryBgSofter',
+      'bg-neutralBg',
+      'text-gray-800 placeholder-neutralSoft',
+    ),
   },
+};
+
+const localStyles = {
+  input: tw(
+    'appearance-none',
+    'w-full',
+    'p-3',
+    'leading-6',
+    'rounded-lg',
+    globalStyles.outline,
+    globalStyles.transitions,
+  ),
+  label: tw(''),
 };
 
 type PropTypes = {
   color: 'primary' | 'neutral' | 'neutralSoft' | 'primarySoft';
-  tags?: string[];
-  showTopics?: boolean;
-  copy?: string;
 };
-let index = 0;
 
-export default function Newsletter({
-  color,
-  tags = [],
-  showTopics = false,
-  copy = 'Get articles straight to your inbox',
-}: PropTypes) {
-  const intervalRef = useRef(null);
+export default function Newsletter({ color }: PropTypes) {
   const alert = useAlert();
-
-  const [magicName, setMagicName] = useState('Software Engineering');
-  const topic = useTypeWriter(magicName);
-  const allTags = blogTags.map(({ name }) => name);
-  const [selected, setSelected] = useState(tags.length > 0 ? tags : []);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      const currentName = allTags[index];
-      while (currentName === allTags[index]) {
-        index = Math.floor(Math.random() * allTags.length);
-      }
-      setMagicName(allTags[index]);
-    }, 3500);
-    return function clear() {
-      clearInterval(intervalRef.current);
-    };
-  }, [magicName]);
 
   const FORM_ID = '1598476';
   const FORM_URL = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
@@ -117,17 +123,6 @@ export default function Newsletter({
       // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
       label: 'Newsletter Campaign',
     });
-
-    if (selected.length === 0) {
-      const message = `
-      You must select at least one topic to subscribe to. Otherwise, you won't get any emails! 🙈
-      `;
-      alert.show(message, {
-        type: 'warning',
-        durationSeconds: 10,
-      });
-      return;
-    }
 
     const data = new FormData(e.target);
 
@@ -170,7 +165,6 @@ export default function Newsletter({
   };
 
   const styles = colors[color];
-  const h3Styles = `md:text-xl font-light mb-2 overflow-hidden whitespace-no-wrap ${globalStyles.transitions}`;
 
   return (
     <section className={tw(styles.section, globalStyles.transitions)}>
@@ -188,7 +182,7 @@ export default function Newsletter({
             styles.h2,
           )}
         >
-          {copy}
+          Get articles straight to your inbox
           <div
             className={tw(styles.h2Span, globalStyles.transitions)}
             id="newsletter-headline"
@@ -196,161 +190,62 @@ export default function Newsletter({
             Sign up for the newsletter
           </div>
         </h2>
+        <p className={tw('mt-2', styles.p, globalStyles.transitions)}>
+          I will not send you spam. Unsubscribe at any time.
+        </p>
+
         <form
           action={FORM_URL}
           method="post"
           onSubmit={handleSubmit}
-          className={tw(
-            showTopics ? 'mt-12' : 'mt-4',
-            'flex-col flex space-y-5',
-          )}
+          className={tw('mt-4')}
           aria-labelledby="newsletter-headline"
         >
-          <section className={tw(showTopics ? '' : 'hidden')}>
-            <h3 className={tw(styles.h3, h3Styles)}>
-              Select topics you care about
-            </h3>
-
-            <ul className="mt-3 flex flex-wrap">
-              {blogTags.map(({ id, name }) => {
-                const isChecked = selected.includes(name);
-                const tagId = id.toString();
-                const formId = `tag-4516-${tagId}`;
-                return (
-                  <li key={tagId}>
-                    <label htmlFor={formId}>
-                      <input
-                        className="hidden"
-                        id={formId}
-                        type="checkbox"
-                        onChange={() => {
-                          if (selected.includes(name)) {
-                            setSelected(selected.filter((t) => t !== name));
-                          } else {
-                            setSelected(selected.concat(name));
-                          }
-                        }}
-                        checked={isChecked}
-                        name="tags[]"
-                        value={tagId}
-                      />
-                      <div
-                        role="button"
-                        className={tw(
-                          'mr-3 mb-3',
-                          'px-2',
-                          'rounded-full',
-                          'font-medium',
-                          globalStyles.transitions,
-                          globalStyles.outline,
-                          'transform',
-                          isChecked
-                            ? tw(
-                              styles.tag.checked,
-                              'translate-y-0 scale-100 shadow-xs',
-                            )
-                            : tw(
-                              styles.tag.unchecked,
-                              '-translate-y-1 scale-105 shadow-lg',
-                            ),
-                        )}
-                      >
-                        {name}
-                      </div>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <button
-              className={tw(
-                globalStyles.transitions,
-                globalStyles.outline,
-                'float-right',
-                'px-2 py-1',
-                'rounded-full',
-                'mt-2',
-                styles.selectAll,
-                globalStyles.transitions,
-                globalStyles.outline,
-              )}
-              type="button"
-              onClick={() => {
-                if (selected.length === allTags.length) {
-                  setSelected([]);
-                } else {
-                  setSelected(allTags);
-                }
-              }}
-            >
-              {selected.length === allTags.length
-                ? 'Unselect all'
-                : 'Select all'}
-            </button>
-          </section>
-
-          <section>
-            {!showTopics ? null : (
-              <h3 className={tw(styles.h3, h3Styles)}>
-                Get notified when I post about
-                {' '}
-                <span
-                  className={tw(
-                    globalStyles.transitions,
-                    styles.typewriter,
-                    'font-semibold',
-                  )}
-                >
-                  {topic}
-                </span>
-              </h3>
-            )}
-
+          <label htmlFor="first_name">
+            <span className={tw(localStyles.label, styles.label)}>
+              First name
+            </span>
             <input
+              id="first_name"
+              autoComplete="off"
+              aria-label="Your first name"
+              type="text"
+              name="fields[first_name]"
+              className={tw(localStyles.input, styles.input)}
+              placeholder="John"
+            />
+          </label>
+
+          <label className={tw('mt-4', 'block')} htmlFor="email_addr">
+            <span className={tw(localStyles.label, styles.label)}>Email</span>
+            <input
+              id="email_addr"
               autoComplete="off"
               aria-label="Email address"
               type="email"
               name="email_address"
               required
-              className={tw(
-                'appearance-none',
-                'w-full',
-                'px-5 py-3',
-                'border border-primaryBgSofter focus:border-primaryBgSofter',
-                'text-base leading-6',
-                'rounded-full',
-                'bg-white',
-                'text-gray-800 placeholder-neutral',
-                globalStyles.outline,
-                globalStyles.transitions,
-              )}
-              placeholder="Enter your email"
+              className={tw(localStyles.input, styles.input)}
+              placeholder="john.doe@example.com"
             />
-            <button
-              type="submit"
-              className={tw(
-                globalStyles.transitions,
-                globalStyles.outline,
-                styles.button,
-                'w-full',
-                'mt-2',
-                'flex items-center justify-center',
-                'shadow',
-                'py-3',
-                'border border-transparent',
-                'text-base leading-6 font-medium font-bold',
-                'rounded-full',
-              )}
-            >
-              Subscribe
-            </button>
-            <p
-              className={`mt-1 font-light ${styles.p} ${globalStyles.transitions}`}
-            >
-              I will not send you spam. Unsubscribe at any time.
-            </p>
-          </section>
+          </label>
+
+          <button
+            type="submit"
+            className={tw(
+              globalStyles.transitions,
+              globalStyles.outline,
+              styles.button,
+              'shadow',
+              'mt-4',
+              'py-3 px-6',
+              'border border-transparent',
+              'text-base leading-6 font-medium font-bold',
+              'rounded-lg',
+            )}
+          >
+            Subscribe
+          </button>
         </form>
       </div>
     </section>

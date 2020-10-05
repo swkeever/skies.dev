@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   FaRegLightbulb,
   FaRegSmile,
@@ -28,12 +28,7 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
   }.primary;
 
   return (
-    <li
-      className={`    
-        tracking-wide
-        h-full w-full
-      `}
-    >
+    <li className={tw('tracking-wide', 'h-full w-full')}>
       <Link
         to={route}
         className={tw(
@@ -44,9 +39,8 @@ function Item({ route, children }: { route: string; children: ReactNode }) {
           'space-y-1 lg:space-x-2',
           'text-sm hover:no-underline',
           'transform',
-          isActive
-            ? tw(colors.linkActive, 'scale-105 -translate-y-px', 'font-medium')
-            : tw(colors.link, 'scale-100 translate-y-px'),
+          'active:scale-95',
+          isActive ? tw(colors.linkActive, 'font-medium') : tw(colors.link),
         )}
       >
         {children}

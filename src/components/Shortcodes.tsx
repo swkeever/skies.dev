@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { AnchorHTMLAttributes } from 'react';
@@ -7,7 +8,7 @@ import ExternalLink from './ExternalLink';
 
 const styles = {
   copy: tw(
-    'text-base md:text-lg lg:text-xl leading-6 lg:leading-8',
+    'text-base md:text-lg lg:text-xl leading-8',
     globalStyles.transitions,
   ),
 
@@ -24,6 +25,7 @@ const styles = {
 };
 
 const shortcodes = {
+  iframe: (props) => <iframe {...props} className={tw('my-12')} />,
   p: (props) => (
     <p
       {...props}
