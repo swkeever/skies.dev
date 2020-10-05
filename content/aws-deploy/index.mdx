@@ -28,7 +28,7 @@ image: index.jpg
 In the [previous tutorial](/blog/aws-gatsby), we set up all the infrastructure
 needed to host a Gatsby site on AWS. We defined our infrastructure as code using
 Terraform to help automate the provisioning of resources. We will be building
-off that previous tutorial
+off that previous tutorial.
 
 Now, we'll build a continuous deployment pipeline to automatically deploy our
 Gatsby site to AWS using GitHub Actions.
@@ -48,17 +48,17 @@ https://www.youtube.com/watch?v=cmdOhKveTQA
 We need to give GitHub Actions the ability to modify our S3 bucket and
 invalidate CloudFront.
 
-We'll put our policy in a separate `deployment.json.tpl` file to decouple our
+We'll put our policy in a separate `deploy.json.tpl` file to decouple our
 policies from the Terraform scripts.
 
 ```json
-// terraform/policies/deployment.json.tpl
+// terraform/policies/deploy.json.tpl
 
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "StaticWebsiteDeployment",
+      "Sid": "StaticSiteDeployment",
       "Effect": "Allow",
       "Action": [
         "s3:PutObject",
@@ -67,17 +67,13 @@ policies from the Terraform scripts.
         "s3:DeleteObject",
         "cloudfront:CreateInvalidation"
       ],
-      "Resource": [
-        "arn:aws:cloudfront::674770168879:distribution/${cf_distribution_id}",
-        "arn:aws:s3:::${s3_arn}",
-        "arn:aws:s3:::${s3_arn}/*"
-      ]
+      "Resource": ["${cf_arn}", "${s3_arn}", "${s3_arn}/*"]
     }
   ]
 }
 ```
 
-Now, let's create a `iam.tf` and load in this policy.
+Now, let's create `iam.tf` and load in this policy.
 
 ```hcl
 // terraform/iam.tf
@@ -86,9 +82,15 @@ data "template_file" "static_website_deployment_document" {
   template = file("policies/deployment.json.tpl")
 
   vars = {
-    cf_distribution_id = aws_cloudfront_distribution.s3_distribution.id
+    cf_arn = aws_cloudfront_distribution.s3_distribution.arn
     s3_arn = aws_s3_bucket.my_bucket.arn
   }
+}
+
+resource "aws_iam_policy" "static_website_deployment_policy" {
+  name = "static-website-deployment-policy"
+  description = "Deploys Gatsby site to AWS S3 and CloudFront"
+  policy = data.template_file.static_website_deployment_document.rendered
 }
 ```
 
