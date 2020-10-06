@@ -9,7 +9,7 @@ test('test', async () => {
         {
           cf: {
             request: {
-              uri: '',
+              uri: '/about',
               querystring: 'auth=test&foo=bar',
               headers: {
                 host: [

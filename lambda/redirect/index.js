@@ -2,14 +2,23 @@
 /* eslint-disable strict */
 'use strict';
 
-exports.handler = (event, context, callback) => {
+const path = require('path');
+
+function shouldAddTrailingSlash(uri) {
+  const extension = path.extname(uri);
+
+  if (extension) return false;
+
+  return !uri.endsWith('/');
+}
+
+exports.handler = async (event) => {
   const { request } = event.Records[0].cf;
   const { uri } = request;
   const host = request.headers.host[0].value;
   const { querystring } = request;
 
-  // Make sure the URL starts with "www." and ends with "/"
-  if (!host.startsWith('www.')) {
+  if (!host.startsWith('www.') || shouldAddTrailingSlash(uri)) {
     let newUrl = 'https://www.skies.dev';
 
     // Add path
@@ -21,9 +30,9 @@ exports.handler = (event, context, callback) => {
     // Add query string
     if (querystring && querystring !== '') newUrl += `?${querystring}`;
 
-    const response = {
+    return {
       status: '301',
-      statusDescription: '301 Redirect for root domain',
+      statusDescription: 'Moved Permanently',
       headers: {
         location: [
           {
@@ -33,9 +42,7 @@ exports.handler = (event, context, callback) => {
         ],
       },
     };
-
-    callback(null, response);
-  } else {
-    callback(null, request);
   }
+
+  return request;
 };
