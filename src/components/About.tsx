@@ -43,7 +43,7 @@ const colors = {
 export default function About({ color = 'footer' }) {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "about/me.jpg" }) {
+      file(relativePath: { eq: "sean-keever.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid
