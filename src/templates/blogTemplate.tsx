@@ -5,11 +5,7 @@ import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useLocation } from '@reach/router';
-import {
-  TiSocialLinkedinCircular,
-  TiSocialFacebookCircular,
-  TiSocialTwitterCircular,
-} from 'react-icons/ti';
+import { FaLinkedin, FaTwitter, FaFacebookSquare } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import links from '@utils/links';
 import SEO from '@components/SEO';
@@ -65,7 +61,7 @@ const colors = {
 export default function BlogPost({
   data: {
     blog: {
-      fields: { slug },
+      fields: { slug, author },
       timeToRead,
       body,
       headings,
@@ -141,7 +137,7 @@ export default function BlogPost({
           >
             <h1
               className={tw(
-                'lg:col-start-2 col-span-12 lg:col-span-8',
+                'col-span-12 lg:col-span-8',
                 'leading-none text-5xl lg:text-6xl font-black',
                 colors.header.h1,
                 globalStyles.transitions,
@@ -156,88 +152,91 @@ export default function BlogPost({
           className={tw(
             'max-w-screen-xl',
             'mx-auto',
-            'grid grid-cols-12 gap-8',
+            'grid grid-cols-12 gap-4',
             'relative',
           )}
         >
-          <aside className="hidden mx-auto lg:block">
-            <ul
-              className={tw(
-                'list-none',
-                'flex flex-col space-y-4',
-                'text-4xl',
-                'pt-5',
-                'sticky top-40',
-              )}
-            >
-              <li key="twitter">
-                <ExternalLink
-                  href={links.shareTo.twitter({
-                    title,
-                    pathname,
-                  })}
-                  className={styles.shareLink}
-                >
-                  <TiSocialTwitterCircular />
-                </ExternalLink>
-              </li>
-              <li key="facebook">
-                <ExternalLink
-                  className={styles.shareLink}
-                  href={links.shareTo.facebook({ pathname })}
-                >
-                  <TiSocialFacebookCircular />
-                </ExternalLink>
-              </li>
-              <li key="linkedin">
-                <ExternalLink
-                  className={styles.shareLink}
-                  href={links.shareTo.linkedIn({
-                    title,
-                    description,
-                    pathname,
-                  })}
-                >
-                  <TiSocialLinkedinCircular />
-                </ExternalLink>
-              </li>
-            </ul>
-          </aside>
           <div
-            className={tw('col-span-12 px-2 md:px-6 lg:col-span-8', 'mb-64')}
+            className={tw('col-span-12 px-2 md:px-6 lg:col-span-9', 'mb-64')}
           >
-            <dl
-              className={tw(
-                'grid md:grid-cols-3',
-                'text-sm font-light',
-                'md:divide-x divide-neutralBgSoft',
-                colors.header.meta,
-                globalStyles.transitions,
-              )}
-            >
-              <div className={styles.meta.li}>
-                <dt className="inline">Published</dt>
-                <dd>
-                  <time dateTime={datePublished}>{datePublished}</time>
-                </dd>
-              </div>
+            <div className={tw('my-8', 'flex justify-between')}>
+              <div className={tw('flex items-center')}>
+                <Img
+                  className={tw(
+                    'rounded-full',
+                    'mr-2',
+                    'border-4 border-neutralBg',
+                    // '-mt-4'
+                  )}
+                  fixed={author.image.childImageSharp.fixed}
+                  alt={author.name}
+                />
+                <div>
+                  <div className={tw('flex space-x-2 items-center')}>
+                    <dl className={tw('text-neutralBold', 'font-medium')}>
+                      <dt className="sr-only">Author</dt>
+                      <dd>{author.name}</dd>
+                    </dl>
+                  </div>
 
-              <div className={styles.meta.li}>
-                <dt>Last modified</dt>
-                <dd>
-                  <time dateTime={dateModified}>{dateModified}</time>
-                </dd>
+                  <div
+                    className={tw(
+                      'flex space-x-1',
+                      'text-sm',
+                      globalStyles.transitions,
+                      'text-neutral',
+                    )}
+                  >
+                    <dl className={tw('')}>
+                      <dt className="sr-only">Last modified</dt>
+                      <dd>{dateModified}</dd>
+                    </dl>
+                    <span>&middot;</span>
+                    <dl>
+                      <dt className="sr-only">Time to read</dt>
+                      <dd>
+                        {timeToRead}
+                        {' '}
+                        min read
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
               </div>
-
-              <div className={styles.meta.li}>
-                <dt className="sr-only">Time to read</dt>
-                <dd>
-                  {timeToRead}
-                  {' '}
-                  min read
-                </dd>
-              </div>
-            </dl>
+              <ul className={tw('flex space-x-4 items-center', 'text-2xl')}>
+                <li key="twitter">
+                  <ExternalLink
+                    href={links.shareTo.twitter({
+                      title,
+                      pathname,
+                    })}
+                    className={styles.shareLink}
+                  >
+                    <FaTwitter />
+                  </ExternalLink>
+                </li>
+                <li key="facebook">
+                  <ExternalLink
+                    className={styles.shareLink}
+                    href={links.shareTo.facebook({ pathname })}
+                  >
+                    <FaFacebookSquare />
+                  </ExternalLink>
+                </li>
+                <li key="linkedin">
+                  <ExternalLink
+                    className={styles.shareLink}
+                    href={links.shareTo.linkedIn({
+                      title,
+                      description,
+                      pathname,
+                    })}
+                  >
+                    <FaLinkedin />
+                  </ExternalLink>
+                </li>
+              </ul>
+            </div>
 
             <figure className={tw('mb-24')}>
               <Img
@@ -365,7 +364,7 @@ export const blogPostPageQuery = graphql`
         description
         image {
           childImageSharp {
-            fluid(maxWidth: 1280) {
+            fluid(maxWidth: 1024) {
               ...GatsbyImageSharpFluid
             }
           }
@@ -376,6 +375,18 @@ export const blogPostPageQuery = graphql`
       }
       fields {
         slug
+        author {
+          image {
+            childImageSharp {
+              fixed(width: 60, height: 60) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          link
+          name
+          username
+        }
       }
     }
     logo: file(relativePath: { eq: "logo.jpg" }) {
@@ -399,7 +410,7 @@ export const blogPostPageQuery = graphql`
           imageUrl
           image {
             childImageSharp {
-              fluid(maxWidth: 1280) {
+              fluid(maxWidth: 1024) {
                 ...GatsbyImageSharpFluid
               }
             }
