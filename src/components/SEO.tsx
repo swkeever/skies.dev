@@ -48,7 +48,7 @@ export default function SEO({
           }
         }
       }
-      avatar: file(relativePath: { eq: "about/me.jpg" }) {
+      avatar: file(relativePath: { eq: "sean-keever.jpg" }) {
         childImageSharp {
           fixed(height: 400, width: 400) {
             src

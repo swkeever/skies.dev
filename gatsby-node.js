@@ -6,6 +6,7 @@ const blogCategories = require('./src/utils/blog-categories');
 const blogTags = require('./src/utils/blog-tags');
 const stopWords = require('./src/utils/stop-words');
 const { formatDate } = require('./src/utils/dates');
+const authors = require('./src/utils/authors');
 
 const weights = new Map();
 
@@ -15,12 +16,16 @@ for (const blogTagProps of blogTags) {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
+  actions.createNode();
 
   // you only want to operate on `Mdx` nodes. If you had content from a
   // remote CMS you could also check to see if the parent node was a
   // `File` node here
   if (node.internal.type === 'Mdx') {
-    const value = createFilePath({ node, getNode });
+    const value = createFilePath({
+      node,
+      getNode,
+    });
 
     const pathname = node.fileAbsolutePath.includes('/content/')
       ? `/blog${value}`
@@ -37,6 +42,29 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       // don't need a separating "/" before the value because
       // createFilePath returns a path with the leading "/".
       value: pathname,
+    });
+
+    const author = {
+      ...authors[0],
+    };
+
+    //
+    // We have to use the relative path from the
+    // MDX file to get ImageSharp to work. 🙄
+    //
+    // https://github.com/gatsbyjs/gatsby/issues/11092#issuecomment-454779080
+    author.image = `../../images/${author.image}`;
+
+    createNodeField({
+      name: 'category',
+      node,
+      value: blogCategories[node.frontmatter.category],
+    });
+
+    createNodeField({
+      name: 'author',
+      node,
+      value: author, // TODO: add once we get frontmatter
     });
   }
 };

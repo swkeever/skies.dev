@@ -50,6 +50,13 @@ module.exports = {
     // 'gatsby-plugin-graphql-codegen',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-transformer-json',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: 'data',
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -310,7 +317,12 @@ module.exports = {
       options: {
         host: 'https://www.skies.dev',
         sitemap: 'https://www.skies.dev/sitemap.xml',
-        policy: [{ userAgent: '*', allow: '/' }],
+        policy: [
+          {
+            userAgent: '*',
+            allow: '/',
+          },
+        ],
       },
     },
     'gatsby-plugin-webpack-bundle-analyser-v2',
