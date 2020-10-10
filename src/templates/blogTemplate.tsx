@@ -19,7 +19,6 @@ import BlogDisplay from '@components/BlogDisplay';
 import About from '@components/About';
 import { graphql } from 'gatsby';
 import { BlogPostQuery } from 'graphql-types';
-import { gqlResponseToBlogs } from '@pages/blog';
 
 const styles = {
   ctaLinks: tw(
@@ -68,22 +67,21 @@ export default function BlogPost({
       frontmatter: {
         title,
         description,
-        dateModified,
-        datePublished,
+        date,
         image: {
-          childImageSharp: { fluid: imageFluid },
+          photographer,
+          src: {
+            external,
+            local: {
+              childImageSharp: { fluid: imageFluid },
+            },
+          },
         },
-        imageUrl,
-        imagePhotographer,
         keywords,
         tags,
       },
     },
-    logo: {
-      childImageSharp: {
-        fixed: { src: logoImageSrc },
-      },
-    },
+    logo,
     similarBlogs,
   },
 }: BlogPostQuery) {
@@ -108,11 +106,11 @@ export default function BlogPost({
       name: 'Skies',
       logo: {
         '@type': 'ImageObject',
-        url: links.withSiteUrl(logoImageSrc),
+        url: links.withSiteUrl(logo.childImageSharp.fixed.src),
       },
     },
-    datePublished,
-    dateModified,
+    datePublished: date.published,
+    dateModified: date.modified,
   };
 
   return (
@@ -189,7 +187,7 @@ export default function BlogPost({
                   >
                     <dl className={tw('')}>
                       <dt className="sr-only">Last modified</dt>
-                      <dd>{dateModified}</dd>
+                      <dd>{date.modified}</dd>
                     </dl>
                     <span>&middot;</span>
                     <dl>
@@ -257,9 +255,9 @@ export default function BlogPost({
                   {' '}
                   <ExternalLink
                     className="underline text-neutral hover:text-neutralBold"
-                    href={imageUrl}
+                    href={external}
                   >
-                    {imagePhotographer}
+                    {photographer}
                   </ExternalLink>
                 </p>
               </figcaption>
@@ -327,9 +325,7 @@ export default function BlogPost({
         )}
       >
         <BlogDisplay
-          blogs={gqlResponseToBlogs({
-            allMdx: similarBlogs,
-          })}
+          blogs={similarBlogs.nodes}
           subtitle="Here are some other articles you may enjoy."
           title="Related articles"
         />
@@ -357,20 +353,22 @@ export const blogPostPageQuery = graphql`
       }
       frontmatter {
         title
-        dateModified(formatString: "MMMM DD, YYYY")
-        datePublished(formatString: "MMMM DD, YYYY")
-        category
+        ...BlogDate
         keywords
         description
         image {
-          childImageSharp {
-            fluid(maxWidth: 1024) {
-              ...GatsbyImageSharpFluid
+          src {
+            local {
+              childImageSharp {
+                fluid(maxWidth: 1024) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
+            external
           }
+          photographer
         }
-        imageUrl
-        imagePhotographer
         tags
       }
       fields {
@@ -390,35 +388,11 @@ export const blogPostPageQuery = graphql`
       }
     }
     logo: file(relativePath: { eq: "logo.jpg" }) {
-      childImageSharp {
-        fixed(height: 630, width: 1200) {
-          src
-        }
-      }
+      ...Logo
     }
     similarBlogs: allMdx(filter: { id: { in: $similarBlogs } }) {
       nodes {
-        id
-        timeToRead
-        frontmatter {
-          title
-          dateModified(formatString: "MMMM DD, YYYY")
-          datePublished(formatString: "MMMM DD, YYYY")
-          category
-          description
-          imagePhotographer
-          imageUrl
-          image {
-            childImageSharp {
-              fluid(maxWidth: 1024) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        fields {
-          slug
-        }
+        ...BlogCard
       }
     }
   }

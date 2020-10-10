@@ -8,23 +8,13 @@ const chalk = require('chalk');
 const axios = require('axios').default;
 const blogCategories = require('../src/utils/blog-categories');
 const blogTags = require('../src/utils/blog-tags');
+const { generateFrontmatter, getDateFormat } = require('./blog-utils');
 require('dotenv').config({
   path: '.env',
 });
+const authors = require('../src/utils/authors');
 
 const nonEmpty = (input) => input !== '';
-
-function getTodaysDate() {
-  const d = new Date();
-  let month = `${d.getMonth() + 1}`;
-  let day = `${d.getDate()}`;
-  const year = d.getFullYear();
-
-  if (month.length < 2) month = `0${month}`;
-  if (day.length < 2) day = `0${day}`;
-
-  return [year, month, day].join('-');
-}
 
 let photo = null;
 
@@ -92,35 +82,6 @@ function toTitleCase(input) {
     .join('');
 }
 
-function generateFrontmatter(answers) {
-  let frontmatter = '---\n';
-
-  // insert the date
-  const date = getTodaysDate();
-  frontmatter += `datePublished: ${date}\n`;
-  frontmatter += `dateModified: ${date}\n`;
-
-  // insert the rest of the fields
-  for (const [key, value] of Object.entries(answers)) {
-    if (['keywords', 'tags'].includes(key)) {
-      frontmatter += `${key}:\n`;
-      for (const x of value) {
-        frontmatter += `  - ${x}\n`;
-      }
-    } else if (key === 'description') {
-      frontmatter += `description:\n  ${value}\n`;
-    } else if (key !== 'image' && key !== 'slug') {
-      frontmatter += `${key}: ${value}\n`;
-    } else if (key === 'image') {
-      frontmatter += `imagePhotographer: ${photo.photographer}\n`;
-      frontmatter += `imageUrl: ${photo.link}\n`;
-      frontmatter += 'image: index.jpg\n';
-    }
-  }
-  frontmatter += '---\n\n';
-  return frontmatter;
-}
-
 function downloadImage(url, dir) {
   const imagePath = `${dir}/index.jpg`;
   const file = fs.createWriteStream(imagePath);
@@ -151,7 +112,16 @@ inquirer
     },
     {
       type: 'list',
-      name: 'category',
+      name: 'authorId',
+      message: 'Who is the author? (choose one)',
+      choices: authors.map((author, idx) => ({
+        name: author.name,
+        value: idx,
+      })),
+    },
+    {
+      type: 'list',
+      name: 'categoryId',
       message: 'How would you categorize this blog? (choose one)',
       choices: blogCategories.map((cat, idx) => ({
         name: cat.name,
@@ -197,8 +167,26 @@ inquirer
         },
       ])
       .then((moreAnswers) => {
-        const answers = { ...intermediateAnswers, ...moreAnswers };
-        const dir = `./content/${answers.slug}`;
+        const answers = {
+          date: {
+            published: getDateFormat(new Date()),
+            modified: getDateFormat(new Date()),
+          },
+          title: intermediateAnswers.title,
+          description: intermediateAnswers.description,
+          categoryId: intermediateAnswers.categoryId,
+          authorId: intermediateAnswers.authorId,
+          keywords: intermediateAnswers.keywords,
+          tags: intermediateAnswers.tags,
+          image: {
+            src: {
+              local: 'index.jpg',
+              external: photo.link,
+            },
+            photographer: photo.photographer,
+          },
+        };
+        const dir = `./content/${moreAnswers.slug}`;
         if (fs.existsSync(dir)) {
           console.error(chalk.bgRed.bold('ERROR'), `${dir} already exists.`);
           process.exit(1);
