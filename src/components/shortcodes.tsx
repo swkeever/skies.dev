@@ -94,9 +94,9 @@ const shortcodes = {
     <h3
       {...props}
       className={tw(
-        'text-neutralBold',
-        'text-2xl md:text-3xl font-thin',
-        'mb-2',
+        'text-onNeutralBgSofter',
+        'text-2xl md:text-3xl font-semibold',
+        'mb-4',
         styles.mt2,
         globalStyles.transitions,
       )}
