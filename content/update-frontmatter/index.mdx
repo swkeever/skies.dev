@@ -1,0 +1,353 @@
+---
+date:
+  published: 2020-10-10
+  modified: 2020-10-10
+title: Automate Changing Your Markdown Blog Frontmatter Schema
+description: Learn how to update your markdown blog frontmatter with Node.js
+categoryId: 1
+authorId: 0
+keywords:
+  - mdx
+tags:
+  - Blogging
+  - Gatsby
+  - Web Development
+image:
+  src:
+    local: index.jpg
+    external: https://unsplash.com/photos/h-0uL4M7hDs
+  photographer: Dibakar Roy
+---
+
+In a rush? Just [show me the code](/blog/update-frontmatter#completed-solution)!
+
+## Context
+
+> The scripts we develop in this article are meant to be safe and
+> non-destructive. However, I recommend backing up your blog posts to a safe
+> place before running the scripts we develop in this article, just in case.
+
+Let's say you are using Gatsby or Next to build a blog. You source your data
+from Markdown or MDX files and store each blog's metadata in frontmatter.
+
+```md
+---
+title: Best Blog Ever
+date: 2020-10-01
+---
+
+## Welcome to my blog!
+
+Here I write about web development, computer science, and more.
+```
+
+_What if you want to extend the frontmatter schema to support new fields?_
+
+Would you go through each blog one by one and update the frontmatter?
+
+No way!
+
+We're engineers—we're going to figure out a way to automate extending our
+frontmatter. 🦾
+
+## The Plan
+
+We'll use Node.js as our scripting language since you are likely to be using
+JavaScript already to develop a Markdown or MDX blog.
+
+At a high level, here's how we'll update the frontmatter schema:
+
+1. Copy all of the blog data into a temporary directory.
+2. Read each blog post one by one.
+
+Then, for each blog post _inside the temporary directory_:
+
+1. Read the blog contents.
+2. Transform the frontmatter.
+3. Write the blog contents with the transformed frontmatter.
+
+The reason why we want to write to a temporary directory is for safety. We don't
+want to overwrite our content until we are happy with the transformation. Having
+a temporary directory that we can write to lets us iterate by reading the
+original files until we get the right transformation. Once we're happy with the
+transformation, we can get rid of the original content directory and turn the
+temporary directory into the new content directory.
+
+## Implementation
+
+Let's start by installing some libraries that we'll use to help make our life
+easier.
+
+```bash
+yarn add -D matter ncp yaml
+```
+
+We're going to use
+
+- `ncp` to copy our blog posts from the source directory to a temporary
+  destination directory.
+- `matter` to extract the frontmatter and contents of each blog.
+- `yaml` to convert a JavaScript object into serialized YAML.
+
+Let's say we have our blog posts in a `content` directory, as follows:
+
+- `content/learn-javascript/index.md`
+- `content/design-patterns/index.md`
+- `content/life-as-a-dev/index.md`
+
+and so forth.
+
+We want to copy all of our blog posts into a `tmp_content` directory so that
+when we run our script, the blogs with the updated frontmatter are piped into
+
+- `tmp_content/learn-javascript/index.md`
+- `tmp_content/design-patterns/index.md`
+- `tmp_content/life-as-a-dev/index.md`
+
+and so forth.
+
+Let's go ahead and start writing our script in `update-frontmatter.js`.
+
+We'll start by implementing the code needed to copy the contents from `content`
+into `tmp_content`.
+
+```javascript
+const { ncp } = require('ncp');
+
+const SRC_DIR = 'content';
+const DST_DIR = 'tmp_content';
+
+async function main() {
+  // copies contents from SRC_DIR to DST_DIR
+  await ncp(SRC_DIR, DST_DIR);
+}
+
+main();
+```
+
+Go ahead and try this script out to see if you are able to copy your blogs from
+the source to destination directory.
+
+```bash
+node update-frontmatter.js
+```
+
+Next, we need to get a list of all of our Markdown files. For this, we will
+write a function that walks the source directory and builds up a list of all our
+Markdown files.
+
+We'll `console.log` the output to make sure we are getting a list of all the
+Markdown files as expected.
+
+```javascript
+const fs = require('fs'); // highlight-line
+const path = require('path'); // highlight-line
+const { ncp } = require('ncp');
+
+const SRC_DIR = 'content';
+const DST_DIR = 'tmp_content';
+
+// highlight-start
+// Source: https://gist.github.com/lovasoa/8691344
+async function* walk(dir) {
+  for await (const d of await fs.promises.opendir(dir)) {
+    const entry = path.join(dir, d.name);
+    if (d.isDirectory()) yield* walk(entry);
+    else if (d.isFile()) yield entry;
+  }
+}
+
+// Returns a list of .md files
+async function getContent() {
+  const files = [];
+  for await (const file of walk(SRC_DIR)) {
+    files.push(file);
+  }
+  return files.filter(f => f.endsWith('/index.md'));
+}
+// highlight-end
+
+async function main() {
+  // copies contents from SRC_DIR to DST_DIR
+  await ncp(SRC_DIR, DST_DIR);
+
+  // highlight-start
+  // gets blog post filenames
+  const files = await getContent();
+  console.log(files); // ['content/learn-javascript/index.md', ...]
+  // highlight-end
+}
+
+main();
+```
+
+`getContent` returns a list of our blog post files. Now, we can go through each
+file and
+
+1. Read the file
+2. Transform the frontmatter
+3. Write it back to the destination directory with the updated frontmatter
+
+### The Transformation
+
+We'll create a transformer function which specifies how the frontmatter should
+change.
+
+For example, let's say our frontmatter looks like the following.
+
+```yaml
+---
+title: Learn JavaScript
+published: 2020-10-01
+---
+
+```
+
+We want to extend our frontmatter schema to support `author`.
+
+```yaml
+---
+title: Learn JavaScript
+published: 2020-10-01
+author: Sean Keever # highlight-line
+---
+
+```
+
+With this, we are going to define our transformer function as follows.
+
+```javascript
+// This function will change depending on on the
+// current and desired shape of the frontmatter
+function transformFrontmatter(front) {
+  return {
+    ...front,
+    author: 'Sean Keever',
+  };
+}
+```
+
+Once, we have the new frontmatter schema as a JavaScript object, we can pass it
+into a simple function to generate the frontmatter.
+
+```javascript
+const YAML = require('yaml');
+
+// Let `data` be the output of `transformFrontmatter`
+function generateFrontmatter(data) {
+  let frontmatter = '---\n';
+  frontmatter += YAML.stringify(data);
+  frontmatter += '---\n\n';
+  return frontmatter;
+}
+```
+
+We now have all the pieces to finish out our script.
+
+```javascript
+// ✂️ Unchanged
+
+async function main() {
+  // copies contents of src to dst
+  await ncp(SRC_DIR, DST_DIR);
+
+  // gets blog post filenames
+  const files = await getContent();
+
+  // highlight-start
+  // write transformed files
+  files.forEach(file => {
+    const source = fs.readFileSync(file);
+    const { content, data } = matter(source);
+    const frontTransformed = transformFrontmatter(data);
+    const writePath = file.replace(SRC_DIR, DST_DIR);
+    const writeData = generateFrontmatter(frontTransformed) + content;
+    fs.writeFileSync(writePath, writeData);
+  });
+  // highlight-end
+}
+
+main();
+```
+
+Run the script and see if you're happy with the transformed frontmatter in your
+destination directory. Once you're happy with the transformation, you can delete
+the original source directory, and rename the destination directory. 
+
+In our example,
+we would delete `content` and rename `tmp_content` to `content`.
+
+Hope this helps you simplify your life if you want to extend the frontmatter on
+your Markdown blog. 😎
+
+## Completed solution
+
+```javascript
+const fs = require('fs');
+const path = require('path');
+const matter = require('gray-matter');
+const { ncp } = require('ncp');
+const YAML = require('yaml');
+
+const SRC_DIR = 'content';
+const DST_DIR = 'tmp_content';
+
+// Source: https://gist.github.com/lovasoa/8691344
+async function* walk(dir) {
+  for await (const d of await fs.promises.opendir(dir)) {
+    const entry = path.join(dir, d.name);
+    if (d.isDirectory()) yield* walk(entry);
+    else if (d.isFile()) yield entry;
+  }
+}
+
+async function getContent() {
+  const files = [];
+  for await (const file of walk(SRC_DIR)) {
+    files.push(file);
+  }
+  return files.filter(f => f.endsWith('/index.md'));
+}
+
+function transformFrontmatter(front) {
+  return {
+    ...front,
+  };
+}
+
+function generateFrontmatter(data) {
+  let frontmatter = '---\n';
+  frontmatter += YAML.stringify(data);
+  frontmatter += '---\n\n';
+  return frontmatter;
+}
+
+//
+// *HOW TO USE SAFELY*
+//
+// Run the `update-frontmatter` script to generate files to tmp_content
+//
+// Once you're happy with the transformation
+//
+// Remove the current content/ directory and rename tmp_content/ to content/
+//
+async function main() {
+  // copies contents of src to dst
+  await ncp(SRC_DIR, DST_DIR);
+
+  // gets blog post filenames
+  const files = await getContent();
+
+  // write transformed files
+  files.forEach(file => {
+    const source = fs.readFileSync(file);
+    const { content, data } = matter(source);
+    const frontTransformed = transformFrontmatter(data);
+    const writePath = file.replace(SRC_DIR, DST_DIR);
+    const writeData = generateFrontmatter(frontTransformed) + content;
+    fs.writeFileSync(writePath, writeData);
+  });
+}
+
+main();
+```

@@ -7,10 +7,10 @@ const matter = require('gray-matter');
 const { ncp } = require('ncp');
 const { getDateFormat, generateFrontmatter } = require('./blog-utils');
 
-const READ_PATH = 'content';
-const WRITE_PATH = 'tmp_content';
+const SRC_DIR = 'content';
+const DST_DIR = 'tmp_content';
 
-// https://gist.github.com/lovasoa/8691344
+// Source: https://gist.github.com/lovasoa/8691344
 async function* walk(dir) {
   for await (const d of await fs.promises.opendir(dir)) {
     const entry = path.join(dir, d.name);
@@ -19,9 +19,10 @@ async function* walk(dir) {
   }
 }
 
+// Returns all MDX files
 async function getContent() {
   const files = [];
-  for await (const file of walk(READ_PATH)) {
+  for await (const file of walk(SRC_DIR)) {
     files.push(file);
   }
   return files.filter((f) => f.endsWith('/index.mdx'));
@@ -62,16 +63,18 @@ function transformFrontmatter(front) {
 //
 async function main() {
   // copies folder
-  await ncp(READ_PATH, WRITE_PATH);
+  await ncp(SRC_DIR, DST_DIR);
 
-  const blogFiles = await getContent();
-  blogFiles.forEach((file) => {
+  // gets blog post filenames
+  const files = await getContent();
+
+  files.forEach((file) => {
     const source = fs.readFileSync(file);
     const { content, data } = matter(source);
     const frontTransformed = transformFrontmatter(data);
-    const writeToPath = file.replace(READ_PATH, WRITE_PATH);
+    const writePath = file.replace(SRC_DIR, DST_DIR);
     const writeData = generateFrontmatter(frontTransformed) + content;
-    fs.writeFileSync(writeToPath, writeData);
+    fs.writeFileSync(writePath, writeData);
   });
 }
 
