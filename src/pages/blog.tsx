@@ -5,37 +5,12 @@ import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/BlogCard';
 import tw from '@utils/tailwind';
-import { FluidObject } from 'node_modules/gatsby-image/index';
-import { formatDate } from '@utils/dates';
 import SEO from '../components/SEO';
 import Empty from '../../assets/empty.svg';
-import blogCategories from '../utils/blog-categories';
 import Logo from '../../assets/logo.svg';
 import Newsletter from '../components/Newsletter';
 import siteConfig from '../../site.config';
-import { BlogIndexQuery, PageQuery } from '../../graphql-types';
-
-export type Blog = {
-  id: string;
-  timeToRead: number;
-  title: string;
-  slug: string;
-  description: string;
-  date: {
-    published: string;
-    modified: string;
-  };
-  category: {
-    name: string;
-    className: string;
-  };
-  body: string;
-  image: {
-    fluid: FluidObject;
-    src: string;
-    photographer: string;
-  };
-};
+import { BlogMeta, PageQuery } from '../../graphql-types';
 
 function getNumResultsString(k: number): string {
   switch (k) {
@@ -48,117 +23,61 @@ function getNumResultsString(k: number): string {
   }
 }
 
-type Category = {
-  name: string;
-  className: string;
-};
-
-const categories: Category[] = blogCategories;
-
-export function gqlResponseToBlogs(data: PageQuery): Blog[] {
-  return data.allMdx.nodes.map((node) => {
-    const { id, timeToRead, rawBody } = node;
-    const {
-      title,
-      description,
-      datePublished,
-      dateModified,
-      image,
-      category,
-      imagePhotographer,
-      imageUrl,
-    } = node.frontmatter;
-    return {
-      id,
-      timeToRead,
-      title,
-      slug: node.fields.slug,
-      description,
-      date: {
-        published: formatDate(datePublished),
-        modified: formatDate(dateModified),
-      },
-      category: categories[category],
-      body: rawBody,
-      image: {
-        fluid: image.childImageSharp?.fluid,
-        photographer: imagePhotographer,
-        url: imageUrl,
-      },
-    };
-  });
-}
-
 export const blogPageQuery = graphql`
   query BlogIndex {
     allMdx(
       sort: {
         order: DESC
-        fields: [frontmatter___dateModified, frontmatter___datePublished]
+        fields: [frontmatter___date___modified, frontmatter___date___published]
       }
       filter: { fileAbsolutePath: { regex: "/content/" } }
     ) {
       nodes {
+        ...BlogCard
         frontmatter {
-          title
-          datePublished(formatString: "MMMM DD, YYYY")
-          dateModified(formatString: "MMMM DD, YYYY")
-          category
-          description
           keywords
-          imagePhotographer
-          imageUrl
-          image {
-            childImageSharp {
-              fluid(maxWidth: 700) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
         }
-        fields {
-          slug
-        }
-        id
-        timeToRead
       }
     }
   }
 `;
 
-export default function BlogsPage({ data }: { data: BlogIndexQuery }) {
+const colors = {
+  primary: {
+    bg: 'bg-primary',
+    svg: 'text-primary',
+    logo: 'text-onPrimary',
+    input: 'shadow-lg',
+    p: 'text-neutral',
+    a: 'text-onPrimary hover:text-onPrimaryBgLinkHover',
+  },
+  neutral: {
+    bg: 'bg-neutralBg',
+    svg: 'text-neutralBg',
+    logo: 'text-primaryBold',
+    input: 'shadow-lg',
+    p: 'text-neutral',
+    a: 'text-onNeutralBgLink hover:text-onNeutralBgLinkHover',
+  },
+}.primary;
+
+export default function BlogsPage({
+  data: {
+    allMdx: { nodes },
+  },
+}: {
+  data: PageQuery;
+}) {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
-
-  const colors = {
-    primary: {
-      bg: 'bg-primary',
-      svg: 'text-primary',
-      logo: 'text-onPrimary',
-      input: 'shadow-lg',
-      p: 'text-neutral',
-      a: 'text-onPrimary hover:text-onPrimaryBgLinkHover',
-    },
-    neutral: {
-      bg: 'bg-neutralBg',
-      svg: 'text-neutralBg',
-      logo: 'text-primaryBold',
-      input: 'shadow-lg',
-      p: 'text-neutral',
-      a: 'text-onNeutralBgLink hover:text-onNeutralBgLinkHover',
-    },
-  }.primary;
-
-  const allBlogs: Blog[] = gqlResponseToBlogs(data);
-
-  const [blogs, setBlogs] = useState(allBlogs);
+  const [blogs, setBlogs] = useState<BlogMeta[]>(nodes);
 
   useEffect(() => {
     const s = new JsSearch.Search('id');
-    s.addIndex('title');
-    s.addIndex('keywords');
-    s.addIndex('description');
-    s.addIndex(['category', 'name']);
+    s.addIndex(['frontmatter', 'title']);
+    s.addIndex(['frontmatter', 'keywords']);
+    s.addIndex(['frontmatter', 'description']);
+    s.addIndex(['fields', 'category', 'name']);
     s.addDocuments(blogs);
     setSearch(s);
   }, []);
@@ -167,7 +86,7 @@ export default function BlogsPage({ data }: { data: BlogIndexQuery }) {
     if (search && filter) {
       setBlogs(search.search(filter));
     } else {
-      setBlogs(allBlogs);
+      setBlogs(nodes);
     }
   }, [filter]);
 

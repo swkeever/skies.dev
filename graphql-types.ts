@@ -1,29 +1,56 @@
 import { FixedObject, FluidObject } from 'gatsby-image';
 
+interface BlogDate {
+  published: Date;
+  modified: Date;
+}
+
 interface BlogImage {
-  childImageSharp: {
-    fluid: FluidObject;
+  src: {
+    local: {
+      childImageSharp: {
+        fluid: FluidObject;
+      };
+    };
+    external: URL;
   };
+  photographer: string;
 }
 
 interface BlogFrontmatter {
-  datePublished: string;
-  dateModified: string;
+  date: BlogDate;
   title: string;
   description: string;
-  category: number;
+  categoryId: number;
+  authorId: number;
   keywords: string[];
   tags: string[];
   image: BlogImage;
-  imageUrl: string;
-  imagePhotographer: string;
+}
+
+interface Author {
+  name: string;
+  link: URL;
+  username: string;
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}
+
+interface BlogCategory {
+  className: string;
+  name: string;
 }
 
 interface Field {
   slug: string;
+  author: Author;
+  category: BlogCategory;
 }
 
-interface BlogMeta {
+export interface BlogMeta {
   frontmatter: BlogFrontmatter;
   fields: Field;
   id: string;
