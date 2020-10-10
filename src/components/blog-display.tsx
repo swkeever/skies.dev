@@ -3,7 +3,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import { Link } from '@reach/router';
 import tw from '@utils/tailwind';
-import BlogCard from './BlogCard';
+import BlogCard from './blog-card';
 import routes from '../utils/routes';
 import { BlogMeta } from '../../graphql-types';
 

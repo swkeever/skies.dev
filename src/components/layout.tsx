@@ -7,11 +7,11 @@
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import globalStyles from '@styles/index';
-import AlertProvider from '@lib/alerts/AlertProvider';
+import AlertProvider from '@lib/alerts/alert-provider';
 import tw from '@utils/tailwind';
 import { ImFire, ImLeaf, ImDroplet } from 'react-icons/im';
-import Header from './Header';
-import Footer from './Footer';
+import Header from './header';
+import Footer from './footer';
 
 export const LayoutContext = React.createContext({});
 export const themes = [

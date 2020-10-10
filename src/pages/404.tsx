@@ -1,6 +1,6 @@
 import React from 'react';
 import Lost from '../../assets/lost.svg';
-import SEO from '../components/SEO';
+import SEO from '../components/seo';
 
 const NotFoundPage = () => (
   <>

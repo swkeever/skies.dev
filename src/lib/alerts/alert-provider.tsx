@@ -1,10 +1,10 @@
 import React, { ReactNode, useState } from 'react';
 import hash from '@utils/hash';
-import AlertContext from './AlertContext';
+import AlertContext from './alert-context';
 import {
   AlertOptions, ShowFunction, RemoveFunction, Alert,
 } from './alerts';
-import AlertTemplate from './AlertTemplate';
+import AlertTemplate from './alert-template';
 
 const defaultOptions: AlertOptions = {
   durationSeconds: undefined,

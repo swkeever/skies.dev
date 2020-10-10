@@ -44,11 +44,7 @@ export default function About({ color = 'footer' }) {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "sean-keever.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1024) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...Avatar
       }
     }
   `);
@@ -68,7 +64,7 @@ export default function About({ color = 'footer' }) {
         >
           <Img
             className={tw(
-              'w-64 h-64 lg:w-84 lg:h-84',
+              'w-64 h-64 lg:w-80 lg:h-80',
               'shadow-lg',
               'mx-auto',
               'rounded-full',
@@ -79,15 +75,6 @@ export default function About({ color = 'footer' }) {
             alt="Sean Keever's avatar"
           />
           <section className="flex flex-col justify-center">
-            <header
-              className={tw(
-                'text-base leading-6 font-semibold uppercase tracking-wider',
-                styles.preHeader,
-                globalStyles.transitions,
-              )}
-            >
-              About the author
-            </header>
             <h2
               className={tw(
                 'mt-2',

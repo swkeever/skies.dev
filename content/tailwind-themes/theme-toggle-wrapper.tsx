@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeToggle from '../../src/components/ThemeToggle';
+import ThemeToggle from '@components/theme-toggle';
 
 export default function ThemeToggleWrapper() {
   return (

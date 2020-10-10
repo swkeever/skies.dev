@@ -3,12 +3,12 @@ import { graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
-import BlogCard from '@components/BlogCard';
+import BlogCard from '@components/blog-card';
 import tw from '@utils/tailwind';
-import SEO from '../components/SEO';
+import SEO from '../components/seo';
 import Empty from '../../assets/empty.svg';
 import Logo from '../../assets/logo.svg';
-import Newsletter from '../components/Newsletter';
+import Newsletter from '../components/newsletter';
 import siteConfig from '../../site.config';
 import { BlogMeta, PageQuery } from '../../graphql-types';
 

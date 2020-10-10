@@ -14,7 +14,7 @@ require('./src/styles/index.css');
 // require('katex/dist/katex.min.css');
 
 const React = require('react');
-const Layout = require('./src/components/Layout').default;
+const Layout = require('./src/components/layout').default;
 
 exports.wrapPageElement = ({ element, props }) => (
   <Layout {...props}>{element}</Layout>

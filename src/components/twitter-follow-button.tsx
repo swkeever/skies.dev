@@ -1,6 +1,6 @@
 import React from 'react';
 import links from '@utils/links';
-import ExternalLink from '@components/ExternalLink';
+import ExternalLink from '@components/external-link';
 
 export default function TwitterFollowButton() {
   return (
