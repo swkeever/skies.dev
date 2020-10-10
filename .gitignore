@@ -71,9 +71,11 @@ yarn-error.log
 # IDE Specific
 .idea/
 
-
+# Random testing folders
 sandbox/
+tmp_content/
 
+# Backend
 gen/
 dist/
 *.tfstate*

@@ -41,7 +41,7 @@ async function setPhoto(id) {
     photo = {
       photographer: data.user.name,
       link: data.links.html,
-      download: data.urls.raw,
+      download: data.urls.regular,
     };
     return true;
   } catch (err) {
