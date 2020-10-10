@@ -1,5 +1,4 @@
 import React from 'react';
-import blogCategories from '@utils/blog-categories';
 import { graphql, StaticQuery } from 'gatsby';
 import BlogCard from './BlogCard';
 
@@ -10,19 +9,28 @@ export default function BlogCardExample() {
         query MyQuery {
           mdx(fields: { slug: { regex: "/semantic-html/" } }) {
             frontmatter {
-              category
-              dateModified(formatString: "MMMM DD, YYYY")
-              datePublished(formatString: "MMMM DD, YYYY")
+              date {
+                published
+                modified
+              }
               description
               title
-              imageUrl
-              imagePhotographer
               image {
-                childImageSharp {
-                  fluid(maxWidth: 700) {
-                    ...GatsbyImageSharpFluid
+                src {
+                  local {
+                    childImageSharp {
+                      fluid(maxWidth: 700) {
+                        ...GatsbyImageSharpFluid
+                      }
+                    }
                   }
                 }
+              }
+            }
+            fields {
+              category {
+                name
+                className
               }
             }
             id
@@ -32,52 +40,11 @@ export default function BlogCardExample() {
           }
         }
       `}
-      render={(data) => {
-        const {
-          mdx: {
-            frontmatter: {
-              category,
-              dateModified,
-              datePublished,
-              description,
-              imageUrl,
-              imagePhotographer,
-              image: {
-                childImageSharp: { fluid },
-              },
-              title,
-            },
-            id,
-            rawBody,
-            slug,
-            timeToRead,
-          },
-        } = data;
-        return (
-          <section className="my-8 max-w-xs mx-auto">
-            <BlogCard
-              blog={{
-                id,
-                timeToRead,
-                title,
-                slug: `blog/${slug}`,
-                description,
-                date: {
-                  modified: dateModified,
-                  published: datePublished,
-                },
-                category: blogCategories[category],
-                body: rawBody,
-                image: {
-                  fluid,
-                  photographer: imagePhotographer,
-                  src: imageUrl,
-                },
-              }}
-            />
-          </section>
-        );
-      }}
+      render={(data) => (
+        <section className="my-8 max-w-xs mx-auto">
+          <BlogCard blog={data} />
+        </section>
+      )}
     />
   );
 }

@@ -6,6 +6,16 @@ import { FluidObject } from 'node_modules/gatsby-image/index';
 import links from '@utils/links';
 import { LayoutContext } from './Layout';
 
+export const logoFragment = graphql`
+  fragment Logo on File {
+    childImageSharp {
+      fixed(height: 630, width: 1200) {
+        src
+      }
+    }
+  }
+`;
+
 type SEO = {
   title: string;
   description: string;
@@ -42,11 +52,7 @@ export default function SEO({
         }
       }
       logo: file(relativePath: { eq: "logo.jpg" }) {
-        childImageSharp {
-          fixed(height: 630, width: 1200) {
-            src
-          }
-        }
+        ...Logo
       }
       avatar: file(relativePath: { eq: "sean-keever.jpg" }) {
         childImageSharp {

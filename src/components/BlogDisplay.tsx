@@ -3,13 +3,13 @@ import { FaArrowRight } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import { Link } from '@reach/router';
 import tw from '@utils/tailwind';
-import { Blog } from '@pages/blog';
 import BlogCard from './BlogCard';
 import routes from '../utils/routes';
+import { BlogMeta } from '../../graphql-types';
 
 type PropTypes = {
   title: string;
-  blogs: Blog[];
+  blogs: BlogMeta[];
   subtitle: string;
 };
 

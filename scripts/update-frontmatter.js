@@ -4,13 +4,11 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-const util = require('util');
-const YAML = require('yaml');
-const blogCategories = require('../src/utils/blog-categories');
-const authors = require('../src/utils/authors');
+const { ncp } = require('ncp');
+const { getDateFormat, generateFrontmatter } = require('./blog-utils');
 
-const READ_PATH = path.join(process.cwd(), 'content');
-const WRITE_PATH = path.join(process.cwd(), 'tmp_content');
+const READ_PATH = 'content';
+const WRITE_PATH = 'tmp_content';
 
 // https://gist.github.com/lovasoa/8691344
 async function* walk(dir) {
@@ -29,69 +27,50 @@ async function getContent() {
   return files.filter((f) => f.endsWith('/index.mdx'));
 }
 
-function getDateFormat(dateObject) {
-  // adjust 0 before single digit date
-  const date = (`0${dateObject.getDate()}`).slice(-2);
-
-  // current month
-  const month = (`0${dateObject.getMonth() + 1}`).slice(-2);
-
-  // current year
-  const year = dateObject.getFullYear();
-
-  return `${year}-${month}-${date}`;
-}
-
 // this function will change depending on on the
 // current shape of the frontmatter, and the desired shape
 function transformFrontmatter(front) {
   return {
     date: {
-      published: getDateFormat(front.datePublished),
-      modified: getDateFormat(front.dateModified),
+      published: getDateFormat(front.date.published),
+      modified: getDateFormat(front.date.modified),
     },
     title: front.title,
     description: front.description,
-    categoryId: front.category,
-    authorId: 0,
+    categoryId: front.categoryId,
+    authorId: front.authorId,
     keywords: front.keywords,
     tags: front.tags,
     image: {
-      src: front.imageUrl,
-      photographer: front.imagePhotographer,
+      src: {
+        local: 'index.jpg',
+        external: front.image.src.external,
+      },
+      photographer: front.image.photographer,
     },
   };
 }
 
-const TESTING = false;
+//
+// *HOW TO USE SAFELY*
+//
+// Run the `update-frontmatter` script to generate files to tmp_content
+//
+// Once you're happy with the transformation
+//
+// Remove the current content/ folder and rename tmp_content/ to content/
+//
 async function main() {
+  // copies folder
+  await ncp(READ_PATH, WRITE_PATH);
+
   const blogFiles = await getContent();
   blogFiles.forEach((file) => {
     const source = fs.readFileSync(file);
     const { content, data } = matter(source);
     const frontTransformed = transformFrontmatter(data);
-
-    if (TESTING) {
-      const dir = `./tmp_content/${file.substring(
-        file.indexOf('content/') + 'content/'.length,
-        file.indexOf('/index.mdx'),
-      )}/`;
-      console.log(dir);
-
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-    }
-
-    const writeToPath = TESTING
-      ? file.replace(READ_PATH, WRITE_PATH)
-      : READ_PATH;
-
-    let writeData = '---\n';
-    writeData += YAML.stringify(frontTransformed);
-    writeData += '---\n';
-    writeData += content;
-
+    const writeToPath = file.replace(READ_PATH, WRITE_PATH);
+    const writeData = generateFrontmatter(frontTransformed) + content;
     fs.writeFileSync(writeToPath, writeData);
   });
 }

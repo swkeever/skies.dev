@@ -55,6 +55,7 @@
     "gray-matter": "^4.0.2",
     "intersection-observer": "^0.10.0",
     "js-search": "^2.0.0",
+    "ncp": "^2.0.0",
     "prismjs": "^1.21.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
