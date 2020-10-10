@@ -8,15 +8,21 @@ import tw from '@utils/tailwind';
 import siteConfig from '../../site.config';
 import routes from '../utils/routes';
 
+export const avatarFragment = graphql`
+  fragment Avatar on File {
+    childImageSharp {
+      fluid(maxWidth: 1024) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`;
+
 export default function Hero() {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "sean-keever.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1024) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...Avatar
       }
     }
   `);

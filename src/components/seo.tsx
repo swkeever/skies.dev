@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'node_modules/gatsby-image/index';
 import links from '@utils/links';
-import { LayoutContext } from './Layout';
+import { LayoutContext } from './layout';
 
 export const logoFragment = graphql`
   fragment Logo on File {

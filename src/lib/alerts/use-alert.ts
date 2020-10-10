@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import AlertContext from './AlertContext';
+import AlertContext from './alert-context';
 import { AlertClient } from './alerts';
 
 /**

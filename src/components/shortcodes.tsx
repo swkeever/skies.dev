@@ -4,7 +4,7 @@
 import React, { AnchorHTMLAttributes } from 'react';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
-import ExternalLink from './ExternalLink';
+import ExternalLink from './external-link';
 
 const styles = {
   copy: tw(

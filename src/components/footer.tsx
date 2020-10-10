@@ -5,7 +5,7 @@ import {
 import { Link } from '@reach/router';
 import tw from '@utils/tailwind';
 import links from '../utils/links';
-import ExternalLink from './ExternalLink';
+import ExternalLink from './external-link';
 import globalStyles from '../styles';
 import routes from '../utils/routes';
 
