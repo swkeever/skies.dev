@@ -45,12 +45,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
 
     const author = {
-      ...authors[0],
+      ...authors[node.frontmatter.authorId],
     };
 
     //
     // We have to use the relative path from the
-    // MDX file to get ImageSharp to work. 🙄
+    // MDX file to get ImageSharp to work.
     //
     // https://github.com/gatsbyjs/gatsby/issues/11092#issuecomment-454779080
     author.image = `../../images/${author.image}`;
@@ -58,13 +58,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: 'category',
       node,
-      value: blogCategories[node.frontmatter.category],
+      value: blogCategories[node.frontmatter.categoryId],
     });
 
     createNodeField({
       name: 'author',
       node,
       value: author, // TODO: add once we get frontmatter
+    });
+
+    createNodeField({
+      name: 'heroImage',
+      node,
+      value: 'index.jpg',
     });
   }
 };
