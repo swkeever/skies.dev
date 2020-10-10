@@ -13,7 +13,6 @@ import ExternalLink from '@components/external-link';
 import TableOfContents from '@components/table-of-contents';
 import shortCodes from '@components/shortcodes';
 import Newsletter from '@components/newsletter';
-import TwitterFollowButton from '@components/twitter-follow-button';
 import tw from '@utils/tailwind';
 import BlogDisplay from '@components/blog-display';
 import About from '@components/about';
@@ -159,22 +158,30 @@ export default function BlogPost({
           >
             <div className={tw('my-8', 'flex justify-between')}>
               <div className={tw('flex items-center')}>
-                <Img
-                  className={tw(
-                    'rounded-full',
-                    'mr-2',
-                    'border-4 border-neutralBg',
-                    // '-mt-4'
-                  )}
-                  fixed={author.image.childImageSharp.fixed}
-                  alt={author.name}
-                />
-                <div>
+                <ExternalLink className="flex items-center" href={author.link}>
+                  <Img
+                    className={tw('rounded-full', 'mr-2')}
+                    fixed={author.image.childImageSharp.fixed}
+                    alt={author.name}
+                  />
+                </ExternalLink>
+
+                <dl>
                   <div className={tw('flex space-x-2 items-center')}>
-                    <dl className={tw('text-neutralBold', 'font-medium')}>
+                    <div className={tw('text-neutralBold', 'font-medium')}>
                       <dt className="sr-only">Author</dt>
-                      <dd>{author.name}</dd>
-                    </dl>
+                      <dd>
+                        <ExternalLink
+                          className={tw(
+                            'hover:text-onNeutralBgSofter',
+                            globalStyles.transitions,
+                          )}
+                          href={author.link}
+                        >
+                          {author.name}
+                        </ExternalLink>
+                      </dd>
+                    </div>
                   </div>
 
                   <div
@@ -185,21 +192,21 @@ export default function BlogPost({
                       'text-neutral',
                     )}
                   >
-                    <dl className={tw('')}>
+                    <div>
                       <dt className="sr-only">Last modified</dt>
                       <dd>{date.modified}</dd>
-                    </dl>
-                    <span>&middot;</span>
-                    <dl>
+                    </div>
+                    <span aria-hidden>&middot;</span>
+                    <div>
                       <dt className="sr-only">Time to read</dt>
                       <dd>
                         {timeToRead}
                         {' '}
                         min read
                       </dd>
-                    </dl>
+                    </div>
                   </div>
-                </div>
+                </dl>
               </div>
               <ul className={tw('flex space-x-4 items-center', 'text-2xl')}>
                 <li key="twitter">
@@ -294,7 +301,10 @@ export default function BlogPost({
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
           </div>
-          <aside aria-hidden className="relative hidden col-span-3 lg:block">
+          <aside
+            aria-hidden
+            className="relative hidden col-span-3 lg:block pr-6"
+          >
             <div className="sticky top-32">
               <h2 className="mt-4 mb-4 font-bold tracking-wider uppercase text-neutral">
                 Table of Contents
@@ -302,18 +312,6 @@ export default function BlogPost({
               <TableOfContents headings={headings} />
             </div>
           </aside>
-        </div>
-
-        <div
-          className={tw(
-            'lg:sticky lg:bottom-0', // sticky on desktop
-            'mb-8 lg:mb-0',
-            'flex justify-center lg:justify-end', // again, floating right is buggy on mobile, so only do it on desktop
-            'z-30',
-            'safe-bottom',
-          )}
-        >
-          <TwitterFollowButton />
         </div>
       </article>
 
