@@ -1,12 +1,12 @@
 import React from 'react';
 import globalStyles from '@styles/index';
 import { graphql } from 'gatsby';
-import Hero from '@components/Hero';
+import Hero from '@components/hero';
 import tw from '@utils/tailwind';
-import BlogDisplay from '@components/BlogDisplay';
-import Form from '../components/Form';
-import SEO from '../components/SEO';
-import Newsletter from '../components/Newsletter';
+import BlogDisplay from '@components/blog-display';
+import Form from '../components/form';
+import SEO from '../components/seo';
+import Newsletter from '../components/newsletter';
 import { PageQuery } from '../../graphql-types';
 
 export const dateFragment = graphql`

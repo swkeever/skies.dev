@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from '@reach/router';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
-import ThemeToggle from './ThemeToggle';
-import Nav from './Nav';
+import ThemeToggle from './theme-toggle';
+import Nav from './nav';
 import routes from '../utils/routes';
 import Logo from '../../assets/logo.svg';
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import SEO from '@components/SEO';
+import SEO from '@components/seo';
 import { MDXProvider } from '@mdx-js/react';
-import shortcodes from '@components/Shortcodes';
-import Newsletter from '@components/Newsletter';
-import Hero from '@components/Hero';
+import shortcodes from '@components/shortcodes';
+import Newsletter from '@components/newsletter';
+import Hero from '@components/hero';
 import tw from '@utils/tailwind';
 
 export default function MarkdownPage({

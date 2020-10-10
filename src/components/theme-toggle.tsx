@@ -6,7 +6,7 @@ import analytics from '@utils/analytics';
 import tw from '@utils/tailwind';
 import {
   LayoutContext, ldKey, rgbKey, themes,
-} from './Layout';
+} from './layout';
 
 const styles = {
   shadows: 'shadow-xl lg:shadow-none',
