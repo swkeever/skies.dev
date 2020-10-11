@@ -18,6 +18,10 @@ import BlogDisplay from '@components/blog-display';
 import About from '@components/about';
 import { graphql } from 'gatsby';
 import { BlogPostQuery } from 'graphql-types';
+import Feedback from '@components/feedback';
+import { Transition } from '@headlessui/react';
+import useOnScreen from '@hooks/use-on-screen';
+import useHasMounted from '@hooks/use-has-mounted';
 
 const styles = {
   ctaLinks: tw(
@@ -49,12 +53,12 @@ const colors = {
   },
   neutral: {
     header: {
-      h1: 'text-onNeutralBg',
-      bg: 'bg-neutralBgSoft',
+      h1: 'text-onNeutralBgSoft',
+      bg: 'bg-neutralBg',
       meta: 'text-neutral',
     },
   },
-}.primary;
+}.neutral;
 
 export default function BlogPost({
   data: {
@@ -77,7 +81,6 @@ export default function BlogPost({
           },
         },
         keywords,
-        tags,
       },
     },
     logo,
@@ -85,6 +88,10 @@ export default function BlogPost({
   },
 }: BlogPostQuery) {
   const { pathname } = useLocation();
+  const [topRef, isTopOnScreen] = useOnScreen({
+    rootMargin: '45%',
+  });
+  const hasMounted = useHasMounted();
 
   const schema = {
     '@context': 'https://schema.org',
@@ -123,39 +130,43 @@ export default function BlogPost({
         schemaMarkup={schema}
       />
       <article>
-        <header className={tw(colors.header.bg, globalStyles.transitions)}>
-          <div
-            className={tw(
-              'lg:mt-4 mx-auto',
-              'grid grid-cols-12 gap-4',
-              'pt-24 pb-5 lg:pt-32 px-2 md:px-6',
-              'max-w-screen-xl',
-            )}
-          >
-            <h1
-              className={tw(
-                'col-span-12 lg:col-span-8',
-                'leading-none text-5xl lg:text-6xl font-black',
-                colors.header.h1,
-                globalStyles.transitions,
-              )}
-            >
-              {title}
-            </h1>
-          </div>
-        </header>
-
         <div
           className={tw(
             'max-w-screen-xl',
             'mx-auto',
-            'grid grid-cols-12 gap-4',
+            'grid grid-cols-12 gap-16',
             'relative',
           )}
         >
           <div
             className={tw('col-span-12 px-2 md:px-6 lg:col-span-9', 'mb-64')}
           >
+            <header
+              ref={topRef}
+              className={tw(colors.header.bg, globalStyles.transitions)}
+            >
+              <div
+                className={tw(
+                  'lg:my-4 mx-auto',
+                  // 'grid grid-cols-12 gap-4',
+                  'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
+                  'max-w-screen-xl',
+                  'border-b border-neutralBgSoft',
+                  globalStyles.transitions,
+                )}
+              >
+                <h1
+                  className={tw(
+                    // 'col-span-12 lg:col-span-8',
+                    'leading-none text-5xl lg:text-6xl font-semibold',
+                    colors.header.h1,
+                    globalStyles.transitions,
+                  )}
+                >
+                  {title}
+                </h1>
+              </div>
+            </header>
             <div className={tw('my-8', 'flex justify-between')}>
               <div className={tw('flex items-center')}>
                 <ExternalLink className="flex items-center" href={author.link}>
@@ -301,15 +312,28 @@ export default function BlogPost({
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
           </div>
+
           <aside
-            aria-hidden
-            className="relative hidden col-span-3 lg:block pr-6"
+            aria-hidden // because we don't hide the mobile ToC
+            className={tw(
+              'relative hidden',
+              'col-span-3',
+              'lg:block',
+              'pr-6',
+              'mb-64',
+            )}
           >
-            <div className="sticky top-32">
-              <h2 className="mt-4 mb-4 font-bold tracking-wider uppercase text-neutral">
-                Table of Contents
-              </h2>
-              <TableOfContents headings={headings} />
+            <div className="sticky top-32 mb-2">
+              <Transition
+                show={hasMounted && !isTopOnScreen}
+                {...globalStyles.fadeTransition}
+              >
+                <h2 className="mt-4 mb-4 font-bold tracking-wider uppercase text-neutral">
+                  Table of Contents
+                </h2>
+                <TableOfContents headings={headings} />
+                <Feedback />
+              </Transition>
             </div>
           </aside>
         </div>
@@ -329,11 +353,7 @@ export default function BlogPost({
         />
       </section>
 
-      <Newsletter
-        tags={tags}
-        color="neutral"
-        copy="Want more articles like this?"
-      />
+      <Newsletter color="neutral" />
       <About color="footer" />
     </>
   );
@@ -367,7 +387,6 @@ export const blogPostPageQuery = graphql`
           }
           photographer
         }
-        tags
       }
       fields {
         slug

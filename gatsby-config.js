@@ -266,7 +266,7 @@ module.exports = {
               {
                 allMdx(
                   limit: 25, 
-                  sort: { order: DESC, fields: [frontmatter___dateModified] },
+                  sort: { order: DESC, fields: [frontmatter___date___modified] },
                   filter: { fileAbsolutePath: { regex: "/content/" } }
                 ) {
                   nodes {
@@ -275,7 +275,9 @@ module.exports = {
                     fields { slug }
                     frontmatter {
                       title
-                      dateModified
+                      date {
+                        modified
+                      }
                     }
                   }
                 }

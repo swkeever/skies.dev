@@ -1,8 +1,14 @@
 import React from 'react';
 import useAlert from '@lib/alerts/use-alert';
 import globalStyles from '@styles/index';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import tw from '@utils/tailwind';
+import {
+  AnalyticsAction,
+  AnalyticsCategory,
+  AnalyticsEvent,
+  track,
+} from '@utils/analytics';
+import { useLocation } from '@reach/router';
 
 const colors = {
   primary: {
@@ -107,6 +113,7 @@ type PropTypes = {
 };
 
 export default function Newsletter({ color }: PropTypes) {
+  const { pathname } = useLocation();
   const alert = useAlert();
 
   const FORM_ID = '1598476';
@@ -115,14 +122,13 @@ export default function Newsletter({ color }: PropTypes) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    trackCustomEvent({
-      // string - required - The object that was interacted with (e.g.video)
-      category: 'Subscribe Button',
-      // string - required - Type of interaction (e.g. 'play')
-      action: 'Click',
-      // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
-      label: 'Newsletter Campaign',
-    });
+    const event: AnalyticsEvent = {
+      category: AnalyticsCategory.Newsletter,
+      action: AnalyticsAction.Subscribe,
+      label: pathname,
+    };
+
+    track(event);
 
     const data = new FormData(e.target);
 
