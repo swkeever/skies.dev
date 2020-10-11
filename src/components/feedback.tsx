@@ -44,6 +44,8 @@ export default function Feedback() {
   const [action, setAction] = useState<AnalyticsAction>(
     AnalyticsAction.Dismiss,
   );
+  const [email, setEmail] = useState<string>('');
+  const [feedback, setFeedback] = useState<string>('');
 
   function trackAction(nextAction: AnalyticsAction) {
     const event: AnalyticsEvent = {
@@ -130,6 +132,8 @@ export default function Feedback() {
                 Email
                 <div className={styles.inputContainer}>
                   <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     type="email"
                     name="email"
@@ -144,6 +148,8 @@ export default function Feedback() {
                 Feedback
                 <div className={styles.inputContainer}>
                   <textarea
+                    value={feedback}
+                    onChange={(e) => setFeedback(e.target.value)}
                     id="message"
                     name="feedback"
                     rows={4}
