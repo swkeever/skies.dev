@@ -11,6 +11,14 @@ const globalStyles = {
   },
   outline:
     'focus:outline-none active:shadow-outline-blue focus:shadow-outline-blue',
+  fadeTransition: {
+    enter: 'transition-opacity duration-200',
+    enterFrom: 'opacity-0',
+    enterTo: 'opacity-100',
+    leave: 'transition-opacity duration-200',
+    leaveFrom: 'opacity-100',
+    leaveTo: 'opacity-0',
+  },
 };
 
 export default globalStyles;

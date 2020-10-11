@@ -93,4 +93,20 @@ module.exports = [
     name: 'AWS',
     weight: 3,
   },
+  {
+    name: 'TypeScript',
+    weight: 2,
+  },
+  {
+    name: 'Web Performance',
+    weight: 5,
+  },
+  {
+    name: 'Analytics',
+    weight: 5,
+  },
+  {
+    name: 'DevOps',
+    weight: 5,
+  },
 ].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));

@@ -1,0 +1,240 @@
+---
+date:
+  published: 2020-10-11
+  modified: 2020-10-11
+title: How I Use TypeScript to Track Google Analytics Events with Gatsby
+description: Learn how to build the best site for your users.
+categoryId: 0
+authorId: 0
+keywords:
+  - google analytics
+  - how to
+  - gatsby
+  - typescript
+tags:
+  - Gatsby
+  - Analytics
+  - TypeScript
+image:
+  src:
+    local: index.jpg
+    external: https://unsplash.com/photos/niJeWZcKf90
+  photographer: Daniele Levis Pelusi
+---
+
+## Context
+
+In this article, I'm going to show you how I use TypeScript to improve Google
+Analytics events tracking. The beauty of using TypeScript is we can use the
+`enum` type to create discrete options to choose from. This should help us make
+our analytics more consistent as we'll see in this article.
+
+The examples we'll look at involve the Gatsby framework, but I'm going to try and
+make it so you can learn this pattern no matter how you're building your site.
+
+Learning how to use Google Analytics or Gatsby is beyond the scope of this
+article. For a general tutorial on setting up Google Analytics with Gatsby,
+check out this video by Guiding Digital. Make sure to give their video a like if
+you find it helpful. 🙂
+
+https://www.youtube.com/watch?v=x7hNcYCMao0
+
+## A Note on Privacy
+
+Before adding analytics tracking to your site, make sure you understand your
+country's privacy laws for collecting analytics on your site. You may want to
+consider configuring Google Analytics to anonymize the IP address of your users
+and also respect the "Do Not Track" flag.
+
+```javascript
+// gatsby-config.js
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-123456789-1',
+        // highlight-start
+        anonymize: true,
+        respectDNT: true,
+        // highlight-end
+      },
+    },
+  ],
+};
+```
+
+I'm not an expert on web privacy laws, so I recommend consulting with someone
+who is if you have questions about collecting analytics.
+
+## Event Tracking with TypeScript
+
+There are three main properties we want to set when tracking an
+[event](https://support.google.com/analytics/answer/1033068?hl=en).
+
+These are how I think of each event property.
+
+- **Category**. What type of thing was interacted with?
+- **Action**. How was the thing interacted with?
+- **Label**. Which specific thing was interacted with?
+
+In my project, I create an `analytics.ts` to store information about event
+tracking.
+
+I like to use the TypeScript `enum` for each event property. This lets me have
+discrete properties that I can use throughout my site. I find this approach more
+maintainable than using ad-hoc strings.
+
+```typescript
+// ❌ Bad
+// Ad-hoc strings could lead to inconsistencies in analytics bucketing
+trackCustomEvent({
+  category: 'Newsletter',
+  action: 'Subscribe',
+});
+
+// ✅ Good
+// Discrete options to choose makes bucketing analytics more maintainable
+trackCustomEvent({
+  category: AnalyticsCategory.Newsletter,
+  action: AnalyticsAction.Subscribe,
+});
+```
+
+I define the following `enum` types to give me a discrete set of options that I
+can use throughout my site. With these types, I can create my own custom
+`AnalyticsEvent` interface to model an event.
+
+```typescript
+// analytics.ts
+export enum AnalyticsCategory {
+  Themes = 'Themes',
+  Newsletter = 'Newsletter',
+  Blogs = 'Blogs',
+  Feedback = 'Feedback',
+  Contact = 'Contact',
+}
+
+export enum AnalyticsAction {
+  Click = 'Click',
+  Subscribe = 'Subscribe',
+  Switch = 'Switch',
+  SendEmail = 'Send Email',
+  Like = 'Liked',
+  Dislike = 'Dislike',
+  Dismiss = 'Dismiss',
+}
+
+export enum AnalyticsLabel {
+  Light = 'Light',
+  Dark = 'Dark',
+  Green = 'Green',
+  Blue = 'Blue',
+  Red = 'Red',
+}
+
+export interface AnalyticsEvent {
+  category: AnalyticsCategory;
+  action: AnalyticsAction;
+  label?: AnalyticsLabel | string;
+}
+```
+
+I let the `label` property also accept a `string` because sometimes I need to
+label something dynamically.
+
+For example, here I let the label be the page the user was on when they
+interacted with some `Button` component.
+
+```tsx
+import { useLocation } from '@reach/router';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+import {
+  AnalyticsAction,
+  AnalyticsCategory,
+  AnalyticsEvent,
+} from '@utils/analytics';
+
+function Button() {
+  const { pathname } = useLocation(); // highlight-line
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        trackCustomEvent({
+          category: AnalayticsCategory.Feedback,
+          action: AnalyticsAction.SentEmail,
+          label: pathname, // highlight-line
+        });
+      }}
+    >
+      Click
+    </button>
+  );
+}
+```
+
+I also create a thin wrapper over the `trackCustomEvent` function exported by
+`gatsby-plugin-google-analytics`.
+
+The plugin supports TypeScript, but it doesn't support the custom
+`AnalyticsEvent` interface that I defined.
+
+Making this wrapper lets me use my `AnalyticsEvent` type instead of the
+`CustomEventArgs` interface that is exported by
+`gatsby-plugin-google-analytics`.
+
+```typescript
+// analytics.ts
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics'; // highlight-line
+
+// ✂️ Unchanged..
+
+// highlight-start
+// Thin wrapper to get TypeScript support
+export function track(event: AnalyticsEvent) {
+  trackCustomEvent(event);
+}
+// highlight-end
+```
+
+With that change, we can refactor our `Button` component ever so slightly.
+
+```tsx
+import { useLocation } from '@reach/router';
+import {
+  AnalyticsAction,
+  AnalyticsCategory,
+  AnalyticsEvent,
+  track,
+} from '@utils/analytics';
+
+function Button() {
+  const { pathname } = useLocation();
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        // highlight-start
+        const event: AnalyticsEvent = {
+          category: AnalayticsCategory.Feedback,
+          action: AnalyticsAction.SentEmail,
+          label: pathname,
+        };
+        track(event);
+        // highlight-end
+      }}
+    >
+      Click
+    </button>
+  );
+}
+```
+
+That's all there is to it. TypeScript makes it easy to choose from a selection
+of discrete event types. I like this approach because it makes your analytics
+more consistent and helps you collect better data on how users are interacting
+with your site.
+
+How do you use analytics tools to build out your user experience? Let me know on
+[Twitter](https://twitter.com/swkeever).

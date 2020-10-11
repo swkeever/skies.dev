@@ -154,7 +154,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // our page layout component
       context: {
         id: nodes[i].id,
-        similarBlogs: similarBlogs.map((b) => b.id),
+        similarBlogs: similarBlogs.map((b) => b.id).reverse(),
       },
     });
   });

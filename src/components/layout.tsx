@@ -10,13 +10,14 @@ import globalStyles from '@styles/index';
 import AlertProvider from '@lib/alerts/alert-provider';
 import tw from '@utils/tailwind';
 import { ImFire, ImLeaf, ImDroplet } from 'react-icons/im';
+import { AnalyticsLabel } from '@utils/analytics';
 import Header from './header';
 import Footer from './footer';
 
 export const LayoutContext = React.createContext({});
 export const themes = [
   {
-    name: 'blue',
+    name: AnalyticsLabel.Blue,
     className: 'theme-blue',
     color: {
       active: {
@@ -34,24 +35,24 @@ export const themes = [
   },
 
   {
-    name: 'red',
+    name: AnalyticsLabel.Red,
     className: 'theme-red',
     color: {
       active: {
-        bg: 'bg-red-400',
+        bg: 'bg-pink-400',
         text: 'text-white',
         border: 'border-white',
       },
       inactive: {
         bg: 'bg-gray-800',
-        text: 'text-red-600',
-        border: 'border-red-600',
+        text: 'text-pink-500',
+        border: 'border-pink-500',
       },
     },
     icon: (props) => <ImFire {...props} />,
   },
   {
-    name: 'green',
+    name: AnalyticsLabel.Green,
     className: 'theme-green',
     color: {
       active: {

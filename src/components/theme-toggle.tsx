@@ -1,8 +1,13 @@
 import React, { useContext } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import globalStyles from '@styles/index';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
-import analytics from '@utils/analytics';
+import {
+  AnalyticsAction,
+  AnalyticsCategory,
+  AnalyticsEvent,
+  AnalyticsLabel,
+  track,
+} from '@utils/analytics';
 import tw from '@utils/tailwind';
 import {
   LayoutContext, ldKey, rgbKey, themes,
@@ -61,14 +66,13 @@ export default function ThemeToggle() {
                 globalStyles.outline,
               )}
               onClick={() => {
-                trackCustomEvent({
-                  // string - required - The object that was interacted with (e.g.video)
-                  category: 'Color Theme Button',
-                  // string - required - Type of interaction (e.g. 'play')
-                  action: `Switched to ${th.name} theme`,
-                  // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
-                  label: analytics.labels.theme,
-                });
+                const event: AnalyticsEvent = {
+                  category: AnalyticsCategory.Theme,
+                  action: AnalyticsAction.Switch,
+                  label: th.name,
+                };
+
+                track(event);
 
                 window.localStorage.setItem(rgbKey, index.toString());
 
@@ -104,14 +108,13 @@ export default function ThemeToggle() {
           styles.transform,
         )}
         onClick={() => {
-          trackCustomEvent({
-            // string - required - The object that was interacted with (e.g.video)
-            category: 'Light/Dark Toggle Button',
-            // string - required - Type of interaction (e.g. 'play')
-            action: `Switched to ${lightTheme ? 'dark' : 'light'} mode`,
-            // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
-            label: analytics.labels.theme,
-          });
+          const event: AnalyticsEvent = {
+            category: AnalyticsCategory.Theme,
+            action: AnalyticsAction.Switch,
+            label: lightTheme ? AnalyticsLabel.Dark : AnalyticsLabel.Light,
+          };
+
+          track(event);
 
           window.localStorage.setItem(ldKey, lightTheme ? 'false' : 'true');
 

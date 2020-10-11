@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
+import { AnalyticsAction, AnalyticsCategory, track } from '@utils/analytics';
+import { useLocation } from '@reach/router';
 
 const inputStyles = tw(
   'appearance-none',
@@ -22,6 +24,7 @@ export default function Form() {
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
+  const { pathname } = useLocation();
 
   return (
     <form
@@ -35,6 +38,7 @@ export default function Form() {
         <label htmlFor="name">
           <span className={labelStyles}>Name</span>
           <input
+            autoComplete="off"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={inputStyles}
@@ -47,6 +51,7 @@ export default function Form() {
         <label htmlFor="email">
           <span className={labelStyles}>Email</span>
           <input
+            autoComplete="off"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={inputStyles}
@@ -61,6 +66,7 @@ export default function Form() {
       <label htmlFor="subject">
         <span className={labelStyles}>Subject</span>
         <input
+          autoComplete="off"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           className={inputStyles}
@@ -74,6 +80,7 @@ export default function Form() {
       <label htmlFor="message">
         <span className={labelStyles}>Message</span>
         <textarea
+          autoComplete="off"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={tw(inputStyles, 'h-48', 'resize-none')}
@@ -83,8 +90,19 @@ export default function Form() {
         />
       </label>
       <button
+        onClick={() => {
+          if (!name || !email || !subject || !message) {
+            // Form has not been filled out
+            return;
+          }
+          track({
+            category: AnalyticsCategory.Contact,
+            action: AnalyticsAction.SendEmail,
+            label: pathname,
+          });
+        }}
         className={tw(
-          'float-right',
+          'flex justify-end',
           'inline-block',
           'bg-primaryBold hover:bg-primary',
           'text-onPrimary',
