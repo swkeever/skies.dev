@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function useOnScreen(
   options?: IntersectionObserverInit | undefined,
-) {
+): [Function, boolean] {
   const [ref, setRef] = useState(null);
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -20,7 +20,7 @@ export default function useOnScreen(
         observer.unobserve(ref);
       }
     };
-  }, [ref, options]);
+  }, [ref]);
 
   return [setRef, visible];
 }

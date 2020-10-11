@@ -11,7 +11,7 @@ keywords:
 tags:
   - Blogging
   - Gatsby
-  - Web Development
+  - DevOps
 image:
   src:
     local: index.jpg
@@ -19,9 +19,7 @@ image:
   photographer: Dibakar Roy
 ---
 
-In a rush? Just [show me the code](/blog/update-frontmatter#completed-solution)!
-
-## Context
+## Problem
 
 > The scripts we develop in this article are meant to be safe and
 > non-destructive. However, I recommend backing up your blog posts to a safe
@@ -50,7 +48,7 @@ No way!
 We're engineers—we're going to figure out a way to automate extending our
 frontmatter. 🦾
 
-## The Plan
+## Algorithm
 
 We'll use Node.js as our scripting language since you are likely to be using
 JavaScript already to develop a Markdown or MDX blog.
@@ -62,9 +60,9 @@ At a high level, here's how we'll update the frontmatter schema:
 
 Then, for each blog post _inside the temporary directory_:
 
-1. Read the blog contents.
+1. Read the blog content.
 2. Transform the frontmatter.
-3. Write the blog contents with the transformed frontmatter.
+3. Write the blog content with the transformed frontmatter.
 
 The reason why we want to write to a temporary directory is for safety. We don't
 want to overwrite our content until we are happy with the transformation. Having
@@ -126,7 +124,7 @@ main();
 ```
 
 Go ahead and try this script out to see if you are able to copy your blogs from
-the source to destination directory.
+the source to the destination directory.
 
 ```bash
 node update-frontmatter.js
@@ -188,9 +186,9 @@ file and
 2. Transform the frontmatter
 3. Write it back to the destination directory with the updated frontmatter
 
-### The Transformation
+### Transformation
 
-We'll create a transformer function which specifies how the frontmatter should
+We'll create a transformer function that specifies how the frontmatter should
 change.
 
 For example, let's say our frontmatter looks like the following.
@@ -203,7 +201,7 @@ published: 2020-10-01
 
 ```
 
-We want to extend our frontmatter schema to support `author`.
+We want to extend our frontmatter schema to support the `author` field.
 
 ```yaml
 ---
@@ -272,15 +270,14 @@ main();
 
 Run the script and see if you're happy with the transformed frontmatter in your
 destination directory. Once you're happy with the transformation, you can delete
-the original source directory, and rename the destination directory. 
+the original source directory, and rename the destination directory.
 
-In our example,
-we would delete `content` and rename `tmp_content` to `content`.
+In our example, we would delete `content` and rename `tmp_content` to `content`.
 
-Hope this helps you simplify your life if you want to extend the frontmatter on
-your Markdown blog. 😎
+Hope this helps simplify your life if you want to extend the frontmatter on your
+Markdown blog. 😎
 
-## Completed solution
+## Solution
 
 ```javascript
 const fs = require('fs');
@@ -327,9 +324,8 @@ function generateFrontmatter(data) {
 //
 // Run the `update-frontmatter` script to generate files to tmp_content
 //
-// Once you're happy with the transformation
-//
-// Remove the current content/ directory and rename tmp_content/ to content/
+// Once you're happy with the transformation, remove the current content/
+// directory then rename tmp_content/ to content/
 //
 async function main() {
   // copies contents of src to dst

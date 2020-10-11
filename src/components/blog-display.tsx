@@ -61,14 +61,9 @@ export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
           'block',
           'text-onNeutralBg hover:text-onNeutralBgLink',
           'mt-8 ml-auto',
-          // 'px-4 py-2',
           'font-semibold text-lg',
           'float-right',
           'group',
-          // 'rounded-full',
-          // 'hover:bg-primaryBgSoft',
-          // 'transform hover:translate-y-0 translate-y-px active:translate-y-px',
-          // 'hover:shadow-xs',
           globalStyles.transitions,
         )}
         to={routes.blog}
