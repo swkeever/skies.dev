@@ -183,12 +183,12 @@ export default function Newsletter({ color }: PropTypes) {
       >
         <h2
           className={tw(
-            'text-3xl md:text-4xl leading-9 font-extrabold tracking-tight sm:leading-10',
+            'text-2xl md:text-4xl leading-9 font-extrabold tracking-tight sm:leading-10',
             globalStyles.transitions,
             styles.h2,
           )}
         >
-          Get articles straight to your inbox
+          Get the latest articles
           <div
             className={tw(styles.h2Span, globalStyles.transitions)}
             id="newsletter-headline"

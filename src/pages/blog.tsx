@@ -5,12 +5,11 @@ import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/blog-card';
 import tw from '@utils/tailwind';
-import SEO from '../components/seo';
+import SEO, { SiteInfo } from '../components/seo';
 import Empty from '../../assets/empty.svg';
 import Logo from '../../assets/logo.svg';
 import Newsletter from '../components/newsletter';
-import siteConfig from '../../site.config';
-import { BlogMeta, PageQuery } from '../../graphql-types';
+import { BlogMeta } from '../../graphql-types';
 
 function getNumResultsString(k: number): string {
   switch (k) {
@@ -25,6 +24,9 @@ function getNumResultsString(k: number): string {
 
 export const blogPageQuery = graphql`
   query BlogIndex {
+    site {
+      ...SiteInfo
+    }
     allMdx(
       sort: {
         order: DESC
@@ -63,12 +65,13 @@ const colors = {
 
 export default function BlogsPage({
   data: {
+    site,
     allMdx: { nodes },
   },
 }: {
-  data: PageQuery;
+  data: { site: SiteInfo; allMdx: { nodes: BlogMeta[] } };
 }) {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState<string>('');
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
   const [blogs, setBlogs] = useState<BlogMeta[]>(nodes);
 
@@ -114,7 +117,7 @@ export default function BlogsPage({
       >
         <div className="px-4 max-w-screen-sm mx-auto">
           <h1>
-            <span className="sr-only">{siteConfig.siteTitle}</span>
+            <span className="sr-only">{site.siteMetadata.title.medium}</span>
             <Logo
               className={tw(
                 'w-7/12 h-auto',

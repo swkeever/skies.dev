@@ -5,8 +5,14 @@ import globalStyles from '@styles/index';
 import Logo from '@assets/logo.svg';
 import { Link } from '@reach/router';
 import tw from '@utils/tailwind';
-import siteConfig from '../../site.config';
 import routes from '../utils/routes';
+import { SiteInfo } from './seo';
+
+interface Avatar {
+  childImageSharp: {
+    fluid: FluidObject;
+  };
+}
 
 export const avatarFragment = graphql`
   fragment Avatar on File {
@@ -18,9 +24,17 @@ export const avatarFragment = graphql`
   }
 `;
 
+interface QueryData {
+  site: SiteInfo;
+  file: Avatar;
+}
+
 export default function Hero() {
-  const data = useStaticQuery(graphql`
+  const data: QueryData = useStaticQuery(graphql`
     query {
+      site {
+        ...SiteInfo
+      }
       file(relativePath: { eq: "sean-keever.jpg" }) {
         ...Avatar
       }
@@ -72,7 +86,9 @@ export default function Hero() {
           />
           <header className="flex-grow ml-4">
             <h1>
-              <span className="sr-only">{siteConfig.siteTitle}</span>
+              <span className="sr-only">
+                {data.site.siteMetadata.title.long}
+              </span>
               <Logo
                 className={tw(
                   'w-full h-auto',

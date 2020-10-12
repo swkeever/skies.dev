@@ -23,6 +23,7 @@ import { Transition } from '@headlessui/react';
 import useOnScreen from '@hooks/use-on-screen';
 import useHasMounted from '@hooks/use-has-mounted';
 import { AnalyticsAction } from '@utils/analytics';
+import { BlogPosting, WithContext } from 'schema-dts';
 
 interface BlogPostContext {
   action: AnalyticsAction;
@@ -113,7 +114,7 @@ export default function BlogPost({
   const [email, setEmail] = useState<string>('');
   const [feedback, setFeedback] = useState<string>('');
 
-  const schema = {
+  const schema: WithContext<BlogPosting> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
@@ -125,7 +126,7 @@ export default function BlogPost({
     image: links.withSiteUrl(imageFluid.src),
     author: {
       '@type': 'Person',
-      name: 'Sean Keever',
+      name: author.name,
     },
     publisher: {
       '@type': 'Organization',
@@ -139,6 +140,104 @@ export default function BlogPost({
     dateModified: date.modified,
   };
 
+  function BlogMeta() {
+    return (
+      <section
+        className={tw(
+          'border-t border-neutralBgSofter',
+          'px-1 py-5',
+          'flex flex-col space-y-6 md:space-y-0',
+          'md:flex-row md:justify-between md:items-center',
+        )}
+      >
+        <div className={tw('flex items-center')}>
+          <ExternalLink className="flex items-center" href={author.link}>
+            <Img
+              className={tw('rounded-full', 'mr-2')}
+              fixed={author.image.childImageSharp.fixed}
+              alt={author.name}
+            />
+          </ExternalLink>
+
+          <dl>
+            <div className={tw('flex space-x-2 items-center')}>
+              <div className={tw('text-neutralBold', 'font-medium')}>
+                <dt className="sr-only">Author</dt>
+                <dd>
+                  <ExternalLink
+                    className={tw(
+                      'hover:text-onNeutralBgSofter',
+                      globalStyles.transitions,
+                    )}
+                    href={author.link}
+                  >
+                    {author.name}
+                  </ExternalLink>
+                </dd>
+              </div>
+            </div>
+
+            <div
+              className={tw(
+                'flex space-x-1',
+                'text-sm',
+                globalStyles.transitions,
+                'text-neutral',
+              )}
+            >
+              <div>
+                <dt className="sr-only">Last modified</dt>
+                <dd>{date.modified}</dd>
+              </div>
+              <span aria-hidden>&middot;</span>
+              <div>
+                <dt className="sr-only">Time to read</dt>
+                <dd>
+                  {timeToRead}
+                  {' '}
+                  min read
+                </dd>
+              </div>
+            </div>
+          </dl>
+        </div>
+        <ul className={tw('flex space-x-4 items-center', 'text-2xl')}>
+          <li key="twitter">
+            <ExternalLink
+              href={links.shareTo.twitter({
+                title,
+                pathname,
+              })}
+              className={styles.shareLink}
+            >
+              <FaTwitter />
+            </ExternalLink>
+          </li>
+          <li key="facebook">
+            <ExternalLink
+              className={styles.shareLink}
+              href={links.shareTo.facebook({ pathname })}
+            >
+              <FaFacebookSquare />
+            </ExternalLink>
+          </li>
+          <li key="linkedin">
+            <ExternalLink
+              className={styles.shareLink}
+              href={links.shareTo.linkedIn({
+                title,
+                description,
+                pathname,
+              })}
+            >
+              <FaLinkedin />
+            </ExternalLink>
+          </li>
+        </ul>
+      </section>
+    );
+  }
+
   return (
     <BlogPostContext.Provider
       value={{
@@ -151,12 +250,11 @@ export default function BlogPost({
       }}
     >
       <SEO
-        article
         title={title}
         description={description}
         keywords={keywords}
         image={imageFluid}
-        schemaMarkup={schema}
+        blogSchema={schema}
       />
       <article>
         <div
@@ -167,30 +265,23 @@ export default function BlogPost({
             'relative',
           )}
         >
-          <div
-            className={tw(
-              'col-span-12 px-2 md:px-6 lg:col-span-9',
-              'mb-16 lg:mb-64',
-            )}
-          >
+          <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9', 'mb-8')}>
             <header
               ref={topRef}
               className={tw(colors.header.bg, globalStyles.transitions)}
             >
               <div
                 className={tw(
-                  'lg:my-4 mx-auto',
-                  // 'grid grid-cols-12 gap-4',
+                  'mx-auto',
                   'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
                   'max-w-screen-xl',
-                  'border-b border-neutralBgSoft',
+                  // 'border-b border-neutralBgSoft',
                   globalStyles.transitions,
                 )}
               >
                 <h1
                   className={tw(
-                    // 'col-span-12 lg:col-span-8',
-                    'leading-none text-5xl lg:text-6xl font-semibold',
+                    'leading-none text-4xl lg:text-6xl font-semibold',
                     colors.header.h1,
                     globalStyles.transitions,
                   )}
@@ -199,92 +290,8 @@ export default function BlogPost({
                 </h1>
               </div>
             </header>
-            <div className={tw('my-8', 'flex justify-between')}>
-              <div className={tw('flex items-center')}>
-                <ExternalLink className="flex items-center" href={author.link}>
-                  <Img
-                    className={tw('rounded-full', 'mr-2')}
-                    fixed={author.image.childImageSharp.fixed}
-                    alt={author.name}
-                  />
-                </ExternalLink>
 
-                <dl>
-                  <div className={tw('flex space-x-2 items-center')}>
-                    <div className={tw('text-neutralBold', 'font-medium')}>
-                      <dt className="sr-only">Author</dt>
-                      <dd>
-                        <ExternalLink
-                          className={tw(
-                            'hover:text-onNeutralBgSofter',
-                            globalStyles.transitions,
-                          )}
-                          href={author.link}
-                        >
-                          {author.name}
-                        </ExternalLink>
-                      </dd>
-                    </div>
-                  </div>
-
-                  <div
-                    className={tw(
-                      'flex space-x-1',
-                      'text-sm',
-                      globalStyles.transitions,
-                      'text-neutral',
-                    )}
-                  >
-                    <div>
-                      <dt className="sr-only">Last modified</dt>
-                      <dd>{date.modified}</dd>
-                    </div>
-                    <span aria-hidden>&middot;</span>
-                    <div>
-                      <dt className="sr-only">Time to read</dt>
-                      <dd>
-                        {timeToRead}
-                        {' '}
-                        min read
-                      </dd>
-                    </div>
-                  </div>
-                </dl>
-              </div>
-              <ul className={tw('flex space-x-4 items-center', 'text-2xl')}>
-                <li key="twitter">
-                  <ExternalLink
-                    href={links.shareTo.twitter({
-                      title,
-                      pathname,
-                    })}
-                    className={styles.shareLink}
-                  >
-                    <FaTwitter />
-                  </ExternalLink>
-                </li>
-                <li key="facebook">
-                  <ExternalLink
-                    className={styles.shareLink}
-                    href={links.shareTo.facebook({ pathname })}
-                  >
-                    <FaFacebookSquare />
-                  </ExternalLink>
-                </li>
-                <li key="linkedin">
-                  <ExternalLink
-                    className={styles.shareLink}
-                    href={links.shareTo.linkedIn({
-                      title,
-                      description,
-                      pathname,
-                    })}
-                  >
-                    <FaLinkedin />
-                  </ExternalLink>
-                </li>
-              </ul>
-            </div>
+            <BlogMeta />
 
             <figure className={tw('mb-24')}>
               <Img
@@ -313,9 +320,9 @@ export default function BlogPost({
               </figcaption>
             </figure>
 
-            <div
+            <section
               className={tw(
-                'mt-4',
+                'mt-4 mb-24',
                 'mx-auto',
                 globalStyles.onlySmallScreens,
                 'bg-neutralBgSoft',
@@ -334,15 +341,19 @@ export default function BlogPost({
                 watch={false}
                 headings={headings}
               />
-            </div>
+            </section>
 
-            <MDXProvider
-              components={{
-                ...shortCodes,
-              }}
-            >
-              <MDXRenderer>{body}</MDXRenderer>
-            </MDXProvider>
+            <section className={tw('mb-16')}>
+              <MDXProvider
+                components={{
+                  ...shortCodes,
+                }}
+              >
+                <MDXRenderer>{body}</MDXRenderer>
+              </MDXProvider>
+            </section>
+
+            <BlogMeta />
           </div>
 
           <aside
@@ -379,6 +390,7 @@ export default function BlogPost({
           'flex flex-col justify-center',
           'my-20 relative mx-auto',
           'max-w-md w-full',
+          'px-2',
         )}
       >
         <Feedback />

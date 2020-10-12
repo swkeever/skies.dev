@@ -3,8 +3,50 @@ import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'node_modules/gatsby-image/index';
-import links from '@utils/links';
+import { withSiteUrl } from '@utils/links';
+import routes from '@utils/routes';
+import {
+  BlogPosting, BreadcrumbList, WebSite, WithContext,
+} from 'schema-dts';
 import { LayoutContext } from './layout';
+
+export interface SiteInfo {
+  siteMetadata: {
+    siteUrl: string;
+    handle: string;
+    title: {
+      long: string;
+      medium: string;
+      short: string;
+    };
+    description: string;
+    lang: string;
+  };
+}
+
+export const siteMetadata = graphql`
+  fragment SiteInfo on Site {
+    siteMetadata {
+      siteUrl
+      handle
+      title {
+        long
+        medium
+        short
+      }
+      description
+      lang
+    }
+  }
+`;
+
+export interface Logo {
+  childImageSharp: {
+    fixed: {
+      src: string;
+    };
+  };
+}
 
 export const logoFragment = graphql`
   fragment Logo on File {
@@ -16,64 +58,39 @@ export const logoFragment = graphql`
   }
 `;
 
-type SEO = {
-  title: string;
-  description: string;
-  canonicalUrl: string;
-  image: {
-    src: string;
-    type: string;
-  };
-  twitter: string;
-  article: boolean;
-};
-
 export default function SEO({
   title = '',
   description = '',
   image = null,
-  article = false,
   keywords = [],
-  schemaMarkup = null,
+  blogSchema = null,
 }: {
   title?: string;
   description?: string;
   image?: FluidObject;
-  article?: boolean;
   keywords?: string[];
-  schemaMarkup?: any;
+  blogSchema?: WithContext<BlogPosting>;
 }) {
-  const { site, logo, avatar } = useStaticQuery(graphql`
+  const { site, logo }: { site: SiteInfo; logo: Logo } = useStaticQuery(graphql`
     query SEO {
       site {
-        siteMetadata {
-          siteUrl
-          handle
-        }
+        ...SiteInfo
       }
       logo: file(relativePath: { eq: "logo.jpg" }) {
         ...Logo
-      }
-      avatar: file(relativePath: { eq: "sean-keever.jpg" }) {
-        childImageSharp {
-          fixed(height: 400, width: 400) {
-            src
-          }
-        }
       }
     }
   `);
   const { pathname } = useLocation();
   const { lightTheme } = useContext(LayoutContext);
+  const isArticle = blogSchema !== null;
 
-  const withSiteUrl = (path: string): string => `${site.siteMetadata.siteUrl}${path}`;
-
-  const seo: SEO = {
+  const seo = {
     title: !title
-      ? 'Skies by Seattle Software Engineer Sean Keever'
-      : `${title} | Skies by Sean Keever`,
+      ? site.siteMetadata.title.long
+      : `${title} | ${site.siteMetadata.title.medium}`,
     description,
-    canonicalUrl: `${site.siteMetadata.siteUrl}${pathname}`,
+    canonicalUrl: withSiteUrl(pathname),
     image: {
       src: image ? image.src : logo.childImageSharp.fixed.src,
       type: image
@@ -84,33 +101,63 @@ export default function SEO({
         : 'image/jpeg',
     },
     twitter: `@${site.siteMetadata.handle}`,
-    article,
   };
 
-  let schema;
-  if (!schemaMarkup) {
-    schema = {
-      '@context': 'https://schema.org/',
-      '@type': 'Person',
-      name: 'Sean Keever',
-      url: links.siteUrl,
-      image: links.withSiteUrl(avatar.childImageSharp.fixed.src),
-      sameAs: [links.twitter, links.linkedIn, links.github, links.siteUrl],
-      jobTitle: 'Software Development Engineer',
-      worksFor: {
-        '@type': 'Organization',
-        name: 'OfferUp',
-      },
-    };
-  } else {
-    schema = schemaMarkup;
+  const schema: WithContext<WebSite | BreadcrumbList | BlogPosting>[] = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: site.siteMetadata.siteUrl,
+      name: site.siteMetadata.title.short,
+      description: site.siteMetadata.description,
+    },
+  ];
+
+  if (!routes.equals(routes.home, pathname)) {
+    let itemListElement;
+    if (isArticle) {
+      itemListElement = [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Blog',
+          item: withSiteUrl(routes.blog),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: blogSchema.headline,
+          item: withSiteUrl(pathname),
+        },
+      ];
+      schema.push(blogSchema);
+    } else {
+      itemListElement = [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: title,
+          item: withSiteUrl(pathname),
+        },
+      ];
+    }
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement,
+    });
   }
+
+  const schemaMarkup = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': schema,
+  });
 
   return (
     <>
       <Helmet>
         <title>{seo.title}</title>
-        <html lang="en" />
+        <html lang={site.siteMetadata.lang} />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="canonical" href={seo.canonicalUrl} />
         <meta name="keywords" content={keywords.join(', ')} />
@@ -144,8 +191,8 @@ export default function SEO({
         <meta property="og:image:type" content={seo.image.type} />
         <meta property="og:image:url" content={withSiteUrl(seo.image.src)} />
         <meta property="og:image:alt" content={seo.title} />
-        {seo.article && <meta property="og:type" content="article" />}
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        {isArticle && <meta property="og:type" content="article" />}
+        <script type="application/ld+json">{schemaMarkup}</script>
       </Helmet>
     </>
   );

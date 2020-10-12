@@ -1,8 +1,8 @@
 import { FixedObject, FluidObject } from 'gatsby-image';
 
 interface BlogDate {
-  published: Date;
-  modified: Date;
+  published: string;
+  modified: string;
 }
 
 interface BlogImage {

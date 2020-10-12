@@ -1,7 +1,6 @@
 /* eslint-disable global-require */
 const cssNano = require('cssnano');
 const path = require('path');
-const config = require('./site.config');
 const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
 const routes = require('./src/utils/routes');
@@ -23,13 +22,24 @@ const gatsbyRemarkImages = {
   },
 };
 
-module.exports = {
-  siteMetadata: {
-    siteUrl: 'https://www.skies.dev',
-    handle: 'swkeever',
-    title: 'Skies',
-    description: 'A software engineering blog by Sean Keever',
+const siteMetadata = {
+  siteUrl: process.env.ROOT_URL || 'https://www.skies.dev',
+  handle: 'swkeever',
+  title: {
+    long: 'Skies by Seattle Software Engineer Sean Keever', // Alternative Site title for SEO
+    medium: 'Skies by Sean Keever', // Navigation and Site Title
+    short: 'Skies', // Short_name for manifest
   },
+  description: 'A software engineering blog by Sean Keever',
+  lang: 'en',
+  color: {
+    background: '#2D3748',
+    theme: '#4299E1',
+  },
+};
+
+module.exports = {
+  siteMetadata,
   plugins: [
     {
       resolve: 'gatsby-plugin-google-analytics',
@@ -203,13 +213,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: config.siteTitle,
-        short_name: config.siteTitleShort,
-        description: config.siteDescription,
-        start_url: config.pathPrefix,
-        lang: config.lang,
-        background_color: config.backgroundColor,
-        theme_color: config.themeColor,
+        name: siteMetadata.title.long,
+        short_name: siteMetadata.title.short,
+        description: siteMetadata.description,
+        start_url: '/',
+        lang: siteMetadata.lang,
+        background_color: siteMetadata.color.background,
+        theme_color: siteMetadata.color.primary,
         display: 'standalone',
         icon: 'images/favicon.png',
       },
@@ -239,7 +249,9 @@ module.exports = {
           {
             site {
               siteMetadata {
-                title
+                title {
+                  medium
+                }
                 description
                 siteUrl
               }
