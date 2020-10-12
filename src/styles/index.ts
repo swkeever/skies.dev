@@ -1,3 +1,5 @@
+import tw from '@utils/tailwind';
+
 const globalStyles = {
   colors: {
     primary: '#4299E1',
@@ -9,6 +11,7 @@ const globalStyles = {
   mdx: {
     margin: 'mb-5 lg:mb-10',
   },
+  onlySmallScreens: tw('lg:hidden'),
   outline:
     'focus:outline-none active:shadow-outline-blue focus:shadow-outline-blue',
   fadeTransition: {

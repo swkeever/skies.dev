@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/heading-has-content */
-import React from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -22,6 +22,21 @@ import Feedback from '@components/feedback';
 import { Transition } from '@headlessui/react';
 import useOnScreen from '@hooks/use-on-screen';
 import useHasMounted from '@hooks/use-has-mounted';
+import { AnalyticsAction } from '@utils/analytics';
+
+interface BlogPostContext {
+  action: AnalyticsAction;
+  setAction: React.Dispatch<React.SetStateAction<AnalyticsAction>>;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  feedback: string;
+  setFeedback: React.Dispatch<React.SetStateAction<string>>;
+}
+
+// I use React Context to persist state across mobile and desktop components.
+export const BlogPostContext = React.createContext<BlogPostContext | null>(
+  null,
+);
 
 const styles = {
   ctaLinks: tw(
@@ -92,6 +107,11 @@ export default function BlogPost({
     rootMargin: '45%',
   });
   const hasMounted = useHasMounted();
+  const [action, setAction] = useState<AnalyticsAction>(
+    AnalyticsAction.Dismiss,
+  );
+  const [email, setEmail] = useState<string>('');
+  const [feedback, setFeedback] = useState<string>('');
 
   const schema = {
     '@context': 'https://schema.org',
@@ -120,7 +140,16 @@ export default function BlogPost({
   };
 
   return (
-    <>
+    <BlogPostContext.Provider
+      value={{
+        action,
+        setAction,
+        email,
+        setEmail,
+        feedback,
+        setFeedback,
+      }}
+    >
       <SEO
         article
         title={title}
@@ -134,12 +163,15 @@ export default function BlogPost({
           className={tw(
             'max-w-screen-xl',
             'mx-auto',
-            'grid grid-cols-12 gap-16',
+            'grid grid-cols-12 lg:gap-8',
             'relative',
           )}
         >
           <div
-            className={tw('col-span-12 px-2 md:px-6 lg:col-span-9', 'mb-64')}
+            className={tw(
+              'col-span-12 px-2 md:px-6 lg:col-span-9',
+              'mb-16 lg:mb-64',
+            )}
           >
             <header
               ref={topRef}
@@ -285,7 +317,7 @@ export default function BlogPost({
               className={tw(
                 'mt-4',
                 'mx-auto',
-                'lg:hidden',
+                globalStyles.onlySmallScreens,
                 'bg-neutralBgSoft',
                 'px-5 py-10',
                 'rounded-lg',
@@ -332,12 +364,25 @@ export default function BlogPost({
                   Table of Contents
                 </h2>
                 <TableOfContents headings={headings} />
-                <Feedback />
+                <div className={tw('mt-16')}>
+                  <Feedback />
+                </div>
               </Transition>
             </div>
           </aside>
         </div>
       </article>
+
+      <section
+        className={tw(
+          globalStyles.onlySmallScreens,
+          'flex flex-col justify-center',
+          'my-20 relative mx-auto',
+          'max-w-md w-full',
+        )}
+      >
+        <Feedback />
+      </section>
 
       <section
         className={tw(
@@ -355,7 +400,7 @@ export default function BlogPost({
 
       <Newsletter color="neutral" />
       <About color="footer" />
-    </>
+    </BlogPostContext.Provider>
   );
 }
 
