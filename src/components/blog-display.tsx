@@ -10,48 +10,24 @@ import { BlogMeta } from '../../graphql-types';
 type PropTypes = {
   title: string;
   blogs: BlogMeta[];
-  subtitle: string;
 };
 
-export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
+export default function BlogDisplay({ title, blogs }: PropTypes) {
   return (
-    <div
-      className={tw(
-        'mx-auto',
-        'clearfix',
-        'max-w-screen-md xl:max-w-screen-2xl',
-        'px-4',
-      )}
-    >
-      <header className={tw('flex flex-col lg:items-center')}>
+    <div className={tw('mx-auto', 'clearfix', 'max-w-screen-xl', 'px-4')}>
+      <header className={tw('flex flex-col items-center')}>
         <h2
           className={tw(
             'text-onNeutralBg',
             'font-extrabold text-3xl',
-            'mb-3',
+            'mb-1',
             globalStyles.transitions,
           )}
         >
           {title}
         </h2>
-        <p
-          className={tw(
-            'text-neutral',
-            'text-lg xl:text-xl lg:text-center',
-            'max-w-lg',
-            globalStyles.transitions,
-          )}
-        >
-          {subtitle}
-        </p>
       </header>
-      <nav
-        className={tw(
-          'mt-8',
-          'grid gap-5',
-          'grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
-        )}
-      >
+      <nav className={tw('mt-8', 'grid gap-5', 'grid-cols-1 md:grid-cols-3')}>
         {blogs.map((blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))}
@@ -68,7 +44,7 @@ export default function BlogDisplay({ title, blogs, subtitle }: PropTypes) {
         )}
         to={routes.blog}
       >
-        See all publications
+        Back to blog
         <FaArrowRight
           className={tw(
             'inline-block',

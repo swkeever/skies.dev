@@ -12,6 +12,12 @@ module.exports = {
     './**/*.ts',
     './content/**/*.mdx',
   ],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+    defaultLineHeights: true,
+    standardFontWeights: true,
+  },
   experimental: {
     applyComplexClasses: true,
   },

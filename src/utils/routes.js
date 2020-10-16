@@ -2,7 +2,7 @@ const withLegal = (slug) => `/legal/${slug}`;
 
 module.exports = {
   blog: '/blog/',
-  home: '/',
+  // home: '/',
   contact: '/contact/',
   about: '/about/',
   sitemap: '/sitemap.xml',

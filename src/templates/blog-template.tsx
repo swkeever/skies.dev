@@ -15,7 +15,6 @@ import shortCodes from '@components/shortcodes';
 import Newsletter from '@components/newsletter';
 import tw from '@utils/tailwind';
 import BlogDisplay from '@components/blog-display';
-import About from '@components/about';
 import { graphql } from 'gatsby';
 import { BlogPostQuery } from 'graphql-types';
 import Feedback from '@components/feedback';
@@ -265,7 +264,7 @@ export default function BlogPost({
             'relative',
           )}
         >
-          <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9', 'mb-8')}>
+          <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
             <header
               ref={topRef}
               className={tw(colors.header.bg, globalStyles.transitions)}
@@ -352,8 +351,6 @@ export default function BlogPost({
                 <MDXRenderer>{body}</MDXRenderer>
               </MDXProvider>
             </section>
-
-            <BlogMeta />
           </div>
 
           <aside
@@ -363,10 +360,10 @@ export default function BlogPost({
               'col-span-3',
               'lg:block',
               'pr-6',
-              'mb-64',
+              'mb-0',
             )}
           >
-            <div className="sticky top-32 mb-2">
+            <div className="sticky top-32">
               <Transition
                 show={hasMounted && !isTopOnScreen}
                 {...globalStyles.fadeTransition}
@@ -381,6 +378,11 @@ export default function BlogPost({
               </Transition>
             </div>
           </aside>
+          <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
+            <BlogMeta />
+
+            <Newsletter color="neutral" />
+          </div>
         </div>
       </article>
 
@@ -410,8 +412,7 @@ export default function BlogPost({
         />
       </section>
 
-      <Newsletter color="neutral" />
-      <About color="footer" />
+      {/* <About color="footer" /> */}
     </BlogPostContext.Provider>
   );
 }

@@ -16,7 +16,7 @@ const styles = {
   icon: tw('flex justify-center', 'w-auto'),
   button: (checked: boolean): string => tw(
     'h-12 w-full',
-    checked ? tw('text-primaryBold') : 'text-neutralBold ',
+    checked ? tw('text-primaryBold') : 'text-neutral ',
     'flex justify-center items-center',
     'hover:bg-neutralBgSoft',
     globalStyles.transitions,
@@ -24,8 +24,11 @@ const styles = {
     'shadow-xs active:shadow-none',
     globalStyles.outline,
   ),
-  p: tw('mt-4 text-sm leading-6 text-neutral'),
-  label: tw('block text-sm font-medium leading-5 text-onNeutralBgSofter'),
+  p: tw('mt-4 text-sm leading-6 text-neutral', globalStyles.transitions),
+  label: tw(
+    'block text-sm font-medium leading-5 text-onNeutralBgSofter',
+    globalStyles.transitions,
+  ),
   inputContainer: tw('mt-1 relative rounded-md shadow-sm'),
   input: tw(
     'py-3 px-4',
@@ -35,6 +38,7 @@ const styles = {
     'bg-neutralBg',
     'border border-neutralBgSofter',
     globalStyles.outline,
+    globalStyles.transitions,
   ),
 };
 
@@ -178,7 +182,7 @@ export default function Feedback() {
                   'border border-transparent',
                   'text-base leading-6 font-medium',
                   'rounded-md',
-                  'bg-primaryBold hover:bg-primary text-white',
+                  'bg-primary hover:bg-primarySoft text-white',
                   'active:bg-onPrimaryBgSofter',
                   globalStyles.transitions,
                   globalStyles.outline,

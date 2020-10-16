@@ -65,7 +65,10 @@ export default function BlogCard({
         globalStyles.outline,
         globalStyles.transitions,
         'rounded-lg',
-        'shadow-sm hover:shadow-lg active:shadow-sm',
+        'shadow-sm',
+        // 'max-w-sm',
+        'hover:shadow-lg',
+        'active:shadow-sm',
         'overflow-hidden',
         'h-full',
         'transform',
@@ -76,7 +79,7 @@ export default function BlogCard({
         <figure className="flex-shrink-0">
           <Img className="object-cover w-full h-48" fluid={fluid} alt={title} />
         </figure>
-        <section className="flex flex-col justify-between flex-1 p-3 bg-light">
+        <section className="flex flex-col justify-between flex-1 p-3 bg-neutralBg">
           <header className="flex-1">
             <span
               className={tw(
@@ -89,14 +92,14 @@ export default function BlogCard({
             >
               {category.name}
             </span>
-            <h2 className="mt-2 text-2xl font-semibold leading-7 text-onNeutralBg">
+            <h2 className="mt-2 text-2xl font-semibold leading-7 text-onNeutralBgSofter">
               {title}
             </h2>
           </header>
-          <p className="mt-3 text-base leading-6 text-neutral mt-6">
+          <p className="mt-3 text-base leading-6 text-neutralBold mt-6">
             {description}
           </p>
-          <dl className="flex items-center mt-6 text-sm leading-5 text-neutralSoft">
+          <dl className="flex items-center mt-6 text-sm leading-5 text-neutral">
             <div>
               <dt className="sr-only">Date modified</dt>
               <dd>

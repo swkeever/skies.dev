@@ -1,9 +1,10 @@
 ---
 date:
   published: 2020-08-26
-  modified: 2020-09-26
+  modified: 2020-10-13
 title: Simple Trick to Clean Up Tailwind CSS in React
-description: Here's a trick I like to do to clean up Tailwind CSS in React projects.
+description:
+  Here's a trick I like to do to clean up Tailwind CSS in React projects.
 categoryId: 0
 authorId: 0
 keywords:
@@ -24,6 +25,20 @@ image:
 ---
 
 ## Problem
+
+A pain point with using utility-first CSS framework like Tailwind CSS is that
+you invetibaly end up with components such as these.
+
+```html
+<a
+  href="#"
+  <!-- highlight-start -->
+  class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-primaryBold bg-neutralBg hover:text-primary focus:outline-none focus:border-primaryBgSofter focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
+  <!-- highlight-end -->
+>
+  Live demo
+</a>
+```
 
 Consider the following:
 
@@ -165,7 +180,7 @@ function Hero() {
         'mt-2 mb-4', // spacing
         'w-full h-auto', // size
         'text-blue-600 fill-current', // color
-        globalStyles.transitions, // highlight-line
+        globalStyles.transitions // highlight-line
       )}
     />
   );

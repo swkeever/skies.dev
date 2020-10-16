@@ -104,7 +104,7 @@ function getSimilarBlogs(nodes, idx) {
     blog.count /= allWeights;
   }
 
-  const res = allBlogs.sort((a, b) => b.count - a.count).slice(0, 4);
+  const res = allBlogs.sort((a, b) => b.count - a.count).slice(0, 3);
 
   res.forEach((b) => b.count);
 

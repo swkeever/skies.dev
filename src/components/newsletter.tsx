@@ -77,7 +77,7 @@ const colors = {
     section: 'bg-neutralBgSoft',
     h2: 'text-onNeutralBgSoft',
     h2Span: 'text-onPrimaryBgSofter',
-    button: 'text-onPrimary bg-primaryBold hover:bg-primary',
+    button: 'text-onPrimary bg-primary hover:bg-primaryBold',
     selectAll: 'text-onNeutralBg hover:bg-neutralBgSofter',
     p: 'text-neutral',
     h3: 'text-onNeutralBgSoft',
@@ -90,7 +90,7 @@ const colors = {
     input: tw(
       'border border-neutralBgSofter focus:border-primaryBgSofter',
       'bg-neutralBg',
-      'text-gray-800 placeholder-neutralSoft',
+      'text-onNeutralBgSofter placeholder-neutralSoft',
     ),
   },
 };
@@ -176,7 +176,8 @@ export default function Newsletter({ color }: PropTypes) {
     <section className={tw(styles.section, globalStyles.transitions)}>
       <div
         className={tw(
-          'mx-auto max-w-2xl',
+          'mx-auto',
+          'max-w-2xl',
           'w-full relative',
           'py-12 px-4 lg:py-24 2xl:py-32 lg:px-8',
         )}
@@ -196,7 +197,7 @@ export default function Newsletter({ color }: PropTypes) {
             Sign up for the newsletter
           </div>
         </h2>
-        <p className={tw('mt-2', styles.p, globalStyles.transitions)}>
+        <p className={tw('mt-6', styles.p, globalStyles.transitions)}>
           I will not send you spam. Unsubscribe at any time.
         </p>
 

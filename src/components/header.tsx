@@ -45,7 +45,7 @@ export default function Header() {
           )}
         >
           <Link
-            to={routes.home}
+            to={routes.blog}
             className={tw(
               'hidden',
               'lg:flex',

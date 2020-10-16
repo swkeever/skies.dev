@@ -58,24 +58,24 @@
 
 .theme-light {
   /* primaries */
-  --color-primaryBg: var(--color-primary-100);
-  --color-primaryBgSoft: var(--color-primary-200);
-  --color-primaryBgSofter: var(--color-primary-300);
-  --color-primarySoft: var(--color-primary-400);
-  --color-primary: var(--color-primary-500);
-  --color-primaryBold: var(--color-primary-600);
+  --color-primaryBg: var(--color-primary-50);
+  --color-primaryBgSoft: var(--color-primary-100);
+  --color-primaryBgSofter: var(--color-primary-200);
+  --color-primarySoft: var(--color-primary-300);
+  --color-primary: var(--color-primary-400);
+  --color-primaryBold: var(--color-primary-500);
   --color-onPrimaryBgSofter: var(--color-primary-700);
   --color-onPrimaryBgSoft: var(--color-primary-800);
   --color-onPrimaryBg: var(--color-primary-900);
   --color-light: white;
-  --color-onLight: var(--color-primary-900);
+  --color-onLight: var(--color-neutral-900);
 
   /* neutrals */
-  --color-neutralBg: var(--color-neutral-100);
-  --color-neutralBgSoft: var(--color-neutral-200);
-  --color-neutralBgSofter: var(--color-neutral-300);
-  --color-neutralSoft: var(--color-neutral-400);
-  --color-neutral: var(--color-neutral-500);
+  --color-neutralBg: var(--color-neutral-50);
+  --color-neutralBgSoft: var(--color-neutral-100);
+  --color-neutralBgSofter: var(--color-neutral-200);
+  --color-neutralSoft: var(--color-neutral-300);
+  --color-neutral: var(--color-neutral-400);
   --color-neutralBold: var(--color-neutral-600);
   --color-onNeutralBgSofter: var(--color-neutral-700);
   --color-onNeutralBgSoft: var(--color-neutral-800);
@@ -129,14 +129,15 @@
   --color-onPrimaryBg: var(--color-primary-100);
   --color-onPrimaryBgSoft: var(--color-primary-200);
   --color-onPrimaryBgSofter: var(--color-primary-300);
-  --color-primaryBold: var(--color-primary-700);
-  --color-primary: var(--color-primary-800);
   --color-primarySoft: var(--color-primary-900);
-  --color-primaryBgSofter: var(--color-primary-900);
-  --color-primaryBgSoft: var(--color-primary-900);
-  --color-primaryBg: var(--color-primary-900);
-  --color-light: theme('colors.black');
-  --color-onLight: var(--color-neutral-100);
+  --color-primary: var(--color-primary-800);
+  --color-primaryBold: var(--color-primary-700);
+  --color-primaryBgSofter: var(--color-primary-800);
+  --color-primaryBgSoft: var(--color-primary-800);
+  --color-primaryBg: var(--color-primary-800);
+
+  --color-light: var(--color-neutral-900);
+  --color-onLight: var(--color-neutral-50);
 
   --color-neutralBg: var(--color-neutral-800);
   --color-neutralBgSoft: var(--color-neutral-700);

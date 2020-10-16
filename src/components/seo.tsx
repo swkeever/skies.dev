@@ -113,40 +113,38 @@ export default function SEO({
     },
   ];
 
-  if (!routes.equals(routes.home, pathname)) {
-    let itemListElement;
-    if (isArticle) {
-      itemListElement = [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Blog',
-          item: withSiteUrl(routes.blog),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: blogSchema.headline,
-          item: withSiteUrl(pathname),
-        },
-      ];
-      schema.push(blogSchema);
-    } else {
-      itemListElement = [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: title,
-          item: withSiteUrl(pathname),
-        },
-      ];
-    }
-    schema.push({
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement,
-    });
+  let itemListElement;
+  if (isArticle) {
+    itemListElement = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Blog',
+        item: withSiteUrl(routes.blog),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: blogSchema.headline,
+        item: withSiteUrl(pathname),
+      },
+    ];
+    schema.push(blogSchema);
+  } else {
+    itemListElement = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: title,
+        item: withSiteUrl(pathname),
+      },
+    ];
   }
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement,
+  });
 
   const schemaMarkup = JSON.stringify({
     '@context': 'https://schema.org',

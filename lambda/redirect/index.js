@@ -12,17 +12,29 @@ function shouldAddTrailingSlash(uri) {
   return !uri.endsWith('/');
 }
 
+const redirectMap = {
+  '/': '/blog/',
+};
+
+function shouldRedirect(uri) {
+  return Object.keys(redirectMap).includes(uri);
+}
+
 exports.handler = async (event) => {
   const { request } = event.Records[0].cf;
   const { uri } = request;
   const host = request.headers.host[0].value;
   const { querystring } = request;
 
-  if (!host.startsWith('www.') || shouldAddTrailingSlash(uri)) {
+  if (
+    !host.startsWith('www.')
+    || shouldAddTrailingSlash(uri)
+    || shouldRedirect(uri)
+  ) {
     let newUrl = 'https://www.skies.dev';
 
     // Add path
-    if (uri) newUrl += uri;
+    if (uri) newUrl += shouldRedirect(uri) ? redirectMap[uri] : uri;
 
     // Add trailing slash
     if (!newUrl.endsWith('/')) newUrl += '/';

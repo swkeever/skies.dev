@@ -104,7 +104,7 @@ export default function Form() {
         className={tw(
           'flex justify-end',
           'inline-block',
-          'bg-primaryBold hover:bg-primary',
+          'bg-primary hover:bg-primaryBold',
           'text-onPrimary',
           'rounded-lg',
           globalStyles.transitions,

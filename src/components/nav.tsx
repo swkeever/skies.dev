@@ -6,7 +6,6 @@ import {
   FaRegSmileBeam,
   FaCog,
 } from 'react-icons/fa';
-import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { Link, useLocation } from '@reach/router';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
@@ -86,14 +85,6 @@ export default function Nav() {
   );
 
   const navItems = [
-    <Item route={routes.home} key="nav-home">
-      {routes.equals(pathname, routes.home) ? (
-        <AiFillHome className={tw(iconStyles, colors.icon.on)} />
-      ) : (
-        <AiOutlineHome className={tw(iconStyles, colors.icon.off)} />
-      )}
-      <Name name="Home" />
-    </Item>,
     <Item route={routes.blog} key="nav-blog">
       {routes.equals(pathname, routes.blog) ? (
         <FaLightbulb className={tw(iconStyles, colors.icon.on)} />
@@ -128,14 +119,12 @@ export default function Nav() {
 
   function getUnderlineOffset() {
     let off = navItems.length;
-    if (routes.equals(pathname, routes.home)) {
+    if (routes.equals(pathname, routes.blog)) {
       off = 0;
-    } else if (routes.equals(pathname, routes.blog)) {
-      off = 1;
     } else if (routes.equals(pathname, routes.about)) {
-      off = 2;
+      off = 1;
     } else if (routes.equals(pathname, routes.uses)) {
-      off = 3;
+      off = 2;
     }
 
     return off === navItems.length
@@ -148,18 +137,9 @@ export default function Nav() {
   return (
     <nav
       aria-label="Primary Navigation"
-      className={`
-      w-full h-full lg:max-w-screen-sm
-      flex flex-col
-      `}
+      className={tw('w-full h-full', 'lg:max-w-lg', 'flex flex-col')}
     >
-      <ul
-        className={`
-        ${globalStyles.transitions}
-          h-full
-          flex          
-        `}
-      >
+      <ul className={tw(globalStyles.transitions, 'h-full', 'flex')}>
         {navItems}
       </ul>
       <hr
@@ -169,7 +149,7 @@ export default function Nav() {
           'border-0',
           'mt-auto',
           'h-1',
-          'w-1/4', // denominator must == num navbar items
+          'w-1/3', // denominator must == num navbar items
           underlineOffset ? colors.underline.on : colors.underline.off,
         )}
       />

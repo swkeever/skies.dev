@@ -22,6 +22,15 @@ function getNumResultsString(k: number): string {
   }
 }
 
+export const dateFragment = graphql`
+  fragment BlogDate on MdxFrontmatter {
+    date {
+      modified(formatString: "MMMM DD, YYYY")
+      published(formatString: "MMMM DD, YYYY")
+    }
+  }
+`;
+
 export const blogPageQuery = graphql`
   query BlogIndex {
     site {
@@ -128,7 +137,7 @@ export default function BlogsPage({
             />
           </h1>
 
-          <div id="search-input" className="mt-12">
+          <div id="search-input" className={tw('mt-12')}>
             <label htmlFor="filter-input">
               <span className="sr-only">Search</span>
               <FaSistrix
@@ -211,9 +220,10 @@ export default function BlogsPage({
           <nav
             className={tw(
               'sm:px-6 px-4',
-              'max-w-screen-2xl',
+              // 'max-w-screen-2xl',
               'mx-auto',
-              'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-rows-none',
+              // 'flex flex-wrap space-x-2 space-y-2',
+              globalStyles.blogGrid,
             )}
           >
             {blogs.map((blog) => (
