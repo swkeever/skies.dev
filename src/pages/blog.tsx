@@ -31,6 +31,16 @@ export const dateFragment = graphql`
   }
 `;
 
+export const avatarFragment = graphql`
+  fragment Avatar on File {
+    childImageSharp {
+      fluid(maxWidth: 1024) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`;
+
 export const blogPageQuery = graphql`
   query BlogIndex {
     site {
