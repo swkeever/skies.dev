@@ -1,7 +1,7 @@
 ---
 date:
   published: 2020-08-26
-  modified: 2020-10-13
+  modified: 2020-10-17
 title: Simple Trick to Clean Up Tailwind CSS in React
 description:
   Here's a trick I like to do to clean up Tailwind CSS in React projects.
@@ -26,25 +26,34 @@ image:
 
 ## Problem
 
-A pain point with using utility-first CSS framework like Tailwind CSS is that
-you invetibaly end up with components such as these.
+A pain point with using a utility-first CSS framework such as Tailwind CSS is
+that you inevitably end up with long strings to fit all your utility classes.
 
 ```html
 <a
   href="#"
-  <!-- highlight-start -->
-  class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-primaryBold bg-neutralBg hover:text-primary focus:outline-none focus:border-primaryBgSofter focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
-  <!-- highlight-end -->
+  class="w-full flex items-center justify-center px-8 py-3 border
+  border-transparent text-base leading-6 font-medium rounded-md text-primaryBold
+  bg-neutralBg hover:text-primary focus:outline-none
+  focus:border-primaryBgSofter focus:shadow-outline-indigo transition
+  duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
 >
   Live demo
 </a>
 ```
 
+In my opinion, this is approach is hard to maintain and ugly to look at. You
+basically have to do an _O(n)_ linear search through each class whenever you
+want to update the styles.
+
+**In this tutorial, we are working toward a more maintainable, easy-to-read
+solution to this problem.**
+
 Consider the following:
 
 _What are the ways we would write Tailwind CSS utility classes?_
 
-It could be a **string**.
+It could be a **string** like we saw earlier.
 
 ```jsx
 function Button() {
@@ -56,7 +65,9 @@ function Button() {
 }
 ```
 
-To include JavaScript, we could write a **template literal**.
+To include JavaScript, we could write a **template literal**. With a template
+literal, we can even place classes on new lines to avoid extremely long lines to
+fit all the class names.
 
 ```jsx
 function Button({ color }) {
@@ -75,7 +86,8 @@ function Button({ color }) {
 }
 ```
 
-The problem with template literals is in the name itself.
+I think we are closer to a more maintainable solution. However, the problem with
+template literals is in the name itself.
 
 _They are literal._
 
@@ -88,7 +100,7 @@ indentation.
 The solution is inspired by code in
 [tailwindlabs/tailwindui-react](https://github.com/tailwindlabs/tailwindui-react).
 
-The solution is a **function.**
+The solution is simply to use a **function.**
 
 **JavaScript:**
 
@@ -114,9 +126,8 @@ export function tw(...classes: (false | null | undefined | string)[]): string {
 >
 > I chose `tw` to give brevity for the writer and context for the reader.
 
-Now we can cleanly span our classes over many lines.
-
-Moreover, now **the formatter can easily format our files.**
+Now we can cleanly span our classes over many lines. What's more, **the
+formatter can easily format our files.**
 
 ```jsx
 // @components/Hero.tsx

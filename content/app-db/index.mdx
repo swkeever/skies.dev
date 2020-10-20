@@ -1,0 +1,66 @@
+---
+date:
+  published: 2020-10-19
+  modified: 2020-10-19
+title: How I Think About Choosing a Database for Developing an App
+description: SQL or NoSQL. What to choose and when.
+categoryId: 0
+authorId: 0
+keywords:
+  - choosing a database
+  - relational databases
+  - startups
+  - database design
+tags:
+  - AWS
+  - Backend
+  - Software Engineering
+image:
+  src:
+    local: index.jpg
+    external: https://unsplash.com/photos/RNSaDklLYdc
+  photographer: Taneli Lahtinen
+---
+
+For picking a database, there are 2 primary options:
+
+- SQL for storing relational data—the way people have been doing databases over
+  the past 4 decades.
+- NoSQL for storing non-relational (🤯) data, often in JSON format like MongoDB,
+  DynamoDB, etc.
+
+Personally, **I would choose a SQL database if I'm building an app from
+scratch.** The flat structure of a relational database makes it easy to extend
+your schema over time as you add new features.
+
+Structuring your data in SQL database gives you the ability to use the powerful
+SQL query language to retrieve the data from your database. talk about using the
+database to handle search and other business logic in the mvp app.
+
+Also, it's important to realize that a SQL database such as MySQL or ProsgreSQL
+are highly-optimized engines designed to efficiently wrangle your data. However,
+when using a NoSQL database, you usually have to do work on the server if you
+want to do things like table joins.
+
+However, that's not to say NoSQL databases don't have their purpose. For systems
+at scale, NoSQL databases are optimized for online transaction processing
+(OLTP). This means these systems are designed to handle high throughput, usually
+at the expense of high consistency (the C from
+[ACID](<https://database.guide/what-is-acid-in-databases/#:~:text=In%20database%20systems%2C%20ACID%20(Atomicity,occur%20while%20processing%20a%20transaction.)>).
+
+For companies that utilize a microservice architecture, I think it makes a lot
+of sense to use NoSQL databases. Assuming your company is following
+[domain-driven design](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215),
+each service that needs to store data could have a NoSQL table such as DynamoDB
+to store business domain model. Assuming a REST API, you could store the data in
+a way that closely maps to the JSON you respond with. This leaves virtually no
+work for the server in terms of data transformation giving more room for higher
+throughput.
+
+Complex microservice architectures often need to join data from sources that
+are over the network, utilizing patterns such as
+[CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs). This
+makes the advanced querying features of a SQL database less practical. At scale,
+I think the SQL databases are best left to analytics and data platform teams
+that can afford wait times to perform
+[OLAP](https://docs.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing).
