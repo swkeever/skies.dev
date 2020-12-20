@@ -26,9 +26,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       getNode,
     });
 
-    const pathname = node.fileAbsolutePath.includes('/content/')
+    let pathname = node.fileAbsolutePath.includes('/content/')
       ? `/blog${value}`
       : value;
+
+    if (pathname.endsWith('/') && pathname.length > 1) {
+      pathname = pathname.substring(0, pathname.length - 1);
+    }
 
     console.info('onCreateNode:', pathname);
 
