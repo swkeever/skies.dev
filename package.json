@@ -101,7 +101,7 @@
   "scripts": {
     "build": "gatsby build",
     "cd": "yarn clean && yarn dev",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop -p 3000",
     "dev-m": "./scripts/runDevServer.sh",
     "format": "./scripts/format.sh",
     "start": "yarn develop",
