@@ -26,7 +26,7 @@ const siteMetadata = {
   siteUrl: process.env.ROOT_URL || 'https://www.skies.dev',
   handle: 'swkeever',
   title: {
-    long: 'Skies by Seattle Software Engineer Sean Keever', // Alternative Site title for SEO
+    long: 'Skies | A blog by Sean Keever', // Alternative Site title for SEO
     medium: 'Skies by Sean Keever', // Navigation and Site Title
     short: 'Skies', // Short_name for manifest
   },

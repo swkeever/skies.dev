@@ -115,7 +115,6 @@ export default function BlogsPage({
   return (
     <>
       <SEO
-        title="Blog"
         description="Skies is a software engineering blog curated by Seattle full stack developer Sean Keever."
         keywords={[
           'blog',
