@@ -25,11 +25,11 @@ const colors = {
       checked:
         'bg-onPrimaryBgSoft text-onPrimary hover:bg-onPrimaryBgSofter border-onPrimary',
     },
-    label: tw('text-onPrimaryBgSofter'),
+    label: tw('text-onPrimaryBgSoft'),
     input: tw(
       'border border-primaryBgSofter focus:border-primaryBgSofter',
       'bg-neutralBg',
-      'text-gray-800 placeholder-neutral',
+      'text-gray-800 placeholder-neutralBold',
     ),
   },
   primarySoft: {
