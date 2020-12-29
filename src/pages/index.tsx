@@ -5,6 +5,7 @@ import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/blog-card';
 import tw from '@utils/tailwind';
+import Layout from '@components/layout';
 import SEO, { SiteInfo } from '../components/seo';
 import Empty from '../../assets/empty.svg';
 import Logo from '../../assets/logo.svg';
@@ -113,7 +114,7 @@ export default function BlogsPage({
   }, [filter]);
 
   return (
-    <>
+    <Layout type="primary">
       <SEO
         description="Skies is a software engineering blog curated by Seattle full stack developer Sean Keever."
         keywords={[
@@ -141,6 +142,8 @@ export default function BlogsPage({
                 'w-7/12 h-auto',
                 'mx-auto',
                 colors.logo,
+                '-mt-12',
+                'hidden md:block',
                 'fill-current',
               )}
             />
@@ -251,6 +254,6 @@ export default function BlogsPage({
         )}
       </section>
       <Newsletter color="neutral" />
-    </>
+    </Layout>
   );
 }

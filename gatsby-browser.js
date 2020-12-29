@@ -4,18 +4,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
-
-// You can delete this file if you're not using it
 // require('./src/styles/inter/inter.css');
 require('prismjs/themes/prism-tomorrow.css');
-// require('./src/styles/inter/inter.css');
 require('./src/styles/index.css');
-
-// require('katex/dist/katex.min.css');
-
-const React = require('react');
-const Layout = require('./src/components/layout').default;
-
-exports.wrapPageElement = ({ element, props }) => (
-  <Layout {...props}>{element}</Layout>
-);

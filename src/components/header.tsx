@@ -3,73 +3,35 @@ import { Link } from '@reach/router';
 import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
 import ThemeToggle from './theme-toggle';
-import Nav from './nav';
 import routes from '../utils/routes';
 import Logo from '../../assets/logo.svg';
 
-export default function Header() {
+interface PropTypes {
+  type?: 'primary' | 'neutral';
+}
+
+export default function Header({ type = 'primary' }: PropTypes) {
   const styles = {
     primary: {
-      bg: 'bg-neutralBg lg:bg-primary',
-      logo: 'text-primaryBold lg:text-onPrimary',
+      bg: 'bg-primary',
+      logo: 'text-white',
     },
     neutral: {
-      bg: 'bg-neutralBg shadow-sm',
-      logo: 'text-primaryBold',
+      bg: 'bg-neutralBg',
+      logo: 'text-neutral',
     },
   };
 
-  const colors = styles.primary;
+  const colors = styles[type];
 
   return (
-    <>
-      <header
-        className={tw(
-          'fixed',
-          'flex-shrink-0',
-          'bottom-0 left-0 top-auto right-auto',
-          'lg:top-0 lg:bottom-auto',
-          'border-t border-neutralBgSofter',
-          'w-screen',
-          'z-40',
-          'safe-bottom',
-          colors.bg,
-          // 'shadow-sm',
-        )}
-      >
-        <div
-          className={tw(
-            'lg:h-12',
-            'flex items-center',
-            globalStyles.navbar.height,
-          )}
-        >
-          <Link
-            to={routes.blog}
-            className={tw(
-              'hidden',
-              'lg:flex',
-              'h-full',
-              'mx-3',
-              globalStyles.transitions,
-            )}
-          >
-            <Logo className={tw('w-32 h-auto', colors.logo, 'fill-current')} />
-          </Link>
-          <Nav />
-        </div>
-      </header>
-      <section
-        className={tw(
-          'absolute lg:fixed top-2 lg:right-2',
-          'lg:px-2 px-4',
-          'lg:w-auto w-full',
-          'flex justify-end',
-          'z-40',
-        )}
-      >
+    <header className={tw(colors.bg, 'flex justify-between', 'p-2', 'z-40')}>
+      <Link to={routes.blog} className={tw(globalStyles.transitions)}>
+        <Logo className={tw('w-32 h-auto', colors.logo, 'fill-current')} />
+      </Link>
+      <div className={tw('flex')}>
         <ThemeToggle />
-      </section>
-    </>
+      </div>
+    </header>
   );
 }

@@ -23,6 +23,7 @@ import useOnScreen from '@hooks/use-on-screen';
 import useHasMounted from '@hooks/use-has-mounted';
 import { AnalyticsAction } from '@utils/analytics';
 import { BlogPosting, WithContext } from 'schema-dts';
+import Layout from '@components/layout';
 
 interface BlogPostContext {
   action: AnalyticsAction;
@@ -238,182 +239,184 @@ export default function BlogPost({
   }
 
   return (
-    <BlogPostContext.Provider
-      value={{
-        action,
-        setAction,
-        email,
-        setEmail,
-        feedback,
-        setFeedback,
-      }}
-    >
-      <SEO
-        title={title}
-        description={description}
-        keywords={keywords}
-        image={imageFluid}
-        blogSchema={schema}
-      />
-      <article>
-        <div
-          className={tw(
-            'max-w-screen-xl',
-            'mx-auto',
-            'grid grid-cols-12 lg:gap-8',
-            'relative',
-          )}
-        >
-          <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
-            <header
-              ref={topRef}
-              className={tw(colors.header.bg, globalStyles.transitions)}
-            >
-              <div
-                className={tw(
-                  'mx-auto',
-                  'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
-                  'max-w-screen-xl',
-                  // 'border-b border-neutralBgSoft',
-                  globalStyles.transitions,
-                )}
+    <Layout type="neutral">
+      <BlogPostContext.Provider
+        value={{
+          action,
+          setAction,
+          email,
+          setEmail,
+          feedback,
+          setFeedback,
+        }}
+      >
+        <SEO
+          title={title}
+          description={description}
+          keywords={keywords}
+          image={imageFluid}
+          blogSchema={schema}
+        />
+        <article>
+          <div
+            className={tw(
+              'max-w-screen-xl',
+              'mx-auto',
+              'grid grid-cols-12 lg:gap-8',
+              'relative',
+            )}
+          >
+            <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
+              <header
+                ref={topRef}
+                className={tw(colors.header.bg, globalStyles.transitions)}
               >
-                <h1
+                <div
                   className={tw(
-                    'leading-none text-4xl lg:text-6xl font-semibold',
-                    colors.header.h1,
+                    'mx-auto',
+                    'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
+                    'max-w-screen-xl',
+                    // 'border-b border-neutralBgSoft',
                     globalStyles.transitions,
                   )}
                 >
-                  {title}
-                </h1>
-              </div>
-            </header>
-
-            <BlogMeta />
-
-            <figure className={tw('mb-24')}>
-              <Img
-                className={tw(
-                  'relative z-10',
-                  'w-full',
-                  'rounded-sm',
-                  'h-auto',
-                  'mx-auto',
-                  'shadow-xl',
-                )}
-                fluid={imageFluid}
-                alt={title}
-              />
-              <figcaption className="mt-4 text-center text-neutral">
-                <p>
-                  Photo by
-                  {' '}
-                  <ExternalLink
-                    className="underline text-neutral hover:text-neutralBold"
-                    href={external}
+                  <h1
+                    className={tw(
+                      'leading-none text-4xl lg:text-6xl font-semibold',
+                      colors.header.h1,
+                      globalStyles.transitions,
+                    )}
                   >
-                    {photographer}
-                  </ExternalLink>
-                </p>
-              </figcaption>
-            </figure>
+                    {title}
+                  </h1>
+                </div>
+              </header>
 
-            <section
-              className={tw(
-                'mt-4 mb-24',
-                'mx-auto',
-                globalStyles.onlySmallScreens,
-                'bg-neutralBgSoft',
-                'px-5 py-10',
-                'rounded-lg',
-                'shadow-inner',
-                'max-w-screen-sm',
-                'flex flex-col justify-center',
-              )}
-            >
-              <h2 className="mb-4 font-bold tracking-wider uppercase text-neutral">
-                Table of Contents
-              </h2>
-              <TableOfContents
-                className={tw('')}
-                watch={false}
-                headings={headings}
-              />
-            </section>
+              <BlogMeta />
 
-            <section className={tw('mb-16')}>
-              <MDXProvider
-                components={{
-                  ...shortCodes,
-                }}
+              <figure className={tw('mb-24')}>
+                <Img
+                  className={tw(
+                    'relative z-10',
+                    'w-full',
+                    'rounded-sm',
+                    'h-auto',
+                    'mx-auto',
+                    'shadow-xl',
+                  )}
+                  fluid={imageFluid}
+                  alt={title}
+                />
+                <figcaption className="mt-4 text-center text-neutral">
+                  <p>
+                    Photo by
+                    {' '}
+                    <ExternalLink
+                      className="underline text-neutral hover:text-neutralBold"
+                      href={external}
+                    >
+                      {photographer}
+                    </ExternalLink>
+                  </p>
+                </figcaption>
+              </figure>
+
+              <section
+                className={tw(
+                  'mt-4 mb-24',
+                  'mx-auto',
+                  globalStyles.onlySmallScreens,
+                  'bg-neutralBgSoft',
+                  'px-5 py-10',
+                  'rounded-lg',
+                  'shadow-inner',
+                  'max-w-screen-sm',
+                  'flex flex-col justify-center',
+                )}
               >
-                <MDXRenderer>{body}</MDXRenderer>
-              </MDXProvider>
-            </section>
-          </div>
-
-          <aside
-            aria-hidden // because we don't hide the mobile ToC
-            className={tw(
-              'relative hidden',
-              'col-span-3',
-              'lg:block',
-              'pr-6',
-              'mb-0',
-            )}
-          >
-            <div className="sticky top-32">
-              <Transition
-                show={hasMounted && !isTopOnScreen}
-                {...globalStyles.fadeTransition}
-              >
-                <h2 className="mt-4 mb-4 font-bold tracking-wider uppercase text-neutral">
+                <h2 className="mb-4 font-bold tracking-wider uppercase text-neutral">
                   Table of Contents
                 </h2>
-                <TableOfContents headings={headings} />
-                <div className={tw('mt-16')}>
-                  <Feedback />
-                </div>
-              </Transition>
+                <TableOfContents
+                  className={tw('')}
+                  watch={false}
+                  headings={headings}
+                />
+              </section>
+
+              <section className={tw('mb-16')}>
+                <MDXProvider
+                  components={{
+                    ...shortCodes,
+                  }}
+                >
+                  <MDXRenderer>{body}</MDXRenderer>
+                </MDXProvider>
+              </section>
             </div>
-          </aside>
-          <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
-            <BlogMeta />
 
-            <Newsletter color="neutral" />
+            <aside
+              aria-hidden // because we don't hide the mobile ToC
+              className={tw(
+                'relative hidden',
+                'col-span-3',
+                'lg:block',
+                'pr-6',
+                'mb-0',
+              )}
+            >
+              <div className="sticky top-32">
+                <Transition
+                  show={hasMounted && !isTopOnScreen}
+                  {...globalStyles.fadeTransition}
+                >
+                  <h2 className="mt-4 mb-4 font-bold tracking-wider uppercase text-neutral">
+                    Table of Contents
+                  </h2>
+                  <TableOfContents headings={headings} />
+                  <div className={tw('mt-16')}>
+                    <Feedback />
+                  </div>
+                </Transition>
+              </div>
+            </aside>
+            <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
+              <BlogMeta />
+
+              <Newsletter color="neutral" />
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <section
-        className={tw(
-          globalStyles.onlySmallScreens,
-          'flex flex-col justify-center',
-          'my-20 relative mx-auto',
-          'max-w-md w-full',
-          'px-2',
-        )}
-      >
-        <Feedback />
-      </section>
+        <section
+          className={tw(
+            globalStyles.onlySmallScreens,
+            'flex flex-col justify-center',
+            'my-20 relative mx-auto',
+            'max-w-md w-full',
+            'px-2',
+          )}
+        >
+          <Feedback />
+        </section>
 
-      <section
-        className={tw(
-          'bg-neutralBgSoft',
-          globalStyles.transitions,
-          'py-16 lg:py-24',
-        )}
-      >
-        <BlogDisplay
-          blogs={similarBlogs.nodes}
-          subtitle="Here are some other articles you may enjoy."
-          title="Related articles"
-        />
-      </section>
+        <section
+          className={tw(
+            'bg-neutralBgSoft',
+            globalStyles.transitions,
+            'py-16 lg:py-24',
+          )}
+        >
+          <BlogDisplay
+            blogs={similarBlogs.nodes}
+            subtitle="Here are some other articles you may enjoy."
+            title="Articles you might like"
+          />
+        </section>
 
-      {/* <About color="footer" /> */}
-    </BlogPostContext.Provider>
+        {/* <About color="footer" /> */}
+      </BlogPostContext.Provider>
+    </Layout>
   );
 }
 

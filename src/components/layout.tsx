@@ -26,7 +26,7 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-800',
+        bg: 'bg-neutralBgSoft',
         text: 'text-blue-600',
         border: 'border-blue-600',
       },
@@ -44,7 +44,7 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-800',
+        bg: 'bg-neutralBgSoft',
         text: 'text-pink-500',
         border: 'border-pink-500',
       },
@@ -61,7 +61,7 @@ export const themes = [
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-800',
+        bg: 'bg-neutralBgSoft',
         text: 'text-green-600',
         border: 'border-green-600',
       },
@@ -95,7 +95,13 @@ function getInitialRGBTheme(): number {
   return 0;
 }
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({
+  children,
+  type,
+}: {
+  children: ReactNode;
+  type: 'primary' | 'neutral';
+}) => {
   const [lightTheme, setLightTheme] = useState<boolean>(true);
   const [theme, setTheme] = useState<number>(0);
 
@@ -127,7 +133,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             themes[theme].className,
           )}
         >
-          <Header />
+          <Header type={type} />
           <AlertProvider>
             <main
               // style={{ flex: '1 1 auto' }}
