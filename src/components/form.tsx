@@ -31,7 +31,7 @@ export default function Form() {
       autoComplete="off"
       method="post"
       action="https://formspree.io/maypervg"
-      className={tw('w-auto clearfix')}
+      className={tw('w-auto')}
     >
       <input type="text" name="_gotcha" className="hidden" />
       <section className="grid grid-cols-1 md:grid-cols-2 md:gap-x-3 xl:gap-x-5">

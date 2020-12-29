@@ -199,7 +199,6 @@ export default function Feedback() {
           }}
           type="button"
           className={tw(
-            'block float-right',
             globalStyles.transitions,
             globalStyles.outline,
             'mt-4',

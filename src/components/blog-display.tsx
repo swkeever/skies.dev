@@ -40,11 +40,10 @@ export default function BlogDisplay({ title, blogs }: PropTypes) {
       </nav>
       <Link
         className={tw(
-          'block',
+          'flex justify-end items-center',
           'text-onNeutralBg hover:text-onNeutralBgLink',
           'mt-8 ml-auto',
           'font-semibold text-lg',
-          'inline-flex justify-end',
           'group',
           globalStyles.transitions,
         )}
