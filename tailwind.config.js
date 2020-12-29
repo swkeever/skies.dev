@@ -7,9 +7,6 @@ module.exports = {
   purge: ['./**/*.{js,ts,jsx,tsx,mdx,html}'],
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      // },
       colors: {
         gray: colors.blueGray,
         blue: colors.lightBlue,
