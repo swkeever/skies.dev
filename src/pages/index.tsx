@@ -7,7 +7,6 @@ import BlogCard from '@components/blog-card';
 import tw from '@utils/tailwind';
 import Layout from '@components/layout';
 import SEO, { SiteInfo } from '../components/seo';
-import Empty from '../../assets/empty.svg';
 import Logo from '../../assets/logo.svg';
 import Newsletter from '../components/newsletter';
 import { BlogMeta } from '../../graphql-types';
@@ -15,7 +14,7 @@ import { BlogMeta } from '../../graphql-types';
 function getNumResultsString(k: number): string {
   switch (k) {
     case 0:
-      return 'No posts';
+      return '';
     case 1:
       return `${k} post`;
     default:
@@ -237,15 +236,18 @@ export default function BlogsPage({
             ))}
           </nav>
         ) : (
-          <Empty
-            className={tw(
-              'content-center block',
-              'max-w-2xl',
-              'w-full h-auto',
-              'px-4',
-              'mx-auto mb-12',
-            )}
-          />
+          <section className={tw('max-w-xl', 'mx-auto my-24', 'px-6 lg:px-0')}>
+            <h2
+              className={tw(
+                'text-5xl md:text-6xl font-semibold text-onNeutralBg',
+              )}
+            >
+              Oh snap!
+            </h2>
+            <p className="text-neutral mt-1 text-xl md:text-2xl">
+              Nothing matched your search.
+            </p>
+          </section>
         )}
       </section>
       <Newsletter color="neutral" />
