@@ -55,7 +55,7 @@ const styles = {
 
   shareLink: tw(
     globalStyles.transitions,
-    'text-neutral hover:text-neutralBold',
+    'text-neutralSoft hover:text-neutral',
   ),
 };
 

@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'node_modules/gatsby-image/index';
 import { withSiteUrl } from '@utils/links';
-import routes from '@utils/routes';
 import {
   BlogPosting, BreadcrumbList, WebSite, WithContext,
 } from 'schema-dts';
@@ -113,38 +112,21 @@ export default function SEO({
     },
   ];
 
-  let itemListElement;
   if (isArticle) {
-    itemListElement = [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Blog',
-        item: withSiteUrl(routes.blog),
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: blogSchema.headline,
-        item: withSiteUrl(pathname),
-      },
-    ];
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: blogSchema.headline,
+          item: withSiteUrl(pathname),
+        },
+      ],
+    });
     schema.push(blogSchema);
-  } else {
-    itemListElement = [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: title,
-        item: withSiteUrl(pathname),
-      },
-    ];
   }
-  schema.push({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement,
-  });
 
   const schemaMarkup = JSON.stringify({
     '@context': 'https://schema.org',
