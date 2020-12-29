@@ -146,8 +146,8 @@ export default function BlogPost({
         className={tw(
           'border-t border-neutralBgSofter',
           'px-1 py-5',
-          'flex flex-col space-y-6 md:space-y-0',
-          'md:flex-row md:justify-between md:items-center',
+          'flex',
+          'flex-row justify-between items-center',
         )}
       >
         <div className={tw('flex items-center')}>

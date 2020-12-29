@@ -1,4 +1,13 @@
 {
   "trailingSlash": false,
-  "redirects": [{ "source": "/blog*", "destination": "/*" }]
+  "redirects": [
+    {
+      "source": "/blog",
+      "destination": "/"
+    },
+    {
+      "source": "/blog/(?<id>[^/]+)",
+      "destination": "/"
+    }
+  ]
 }

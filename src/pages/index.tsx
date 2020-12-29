@@ -169,14 +169,14 @@ export default function BlogsPage({
                 onChange={(e) => {
                   setFilter(e.target.value);
                 }}
-                placeholder="Search"
+                placeholder="Search the blog..."
                 className={tw(
                   '-mt-8',
                   'pl-10 pr-2 py-3',
                   'bg-neutralBgSoft focus:bg-neutralBg',
                   'rounded-full',
                   'text-onNeutralBg font-base',
-                  'placeholder-neutral',
+                  'placeholder-neutralSoft',
                   'lg:text-xl',
                   'relative',
                   'w-full',
@@ -227,7 +227,7 @@ export default function BlogsPage({
           <nav
             className={tw(
               'sm:px-6 px-4',
-              // 'max-w-screen-2xl',
+              'max-w-screen-2xl',
               'mx-auto',
               // 'flex flex-wrap space-x-2 space-y-2',
               globalStyles.blogGrid,
