@@ -6,136 +6,140 @@
       "destination": "/"
     },
     {
-      "source": "/blog/api-gateway",
-      "destination": "/api-gateway"
-    },
-    {
-      "source": "/blog/api-gateway",
-      "destination": "/api-gateway"
-    },
-    {
-      "source": "/blog/awesome-links",
-      "destination": "/awesome-links"
-    },
-    {
-      "source": "/blog/aws-deploy",
-      "destination": "/aws-deploy"
-    },
-    {
-      "source": "/blog/aws-gatsby",
-      "destination": "/aws-gatsby"
-    },
-    {
-      "source": "/blog/binary-search",
-      "destination": "/binary-search"
-    },
-    {
-      "source": "/blog/clean-code",
-      "destination": "/clean-code"
-    },
-    {
-      "source": "/blog/api-gateway",
-      "destination": "/api-gateway"
-    },
-    {
-      "source": "/blog/colors",
-      "destination": "/colors"
-    },
-    {
-      "source": "/blog/cra-gatsby-next",
-      "destination": "/cra-gatsby-next"
-    },
-    {
-      "source": "/blog/first-lang",
-      "destination": "/first-lang"
-    },
-    {
-      "source": "/blog/free-college",
-      "destination": "/free-college"
-    },
-    {
-      "source": "/blog/gatsby-analytics",
-      "destination": "/gatsby-analytics"
-    },
-    {
-      "source": "/blog/gatsby-tailwind-purgecss",
-      "destination": "/gatsby-tailwind-purgecss"
-    },
-    {
-      "source": "/blog/learn-css",
-      "destination": "/learn-css"
-    },
-    {
-      "source": "/blog/learn-react-first",
-      "destination": "/learn-react-first"
-    },
-    {
-      "source": "/blog/mobile-padding",
-      "destination": "/mobile-padding"
-    },
-    {
-      "source": "/blog/personal-statement",
-      "destination": "/personal-statement"
-    },
-    {
-      "source": "/blog/platform-product",
-      "destination": "/platform-product"
-    },
-    {
-      "source": "/blog/queues",
-      "destination": "/queues"
-    },
-    {
-      "source": "/blog/react-css",
-      "destination": "/react-css"
-    },
-    {
-      "source": "/blog/schema-markup",
-      "destination": "/schema-markup"
-    },
-    {
-      "source": "/blog/semantic-html",
-      "destination": "/semantic-html"
-    },
-    {
-      "source": "/blog/stacks",
-      "destination": "/stacks"
-    },
-    {
-      "source": "/blog/tailwind-flexbox",
-      "destination": "/tailwind-flexbox"
-    },
-    {
-      "source": "/blog/tailwind-react-trick",
-      "destination": "/tailwind-react-trick"
-    },
-    {
-      "source": "/blog/tailwind-themes",
-      "destination": "/tailwind-themes"
-    },
-    {
-      "source": "/blog/tech-stack",
-      "destination": "/tech-stack"
-    },
-    {
-      "source": "/blog/top-10-cse-courses",
-      "destination": "/top-10-cse-courses"
-    },
-    {
-      "source": "/blog/unit-tests",
-      "destination": "/unit-tests"
-    },
-    {
-      "source": "/blog/update-frontmatter",
-      "destination": "/update-frontmatter"
-    },
-    {
-      "source": "/blog/why-blog",
-      "destination": "/why-blog"
-    },
-    {
-      "source": "/blog/you-might-not-need-microservices",
-      "destination": "/you-might-not-need-microservices"
+      "source": "/blog/:slug",
+      "destination": "/:slug"
     }
+    //    {
+    //      "source": "/blog/api-gateway",
+    //      "destination": "/api-gateway"
+    //    },
+    //    {
+    //      "source": "/blog/api-gateway",
+    //      "destination": "/api-gateway"
+    //    },
+    //    {
+    //      "source": "/blog/awesome-links",
+    //      "destination": "/awesome-links"
+    //    },
+    //    {
+    //      "source": "/blog/aws-deploy",
+    //      "destination": "/aws-deploy"
+    //    },
+    //    {
+    //      "source": "/blog/aws-gatsby",
+    //      "destination": "/aws-gatsby"
+    //    },
+    //    {
+    //      "source": "/blog/binary-search",
+    //      "destination": "/binary-search"
+    //    },
+    //    {
+    //      "source": "/blog/clean-code",
+    //      "destination": "/clean-code"
+    //    },
+    //    {
+    //      "source": "/blog/api-gateway",
+    //      "destination": "/api-gateway"
+    //    },
+    //    {
+    //      "source": "/blog/colors",
+    //      "destination": "/colors"
+    //    },
+    //    {
+    //      "source": "/blog/cra-gatsby-next",
+    //      "destination": "/cra-gatsby-next"
+    //    },
+    //    {
+    //      "source": "/blog/first-lang",
+    //      "destination": "/first-lang"
+    //    },
+    //    {
+    //      "source": "/blog/free-college",
+    //      "destination": "/free-college"
+    //    },
+    //    {
+    //      "source": "/blog/gatsby-analytics",
+    //      "destination": "/gatsby-analytics"
+    //    },
+    //    {
+    //      "source": "/blog/gatsby-tailwind-purgecss",
+    //      "destination": "/gatsby-tailwind-purgecss"
+    //    },
+    //    {
+    //      "source": "/blog/learn-css",
+    //      "destination": "/learn-css"
+    //    },
+    //    {
+    //      "source": "/blog/learn-react-first",
+    //      "destination": "/learn-react-first"
+    //    },
+    //    {
+    //      "source": "/blog/mobile-padding",
+    //      "destination": "/mobile-padding"
+    //    },
+    //    {
+    //      "source": "/blog/personal-statement",
+    //      "destination": "/personal-statement"
+    //    },
+    //    {
+    //      "source": "/blog/platform-product",
+    //      "destination": "/platform-product"
+    //    },
+    //    {
+    //      "source": "/blog/queues",
+    //      "destination": "/queues"
+    //    },
+    //    {
+    //      "source": "/blog/react-css",
+    //      "destination": "/react-css"
+    //    },
+    //    {
+    //      "source": "/blog/schema-markup",
+    //      "destination": "/schema-markup"
+    //    },
+    //    {
+    //      "source": "/blog/semantic-html",
+    //      "destination": "/semantic-html"
+    //    },
+    //    {
+    //      "source": "/blog/stacks",
+    //      "destination": "/stacks"
+    //    },
+    //    {
+    //      "source": "/blog/tailwind-flexbox",
+    //      "destination": "/tailwind-flexbox"
+    //    },
+    //    {
+    //      "source": "/blog/tailwind-react-trick",
+    //      "destination": "/tailwind-react-trick"
+    //    },
+    //    {
+    //      "source": "/blog/tailwind-themes",
+    //      "destination": "/tailwind-themes"
+    //    },
+    //    {
+    //      "source": "/blog/tech-stack",
+    //      "destination": "/tech-stack"
+    //    },
+    //    {
+    //      "source": "/blog/top-10-cse-courses",
+    //      "destination": "/top-10-cse-courses"
+    //    },
+    //    {
+    //      "source": "/blog/unit-tests",
+    //      "destination": "/unit-tests"
+    //    },
+    //    {
+    //      "source": "/blog/update-frontmatter",
+    //      "destination": "/update-frontmatter"
+    //    },
+    //    {
+    //      "source": "/blog/why-blog",
+    //      "destination": "/why-blog"
+    //    },
+    //    {
+    //      "source": "/blog/you-might-not-need-microservices",
+    //      "destination": "/you-might-not-need-microservices"
+    //    }
   ]
 }
