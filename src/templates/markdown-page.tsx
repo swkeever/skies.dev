@@ -4,13 +4,14 @@ import { MDXProvider } from '@mdx-js/react';
 import shortcodes from '@components/shortcodes';
 import Newsletter from '@components/newsletter';
 import tw from '@utils/tailwind';
+import Layout from '@components/layout';
 
 export default function MarkdownPage({
   children,
   pageContext: { frontmatter },
 }) {
   return (
-    <>
+    <Layout>
       <SEO
         title={frontmatter.title}
         description={frontmatter.description}
@@ -22,6 +23,6 @@ export default function MarkdownPage({
         </div>
       </section>
       <Newsletter color="neutralSoft" />
-    </>
+    </Layout>
   );
 }

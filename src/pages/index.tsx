@@ -130,6 +130,7 @@ export default function BlogsPage({
           colors.bg,
           'z-20 relative',
           'pt-12 lg:pt-16',
+          '-mt-12',
           'flex-grow-0',
           globalStyles.transitions,
         )}
@@ -143,7 +144,7 @@ export default function BlogsPage({
                 'mx-auto',
                 colors.logo,
                 '-mt-12',
-                'hidden md:block',
+                'hidden lg:block',
                 'fill-current',
               )}
             />
@@ -200,12 +201,7 @@ export default function BlogsPage({
         )}
       >
         <svg
-          className={tw(
-            colors.svg,
-            'fill-current',
-            'h-auto',
-            globalStyles.transitions,
-          )}
+          className={tw(colors.svg, 'fill-current', globalStyles.transitions)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 253"
         >
