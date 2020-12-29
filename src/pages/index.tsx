@@ -15,11 +15,11 @@ import { BlogMeta } from '../../graphql-types';
 function getNumResultsString(k: number): string {
   switch (k) {
     case 0:
-      return 'No results found';
+      return 'No posts';
     case 1:
-      return `${k} result found`;
+      return `${k} post`;
     default:
-      return `${k} results found`;
+      return `${k} posts`;
   }
 }
 
@@ -227,7 +227,7 @@ export default function BlogsPage({
           <nav
             className={tw(
               'sm:px-6 px-4',
-              'max-w-screen-2xl',
+              'max-w-screen-lg 2xl:max-w-screen-2xl',
               'mx-auto',
               // 'flex flex-wrap space-x-2 space-y-2',
               globalStyles.blogGrid,

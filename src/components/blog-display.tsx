@@ -18,7 +18,7 @@ export default function BlogDisplay({ title, blogs }: PropTypes) {
       className={tw(
         'clearfix',
         'sm:px-6 px-4',
-        // 'max-w-screen-2xl',
+        'max-w-screen-lg 2xl:max-w-screen-2xl',
         'mx-auto',
       )}
     >
