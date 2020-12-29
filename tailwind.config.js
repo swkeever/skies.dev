@@ -1,80 +1,20 @@
 /* eslint-disable global-require */
 const defaultTheme = require('tailwindcss/defaultTheme');
-
+const colors = require('tailwindcss/colors');
 // primary blue #3F83F8 (500), #1C64F2 (600)
 
 module.exports = {
-  purge: [
-    './**/*.html',
-    './**/*.jsx',
-    './**/*.tsx',
-    './**/*.js',
-    './**/*.ts',
-    './content/**/*.mdx',
-  ],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-    defaultLineHeights: true,
-    standardFontWeights: true,
-  },
-  experimental: {
-    applyComplexClasses: true,
-  },
+  purge: ['./**/*.{js,ts,jsx,tsx,mdx,html}'],
   theme: {
     extend: {
       // fontFamily: {
       //   sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       // },
       colors: {
-        gray: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        },
-        blue: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-        },
-        pink: {
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63',
-        },
-        green: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
-        },
+        gray: colors.blueGray,
+        blue: colors.lightBlue,
+        pink: colors.cyan,
+        green: colors.teal,
 
         primary: 'var(--color-primary)',
         primarySoft: 'var(--color-primarySoft)',
@@ -149,22 +89,10 @@ module.exports = {
         onNeutralBgLink: 'var(--color-onNeutralBgLink)',
         onNeutralBgLinkHover: 'var(--color-onNeutralBgLinkHover)',
       },
-      spacing: {
-        72: '18rem',
-        84: '21rem',
-        96: '24rem',
-      },
     },
     rotate: {
       ...defaultTheme.rotate,
       360: '360deg',
-    },
-    screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
     },
   },
   variants: {
@@ -187,5 +115,9 @@ module.exports = {
       'disabled',
     ],
   },
-  plugins: [require('@tailwindcss/ui')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };

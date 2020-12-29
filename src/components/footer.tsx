@@ -11,9 +11,7 @@ import routes from '../utils/routes';
 
 export default function Footer() {
   const styles = {
-    icon: `
-    h-6 w-6 fill-current z-0
-    `,
+    icon: tw('h-6 w-6 fill-current z-0', 'rounded'),
   };
 
   const socialLinks = [
@@ -40,10 +38,6 @@ export default function Footer() {
   ];
 
   const mainNavLinks = [
-    {
-      to: routes.blog,
-      text: 'Blog',
-    },
     {
       to: routes.about,
       text: 'About',
@@ -73,7 +67,9 @@ export default function Footer() {
                 'block',
                 'text-base leading-6',
                 'text-gray-400 hover:text-gray-500',
+                'rounded',
                 globalStyles.transitions,
+                globalStyles.outline,
               )}
             >
               {l.text}

@@ -26,7 +26,14 @@ export default function Header({ type = 'primary' }: PropTypes) {
 
   return (
     <header className={tw(colors.bg, 'flex justify-between', 'p-2', 'z-40')}>
-      <Link to={routes.blog} className={tw(globalStyles.transitions)}>
+      <Link
+        to={routes.blog}
+        className={tw(
+          globalStyles.transitions,
+          globalStyles.outline,
+          'rounded',
+        )}
+      >
         <Logo className={tw('w-32 h-auto', colors.logo, 'fill-current')} />
       </Link>
       <div className={tw('flex')}>

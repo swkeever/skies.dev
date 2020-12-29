@@ -6,4 +6,4 @@
  */
 // require('./src/styles/inter/inter.css');
 require('prismjs/themes/prism-tomorrow.css');
-require('./src/styles/index.css');
+require('./src/styles/global.css');

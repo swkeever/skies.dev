@@ -89,7 +89,7 @@ Let's start with the base Tailwind CSS file described in Tailwind's
 [documentation](https://tailwindcss.com/docs/installation).
 
 ```css
-/* index.css */
+/* global.css */
 @tailwind base;
 
 @tailwind components;
@@ -100,7 +100,7 @@ Let's start with the base Tailwind CSS file described in Tailwind's
 We define CSS custom properties for each of our primary and neutral shades.
 
 ```css
-/* index.css */
+/* global.css */
 :root {
   --color-primary-100: theme('colors.blue.100');
   --color-primary-200: theme('colors.blue.200');
@@ -134,7 +134,7 @@ We'll create `theme-light` and `theme-dark` classes for light and dark mode
 respectively.
 
 ```css
-/* index.css */
+/* global.css */
 @tailwind base;
 
 .theme-light {
@@ -150,7 +150,7 @@ respectively.
 We'll start with the light theme, defining all of the variants.
 
 ```css
-/* index.css */
+/* global.css */
 .theme-light {
   --color-primaryBg: var(--color-primary-100);
   --color-primaryBgSoft: var(--color-primary-200);
@@ -177,7 +177,7 @@ We'll start with the light theme, defining all of the variants.
 We do the same thing for dark mode.
 
 ```css
-/* index.css */
+/* global.css */
 .theme-dark {
   --color-onPrimaryBg: var(--color-primary-100);
   --color-onPrimaryBgSoft: var(--color-primary-300);
@@ -289,7 +289,7 @@ want.
 Let's give our users the option to switch between **multiple primary colors**.
 
 ```css
-/* index.css */
+/* global.css */
 :root {
   --color-neutral-100: theme('colors.gray.100');
   --color-neutral-200: theme('colors.gray.200');

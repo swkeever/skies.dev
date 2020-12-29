@@ -13,7 +13,7 @@ const globalStyles = {
   },
   onlySmallScreens: tw('lg:hidden'),
   outline:
-    'focus:outline-none focus:ring-2 focus:ring-primaryBgSofter focus:ring-opacity-50',
+    'outline-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primaryBgSofter focus:ring-opacity-50',
   fadeTransition: {
     enter: 'transition-opacity duration-200',
     enterFrom: 'opacity-0',
