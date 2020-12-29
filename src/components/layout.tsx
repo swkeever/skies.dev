@@ -9,7 +9,6 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import globalStyles from '@styles/index';
 import AlertProvider from '@lib/alerts/alert-provider';
 import tw from '@utils/tailwind';
-import { ImFire, ImLeaf, ImDroplet } from 'react-icons/im';
 import { AnalyticsLabel } from '@utils/analytics';
 import Header from './header';
 import Footer from './footer';
@@ -21,52 +20,50 @@ export const themes = [
     className: 'theme-blue',
     color: {
       active: {
-        bg: 'bg-blue-400',
+        bg: 'bg-lightBlue-400',
         text: 'text-white',
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-800',
-        text: 'text-blue-600',
-        border: 'border-blue-600',
+        bg: 'bg-lightBlue-700',
+        text: 'text-lightBlue-600',
+        border: 'border-lightBlue-600',
       },
     },
-    icon: (props) => <ImDroplet {...props} />,
   },
 
   {
-    name: AnalyticsLabel.Red,
-    className: 'theme-red',
+    name: AnalyticsLabel.Cyan,
+    className: 'theme-cyan',
     color: {
       active: {
-        bg: 'bg-pink-400',
+        bg: 'bg-cyan-400',
         text: 'text-white',
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-800',
-        text: 'text-pink-500',
-        border: 'border-pink-500',
+        bg: 'bg-cyan-700',
+        text: 'text-cyan-500',
+        border: 'border-cyan-500',
       },
     },
-    icon: (props) => <ImFire {...props} />,
   },
+
   {
-    name: AnalyticsLabel.Green,
-    className: 'theme-green',
+    name: AnalyticsLabel.Teal,
+    className: 'theme-teal',
     color: {
       active: {
-        bg: 'bg-green-400',
+        bg: 'bg-teal-400',
         text: 'text-white',
         border: 'border-white',
       },
       inactive: {
-        bg: 'bg-gray-800',
-        text: 'text-green-600',
-        border: 'border-green-600',
+        bg: 'bg-teal-700',
+        text: 'text-teal-600',
+        border: 'border-teal-600',
       },
     },
-    icon: (props) => <ImLeaf {...props} />,
   },
 ];
 
@@ -86,6 +83,7 @@ function getInitialLDTheme(): boolean {
 
   return false;
 }
+
 function getInitialRGBTheme(): number {
   const rgb = window.localStorage.getItem(rgbKey);
   if (rgb) {
@@ -95,7 +93,13 @@ function getInitialRGBTheme(): number {
   return 0;
 }
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({
+  children,
+  type = 'neutral',
+}: {
+  children: ReactNode;
+  type: 'primary' | 'neutral';
+}) => {
   const [lightTheme, setLightTheme] = useState<boolean>(true);
   const [theme, setTheme] = useState<number>(0);
 
@@ -127,10 +131,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
             themes[theme].className,
           )}
         >
-          <Header />
+          <Header type={type} />
           <AlertProvider>
             <main
-              // style={{ flex: '1 1 auto' }}
               className={tw(
                 'mb-0 lg:mt-8',
                 'flex-grow',

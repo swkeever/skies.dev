@@ -21,14 +21,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // remote CMS you could also check to see if the parent node was a
   // `File` node here
   if (node.internal.type === 'Mdx') {
-    const value = createFilePath({
+    let pathname = createFilePath({
       node,
       getNode,
     });
-
-    let pathname = node.fileAbsolutePath.includes('/content/')
-      ? `/blog${value}`
-      : value;
 
     if (pathname.endsWith('/') && pathname.length > 1) {
       pathname = pathname.substring(0, pathname.length - 1);

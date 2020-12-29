@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { FluidObject } from 'node_modules/gatsby-image/index';
 import { withSiteUrl } from '@utils/links';
-import routes from '@utils/routes';
 import {
   BlogPosting, BreadcrumbList, WebSite, WithContext,
 } from 'schema-dts';
@@ -24,7 +23,23 @@ export interface SiteInfo {
   };
 }
 
-export const siteMetadata = graphql`
+export interface Logo {
+  childImageSharp: {
+    fixed: {
+      src: string;
+    };
+  };
+}
+
+export const query = graphql`
+  fragment Logo on File {
+    childImageSharp {
+      fixed(height: 630, width: 1200) {
+        src
+      }
+    }
+  }
+
   fragment SiteInfo on Site {
     siteMetadata {
       siteUrl
@@ -36,24 +51,6 @@ export const siteMetadata = graphql`
       }
       description
       lang
-    }
-  }
-`;
-
-export interface Logo {
-  childImageSharp: {
-    fixed: {
-      src: string;
-    };
-  };
-}
-
-export const logoFragment = graphql`
-  fragment Logo on File {
-    childImageSharp {
-      fixed(height: 630, width: 1200) {
-        src
-      }
     }
   }
 `;
@@ -111,40 +108,23 @@ export default function SEO({
       name: site.siteMetadata.title.short,
       description: site.siteMetadata.description,
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: title,
+          item: withSiteUrl(pathname),
+        },
+      ],
+    },
   ];
 
-  let itemListElement;
   if (isArticle) {
-    itemListElement = [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Blog',
-        item: withSiteUrl(routes.blog),
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: blogSchema.headline,
-        item: withSiteUrl(pathname),
-      },
-    ];
     schema.push(blogSchema);
-  } else {
-    itemListElement = [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: title,
-        item: withSiteUrl(pathname),
-      },
-    ];
   }
-  schema.push({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement,
-  });
 
   const schemaMarkup = JSON.stringify({
     '@context': 'https://schema.org',

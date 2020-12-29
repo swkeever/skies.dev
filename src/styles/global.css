@@ -18,52 +18,54 @@
 }
 
 .theme-blue {
-  --color-primary-50: theme('colors.blue.50');
-  --color-primary-100: theme('colors.blue.100');
-  --color-primary-200: theme('colors.blue.200');
-  --color-primary-300: theme('colors.blue.300');
-  --color-primary-400: theme('colors.blue.400');
-  --color-primary-500: theme('colors.blue.500');
-  --color-primary-600: theme('colors.blue.600');
-  --color-primary-700: theme('colors.blue.700');
-  --color-primary-800: theme('colors.blue.800');
-  --color-primary-900: theme('colors.blue.900');
+  --color-primary-50: theme('colors.lightBlue.50');
+  --color-primary-100: theme('colors.lightBlue.100');
+  --color-primary-200: theme('colors.lightBlue.200');
+  --color-primary-300: theme('colors.lightBlue.300');
+  --color-primary-400: theme('colors.lightBlue.400');
+  --color-primary-500: theme('colors.lightBlue.500');
+  --color-primary-600: theme('colors.lightBlue.600');
+  --color-primary-700: theme('colors.lightBlue.700');
+  --color-primary-800: theme('colors.lightBlue.800');
+  --color-primary-900: theme('colors.lightBlue.900');
 }
 
-.theme-green {
-  --color-primary-50: theme('colors.green.50');
-  --color-primary-100: theme('colors.green.100');
-  --color-primary-200: theme('colors.green.200');
-  --color-primary-300: theme('colors.green.300');
-  --color-primary-400: theme('colors.green.400');
-  --color-primary-500: theme('colors.green.500');
-  --color-primary-600: theme('colors.green.600');
-  --color-primary-700: theme('colors.green.700');
-  --color-primary-800: theme('colors.green.800');
-  --color-primary-900: theme('colors.green.900');
+.theme-cyan {
+  --color-primary-50: theme('colors.cyan.50');
+  --color-primary-100: theme('colors.cyan.100');
+  --color-primary-200: theme('colors.cyan.200');
+  --color-primary-300: theme('colors.cyan.300');
+  --color-primary-400: theme('colors.cyan.400');
+  --color-primary-500: theme('colors.cyan.500');
+  --color-primary-600: theme('colors.cyan.600');
+  --color-primary-700: theme('colors.cyan.700');
+  --color-primary-800: theme('colors.cyan.800');
+  --color-primary-900: theme('colors.cyan.900');
 }
 
-.theme-red {
-  --color-primary-50: theme('colors.pink.50');
-  --color-primary-100: theme('colors.pink.100');
-  --color-primary-200: theme('colors.pink.200');
-  --color-primary-300: theme('colors.pink.300');
-  --color-primary-400: theme('colors.pink.400');
-  --color-primary-500: theme('colors.pink.500');
-  --color-primary-600: theme('colors.pink.600');
-  --color-primary-700: theme('colors.pink.700');
-  --color-primary-800: theme('colors.pink.800');
-  --color-primary-900: theme('colors.pink.900');
+.theme-teal {
+  --color-primary-50: theme('colors.teal.50');
+  --color-primary-100: theme('colors.teal.100');
+  --color-primary-200: theme('colors.teal.200');
+  --color-primary-300: theme('colors.teal.300');
+  --color-primary-400: theme('colors.teal.400');
+  --color-primary-500: theme('colors.teal.500');
+  --color-primary-600: theme('colors.teal.600');
+  --color-primary-700: theme('colors.teal.700');
+  --color-primary-800: theme('colors.teal.800');
+  --color-primary-900: theme('colors.teal.900');
 }
+
+
 
 .theme-light {
   /* primaries */
-  --color-primaryBg: var(--color-primary-50);
-  --color-primaryBgSoft: var(--color-primary-100);
-  --color-primaryBgSofter: var(--color-primary-200);
-  --color-primarySoft: var(--color-primary-300);
-  --color-primary: var(--color-primary-400);
-  --color-primaryBold: var(--color-primary-500);
+  --color-primaryBg: var(--color-primary-100);
+  --color-primaryBgSoft: var(--color-primary-200);
+  --color-primaryBgSofter: var(--color-primary-300);
+  --color-primarySoft: var(--color-primary-400);
+  --color-primary: var(--color-primary-500);
+  --color-primaryBold: var(--color-primary-600);
   --color-onPrimaryBgSofter: var(--color-primary-700);
   --color-onPrimaryBgSoft: var(--color-primary-800);
   --color-onPrimaryBg: var(--color-primary-900);
@@ -71,11 +73,11 @@
   --color-onLight: var(--color-neutral-900);
 
   /* neutrals */
-  --color-neutralBg: var(--color-neutral-50);
-  --color-neutralBgSoft: var(--color-neutral-100);
-  --color-neutralBgSofter: var(--color-neutral-200);
-  --color-neutralSoft: var(--color-neutral-300);
-  --color-neutral: var(--color-neutral-400);
+  --color-neutralBg: var(--color-neutral-100);
+  --color-neutralBgSoft: var(--color-neutral-200);
+  --color-neutralBgSofter: var(--color-neutral-300);
+  --color-neutralSoft: var(--color-neutral-400);
+  --color-neutral: var(--color-neutral-500);
   --color-neutralBold: var(--color-neutral-600);
   --color-onNeutralBgSofter: var(--color-neutral-700);
   --color-onNeutralBgSoft: var(--color-neutral-800);

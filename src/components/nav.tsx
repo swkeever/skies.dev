@@ -77,7 +77,7 @@ export default function Nav() {
   const iconStyles = tw(
     'text-2xl md:text-xl',
     'block',
-    globalStyles.transitions,
+    globalStyles.transitionsQuick,
   );
 
   const Name = ({ name }: { name: string }) => (
@@ -139,7 +139,7 @@ export default function Nav() {
       aria-label="Primary Navigation"
       className={tw('w-full h-full', 'lg:max-w-lg', 'flex flex-col')}
     >
-      <ul className={tw(globalStyles.transitions, 'h-full', 'flex')}>
+      <ul className={tw(globalStyles.transitionsQuick, 'h-full', 'flex')}>
         {navItems}
       </ul>
       <hr

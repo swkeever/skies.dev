@@ -60,12 +60,7 @@ export default function Footer() {
 
   return (
     <footer
-      className={tw(
-        'bg-footerBg',
-        'flex-shrink-0',
-        'mb-20 lg:mb-0',
-        globalStyles.transitions,
-      )}
+      className={tw('bg-footerBg', 'flex-shrink-0', globalStyles.transitions)}
     >
       <section className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center">

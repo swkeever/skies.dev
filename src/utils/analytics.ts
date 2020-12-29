@@ -21,9 +21,9 @@ export enum AnalyticsAction {
 export enum AnalyticsLabel {
   Light = 'Light',
   Dark = 'Dark',
-  Green = 'Green',
+  Teal = 'Teal',
   Blue = 'Blue',
-  Red = 'Red',
+  Cyan = 'Cyan',
 }
 
 export interface AnalyticsEvent {

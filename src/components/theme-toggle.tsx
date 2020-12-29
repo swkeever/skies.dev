@@ -67,7 +67,7 @@ export default function ThemeToggle() {
               )}
               onClick={() => {
                 const event: AnalyticsEvent = {
-                  category: AnalyticsCategory.Theme,
+                  category: AnalyticsCategory.Themes,
                   action: AnalyticsAction.Switch,
                   label: th.name,
                 };
@@ -85,9 +85,9 @@ export default function ThemeToggle() {
                 {' '}
                 theme
               </span>
-              <span className={tw(styles.themeIcon)}>
-                <th.icon className={tw(styles.transform, colors.text)} />
-              </span>
+              <span
+                className={tw(styles.themeIcon, styles.transform, colors.bg)}
+              />
             </button>
           );
         })}
@@ -109,7 +109,7 @@ export default function ThemeToggle() {
         )}
         onClick={() => {
           const event: AnalyticsEvent = {
-            category: AnalyticsCategory.Theme,
+            category: AnalyticsCategory.Themes,
             action: AnalyticsAction.Switch,
             label: lightTheme ? AnalyticsLabel.Dark : AnalyticsLabel.Light,
           };

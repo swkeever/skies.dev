@@ -1,7 +1,5 @@
 /* eslint-disable global-require */
-const cssNano = require('cssnano');
 const path = require('path');
-const tailwindConfig = require('./tailwind.config');
 const links = require('./src/utils/links');
 const routes = require('./src/utils/routes');
 
@@ -173,16 +171,7 @@ module.exports = {
     },
     { ...gatsbyRemarkImages },
     'gatsby-plugin-twitter',
-    {
-      resolve: 'gatsby-plugin-postcss',
-      options: {
-        postCssPlugins: [
-          require('tailwindcss')(tailwindConfig),
-          require('autoprefixer'),
-          ...(process.env.NODE_ENV === 'production' ? [cssNano] : []),
-        ],
-      },
-    },
+    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-zopfli',
       options: {
@@ -285,7 +274,7 @@ module.exports = {
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
             // if not provided or `undefined`, all pages will have feed reference inserted
-            match: '^/blog/',
+            match: '^/',
           },
         ],
       },

@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 // require('./src/styles/inter/inter.css');
-require('./src/styles/index.css');
+require('./src/styles/global.css');
 // require('katex/dist/katex.min.css');
 
 const React = require('react');

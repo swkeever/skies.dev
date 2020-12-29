@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import * as JsSearch from 'js-search';
 import { FaSistrix } from 'react-icons/fa';
 import globalStyles from '@styles/index';
 import BlogCard from '@components/blog-card';
 import tw from '@utils/tailwind';
+import Layout from '@components/layout';
 import SEO, { SiteInfo } from '../components/seo';
 import Empty from '../../assets/empty.svg';
 import Logo from '../../assets/logo.svg';
@@ -44,7 +45,17 @@ export const avatarFragment = graphql`
 export const blogPageQuery = graphql`
   query BlogIndex {
     site {
-      ...SiteInfo
+      siteMetadata {
+        siteUrl
+        handle
+        title {
+          long
+          medium
+          short
+        }
+        description
+        lang
+      }
     }
     allMdx(
       sort: {
@@ -113,7 +124,7 @@ export default function BlogsPage({
   }, [filter]);
 
   return (
-    <>
+    <Layout type="primary">
       <SEO
         description="Skies is a software engineering blog curated by Seattle full stack developer Sean Keever."
         keywords={[
@@ -127,8 +138,9 @@ export default function BlogsPage({
       <section
         className={tw(
           colors.bg,
-          'z-20 relative',
+          'z-10 relative',
           'pt-12 lg:pt-16',
+          '-mt-12',
           'flex-grow-0',
           globalStyles.transitions,
         )}
@@ -141,6 +153,7 @@ export default function BlogsPage({
                 'w-7/12 h-auto',
                 'mx-auto',
                 colors.logo,
+                'hidden md:block',
                 'fill-current',
               )}
             />
@@ -158,7 +171,6 @@ export default function BlogsPage({
                 )}
               />
               <input
-                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoComplete="off"
                 id="filter-input"
                 value={filter}
@@ -251,6 +263,6 @@ export default function BlogsPage({
         )}
       </section>
       <Newsletter color="neutral" />
-    </>
+    </Layout>
   );
 }
