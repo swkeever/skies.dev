@@ -18,7 +18,7 @@ export default function Header({ type = 'primary' }: PropTypes) {
     },
     neutral: {
       bg: 'bg-neutralBg',
-      logo: 'text-neutralSoft',
+      logo: 'text-neutralSoft hover:text-neutral',
     },
   };
 
@@ -34,7 +34,14 @@ export default function Header({ type = 'primary' }: PropTypes) {
           'rounded',
         )}
       >
-        <Logo className={tw('w-32 h-auto', colors.logo, 'fill-current')} />
+        <Logo
+          className={tw(
+            'w-32 h-auto',
+            colors.logo,
+            globalStyles.transitions,
+            'fill-current',
+          )}
+        />
       </Link>
       <div className={tw('flex')}>
         <ThemeToggle />

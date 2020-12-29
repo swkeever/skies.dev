@@ -113,6 +113,10 @@ export default function SEO({
   ];
 
   if (isArticle) {
+    schema.push(blogSchema);
+  }
+
+  if (pathname) {
     schema.push({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -120,18 +124,19 @@ export default function SEO({
         {
           '@type': 'ListItem',
           position: 1,
-          name: blogSchema.headline,
+          name: seo.title,
           item: withSiteUrl(pathname),
         },
       ],
     });
-    schema.push(blogSchema);
   }
 
   const schemaMarkup = JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': schema,
   });
+
+  console.log(schemaMarkup);
 
   return (
     <>

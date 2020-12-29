@@ -11,7 +11,7 @@ export default function MarkdownPage({
   pageContext: { frontmatter },
 }) {
   return (
-    <Layout>
+    <Layout type="neutral">
       <SEO
         title={frontmatter.title}
         description={frontmatter.description}
