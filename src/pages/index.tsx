@@ -129,8 +129,8 @@ export default function BlogsPage({
         className={tw(
           colors.bg,
           'z-20 relative',
-          'pt-12 lg:pt-16',
-          '-mt-12',
+          'md:pt-8 lg:pt-16',
+          // '-mt-12',
           'flex-grow-0',
           globalStyles.transitions,
         )}
@@ -143,8 +143,7 @@ export default function BlogsPage({
                 'w-7/12 h-auto',
                 'mx-auto',
                 colors.logo,
-                '-mt-12',
-                'hidden lg:block',
+                'hidden md:block',
                 'fill-current',
               )}
             />

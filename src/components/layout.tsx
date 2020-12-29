@@ -138,7 +138,6 @@ const Layout = ({
             <main
               // style={{ flex: '1 1 auto' }}
               className={tw(
-                'mb-0 lg:mt-8',
                 'flex-grow',
                 'flex flex-col', // for children
                 'w-full h-full',
