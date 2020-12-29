@@ -17,7 +17,7 @@ export default function BlogDisplay({ title, blogs }: PropTypes) {
     <div
       className={tw(
         'sm:px-6 px-4',
-        'max-w-screen-lg 2xl:max-w-screen-2xl',
+        'max-w-sm md:max-w-screen-md 2xl:max-w-screen-2xl',
         'mx-auto',
       )}
     >

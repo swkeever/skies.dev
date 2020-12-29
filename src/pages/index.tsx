@@ -225,7 +225,7 @@ export default function BlogsPage({
           <nav
             className={tw(
               'sm:px-6 px-4',
-              'max-w-screen-lg 2xl:max-w-screen-2xl',
+              'max-w-sm md:max-w-screen-md 2xl:max-w-screen-2xl',
               'mx-auto',
               // 'flex flex-wrap space-x-2 space-y-2',
               globalStyles.blogGrid,
