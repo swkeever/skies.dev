@@ -9,9 +9,7 @@ import {
   track,
 } from '@utils/analytics';
 import tw from '@utils/tailwind';
-import {
-  LayoutContext, ldKey, rgbKey, themes,
-} from './layout';
+import { LayoutContext, ldKey } from './layout';
 
 const styles = {
   shadows: 'shadow-xl lg:shadow-none',
@@ -35,63 +33,10 @@ const styles = {
 };
 
 export default function ThemeToggle() {
-  const {
-    lightTheme, setLightTheme, theme, setTheme,
-  } = useContext(
-    LayoutContext,
-  );
+  const { lightTheme, setLightTheme } = useContext(LayoutContext);
 
   return (
     <>
-      <div className={tw('flex items-center', 'space-x-3', 'mr-4')}>
-        {themes.map((th, index) => {
-          const isActive = index === theme;
-          const colors = isActive ? th.color.active : th.color.inactive;
-          return (
-            <button
-              key={th.name}
-              type="button"
-              className={tw(
-                colors.bg,
-                colors.border,
-                styles.size.small,
-                isActive ? tw('scale-110') : tw('scale-100'),
-                'active:scale-95 transform',
-                'block',
-                'rounded-full',
-                styles.shadows,
-                styles.transform,
-                'border',
-                globalStyles.transitions,
-                globalStyles.outline,
-              )}
-              onClick={() => {
-                const event: AnalyticsEvent = {
-                  category: AnalyticsCategory.Themes,
-                  action: AnalyticsAction.Switch,
-                  label: th.name,
-                };
-
-                track(event);
-
-                window.localStorage.setItem(rgbKey, index.toString());
-
-                setTheme(() => index);
-              }}
-            >
-              <span className="sr-only">
-                Change to
-                {th.name}
-                {' '}
-                theme
-              </span>
-              <span
-                className={tw(styles.themeIcon, styles.transform, colors.bg)}
-              />
-            </button>
-          );
-        })}
-      </div>
       <button
         type="button"
         className={tw(

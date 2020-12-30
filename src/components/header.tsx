@@ -18,7 +18,7 @@ export default function Header({ type = 'primary' }: PropTypes) {
     },
     neutral: {
       bg: 'bg-neutralBg',
-      logo: 'text-neutralSoft hover:text-neutral',
+      logo: 'text-primaryBold hover:text-primary',
     },
   };
 

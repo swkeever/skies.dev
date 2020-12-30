@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
@@ -7,7 +7,6 @@ import { withSiteUrl } from '@utils/links';
 import {
   BlogPosting, BreadcrumbList, WebSite, WithContext,
 } from 'schema-dts';
-import { LayoutContext } from './layout';
 
 export interface SiteInfo {
   siteMetadata: {
@@ -81,7 +80,6 @@ export default function SEO({
     }
   `);
   const { pathname } = useLocation();
-  const { lightTheme } = useContext(LayoutContext);
   const isArticle = blogSchema !== null;
 
   const seo = {
@@ -136,8 +134,6 @@ export default function SEO({
     '@graph': schema,
   });
 
-  console.log(schemaMarkup);
-
   return (
     <>
       <Helmet>
@@ -163,10 +159,6 @@ export default function SEO({
         <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={withSiteUrl(seo.image.src)} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:widgets:theme"
-          content={lightTheme ? 'light' : 'dark'}
-        />
         <meta property="og:url" content={seo.canonicalUrl} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:site_name" content="Sean Keever" />

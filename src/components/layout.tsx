@@ -9,69 +9,12 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import globalStyles from '@styles/index';
 import AlertProvider from '@lib/alerts/alert-provider';
 import tw from '@utils/tailwind';
-import { ImFire, ImLeaf, ImDroplet } from 'react-icons/im';
-import { AnalyticsLabel } from '@utils/analytics';
 import Header from './header';
 import Footer from './footer';
 
 export const LayoutContext = React.createContext({});
-export const themes = [
-  {
-    name: AnalyticsLabel.Blue,
-    className: 'theme-blue',
-    color: {
-      active: {
-        bg: 'bg-blue-400',
-        text: 'text-white',
-        border: 'border-white',
-      },
-      inactive: {
-        bg: 'bg-neutralBgSoft',
-        text: 'text-blue-600',
-        border: 'border-blue-600',
-      },
-    },
-    icon: (props) => <ImDroplet {...props} />,
-  },
-
-  {
-    name: AnalyticsLabel.Red,
-    className: 'theme-red',
-    color: {
-      active: {
-        bg: 'bg-pink-400',
-        text: 'text-white',
-        border: 'border-white',
-      },
-      inactive: {
-        bg: 'bg-neutralBgSoft',
-        text: 'text-pink-500',
-        border: 'border-pink-500',
-      },
-    },
-    icon: (props) => <ImFire {...props} />,
-  },
-  {
-    name: AnalyticsLabel.Green,
-    className: 'theme-green',
-    color: {
-      active: {
-        bg: 'bg-green-400',
-        text: 'text-white',
-        border: 'border-white',
-      },
-      inactive: {
-        bg: 'bg-neutralBgSoft',
-        text: 'text-green-600',
-        border: 'border-green-600',
-      },
-    },
-    icon: (props) => <ImLeaf {...props} />,
-  },
-];
 
 export const ldKey = 'prefers-ld';
-export const rgbKey = 'prefers-rgb';
 
 function getInitialLDTheme(): boolean {
   const ld = window.localStorage.getItem(ldKey);
@@ -86,14 +29,6 @@ function getInitialLDTheme(): boolean {
 
   return false;
 }
-function getInitialRGBTheme(): number {
-  const rgb = window.localStorage.getItem(rgbKey);
-  if (rgb) {
-    return JSON.parse(rgb);
-  }
-
-  return 0;
-}
 
 const Layout = ({
   children,
@@ -103,10 +38,8 @@ const Layout = ({
   type: 'primary' | 'neutral';
 }) => {
   const [lightTheme, setLightTheme] = useState<boolean>(true);
-  const [theme, setTheme] = useState<number>(0);
 
   useEffect(() => {
-    setTheme(getInitialRGBTheme());
     setLightTheme(getInitialLDTheme());
   }, []);
 
@@ -119,8 +52,6 @@ const Layout = ({
         value={{
           lightTheme,
           setLightTheme,
-          setTheme,
-          theme,
         }}
       >
         <div
@@ -130,7 +61,6 @@ const Layout = ({
             'min-h-screen',
             'h-full',
             'flex flex-col',
-            themes[theme].className,
           )}
         >
           <Header type={type} />

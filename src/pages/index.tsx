@@ -128,8 +128,7 @@ export default function BlogsPage({
         className={tw(
           colors.bg,
           'z-20 relative',
-          'md:pt-8 lg:pt-16',
-          // '-mt-12',
+          'md:pt-8 2xl:pt-16',
           'flex-grow-0',
           globalStyles.transitions,
         )}
@@ -194,7 +193,7 @@ export default function BlogsPage({
           'bg-neutralBgSoft',
           'flex-grow-0',
           'relative z-0',
-          '2xl:-mt-24',
+          '-mt-1 2xl:-mt-24',
           globalStyles.transitions,
         )}
       >
@@ -227,7 +226,6 @@ export default function BlogsPage({
               'sm:px-6 px-4',
               'max-w-sm md:max-w-screen-md 2xl:max-w-screen-2xl',
               'mx-auto',
-              // 'flex flex-wrap space-x-2 space-y-2',
               globalStyles.blogGrid,
             )}
           >
