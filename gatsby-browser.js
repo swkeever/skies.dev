@@ -4,6 +4,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
-// require('./src/styles/inter/inter.css');
+require('./src/styles/inter/inter.css');
 require('prismjs/themes/prism-tomorrow.css');
 require('./src/styles/global.css');
