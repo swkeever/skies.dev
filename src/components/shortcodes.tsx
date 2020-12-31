@@ -96,8 +96,8 @@ const shortcodes = {
     <h3
       {...props}
       className={tw(
-        'text-onNeutralBgSofter',
-        'text-2xl md:text-3xl font-semibold',
+        'text-neutral',
+        'text-2xl md:text-3xl font-medium',
         'mb-4',
         styles.mt2,
         globalStyles.transitions,
@@ -107,8 +107,8 @@ const shortcodes = {
   h4: (props) => (
     <h4
       className={tw(
-        'text-neutral',
-        'text-lg md:text-xl font-semibold',
+        'text-neutralSoft',
+        'text-lg md:text-xl font-medium',
         'mb-1',
         styles.mt2,
         globalStyles.transitions,

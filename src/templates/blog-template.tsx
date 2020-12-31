@@ -24,7 +24,6 @@ import useHasMounted from '@hooks/use-has-mounted';
 import { AnalyticsAction } from '@utils/analytics';
 import { BlogPosting, WithContext } from 'schema-dts';
 import Layout from '@components/layout';
-import { formatDate } from '@utils/dates';
 
 interface BlogPostContext {
   action: AnalyticsAction;
@@ -188,7 +187,7 @@ export default function BlogPost({
             >
               <div>
                 <dt className="sr-only">Last modified</dt>
-                <dd>{formatDate(date.modified)}</dd>
+                <dd>{date.modified}</dd>
               </div>
               <span aria-hidden>&middot;</span>
               <div>
@@ -283,7 +282,7 @@ export default function BlogPost({
                 >
                   <h1
                     className={tw(
-                      'leading-none text-4xl lg:text-6xl 2xl:text-7xl font-semibold',
+                      'leading-none text-4xl lg:text-6xl 2xl:text-7xl font-bold',
                       colors.header.h1,
                       globalStyles.transitions,
                     )}

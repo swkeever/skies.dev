@@ -25,8 +25,8 @@ function getNumResultsString(k: number): string {
 export const dateFragment = graphql`
   fragment BlogDate on MdxFrontmatter {
     date {
-      modified(formatString: "MMMM DD, YYYY")
-      published(formatString: "MMMM DD, YYYY")
+      modified(formatString: "MMM D, YYYY")
+      published(formatString: "MMM D, YYYY")
     }
   }
 `;
