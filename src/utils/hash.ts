@@ -11,5 +11,5 @@ export default function hash(str: string): number {
   for (let i = 0; i < len; i += 1) {
     res = ((res << 5) - res + str.charCodeAt(i)) | 0;
   }
-  return res;
+  return Math.abs(res);
 }

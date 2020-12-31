@@ -24,6 +24,7 @@ import useHasMounted from '@hooks/use-has-mounted';
 import { AnalyticsAction } from '@utils/analytics';
 import { BlogPosting, WithContext } from 'schema-dts';
 import Layout from '@components/layout';
+import { formatDate } from '@utils/dates';
 
 interface BlogPostContext {
   action: AnalyticsAction;
@@ -187,7 +188,7 @@ export default function BlogPost({
             >
               <div>
                 <dt className="sr-only">Last modified</dt>
-                <dd>{date.modified}</dd>
+                <dd>{formatDate(date.modified)}</dd>
               </div>
               <span aria-hidden>&middot;</span>
               <div>
@@ -282,7 +283,7 @@ export default function BlogPost({
                 >
                   <h1
                     className={tw(
-                      'leading-none text-4xl lg:text-6xl font-semibold',
+                      'leading-none text-4xl lg:text-6xl 2xl:text-7xl font-semibold',
                       colors.header.h1,
                       globalStyles.transitions,
                     )}
@@ -365,7 +366,7 @@ export default function BlogPost({
                 'mb-0',
               )}
             >
-              <div className="sticky top-32">
+              <div className="sticky top-8">
                 <Transition
                   show={hasMounted && !isTopOnScreen}
                   {...globalStyles.fadeTransition}
@@ -382,11 +383,11 @@ export default function BlogPost({
             </aside>
             <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
               <BlogMeta />
-
-              <Newsletter color="neutral" />
             </div>
           </div>
         </article>
+
+        <Newsletter color="neutral" />
 
         <section
           className={tw(

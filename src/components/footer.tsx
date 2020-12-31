@@ -39,6 +39,10 @@ export default function Footer() {
 
   const mainNavLinks = [
     {
+      to: routes.blog,
+      text: 'Home',
+    },
+    {
       to: routes.about,
       text: 'About',
     },

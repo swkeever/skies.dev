@@ -21,7 +21,7 @@ export default function TableOfContents({
 }) {
   const styles = {
     copy: tw(
-      'text-base md:text-lg',
+      'text-base',
       'pb-1',
       underline
         ? tw(
