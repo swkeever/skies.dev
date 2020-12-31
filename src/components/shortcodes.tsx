@@ -8,7 +8,9 @@ import ExternalLink from './external-link';
 
 const styles = {
   copy: tw(
-    'text-base md:text-lg lg:text-xl leading-8',
+    'text-lg lg:text-xl',
+    'font-serif',
+    'leading-normal md:leading-relaxed lg:leading-loose',
     globalStyles.transitions,
   ),
 

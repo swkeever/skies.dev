@@ -25,7 +25,15 @@ export default function Header({ type = 'primary' }: PropTypes) {
   const colors = styles[type];
 
   return (
-    <header className={tw(colors.bg, 'flex justify-between', 'p-2', 'z-40')}>
+    <header
+      className={tw(
+        colors.bg,
+        'flex justify-between',
+        'p-2',
+        'z-40',
+        globalStyles.transitions,
+      )}
+    >
       <Link
         to={routes.blog}
         className={tw(

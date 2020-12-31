@@ -182,7 +182,7 @@ export default function Feedback() {
                   'border border-transparent',
                   'text-base leading-6 font-medium',
                   'rounded-md',
-                  'bg-primary hover:bg-primarySoft text-white',
+                  'bg-primaryBold hover:bg-primary text-white',
                   'active:bg-onPrimaryBgSofter',
                   globalStyles.transitions,
                   globalStyles.outline,

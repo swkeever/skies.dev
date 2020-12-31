@@ -1,9 +1,17 @@
 import tw from '@utils/tailwind';
 
+const grads = [
+  'from-red-500 to-yellow-400',
+  'from-purple-400 to-pink-500',
+  'from-green-400 to-blue-500',
+];
+
 const globalStyles = {
   colors: {
     primary: '#4299E1',
   },
+  randomGradient: (n: number) => grads[n % grads.length],
+  gradientText: 'bg-clip-text text-transparent bg-gradient-to-br',
   transitions: 'transition-all duration-200 ease-in-out',
   navbar: {
     height: 'h-20',
@@ -13,7 +21,7 @@ const globalStyles = {
   },
   onlySmallScreens: tw('lg:hidden'),
   outline:
-    'outline-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primaryBgSofter focus:ring-opacity-50',
+    'outline-none focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50',
   fadeTransition: {
     enter: 'transition-opacity duration-200',
     enterFrom: 'opacity-0',

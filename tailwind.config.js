@@ -7,9 +7,16 @@ module.exports = {
   purge: ['./**/*.{js,ts,jsx,tsx,mdx,html}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [...defaultTheme.fontFamily.sans],
+        serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
+      },
       colors: {
         gray: colors.blueGray,
         blue: colors.lightBlue,
+        red: colors.rose,
+        yellow: colors.orange,
+        green: colors.teal,
 
         primary: 'var(--color-primary)',
         primarySoft: 'var(--color-primarySoft)',

@@ -1,5 +1,7 @@
 module.exports = {
   formatDate: (date) => new Intl.DateTimeFormat('en-US', {
-    dateStyle: 'medium',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
   }).format(new Date(date)),
 };
