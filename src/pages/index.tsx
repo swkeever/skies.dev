@@ -154,7 +154,7 @@ export default function BlogsPage({
                 className={tw(
                   'inline absolute z-30',
                   'text-2xl',
-                  'ml-2.5',
+                  'ml-2',
                   colors.p,
                 )}
               />
