@@ -6,13 +6,15 @@ import globalStyles from '@styles/index';
 import tw from '@utils/tailwind';
 import ExternalLink from './external-link';
 
+// Have this since I don't want the font family in the inlineCode shortcode.
+const copyWithoutFontFam = tw(
+  'text-lg lg:text-xl',
+  'leading-normal md:leading-relaxed lg:leading-loose',
+  globalStyles.transitions,
+);
+
 const styles = {
-  copy: tw(
-    'text-lg lg:text-xl',
-    'font-serif',
-    'leading-normal md:leading-relaxed lg:leading-loose',
-    globalStyles.transitions,
-  ),
+  copy: tw(copyWithoutFontFam, 'font-serif'),
 
   link: tw('underline', 'text-onNeutralBgSoft hover:text-onNeutralBgLink'),
 
@@ -120,7 +122,7 @@ const shortcodes = {
     <code
       className={tw(
         'bg-neutralBgSoft text-onNeutralBgSoft',
-        styles.copy,
+        copyWithoutFontFam,
         'rounded',
       )}
       {...props}
