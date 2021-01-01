@@ -120,11 +120,7 @@ const shortcodes = {
   ),
   inlineCode: (props) => (
     <code
-      className={tw(
-        'bg-neutralBgSoft text-onNeutralBgSoft',
-        copyWithoutFontFam,
-        'rounded',
-      )}
+      className={tw('bg-neutralBgSoft', copyWithoutFontFam, 'rounded', 'px-1')}
       {...props}
     />
   ),
