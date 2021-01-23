@@ -1,0 +1,76 @@
+---
+date:
+  published: 2021-01-23
+  modified: 2021-01-23
+title: How to Fix "this is undefined" Error in JavaScript Classes
+description: I was perplexed by this issue when I stumbled upon it, here's how to fix it.
+categoryId: 1
+authorId: 0
+keywords:
+  - javascript
+  - typescript
+  - classes
+  - this keyword
+tags:
+  - Frontend
+  - JavaScript
+  - TypeScript
+image:
+  src:
+    local: index.jpg
+    external: https://unsplash.com/photos/xUUZcpQlqpM
+  photographer: Ray Hennessy
+---
+
+Suppose we have an `Adder` classes that can take an array of numbers and add each number by `x`.
+
+```typescript
+class Adder {
+  private readonly x: number
+
+  constructor(x: number) {
+    this.x = x
+  }
+
+  addAll(ns: number[]) {
+    return ns.map(this.add)
+  }
+
+  private add(n: number) {
+    return this.x + n
+  }
+}
+```
+
+When we run this code, we get an error that `this` is undefined.
+
+```typescript
+new Adder(2).addAll([1, 2, 3]) 
+// Uncaught TypeError: Cannot read property 'x' of undefined
+```
+
+Why is this? I think it's because when we pass the function directly into `map`, we are
+getting a reference to the method belonging to the class, not the method belonging to the _class instantiation_.
+
+Luckily, the fix is simple: wrap your function in a higher order function.
+
+```typescript
+class Adder {
+  // ...
+
+  addAll(ns: number[]) {
+    return ns.map((n) => this.add(n)) // highlight-line
+  }
+
+  // ...
+}
+```
+
+Now when we run our sample client, `this` is defined in the private helper method and we don't get the error.
+
+```typescript
+new Adder(2).addAll([1, 2, 3]) 
+// [3, 4, 5]
+```
+
+Hopefully this helps you save some time debugging.
