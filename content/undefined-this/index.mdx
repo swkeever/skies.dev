@@ -22,6 +22,8 @@ image:
   photographer: Ray Hennessy
 ---
 
+## Context
+
 Suppose we have an `Adder` classes that can take an array of numbers and add each number by `x`.
 
 ```typescript
@@ -42,6 +44,8 @@ class Adder {
 }
 ```
 
+## Problem
+
 When we run this code, we get an error that `this` is undefined.
 
 ```typescript
@@ -51,6 +55,8 @@ new Adder(2).addAll([1, 2, 3])
 
 Why is this? I think it's because when we pass the function directly into `map`, we are
 getting a reference to the method belonging to the class, not the method belonging to the _class instantiation_.
+
+## Solution
 
 Luckily, the fix is simple: wrap your function in a higher order function.
 
