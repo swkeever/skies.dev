@@ -125,12 +125,6 @@
   "bugs": {
     "url": "https://github.com/swkeever/skies.dev/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md}": [
       "prettier --write"

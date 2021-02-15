@@ -71,6 +71,7 @@ const Layout = ({
                 'flex-grow',
                 'flex flex-col', // for children
                 'w-full h-full',
+                'relative z-0',
               )}
             >
               {children}
