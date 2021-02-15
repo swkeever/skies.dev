@@ -231,7 +231,7 @@ export default function BlogsPage({
               >
                 Sean Keever
               </h2>
-              <ul className="flex space-x-1.5">
+              <ul className="flex space-x-2">
                 {socialLinks.slice(1).map((link) => (
                   <li
                     key={link.text}
