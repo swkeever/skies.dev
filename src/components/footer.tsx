@@ -9,34 +9,34 @@ import ExternalLink from './external-link';
 import globalStyles from '../styles';
 import routes from '../utils/routes';
 
+const styles = {
+  icon: tw('h-6 w-6 fill-current z-0', 'rounded'),
+};
+
+export const socialLinks = [
+  {
+    icon: <FaRss className={styles.icon} />,
+    to: routes.rss,
+    text: 'RSS',
+  },
+  {
+    icon: <FaGithub className={styles.icon} />,
+    to: links.github,
+    text: 'GitHub',
+  },
+  {
+    icon: <FaTwitter className={styles.icon} />,
+    to: links.twitter,
+    text: 'Twitter',
+  },
+  {
+    icon: <FaLinkedinIn className={styles.icon} />,
+    to: links.linkedIn,
+    text: 'LinkedIn',
+  },
+];
+
 export default function Footer() {
-  const styles = {
-    icon: tw('h-6 w-6 fill-current z-0', 'rounded'),
-  };
-
-  const socialLinks = [
-    {
-      icon: <FaRss className={styles.icon} />,
-      to: routes.rss,
-      text: 'RSS',
-    },
-    {
-      icon: <FaGithub className={styles.icon} />,
-      to: links.github,
-      text: 'GitHub',
-    },
-    {
-      icon: <FaTwitter className={styles.icon} />,
-      to: links.twitter,
-      text: 'Twitter',
-    },
-    {
-      icon: <FaLinkedinIn className={styles.icon} />,
-      to: links.linkedIn,
-      text: 'LinkedIn',
-    },
-  ];
-
   const mainNavLinks = [
     {
       to: routes.blog,

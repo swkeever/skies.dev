@@ -6,6 +6,10 @@ import globalStyles from '@styles/index';
 import BlogCard from '@components/blog-card';
 import tw from '@utils/tailwind';
 import Layout from '@components/layout';
+import { FluidObject } from 'node_modules/gatsby-image/index';
+import Img from 'gatsby-image';
+import ExternalLink from '@components/external-link';
+import { socialLinks } from '@components/footer';
 import SEO, { SiteInfo } from '../components/seo';
 import Logo from '../../assets/logo.svg';
 import Newsletter from '../components/newsletter';
@@ -41,8 +45,17 @@ export const avatarFragment = graphql`
   }
 `;
 
+interface IAvatar {
+  childImageSharp: {
+    fluid: FluidObject;
+  };
+}
+
 export const blogPageQuery = graphql`
   query BlogIndex {
+    file(relativePath: { eq: "sean-keever.jpg" }) {
+      ...Avatar
+    }
     site {
       ...SiteInfo
     }
@@ -84,15 +97,22 @@ const colors = {
 
 export default function BlogsPage({
   data: {
+    file,
     site,
     allMdx: { nodes },
   },
 }: {
-  data: { site: SiteInfo; allMdx: { nodes: BlogMeta[] } };
+  data: {
+    file: IAvatar;
+    site: SiteInfo;
+    allMdx: { nodes: BlogMeta[] };
+  };
 }) {
   const [filter, setFilter] = useState<string>('');
   const [search, setSearch] = useState<JsSearch.Search | null>(null);
   const [blogs, setBlogs] = useState<BlogMeta[]>(nodes);
+
+  console.log('file', file);
 
   useEffect(() => {
     const s = new JsSearch.Search('id');
@@ -124,11 +144,12 @@ export default function BlogsPage({
           'seattle, wa',
         ]}
       />
+
       <section
         className={tw(
           colors.bg,
           'z-20 relative',
-          'md:pt-8 2xl:pt-16',
+          'pb-12 md:pt-8 md:pb-24',
           'flex-grow-0',
           globalStyles.transitions,
         )}
@@ -187,33 +208,71 @@ export default function BlogsPage({
           </div>
         </div>
       </section>
-      <div
-        aria-hidden="true"
-        className={tw(
-          'bg-neutralBgSoft',
-          'flex-grow-0',
-          'relative z-0',
-          '-mt-1 2xl:-mt-24',
-          globalStyles.transitions,
-        )}
-      >
-        <svg
-          className={tw(colors.svg, 'fill-current', globalStyles.transitions)}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 253"
+      <div className={tw('bg-neutralBgSoft', globalStyles.transitions)}>
+        <div
+          className={tw(
+            globalStyles.transitions,
+            'bg-neutralBg sm:rounded-lg p-6',
+            'max-w-screen-sm', 'mx-auto sm:-mt-8 md:-mt-16',
+            'z-30 relative shadow-xl',
+          )}
         >
-          <path
-            fillOpacity="1"
-            d="M0,128L40,144C80,160,160,192,240,197.3C320,203,400,181,480,165.3C560,149,640,139,720,138.7C800,139,880,149,960,176C1040,203,1120,245,1200,250.7C1280,256,1360,224,1400,208L1440,192L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-          />
-        </svg>
+          <div className="flex items-center">
+            <Img
+              className="h-12 w-12 rounded-full"
+              fluid={file.childImageSharp.fluid}
+            />
+            <div className="ml-2">
+              <h2
+                className={tw(
+                  globalStyles.transitions,
+                  'font-medium text-onNeutralBg',
+                )}
+              >
+                Sean Keever
+              </h2>
+              <ul className="flex space-x-1.5">
+                {socialLinks.slice(1).map((link) => (
+                  <li
+                    key={link.text}
+                  >
+                    <ExternalLink href={link.to} className="text-neutral hover:underline hover:text-onNeutralBg">
+                      {link.text}
+                    </ExternalLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+
+          <p className="text-neutralBold mt-2">
+            I&apos;m a web developer living in Seattle, WA. I&apos;m currently building
+            {' '}
+            <ExternalLink className="underline hover:text-onNeutralBg" href="https://www.geofyi.com">
+              Geofyi
+            </ExternalLink>
+            {' '}
+            and working on Discovery at
+            {' '}
+            <ExternalLink
+              className="underline hover:text-onNeutralBg"
+              href="https://www.offerup.com"
+            >
+              OfferUp
+            </ExternalLink>
+            . Welcome to my blog where I reflect on my experiences as a
+            software engineer and try to provide value to other developers.
+          </p>
+        </div>
       </div>
+
       <section
         id="blog-list"
         className={`
-          bg-neutralBgSoft 
+          bg-neutralBgSoft
           flex-grow
-          pb-16
+          py-16
           ${globalStyles.transitions}
           `}
       >
