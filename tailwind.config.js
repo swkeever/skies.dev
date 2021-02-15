@@ -15,7 +15,6 @@ module.exports = {
         gray: colors.blueGray,
         blue: colors.lightBlue,
         red: colors.rose,
-        yellow: colors.orange,
         green: colors.teal,
 
         primary: 'var(--color-primary)',
