@@ -30,7 +30,7 @@ const globalStyles = {
     leaveFrom: 'opacity-100',
     leaveTo: 'opacity-0',
   },
-  blogGrid: tw('grid', 'grid-cols-1 md:grid-cols-2 2xl:grid-cols-4', 'gap-6'),
+  blogGrid: tw('grid', 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4', 'gap-6'),
 };
 
 export default globalStyles;

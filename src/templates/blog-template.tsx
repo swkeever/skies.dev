@@ -145,7 +145,7 @@ export default function BlogPost({
       <section
         className={tw(
           'border-t border-neutralBgSofter',
-          'px-1 py-5',
+          'sm:px-1 py-5',
           'flex',
           'flex-row justify-between items-center',
         )}
@@ -266,7 +266,7 @@ export default function BlogPost({
               'relative',
             )}
           >
-            <div className={tw('col-span-12 px-2 md:px-6 lg:col-span-9')}>
+            <div className={tw('col-span-12 sm:px-2 md:px-6 lg:col-span-9')}>
               <header
                 ref={topRef}
                 className={tw(colors.header.bg, globalStyles.transitions)}
@@ -299,7 +299,7 @@ export default function BlogPost({
                   className={tw(
                     'relative z-10',
                     'w-full',
-                    'rounded-sm',
+                    'sm:rounded-sm',
                     'h-auto',
                     'mx-auto',
                     'shadow-xl',
@@ -328,7 +328,7 @@ export default function BlogPost({
                   globalStyles.onlySmallScreens,
                   'bg-neutralBgSoft',
                   'px-5 py-10',
-                  'rounded-lg',
+                  'sm:rounded-lg',
                   'shadow-inner',
                   'max-w-screen-sm',
                   'flex flex-col justify-center',

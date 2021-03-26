@@ -14,12 +14,9 @@ type PropTypes = {
 
 export default function BlogDisplay({ title, blogs }: PropTypes) {
   return (
-    <div
-      className={tw(
-        'sm:px-6 px-4',
-        'max-w-sm md:max-w-screen-md 2xl:max-w-screen-2xl',
-        'mx-auto',
-      )}
+    <div className={tw('md:px-6',
+      'md:max-w-screen-md xl:max-w-screen-2xl',
+      'mx-auto')}
     >
       <header className={tw('flex flex-col items-center')}>
         <h2
@@ -33,7 +30,10 @@ export default function BlogDisplay({ title, blogs }: PropTypes) {
           {title}
         </h2>
       </header>
-      <nav className={tw('mt-8', globalStyles.blogGrid)}>
+      <nav className={tw('mt-8',
+
+        globalStyles.blogGrid)}
+      >
         {blogs.map((blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))}
@@ -55,9 +55,6 @@ export default function BlogDisplay({ title, blogs }: PropTypes) {
             'inline-block',
             'ml-1',
             'text-xl',
-            'transform group-hover:translate-x-2',
-
-            'transition-transform duration-500 ease-in-out',
           )}
         />
       </Link>

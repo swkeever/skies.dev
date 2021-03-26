@@ -184,8 +184,8 @@ input {
 
 @tailwind components;
 
-/* 
-below is to prevent autofill from 
+/*
+below is to prevent autofill from
 changing the background of form elements
 
 https: //stackoverflow.com/a/37432260/13400099
@@ -253,7 +253,7 @@ article h3 {
   @apply -mb-1;
 }
 
-/* 
+/*
 gatsby-remark-images classes
 
 Used for images in MDX files.
@@ -263,7 +263,7 @@ Used for images in MDX files.
 }
 
 .gatsby-resp-image-image {
-  @apply rounded-sm;
+  @apply sm:rounded-sm;
 }
 
 .gatsby-resp-image-figure {

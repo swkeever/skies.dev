@@ -282,8 +282,8 @@ export default function BlogsPage({
         {blogs.length ? (
           <nav
             className={tw(
-              'sm:px-6 px-4',
-              'max-w-sm md:max-w-screen-md 2xl:max-w-screen-2xl',
+              'md:px-6',
+              'md:max-w-screen-md xl:max-w-screen-2xl',
               'mx-auto',
               globalStyles.blogGrid,
             )}
