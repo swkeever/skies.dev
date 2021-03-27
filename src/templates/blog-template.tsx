@@ -105,7 +105,7 @@ export default function BlogPost({
 }: BlogPostQuery) {
   const { pathname } = useLocation();
   const [topRef, isTopOnScreen] = useOnScreen({
-    rootMargin: '45%',
+    rootMargin: '0px',
   });
   const hasMounted = useHasMounted();
   const [action, setAction] = useState<AnalyticsAction>(
@@ -145,7 +145,7 @@ export default function BlogPost({
       <section
         className={tw(
           'border-t border-neutralBgSofter',
-          'sm:px-1 py-5',
+          'py-5',
           'flex',
           'flex-row justify-between items-center',
         )}
@@ -192,11 +192,7 @@ export default function BlogPost({
               <span aria-hidden>&middot;</span>
               <div>
                 <dt className="sr-only">Time to read</dt>
-                <dd>
-                  {timeToRead}
-                  {' '}
-                  min read
-                </dd>
+                <dd>{timeToRead} min read</dd>
               </div>
             </div>
           </dl>
@@ -274,7 +270,7 @@ export default function BlogPost({
                 <div
                   className={tw(
                     'mx-auto',
-                    'pt-24 pb-5 lg:pt-20 px-2 md:px-6',
+                    'pt-24 pb-5 lg:pt-20',
                     'max-w-screen-xl',
                     // 'border-b border-neutralBgSoft',
                     globalStyles.transitions,
@@ -309,8 +305,7 @@ export default function BlogPost({
                 />
                 <figcaption className="mt-4 text-center text-neutral">
                   <p>
-                    Photo by
-                    {' '}
+                    Photo by{' '}
                     <ExternalLink
                       className="underline text-neutral hover:text-neutralBold"
                       href={external}
