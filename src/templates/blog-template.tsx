@@ -339,7 +339,7 @@ export default function BlogPost({
                 />
               </section>
 
-              <section className={tw('mb-16')}>
+              <section className={tw('mb-16 break-words')}>
                 <MDXProvider
                   components={{
                     ...shortCodes,
