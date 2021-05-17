@@ -65,14 +65,9 @@ export default function BlogCard({
         globalStyles.outline,
         globalStyles.transitions,
         'sm:rounded-lg',
-        'shadow-sm',
-        // 'max-w-sm',
         'sm:hover:shadow-lg',
-        'active:shadow-sm',
         'overflow-hidden',
         'h-full',
-        'sm:transform',
-        'sm:translate-y-0 sm:hover:-translate-y-1 sm:active:translate-y-0',
       )}
     >
       <article className={tw('h-full', 'flex flex-col')}>
