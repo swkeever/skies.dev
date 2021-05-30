@@ -236,7 +236,7 @@ export default function BlogsPage({
                   <li
                     key={link.text}
                   >
-                    <ExternalLink href={link.to} className="text-neutral hover:underline hover:text-onNeutralBg">
+                    <ExternalLink href={link.to} className='text-neutral hover:underline hover:text-onNeutralBg'>
                       {link.text}
                     </ExternalLink>
                   </li>
@@ -246,23 +246,29 @@ export default function BlogsPage({
 
           </div>
 
-          <p className="text-neutralBold mt-2">
-            I&apos;m a web developer living in Seattle, WA. I&apos;m currently building
-            {' '}
-            <ExternalLink className="underline hover:text-onNeutralBg" href="https://www.geofyi.com">
-              Geofyi
-            </ExternalLink>
-            {' '}
-            and working on Discovery at
+          <p className='text-neutralBold mt-2'>
+            I&apos;m a web developer living in Seattle, WA.
+
+            I&apos;m currently
+
+            working on Discovery at
             {' '}
             <ExternalLink
-              className="underline hover:text-onNeutralBg"
-              href="https://www.offerup.com"
+              className='underline hover:text-onNeutralBg'
+              href='https://www.offerup.com'
             >
               OfferUp
             </ExternalLink>
-            . Welcome to my blog where I reflect on my experiences as a
-            software engineer and try to provide value to other developers.
+
+            {' '}
+
+            and building
+            {' '}
+
+            <ExternalLink className='underline hover:text-onNeutralBg' href='https://www.geofyi.com'>
+              Geofyi
+            </ExternalLink>
+            . Welcome to my software engineering blog.
           </p>
         </div>
       </div>
