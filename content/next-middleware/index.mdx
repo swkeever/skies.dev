@@ -30,7 +30,7 @@ image:
 
 In the popular backend Node.js framework, [Express.js](https://expressjs.com/), there is first-class
 support for creating [middleware](https://expressjs.com/en/guide/using-middleware.html). 
-Next.js does not have this kind of first-class support built in. There is [next-connect](https://www.npmjs.com/package/next-connect)
+Next.js does not have this kind of first-class support built in. However, there is [next-connect](https://www.npmjs.com/package/next-connect)
  which offers an Express-like API.
 
 In this article, we'll look at **higher-order functions** to create middleware in Next.js API routes.
@@ -87,7 +87,7 @@ for demonstration. Our implementation will check that the `x-server-secret` head
 the client matches the server secret stored as an [environment variable](https://nextjs.org/docs/basic-features/environment-variables).
 
 ```typescript
-// lib/middleware/with-metrics.ts
+// lib/middleware/with-auth.ts
 import {NextApiHandler, NextApiRequest, NextApiResponse} from 'next'
 
 const withAuth = (handler: NextApiHandler) => {
@@ -154,6 +154,7 @@ We'll write a function `withBody` that takes two arguments:
 2. `handler`: The same Next.js API handler we've come to love.
 
 ```typescript
+// lib/middleware/with-body.ts 
 import {NextApiHandler, NextApiRequest, NextApiResponse} from 'next'
 import {ObjectShape} from 'yup/lib/object'
 import {has} from 'lodash'
@@ -200,6 +201,7 @@ Now we'll go back to our API route and allow clients to create new
 rockets, modeled by the `IRocket` interface.
 
 ```typescript
+// pages/api/rocket.ts 
 interface IRocket {
   id: number
   name: string
@@ -210,6 +212,7 @@ interface IRocket {
 We'll use Yup to define our validation schemas.
 
 ```typescript
+// pages/api/rocket.ts 
 const rocketValidationSchemas: IValidationSchemas = {
   POST: yup.object().shape({
     name: yup.string().required(),
@@ -221,6 +224,7 @@ const rocketValidationSchemas: IValidationSchemas = {
 We will model the database with an array. 
 
 ```typescript
+// pages/api/rocket.ts 
 const rockets: IRocket[] = [
   {
     id: 0,
