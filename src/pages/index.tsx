@@ -259,15 +259,6 @@ export default function BlogsPage({
             >
               OfferUp
             </ExternalLink>
-
-            {' '}
-
-            and building
-            {' '}
-
-            <ExternalLink className='underline hover:text-onNeutralBg' href='https://www.geofyi.com'>
-              Geofyi
-            </ExternalLink>
             . Welcome to my software engineering blog.
           </p>
         </div>
