@@ -1,4 +1,5 @@
 ---
+migrated: /next/middleware
 date:
   published: 2021-07-05
   modified: 2021-07-05
@@ -108,7 +109,6 @@ export default withAuth
 
 > It goes without saying you should follow a more secure practice when
 adding authentication to your own app. 
-
 
 We can now update `/pages/api/rockets.ts` to only accept requests from clients that send the
 correct `x-server-secret` header value.

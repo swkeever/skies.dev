@@ -62,12 +62,14 @@ export default function SEO({
   image = null,
   keywords = [],
   blogSchema = null,
+  migrated = null,
 }: {
   title?: string;
   description?: string;
   image?: FluidObject;
   keywords?: string[];
   blogSchema?: WithContext<BlogPosting>;
+  migrated?: string
 }) {
   const { site, logo }: { site: SiteInfo; logo: Logo } = useStaticQuery(graphql`
     query SEO {
@@ -87,7 +89,8 @@ export default function SEO({
       ? site.siteMetadata.title.long
       : `${title} | ${site.siteMetadata.title.medium}`,
     description,
-    canonicalUrl: withSiteUrl(pathname),
+    url: withSiteUrl(pathname),
+    canonicalUrl: migrated == null ? withSiteUrl(pathname) : `https://www.swkeever.com${migrated}`,
     image: {
       src: image ? image.src : logo.childImageSharp.fixed.src,
       type: image
@@ -159,7 +162,7 @@ export default function SEO({
         <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={withSiteUrl(seo.image.src)} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:url" content={seo.canonicalUrl} />
+        <meta property="og:url" content={seo.url} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:site_name" content="Sean Keever" />
         <meta property="og:locale" content="en_US" />

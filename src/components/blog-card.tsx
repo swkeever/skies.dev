@@ -18,6 +18,7 @@ export const blogCardFragment = graphql`
       }
     }
     frontmatter {
+      migrated
       title
       ...BlogDate
       description
@@ -46,6 +47,7 @@ export default function BlogCard({
     fields: { slug, category },
     frontmatter: {
       date: { modified },
+      migrated,
       title,
       description,
       image: {
@@ -58,24 +60,27 @@ export default function BlogCard({
     },
   },
 }: PropTypes) {
+  const linkClassNames = tw(
+    globalStyles.outline,
+    globalStyles.transitions,
+    'sm:rounded-lg',
+    'sm:hover:shadow-lg',
+    'overflow-hidden',
+    'h-full',
+  );
+
+  const BlogLink = migrated == null ? (props) => <Link {...props} to={slug} className={linkClassNames} />
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    : (props) => <a {...props} href={`https://www.swkeever.com${migrated}`} className={linkClassNames} />;
+
   return (
-    <Link
-      to={slug}
-      className={tw(
-        globalStyles.outline,
-        globalStyles.transitions,
-        'sm:rounded-lg',
-        'sm:hover:shadow-lg',
-        'overflow-hidden',
-        'h-full',
-      )}
-    >
+    <BlogLink>
       <article className={tw('h-full', 'flex flex-col')}>
-        <figure className="flex-shrink-0">
-          <Img className="object-cover w-full h-48" fluid={fluid} alt={title} />
+        <figure className='flex-shrink-0'>
+          <Img className='object-cover w-full h-48' fluid={fluid} alt={title} />
         </figure>
-        <section className="flex flex-col justify-between flex-1 p-3 bg-neutralBg">
-          <header className="flex-1">
+        <section className='flex flex-col justify-between flex-1 p-3 bg-neutralBg'>
+          <header className='flex-1'>
             <span
               className={tw(
                 category.className,
@@ -105,7 +110,7 @@ export default function BlogCard({
               &middot;
             </span>
             <div>
-              <dt className="sr-only">Time to read</dt>
+              <dt className='sr-only'>Time to read</dt>
               <dd>
                 {timeToRead}
                 &nbsp;min read
@@ -114,6 +119,6 @@ export default function BlogCard({
           </dl>
         </section>
       </article>
-    </Link>
+    </BlogLink>
   );
 }

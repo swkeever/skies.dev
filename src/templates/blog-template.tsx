@@ -84,6 +84,7 @@ export default function BlogPost({
       body,
       headings,
       frontmatter: {
+        migrated,
         title,
         description,
         date,
@@ -252,6 +253,7 @@ export default function BlogPost({
           keywords={keywords}
           image={imageFluid}
           blogSchema={schema}
+          migrated={migrated}
         />
         <article>
           <div
@@ -426,6 +428,7 @@ export const blogPostPageQuery = graphql`
         value
       }
       frontmatter {
+        migrated
         title
         ...BlogDate
         keywords

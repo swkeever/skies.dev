@@ -26,6 +26,7 @@ interface BlogFrontmatter {
   keywords: string[];
   tags: string[];
   image: BlogImage;
+  migrated?: string
 }
 
 interface Author {
