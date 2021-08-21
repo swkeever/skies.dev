@@ -247,32 +247,17 @@ export default function BlogsPage({
           </div>
 
           <p className='text-neutralBold mt-2'>
-            I recently moved to
+            I moved to
             {' '}
             <a
               className='underline hover:text-onNeutralBg'
               href={'https://swkeever.com'}
             >
               swkeever.com
-            </a>.
+            </a>!
             Check out new articles there.
             Articles that are migrated to the new blog site are linked
             from this one.
-          </p>
-          <p className='text-neutralBold mt-2'>
-            I&apos;m a web developer living in Seattle, WA.
-
-            I&apos;m currently
-
-            working on Discovery at
-            {' '}
-            <ExternalLink
-              className='underline hover:text-onNeutralBg'
-              href='https://www.offerup.com'
-            >
-              OfferUp
-            </ExternalLink>
-            .
           </p>
         </div>
       </div>
